@@ -1,0 +1,17 @@
+export function scoreLeadOpportunity(input = {}) {
+  const domain = normalizeDomain(input.domain);
+  const sector = String(input.sector_hint || '').toLowerCase();
+  const country = String(input.country_hint || '').toUpperCase();
+  const hash = stableHash(domain + '|' + sector + '|' + country);
+  const boost = /(dent|clinic|health|medical|odont)/.test(sector) ? 12 : /(legal|law|avvoc)/.test(sector) ? 10 : /(immobil|real estate)/.test(sector) ? 9 : /(ristruttur|construction|edil)/.test(sector) ? 8 : sector ? 5 : 0;
+  const score = clamp(34 + (hash % 32) + boost + (/\.(it|com|io|ai)$/.test(domain) ? 4 : 0), 8, 94);
+  const confidence = Number(clamp(0.52 + ((hash >> 8) % 36) / 100, 0.35, 0.88).toFixed(2));
+  return { domain, opportunity_score: score, confidence, priority: score >= 70 ? 'high' : score >= 45 ? 'medium' : 'low', reason: reason(score, !!sector), recommended_action: confidence < 0.5 ? 'monitor' : score >= 70 ? 'request_deep_analysis' : score >= 45 ? 'monitor' : 'ignore', beta: true, model_version: 'minimal-beta-0.1', public_endpoint_live: true, synthetic_demo_mode: true };
+}
+function normalizeDomain(value) { value = String(value || '').trim().toLowerCase(); if (!value) throw new Error('domain is required'); if (value.includes('://')) value = new URL(value).hostname; return value.replace(/^www\./, '').replace(/\/.*$/, ''); }
+function stableHash(value) { let h = 2166136261; for (let i = 0; i < value.length; i++) { h ^= value.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+function reason(score, hasSector) { if (score >= 70) return 'Signals suggest a high-priority opportunity for deeper digital analysis.'; if (score >= 45) return 'Signals suggest a medium opportunity that should be monitored or enriched.'; return hasSector ? 'Sector context is present, but signals are not strong enough for priority action.' : 'Insufficient public context for a high-priority opportunity signal.'; }
+function json(payload, status = 200) { return new Response(JSON.stringify(payload, null, 2), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'access-control-allow-origin': '*', 'access-control-allow-methods': 'GET,POST,OPTIONS', 'access-control-allow-headers': 'content-type,x-api-key' } }); }
+function authorized(request, env = {}) { const key = String(env.MACHINESIGNAL_API_KEY || env.API_KEY || '').trim(); return !key || request.headers.get('x-api-key') === key; }
+export async function handleRequest(request, env = {}) { const url = new URL(request.url); if (request.method === 'OPTIONS') return json({ ok: true }); if (request.method === 'GET' && url.pathname === '/health') return json({ status: 'ok', service: 'MachineSignal Lead Opportunity Score API', beta: true }); if (request.method === 'GET' && url.pathname === '/openapi.json') return json({ openapi: '3.1.0', info: { title: 'MachineSignal Lead Opportunity Score API', version: '0.1.0-beta' } }); if (request.method === 'POST' && url.pathname === '/v1/lead-opportunity-score') { if (!authorized(request, env)) return json({ error: 'unauthorized', message: 'Missing or invalid X-API-Key.' }, 401); try { return json(scoreLeadOpportunity(await request.json())); } catch (e) { return json({ error: 'bad_request', message: e.message || 'Invalid request.' }, 400); } } return json({ error: 'not_found', message: 'Use GET /health, GET /openapi.json or POST /v1/lead-opportunity-score.' }, 404); }
