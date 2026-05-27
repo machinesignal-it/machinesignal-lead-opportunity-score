@@ -1,0 +1,49 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MachineSignal Lead Opportunity Score API",
+    "version": "0.1.0-beta",
+    "description": "Discovery copy. Full schema: https://machinesignal.it/openapi.json",
+    "contact": {
+      "name": "Team MachineSignal",
+      "email": "beta@machinesignal.it",
+      "url": "https://machinesignal.it/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.machinesignal.it",
+      "description": "Planned beta API host. Access is not public yet."
+    }
+  ],
+  "paths": {
+    "/v1/lead-opportunity-score": {
+      "post": {
+        "operationId": "scoreLeadOpportunity",
+        "summary": "Score a business domain",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Opportunity score generated"
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    }
+  }
+}
