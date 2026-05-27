@@ -1,0 +1,50 @@
+{
+  "info": {
+    "name": "MachineSignal Lead Opportunity Score API - Beta Discovery",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Discovery collection. Public endpoint access is not enabled yet. Contact beta@machinesignal.it."
+  },
+  "item": [
+    {
+      "name": "Fetch public OpenAPI schema",
+      "request": {
+        "method": "GET",
+        "url": "https://machinesignal.it/openapi.json"
+      }
+    },
+    {
+      "name": "Fetch beta access metadata",
+      "request": {
+        "method": "GET",
+        "url": "https://machinesignal.it/beta-access.json"
+      }
+    },
+    {
+      "name": "Planned score endpoint",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{api_key}}"
+          }
+        ],
+        "url": "https://api.machinesignal.it/v1/lead-opportunity-score",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"domain\": \"localclinic.example\"\n}"
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "api_key",
+      "value": "REQUEST_BETA_ACCESS"
+    }
+  ]
+}
