@@ -1,0 +1,25 @@
+{
+  "name": "MachineSignal Lead Opportunity Score API beta access",
+  "status": "private_beta",
+  "request_contact": "beta@machinesignal.it",
+  "request_subject": "MachineSignal beta access request",
+  "resources": {
+    "home": "https://machinesignal.it/",
+    "api": "https://machinesignal.it/api/",
+    "beta": "https://machinesignal.it/beta/",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "llms": "https://machinesignal.it/llms.txt"
+  },
+  "pricing_under_validation": [
+    "pay_per_score",
+    "score_packs",
+    "monthly_subscription"
+  ],
+  "constraints": {
+    "public_endpoint_live": false,
+    "api_key_required": true,
+    "no_lead_list_sales": true,
+    "no_outreach_automation": true,
+    "examples_are_synthetic": true
+  }
+}
