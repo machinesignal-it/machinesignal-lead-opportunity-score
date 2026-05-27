@@ -1,0 +1,9 @@
+{
+  "domain": "localclinic.example",
+  "opportunity_score": 82,
+  "confidence": 0.74,
+  "priority": "high",
+  "reason": "Weak conversion paths and limited structured data.",
+  "recommended_action": "request_deep_analysis",
+  "beta": true
+}
