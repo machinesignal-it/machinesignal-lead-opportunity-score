@@ -1,0 +1,15 @@
+# MachineSignal
+
+MachineSignal builds machine-readable APIs for CRM systems, RevOps workflows and AI agents.
+
+Primary beta product: Lead Opportunity Score API.
+
+Important URLs:
+- https://machinesignal.it/
+- https://machinesignal.it/api/
+- https://machinesignal.it/beta/
+- https://machinesignal.it/openapi.json
+- https://machinesignal.it/beta-access.json
+- https://machinesignal.it/postman_collection.json
+
+The API is in private technical beta. Public endpoint access is not enabled yet. For beta access, contact beta@machinesignal.it.
