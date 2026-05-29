@@ -216,6 +216,8 @@ const targetDiscoveryPayload = await targetDiscoveryResponse.json();
 assert.equal(targetDiscoveryPayload.product_code, "target_discovery");
 assert.equal(targetDiscoveryPayload.ledger_product_code, "target_discovery_pack_250");
 assert.equal(targetDiscoveryPayload.delivery.delivery_type, "target_discovery_precheck");
+assert.equal(targetDiscoveryPayload.delivery.beta_sample_targets.length, 3);
+assert.equal(targetDiscoveryPayload.delivery.next_machine_call.endpoint, "/v1/lead-opportunity-score");
 assert.equal(targetDiscoveryPayload.usage.current_event.credits_consumed, 1);
 
 const ordersResponse = await handleRequest(

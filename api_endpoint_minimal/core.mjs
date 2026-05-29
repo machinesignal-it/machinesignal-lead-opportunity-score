@@ -1793,6 +1793,38 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
           "reason_for_inclusion"
         ]
       },
+      beta_sample_targets: [
+        {
+          domain: "studio-odontoiatrico-demo-milano.it",
+          category: "dentist",
+          area: "Milan",
+          initial_signals: ["sector_match", "local_market", "business_domain_present"],
+          reason_for_inclusion:
+            "Synthetic beta target representing a dental clinic domain suitable for score testing."
+        },
+        {
+          domain: "clinica-dentale-demo-lombardia.it",
+          category: "dentist",
+          area: "Lombardy",
+          initial_signals: ["sector_match", "regional_market", "clinic_keyword_present"],
+          reason_for_inclusion:
+            "Synthetic beta target representing a regional dental clinic opportunity."
+        },
+        {
+          domain: "dentista-demo-centro.it",
+          category: "dentist",
+          area: "Italy",
+          initial_signals: ["sector_match", "service_keyword_present"],
+          reason_for_inclusion:
+            "Synthetic beta target for validating the target-discovery-to-score handoff."
+        }
+      ],
+      next_machine_call: {
+        method: "POST",
+        endpoint: "/v1/lead-opportunity-score",
+        input_from_delivery: "Use beta_sample_targets[].domain as domain.",
+        required_headers: ["X-API-Key", "Idempotency-Key"]
+      },
       validity_rule:
         "Activate the pack only if the market availability pre-check can support 250 coherent targets.",
       fallback_if_not_available: [

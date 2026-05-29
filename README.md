@@ -141,6 +141,7 @@ Validated on 2026-05-29:
 - 7 beta purchase-intent orders;
 - score and deep-analysis credit ledger validated;
 - target discovery purchase-intent validated on the live Worker;
+- no-list machine flow validated: target discovery delivery can feed the score endpoint;
 - order history and single-order retrieval;
 - idempotency protection against double charge;
 - Cloudflare KV ledger persistence;
