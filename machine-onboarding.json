@@ -4,25 +4,19 @@
   "primary_customer_interface": "machine",
   "human_role": "supervision, approval and audit only",
   "machine_first_rule": "Do not rely on human email persuasion as the primary sales channel. Use public manifests, OpenAPI, llms.txt and callable endpoints.",
-  "canonical_base_url": "https://machinesignal-api.beta-878.workers.dev",
-  "canonical_manifest": "https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
   "discovery": {
-    "website": "https://machinesignal.it/",
-    "api_overview": "https://machinesignal.it/api/",
-    "llms": "https://machinesignal.it/llms.txt",
-    "openapi": "https://machinesignal.it/openapi.json",
-    "postman": "https://machinesignal.it/postman_collection.json",
-    "product_catalog": "https://machinesignal.it/product-catalog.json",
-    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
-    "canonical_llms": "https://machinesignal-api.beta-878.workers.dev/llms.txt",
-    "canonical_openapi": "https://machinesignal-api.beta-878.workers.dev/openapi.json",
-    "canonical_product_catalog": "https://machinesignal-api.beta-878.workers.dev/product-catalog.json",
-    "canonical_postman": "https://machinesignal-api.beta-878.workers.dev/postman_collection.json",
-    "authenticated_onboarding": "https://machinesignal-api.beta-878.workers.dev/v1/onboarding"
+    "llms": "/llms.txt",
+    "openapi": "/openapi.json",
+    "postman": "/postman_collection.json",
+    "product_catalog": "/product-catalog.json",
+    "machine_onboarding": "/machine-onboarding.json",
+    "authenticated_onboarding": "/v1/onboarding"
   },
   "authentication": {
     "type": "apiKey",
     "header": "X-API-Key",
+    "customer_keys_created_by": "POST /v1/beta/customers",
     "idempotency_header": "Idempotency-Key"
   },
   "callable_flow": [
@@ -64,49 +58,180 @@
     }
   ],
   "products": {
-    "score_pack_1k": {
-      "buys": "lead opportunity score",
-      "price_eur": 99,
-      "unit": "1000 valid scores",
-      "endpoint": "POST /v1/lead-opportunity-score"
-    },
     "target_discovery_pack_250": {
-      "buys": "250 coherent targets after market availability pre-check",
+      "name": "Target Discovery Pack",
       "price_eur": 149,
       "unit": "250 coherent targets",
-      "endpoint": "POST /v1/purchase-intent",
-      "product_code": "target_discovery"
+      "current_beta_endpoint": "POST /v1/purchase-intent",
+      "product_code": "target_discovery",
+      "when_to_buy": "When the customer machine does not already have a list of companies or domains to score.",
+      "includes": [
+        "pre-check of market availability",
+        "250 normalized and deduplicated targets when the market is available",
+        "domain when available",
+        "category",
+        "area",
+        "initial opportunity signals",
+        "reason for inclusion",
+        "JSON or CSV export"
+      ],
+      "validity_rule": "The pack is activated only when the pre-check indicates that 250 coherent targets can be produced. If not, the machine receives alternatives: Mini Discovery, wider area, broader criteria or changed commercial objective.",
+      "machine_output": "A target list that can be sent to scoring or CRM enrichment workflows."
     },
-    "verification": {
-      "buys": "data quality verification delivery",
-      "endpoint": "POST /v1/purchase-intent",
-      "product_code": "verification"
+    "score_pack_1k": {
+      "name": "Score Pack 1k",
+      "price_eur": 99,
+      "unit": "1000 valid scores",
+      "current_beta_endpoint": "POST /v1/lead-opportunity-score",
+      "product_code": "score_pack_1k",
+      "when_to_buy": "When the customer machine already has a list and needs to prioritize where to spend budget.",
+      "includes": [
+        "list cleaning",
+        "deduplication",
+        "exclusion of invalid or non-analyzable records",
+        "opportunity_score",
+        "confidence",
+        "operational decision",
+        "short reason",
+        "priority",
+        "recommended next purchase"
+      ],
+      "validity_rule": "Duplicate, invalid or non-analyzable records do not consume score credits. The pack ends after 1000 valid scores.",
+      "machine_output": "Score, confidence, decision, reason, priority and recommended next product."
     },
-    "nurture_signal": {
-      "buys": "nurture signal delivery",
-      "endpoint": "POST /v1/purchase-intent",
-      "product_code": "nurture_signal"
+    "domain_enrichment_pack_100": {
+      "name": "Domain Enrichment Pack 100",
+      "price_eur": 149,
+      "unit": "100 completed domain-enrichment decisions",
+      "current_beta_endpoint": "POST /v1/purchase-intent",
+      "product_code": "domain_enrichment",
+      "when_to_buy": "When the customer machine has target names but does not have reliable domains to score.",
+      "includes": [
+        "100 target records processed",
+        "public-source lookup",
+        "domain when verified",
+        "confidence level",
+        "evidence source type",
+        "status for each target",
+        "reason when no reliable domain is found",
+        "JSON or CSV export ready for scoring workflows"
+      ],
+      "validity_rule": "One credit is consumed for each completed enrichment decision: verified_domain, candidate_not_reliable or no_reliable_domain. The product does not promise that every target will have a domain.",
+      "machine_output": "A domain-enrichment result list that tells the workflow which records can move to scoring and which records should stop or be widened."
     },
-    "deep_analysis": {
-      "buys": "deep opportunity analysis delivery",
+    "deep_analysis_pack_100": {
+      "name": "Deep Analysis Pack 100",
       "price_eur": 299,
       "unit": "100 valid deep analyses",
-      "endpoint": "POST /v1/purchase-intent",
-      "product_code": "deep_analysis"
+      "current_beta_endpoint": "POST /v1/purchase-intent",
+      "product_code": "deep_analysis",
+      "when_to_buy": "When a high score needs an explanation before the workflow spends more budget.",
+      "includes": [
+        "commercial signal analysis",
+        "score explanation",
+        "possible sellable service",
+        "false-positive risk",
+        "urgency level",
+        "buy, hold or skip recommendation"
+      ],
+      "validity_rule": "Leads without enough data for a complete analysis do not consume deep-analysis credits and are returned with an exclusion reason.",
+      "machine_output": "A deeper JSON analysis that tells the workflow whether to continue, pause or stop."
     },
-    "action_pack": {
-      "buys": "CRM/action preparation delivery",
+    "action_pack_25": {
+      "name": "Action Pack 25",
       "price_eur": 399,
       "unit": "25 valid action packs",
-      "endpoint": "POST /v1/purchase-intent",
-      "product_code": "action_pack"
+      "current_beta_endpoint": "POST /v1/purchase-intent",
+      "product_code": "action_pack",
+      "when_to_buy": "When Deep Analysis confirms that a lead deserves a prepared commercial action.",
+      "includes": [
+        "initial message angle",
+        "commercial positioning",
+        "CRM tags",
+        "priority",
+        "next action",
+        "suggested timing",
+        "instructions readable by CRM systems or AI agents"
+      ],
+      "validity_rule": "If the lead does not have enough signal for a sensible commercial action, the pack is not consumed and the system returns the exclusion reason.",
+      "machine_output": "A structured action payload for CRM, workflow automation or supervised agent execution."
     },
     "opportunity_feed_monthly": {
-      "buys": "recurring monthly opportunity feed with 4 scans and 4 deliveries",
+      "name": "Opportunity Feed",
       "price_eur": 249,
       "unit": "1 month",
-      "endpoint": "POST /v1/purchase-intent",
-      "product_code": "opportunity_feed"
+      "current_beta_endpoint": "POST /v1/purchase-intent",
+      "product_code": "opportunity_feed",
+      "when_to_buy": "When the customer machine wants recurring opportunities without launching one-off discovery requests.",
+      "includes": [
+        "1 recurring monthly feed",
+        "4 scheduled scans",
+        "4 scheduled deliveries",
+        "new or updated targets",
+        "base score",
+        "main signals",
+        "priority",
+        "API, file or webhook output"
+      ],
+      "validity_rule": "If a scan does not produce coherent opportunities, the system returns a market coverage report and suggested changes. It does not fill the feed with weak targets.",
+      "machine_output": "A scheduled feed of targets, scores and signals for automated systems."
+    },
+    "api_starter_monthly": {
+      "name": "API Starter",
+      "price_eur": 99,
+      "unit": "1 month",
+      "current_beta_endpoint": "API key + score endpoint",
+      "product_code": "api_starter",
+      "when_to_buy": "For light recurring use and continuous testing.",
+      "includes": [
+        "1 API key",
+        "documentation",
+        "demo environment",
+        "score endpoint",
+        "500 valid scores per month",
+        "basic usage report",
+        "standard asynchronous support"
+      ],
+      "validity_rule": "The 500 monthly scores follow the valid-output rule. Extra usage requires add-on packs or upgrade.",
+      "machine_output": "Authenticated access to the score API with monthly usage visibility."
+    },
+    "api_pro_monthly": {
+      "name": "API Pro",
+      "price_eur": 499,
+      "unit": "1 month",
+      "current_beta_endpoint": "API key + advanced volumes",
+      "product_code": "api_pro",
+      "when_to_buy": "For CRMs, agencies, platforms or automated workflows with recurring volume.",
+      "includes": [
+        "1 advanced API key",
+        "3000 valid scores per month",
+        "50 valid Deep Analysis outputs per month",
+        "1 monthly Opportunity Feed",
+        "webhook support",
+        "processing priority",
+        "advanced usage report",
+        "asynchronous technical support"
+      ],
+      "validity_rule": "Scores and Deep Analysis follow the valid-output rule. Action Packs and extra usage are bought separately.",
+      "machine_output": "Higher-volume API access with feed, webhook and usage reporting."
+    },
+    "custom_overage": {
+      "name": "Custom / overage",
+      "price_eur_from": 2000,
+      "unit": "custom quote",
+      "current_beta_endpoint": "custom approval",
+      "product_code": "custom_overage",
+      "when_to_buy": "When the customer exceeds standard limits or needs dedicated integrations.",
+      "includes": [
+        "extra usage beyond standard packs",
+        "custom batches",
+        "dedicated endpoint or export",
+        "custom scoring rules",
+        "specific integrations",
+        "additional technical support"
+      ],
+      "validity_rule": "Each custom request is quoted before activation with volume, expected output, delivery timing, estimated cost and usage limits.",
+      "machine_output": "A custom machine-readable scope and delivery agreement."
     }
   },
   "beta_limits": {

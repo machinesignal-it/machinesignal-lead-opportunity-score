@@ -34,6 +34,11 @@ const DEFAULT_LEDGER_STATE = {
       credits_purchased: 1,
       credits_used: 0
     },
+    domain_enrichment_pack_100: {
+      product_code: "domain_enrichment_pack_100",
+      credits_purchased: 1,
+      credits_used: 0
+    },
     opportunity_feed_monthly: {
       product_code: "opportunity_feed_monthly",
       credits_purchased: 1,
@@ -114,6 +119,29 @@ const PRODUCT_CATALOG = {
       validity_rule:
         "Duplicate, invalid or non-analyzable records do not consume score credits. The pack ends after 1000 valid scores.",
       machine_output: "Score, confidence, decision, reason, priority and recommended next product."
+    },
+    domain_enrichment_pack_100: {
+      name: "Domain Enrichment Pack 100",
+      price_eur: 149,
+      unit: "100 completed domain-enrichment decisions",
+      current_beta_endpoint: "POST /v1/purchase-intent",
+      product_code: "domain_enrichment",
+      when_to_buy:
+        "When the customer machine has target names but does not have reliable domains to score.",
+      includes: [
+        "100 target records processed",
+        "public-source lookup",
+        "domain when verified",
+        "confidence level",
+        "evidence source type",
+        "status for each target",
+        "reason when no reliable domain is found",
+        "JSON or CSV export ready for scoring workflows"
+      ],
+      validity_rule:
+        "One credit is consumed for each completed enrichment decision: verified_domain, candidate_not_reliable or no_reliable_domain. The product does not promise that every target will have a domain.",
+      machine_output:
+        "A domain-enrichment result list that tells the workflow which records can move to scoring and which records should stop or be widened."
     },
     deep_analysis_pack_100: {
       name: "Deep Analysis Pack 100",
@@ -379,7 +407,7 @@ export const openApi = {
         operationId: "createPurchaseIntent",
         summary: "Create a beta order intent for a recommended next product",
         description:
-          "Creates a tracked beta order intent for target_discovery, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment.",
+          "Creates a tracked beta order intent for target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment.",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
           {
@@ -632,12 +660,13 @@ export const openApi = {
       },
       PurchaseIntentRequest: {
         type: "object",
-        required: ["product_code", "domain"],
+        required: ["product_code"],
         properties: {
           product_code: {
             type: "string",
             enum: [
               "target_discovery",
+              "domain_enrichment",
               "verification",
               "nurture_signal",
               "deep_analysis",
@@ -648,8 +677,21 @@ export const openApi = {
           },
           domain: {
             type: "string",
-            description: "Domain that the machine wants to buy the next product for.",
+            description:
+              "Domain that the machine wants to buy the next product for. Optional for target discovery and domain enrichment batch requests.",
             example: "studio-legale-demo.it"
+          },
+          target_name: {
+            type: "string",
+            description:
+              "Target name for products that start before a reliable domain exists, such as domain_enrichment.",
+            example: "Studio Dentistico Demo"
+          },
+          batch_id: {
+            type: "string",
+            description:
+              "Machine-readable batch reference for list-based discovery or enrichment requests.",
+            example: "dentists-lombardy-20260529"
           },
           source_score_request_id: {
             type: "string",
@@ -717,6 +759,7 @@ export const openApi = {
           deep_analysis_credits: { type: "integer", example: 10 },
           action_pack_credits: { type: "integer", example: 5 },
           target_discovery_credits: { type: "integer", example: 1 },
+          domain_enrichment_credits: { type: "integer", example: 1 },
           opportunity_feed_credits: { type: "integer", example: 1 }
         }
       },
@@ -824,8 +867,8 @@ Machine-readable decisions:
 
 How a machine should create a beta order intent:
 - POST /v1/purchase-intent with X-API-Key and Idempotency-Key;
-- body example: {"product_code":"target_discovery","domain":"example.it","source_score_request_id":"score-request-001"};
-- supported product_code values: target_discovery, verification, nurture_signal, deep_analysis, action_pack, opportunity_feed;
+- body example: {"product_code":"domain_enrichment","target_name":"Studio Dentistico Demo","batch_id":"dentists-lombardy-demo"};
+- supported product_code values: target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack, opportunity_feed;
 - the beta order intent consumes one corresponding pack credit;
 - the response includes delivery, an immediate machine-readable beta output;
 - no real payment is executed in beta.
@@ -941,10 +984,12 @@ const postmanCollection = {
           mode: "raw",
           raw: JSON.stringify(
             {
-              product_code: "target_discovery",
-              domain: "clinic3.it",
-              source_score_request_id: "postman-demo-score-001",
-              reason: "Customer machine needs a starting list before scoring"
+      product_code: "domain_enrichment",
+      domain: "clinic3.it",
+      target_name: "Studio Dentistico Demo",
+      batch_id: "dentists-lombardy-demo",
+      source_score_request_id: "postman-demo-score-001",
+      reason: "Customer machine has target names but needs reliable domains before scoring"
             },
             null,
             2
@@ -1419,6 +1464,14 @@ function purchaseProductConfig(productCode) {
       description:
         "Starts a target discovery pack after checking whether the requested market can produce 250 coherent targets."
     },
+    domain_enrichment: {
+      product_code: "domain_enrichment",
+      ledger_product_code: "domain_enrichment_pack_100",
+      beta_price_range_eur: "149",
+      delivery_mode: "domain_enrichment_decision_pack",
+      description:
+        "Processes target records without reliable domains and returns a verified-domain, candidate-not-reliable or no-reliable-domain decision for each record."
+    },
     verification: {
       product_code: "verification",
       ledger_product_code: "verification_pack_100",
@@ -1459,15 +1512,32 @@ function purchaseProductConfig(productCode) {
   const product = products[normalized];
   if (!product) {
     throw new Error(
-      "unsupported product_code. Use target_discovery, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed"
+      "unsupported product_code. Use target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed"
     );
   }
   return product;
 }
 
+function normalizePurchaseSubject(input = {}, product = {}) {
+  if (input?.domain) {
+    return normalizeDomain(input.domain);
+  }
+  if (product.product_code === "domain_enrichment" || product.product_code === "target_discovery") {
+    const subject =
+      String(input?.batch_id || input?.target_name || input?.market || input?.sector_hint || "")
+        .trim()
+        .toLowerCase() || `${product.product_code}-request`;
+    return subject
+      .replace(/[^a-z0-9._-]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 120);
+  }
+  return normalizeDomain(input?.domain);
+}
+
 export function buildPurchaseIntent(input, requestId, event) {
   const product = purchaseProductConfig(input?.product_code);
-  const domain = normalizeDomain(input?.domain);
+  const domain = normalizePurchaseSubject(input, product);
   const status =
     event.status === "blocked_insufficient_credits"
       ? "blocked_insufficient_credits"
@@ -1576,6 +1646,11 @@ function buildInitialBalances(input = {}) {
     target_discovery_pack_250: {
       product_code: "target_discovery_pack_250",
       credits_purchased: numberOrDefault(input.target_discovery_credits, 1),
+      credits_used: 0
+    },
+    domain_enrichment_pack_100: {
+      product_code: "domain_enrichment_pack_100",
+      credits_purchased: numberOrDefault(input.domain_enrichment_credits, 1),
       credits_used: 0
     },
     opportunity_feed_monthly: {
@@ -1835,6 +1910,70 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
       ],
       machine_recommendation:
         "Use this product when the customer machine needs a starting list before score calls."
+    };
+  }
+
+  if (productCode === "domain_enrichment") {
+    return {
+      ...common,
+      delivery_type: "domain_enrichment_decision_pack",
+      status: "domain_enrichment_beta_ready",
+      requested_target_name: String(input?.target_name || "").trim() || null,
+      requested_batch_id: String(input?.batch_id || "").trim() || null,
+      promised_output: {
+        decision_count: 100,
+        decision_statuses: [
+          "verified_domain",
+          "candidate_not_reliable",
+          "no_reliable_domain"
+        ],
+        fields: [
+          "target_name",
+          "area",
+          "verified_domain",
+          "confidence",
+          "source_type",
+          "decision_status",
+          "reason",
+          "next_machine_action"
+        ]
+      },
+      beta_sample_results: [
+        {
+          target_name: String(input?.target_name || "Studio Dentistico Demo").trim(),
+          area: String(input?.area || input?.country_hint || "Italy").trim(),
+          verified_domain: "studio-dentistico-demo.it",
+          confidence: "medium",
+          source_type: "public_directory_or_search_result",
+          decision_status: "verified_domain",
+          reason: "Name, sector and area are coherent enough for score testing.",
+          next_machine_action: "send verified_domain to /v1/lead-opportunity-score"
+        },
+        {
+          target_name: "Target con dominio incerto",
+          area: String(input?.area || input?.country_hint || "Italy").trim(),
+          verified_domain: null,
+          confidence: "low",
+          source_type: "candidate_only",
+          decision_status: "candidate_not_reliable",
+          reason: "A possible domain exists, but evidence is not strong enough for scoring.",
+          next_machine_action: "do not score; widen sources or request verification"
+        },
+        {
+          target_name: "Target senza dominio pubblico affidabile",
+          area: String(input?.area || input?.country_hint || "Italy").trim(),
+          verified_domain: null,
+          confidence: "none",
+          source_type: "no_public_match",
+          decision_status: "no_reliable_domain",
+          reason: "No reliable public website domain was found.",
+          next_machine_action: "stop scoring workflow for this target"
+        }
+      ],
+      validity_rule:
+        "Consume one enrichment credit for each completed enrichment decision, including verified_domain, candidate_not_reliable and no_reliable_domain.",
+      machine_recommendation:
+        "Use this product between target discovery and score calls when the workflow has target names but lacks reliable domains."
     };
   }
 
@@ -2144,7 +2283,7 @@ export async function handleRequest(request, env = {}) {
     try {
       const body = await parseJson(request);
       const product = purchaseProductConfig(body?.product_code);
-      const domain = normalizeDomain(body?.domain);
+      const domain = normalizePurchaseSubject(body, product);
       const ledger = await loadLedger(request, env, auth);
       const requestId = makeRequestId(request, body, domain);
       const event = consumeCredit(

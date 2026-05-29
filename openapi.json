@@ -155,7 +155,7 @@
       "post": {
         "operationId": "createPurchaseIntent",
         "summary": "Create a beta order intent for a recommended next product",
-        "description": "Creates a tracked beta order intent for target_discovery, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment.",
+        "description": "Creates a tracked beta order intent for target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -487,14 +487,14 @@
       "PurchaseIntentRequest": {
         "type": "object",
         "required": [
-          "product_code",
-          "domain"
+          "product_code"
         ],
         "properties": {
           "product_code": {
             "type": "string",
             "enum": [
               "target_discovery",
+              "domain_enrichment",
               "verification",
               "nurture_signal",
               "deep_analysis",
@@ -505,8 +505,18 @@
           },
           "domain": {
             "type": "string",
-            "description": "Domain that the machine wants to buy the next product for.",
+            "description": "Domain that the machine wants to buy the next product for. Optional for target discovery and domain enrichment batch requests.",
             "example": "studio-legale-demo.it"
+          },
+          "target_name": {
+            "type": "string",
+            "description": "Target name for products that start before a reliable domain exists, such as domain_enrichment.",
+            "example": "Studio Dentistico Demo"
+          },
+          "batch_id": {
+            "type": "string",
+            "description": "Machine-readable batch reference for list-based discovery or enrichment requests.",
+            "example": "dentists-lombardy-20260529"
           },
           "source_score_request_id": {
             "type": "string",
@@ -634,6 +644,10 @@
             "example": 5
           },
           "target_discovery_credits": {
+            "type": "integer",
+            "example": 1
+          },
+          "domain_enrichment_credits": {
             "type": "integer",
             "example": 1
           },

@@ -55,6 +55,7 @@ assert.equal(productCatalogResponse.status, 200);
 const productCatalogPayload = await productCatalogResponse.json();
 assert.equal(productCatalogPayload.products.score_pack_1k.price_eur, 99);
 assert.equal(productCatalogPayload.products.target_discovery_pack_250.price_eur, 149);
+assert.equal(productCatalogPayload.products.domain_enrichment_pack_100.price_eur, 149);
 
 const llmsResponse = await handleRequest(new Request("http://localhost/llms.txt"));
 assert.equal(llmsResponse.status, 200);
@@ -220,6 +221,32 @@ assert.equal(targetDiscoveryPayload.delivery.beta_sample_targets.length, 3);
 assert.equal(targetDiscoveryPayload.delivery.next_machine_call.endpoint, "/v1/lead-opportunity-score");
 assert.equal(targetDiscoveryPayload.usage.current_event.credits_consumed, 1);
 
+const domainEnrichmentResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "domain_enrichment",
+      target_name: "Studio Dentistico Demo",
+      batch_id: "dentists-lombardy-demo",
+      area: "Lombardy",
+      reason: "Customer machine has target names but needs reliable domains before scoring"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key",
+      "idempotency-key": "test-domain-enrichment-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(domainEnrichmentResponse.status, 200);
+const domainEnrichmentPayload = await domainEnrichmentResponse.json();
+assert.equal(domainEnrichmentPayload.product_code, "domain_enrichment");
+assert.equal(domainEnrichmentPayload.ledger_product_code, "domain_enrichment_pack_100");
+assert.equal(domainEnrichmentPayload.delivery.delivery_type, "domain_enrichment_decision_pack");
+assert.equal(domainEnrichmentPayload.delivery.beta_sample_results.length, 3);
+assert.equal(domainEnrichmentPayload.usage.current_event.credits_consumed, 1);
+
 const ordersResponse = await handleRequest(
   new Request("http://localhost/v1/orders", {
     method: "GET",
@@ -229,7 +256,7 @@ const ordersResponse = await handleRequest(
 );
 assert.equal(ordersResponse.status, 200);
 const ordersPayload = await ordersResponse.json();
-assert.equal(ordersPayload.count, 2);
+assert.equal(ordersPayload.count, 3);
 assert.ok(ordersPayload.orders.some((order) => order.order_intent_id === purchaseIntentPayload.order_intent_id));
 
 const filteredOrdersResponse = await handleRequest(
@@ -263,7 +290,8 @@ const createCustomerResponse = await handleRequest(
       verification_credits: 3,
       nurture_signal_credits: 2,
       deep_analysis_credits: 1,
-      action_pack_credits: 1
+      action_pack_credits: 1,
+      domain_enrichment_credits: 1
     }),
     headers: {
       "content-type": "application/json",

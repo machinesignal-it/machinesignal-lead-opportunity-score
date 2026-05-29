@@ -61,6 +61,26 @@
       "validity_rule": "Duplicate, invalid or non-analyzable records do not consume score credits. The pack ends after 1000 valid scores.",
       "machine_output": "Score, confidence, decision, reason, priority and recommended next product."
     },
+    "domain_enrichment_pack_100": {
+      "name": "Domain Enrichment Pack 100",
+      "price_eur": 149,
+      "unit": "100 completed domain-enrichment decisions",
+      "current_beta_endpoint": "POST /v1/purchase-intent",
+      "product_code": "domain_enrichment",
+      "when_to_buy": "When the customer machine has target names but does not have reliable domains to score.",
+      "includes": [
+        "100 target records processed",
+        "public-source lookup",
+        "domain when verified",
+        "confidence level",
+        "evidence source type",
+        "status for each target",
+        "reason when no reliable domain is found",
+        "JSON or CSV export ready for scoring workflows"
+      ],
+      "validity_rule": "One credit is consumed for each completed enrichment decision: verified_domain, candidate_not_reliable or no_reliable_domain. The product does not promise that every target will have a domain.",
+      "machine_output": "A domain-enrichment result list that tells the workflow which records can move to scoring and which records should stop or be widened."
+    },
     "deep_analysis_pack_100": {
       "name": "Deep Analysis Pack 100",
       "price_eur": 299,

@@ -1,13 +1,13 @@
 {
   "info": {
-    "name": "MachineSignal Lead Opportunity Score API - Beta Discovery",
-    "_postman_id": "machinesignal-lead-opportunity-score-beta",
-    "description": "Postman discovery collection for MachineSignal Lead Opportunity Score API private beta. A public synthetic demo endpoint is available for technical evaluation. Contact beta@machinesignal.it for beta access.",
+    "name": "MachineSignal Lead Opportunity Score API - Callable Beta",
+    "_postman_id": "machinesignal-lead-opportunity-score-callable-beta",
+    "description": "Callable beta collection for MachineSignal. Includes score, usage ledger and public contract endpoints.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Score business domain - synthetic demo endpoint",
+      "name": "Score business domain",
       "request": {
         "method": "POST",
         "header": [
@@ -29,7 +29,7 @@
           "raw": "{\n  \"domain\": \"clinic3.it\",\n  \"sector_hint\": \"dentist\",\n  \"country_hint\": \"IT\"\n}"
         },
         "url": {
-          "raw": "https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
+          "raw": "{{base_url}}/v1/lead-opportunity-score",
           "protocol": "https",
           "host": [
             "machinesignal-api",
@@ -42,58 +42,9 @@
             "lead-opportunity-score"
           ]
         },
-        "description": "Callable synthetic demo endpoint for technical evaluation. It returns deterministic beta signals and does not scrape websites, sell lead lists or send outreach. Request private beta access at beta@machinesignal.it."
+        "description": "Returns a deterministic beta score, routing decision, next purchase recommendation and credit usage event. Requires X-API-Key and Idempotency-Key."
       },
-      "response": [
-        {
-          "name": "Synthetic high-priority response",
-          "originalRequest": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "X-API-Key",
-                "value": "{{machinesignal_api_key}}"
-              },
-              {
-                "key": "Idempotency-Key",
-                "value": "postman-demo-score-001"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"domain\": \"clinic3.it\",\n  \"sector_hint\": \"dentist\",\n  \"country_hint\": \"IT\"\n}"
-            },
-            "url": {
-              "raw": "https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
-              "protocol": "https",
-              "host": [
-                "machinesignal-api",
-                "beta-878",
-                "workers",
-                "dev"
-              ],
-              "path": [
-                "v1",
-                "lead-opportunity-score"
-              ]
-            }
-          },
-          "status": "OK",
-          "code": 200,
-          "_postman_previewlanguage": "json",
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "body": "{\n  \"domain\": \"clinic3.it\",\n  \"opportunity_score\": 81,\n  \"confidence\": 0.79,\n  \"priority\": \"high\",\n  \"decision\": \"buy_deep_analysis\",\n  \"reason\": \"Signals suggest a high-priority opportunity where a paid deep analysis may be justified.\",\n  \"recommended_action\": \"buy_deep_analysis\",\n  \"product_level\": \"score_base\",\n  \"score_price_range_eur\": \"0.05-0.20\",\n  \"next_purchase\": {\n    \"next_product\": \"deep_analysis\",\n    \"price_range_eur\": \"1-3\",\n    \"machine_instruction\": \"Buy Deep Analysis before spending human or campaign budget.\"\n  },\n  \"machine_next_step\": {\n    \"action\": \"buy_deep_analysis\",\n    \"budget_action\": \"consider_deep_analysis\",\n    \"max_extra_spend_eur\": \"1-3\",\n    \"instruction\": \"Buy Deep Analysis before spending human or campaign budget.\"\n  },\n  \"request_id\": \"postman-demo-score-001\",\n  \"usage\": {\n    \"balances\": [\n      {\n        \"product_code\": \"score_pack_1k\",\n        \"credits_purchased\": 1000,\n        \"credits_used\": 1,\n        \"credits_remaining\": 999\n      }\n    ],\n    \"current_event\": {\n      \"product_code\": \"score_pack_1k\",\n      \"status\": \"valid_output\",\n      \"credits_consumed\": 1\n    },\n    \"real_payment_executed\": false,\n    \"external_contact_executed\": false\n  },\n  \"beta\": true\n}"
-        }
-      ]
+      "response": []
     },
     {
       "name": "Read usage ledger",
@@ -106,7 +57,7 @@
           }
         ],
         "url": {
-          "raw": "https://machinesignal-api.beta-878.workers.dev/v1/usage",
+          "raw": "{{base_url}}/v1/usage",
           "protocol": "https",
           "host": [
             "machinesignal-api",
@@ -119,45 +70,7 @@
             "usage"
           ]
         },
-        "description": "Returns package balances and recent usage events. This endpoint becomes available after the credit ledger worker version is deployed."
-      },
-      "response": []
-    },
-    {
-      "name": "Fetch public OpenAPI schema",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "https://machinesignal.it/openapi.json",
-          "protocol": "https",
-          "host": [
-            "machinesignal",
-            "it"
-          ],
-          "path": [
-            "openapi.json"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Fetch beta access metadata",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "https://machinesignal.it/beta-access.json",
-          "protocol": "https",
-          "host": [
-            "machinesignal",
-            "it"
-          ],
-          "path": [
-            "beta-access.json"
-          ]
-        }
+        "description": "Returns package balances and recent usage events. Use this to verify consumed and remaining credits."
       },
       "response": []
     },
@@ -167,11 +80,13 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "https://machinesignal.it/product-catalog.json",
+          "raw": "{{base_url}}/product-catalog.json",
           "protocol": "https",
           "host": [
-            "machinesignal",
-            "it"
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
           ],
           "path": [
             "product-catalog.json"
@@ -182,12 +97,155 @@
       "response": []
     },
     {
+      "name": "Create beta purchase intent",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "postman-demo-order-001"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_code\": \"domain_enrichment\",\n  \"domain\": \"clinic3.it\",\n  \"target_name\": \"Studio Dentistico Demo\",\n  \"batch_id\": \"dentists-lombardy-demo\",\n  \"source_score_request_id\": \"postman-demo-score-001\",\n  \"reason\": \"Customer machine has target names but needs reliable domains before scoring\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/purchase-intent",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "purchase-intent"
+          ]
+        },
+        "description": "Creates a beta order intent for a recommended next product and returns an immediate structured beta delivery. No real payment is executed."
+      },
+      "response": []
+    },
+    {
+      "name": "List beta orders",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/orders",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "orders"
+          ]
+        },
+        "description": "Lists beta order intents and deliveries created by the authenticated customer machine."
+      },
+      "response": []
+    },
+    {
+      "name": "List verification orders",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/orders?product_code=verification",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "orders"
+          ],
+          "query": [
+            {
+              "key": "product_code",
+              "value": "verification"
+            }
+          ]
+        },
+        "description": "Filters order history to verification beta orders only."
+      },
+      "response": []
+    },
+    {
+      "name": "Create beta customer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_admin_api_key}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "postman-demo-beta-customer-001"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customer_id\": \"beta_partner_001\",\n  \"contact_email\": \"partner@example.com\",\n  \"plan\": \"beta_starter\",\n  \"score_credits\": 100,\n  \"verification_credits\": 25,\n  \"nurture_signal_credits\": 25,\n  \"deep_analysis_credits\": 10,\n  \"action_pack_credits\": 5,\n  \"target_discovery_credits\": 1,\n  \"opportunity_feed_credits\": 1\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/beta/customers",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "beta",
+            "customers"
+          ]
+        },
+        "description": "Admin-only beta onboarding endpoint. Creates a machine customer and returns a dedicated API key once."
+      },
+      "response": []
+    },
+    {
       "name": "Fetch machine onboarding manifest",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json",
+          "raw": "{{base_url}}/machine-onboarding.json",
           "protocol": "https",
           "host": [
             "machinesignal-api",
@@ -199,7 +257,7 @@
             "machine-onboarding.json"
           ]
         },
-        "description": "Public machine-readable manifest for agents, CRMs and workflows."
+        "description": "Public machine-readable onboarding manifest for agents, CRMs and workflows."
       },
       "response": []
     },
@@ -214,7 +272,7 @@
           }
         ],
         "url": {
-          "raw": "https://machinesignal-api.beta-878.workers.dev/v1/onboarding",
+          "raw": "{{base_url}}/v1/onboarding",
           "protocol": "https",
           "host": [
             "machinesignal-api",
@@ -232,7 +290,7 @@
       "response": []
     },
     {
-      "name": "Create purchase intent",
+      "name": "Repeat same score without double charge",
       "request": {
         "method": "POST",
         "header": [
@@ -246,15 +304,15 @@
           },
           {
             "key": "Idempotency-Key",
-            "value": "postman-beta-order-001"
+            "value": "postman-demo-score-001"
           }
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"domain\": \"clinic3.it\",\n  \"product_code\": \"deep_analysis\",\n  \"reason\": \"Score response recommended a deeper opportunity analysis.\",\n  \"max_budget_eur\": 3\n}"
+          "raw": "{\n  \"domain\": \"clinic3.it\",\n  \"sector_hint\": \"dentist\",\n  \"country_hint\": \"IT\"\n}"
         },
         "url": {
-          "raw": "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
+          "raw": "{{base_url}}/v1/lead-opportunity-score",
           "protocol": "https",
           "host": [
             "machinesignal-api",
@@ -264,25 +322,20 @@
           ],
           "path": [
             "v1",
-            "purchase-intent"
+            "lead-opportunity-score"
           ]
         },
-        "description": "Creates a beta order intent and returns an immediate machine-readable delivery. Beta mode does not execute real payment."
+        "description": "Repeat the first request with the same Idempotency-Key. The ledger returns duplicate_request=true and does not consume an extra credit."
       },
       "response": []
     },
     {
-      "name": "List orders and deliveries",
+      "name": "Fetch OpenAPI schema",
       "request": {
         "method": "GET",
-        "header": [
-          {
-            "key": "X-API-Key",
-            "value": "{{machinesignal_api_key}}"
-          }
-        ],
+        "header": [],
         "url": {
-          "raw": "https://machinesignal-api.beta-878.workers.dev/v1/orders",
+          "raw": "{{base_url}}/openapi.json",
           "protocol": "https",
           "host": [
             "machinesignal-api",
@@ -291,19 +344,25 @@
             "dev"
           ],
           "path": [
-            "v1",
-            "orders"
+            "openapi.json"
           ]
-        },
-        "description": "Lists beta order intents and deliveries created by the authenticated customer machine."
+        }
       },
       "response": []
     }
   ],
   "variable": [
     {
+      "key": "base_url",
+      "value": "https://machinesignal-api.beta-878.workers.dev"
+    },
+    {
       "key": "machinesignal_api_key",
       "value": "paste_customer_beta_key_here"
+    },
+    {
+      "key": "machinesignal_admin_api_key",
+      "value": "paste_admin_beta_key_here"
     }
   ]
 }

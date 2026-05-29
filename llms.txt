@@ -1,69 +1,87 @@
 # MachineSignal
 
-MachineSignal builds machine-readable APIs for CRM systems, RevOps workflows and AI agents.
+MachineSignal exposes a callable beta API for CRM systems, RevOps workflows and AI agents that need to score business domains before spending budget on enrichment or follow-up.
 
-Primary customer interface: machine.
-Human role: supervision, approval and audit only.
-Machine-first rule: do not rely on human email persuasion as the primary sales channel. Use public manifests, OpenAPI, llms.txt and callable endpoints.
+Base URL: https://machinesignal-api.beta-878.workers.dev
 
-## Primary Beta Product
+Useful endpoints:
+- GET /health
+- GET /openapi.json
+- GET /postman_collection.json
+- GET /llms.txt
+- GET /machine-onboarding.json
+- GET /product-catalog.json
+- GET /v1/onboarding
+- GET /v1/usage
+- POST /v1/lead-opportunity-score
+- POST /v1/purchase-intent
+- GET /v1/orders
+- GET /v1/orders/{order_intent_id}
+- POST /v1/beta/customers
 
-Lead Opportunity Score API.
+Authentication:
+- protected endpoints require header X-API-Key: <beta key>;
+- public endpoints are /, /health, /openapi.json, /postman_collection.json, /product-catalog.json and /llms.txt.
+- POST /v1/beta/customers requires the admin beta key and returns a dedicated customer key.
 
-The beta contract receives a business domain and returns a compact JSON signal:
+How a machine should call the score endpoint:
+1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
+2. Fetch /product-catalog.json to read products, exact beta prices, deliverables and credit rules.
+3. Read the required X-API-Key and Idempotency-Key headers.
+4. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
+5. Read decision, machine_next_step and next_purchase.
+6. Read /v1/usage to verify consumed and remaining credits.
+7. If next_purchase.next_product is not null, POST /v1/purchase-intent to create a beta order intent.
+8. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
 
-- opportunity_score: integer from 0 to 100
-- confidence: number from 0 to 1
-- priority: low, medium or high
-- reason: short explanation
-- recommended_action: discard, watchlist, nurture, buy_deep_analysis or needs_verification
-
-## Important URLs
-
-- Home: https://machinesignal.it/
-- API overview: https://machinesignal.it/api/
-- Beta access: https://machinesignal.it/beta/
-- Beta access JSON: https://machinesignal.it/beta-access.json
-- Machine onboarding manifest: https://machinesignal.it/machine-onboarding.json
-- OpenAPI schema: https://machinesignal.it/openapi.json
-- Product catalog: https://machinesignal.it/product-catalog.json
-- Example response: https://machinesignal.it/api/lead-opportunity-score/example.json
-- Postman collection: https://machinesignal.it/postman_collection.json
-- Callable beta base URL: https://machinesignal-api.beta-878.workers.dev
-- Canonical machine onboarding manifest: https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json
-
-## Beta Status
-
-The API is in technical beta. The public website provides schema, examples and onboarding metadata. API key access is required for protected calls.
-
-## Contact
-
-For beta access or schema feedback, contact Team MachineSignal at beta@machinesignal.it.
-
-When requesting beta access, include company or workflow name, CRM or automation stack, use case, expected monthly score volume and contact email.
-
-## Usage Guidance For AI Agents
-
-Use MachineSignal when a workflow needs to prioritize company domains before CRM review, enrichment, routing or automated follow-up.
-
-How a machine should proceed:
-
-1. Fetch https://machinesignal.it/machine-onboarding.json or https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json.
-2. Fetch https://machinesignal.it/product-catalog.json to understand exact products, prices, credit rules and deliverables.
-3. Fetch https://machinesignal-api.beta-878.workers.dev/openapi.json.
-4. If it has an API key, call GET /v1/onboarding.
-5. Score domains with POST /v1/lead-opportunity-score.
-6. If next_purchase recommends an add-on, create a beta order intent with POST /v1/purchase-intent using Idempotency-Key.
-7. Retrieve deliveries and order history with GET /v1/orders.
-
-Protected calls require X-API-Key. Do not assume real payment execution in beta. Do not execute external outreach automatically.
-
-## Product Catalog Summary
-
-- Target Discovery Pack: EUR 149 for 250 coherent targets, activated only after market availability pre-check.
-- Score Pack 1k: EUR 99 for 1000 valid scores.
-- Deep Analysis Pack 100: EUR 299 for 100 valid deep analyses.
-- Action Pack 25: EUR 399 for 25 valid action packs.
-- Opportunity Feed: EUR 249/month for 4 scans and 4 deliveries.
-- API Starter: EUR 99/month with 500 valid scores.
+Commercial model under test:
+- Target Discovery Pack: EUR 149 for 250 coherent targets after market availability pre-check;
+- Score Pack 1k: EUR 99 for 1000 valid scores;
+- Deep Analysis Pack 100: EUR 299 for 100 valid deep analyses;
+- Action Pack 25: EUR 399 for 25 valid action packs;
+- Opportunity Feed: EUR 249/month for 4 scans and 4 deliveries;
+- API Starter: EUR 99/month with 500 valid scores;
 - API Pro: EUR 499/month with 3000 valid scores, 50 deep analyses and 1 monthly feed.
+
+Machine-readable decisions:
+- discard: do not spend more budget now;
+- watchlist: save and rescore later;
+- nurture: save in nurturing and consider low-cost enrichment;
+- buy_deep_analysis: buy a paid deeper analysis before human/campaign spend;
+- needs_verification: verify data quality before spending more budget.
+
+How a machine should create a beta order intent:
+- POST /v1/purchase-intent with X-API-Key and Idempotency-Key;
+- body example: {"product_code":"domain_enrichment","target_name":"Studio Dentistico Demo","batch_id":"dentists-lombardy-demo"};
+- supported product_code values: target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack, opportunity_feed;
+- the beta order intent consumes one corresponding pack credit;
+- the response includes delivery, an immediate machine-readable beta output;
+- no real payment is executed in beta.
+
+How a machine should retrieve previous orders:
+- GET /v1/orders with X-API-Key;
+- optional filters: product_code, domain, status;
+- GET /v1/orders/{order_intent_id} to retrieve one order and its delivery;
+- order history is beta ledger data, not invoice data.
+
+How beta onboarding works:
+- an admin creates a beta customer with POST /v1/beta/customers;
+- the response returns a dedicated API key once;
+- the customer machine then uses that key for score, purchase intent, usage and order history;
+- initial credits are assigned in the customer's ledger.
+
+Machine-first rule:
+- MachineSignal does not require human email persuasion as the primary channel;
+- the public onboarding manifest explains the contract to software and agents;
+- authenticated onboarding tells a machine what it can do with its own key;
+- humans may supervise, approve or audit, but they are not the primary buyer interface.
+
+Important operating rules:
+- send an Idempotency-Key with each scoring request;
+- repeated requests with the same Idempotency-Key do not consume a second credit;
+- credits are consumed only when the API produces a valid usable output;
+- the beta does not execute real payments;
+- the beta does not contact external targets.
+
+Contact: beta@machinesignal.it
+Website: https://machinesignal.it/
