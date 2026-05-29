@@ -1,0 +1,97 @@
+{
+  "service": "MachineSignal",
+  "purpose": "Machine-readable lead opportunity scoring, credit routing, beta order intents and delivery retrieval.",
+  "primary_customer_interface": "machine",
+  "human_role": "supervision, approval and audit only",
+  "machine_first_rule": "Do not rely on human email persuasion as the primary sales channel. Use public manifests, OpenAPI, llms.txt and callable endpoints.",
+  "canonical_base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "canonical_manifest": "https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json",
+  "discovery": {
+    "website": "https://machinesignal.it/",
+    "api_overview": "https://machinesignal.it/api/",
+    "llms": "https://machinesignal.it/llms.txt",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "postman": "https://machinesignal.it/postman_collection.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "canonical_llms": "https://machinesignal-api.beta-878.workers.dev/llms.txt",
+    "canonical_openapi": "https://machinesignal-api.beta-878.workers.dev/openapi.json",
+    "canonical_postman": "https://machinesignal-api.beta-878.workers.dev/postman_collection.json",
+    "authenticated_onboarding": "https://machinesignal-api.beta-878.workers.dev/v1/onboarding"
+  },
+  "authentication": {
+    "type": "apiKey",
+    "header": "X-API-Key",
+    "idempotency_header": "Idempotency-Key"
+  },
+  "callable_flow": [
+    {
+      "step": 1,
+      "call": "GET /machine-onboarding.json",
+      "auth_required": false,
+      "machine_goal": "Understand the product contract."
+    },
+    {
+      "step": 2,
+      "call": "GET /v1/onboarding",
+      "auth_required": true,
+      "machine_goal": "Read customer-specific credits and next available calls."
+    },
+    {
+      "step": 3,
+      "call": "POST /v1/lead-opportunity-score",
+      "auth_required": true,
+      "machine_goal": "Score a domain and receive a decision."
+    },
+    {
+      "step": 4,
+      "call": "POST /v1/purchase-intent",
+      "auth_required": true,
+      "machine_goal": "Create a beta order when next_purchase recommends a product."
+    },
+    {
+      "step": 5,
+      "call": "GET /v1/orders",
+      "auth_required": true,
+      "machine_goal": "Retrieve orders and deliveries."
+    }
+  ],
+  "products": {
+    "score_pack_1k": {
+      "buys": "lead opportunity score",
+      "endpoint": "POST /v1/lead-opportunity-score"
+    },
+    "verification": {
+      "buys": "data quality verification delivery",
+      "endpoint": "POST /v1/purchase-intent",
+      "product_code": "verification"
+    },
+    "nurture_signal": {
+      "buys": "nurture signal delivery",
+      "endpoint": "POST /v1/purchase-intent",
+      "product_code": "nurture_signal"
+    },
+    "deep_analysis": {
+      "buys": "deep opportunity analysis delivery",
+      "endpoint": "POST /v1/purchase-intent",
+      "product_code": "deep_analysis"
+    },
+    "action_pack": {
+      "buys": "CRM/action preparation delivery",
+      "endpoint": "POST /v1/purchase-intent",
+      "product_code": "action_pack"
+    }
+  },
+  "beta_limits": {
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "requires_customer_api_key": true,
+    "repeated_idempotency_key_no_extra_charge": true
+  },
+  "recommended_agent_policy": {
+    "can_call_scores": true,
+    "can_create_beta_orders": true,
+    "can_read_usage_and_orders": true,
+    "must_not_execute_external_outreach": true,
+    "must_not_assume_real_payment": true
+  }
+}

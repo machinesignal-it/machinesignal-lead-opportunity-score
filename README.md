@@ -1,108 +1,161 @@
 # MachineSignal Lead Opportunity Score API
 
-Machine-readable lead opportunity scoring for CRM systems, RevOps workflows and AI agents.
+Machine-readable lead opportunity scoring for CRM systems, RevOps workflows, enrichment pipelines and AI agents.
 
-MachineSignal is a private technical beta. It helps automated systems decide which business domains may deserve deeper commercial analysis by returning a structured score, confidence level, reasons and a recommended next action.
+MachineSignal is a private technical beta. The first customer interface is a machine, not a human browsing a sales page. A CRM, workflow engine or AI agent can discover the product through public manifests, read the OpenAPI contract, call protected endpoints with an API key, consume credits and retrieve JSON deliveries.
 
-## What It Does
+## Machine-First Contract
+
+Public discovery starts here:
+
+- Website: https://machinesignal.it/
+- Machine onboarding manifest: https://machinesignal.it/machine-onboarding.json
+- Canonical Worker manifest: https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json
+- LLM discovery file: https://machinesignal.it/llms.txt
+- OpenAPI schema: https://machinesignal.it/openapi.json
+- Postman collection: https://machinesignal.it/postman_collection.json
+- API overview: https://machinesignal.it/api/
+
+Primary rule: do not rely on human email persuasion as the primary sales channel. The product should be discoverable and usable through manifests, OpenAPI, Postman and callable endpoints. Humans supervise, approve and audit.
+
+## What The API Does
 
 Given a business domain, the API returns a machine-readable opportunity signal:
 
 ```json
 {
-  "domain": "localclinic.example",
-  "opportunity_score": 82,
-  "confidence": 0.74,
+  "domain": "clinic3.it",
+  "opportunity_score": 81,
+  "confidence": 0.79,
   "priority": "high",
-  "reason": "Weak conversion paths and limited structured data.",
-  "recommended_action": "request_deep_analysis",
+  "decision": "buy_deep_analysis",
+  "reason": "Signals suggest a high-priority opportunity where a paid deep analysis may be justified.",
+  "next_purchase": {
+    "next_product": "deep_analysis",
+    "price_range_eur": "1-3",
+    "machine_instruction": "Buy Deep Analysis before spending human or campaign budget."
+  },
+  "usage": {
+    "current_event": {
+      "product_code": "score_pack_1k",
+      "status": "valid_output",
+      "credits_consumed": 1
+    },
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  },
   "beta": true
 }
 ```
 
-Higher scores indicate stronger potential opportunity for analysis or follow-up. Scores are signals, not guarantees.
+Scores are routing signals, not guarantees. Higher scores indicate stronger potential opportunity for further analysis.
 
-## Designed For Machines
-
-MachineSignal is built for workflows where the first user is not a human browsing a website, but a system deciding what to do next:
-
-- CRM enrichment pipelines
-- RevOps automation
-- AI-agent workflows
-- lead routing systems
-- data quality and prioritization queues
-- API marketplaces and integration platforms
-
-The output is structured so downstream systems can use it directly.
-
-## Public Technical Resources
-
-- Website: https://machinesignal.it/
-- API overview: https://machinesignal.it/api/
-- Beta access: https://machinesignal.it/beta/
-- OpenAPI schema: https://machinesignal.it/openapi.json
-- LLM discovery file: https://machinesignal.it/llms.txt
-- Beta metadata: https://machinesignal.it/beta-access.json
-- Synthetic response example: https://machinesignal.it/api/lead-opportunity-score/example.json
-
-## Endpoint
-
-The current beta endpoint is available for technical testing:
+## Callable Beta Base URL
 
 ```text
-POST https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score
+https://machinesignal-api.beta-878.workers.dev
 ```
 
-Example request:
+Protected endpoints require:
+
+```text
+X-API-Key: <customer_beta_api_key>
+Idempotency-Key: <stable_request_id_for_paid_or_credit_consuming_calls>
+```
+
+## Core Flow For Machines
+
+1. Fetch `https://machinesignal.it/machine-onboarding.json`.
+2. Fetch `https://machinesignal.it/openapi.json`.
+3. If an API key is available, call `GET /v1/onboarding`.
+4. Score a domain with `POST /v1/lead-opportunity-score`.
+5. If `next_purchase` recommends an add-on, create a beta order with `POST /v1/purchase-intent`.
+6. Retrieve previous orders and deliveries with `GET /v1/orders`.
+
+## Main Endpoints
+
+```text
+GET  /machine-onboarding.json
+GET  /openapi.json
+GET  /llms.txt
+GET  /postman_collection.json
+GET  /v1/onboarding
+GET  /v1/usage
+POST /v1/lead-opportunity-score
+POST /v1/purchase-intent
+GET  /v1/orders
+GET  /v1/orders/{order_intent_id}
+```
+
+## Example Score Request
 
 ```bash
 curl -X POST "https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score" \
   -H "Content-Type: application/json" \
-  -d '{"domain":"localclinic.example","sector_hint":"healthcare","country_hint":"IT"}'
+  -H "X-API-Key: $MACHINESIGNAL_API_KEY" \
+  -H "Idempotency-Key: demo-score-001" \
+  -d '{"domain":"clinic3.it","sector_hint":"dentist","country_hint":"IT"}'
 ```
 
-The beta endpoint uses synthetic scoring logic. It does not scrape websites, sell lead lists, send outreach or expose private data.
+## Example Purchase Intent
+
+```bash
+curl -X POST "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent" \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: $MACHINESIGNAL_API_KEY" \
+  -H "Idempotency-Key: demo-order-001" \
+  -d '{
+    "domain": "clinic3.it",
+    "product_code": "deep_analysis",
+    "reason": "Score response recommended a deeper opportunity analysis.",
+    "max_budget_eur": 3
+  }'
+```
+
+In beta, purchase-intent consumes beta credits and returns an immediate JSON delivery. It does not execute real payment.
+
+## Products Under Validation
+
+- `score_pack_1k`: base lead opportunity score.
+- `verification`: data quality verification delivery.
+- `nurture_signal`: lightweight signal for leads that should be saved but not pushed immediately.
+- `deep_analysis`: deeper opportunity analysis before spending campaign or sales budget.
+- `action_pack`: CRM/action preparation delivery.
+
+## Current Test Status
+
+Validated on 2026-05-29:
+
+- public domain discovery from `https://machinesignal.it`;
+- machine onboarding manifest online;
+- OpenAPI includes onboarding, purchase intent and orders;
+- Postman collection includes onboarding, purchase intent and orders;
+- beta customer creation through admin flow;
+- 10-score machine-client test;
+- 7 beta purchase-intent orders;
+- order history and single-order retrieval;
+- idempotency protection against double charge;
+- Cloudflare KV ledger persistence;
+- no real payment execution;
+- no external outreach execution.
+
+## What This API Does Not Do
+
+- It does not sell lead lists.
+- It does not send outreach emails.
+- It does not guarantee buyer intent.
+- It does not expose private customer data.
+- It does not execute real payment in beta.
+- It should not be used for spam, sensitive personal inference or high-stakes decisions without review.
 
 ## Beta Access
 
-To request beta access, contact:
+The beta is API-key based. Access is currently approved manually while the product, pricing and abuse controls are validated.
+
+Contact:
 
 ```text
 beta@machinesignal.it
 ```
 
-Suggested subject:
-
-```text
-MachineSignal beta access request
-```
-
-Useful details to include:
-
-- company or workflow name
-- CRM or automation stack
-- use case
-- expected monthly score volume
-- contact email
-
-## Status
-
-Private technical beta.
-
-Public examples are synthetic. The API contract may change while beta users validate the score format, recommended actions and pricing model.
-
-## Planned Pricing Model
-
-The planned commercial model is:
-
-1. Pay per score
-2. Score packages
-3. Monthly subscription for higher-volume users
-
-No public paid plan is active yet.
-
-## Responsible Use
-
-MachineSignal is not a spam engine and does not provide automated outreach. It is a scoring and prioritization API for compliant business workflows.
-
-Do not use the service to generate spam, infer sensitive personal data, bypass consent requirements or make high-stakes decisions without human review.
+This email is for onboarding coordination only. The product itself is designed to be consumed by machines through API calls.
