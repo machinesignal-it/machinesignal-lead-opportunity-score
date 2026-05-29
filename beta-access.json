@@ -1,25 +1,55 @@
 {
   "name": "MachineSignal Lead Opportunity Score API beta access",
   "status": "private_beta",
-  "request_contact": "beta@machinesignal.it",
-  "request_subject": "MachineSignal beta access request",
-  "resources": {
-    "home": "https://machinesignal.it/",
-    "api": "https://machinesignal.it/api/",
-    "beta": "https://machinesignal.it/beta/",
-    "openapi": "https://machinesignal.it/openapi.json",
-    "llms": "https://machinesignal.it/llms.txt"
+  "product": {
+    "name": "Lead Opportunity Score API",
+    "description": "Machine-readable scoring for business domains used by CRM systems, RevOps workflows and AI agents.",
+    "primary_use_cases": [
+      "prioritize CRM records",
+      "route domains to enrichment queues",
+      "trigger deeper analysis for high-potential opportunities",
+      "support AI-agent decision workflows"
+    ]
   },
-  "pricing_under_validation": [
-    "pay_per_score",
-    "score_packs",
-    "monthly_subscription"
-  ],
-  "constraints": {
-    "public_endpoint_live": false,
+  "access": {
+    "public_endpoint_live": true,
+    "public_endpoint_base_url": "https://machinesignal-api.beta-878.workers.dev",
     "api_key_required": true,
+    "request_contact": "beta@machinesignal.it",
+    "request_subject": "MachineSignal beta access request",
+    "required_request_fields": [
+      "company_or_workflow",
+      "crm_or_automation_stack",
+      "use_case",
+      "expected_monthly_score_volume",
+      "contact_email"
+    ]
+  },
+  "technical_resources": {
+    "home": "https://machinesignal.it/",
+    "api_overview": "https://machinesignal.it/api/",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "canonical_machine_onboarding": "https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "canonical_product_catalog": "https://machinesignal-api.beta-878.workers.dev/product-catalog.json",
+    "openapi_schema": "https://machinesignal.it/openapi.json",
+    "canonical_openapi_schema": "https://machinesignal-api.beta-878.workers.dev/openapi.json",
+    "llms_txt": "https://machinesignal.it/llms.txt",
+    "example_response": "https://machinesignal.it/api/lead-opportunity-score/example.json"
+  },
+  "planned_pricing_model": {
+    "phase_1": "pay_per_score_and_purchase_intent",
+    "phase_2": "score_packs_and_add_on_packs",
+    "phase_3": "monthly_subscription_for_higher_volume",
+    "catalog": "https://machinesignal.it/product-catalog.json",
+    "beta_paid_subscription_required": false
+  },
+  "constraints": {
     "no_lead_list_sales": true,
     "no_outreach_automation": true,
-    "examples_are_synthetic": true
+    "public_examples_are_synthetic": true,
+    "do_not_assume_public_endpoint_is_live_without_api_key": true,
+    "primary_customer_interface": "machine",
+    "human_role": "supervision_approval_audit"
   }
 }

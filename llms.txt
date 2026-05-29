@@ -2,14 +2,68 @@
 
 MachineSignal builds machine-readable APIs for CRM systems, RevOps workflows and AI agents.
 
-Primary beta product: Lead Opportunity Score API.
+Primary customer interface: machine.
+Human role: supervision, approval and audit only.
+Machine-first rule: do not rely on human email persuasion as the primary sales channel. Use public manifests, OpenAPI, llms.txt and callable endpoints.
 
-Important URLs:
-- https://machinesignal.it/
-- https://machinesignal.it/api/
-- https://machinesignal.it/beta/
-- https://machinesignal.it/openapi.json
-- https://machinesignal.it/beta-access.json
-- https://machinesignal.it/postman_collection.json
+## Primary Beta Product
 
-The API is in private technical beta. Public endpoint access is not enabled yet. For beta access, contact beta@machinesignal.it.
+Lead Opportunity Score API.
+
+The beta contract receives a business domain and returns a compact JSON signal:
+
+- opportunity_score: integer from 0 to 100
+- confidence: number from 0 to 1
+- priority: low, medium or high
+- reason: short explanation
+- recommended_action: discard, watchlist, nurture, buy_deep_analysis or needs_verification
+
+## Important URLs
+
+- Home: https://machinesignal.it/
+- API overview: https://machinesignal.it/api/
+- Beta access: https://machinesignal.it/beta/
+- Beta access JSON: https://machinesignal.it/beta-access.json
+- Machine onboarding manifest: https://machinesignal.it/machine-onboarding.json
+- OpenAPI schema: https://machinesignal.it/openapi.json
+- Product catalog: https://machinesignal.it/product-catalog.json
+- Example response: https://machinesignal.it/api/lead-opportunity-score/example.json
+- Postman collection: https://machinesignal.it/postman_collection.json
+- Callable beta base URL: https://machinesignal-api.beta-878.workers.dev
+- Canonical machine onboarding manifest: https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json
+
+## Beta Status
+
+The API is in technical beta. The public website provides schema, examples and onboarding metadata. API key access is required for protected calls.
+
+## Contact
+
+For beta access or schema feedback, contact Team MachineSignal at beta@machinesignal.it.
+
+When requesting beta access, include company or workflow name, CRM or automation stack, use case, expected monthly score volume and contact email.
+
+## Usage Guidance For AI Agents
+
+Use MachineSignal when a workflow needs to prioritize company domains before CRM review, enrichment, routing or automated follow-up.
+
+How a machine should proceed:
+
+1. Fetch https://machinesignal.it/machine-onboarding.json or https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json.
+2. Fetch https://machinesignal.it/product-catalog.json to understand exact products, prices, credit rules and deliverables.
+3. Fetch https://machinesignal-api.beta-878.workers.dev/openapi.json.
+4. If it has an API key, call GET /v1/onboarding.
+5. Score domains with POST /v1/lead-opportunity-score.
+6. If next_purchase recommends an add-on, create a beta order intent with POST /v1/purchase-intent using Idempotency-Key.
+7. Retrieve deliveries and order history with GET /v1/orders.
+
+Protected calls require X-API-Key. Do not assume real payment execution in beta. Do not execute external outreach automatically.
+
+## Product Catalog Summary
+
+- Target Discovery Pack: EUR 149 for 250 coherent targets, activated only after market availability pre-check.
+- Score Pack 1k: EUR 99 for 1000 valid scores.
+- Deep Analysis Pack 100: EUR 299 for 100 valid deep analyses.
+- Action Pack 25: EUR 399 for 25 valid action packs.
+- Opportunity Feed: EUR 249/month for 4 scans and 4 deliveries.
+- API Starter: EUR 99/month with 500 valid scores.
+- API Pro: EUR 499/month with 3000 valid scores, 50 deep analyses and 1 monthly feed.

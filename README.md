@@ -11,6 +11,8 @@ Public discovery starts here:
 - Website: https://machinesignal.it/
 - Machine onboarding manifest: https://machinesignal.it/machine-onboarding.json
 - Canonical Worker manifest: https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json
+- Product catalog: https://machinesignal.it/product-catalog.json
+- Canonical Worker product catalog: https://machinesignal-api.beta-878.workers.dev/product-catalog.json
 - LLM discovery file: https://machinesignal.it/llms.txt
 - OpenAPI schema: https://machinesignal.it/openapi.json
 - Postman collection: https://machinesignal.it/postman_collection.json
@@ -66,16 +68,18 @@ Idempotency-Key: <stable_request_id_for_paid_or_credit_consuming_calls>
 ## Core Flow For Machines
 
 1. Fetch `https://machinesignal.it/machine-onboarding.json`.
-2. Fetch `https://machinesignal.it/openapi.json`.
-3. If an API key is available, call `GET /v1/onboarding`.
-4. Score a domain with `POST /v1/lead-opportunity-score`.
-5. If `next_purchase` recommends an add-on, create a beta order with `POST /v1/purchase-intent`.
-6. Retrieve previous orders and deliveries with `GET /v1/orders`.
+2. Fetch `https://machinesignal.it/product-catalog.json` to read product codes, exact beta prices, deliverables and credit rules.
+3. Fetch `https://machinesignal.it/openapi.json`.
+4. If an API key is available, call `GET /v1/onboarding`.
+5. Score a domain with `POST /v1/lead-opportunity-score`.
+6. If `next_purchase` recommends an add-on, create a beta order with `POST /v1/purchase-intent`.
+7. Retrieve previous orders and deliveries with `GET /v1/orders`.
 
 ## Main Endpoints
 
 ```text
 GET  /machine-onboarding.json
+GET  /product-catalog.json
 GET  /openapi.json
 GET  /llms.txt
 GET  /postman_collection.json
@@ -128,6 +132,7 @@ Validated on 2026-05-29:
 
 - public domain discovery from `https://machinesignal.it`;
 - machine onboarding manifest online;
+- product catalog online with exact beta prices and valid-output credit rules;
 - OpenAPI includes onboarding, purchase intent and orders;
 - Postman collection includes onboarding, usage, purchase intent and orders;
 - protected Postman flow passed with a disposable beta customer;

@@ -12,9 +12,11 @@
     "llms": "https://machinesignal.it/llms.txt",
     "openapi": "https://machinesignal.it/openapi.json",
     "postman": "https://machinesignal.it/postman_collection.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
     "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
     "canonical_llms": "https://machinesignal-api.beta-878.workers.dev/llms.txt",
     "canonical_openapi": "https://machinesignal-api.beta-878.workers.dev/openapi.json",
+    "canonical_product_catalog": "https://machinesignal-api.beta-878.workers.dev/product-catalog.json",
     "canonical_postman": "https://machinesignal-api.beta-878.workers.dev/postman_collection.json",
     "authenticated_onboarding": "https://machinesignal-api.beta-878.workers.dev/v1/onboarding"
   },
@@ -32,24 +34,30 @@
     },
     {
       "step": 2,
+      "call": "GET /product-catalog.json",
+      "auth_required": false,
+      "machine_goal": "Read exact purchasable products, prices, credit rules and delivery formats."
+    },
+    {
+      "step": 3,
       "call": "GET /v1/onboarding",
       "auth_required": true,
       "machine_goal": "Read customer-specific credits and next available calls."
     },
     {
-      "step": 3,
+      "step": 4,
       "call": "POST /v1/lead-opportunity-score",
       "auth_required": true,
       "machine_goal": "Score a domain and receive a decision."
     },
     {
-      "step": 4,
+      "step": 5,
       "call": "POST /v1/purchase-intent",
       "auth_required": true,
       "machine_goal": "Create a beta order when next_purchase recommends a product."
     },
     {
-      "step": 5,
+      "step": 6,
       "call": "GET /v1/orders",
       "auth_required": true,
       "machine_goal": "Retrieve orders and deliveries."
@@ -58,7 +66,16 @@
   "products": {
     "score_pack_1k": {
       "buys": "lead opportunity score",
+      "price_eur": 99,
+      "unit": "1000 valid scores",
       "endpoint": "POST /v1/lead-opportunity-score"
+    },
+    "target_discovery_pack_250": {
+      "buys": "250 coherent targets after market availability pre-check",
+      "price_eur": 149,
+      "unit": "250 coherent targets",
+      "endpoint": "POST /v1/purchase-intent",
+      "product_code": "target_discovery"
     },
     "verification": {
       "buys": "data quality verification delivery",
@@ -72,13 +89,24 @@
     },
     "deep_analysis": {
       "buys": "deep opportunity analysis delivery",
+      "price_eur": 299,
+      "unit": "100 valid deep analyses",
       "endpoint": "POST /v1/purchase-intent",
       "product_code": "deep_analysis"
     },
     "action_pack": {
       "buys": "CRM/action preparation delivery",
+      "price_eur": 399,
+      "unit": "25 valid action packs",
       "endpoint": "POST /v1/purchase-intent",
       "product_code": "action_pack"
+    },
+    "opportunity_feed_monthly": {
+      "buys": "recurring monthly opportunity feed with 4 scans and 4 deliveries",
+      "price_eur": 249,
+      "unit": "1 month",
+      "endpoint": "POST /v1/purchase-intent",
+      "product_code": "opportunity_feed"
     }
   },
   "beta_limits": {
