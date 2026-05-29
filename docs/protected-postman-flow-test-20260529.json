@@ -1,0 +1,78 @@
+{
+  "run_id": "20260529143242",
+  "customer_id": "postman_safe_20260529143242",
+  "disposable_beta_key_created": true,
+  "disposable_beta_key_prefix": "ms_cust_2bc7e1",
+  "stored_in_postman_environment_as_secret": true,
+  "steps": [
+    {
+      "name": "KV customer seed",
+      "ok": true,
+      "status": 200
+    },
+    {
+      "name": "Usage before",
+      "ok": true,
+      "status": 200,
+      "score_balance": {
+        "purchased": 20,
+        "used": 0,
+        "remaining": 20
+      },
+      "deep_analysis_balance": {
+        "purchased": 5,
+        "used": 0,
+        "remaining": 5
+      }
+    },
+    {
+      "name": "Authenticated onboarding",
+      "ok": true,
+      "status": 200,
+      "auth_type": "customer",
+      "customer_id": "postman_safe_20260529143242"
+    },
+    {
+      "name": "Score business domain",
+      "ok": true,
+      "status": 200,
+      "decision": "buy_deep_analysis",
+      "request_id": "postman-safe-score-20260529143242"
+    },
+    {
+      "name": "Create purchase intent",
+      "ok": true,
+      "status": 200,
+      "order_intent_id": "ord_bb4b7fe4",
+      "real_payment_executed": false,
+      "external_contact_executed": false
+    },
+    {
+      "name": "List orders and deliveries",
+      "ok": true,
+      "status": 200,
+      "orders_returned": 1
+    },
+    {
+      "name": "Read created order",
+      "ok": true,
+      "status": 200,
+      "delivery_present": true
+    },
+    {
+      "name": "Usage after",
+      "ok": true,
+      "status": 200,
+      "score_balance": {
+        "purchased": 20,
+        "used": 1,
+        "remaining": 19
+      },
+      "deep_analysis_balance": {
+        "purchased": 5,
+        "used": 1,
+        "remaining": 4
+      }
+    }
+  ]
+}

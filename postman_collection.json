@@ -16,6 +16,10 @@
             "value": "application/json"
           },
           {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          },
+          {
             "key": "Idempotency-Key",
             "value": "postman-demo-score-001"
           }
@@ -41,6 +45,10 @@
               {
                 "key": "Content-Type",
                 "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{machinesignal_api_key}}"
               },
               {
                 "key": "Idempotency-Key",
@@ -75,7 +83,12 @@
       "name": "Read usage ledger",
       "request": {
         "method": "GET",
-        "header": [],
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          }
+        ],
         "url": {
           "raw": "https://machinesignal-api.beta-878.workers.dev/v1/usage",
           "protocol": "https",

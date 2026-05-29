@@ -129,10 +129,12 @@ Validated on 2026-05-29:
 - public domain discovery from `https://machinesignal.it`;
 - machine onboarding manifest online;
 - OpenAPI includes onboarding, purchase intent and orders;
-- Postman collection includes onboarding, purchase intent and orders;
+- Postman collection includes onboarding, usage, purchase intent and orders;
+- protected Postman flow passed with a disposable beta customer;
 - beta customer creation through admin flow;
 - 10-score machine-client test;
 - 7 beta purchase-intent orders;
+- score and deep-analysis credit ledger validated;
 - order history and single-order retrieval;
 - idempotency protection against double charge;
 - Cloudflare KV ledger persistence;
