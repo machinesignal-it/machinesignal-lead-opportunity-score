@@ -140,6 +140,7 @@ Validated on 2026-05-29:
 - 10-score machine-client test;
 - 7 beta purchase-intent orders;
 - score and deep-analysis credit ledger validated;
+- target discovery purchase-intent validated on the live Worker;
 - order history and single-order retrieval;
 - idempotency protection against double charge;
 - Cloudflare KV ledger persistence;
