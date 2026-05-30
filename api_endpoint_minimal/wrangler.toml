@@ -1,0 +1,13 @@
+name = "machinesignal-api"
+account_id = "8782dd68928c8e75daac4d5d5dcc4344"
+main = "cloudflare_worker.mjs"
+compatibility_date = "2026-05-27"
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "MACHINESIGNAL_LEDGER_KV"
+id = "d00a1591857c4cc5abf9940136905d8c"
+
+# After the first successful test on workers.dev, add a custom domain in
+# Cloudflare dashboard for:
+# https://api.machinesignal.it
