@@ -618,6 +618,18 @@ export const openApi = {
             description: "Optional sector context used by the scoring model.",
             example: "dentist"
           },
+          target_name: {
+            type: "string",
+            description:
+              "Optional business name used by sector-specific quality gates when the machine has target context.",
+            example: "Studio Dentistico Demo"
+          },
+          category_hint: {
+            type: "string",
+            description:
+              "Optional business category used to reduce false positives in adjacent sectors.",
+            example: "clinic"
+          },
           country_hint: {
             type: "string",
             description: "Optional country hint.",
@@ -640,6 +652,16 @@ export const openApi = {
           reason: {
             type: "string",
             example: "Signals suggest a medium opportunity that should be monitored before spending more budget."
+          },
+          quality_review: {
+            type: "object",
+            description: "Sector-specific quality gate result for machine review.",
+            properties: {
+              status: { type: "string", example: "sector_quality_passed" },
+              score_delta: { type: "integer", example: 0 },
+              confidence_cap: { type: ["number", "null"], example: null },
+              reason: { type: "string" }
+            }
           },
           next_purchase: {
             type: "object",
@@ -1409,6 +1431,56 @@ function sectorBoost(sectorHint) {
   return 3;
 }
 
+function isAestheticMedicineSector(sectorHint) {
+  return /(medicina|estetic|aesthetic|beauty|laser|derma|antiage|anti-age)/.test(
+    String(sectorHint || "").toLowerCase()
+  );
+}
+
+function aestheticMedicineQualityReview(input, domain, sectorHint) {
+  if (!isAestheticMedicineSector(sectorHint)) {
+    return {
+      status: "not_applicable",
+      score_delta: 0,
+      confidence_cap: null,
+      reason: "No sector-specific quality gate was applied."
+    };
+  }
+
+  const text = [
+    domain,
+    input?.target_name,
+    input?.company_name,
+    input?.category_hint,
+    input?.category,
+    input?.initial_signals
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  if (
+    /(osteopat|fisioterap|riabilit|vista|vision|ocul|ottic|nail|profumer|parrucchier|hair|farmacia|casa di comunit|ospedal)/.test(
+      text
+    )
+  ) {
+    return {
+      status: "sector_mismatch_needs_verification",
+      score_delta: -18,
+      confidence_cap: 0.49,
+      reason:
+        "Aesthetic medicine request contains signals from adjacent or generic sectors; verify the business category before buying Deep Analysis."
+    };
+  }
+
+  return {
+    status: "sector_quality_passed",
+    score_delta: 0,
+    confidence_cap: null,
+    reason: "Aesthetic medicine quality gate did not find strong mismatch signals."
+  };
+}
+
 function priorityFor(score) {
   if (score >= 75) return "high";
   if (score >= 45) return "medium";
@@ -2092,8 +2164,16 @@ export function scoreLeadOpportunity(input) {
   const hash = stableHash(`${domain}|${sectorHint}|${countryHint}`);
   const base = 34 + (hash % 32);
   const domainSignals = /\.(it|com|io|ai)$/.test(domain) ? 4 : 0;
-  const score = clamp(base + sectorBoost(sectorHint) + domainSignals, 8, 94);
-  const confidence = Number(clamp(0.52 + ((hash >> 8) % 36) / 100, 0.35, 0.88).toFixed(2));
+  const qualityReview = aestheticMedicineQualityReview(input, domain, sectorHint);
+  const score = clamp(base + sectorBoost(sectorHint) + domainSignals + qualityReview.score_delta, 8, 94);
+  const rawConfidence = clamp(0.52 + ((hash >> 8) % 36) / 100, 0.35, 0.88);
+  const confidence = Number(
+    clamp(
+      qualityReview.confidence_cap === null ? rawConfidence : Math.min(rawConfidence, qualityReview.confidence_cap),
+      0.35,
+      0.88
+    ).toFixed(2)
+  );
   const decision = decisionFor(score, confidence);
   const purchase = purchaseRecommendation(decision);
   return {
@@ -2103,6 +2183,7 @@ export function scoreLeadOpportunity(input) {
     priority: priorityFor(score),
     decision,
     reason: reasonFor(score, sectorHint, confidence),
+    quality_review: qualityReview,
     recommended_action: decision,
     product_level: "score_base",
     score_price_range_eur: "0.05-0.20",

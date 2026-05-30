@@ -1,0 +1,4 @@
+niche,provider_input,provider_cost_usd,verified_domains,score_ready_rate_pct,cost_per_verified_domain_usd,live_scores,buy_deep_analysis,needs_verification,nurture,watchlist,note
+"Dentisti / cliniche odontoiatriche Lombardia",100,0.150,17,17.0,0.0088,17,2,8,4,3,"Test precedente: positivo, con due opportunita alte."
+"Studi legali Lombardia",94,0.141,17,18.1,0.0083,17,0,10,4,3,"Secondo test: valido per enrichment/scoring, ma senza buy_deep_analysis nel campione."
+"Medicina estetica / beauty medical Lombardia",250,0.000,210,84.0,0.0000,100,3,43,21,33,"Terzo test dopo Scoring Optimizer e quality review: forte per discovery e score pack senza enrichment; genera candidati deep analysis, ma sposta i casi ambigui su verification prima di consumare crediti deep analysis."

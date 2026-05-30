@@ -28,6 +28,17 @@ assert.equal(aestheticScore.decision, "buy_deep_analysis");
 assert.ok(aestheticScore.opportunity_score >= 75);
 assert.equal(aestheticScore.next_purchase.next_product, "deep_analysis");
 
+const aestheticMismatchScore = scoreLeadOpportunity({
+  domain: "bianchiosteopata.it",
+  sector_hint: "medicina estetica",
+  country_hint: "IT",
+  target_name: "NeoClinic",
+  category_hint: "osteopata"
+});
+assert.equal(aestheticMismatchScore.decision, "needs_verification");
+assert.equal(aestheticMismatchScore.quality_review.status, "sector_mismatch_needs_verification");
+assert.equal(aestheticMismatchScore.next_purchase.next_product, "verification");
+
 const healthResponse = await handleRequest(new Request("http://localhost/health"));
 assert.equal(healthResponse.status, 200);
 assert.equal((await healthResponse.json()).status, "ok");
