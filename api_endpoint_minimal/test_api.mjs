@@ -60,6 +60,11 @@ assert.ok(openApiPayload.paths["/machine-onboarding.json"]);
 assert.ok(openApiPayload.paths["/product-catalog.json"]);
 assert.ok(openApiPayload.paths["/v1/onboarding"]);
 assert.ok(openApiPayload.components.schemas.PurchaseIntentRequest);
+assert.ok(openApiPayload.components.schemas.BetaDelivery);
+assert.equal(
+  openApiPayload.components.schemas.PurchaseIntentResponse.properties.delivery.$ref,
+  "#/components/schemas/BetaDelivery"
+);
 
 const postmanResponse = await handleRequest(new Request("http://localhost/postman_collection.json"));
 assert.equal(postmanResponse.status, 200);
@@ -67,6 +72,8 @@ const postmanPayload = await postmanResponse.json();
 assert.equal(postmanPayload.item[1].name, "Read usage ledger");
 assert.equal(postmanPayload.item[2].name, "Fetch product catalog");
 assert.equal(postmanPayload.item[3].name, "Create beta purchase intent");
+assert.ok(postmanPayload.item.some((item) => item.name === "Order target discovery when machine has no list"));
+assert.ok(postmanPayload.item.some((item) => item.name === "Order deep analysis after a strong score"));
 assert.ok(postmanPayload.item.some((item) => item.name === "Fetch machine onboarding manifest"));
 assert.ok(postmanPayload.item.some((item) => item.name === "Read authenticated onboarding"));
 
@@ -83,6 +90,7 @@ const llmsText = await llmsResponse.text();
 assert.ok(llmsText.includes("Idempotency-Key"));
 assert.ok(llmsText.includes("/v1/purchase-intent"));
 assert.ok(llmsText.includes("/product-catalog.json"));
+assert.ok(llmsText.includes("what_is_included"));
 assert.ok(llmsText.includes("Machine-first rule"));
 
 const machineOnboardingResponse = await handleRequest(new Request("http://localhost/machine-onboarding.json"));

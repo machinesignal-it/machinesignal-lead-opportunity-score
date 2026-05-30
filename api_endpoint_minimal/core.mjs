@@ -831,13 +831,82 @@ export const openApi = {
           domain: { type: "string", example: "studio-legale-demo.it" },
           real_payment_executed: { type: "boolean", example: false },
           external_contact_executed: { type: "boolean", example: false },
-          delivery: {
-            type: "object",
-            description:
-              "Immediate beta deliverable returned to the customer machine after the order intent is accepted."
-          },
+          delivery: { $ref: "#/components/schemas/BetaDelivery" },
           usage: { $ref: "#/components/schemas/UsageLedger" }
         }
+      },
+      BetaDelivery: {
+        type: "object",
+        description:
+          "Immediate machine-readable beta deliverable. The shape changes by product_code, but every delivery explains what was bought, what credit was consumed and what the machine should do next.",
+        properties: {
+          delivery_id: { type: "string", example: "del_123abc" },
+          product_code: {
+            type: "string",
+            enum: [
+              "target_discovery",
+              "domain_enrichment",
+              "verification",
+              "nurture_signal",
+              "deep_analysis",
+              "action_pack",
+              "opportunity_feed"
+            ],
+            example: "deep_analysis"
+          },
+          delivery_type: {
+            type: "string",
+            example: "deep_opportunity_analysis"
+          },
+          status: { type: "string", example: "deep_analysis_ready" },
+          domain: { type: "string", example: "quinta-essenza.com" },
+          beta_delivery: { type: "boolean", example: true },
+          synthetic_demo_mode: { type: "boolean", example: true },
+          real_payment_executed: { type: "boolean", example: false },
+          external_contact_executed: { type: "boolean", example: false },
+          what_is_included: {
+            type: "object",
+            description:
+              "Exact description of the unit sold, the machine question answered, returned fields and credit policy.",
+            example: {
+              exact_unit_sold: "one deep opportunity decision pack for one scored domain",
+              machine_question_answered:
+                "Is this strong enough to justify the next paid action, or should the workflow stop?",
+              credit_policy:
+                "One deep_analysis_pack_100 credit is consumed for each deep analysis decision pack returned."
+            }
+          },
+          output_contract: {
+            type: "object",
+            description:
+              "For batch products such as target_discovery, describes exact row count, row schema, acceptance criteria and fallback rules.",
+            example: {
+              exact_unit_sold: "250 coherent target records or a no-go market coverage decision",
+              row_schema: ["domain", "target_name", "category", "area", "next_machine_action"]
+            }
+          },
+          next_machine_call: {
+            type: "object",
+            description:
+              "Recommended next API call for the customer machine after reading this delivery.",
+            example: {
+              method: "POST",
+              endpoint: "/v1/purchase-intent",
+              required_headers: ["X-API-Key", "Idempotency-Key"]
+            }
+          },
+          stop_rules: {
+            type: "array",
+            items: { type: "string" },
+            description:
+              "Conditions where the customer machine should stop spending credits on this lead or market."
+          },
+          machine_recommendation: {
+            type: "string",
+            example: "Use this output to decide whether to create an action pack or stop spending."
+          }
+        },
+        additionalProperties: true
       },
       OrderResponse: {
         type: "object",
@@ -1030,7 +1099,7 @@ How a machine should create a beta order intent:
 - body example: {"product_code":"domain_enrichment","target_name":"Studio Dentistico Demo","batch_id":"dentists-lombardy-demo"};
 - supported product_code values: target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack, opportunity_feed;
 - the beta order intent consumes one corresponding pack credit;
-- the response includes delivery, an immediate machine-readable beta output;
+- the response includes delivery, an immediate machine-readable beta output with what_is_included, output_contract, next_machine_call and stop_rules when relevant;
 - no real payment is executed in beta.
 
 How a machine should retrieve previous orders:
@@ -1164,6 +1233,74 @@ const postmanCollection = {
         },
         description:
           "Creates a beta order intent for a recommended next product and returns an immediate structured beta delivery. No real payment is executed."
+      },
+      response: []
+    },
+    {
+      name: "Order target discovery when machine has no list",
+      request: {
+        method: "POST",
+        header: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "X-API-Key", value: "{{machinesignal_api_key}}" },
+          { key: "Idempotency-Key", value: "postman-demo-target-discovery-001" }
+        ],
+        body: {
+          mode: "raw",
+          raw: JSON.stringify(
+            {
+              product_code: "target_discovery",
+              market: "medicina estetica",
+              area: "Lombardia",
+              commercial_objective:
+                "find domains worth scoring for website improvement opportunities",
+              reason: "Customer machine has no starting list"
+            },
+            null,
+            2
+          )
+        },
+        url: {
+          raw: "{{base_url}}/v1/purchase-intent",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "purchase-intent"]
+        },
+        description:
+          "Use this when the customer machine has no list. The delivery returns an output_contract: 250 coherent target records or a no-go market coverage decision."
+      },
+      response: []
+    },
+    {
+      name: "Order deep analysis after a strong score",
+      request: {
+        method: "POST",
+        header: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "X-API-Key", value: "{{machinesignal_api_key}}" },
+          { key: "Idempotency-Key", value: "postman-demo-deep-analysis-001" }
+        ],
+        body: {
+          mode: "raw",
+          raw: JSON.stringify(
+            {
+              product_code: "deep_analysis",
+              domain: "quinta-essenza.com",
+              source_score_request_id: "postman-demo-score-strong-001",
+              reason: "Score decision was buy_deep_analysis"
+            },
+            null,
+            2
+          )
+        },
+        url: {
+          raw: "{{base_url}}/v1/purchase-intent",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "purchase-intent"]
+        },
+        description:
+          "Use this after a strong score. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
       },
       response: []
     },
