@@ -576,6 +576,92 @@ export const openApi = {
         }
       }
     },
+    "/v1/beta/customers/{customer_id}": {
+      get: {
+        operationId: "getBetaCustomerAdmin",
+        summary: "Read beta customer status and usage",
+        description:
+          "Admin-only endpoint. Returns customer status, API key prefix, balances, recent events and recent orders without exposing the full customer API key.",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          {
+            name: "customer_id",
+            in: "path",
+            required: true,
+            schema: { type: "string", example: "beta_partner_001" }
+          }
+        ],
+        responses: {
+          200: {
+            description: "Beta customer admin view.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/BetaCustomerAdminResponse" }
+              }
+            }
+          },
+          401: { description: "Missing or invalid admin X-API-Key." },
+          404: { description: "Beta customer not found." }
+        }
+      },
+      patch: {
+        operationId: "updateBetaCustomerAdmin",
+        summary: "Update beta customer status or credits",
+        description:
+          "Admin-only endpoint. Can suspend/reactivate a beta customer, add credits, set credit limits or reset usage for controlled beta tests.",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          {
+            name: "customer_id",
+            in: "path",
+            required: true,
+            schema: { type: "string", example: "beta_partner_001" }
+          }
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/BetaCustomerAdminUpdateRequest" },
+              examples: {
+                topUpCredits: {
+                  summary: "Top up a customer for another beta test",
+                  value: {
+                    add_credits: {
+                      score_pack_1k: 20,
+                      verification_pack_100: 10,
+                      deep_analysis_pack_100: 5,
+                      target_discovery_pack_250: 1
+                    },
+                    reason: "top up beta test credits"
+                  }
+                },
+                suspendCustomer: {
+                  summary: "Suspend a customer",
+                  value: {
+                    status: "suspended",
+                    reason: "pause beta access"
+                  }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          200: {
+            description: "Beta customer updated.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/BetaCustomerAdminResponse" }
+              }
+            }
+          },
+          400: { description: "Invalid request." },
+          401: { description: "Missing or invalid admin X-API-Key." },
+          404: { description: "Beta customer not found." }
+        }
+      }
+    },
     "/health": {
       get: {
         operationId: "healthCheck",
@@ -798,6 +884,55 @@ export const openApi = {
           usage: { $ref: "#/components/schemas/UsageLedger" }
         }
       },
+      BetaCustomerAdminUpdateRequest: {
+        type: "object",
+        properties: {
+          status: {
+            type: "string",
+            enum: ["active", "suspended", "closed"],
+            example: "active"
+          },
+          plan: { type: "string", example: "beta_starter" },
+          contact_email: { type: "string", example: "partner@example.com" },
+          add_credits: {
+            type: "object",
+            description:
+              "Adds credits to purchased credit limits. Keys are ledger product codes such as score_pack_1k or verification_pack_100.",
+            additionalProperties: { type: "integer", minimum: 0 },
+            example: { score_pack_1k: 20, verification_pack_100: 10 }
+          },
+          set_credits: {
+            type: "object",
+            description:
+              "Sets purchased credit limits exactly. Existing usage is preserved unless reset_usage is true.",
+            additionalProperties: { type: "integer", minimum: 0 },
+            example: { target_discovery_pack_250: 1 }
+          },
+          reset_usage: {
+            type: "boolean",
+            description: "Resets used credits to zero for all products.",
+            example: false
+          },
+          reason: { type: "string", example: "top up beta test credits" }
+        }
+      },
+      BetaCustomerAdminResponse: {
+        type: "object",
+        properties: {
+          customer_id: { type: "string", example: "beta_partner_001" },
+          contact_email: { type: ["string", "null"], example: "partner@example.com" },
+          plan: { type: "string", example: "beta_starter" },
+          status: { type: "string", example: "active" },
+          api_key_prefix: {
+            type: ["string", "null"],
+            description: "Only the prefix is exposed; the full customer API key is never returned again.",
+            example: "ms_cust_abc123"
+          },
+          admin_event: { type: ["object", "null"] },
+          onboarding: { type: "object" },
+          usage: { $ref: "#/components/schemas/UsageLedger" }
+        }
+      },
       AuthenticatedOnboardingResponse: {
         type: "object",
         properties: {
@@ -855,11 +990,14 @@ Useful endpoints:
 - GET /v1/orders
 - GET /v1/orders/{order_intent_id}
 - POST /v1/beta/customers
+- GET /v1/beta/customers/{customer_id}
+- PATCH /v1/beta/customers/{customer_id}
 
 Authentication:
 - protected endpoints require header X-API-Key: <beta key>;
 - public endpoints are /, /health, /openapi.json, /postman_collection.json, /product-catalog.json and /llms.txt.
 - POST /v1/beta/customers requires the admin beta key and returns a dedicated customer key.
+- GET/PATCH /v1/beta/customers/{customer_id} require the admin beta key and never return the full customer API key.
 
 How a machine should call the score endpoint:
 1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
@@ -905,7 +1043,8 @@ How beta onboarding works:
 - an admin creates a beta customer with POST /v1/beta/customers;
 - the response returns a dedicated API key once;
 - the customer machine then uses that key for score, purchase intent, usage and order history;
-- initial credits are assigned in the customer's ledger.
+- initial credits are assigned in the customer's ledger;
+- an admin can top up credits, reset usage, suspend or reactivate a customer with PATCH /v1/beta/customers/{customer_id}.
 
 Machine-first rule:
 - MachineSignal does not require human email persuasion as the primary channel;
@@ -1101,6 +1240,57 @@ const postmanCollection = {
       response: []
     },
     {
+      name: "Admin read beta customer",
+      request: {
+        method: "GET",
+        header: [{ key: "X-API-Key", value: "{{machinesignal_admin_api_key}}" }],
+        url: {
+          raw: "{{base_url}}/v1/beta/customers/{{beta_customer_id}}",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "beta", "customers", "{{beta_customer_id}}"]
+        },
+        description:
+          "Admin-only endpoint. Reads beta customer status, key prefix, balances and recent ledger activity."
+      },
+      response: []
+    },
+    {
+      name: "Admin top up beta customer credits",
+      request: {
+        method: "PATCH",
+        header: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "X-API-Key", value: "{{machinesignal_admin_api_key}}" }
+        ],
+        body: {
+          mode: "raw",
+          raw: JSON.stringify(
+            {
+              add_credits: {
+                score_pack_1k: 20,
+                verification_pack_100: 10,
+                deep_analysis_pack_100: 5,
+                target_discovery_pack_250: 1
+              },
+              reason: "top up beta test credits"
+            },
+            null,
+            2
+          )
+        },
+        url: {
+          raw: "{{base_url}}/v1/beta/customers/{{beta_customer_id}}",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "beta", "customers", "{{beta_customer_id}}"]
+        },
+        description:
+          "Admin-only endpoint. Adds credits, resets usage if requested, or changes status without returning the full customer API key."
+      },
+      response: []
+    },
+    {
       name: "Fetch machine onboarding manifest",
       request: {
         method: "GET",
@@ -1178,7 +1368,8 @@ const postmanCollection = {
   variable: [
     { key: "base_url", value: "https://machinesignal-api.beta-878.workers.dev" },
     { key: "machinesignal_api_key", value: "paste_customer_beta_key_here" },
-    { key: "machinesignal_admin_api_key", value: "paste_admin_beta_key_here" }
+    { key: "machinesignal_admin_api_key", value: "paste_admin_beta_key_here" },
+    { key: "beta_customer_id", value: "beta_partner_001" }
   ]
 };
 
@@ -1259,6 +1450,40 @@ async function saveCustomerRecord(record, apiKey, env = {}) {
   return false;
 }
 
+async function loadCustomerById(customerId, env = {}) {
+  const normalizedCustomerId = normalizeCustomerId(customerId);
+  const kv = env[LEDGER_KV_BINDING];
+  if (kv?.get) {
+    return await kv.get(customerRecordKey(normalizedCustomerId), "json");
+  }
+  globalThis.__machinesignalCustomers ||= {};
+  return globalThis.__machinesignalCustomers[customerRecordKey(normalizedCustomerId)] || null;
+}
+
+async function saveCustomerRecordById(record, env = {}) {
+  const normalizedRecord = {
+    ...record,
+    customer_id: normalizeCustomerId(record.customer_id),
+    updated_at: new Date().toISOString()
+  };
+  const kv = env[LEDGER_KV_BINDING];
+  if (kv?.put) {
+    await kv.put(customerRecordKey(normalizedRecord.customer_id), JSON.stringify(normalizedRecord));
+    if (normalizedRecord.api_key_hash) {
+      await kv.put(customerKeyForHash(normalizedRecord.api_key_hash), JSON.stringify(normalizedRecord));
+    }
+    return true;
+  }
+  globalThis.__machinesignalCustomers ||= {};
+  globalThis.__machinesignalCustomers[customerRecordKey(normalizedRecord.customer_id)] =
+    clone(normalizedRecord);
+  if (normalizedRecord.api_key_hash) {
+    globalThis.__machinesignalCustomers[customerKeyForHash(normalizedRecord.api_key_hash)] =
+      clone(normalizedRecord);
+  }
+  return false;
+}
+
 async function authenticateRequest(request, env = {}) {
   const configured = String(env.MACHINESIGNAL_API_KEY || env.API_KEY || "").trim();
   const apiKey = request.headers.get("x-api-key") || "";
@@ -1333,6 +1558,22 @@ async function saveLedger(key, state, env = {}) {
   globalThis.__machinesignalLedgers ||= {};
   globalThis.__machinesignalLedgers[key] = clone(state);
   return false;
+}
+
+async function loadLedgerByCustomerId(customerId, env = {}) {
+  const normalizedCustomerId = normalizeCustomerId(customerId);
+  const key = `ledger:customer:${normalizedCustomerId}`;
+  const kv = env[LEDGER_KV_BINDING];
+  if (kv?.get) {
+    const saved = await kv.get(key, "json");
+    return { key, state: normalizeLedgerState(saved || { customer_id: normalizedCustomerId }), persisted: true };
+  }
+  globalThis.__machinesignalLedgers ||= {};
+  globalThis.__machinesignalLedgers[key] ||= {
+    ...clone(DEFAULT_LEDGER_STATE),
+    customer_id: normalizedCustomerId
+  };
+  return { key, state: normalizeLedgerState(globalThis.__machinesignalLedgers[key]), persisted: false };
 }
 
 function ledgerBalances(state) {
@@ -1791,6 +2032,148 @@ async function createBetaCustomer(input, request, env = {}) {
     },
     usage: buildUsagePayload(ledgerState, null, true)
   };
+}
+
+function assertAdminCustomerStatus(status) {
+  const normalized = String(status || "").trim().toLowerCase();
+  if (!normalized) return null;
+  if (!["active", "suspended", "closed"].includes(normalized)) {
+    throw new Error("status must be active, suspended or closed");
+  }
+  return normalized;
+}
+
+function applyAdminCreditUpdate(ledgerState, input = {}) {
+  const allowedCodes = Object.keys(ledgerState.balances);
+  const setCredits = input.set_credits || {};
+  const addCredits = input.add_credits || input.credit_topups || {};
+  const applied = [];
+
+  const parseAmount = (value, label) => {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed) || parsed < 0) {
+      throw new Error(`${label} must be a non-negative number`);
+    }
+    return Math.floor(parsed);
+  };
+
+  if (input.reset_usage === true) {
+    for (const balance of Object.values(ledgerState.balances)) {
+      balance.credits_used = 0;
+      balance.credits_remaining = balance.credits_purchased;
+    }
+    applied.push({ action: "reset_usage" });
+  }
+
+  for (const [productCode, value] of Object.entries(setCredits)) {
+    if (!allowedCodes.includes(productCode)) {
+      throw new Error(`unknown ledger product_code ${productCode}`);
+    }
+    const credits = parseAmount(value, `set_credits.${productCode}`);
+    ledgerState.balances[productCode].credits_purchased = credits;
+    ledgerState.balances[productCode].credits_remaining = Math.max(
+      0,
+      credits - ledgerState.balances[productCode].credits_used
+    );
+    applied.push({ action: "set_credits", product_code: productCode, credits });
+  }
+
+  for (const [productCode, value] of Object.entries(addCredits)) {
+    if (!allowedCodes.includes(productCode)) {
+      throw new Error(`unknown ledger product_code ${productCode}`);
+    }
+    const credits = parseAmount(value, `add_credits.${productCode}`);
+    ledgerState.balances[productCode].credits_purchased += credits;
+    ledgerState.balances[productCode].credits_remaining = Math.max(
+      0,
+      ledgerState.balances[productCode].credits_purchased -
+        ledgerState.balances[productCode].credits_used
+    );
+    applied.push({ action: "add_credits", product_code: productCode, credits });
+  }
+
+  if (!applied.length) return null;
+
+  const event = {
+    event_id: `evt_${String(ledgerState.events.length + 1).padStart(4, "0")}`,
+    timestamp: new Date().toISOString(),
+    customer_id: ledgerState.customer_id,
+    product_code: "admin_beta_customer",
+    request_id:
+      String(input.request_id || input.admin_request_id || "").trim() ||
+      `admin_${stableHash(`${ledgerState.customer_id}|${Date.now()}`).toString(16)}`,
+    status: "admin_credit_update",
+    reason: String(input.reason || "admin_beta_customer_update").trim(),
+    units_requested: 0,
+    credits_consumed: 0,
+    credits_remaining: null,
+    metadata: { applied }
+  };
+  ledgerState.events.push(event);
+  return event;
+}
+
+function buildAdminCustomerPayload(customer, ledger, currentEvent = null) {
+  return {
+    customer_id: customer.customer_id,
+    contact_email: customer.contact_email || null,
+    plan: customer.plan || null,
+    status: customer.status,
+    api_key_prefix: customer.api_key_prefix || null,
+    created_at: customer.created_at || null,
+    updated_at: customer.updated_at || null,
+    admin_event: currentEvent,
+    onboarding: {
+      base_url: "https://machinesignal-api.beta-878.workers.dev",
+      customer_auth_header: "X-API-Key",
+      admin_can_return_full_api_key: false,
+      next_customer_calls: [
+        "GET /v1/onboarding",
+        "GET /v1/usage",
+        "POST /v1/lead-opportunity-score",
+        "POST /v1/purchase-intent",
+        "GET /v1/orders"
+      ]
+    },
+    usage: buildUsagePayload(ledger.state, currentEvent, ledger.persisted),
+    real_payment_executed: false,
+    external_contact_executed: false
+  };
+}
+
+async function getBetaCustomerAdmin(customerId, env = {}) {
+  const customer = await loadCustomerById(customerId, env);
+  if (!customer) {
+    const error = new Error("Beta customer not found.");
+    error.statusCode = 404;
+    throw error;
+  }
+  const ledger = await loadLedgerByCustomerId(customer.customer_id, env);
+  return buildAdminCustomerPayload(customer, ledger);
+}
+
+async function updateBetaCustomerAdmin(customerId, input = {}, env = {}) {
+  const customer = await loadCustomerById(customerId, env);
+  if (!customer) {
+    const error = new Error("Beta customer not found.");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  const status = assertAdminCustomerStatus(input.status);
+  if (status) customer.status = status;
+  if (input.plan !== undefined) {
+    customer.plan = String(input.plan || "").trim() || customer.plan;
+  }
+  if (input.contact_email !== undefined) {
+    customer.contact_email = String(input.contact_email || "").trim() || null;
+  }
+
+  const ledger = await loadLedgerByCustomerId(customer.customer_id, env);
+  const adminEvent = applyAdminCreditUpdate(ledger.state, input);
+  await saveCustomerRecordById(customer, env);
+  await saveLedger(ledger.key, ledger.state, env);
+  return buildAdminCustomerPayload(customer, ledger, adminEvent);
 }
 
 function buildPublicMachineOnboarding() {
@@ -2467,10 +2850,35 @@ export async function handleRequest(request, env = {}) {
     }
   }
 
+  if (
+    (request.method === "GET" || request.method === "PATCH") &&
+    url.pathname.startsWith("/v1/beta/customers/")
+  ) {
+    if (!isAdminAuthorized(request, env)) {
+      return jsonResponse(
+        { error: "unauthorized", message: "Missing or invalid admin X-API-Key." },
+        401
+      );
+    }
+    const customerId = decodeURIComponent(url.pathname.replace("/v1/beta/customers/", "")).trim();
+    try {
+      if (request.method === "GET") {
+        return jsonResponse(await getBetaCustomerAdmin(customerId, env));
+      }
+      const body = await parseJson(request);
+      return jsonResponse(await updateBetaCustomerAdmin(customerId, body, env));
+    } catch (error) {
+      return jsonResponse(
+        { error: error.statusCode === 404 ? "not_found" : "bad_request", message: error.message || "Invalid request." },
+        error.statusCode || 400
+      );
+    }
+  }
+
   return jsonResponse(
     {
       error: "not_found",
-      message: "Use GET /health, GET /openapi.json, GET /v1/usage, GET /v1/orders, POST /v1/beta/customers, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
+      message: "Use GET /health, GET /openapi.json, GET /v1/usage, GET /v1/orders, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
     },
     404
   );

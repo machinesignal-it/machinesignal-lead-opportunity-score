@@ -378,4 +378,84 @@ assert.equal(
   11
 );
 
+const adminCustomerReadResponse = await handleRequest(
+  new Request("http://localhost/v1/beta/customers/beta_partner_test", {
+    method: "GET",
+    headers: { "x-api-key": "test-key" }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(adminCustomerReadResponse.status, 200);
+const adminCustomerReadPayload = await adminCustomerReadResponse.json();
+assert.equal(adminCustomerReadPayload.customer_id, "beta_partner_test");
+assert.ok(adminCustomerReadPayload.api_key_prefix.startsWith("ms_cust_"));
+assert.equal(adminCustomerReadPayload.api_key, undefined);
+
+const adminTopUpResponse = await handleRequest(
+  new Request("http://localhost/v1/beta/customers/beta_partner_test", {
+    method: "PATCH",
+    body: JSON.stringify({
+      add_credits: {
+        score_pack_1k: 5,
+        verification_pack_100: 2,
+        target_discovery_pack_250: 1
+      },
+      reason: "top up beta machine buyer flow"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(adminTopUpResponse.status, 200);
+const adminTopUpPayload = await adminTopUpResponse.json();
+assert.equal(adminTopUpPayload.admin_event.status, "admin_credit_update");
+assert.equal(
+  adminTopUpPayload.usage.balances.find((item) => item.product_code === "score_pack_1k").credits_purchased,
+  17
+);
+assert.equal(
+  adminTopUpPayload.usage.balances.find((item) => item.product_code === "score_pack_1k").credits_remaining,
+  16
+);
+
+const adminSuspendResponse = await handleRequest(
+  new Request("http://localhost/v1/beta/customers/beta_partner_test", {
+    method: "PATCH",
+    body: JSON.stringify({ status: "suspended", reason: "pause beta access" }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(adminSuspendResponse.status, 200);
+assert.equal((await adminSuspendResponse.json()).status, "suspended");
+
+const suspendedCustomerUsageResponse = await handleRequest(
+  new Request("http://localhost/v1/usage", {
+    method: "GET",
+    headers: { "x-api-key": createCustomerPayload.api_key }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(suspendedCustomerUsageResponse.status, 401);
+
+const adminReactivateResponse = await handleRequest(
+  new Request("http://localhost/v1/beta/customers/beta_partner_test", {
+    method: "PATCH",
+    body: JSON.stringify({ status: "active", reason: "resume beta access" }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(adminReactivateResponse.status, 200);
+assert.equal((await adminReactivateResponse.json()).status, "active");
+
 console.log("MachineSignal minimal API tests passed.");
