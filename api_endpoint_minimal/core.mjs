@@ -2295,6 +2295,18 @@ function buildAuthenticatedOnboarding(auth, ledger) {
 function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
   const sourceScoreRequestId = String(input?.source_score_request_id || "").trim() || null;
   const generatedAt = new Date().toISOString();
+  const requestedMarket = String(input?.market || input?.sector_hint || "").trim() || null;
+  const requestedArea = String(input?.area || input?.country_hint || "").trim() || null;
+  const commercialObjective =
+    String(input?.commercial_objective || input?.objective || input?.reason || "").trim() ||
+    "find machine-actionable commercial opportunities before spending more budget";
+  const marketLabel = requestedMarket || "requested market";
+  const areaLabel = requestedArea || "requested area";
+  const sampleSlug = `${marketLabel}-${areaLabel}`
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 48) || "market-sample";
   const common = {
     delivery_id: `del_${stableHash(`${productCode}|${domain}|${event.request_id || ""}`).toString(16)}`,
     product_code: productCode,
@@ -2312,8 +2324,11 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
       ...common,
       delivery_type: "target_discovery_precheck",
       status: "target_discovery_precheck_ready",
-      requested_market: String(input?.market || input?.sector_hint || "").trim() || null,
-      requested_area: String(input?.area || input?.country_hint || "").trim() || null,
+      requested_market: requestedMarket,
+      requested_area: requestedArea,
+      commercial_objective: commercialObjective,
+      machine_value:
+        "Returns a machine-usable starting batch when the customer machine has no list to score.",
       promised_output: {
         target_count: 250,
         fields: [
@@ -2324,30 +2339,59 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
           "reason_for_inclusion"
         ]
       },
+      output_contract: {
+        exact_unit_sold: "250 coherent target records or a no-go market coverage decision",
+        row_schema: [
+          "domain",
+          "target_name",
+          "category",
+          "area",
+          "source_type",
+          "initial_signals",
+          "reason_for_inclusion",
+          "next_machine_action"
+        ],
+        acceptance_criteria: [
+          "The target must match the requested market or the commercial objective.",
+          "The target must have enough public signal to justify a score call.",
+          "Duplicate domains are excluded from the delivered batch."
+        ],
+        credit_policy:
+          "One target_discovery_pack_250 credit is consumed only for an accepted discovery order. If the market cannot support the pack, the machine receives a no-go decision and suggested criteria changes."
+      },
       beta_sample_targets: [
         {
-          domain: "studio-odontoiatrico-demo-milano.it",
-          category: "dentist",
-          area: "Milan",
+          domain: `${sampleSlug}-candidate-01.example`,
+          target_name: `${marketLabel} candidate 01`,
+          category: marketLabel,
+          area: areaLabel,
+          source_type: "public_web_signal",
           initial_signals: ["sector_match", "local_market", "business_domain_present"],
           reason_for_inclusion:
-            "Synthetic beta target representing a dental clinic domain suitable for score testing."
+            "Synthetic beta target representing the requested market and commercial objective.",
+          next_machine_action: "send domain to /v1/lead-opportunity-score"
         },
         {
-          domain: "clinica-dentale-demo-lombardia.it",
-          category: "dentist",
-          area: "Lombardy",
+          domain: `${sampleSlug}-candidate-02.example`,
+          target_name: `${marketLabel} candidate 02`,
+          category: marketLabel,
+          area: areaLabel,
+          source_type: "public_directory_signal",
           initial_signals: ["sector_match", "regional_market", "clinic_keyword_present"],
           reason_for_inclusion:
-            "Synthetic beta target representing a regional dental clinic opportunity."
+            "Synthetic beta target used to validate scoring after discovery.",
+          next_machine_action: "send domain to /v1/lead-opportunity-score"
         },
         {
-          domain: "dentista-demo-centro.it",
-          category: "dentist",
-          area: "Italy",
+          domain: `${sampleSlug}-candidate-03.example`,
+          target_name: `${marketLabel} candidate 03`,
+          category: marketLabel,
+          area: areaLabel,
+          source_type: "search_result_signal",
           initial_signals: ["sector_match", "service_keyword_present"],
           reason_for_inclusion:
-            "Synthetic beta target for validating the target-discovery-to-score handoff."
+            "Synthetic beta target for validating the target-discovery-to-score handoff.",
+          next_machine_action: "send domain to /v1/lead-opportunity-score"
         }
       ],
       next_machine_call: {
@@ -2439,13 +2483,43 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
       delivery_type: "data_quality_verification",
       status: "verification_ready",
       data_quality_risk: "medium",
+      what_is_included: {
+        exact_unit_sold: "one verification decision for one target/domain",
+        machine_question_answered:
+          "Is this target reliable enough to keep in an automated commercial workflow?",
+        returned_decision_fields: [
+          "verification_verdict",
+          "data_quality_risk",
+          "checks",
+          "next_allowed_actions",
+          "stop_rules"
+        ],
+        credit_policy:
+          "One verification_pack_100 credit is consumed for each verification decision returned."
+      },
+      verification_verdict: {
+        status: "keep_with_caution",
+        meaning:
+          "The lead can stay in the workflow, but the machine should not spend paid outreach or campaign budget until quality is confirmed."
+      },
       checks: [
         { code: "domain_format", status: "passed", meaning: "The domain is normalized and usable." },
         { code: "commercial_action_safety", status: "review", meaning: "Use only compliant follow-up channels." },
         { code: "confidence_gate", status: "review", meaning: "The lead should be verified before paid outreach." }
       ],
+      stop_rules: [
+        "stop if the domain is not attributable to the intended business",
+        "stop if sector or geography evidence conflicts with the requested market",
+        "stop if no compliant action channel exists"
+      ],
       machine_recommendation: "Keep the lead, but do not start paid outreach until data quality is confirmed.",
-      next_allowed_actions: ["rescore", "save_to_crm", "request_deep_analysis_after_verification"]
+      next_allowed_actions: ["rescore", "save_to_crm", "request_deep_analysis_after_verification"],
+      next_machine_call: {
+        method: "POST",
+        endpoint: "/v1/lead-opportunity-score",
+        when: "after new or corrected evidence is available",
+        required_headers: ["X-API-Key", "Idempotency-Key"]
+      }
     };
   }
 
@@ -2467,6 +2541,22 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
       ...common,
       delivery_type: "deep_opportunity_analysis",
       status: "deep_analysis_ready",
+      what_is_included: {
+        exact_unit_sold: "one deep opportunity decision pack for one scored domain",
+        machine_question_answered:
+          "Is this strong enough to justify the next paid action, or should the workflow stop?",
+        returned_decision_fields: [
+          "opportunity_grade",
+          "opportunity_hypothesis",
+          "signals_to_validate",
+          "recommended_next_step",
+          "recommended_budget_cap_eur",
+          "stop_rules"
+        ],
+        credit_policy:
+          "One deep_analysis_pack_100 credit is consumed for each deep analysis decision pack returned."
+      },
+      opportunity_grade: "promising_beta_case",
       opportunity_hypothesis:
         "The domain may justify deeper commercial review before campaign or human-sales budget is spent.",
       signals_to_validate: [
@@ -2474,9 +2564,30 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
         "sector-specific demand signal",
         "local competition and offer fit"
       ],
+      recommended_next_step: {
+        product_code: "action_pack",
+        condition: "buy only if the customer machine has a compliant action channel and budget approval",
+        reason:
+          "Deep analysis indicates potential, but the next commercial action must still pass compliance and budget gates."
+      },
+      stop_rules: [
+        "stop if confidence drops after verification",
+        "stop if the target does not match the customer's commercial objective",
+        "stop if no compliant downstream action is available"
+      ],
       risk_flags: ["synthetic_beta_output", "requires real-world validation before outreach"],
       recommended_budget_cap_eur: 3,
-      machine_recommendation: "Use this output to decide whether to create an action pack or stop spending."
+      machine_recommendation: "Use this output to decide whether to create an action pack or stop spending.",
+      next_machine_call: {
+        method: "POST",
+        endpoint: "/v1/purchase-intent",
+        payload_template: {
+          product_code: "action_pack",
+          source_order_intent_id: "use_this_order_intent_id",
+          max_budget_eur: 10
+        },
+        required_headers: ["X-API-Key", "Idempotency-Key"]
+      }
     };
   }
 

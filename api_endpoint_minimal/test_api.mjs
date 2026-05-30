@@ -188,6 +188,9 @@ assert.equal(purchaseIntentPayload.usage.current_event.credits_consumed, 1);
 assert.equal(purchaseIntentPayload.delivery.delivery_type, "data_quality_verification");
 assert.equal(purchaseIntentPayload.delivery.domain, "clinic3.it");
 assert.equal(purchaseIntentPayload.delivery.external_contact_executed, false);
+assert.equal(purchaseIntentPayload.delivery.what_is_included.exact_unit_sold, "one verification decision for one target/domain");
+assert.equal(purchaseIntentPayload.delivery.verification_verdict.status, "keep_with_caution");
+assert.ok(purchaseIntentPayload.delivery.stop_rules.includes("stop if no compliant action channel exists"));
 assert.equal(purchaseIntentPayload.order.order_intent_id, purchaseIntentPayload.order_intent_id);
 assert.equal(purchaseIntentPayload.order.delivery.delivery_type, "data_quality_verification");
 
@@ -238,8 +241,37 @@ assert.equal(targetDiscoveryPayload.product_code, "target_discovery");
 assert.equal(targetDiscoveryPayload.ledger_product_code, "target_discovery_pack_250");
 assert.equal(targetDiscoveryPayload.delivery.delivery_type, "target_discovery_precheck");
 assert.equal(targetDiscoveryPayload.delivery.beta_sample_targets.length, 3);
+assert.equal(targetDiscoveryPayload.delivery.commercial_objective, "Customer machine needs a starting target list");
+assert.equal(targetDiscoveryPayload.delivery.output_contract.exact_unit_sold, "250 coherent target records or a no-go market coverage decision");
+assert.equal(targetDiscoveryPayload.delivery.beta_sample_targets[0].category, "dentists");
+assert.equal(targetDiscoveryPayload.delivery.beta_sample_targets[0].next_machine_action, "send domain to /v1/lead-opportunity-score");
 assert.equal(targetDiscoveryPayload.delivery.next_machine_call.endpoint, "/v1/lead-opportunity-score");
 assert.equal(targetDiscoveryPayload.usage.current_event.credits_consumed, 1);
+
+const deepAnalysisResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "deep_analysis",
+      domain: "strong-clinic.it",
+      source_score_request_id: "test-score-strong-001",
+      reason: "Score recommended deep analysis"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key",
+      "idempotency-key": "test-deep-analysis-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(deepAnalysisResponse.status, 200);
+const deepAnalysisPayload = await deepAnalysisResponse.json();
+assert.equal(deepAnalysisPayload.product_code, "deep_analysis");
+assert.equal(deepAnalysisPayload.delivery.delivery_type, "deep_opportunity_analysis");
+assert.equal(deepAnalysisPayload.delivery.what_is_included.exact_unit_sold, "one deep opportunity decision pack for one scored domain");
+assert.equal(deepAnalysisPayload.delivery.recommended_next_step.product_code, "action_pack");
+assert.equal(deepAnalysisPayload.delivery.next_machine_call.endpoint, "/v1/purchase-intent");
 
 const domainEnrichmentResponse = await handleRequest(
   new Request("http://localhost/v1/purchase-intent", {
@@ -276,7 +308,7 @@ const ordersResponse = await handleRequest(
 );
 assert.equal(ordersResponse.status, 200);
 const ordersPayload = await ordersResponse.json();
-assert.equal(ordersPayload.count, 3);
+assert.equal(ordersPayload.count, 4);
 assert.ok(ordersPayload.orders.some((order) => order.order_intent_id === purchaseIntentPayload.order_intent_id));
 
 const filteredOrdersResponse = await handleRequest(
