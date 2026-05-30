@@ -1401,6 +1401,7 @@ function clamp(value, min, max) {
 function sectorBoost(sectorHint) {
   const sector = String(sectorHint || "").toLowerCase();
   if (/(dent|clinic|health|medical|odont)/.test(sector)) return 12;
+  if (/(medicina|estetic|aesthetic|beauty|laser|derma|antiage|anti-age)/.test(sector)) return 12;
   if (/(legal|law|studio legale|avvoc)/.test(sector)) return 10;
   if (/(real estate|immobil)/.test(sector)) return 9;
   if (/(home|ristruttur|construction|edil)/.test(sector)) return 8;

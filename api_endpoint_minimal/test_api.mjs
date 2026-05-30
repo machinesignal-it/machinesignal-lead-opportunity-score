@@ -19,6 +19,15 @@ assert.equal(score.product_level, "score_base");
 assert.equal(typeof score.next_purchase, "object");
 assert.equal(typeof score.machine_next_step, "object");
 
+const aestheticScore = scoreLeadOpportunity({
+  domain: "quinta-essenza.com",
+  sector_hint: "medicina estetica",
+  country_hint: "IT"
+});
+assert.equal(aestheticScore.decision, "buy_deep_analysis");
+assert.ok(aestheticScore.opportunity_score >= 75);
+assert.equal(aestheticScore.next_purchase.next_product, "deep_analysis");
+
 const healthResponse = await handleRequest(new Request("http://localhost/health"));
 assert.equal(healthResponse.status, 200);
 assert.equal((await healthResponse.json()).status, "ok");
