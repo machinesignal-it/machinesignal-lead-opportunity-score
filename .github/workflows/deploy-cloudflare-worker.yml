@@ -40,7 +40,8 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: deploy --config api_endpoint_minimal/wrangler.toml
+          workingDirectory: api_endpoint_minimal
+          command: deploy --config wrangler.toml
           secrets: |
             MACHINESIGNAL_API_KEY
         env:
