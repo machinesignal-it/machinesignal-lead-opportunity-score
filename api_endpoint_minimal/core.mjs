@@ -1815,6 +1815,10 @@ function isAestheticMedicineSector(sectorHint) {
   );
 }
 
+function isRealEstateSector(sectorHint) {
+  return /(real estate|immobil|property|agenzia casa)/.test(String(sectorHint || "").toLowerCase());
+}
+
 function aestheticMedicineQualityReview(input, domain, sectorHint) {
   if (!isAestheticMedicineSector(sectorHint)) {
     return {
@@ -1856,6 +1860,69 @@ function aestheticMedicineQualityReview(input, domain, sectorHint) {
     score_delta: 0,
     confidence_cap: null,
     reason: "Aesthetic medicine quality gate did not find strong mismatch signals."
+  };
+}
+
+function realEstateQualityReview(input, domain, sectorHint) {
+  if (!isRealEstateSector(sectorHint)) {
+    return {
+      status: "not_applicable",
+      score_delta: 0,
+      confidence_cap: null,
+      reason: "No sector-specific quality gate was applied."
+    };
+  }
+
+  const text = [
+    domain,
+    input?.target_name,
+    input?.company_name,
+    input?.category_hint,
+    input?.category,
+    input?.initial_signals
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  if (/(immobiliare\.it|idealista\.it|casa\.it|wikicasa\.it|trovacasa\.it|tecnocasa\.it|tempocasa\.it|gabetti\.it|remax\.it|engelvoelkers\.com|soloaffitti\.it|casavo\.com)/.test(domain)) {
+    return {
+      status: "real_estate_portal_or_franchise_needs_verification",
+      score_delta: -20,
+      confidence_cap: 0.49,
+      reason:
+        "Real-estate request points to a portal or large franchise root; verify whether the domain represents a local agency before buying Deep Analysis."
+    };
+  }
+
+  if (!/(immobil|casa|abitare|real estate|property|agenzia|intermediazione)/.test(text)) {
+    return {
+      status: "real_estate_sector_unclear_needs_verification",
+      score_delta: -12,
+      confidence_cap: 0.49,
+      reason:
+        "Real-estate request lacks clear sector evidence; verify category before spending more budget."
+    };
+  }
+
+  return {
+    status: "sector_quality_passed",
+    score_delta: 0,
+    confidence_cap: null,
+    reason: "Real-estate quality gate did not find portal, franchise-root or sector-mismatch signals."
+  };
+}
+
+function sectorQualityReview(input, domain, sectorHint) {
+  const aestheticReview = aestheticMedicineQualityReview(input, domain, sectorHint);
+  if (aestheticReview.status !== "not_applicable") return aestheticReview;
+  const realEstateReview = realEstateQualityReview(input, domain, sectorHint);
+  if (realEstateReview.status !== "not_applicable") return realEstateReview;
+  return {
+    status: "not_applicable",
+    score_delta: 0,
+    confidence_cap: null,
+    reason: "No sector-specific quality gate was applied."
   };
 }
 
@@ -2795,7 +2862,7 @@ export function scoreLeadOpportunity(input) {
   const hash = stableHash(`${domain}|${sectorHint}|${countryHint}`);
   const base = 34 + (hash % 32);
   const domainSignals = /\.(it|com|io|ai)$/.test(domain) ? 4 : 0;
-  const qualityReview = aestheticMedicineQualityReview(input, domain, sectorHint);
+  const qualityReview = sectorQualityReview(input, domain, sectorHint);
   const score = clamp(base + sectorBoost(sectorHint) + domainSignals + qualityReview.score_delta, 8, 94);
   const rawConfidence = clamp(0.52 + ((hash >> 8) % 36) / 100, 0.35, 0.88);
   const confidence = Number(

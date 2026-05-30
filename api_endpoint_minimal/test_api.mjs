@@ -39,6 +39,17 @@ assert.equal(aestheticMismatchScore.decision, "needs_verification");
 assert.equal(aestheticMismatchScore.quality_review.status, "sector_mismatch_needs_verification");
 assert.equal(aestheticMismatchScore.next_purchase.next_product, "verification");
 
+const realEstatePortalScore = scoreLeadOpportunity({
+  domain: "immobiliare.it",
+  sector_hint: "real estate agency",
+  country_hint: "IT",
+  target_name: "Agenzia immobiliare demo",
+  category_hint: "agenzia immobiliare"
+});
+assert.equal(realEstatePortalScore.decision, "needs_verification");
+assert.equal(realEstatePortalScore.quality_review.status, "real_estate_portal_or_franchise_needs_verification");
+assert.equal(realEstatePortalScore.next_purchase.next_product, "verification");
+
 const healthResponse = await handleRequest(new Request("http://localhost/health"));
 assert.equal(healthResponse.status, 200);
 assert.equal((await healthResponse.json()).status, "ok");
