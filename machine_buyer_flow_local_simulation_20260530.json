@@ -1,0 +1,268 @@
+{
+  "ok": true,
+  "test_name": "machine_buyer_flow_local_simulation",
+  "created_at": "2026-05-30T13:59:04.442Z",
+  "scope": "local Worker logic with fresh in-memory ledger, same core API code",
+  "checks": [
+    {
+      "name": "public_root_available",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "machine_onboarding_available",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "openapi_has_purchase_intent",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "usage_before_available",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "target_discovery_order_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "score_1_created",
+      "ok": true,
+      "details": "quinta-essenza.com HTTP 200"
+    },
+    {
+      "name": "order_1_deep_analysis",
+      "ok": true,
+      "details": "quinta-essenza.com HTTP 200"
+    },
+    {
+      "name": "score_2_created",
+      "ok": true,
+      "details": "bianchiosteopata.it HTTP 200"
+    },
+    {
+      "name": "order_2_verification",
+      "ok": true,
+      "details": "bianchiosteopata.it HTTP 200"
+    },
+    {
+      "name": "score_3_created",
+      "ok": true,
+      "details": "vistavisiongroup.com HTTP 200"
+    },
+    {
+      "name": "order_3_verification",
+      "ok": true,
+      "details": "vistavisiongroup.com HTTP 200"
+    },
+    {
+      "name": "score_4_created",
+      "ok": true,
+      "details": "avalonbenessere.it HTTP 200"
+    },
+    {
+      "name": "order_4_deep_analysis",
+      "ok": true,
+      "details": "avalonbenessere.it HTTP 200"
+    },
+    {
+      "name": "score_5_created",
+      "ok": true,
+      "details": "centromedico-besana.it HTTP 200"
+    },
+    {
+      "name": "order_5_verification",
+      "ok": true,
+      "details": "centromedico-besana.it HTTP 200"
+    },
+    {
+      "name": "duplicate_score_not_double_charged",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "usage_after_available",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "orders_readable",
+      "ok": true,
+      "details": "HTTP 200"
+    }
+  ],
+  "summary": {
+    "checks_passed": 18,
+    "checks_failed": 0,
+    "target_discovery_orders": 1,
+    "score_requests_charged": 5,
+    "deep_analysis_orders": 2,
+    "verification_orders": 3,
+    "duplicate_score_extra_charge": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  },
+  "target_discovery_order": {
+    "status": "accepted_beta_order_intent",
+    "order_intent_id": "ord_cab80891",
+    "delivery_mode": "target_discovery_precheck",
+    "delivery": {
+      "delivery_id": "del_16b6b97b",
+      "product_code": "target_discovery",
+      "domain": "local-machine-buyer-1780149544425-target-discovery",
+      "source_score_request_id": null,
+      "generated_at": "2026-05-30T13:59:04.431Z",
+      "beta_delivery": true,
+      "synthetic_demo_mode": true,
+      "real_payment_executed": false,
+      "external_contact_executed": false,
+      "delivery_type": "target_discovery_precheck",
+      "status": "target_discovery_precheck_ready",
+      "requested_market": "medicina estetica Lombardia",
+      "requested_area": "Lombardia",
+      "promised_output": {
+        "target_count": 250,
+        "fields": [
+          "domain",
+          "category",
+          "area",
+          "initial_signals",
+          "reason_for_inclusion"
+        ]
+      },
+      "beta_sample_targets": [
+        {
+          "domain": "studio-odontoiatrico-demo-milano.it",
+          "category": "dentist",
+          "area": "Milan",
+          "initial_signals": [
+            "sector_match",
+            "local_market",
+            "business_domain_present"
+          ],
+          "reason_for_inclusion": "Synthetic beta target representing a dental clinic domain suitable for score testing."
+        },
+        {
+          "domain": "clinica-dentale-demo-lombardia.it",
+          "category": "dentist",
+          "area": "Lombardy",
+          "initial_signals": [
+            "sector_match",
+            "regional_market",
+            "clinic_keyword_present"
+          ],
+          "reason_for_inclusion": "Synthetic beta target representing a regional dental clinic opportunity."
+        },
+        {
+          "domain": "dentista-demo-centro.it",
+          "category": "dentist",
+          "area": "Italy",
+          "initial_signals": [
+            "sector_match",
+            "service_keyword_present"
+          ],
+          "reason_for_inclusion": "Synthetic beta target for validating the target-discovery-to-score handoff."
+        }
+      ],
+      "next_machine_call": {
+        "method": "POST",
+        "endpoint": "/v1/lead-opportunity-score",
+        "input_from_delivery": "Use beta_sample_targets[].domain as domain.",
+        "required_headers": [
+          "X-API-Key",
+          "Idempotency-Key"
+        ]
+      },
+      "validity_rule": "Activate the pack only if the market availability pre-check can support 250 coherent targets.",
+      "fallback_if_not_available": [
+        "Mini Discovery",
+        "wider area",
+        "broader criteria",
+        "changed commercial objective"
+      ],
+      "machine_recommendation": "Use this product when the customer machine needs a starting list before score calls."
+    }
+  },
+  "rows": [
+    {
+      "target_name": "QuintaEssenza",
+      "domain": "quinta-essenza.com",
+      "score": 81,
+      "confidence": 0.79,
+      "decision": "buy_deep_analysis",
+      "next_product": "deep_analysis",
+      "quality_status": "sector_quality_passed",
+      "machine_action": "buy_deep_analysis",
+      "order_status": 200,
+      "order_intent_id": "ord_32a82b3a",
+      "order_delivery_type": "deep_opportunity_analysis"
+    },
+    {
+      "target_name": "NeoClinic",
+      "domain": "bianchiosteopata.it",
+      "score": 63,
+      "confidence": 0.49,
+      "decision": "needs_verification",
+      "next_product": "verification",
+      "quality_status": "sector_mismatch_needs_verification",
+      "machine_action": "buy_verification",
+      "order_status": 200,
+      "order_intent_id": "ord_efd4e93f",
+      "order_delivery_type": "data_quality_verification"
+    },
+    {
+      "target_name": "Vista Vision",
+      "domain": "vistavisiongroup.com",
+      "score": 63,
+      "confidence": 0.49,
+      "decision": "needs_verification",
+      "next_product": "verification",
+      "quality_status": "sector_mismatch_needs_verification",
+      "machine_action": "buy_verification",
+      "order_status": 200,
+      "order_intent_id": "ord_f10fb232",
+      "order_delivery_type": "data_quality_verification"
+    },
+    {
+      "target_name": "Avalon",
+      "domain": "avalonbenessere.it",
+      "score": 80,
+      "confidence": 0.68,
+      "decision": "buy_deep_analysis",
+      "next_product": "deep_analysis",
+      "quality_status": "sector_quality_passed",
+      "machine_action": "buy_deep_analysis",
+      "order_status": 200,
+      "order_intent_id": "ord_8af4c820",
+      "order_delivery_type": "deep_opportunity_analysis"
+    },
+    {
+      "target_name": "Centro Medico Besana",
+      "domain": "centromedico-besana.it",
+      "score": 80,
+      "confidence": 0.35,
+      "decision": "needs_verification",
+      "next_product": "verification",
+      "quality_status": "sector_quality_passed",
+      "machine_action": "buy_verification",
+      "order_status": 200,
+      "order_intent_id": "ord_fb40ee33",
+      "order_delivery_type": "data_quality_verification"
+    }
+  ],
+  "orders_count": 6,
+  "business_reading": {
+    "proved": [
+      "A machine can discover the API contract without speaking to a human.",
+      "A machine with no starting list can create a target discovery order intent.",
+      "The same machine can score concrete domains and receive next product recommendations.",
+      "The machine buys verification for ambiguous cases and deep analysis for strong cases.",
+      "Duplicate score calls do not create a second score charge."
+    ],
+    "live_blocker": "The current live demo key has exhausted some beta credits and cannot create a fresh customer because the stored key is not an admin key."
+  }
+}
