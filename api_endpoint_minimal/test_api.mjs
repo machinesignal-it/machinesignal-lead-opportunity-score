@@ -85,6 +85,7 @@ assert.equal(postmanPayload.item[2].name, "Fetch product catalog");
 assert.equal(postmanPayload.item[3].name, "Create beta purchase intent");
 assert.ok(postmanPayload.item.some((item) => item.name === "Order target discovery when machine has no list"));
 assert.ok(postmanPayload.item.some((item) => item.name === "Order deep analysis after a strong score"));
+assert.ok(postmanPayload.item.some((item) => item.name === "Order action pack after confirmed opportunity"));
 assert.ok(postmanPayload.item.some((item) => item.name === "Fetch machine onboarding manifest"));
 assert.ok(postmanPayload.item.some((item) => item.name === "Read authenticated onboarding"));
 
@@ -94,6 +95,15 @@ const productCatalogPayload = await productCatalogResponse.json();
 assert.equal(productCatalogPayload.products.score_pack_1k.price_eur, 99);
 assert.equal(productCatalogPayload.products.target_discovery_pack_250.price_eur, 149);
 assert.equal(productCatalogPayload.products.domain_enrichment_pack_100.price_eur, 149);
+assert.equal(
+  productCatalogPayload.machine_buying_scenarios.customer_has_no_list.first_product,
+  "target_discovery"
+);
+assert.ok(
+  productCatalogPayload.machine_buying_scenarios.customer_has_no_list.required_inputs.includes(
+    "commercial_objective"
+  )
+);
 
 const llmsResponse = await handleRequest(new Request("http://localhost/llms.txt"));
 assert.equal(llmsResponse.status, 200);
@@ -103,6 +113,8 @@ assert.ok(llmsText.includes("/v1/purchase-intent"));
 assert.ok(llmsText.includes("/product-catalog.json"));
 assert.ok(llmsText.includes("what_is_included"));
 assert.ok(llmsText.includes("Machine-first rule"));
+assert.ok(llmsText.includes("Customer machine has no list"));
+assert.ok(llmsText.includes("product_code target_discovery"));
 
 const machineOnboardingResponse = await handleRequest(new Request("http://localhost/machine-onboarding.json"));
 assert.equal(machineOnboardingResponse.status, 200);
@@ -111,6 +123,7 @@ assert.equal(machineOnboardingPayload.primary_customer_interface, "machine");
 assert.equal(machineOnboardingPayload.discovery.product_catalog, "/product-catalog.json");
 assert.equal(machineOnboardingPayload.discovery.authenticated_onboarding, "/v1/onboarding");
 assert.equal(machineOnboardingPayload.recommended_agent_policy.must_not_execute_external_outreach, true);
+assert.equal(machineOnboardingPayload.entry_points.has_no_list.product_code, "target_discovery");
 
 const badResponse = await handleRequest(
   new Request("http://localhost/v1/lead-opportunity-score", {

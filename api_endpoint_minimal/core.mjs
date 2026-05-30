@@ -74,6 +74,33 @@ const PRODUCT_CATALOG = {
     tracking:
       "Each consumption event is tracked with request_id, product_code, status, credits_consumed and credits_remaining."
   },
+  machine_buying_scenarios: {
+    customer_has_list: {
+      machine_goal:
+        "Prioritize an existing list of domains or companies before spending campaign, CRM or agent budget.",
+      first_call: "POST /v1/lead-opportunity-score",
+      first_product: "score_pack_1k",
+      next_products: ["deep_analysis", "verification", "nurture_signal", "action_pack"]
+    },
+    customer_has_no_list: {
+      machine_goal:
+        "Find companies or domains useful for a specific commercial objective, sector and area.",
+      first_call: "POST /v1/purchase-intent",
+      first_product: "target_discovery",
+      required_inputs: ["market", "area", "commercial_objective"],
+      example_commercial_objective:
+        "find real estate agency websites worth scoring for digital presence improvement opportunities",
+      next_products: ["score_pack_1k", "domain_enrichment", "deep_analysis"]
+    },
+    customer_wants_next_action: {
+      machine_goal:
+        "Turn a confirmed opportunity into a CRM- or agent-readable action payload.",
+      first_call: "POST /v1/purchase-intent",
+      first_product: "action_pack",
+      required_inputs: ["domain", "source_score_request_id", "reason"],
+      next_products: ["opportunity_feed", "api_pro"]
+    }
+  },
   products: {
     target_discovery_pack_250: {
       name: "Target Discovery Pack",
@@ -82,9 +109,11 @@ const PRODUCT_CATALOG = {
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "target_discovery",
       when_to_buy:
-        "When the customer machine does not already have a list of companies or domains to score.",
+        "When the customer machine does not already have a list and wants targets for a specific commercial objective, sector and area.",
       includes: [
         "pre-check of market availability",
+        "commercial objective normalization",
+        "opportunity hypothesis for why the target is commercially relevant",
         "250 normalized and deduplicated targets when the market is available",
         "domain when available",
         "category",
@@ -95,7 +124,8 @@ const PRODUCT_CATALOG = {
       ],
       validity_rule:
         "The pack is activated only when the pre-check indicates that 250 coherent targets can be produced. If not, the machine receives alternatives: Mini Discovery, wider area, broader criteria or changed commercial objective.",
-      machine_output: "A target list that can be sent to scoring or CRM enrichment workflows."
+      machine_output:
+        "A target list built for a declared commercial objective, ready for scoring or CRM enrichment workflows."
     },
     score_pack_1k: {
       name: "Score Pack 1k",
@@ -279,7 +309,7 @@ export const openApi = {
     title: "MachineSignal Lead Opportunity Score API",
     version: "0.1.0-beta",
     description:
-      "Callable beta endpoint for machine-readable lead opportunity scoring, credit-ledger tracking and budget routing.",
+      "Callable beta endpoint for machine-readable lead opportunity scoring, no-list target discovery, credit-ledger tracking and budget routing.",
     contact: {
       name: "Team MachineSignal",
       email: "beta@machinesignal.it",
@@ -310,7 +340,7 @@ export const openApi = {
         operationId: "getProductCatalog",
         summary: "Return public machine-readable product catalog",
         description:
-          "Public catalog for automated systems. Lists product codes, exact beta prices, included deliverables, validity rules and credit consumption rules."
+          "Public catalog for automated systems. Lists machine buying scenarios, product codes, exact beta prices, included deliverables, validity rules and credit consumption rules."
       }
     },
     "/v1/onboarding": {
@@ -1078,8 +1108,14 @@ How a machine should call the score endpoint:
 7. If next_purchase.next_product is not null, POST /v1/purchase-intent to create a beta order intent.
 8. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
 
+Three machine buying flows:
+1. Customer machine has a list: call POST /v1/lead-opportunity-score for each domain, then route each result by decision.
+2. Customer machine has no list: call POST /v1/purchase-intent with product_code target_discovery, market, area and commercial_objective. The objective must say what kind of opportunity the machine wants to find, for example "find real estate agency websites worth scoring for digital presence improvement opportunities".
+3. Customer machine wants an action: after a strong score and Deep Analysis, call POST /v1/purchase-intent with product_code action_pack to receive CRM tags, message angle, next action and timing.
+
 Commercial model under test:
 - Target Discovery Pack: EUR 149 for 250 coherent targets after market availability pre-check;
+- Domain Enrichment Pack 100: EUR 149 for 100 enrichment decisions when a machine has names but not reliable domains;
 - Score Pack 1k: EUR 99 for 1000 valid scores;
 - Deep Analysis Pack 100: EUR 299 for 100 valid deep analyses;
 - Action Pack 25: EUR 399 for 25 valid action packs;
@@ -1301,6 +1337,40 @@ const postmanCollection = {
         },
         description:
           "Use this after a strong score. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
+      },
+      response: []
+    },
+    {
+      name: "Order action pack after confirmed opportunity",
+      request: {
+        method: "POST",
+        header: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "X-API-Key", value: "{{machinesignal_api_key}}" },
+          { key: "Idempotency-Key", value: "postman-demo-action-pack-001" }
+        ],
+        body: {
+          mode: "raw",
+          raw: JSON.stringify(
+            {
+              product_code: "action_pack",
+              domain: "quinta-essenza.com",
+              source_score_request_id: "postman-demo-score-strong-001",
+              reason:
+                "Deep Analysis confirmed a low-risk opportunity and the CRM needs a machine-readable next action"
+            },
+            null,
+            2
+          )
+        },
+        url: {
+          raw: "{{base_url}}/v1/purchase-intent",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "purchase-intent"]
+        },
+        description:
+          "Use this when the machine has a confirmed opportunity and wants a CRM/agent-readable action payload: message angle, CRM tags, priority, timing and next action."
       },
       response: []
     },
@@ -2443,6 +2513,26 @@ function buildPublicMachineOnboarding() {
       }
     ],
     products: PRODUCT_CATALOG.products,
+    machine_buying_scenarios: PRODUCT_CATALOG.machine_buying_scenarios,
+    entry_points: {
+      has_existing_list: {
+        start_with: "POST /v1/lead-opportunity-score",
+        reason: "The machine already has domains or company records and needs prioritization."
+      },
+      has_no_list: {
+        start_with: "POST /v1/purchase-intent",
+        product_code: "target_discovery",
+        required_inputs: ["market", "area", "commercial_objective"],
+        reason:
+          "The machine needs MachineSignal to produce targets for a declared commercial objective."
+      },
+      wants_action_payload: {
+        start_with: "POST /v1/purchase-intent",
+        product_code: "action_pack",
+        reason:
+          "The machine already has a qualified opportunity and needs a CRM/agent-readable action."
+      }
+    },
     beta_limits: {
       real_payment_executed: false,
       external_contact_executed: false,
