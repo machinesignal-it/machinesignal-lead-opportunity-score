@@ -1148,6 +1148,13 @@ Public demos for software, agents and partners:
 - CRM records JSON: https://machinesignal.it/demo/crm-consumer/crm_records.json
 - Webhook events JSON: https://machinesignal.it/demo/crm-consumer/webhook_events.json
 
+Beta tester onboarding resources:
+- Beta tester onboarding packet: https://machinesignal.it/beta/onboarding-packet.html
+- Onboarding packet JSON: https://machinesignal.it/beta/onboarding-packet.json
+- Feedback schema JSON: https://machinesignal.it/beta/feedback-schema.json
+- Machine beta test kit: https://machinesignal.it/beta/machine-test-kit.html
+- Machine beta test kit JSON: https://machinesignal.it/beta/machine-test-kit.json
+
 Commercial model under test:
 - Target Discovery Pack: EUR 149 for 250 coherent targets after market availability pre-check;
 - Domain Enrichment Pack 100: EUR 149 for 100 enrichment decisions when a machine has names but not reliable domains;
@@ -1213,7 +1220,7 @@ const postmanCollection = {
     name: "MachineSignal Lead Opportunity Score API - Callable Beta",
     _postman_id: "machinesignal-lead-opportunity-score-callable-beta",
     description:
-      "Callable beta collection for MachineSignal. Includes score, usage ledger and public contract endpoints.",
+      "Callable beta collection for MachineSignal. Includes score, usage ledger, public contract endpoints, beta onboarding packet and machine test flows.",
     schema: "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   item: [
@@ -1246,6 +1253,54 @@ const postmanCollection = {
         },
         description:
           "Public demo output showing how Action Pack becomes CRM-ready webhook events, without external outreach."
+      },
+      response: []
+    },
+    {
+      name: "Read beta tester onboarding packet",
+      request: {
+        method: "GET",
+        header: [],
+        url: {
+          raw: "https://machinesignal.it/beta/onboarding-packet.json",
+          protocol: "https",
+          host: ["machinesignal", "it"],
+          path: ["beta", "onboarding-packet.json"]
+        },
+        description:
+          "Public machine-readable beta onboarding packet. Explains the 6-step beta run, success metrics, stop rules and expected feedback."
+      },
+      response: []
+    },
+    {
+      name: "Read beta feedback schema",
+      request: {
+        method: "GET",
+        header: [],
+        url: {
+          raw: "https://machinesignal.it/beta/feedback-schema.json",
+          protocol: "https",
+          host: ["machinesignal", "it"],
+          path: ["beta", "feedback-schema.json"]
+        },
+        description:
+          "Public JSON schema for structured beta feedback from a partner machine or evaluator."
+      },
+      response: []
+    },
+    {
+      name: "Read machine beta test kit",
+      request: {
+        method: "GET",
+        header: [],
+        url: {
+          raw: "https://machinesignal.it/beta/machine-test-kit.json",
+          protocol: "https",
+          host: ["machinesignal", "it"],
+          path: ["beta", "machine-test-kit.json"]
+        },
+        description:
+          "Public machine test kit with safe test paths, acceptance checks and stop rules."
       },
       response: []
     },

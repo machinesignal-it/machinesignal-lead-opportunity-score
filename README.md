@@ -17,6 +17,11 @@ Public discovery starts here:
 - OpenAPI schema: https://machinesignal.it/openapi.json
 - Postman collection: https://machinesignal.it/postman_collection.json
 - API overview: https://machinesignal.it/api/
+- Beta tester onboarding packet: https://machinesignal.it/beta/onboarding-packet.html
+- Beta tester onboarding JSON: https://machinesignal.it/beta/onboarding-packet.json
+- Beta feedback schema: https://machinesignal.it/beta/feedback-schema.json
+- Machine beta test kit: https://machinesignal.it/beta/machine-test-kit.html
+- Machine beta test kit JSON: https://machinesignal.it/beta/machine-test-kit.json
 - Full machine buyer flow demo: https://machinesignal.it/demo/machine-buyer-flow/
 - CRM consumer demo: https://machinesignal.it/demo/crm-consumer/
 
@@ -77,6 +82,20 @@ Idempotency-Key: <stable_request_id_for_paid_or_credit_consuming_calls>
 6. If the machine has no list, order `target_discovery` with `POST /v1/purchase-intent`, then score the returned candidate domains.
 7. If `next_purchase` recommends an add-on, create a beta order with `POST /v1/purchase-intent`.
 8. Retrieve previous orders and deliveries with `GET /v1/orders`.
+
+## Beta Tester Onboarding Packet
+
+The beta tester packet is the entry point for a partner machine, API evaluator or technical operator that wants to test MachineSignal without a human sales conversation.
+
+It provides:
+
+- a 6-step beta run from public discovery to scored domains and optional paid-intent products;
+- exact success metrics for machine evaluation;
+- stop rules that prevent real payment, external outreach or unsafe automation during beta;
+- a feedback schema so a tester can return structured commercial and technical feedback;
+- links to the machine test kit and demo outputs.
+
+The goal is simple: let a machine decide whether MachineSignal is useful enough to integrate, while a human only supervises approval and audit.
 
 ## Full Machine Buyer Flow Demo
 
