@@ -203,18 +203,31 @@ const PRODUCT_CATALOG = {
       when_to_buy:
         "When Deep Analysis confirms that a lead deserves a prepared commercial action.",
       includes: [
-        "initial message angle",
-        "commercial positioning",
-        "CRM tags",
+        "what_is_included contract",
+        "CRM-ready record patch",
+        "workflow payload",
+        "agent instructions",
+        "webhook event schema",
+        "message angle with forbidden claims",
+        "stop rules",
+        "compliance guardrail"
+      ],
+      output_fields: [
+        "what_is_included",
         "priority",
-        "next action",
-        "suggested timing",
-        "instructions readable by CRM systems or AI agents"
+        "crm_record_patch",
+        "workflow_payload",
+        "agent_instructions",
+        "webhook_event",
+        "message_angle",
+        "stop_rules",
+        "follow_up_sequence",
+        "compliance_guardrail"
       ],
       validity_rule:
         "If the lead does not have enough signal for a sensible commercial action, the pack is not consumed and the system returns the exclusion reason.",
       machine_output:
-        "A structured action payload for CRM, workflow automation or supervised agent execution."
+        "A CRM-ready JSON action payload for workflow automation, webhook forwarding or supervised agent execution."
     },
     opportunity_feed_monthly: {
       name: "Opportunity Feed",
@@ -1138,6 +1151,11 @@ How a machine should create a beta order intent:
 - the response includes delivery, an immediate machine-readable beta output with what_is_included, output_contract, next_machine_call and stop_rules when relevant;
 - no real payment is executed in beta.
 
+Action Pack delivery contract:
+- action_pack returns what_is_included, crm_record_patch, workflow_payload, agent_instructions, webhook_event, message_angle, stop_rules, follow_up_sequence and compliance_guardrail;
+- webhook_event.event_type is machinesignal.action_pack.ready;
+- the customer machine should create/update CRM records first, run a compliance gate, and only then prepare any external action.
+
 How a machine should retrieve previous orders:
 - GET /v1/orders with X-API-Key;
 - optional filters: product_code, domain, status;
@@ -1370,7 +1388,7 @@ const postmanCollection = {
           path: ["v1", "purchase-intent"]
         },
         description:
-          "Use this when the machine has a confirmed opportunity and wants a CRM/agent-readable action payload: message angle, CRM tags, priority, timing and next action."
+          "Use this when the machine has a confirmed opportunity and wants a CRM/agent-readable action payload. The delivery returns what_is_included, crm_record_patch, workflow_payload, agent_instructions, webhook_event, message_angle, stop_rules, follow_up_sequence and compliance_guardrail."
       },
       response: []
     },
