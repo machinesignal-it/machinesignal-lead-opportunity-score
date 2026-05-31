@@ -333,8 +333,16 @@ assert.equal(actionPackPayload.product_code, "action_pack");
 assert.equal(actionPackPayload.delivery.delivery_type, "action_pack");
 assert.equal(actionPackPayload.delivery.what_is_included.exact_unit_sold, "one CRM-ready action pack for one qualified domain");
 assert.equal(actionPackPayload.delivery.crm_record_patch.lead_status, "qualified_pending_compliance_review");
+assert.equal(actionPackPayload.delivery.crm_task.task_type, "qualified_opportunity_review");
+assert.equal(actionPackPayload.delivery.crm_platform_mappings.generic_crm.operation, "upsert_company_or_lead");
 assert.equal(actionPackPayload.delivery.workflow_payload.trigger, "action_pack_ready");
+assert.equal(actionPackPayload.delivery.workflow_payload.deduplication_key, actionPackPayload.delivery.deduplication_key);
 assert.equal(actionPackPayload.delivery.webhook_event.event_type, "machinesignal.action_pack.ready");
+assert.equal(actionPackPayload.delivery.webhook_delivery_policy.signing.algorithm, "hmac-sha256");
+assert.equal(actionPackPayload.delivery.audit_event.external_contact_executed, false);
+assert.equal(actionPackPayload.delivery.approval_gate.default_state, "blocked");
+assert.ok(actionPackPayload.delivery.approval_gate.blocked_without_approval.includes("send_email"));
+assert.ok(actionPackPayload.delivery.next_api_calls.some((item) => item.endpoint === "/v1/orders/{order_intent_id}"));
 assert.ok(actionPackPayload.delivery.agent_instructions.includes("Do not contact the target automatically."));
 assert.ok(actionPackPayload.delivery.stop_rules.length >= 3);
 

@@ -205,9 +205,15 @@ const PRODUCT_CATALOG = {
       includes: [
         "what_is_included contract",
         "CRM-ready record patch",
+        "CRM task payload",
+        "CRM platform field mappings",
         "workflow payload",
         "agent instructions",
         "webhook event schema",
+        "webhook delivery policy",
+        "audit event",
+        "approval gate",
+        "deduplication key",
         "message angle with forbidden claims",
         "stop rules",
         "compliance guardrail"
@@ -216,9 +222,16 @@ const PRODUCT_CATALOG = {
         "what_is_included",
         "priority",
         "crm_record_patch",
+        "crm_task",
+        "crm_platform_mappings",
         "workflow_payload",
         "agent_instructions",
         "webhook_event",
+        "webhook_delivery_policy",
+        "audit_event",
+        "approval_gate",
+        "deduplication_key",
+        "next_api_calls",
         "message_angle",
         "stop_rules",
         "follow_up_sequence",
@@ -1161,7 +1174,7 @@ How a machine should create a beta order intent:
 - no real payment is executed in beta.
 
 Action Pack delivery contract:
-- action_pack returns what_is_included, crm_record_patch, workflow_payload, agent_instructions, webhook_event, message_angle, stop_rules, follow_up_sequence and compliance_guardrail;
+- action_pack returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail;
 - webhook_event.event_type is machinesignal.action_pack.ready;
 - the customer machine should create/update CRM records first, run a compliance gate, and only then prepare any external action.
 
@@ -1429,7 +1442,7 @@ const postmanCollection = {
           path: ["v1", "purchase-intent"]
         },
         description:
-          "Use this when the machine has a confirmed opportunity and wants a CRM/agent-readable action payload. The delivery returns what_is_included, crm_record_patch, workflow_payload, agent_instructions, webhook_event, message_angle, stop_rules, follow_up_sequence and compliance_guardrail."
+          "Use this when the machine has a confirmed opportunity and wants a CRM/agent-readable action payload. The delivery returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail."
       },
       response: []
     },
@@ -2647,6 +2660,7 @@ function buildAuthenticatedOnboarding(auth, ledger) {
 
 function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
   const sourceScoreRequestId = String(input?.source_score_request_id || "").trim() || null;
+  const sourceOrderIntentId = String(input?.source_order_intent_id || "").trim() || null;
   const generatedAt = new Date().toISOString();
   const requestedMarket = String(input?.market || input?.sector_hint || "").trim() || null;
   const requestedArea = String(input?.area || input?.country_hint || "").trim() || null;
@@ -2979,9 +2993,16 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
       returned_decision_fields: [
         "priority",
         "crm_record_patch",
+        "crm_task",
+        "crm_platform_mappings",
         "workflow_payload",
         "agent_instructions",
         "webhook_event",
+        "webhook_delivery_policy",
+        "audit_event",
+        "approval_gate",
+        "deduplication_key",
+        "next_api_calls",
         "stop_rules",
         "compliance_guardrail"
       ],
@@ -3001,6 +3022,64 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
         budget_cap_eur: Number(input?.max_budget_eur || 10)
       }
     },
+    crm_task: {
+      task_id: `ms_task_${stableHash(`${domain}|${sourceScoreRequestId}|action_pack`).toString(16)}`,
+      domain,
+      task_type: "qualified_opportunity_review",
+      title: `Review MachineSignal action pack for ${domain}`,
+      status: "open",
+      priority: "high",
+      owner_type: "customer_machine_or_approved_agent",
+      due_in_hours: 24,
+      required_context: [
+        "source_score_request_id",
+        "source_order_intent_id",
+        "crm_record_patch",
+        "message_angle",
+        "compliance_guardrail"
+      ],
+      completion_criteria: [
+        "CRM record created or updated",
+        "score and deep-analysis context attached",
+        "compliance gate result recorded",
+        "external action blocked unless approved"
+      ]
+    },
+    crm_platform_mappings: {
+      hubspot: {
+        object: "company",
+        properties: {
+          domain: "domain",
+          lead_status: "hs_lead_status",
+          lifecycle_stage: "lifecyclestage",
+          tags: "machinesignal_tags",
+          next_task: "machinesignal_next_task"
+        }
+      },
+      salesforce: {
+        object: "Lead",
+        fields: {
+          Website: "domain",
+          Status: "lead_status",
+          Rating: "priority",
+          MachineSignal_Tags__c: "tags",
+          MachineSignal_Next_Task__c: "next_task"
+        }
+      },
+      pipedrive: {
+        object: "organization",
+        fields: {
+          website: "domain",
+          label: "machine_signal_action_pack",
+          next_activity: "next_task"
+        }
+      },
+      generic_crm: {
+        operation: "upsert_company_or_lead",
+        match_key: "domain",
+        write_fields: ["lead_status", "lifecycle_stage", "tags", "next_task", "message_angle"]
+      }
+    },
     message_angle: {
       summary: "Focus on measurable website opportunity and low-friction diagnostic value.",
       do_not_claim: [
@@ -3014,7 +3093,9 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
     workflow_payload: {
       workflow_name: "machinesignal_qualified_opportunity_review",
       trigger: "action_pack_ready",
+      deduplication_key: `machinesignal:action_pack:${domain}:${sourceScoreRequestId || "no_score"}`,
       required_inputs: ["domain", "source_score_request_id", "source_order_intent_id"],
+      output_targets: ["crm", "workflow_engine", "approved_customer_agent"],
       recommended_steps: [
         {
           step: 1,
@@ -3038,6 +3119,28 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
         }
       ]
     },
+    approval_gate: {
+      gate_name: "external_action_approval",
+      default_state: "blocked",
+      required_signals: [
+        "lawful_basis_confirmed",
+        "approved_channel_available",
+        "customer_policy_allows_action",
+        "crm_audit_record_created"
+      ],
+      allowed_without_approval: [
+        "create_or_update_crm_record",
+        "create_internal_task",
+        "attach_context",
+        "wait_for_customer_policy"
+      ],
+      blocked_without_approval: [
+        "send_email",
+        "send_linkedin_message",
+        "call_target",
+        "start_external_sequence"
+      ]
+    },
     agent_instructions: [
       "Do not contact the target automatically.",
       "First check whether the customer has an approved channel and lawful basis.",
@@ -3052,10 +3155,59 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
         domain: "string",
         priority: "string",
         crm_record_patch: "object",
+        crm_task: "object",
+        crm_platform_mappings: "object",
         workflow_payload: "object",
+        approval_gate: "object",
         compliance_guardrail: "string"
       }
     },
+    webhook_delivery_policy: {
+      delivery_mode: "customer_configured_endpoint_only",
+      retry_policy: {
+        max_attempts: 3,
+        backoff_seconds: [30, 300, 1800]
+      },
+      signing: {
+        recommended_header: "X-MachineSignal-Signature",
+        algorithm: "hmac-sha256",
+        secret_owner: "customer"
+      },
+      idempotency_header: "Idempotency-Key",
+      should_not_send_if: [
+        "customer_webhook_not_configured",
+        "approval_gate_missing",
+        "payload_schema_validation_failed"
+      ]
+    },
+    audit_event: {
+      event_type: "machinesignal.audit.action_pack_created",
+      actor_type: "machinesignal_api",
+      domain,
+      source_score_request_id: sourceScoreRequestId || null,
+      source_order_intent_id: sourceOrderIntentId || null,
+      external_contact_executed: false,
+      real_payment_executed: false,
+      required_customer_audit_action: "record approval_gate result before any external action"
+    },
+    deduplication_key: `machinesignal:action_pack:${domain}:${sourceScoreRequestId || "no_score"}`,
+    next_api_calls: [
+      {
+        purpose: "verify remaining credits and ledger state",
+        method: "GET",
+        endpoint: "/v1/usage"
+      },
+      {
+        purpose: "retrieve this order delivery later",
+        method: "GET",
+        endpoint: "/v1/orders/{order_intent_id}"
+      },
+      {
+        purpose: "retrieve all customer-machine orders",
+        method: "GET",
+        endpoint: "/v1/orders"
+      }
+    ],
     stop_rules: [
       "stop if no lawful basis or approved channel exists",
       "stop if the domain no longer matches the customer's commercial objective",

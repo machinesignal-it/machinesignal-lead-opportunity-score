@@ -151,7 +151,26 @@ In beta, purchase-intent consumes beta credits and returns an immediate JSON del
 - `verification`: data quality verification delivery.
 - `nurture_signal`: lightweight signal for leads that should be saved but not pushed immediately.
 - `deep_analysis`: deeper opportunity analysis before spending campaign or sales budget.
-- `action_pack`: CRM-ready action delivery with record patch, workflow payload, webhook event, agent instructions, stop rules and follow-up sequence.
+- `action_pack`: CRM-ready action delivery with record patch, CRM task, platform mappings, workflow payload, webhook policy, audit event, approval gate, agent instructions, stop rules and follow-up sequence.
+
+## Action Pack Contract
+
+`action_pack` is the commercial product that turns a high-potential score and a Deep Analysis into an operational machine payload.
+
+It returns:
+
+- `crm_record_patch`: fields to create or update the CRM record.
+- `crm_task`: the internal task the customer machine should create.
+- `crm_platform_mappings`: generic CRM mapping plus HubSpot, Salesforce and Pipedrive-oriented field suggestions.
+- `workflow_payload`: trigger, deduplication key and recommended workflow steps.
+- `webhook_event`: event contract for downstream systems.
+- `webhook_delivery_policy`: retry, signing and idempotency policy for customer-configured webhooks.
+- `audit_event`: internal audit payload showing that no payment or external contact was executed.
+- `approval_gate`: explicit blocked/allowed actions before any external outreach.
+- `agent_instructions`: instructions for a customer machine or approved agent.
+- `stop_rules`: conditions where the workflow must stop instead of spending more budget.
+
+The key rule remains: `action_pack` prepares CRM/workflow actions, but it does not send external outreach automatically.
 
 ## Current Test Status
 
