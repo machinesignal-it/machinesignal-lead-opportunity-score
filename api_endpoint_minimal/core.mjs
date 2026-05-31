@@ -1124,7 +1124,16 @@ How a machine should call the score endpoint:
 Three machine buying flows:
 1. Customer machine has a list: call POST /v1/lead-opportunity-score for each domain, then route each result by decision.
 2. Customer machine has no list: call POST /v1/purchase-intent with product_code target_discovery, market, area and commercial_objective. The objective must say what kind of opportunity the machine wants to find, for example "find real estate agency websites worth scoring for digital presence improvement opportunities".
-3. Customer machine wants an action: after a strong score and Deep Analysis, call POST /v1/purchase-intent with product_code action_pack to receive CRM tags, message angle, next action and timing.
+3. Customer machine wants an action: after a strong score and Deep Analysis, call POST /v1/purchase-intent with product_code action_pack to receive CRM-ready JSON: crm_record_patch, workflow_payload, webhook_event, agent_instructions, message angle, stop rules and follow-up sequence.
+
+Public demos for software, agents and partners:
+- Full machine buyer flow: https://machinesignal.it/demo/machine-buyer-flow/
+- Full flow JSON: https://machinesignal.it/demo/machine-buyer-flow/flow.json
+- Score results JSON: https://machinesignal.it/demo/machine-buyer-flow/score_results.json
+- Order events JSON: https://machinesignal.it/demo/machine-buyer-flow/order_events.json
+- CRM consumer demo: https://machinesignal.it/demo/crm-consumer/
+- CRM records JSON: https://machinesignal.it/demo/crm-consumer/crm_records.json
+- Webhook events JSON: https://machinesignal.it/demo/crm-consumer/webhook_events.json
 
 Commercial model under test:
 - Target Discovery Pack: EUR 149 for 250 coherent targets after market availability pre-check;
@@ -1195,6 +1204,38 @@ const postmanCollection = {
     schema: "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   item: [
+    {
+      name: "Read full machine buyer flow demo",
+      request: {
+        method: "GET",
+        header: [],
+        url: {
+          raw: "https://machinesignal.it/demo/machine-buyer-flow/flow.json",
+          protocol: "https",
+          host: ["machinesignal", "it"],
+          path: ["demo", "machine-buyer-flow", "flow.json"]
+        },
+        description:
+          "Public end-to-end demo: customer machine has no list, buys target discovery, scores domains, buys deep analysis, buys action pack and sends output to CRM consumer."
+      },
+      response: []
+    },
+    {
+      name: "Read CRM consumer demo output",
+      request: {
+        method: "GET",
+        header: [],
+        url: {
+          raw: "https://machinesignal.it/demo/crm-consumer/webhook_events.json",
+          protocol: "https",
+          host: ["machinesignal", "it"],
+          path: ["demo", "crm-consumer", "webhook_events.json"]
+        },
+        description:
+          "Public demo output showing how Action Pack becomes CRM-ready webhook events, without external outreach."
+      },
+      response: []
+    },
     {
       name: "Score business domain",
       request: {

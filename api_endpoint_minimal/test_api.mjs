@@ -80,14 +80,17 @@ assert.equal(
 const postmanResponse = await handleRequest(new Request("http://localhost/postman_collection.json"));
 assert.equal(postmanResponse.status, 200);
 const postmanPayload = await postmanResponse.json();
-assert.equal(postmanPayload.item[1].name, "Read usage ledger");
-assert.equal(postmanPayload.item[2].name, "Fetch product catalog");
-assert.equal(postmanPayload.item[3].name, "Create beta purchase intent");
-assert.ok(postmanPayload.item.some((item) => item.name === "Order target discovery when machine has no list"));
-assert.ok(postmanPayload.item.some((item) => item.name === "Order deep analysis after a strong score"));
-assert.ok(postmanPayload.item.some((item) => item.name === "Order action pack after confirmed opportunity"));
-assert.ok(postmanPayload.item.some((item) => item.name === "Fetch machine onboarding manifest"));
-assert.ok(postmanPayload.item.some((item) => item.name === "Read authenticated onboarding"));
+const postmanItemNames = postmanPayload.item.map((item) => item.name);
+assert.ok(postmanItemNames.includes("Read full machine buyer flow demo"));
+assert.ok(postmanItemNames.includes("Read CRM consumer demo output"));
+assert.ok(postmanItemNames.includes("Read usage ledger"));
+assert.ok(postmanItemNames.includes("Fetch product catalog"));
+assert.ok(postmanItemNames.includes("Create beta purchase intent"));
+assert.ok(postmanItemNames.includes("Order target discovery when machine has no list"));
+assert.ok(postmanItemNames.includes("Order deep analysis after a strong score"));
+assert.ok(postmanItemNames.includes("Order action pack after confirmed opportunity"));
+assert.ok(postmanItemNames.includes("Fetch machine onboarding manifest"));
+assert.ok(postmanItemNames.includes("Read authenticated onboarding"));
 
 const productCatalogResponse = await handleRequest(new Request("http://localhost/product-catalog.json"));
 assert.equal(productCatalogResponse.status, 200);
