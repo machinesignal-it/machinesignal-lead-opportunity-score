@@ -2913,8 +2913,96 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
     ...common,
     delivery_type: "action_pack",
     status: "action_pack_ready",
-    crm_tags: ["machine_signal_action_pack", "requires_compliance_review"],
-    message_angle: "Focus on measurable website opportunity and low-friction diagnostic value.",
+    what_is_included: {
+      exact_unit_sold: "one CRM-ready action pack for one qualified domain",
+      machine_question_answered:
+        "What should the customer machine do next with this qualified opportunity?",
+      returned_decision_fields: [
+        "priority",
+        "crm_record_patch",
+        "workflow_payload",
+        "agent_instructions",
+        "webhook_event",
+        "stop_rules",
+        "compliance_guardrail"
+      ],
+      credit_policy:
+        "One action_pack_25 credit is consumed for each action pack returned."
+    },
+    priority: "review_before_external_contact",
+    crm_record_patch: {
+      domain,
+      lead_status: "qualified_pending_compliance_review",
+      lifecycle_stage: "opportunity_preparation",
+      tags: ["machine_signal_action_pack", "requires_compliance_review"],
+      next_task: {
+        task_type: "review_and_prepare_compliant_action",
+        owner_type: "customer_machine_or_approved_agent",
+        due_in_hours: 24,
+        budget_cap_eur: Number(input?.max_budget_eur || 10)
+      }
+    },
+    message_angle: {
+      summary: "Focus on measurable website opportunity and low-friction diagnostic value.",
+      do_not_claim: [
+        "guaranteed revenue uplift",
+        "verified customer pain without customer evidence",
+        "automatic legal permission to contact"
+      ],
+      recommended_value_proposition:
+        "Offer a diagnostic view of visible digital opportunity before the customer spends campaign or human-sales budget."
+    },
+    workflow_payload: {
+      workflow_name: "machinesignal_qualified_opportunity_review",
+      trigger: "action_pack_ready",
+      required_inputs: ["domain", "source_score_request_id", "source_order_intent_id"],
+      recommended_steps: [
+        {
+          step: 1,
+          action: "create_or_update_crm_record",
+          payload_ref: "crm_record_patch"
+        },
+        {
+          step: 2,
+          action: "attach_score_and_deep_analysis_context",
+          source_score_request_id: sourceScoreRequestId
+        },
+        {
+          step: 3,
+          action: "run_compliance_gate",
+          required_result: "approved_channel_and_lawful_basis"
+        },
+        {
+          step: 4,
+          action: "prepare_next_contact_or_internal_task",
+          condition: "only_after_compliance_gate_passes"
+        }
+      ]
+    },
+    agent_instructions: [
+      "Do not contact the target automatically.",
+      "First check whether the customer has an approved channel and lawful basis.",
+      "If compliance is not approved, keep the lead in CRM as pending_review.",
+      "If approved, use the message angle as a draft direction, not as a final claim."
+    ],
+    webhook_event: {
+      event_type: "machinesignal.action_pack.ready",
+      version: "2026-05-31",
+      idempotency_key_hint: "reuse the order_intent_id when forwarding to CRM",
+      payload_schema: {
+        domain: "string",
+        priority: "string",
+        crm_record_patch: "object",
+        workflow_payload: "object",
+        compliance_guardrail: "string"
+      }
+    },
+    stop_rules: [
+      "stop if no lawful basis or approved channel exists",
+      "stop if the domain no longer matches the customer's commercial objective",
+      "stop if data quality verification is required but not completed",
+      "stop if the customer machine cannot record the action in CRM or audit log"
+    ],
     follow_up_sequence: [
       { step: 1, channel: "system", action: "prepare_crm_task" },
       { step: 2, channel: "system", action: "attach_score_and_reason" },

@@ -305,6 +305,36 @@ assert.equal(deepAnalysisPayload.delivery.what_is_included.exact_unit_sold, "one
 assert.equal(deepAnalysisPayload.delivery.recommended_next_step.product_code, "action_pack");
 assert.equal(deepAnalysisPayload.delivery.next_machine_call.endpoint, "/v1/purchase-intent");
 
+const actionPackResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "action_pack",
+      domain: "strong-clinic.it",
+      source_score_request_id: "test-score-strong-001",
+      source_order_intent_id: deepAnalysisPayload.order_intent_id,
+      reason: "Deep analysis recommended action pack",
+      max_budget_eur: 10
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key",
+      "idempotency-key": "test-action-pack-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(actionPackResponse.status, 200);
+const actionPackPayload = await actionPackResponse.json();
+assert.equal(actionPackPayload.product_code, "action_pack");
+assert.equal(actionPackPayload.delivery.delivery_type, "action_pack");
+assert.equal(actionPackPayload.delivery.what_is_included.exact_unit_sold, "one CRM-ready action pack for one qualified domain");
+assert.equal(actionPackPayload.delivery.crm_record_patch.lead_status, "qualified_pending_compliance_review");
+assert.equal(actionPackPayload.delivery.workflow_payload.trigger, "action_pack_ready");
+assert.equal(actionPackPayload.delivery.webhook_event.event_type, "machinesignal.action_pack.ready");
+assert.ok(actionPackPayload.delivery.agent_instructions.includes("Do not contact the target automatically."));
+assert.ok(actionPackPayload.delivery.stop_rules.length >= 3);
+
 const domainEnrichmentResponse = await handleRequest(
   new Request("http://localhost/v1/purchase-intent", {
     method: "POST",
@@ -340,7 +370,7 @@ const ordersResponse = await handleRequest(
 );
 assert.equal(ordersResponse.status, 200);
 const ordersPayload = await ordersResponse.json();
-assert.equal(ordersPayload.count, 4);
+assert.equal(ordersPayload.count, 5);
 assert.ok(ordersPayload.orders.some((order) => order.order_intent_id === purchaseIntentPayload.order_intent_id));
 
 const filteredOrdersResponse = await handleRequest(
