@@ -11,6 +11,7 @@
     "postman": "/postman_collection.json",
     "product_catalog": "/product-catalog.json",
     "machine_onboarding": "/machine-onboarding.json",
+    "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
     "sandbox_customers": "/v1/sandbox/customers",
     "authenticated_onboarding": "/v1/onboarding",
     "sandbox_metrics": "/v1/admin/sandbox-metrics"

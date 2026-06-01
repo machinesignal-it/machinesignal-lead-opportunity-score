@@ -131,6 +131,7 @@ assert.ok(llmsText.includes("/beta/feedback-schema.json"));
 assert.ok(llmsText.includes("/beta/machine-test-kit.json"));
 assert.ok(llmsText.includes("/v1/sandbox/customers"));
 assert.ok(llmsText.includes("/v1/admin/sandbox-metrics"));
+assert.ok(llmsText.includes("https://machinesignal.it/machine-discovery/machine-discovery-pack.json"));
 
 const machineOnboardingResponse = await handleRequest(new Request("http://localhost/machine-onboarding.json"));
 assert.equal(machineOnboardingResponse.status, 200);
@@ -140,6 +141,10 @@ assert.equal(machineOnboardingPayload.discovery.product_catalog, "/product-catal
 assert.equal(machineOnboardingPayload.discovery.sandbox_customers, "/v1/sandbox/customers");
 assert.equal(machineOnboardingPayload.discovery.authenticated_onboarding, "/v1/onboarding");
 assert.equal(machineOnboardingPayload.discovery.sandbox_metrics, "/v1/admin/sandbox-metrics");
+assert.equal(
+  machineOnboardingPayload.discovery.machine_discovery_pack,
+  "https://machinesignal.it/machine-discovery/machine-discovery-pack.json"
+);
 assert.equal(machineOnboardingPayload.authentication.sandbox_keys_created_by, "POST /v1/sandbox/customers");
 assert.equal(machineOnboardingPayload.recommended_agent_policy.must_not_execute_external_outreach, true);
 assert.equal(machineOnboardingPayload.entry_points.has_no_list.product_code, "target_discovery");

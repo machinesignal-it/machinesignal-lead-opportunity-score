@@ -1214,6 +1214,7 @@ Useful endpoints:
 - GET /llms.txt
 - GET /machine-onboarding.json
 - GET /product-catalog.json
+- GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - POST /v1/sandbox/customers
 - GET /v1/onboarding
 - GET /v1/usage
@@ -1250,6 +1251,8 @@ Three machine buying flows:
 3. Customer machine wants an action: after a strong score and Deep Analysis, call POST /v1/purchase-intent with product_code action_pack to receive CRM-ready JSON: crm_record_patch, workflow_payload, webhook_event, agent_instructions, message angle, stop rules and follow-up sequence.
 
 Public demos for software, agents and partners:
+- Machine Discovery Pack: https://machinesignal.it/machine-discovery/
+- Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - Full machine buyer flow: https://machinesignal.it/demo/machine-buyer-flow/
 - Full flow JSON: https://machinesignal.it/demo/machine-buyer-flow/flow.json
 - Score results JSON: https://machinesignal.it/demo/machine-buyer-flow/score_results.json
@@ -3179,6 +3182,7 @@ function buildPublicMachineOnboarding() {
       postman: "/postman_collection.json",
       product_catalog: "/product-catalog.json",
       machine_onboarding: "/machine-onboarding.json",
+      machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
       sandbox_customers: "/v1/sandbox/customers",
       authenticated_onboarding: "/v1/onboarding",
       sandbox_metrics: "/v1/admin/sandbox-metrics"
@@ -4016,6 +4020,7 @@ export async function handleRequest(request, env = {}) {
         llms: "/llms.txt",
         machine_onboarding: "/machine-onboarding.json",
         product_catalog: "/product-catalog.json",
+        machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
         sandbox_customers: "/v1/sandbox/customers",
         authenticated_onboarding: "/v1/onboarding",
         usage: "/v1/usage",

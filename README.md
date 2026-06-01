@@ -9,6 +9,8 @@ MachineSignal is a private technical beta. The first customer interface is a mac
 Public discovery starts here:
 
 - Website: https://machinesignal.it/
+- Machine Discovery Pack: https://machinesignal.it/machine-discovery/
+- Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - Machine onboarding manifest: https://machinesignal.it/machine-onboarding.json
 - Canonical Worker manifest: https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json
 - Product catalog: https://machinesignal.it/product-catalog.json

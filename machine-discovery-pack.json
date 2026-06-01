@@ -1,0 +1,122 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-01",
+  "primary_customer_interface": "machine",
+  "human_role": "supervision, approval and audit only",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "website": "https://machinesignal.it/",
+  "contact": "beta@machinesignal.it",
+  "machine_first_positioning": {
+    "statement": "MachineSignal is intended to be discovered, tested and consumed by CRM systems, AI agents, RevOps workflows and software automations.",
+    "not_primary_channel": "human cold email persuasion",
+    "primary_channel": "machine-readable public contract, sandbox key, OpenAPI, llms.txt, product catalog and callable endpoints"
+  },
+  "discovery_resources": {
+    "machine_discovery_page": "https://machinesignal.it/machine-discovery/",
+    "machine_discovery_json": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "postman_collection": "https://machinesignal.it/postman_collection.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "beta_onboarding": "https://machinesignal.it/beta/onboarding-packet.json",
+    "machine_test_kit": "https://machinesignal.it/beta/machine-test-kit.json"
+  },
+  "sandbox_flow": [
+    {
+      "step": 1,
+      "method": "GET",
+      "endpoint": "/machine-onboarding.json",
+      "goal": "Read machine contract and allowed flow."
+    },
+    {
+      "step": 2,
+      "method": "GET",
+      "endpoint": "/product-catalog.json",
+      "goal": "Read products, prices, deliverables and credit rules."
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "endpoint": "/v1/sandbox/customers",
+      "goal": "Create a low-credit sandbox key without human sales contact."
+    },
+    {
+      "step": 4,
+      "method": "GET",
+      "endpoint": "/v1/onboarding",
+      "auth": "X-API-Key",
+      "goal": "Read customer-specific credits and next possible calls."
+    },
+    {
+      "step": 5,
+      "method": "POST",
+      "endpoint": "/v1/lead-opportunity-score",
+      "auth": "X-API-Key",
+      "headers": ["Idempotency-Key"],
+      "goal": "Score a domain and receive discard, watchlist, nurture, buy_deep_analysis or needs_verification."
+    },
+    {
+      "step": 6,
+      "method": "POST",
+      "endpoint": "/v1/purchase-intent",
+      "auth": "X-API-Key",
+      "headers": ["Idempotency-Key"],
+      "goal": "Order target_discovery, deep_analysis or action_pack when the machine has a valid reason."
+    },
+    {
+      "step": 7,
+      "method": "GET",
+      "endpoint": "/v1/orders",
+      "auth": "X-API-Key",
+      "goal": "Retrieve previous beta deliveries and audit output."
+    }
+  ],
+  "products_to_test": {
+    "target_discovery": {
+      "when_to_buy": "The machine has a market and commercial objective, but no starting list.",
+      "output": "250 coherent target records or a no-go market coverage decision in production; sandbox returns a sample and output contract.",
+      "beta_price_eur": 149
+    },
+    "domain_enrichment": {
+      "when_to_buy": "The machine has company names but needs reliable domains before scoring.",
+      "output": "100 enrichment decisions in production; sandbox returns a sample and output contract.",
+      "beta_price_eur": 149
+    },
+    "score_pack_1k": {
+      "when_to_buy": "The machine has domains and needs priority, decision and next budget action.",
+      "output": "1000 valid scores.",
+      "beta_price_eur": 99
+    },
+    "deep_analysis": {
+      "when_to_buy": "A score recommends buy_deep_analysis or the machine needs a deeper decision before spending campaign or human time.",
+      "output": "One deep opportunity decision pack per consumed credit.",
+      "beta_price_eur": 299
+    },
+    "action_pack": {
+      "when_to_buy": "Deep Analysis confirms a useful opportunity and the machine needs CRM/workflow-ready output.",
+      "output": "CRM record patch, task, workflow payload, webhook event, approval gate, stop rules and audit event.",
+      "beta_price_eur": 399
+    }
+  },
+  "machine_success_metrics": {
+    "sandbox_keys_created_target_7_days": 10,
+    "valid_scores_target_7_days": 300,
+    "deep_analysis_orders_target_7_days": 15,
+    "action_pack_orders_target_7_days": 3,
+    "blocking_errors_target": 0,
+    "real_payment_executed_target": false,
+    "external_contact_executed_target": false
+  },
+  "admin_monitoring": {
+    "endpoint": "/v1/admin/sandbox-metrics",
+    "auth": "admin X-API-Key",
+    "purpose": "Daily agent monitoring of sandbox keys, score usage, Deep Analysis orders, Action Pack orders, conversion rates and safety flags."
+  },
+  "safety": {
+    "real_payment_executed_in_beta": false,
+    "external_contact_executed_by_machinesignal": false,
+    "action_pack_sends_email": false,
+    "requires_customer_compliance_gate_before_external_action": true
+  }
+}
