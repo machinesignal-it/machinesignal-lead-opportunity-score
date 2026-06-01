@@ -62,6 +62,7 @@ assert.equal(rootPayload.docs.machine_onboarding, "/machine-onboarding.json");
 assert.equal(rootPayload.docs.product_catalog, "/product-catalog.json");
 assert.equal(rootPayload.docs.authenticated_onboarding, "/v1/onboarding");
 assert.equal(rootPayload.docs.sandbox_metrics, "/v1/admin/sandbox-metrics");
+assert.equal(rootPayload.docs.postman_public_collection, "https://machinesignal.it/postman_public_collection.json");
 
 const openApiResponse = await handleRequest(new Request("http://localhost/openapi.json"));
 assert.equal(openApiResponse.status, 200);
@@ -134,6 +135,7 @@ assert.ok(llmsText.includes("/v1/admin/sandbox-metrics"));
 assert.ok(llmsText.includes("https://machinesignal.it/machine-discovery/machine-discovery-pack.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/distribution/api-directory-submission.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/distribution/channel-shortlist.json"));
+assert.ok(llmsText.includes("https://machinesignal.it/postman_public_collection.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/.well-known/machine-discovery.json"));
 
 const machineOnboardingResponse = await handleRequest(new Request("http://localhost/machine-onboarding.json"));
@@ -155,6 +157,10 @@ assert.equal(
 assert.equal(
   machineOnboardingPayload.discovery.distribution_channel_shortlist,
   "https://machinesignal.it/distribution/channel-shortlist.json"
+);
+assert.equal(
+  machineOnboardingPayload.discovery.postman_public_collection,
+  "https://machinesignal.it/postman_public_collection.json"
 );
 assert.equal(
   machineOnboardingPayload.discovery.well_known_machine_discovery,

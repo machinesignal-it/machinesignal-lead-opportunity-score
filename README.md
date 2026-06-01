@@ -14,6 +14,7 @@ Public discovery starts here:
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - Distribution Channel Shortlist JSON: https://machinesignal.it/distribution/channel-shortlist.json
+- Postman Public Collection JSON: https://machinesignal.it/postman_public_collection.json
 - Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
 - Machine onboarding manifest: https://machinesignal.it/machine-onboarding.json
 - Canonical Worker manifest: https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json
@@ -21,7 +22,8 @@ Public discovery starts here:
 - Canonical Worker product catalog: https://machinesignal-api.beta-878.workers.dev/product-catalog.json
 - LLM discovery file: https://machinesignal.it/llms.txt
 - OpenAPI schema: https://machinesignal.it/openapi.json
-- Postman collection: https://machinesignal.it/postman_collection.json
+- Postman public collection: https://machinesignal.it/postman_public_collection.json
+- Full Postman collection: https://machinesignal.it/postman_collection.json
 - API overview: https://machinesignal.it/api/
 - Beta tester onboarding packet: https://machinesignal.it/beta/onboarding-packet.html
 - Beta tester onboarding JSON: https://machinesignal.it/beta/onboarding-packet.json

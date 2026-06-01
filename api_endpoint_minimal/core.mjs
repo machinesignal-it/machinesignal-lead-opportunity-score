@@ -1211,6 +1211,7 @@ Useful endpoints:
 - GET /health
 - GET /openapi.json
 - GET /postman_collection.json
+- GET https://machinesignal.it/postman_public_collection.json
 - GET /llms.txt
 - GET /machine-onboarding.json
 - GET /product-catalog.json
@@ -1232,7 +1233,7 @@ Useful endpoints:
 
 Authentication:
 - protected endpoints require header X-API-Key: <beta key>;
-- public endpoints are /, /health, /openapi.json, /postman_collection.json, /product-catalog.json and /llms.txt.
+- public endpoints are /, /health, /openapi.json, /postman_collection.json, https://machinesignal.it/postman_public_collection.json, /product-catalog.json and /llms.txt.
 - POST /v1/beta/customers requires the admin beta key and returns a dedicated customer key.
 - GET/PATCH /v1/beta/customers/{customer_id} require the admin beta key and never return the full customer API key.
 - GET /v1/admin/sandbox-metrics requires the admin beta key and returns only aggregated sandbox test metrics.
@@ -1259,6 +1260,7 @@ Public demos for software, agents and partners:
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - Distribution Channel Shortlist JSON: https://machinesignal.it/distribution/channel-shortlist.json
+- Postman Public Collection JSON: https://machinesignal.it/postman_public_collection.json
 - Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
 - Full machine buyer flow: https://machinesignal.it/demo/machine-buyer-flow/
 - Full flow JSON: https://machinesignal.it/demo/machine-buyer-flow/flow.json
@@ -3187,6 +3189,7 @@ function buildPublicMachineOnboarding() {
       llms: "/llms.txt",
       openapi: "/openapi.json",
       postman: "/postman_collection.json",
+      postman_public_collection: "https://machinesignal.it/postman_public_collection.json",
       product_catalog: "/product-catalog.json",
       machine_onboarding: "/machine-onboarding.json",
       machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
@@ -4027,6 +4030,7 @@ export async function handleRequest(request, env = {}) {
       docs: {
         openapi: "/openapi.json",
         postman: "/postman_collection.json",
+        postman_public_collection: "https://machinesignal.it/postman_public_collection.json",
         llms: "/llms.txt",
         machine_onboarding: "/machine-onboarding.json",
         product_catalog: "/product-catalog.json",

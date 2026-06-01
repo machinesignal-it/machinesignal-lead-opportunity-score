@@ -9,6 +9,7 @@
     "llms": "/llms.txt",
     "openapi": "/openapi.json",
     "postman": "/postman_collection.json",
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
     "product_catalog": "/product-catalog.json",
     "machine_onboarding": "/machine-onboarding.json",
     "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
