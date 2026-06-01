@@ -134,6 +134,7 @@ assert.ok(llmsText.includes("/v1/sandbox/customers"));
 assert.ok(llmsText.includes("/v1/admin/sandbox-metrics"));
 assert.ok(llmsText.includes("https://machinesignal.it/machine-discovery/machine-discovery-pack.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/distribution/api-directory-submission.json"));
+assert.ok(llmsText.includes("https://machinesignal.it/distribution/rapidapi-listing.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/distribution/channel-shortlist.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/postman_public_collection.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/.well-known/machine-discovery.json"));
@@ -153,6 +154,10 @@ assert.equal(
 assert.equal(
   machineOnboardingPayload.discovery.api_directory_submission,
   "https://machinesignal.it/distribution/api-directory-submission.json"
+);
+assert.equal(
+  machineOnboardingPayload.discovery.rapidapi_listing,
+  "https://machinesignal.it/distribution/rapidapi-listing.json"
 );
 assert.equal(
   machineOnboardingPayload.discovery.distribution_channel_shortlist,

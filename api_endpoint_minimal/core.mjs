@@ -1217,6 +1217,7 @@ Useful endpoints:
 - GET /product-catalog.json
 - GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - GET https://machinesignal.it/distribution/api-directory-submission.json
+- GET https://machinesignal.it/distribution/rapidapi-listing.json
 - GET https://machinesignal.it/distribution/channel-shortlist.json
 - GET https://machinesignal.it/.well-known/machine-discovery.json
 - POST /v1/sandbox/customers
@@ -1259,6 +1260,7 @@ Public demos for software, agents and partners:
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
+- RapidAPI Listing JSON: https://machinesignal.it/distribution/rapidapi-listing.json
 - Distribution Channel Shortlist JSON: https://machinesignal.it/distribution/channel-shortlist.json
 - Postman Public Collection JSON: https://machinesignal.it/postman_public_collection.json
 - Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
@@ -3194,6 +3196,7 @@ function buildPublicMachineOnboarding() {
       machine_onboarding: "/machine-onboarding.json",
       machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
       api_directory_submission: "https://machinesignal.it/distribution/api-directory-submission.json",
+      rapidapi_listing: "https://machinesignal.it/distribution/rapidapi-listing.json",
       distribution_channel_shortlist: "https://machinesignal.it/distribution/channel-shortlist.json",
       well_known_machine_discovery: "https://machinesignal.it/.well-known/machine-discovery.json",
       sandbox_customers: "/v1/sandbox/customers",
@@ -4036,6 +4039,7 @@ export async function handleRequest(request, env = {}) {
         product_catalog: "/product-catalog.json",
         machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
         api_directory_submission: "https://machinesignal.it/distribution/api-directory-submission.json",
+        rapidapi_listing: "https://machinesignal.it/distribution/rapidapi-listing.json",
         distribution_channel_shortlist: "https://machinesignal.it/distribution/channel-shortlist.json",
         well_known_machine_discovery: "https://machinesignal.it/.well-known/machine-discovery.json",
         sandbox_customers: "/v1/sandbox/customers",

@@ -1,0 +1,141 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-01",
+  "submission_type": "rapidapi_provider_listing",
+  "status": "provider_ready_draft",
+  "publication_gate": "Prepare now; publish monetized listing after sandbox metrics, abuse limits and terms are confirmed.",
+  "api_name": "MachineSignal Lead Opportunity Score API",
+  "short_description": "Machine-first lead opportunity scoring API for CRM workflows, RevOps automations and AI agents.",
+  "category": [
+    "Business",
+    "Sales Intelligence",
+    "CRM",
+    "Data Enrichment",
+    "AI Agent Tools"
+  ],
+  "tags": [
+    "lead-scoring",
+    "crm",
+    "revops",
+    "ai-agents",
+    "b2b",
+    "sales-automation",
+    "data-enrichment",
+    "lead-routing",
+    "openapi",
+    "machine-customer"
+  ],
+  "long_description": "MachineSignal helps automated systems decide when a business domain is worth additional budget. The API is built for machine customers: CRM systems, RevOps workflows, enrichment pipelines and AI agents. A machine can discover the API, create a limited sandbox key, score domains, read usage, create beta purchase intents and retrieve structured JSON deliveries.",
+  "primary_customer_interface": "machine",
+  "human_role": "supervision, approval and audit only",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "authentication": {
+    "type": "apiKey",
+    "header": "X-API-Key",
+    "idempotency_header": "Idempotency-Key",
+    "sandbox_key_endpoint": "POST /v1/sandbox/customers"
+  },
+  "endpoints": [
+    "GET /health",
+    "GET /machine-onboarding.json",
+    "GET /product-catalog.json",
+    "GET /openapi.json",
+    "GET /postman_collection.json",
+    "POST /v1/sandbox/customers",
+    "GET /v1/onboarding",
+    "GET /v1/usage",
+    "POST /v1/lead-opportunity-score",
+    "POST /v1/purchase-intent",
+    "GET /v1/orders",
+    "GET /v1/orders/{order_intent_id}"
+  ],
+  "products": [
+    {
+      "product_code": "target_discovery",
+      "name": "Target Discovery Pack",
+      "price_eur": 149,
+      "unit": "250 coherent target records or no-go market coverage decision",
+      "when_bought_by_machine": "The customer machine has no starting list and needs coherent targets for a declared commercial objective."
+    },
+    {
+      "product_code": "domain_enrichment",
+      "name": "Domain Enrichment Pack 100",
+      "price_eur": 149,
+      "unit": "100 enrichment decisions",
+      "when_bought_by_machine": "The customer machine has company names or partial records but needs reliable domains before scoring."
+    },
+    {
+      "product_code": "score_pack_1k",
+      "name": "Score Pack 1k",
+      "price_eur": 99,
+      "unit": "1000 valid scores",
+      "when_bought_by_machine": "The customer machine has domains and wants score, confidence, decision and next budget action."
+    },
+    {
+      "product_code": "deep_analysis",
+      "name": "Deep Analysis Pack 100",
+      "price_eur": 299,
+      "unit": "100 valid deep analyses",
+      "when_bought_by_machine": "A scored domain is promising and the machine needs a deeper decision before buying an action pack."
+    },
+    {
+      "product_code": "action_pack",
+      "name": "Action Pack 25",
+      "price_eur": 399,
+      "unit": "25 valid action packs",
+      "when_bought_by_machine": "A confirmed opportunity needs CRM-ready payloads, workflow payload, webhook event, approval gate and stop rules."
+    },
+    {
+      "product_code": "opportunity_feed",
+      "name": "Opportunity Feed",
+      "price_eur": 249,
+      "unit": "4 scans and 4 deliveries per month",
+      "when_bought_by_machine": "The customer machine wants recurring discovery and delivery rather than one-off scoring."
+    }
+  ],
+  "sandbox_test_path": [
+    "GET /machine-onboarding.json",
+    "GET /product-catalog.json",
+    "POST /v1/sandbox/customers",
+    "GET /v1/onboarding",
+    "POST /v1/lead-opportunity-score",
+    "POST /v1/purchase-intent with product_code deep_analysis when recommended",
+    "POST /v1/purchase-intent with product_code action_pack when useful",
+    "GET /v1/orders"
+  ],
+  "example_request": {
+    "domain": "clinic3.it",
+    "sector_hint": "dentist",
+    "country_hint": "IT"
+  },
+  "expected_response_fields": [
+    "domain",
+    "opportunity_score",
+    "confidence",
+    "priority",
+    "decision",
+    "reason",
+    "next_purchase",
+    "usage",
+    "beta"
+  ],
+  "safety": {
+    "real_payment_executed_in_beta": false,
+    "external_contact_executed_by_machinesignal": false,
+    "action_pack_sends_email": false,
+    "requires_customer_compliance_gate_before_external_action": true
+  },
+  "public_assets": {
+    "website": "https://machinesignal.it/",
+    "distribution_page": "https://machinesignal.it/distribution/",
+    "rapidapi_listing_json": "https://machinesignal.it/distribution/rapidapi-listing.json",
+    "api_directory_json": "https://machinesignal.it/distribution/api-directory-submission.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "sandbox_endpoint": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+    "github": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score"
+  }
+}
