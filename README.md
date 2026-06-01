@@ -14,6 +14,7 @@ Public discovery starts here:
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - RapidAPI Listing JSON: https://machinesignal.it/distribution/rapidapi-listing.json
+- RapidAPI Provider Setup JSON: https://machinesignal.it/distribution/rapidapi-provider-setup.json
 - Distribution Channel Shortlist JSON: https://machinesignal.it/distribution/channel-shortlist.json
 - Postman Public Collection JSON: https://machinesignal.it/postman_public_collection.json
 - Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
