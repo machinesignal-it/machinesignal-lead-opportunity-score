@@ -48,6 +48,7 @@ I test verificano che:
 - l'accesso senza admin key venga rifiutato;
 - un cliente beta venga riconciliato correttamente;
 - il ledger Durable Object resti coerente dopo score e purchase intent.
+- un cliente legacy ancora salvato in KV venga migrato in modo lazy al Durable Object quando viene richiesto l'audit.
 
 ## Prossimo passaggio
 

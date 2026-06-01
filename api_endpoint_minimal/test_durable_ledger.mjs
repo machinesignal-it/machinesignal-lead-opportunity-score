@@ -195,6 +195,71 @@ const orders = await requestJson(
 assert.equal(orders.status, 200);
 assert.equal(orders.payload.count, purchaseCount);
 
+await env.MACHINESIGNAL_LEDGER_KV.put(
+  "customer:old_kv_customer",
+  JSON.stringify({
+    customer_id: "old_kv_customer",
+    status: "active",
+    customer_type: "beta_customer",
+    plan: "kv_legacy_test"
+  })
+);
+await env.MACHINESIGNAL_LEDGER_KV.put(
+  "ledger:customer:old_kv_customer",
+  JSON.stringify({
+    customer_id: "old_kv_customer",
+    balances: {
+      score_pack_1k: {
+        product_code: "score_pack_1k",
+        credits_purchased: 10,
+        credits_used: 2
+      }
+    },
+    events: [
+      {
+        event_id: "evt_0001",
+        timestamp: new Date().toISOString(),
+        customer_id: "old_kv_customer",
+        product_code: "score_pack_1k",
+        request_id: "old-score-001",
+        status: "valid_output",
+        reason: "legacy_kv_score",
+        credits_consumed: 1,
+        metadata: {}
+      },
+      {
+        event_id: "evt_0002",
+        timestamp: new Date().toISOString(),
+        customer_id: "old_kv_customer",
+        product_code: "score_pack_1k",
+        request_id: "old-score-002",
+        status: "valid_output",
+        reason: "legacy_kv_score",
+        credits_consumed: 1,
+        metadata: {}
+      }
+    ],
+    orders: [],
+    real_payment_executed: false,
+    external_contact_executed: false
+  })
+);
+
+const migratedAudit = await requestJson(
+  new Request("http://localhost/v1/admin/audit-report?customer_id=old_kv_customer", {
+    headers: { "x-api-key": "admin-test-key" }
+  })
+);
+assert.equal(migratedAudit.status, 200);
+assert.equal(migratedAudit.payload.customer_id, "old_kv_customer");
+assert.equal(migratedAudit.payload.ledger_backend, "durable_object");
+assert.equal(migratedAudit.payload.summary.reconciliation_ok, true);
+assert.equal(
+  migratedAudit.payload.product_reconciliation.find((item) => item.product_code === "score_pack_1k")
+    .credits_used,
+  2
+);
+
 console.log(
   JSON.stringify(
     {

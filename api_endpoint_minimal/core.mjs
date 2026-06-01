@@ -2201,7 +2201,30 @@ function normalizeLedgerState(raw) {
 async function loadLedger(request, env = {}, authContext = {}) {
   const key = ledgerKeyFor(request, env, authContext);
   if (durableLedgerStub(key, env)) {
-    const payload = await durableLedgerRequest(key, env, "/ledger");
+    const defaultCustomerId =
+      authContext?.customer_id || String(env.MACHINESIGNAL_CUSTOMER_ID || "").trim() || "";
+    const payload = await durableLedgerRequest(
+      key,
+      env,
+      `/ledger${defaultCustomerId ? `?customer_id=${encodeURIComponent(defaultCustomerId)}` : ""}`
+    );
+    if (payload?.initialized === false) {
+      const kv = env[LEDGER_KV_BINDING];
+      const saved = kv?.get ? await kv.get(key, "json") : null;
+      if (saved) {
+        const migrated = await durableLedgerRequest(key, env, "/ledger", {
+          method: "PUT",
+          body: JSON.stringify({ state: saved })
+        });
+        return {
+          key,
+          state: normalizeLedgerState(migrated?.state),
+          persisted: true,
+          backend: "durable_object",
+          migrated_from: "kv"
+        };
+      }
+    }
     return {
       key,
       state: normalizeLedgerState(payload?.state),
@@ -2266,7 +2289,28 @@ async function loadLedgerByCustomerId(customerId, env = {}) {
   const normalizedCustomerId = normalizeCustomerId(customerId);
   const key = `ledger:customer:${normalizedCustomerId}`;
   if (durableLedgerStub(key, env)) {
-    const payload = await durableLedgerRequest(key, env, "/ledger");
+    const payload = await durableLedgerRequest(
+      key,
+      env,
+      `/ledger?customer_id=${encodeURIComponent(normalizedCustomerId)}`
+    );
+    if (payload?.initialized === false) {
+      const kv = env[LEDGER_KV_BINDING];
+      const saved = kv?.get ? await kv.get(key, "json") : null;
+      if (saved) {
+        const migrated = await durableLedgerRequest(key, env, "/ledger", {
+          method: "PUT",
+          body: JSON.stringify({ state: saved })
+        });
+        return {
+          key,
+          state: normalizeLedgerState(migrated?.state || { customer_id: normalizedCustomerId }),
+          persisted: true,
+          backend: "durable_object",
+          migrated_from: "kv"
+        };
+      }
+    }
     return {
       key,
       state: normalizeLedgerState(payload?.state || { customer_id: normalizedCustomerId }),
@@ -2392,8 +2436,17 @@ export class MachineSignalLedgerDurableObject {
     const url = new URL(request.url);
     try {
       if (request.method === "GET" && url.pathname === "/ledger") {
-        const state = await this.readState();
-        return jsonResponse({ state, persisted: true, backend: "durable_object" });
+        const saved = await this.ctx.storage.get("ledger");
+        const defaultCustomerId = String(url.searchParams.get("customer_id") || "").trim();
+        const state = normalizeLedgerState(
+          saved || (defaultCustomerId ? { customer_id: defaultCustomerId } : DEFAULT_LEDGER_STATE)
+        );
+        return jsonResponse({
+          state,
+          persisted: true,
+          backend: "durable_object",
+          initialized: Boolean(saved)
+        });
       }
 
       if (request.method === "PUT" && url.pathname === "/ledger") {
