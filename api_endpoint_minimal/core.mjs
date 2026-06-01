@@ -1,5 +1,6 @@
 const DEFAULT_ALLOWED_ORIGIN = "*";
 const LEDGER_KV_BINDING = "MACHINESIGNAL_LEDGER_KV";
+const LEDGER_DO_BINDING = "MACHINESIGNAL_LEDGER_DO";
 
 const DEFAULT_LEDGER_STATE = {
   customer_id: "demo_machine_customer_001",
@@ -2052,6 +2053,45 @@ function ledgerKeyFor(request, env = {}, authContext = {}) {
   return `ledger:demo:${stableHash(apiKey).toString(16)}`;
 }
 
+function durableLedgerNamespace(env = {}) {
+  return env?.[LEDGER_DO_BINDING] || null;
+}
+
+function durableLedgerStub(key, env = {}) {
+  const namespace = durableLedgerNamespace(env);
+  if (!namespace?.idFromName || !namespace?.get) return null;
+  return namespace.get(namespace.idFromName(key));
+}
+
+async function durableLedgerRequest(key, env = {}, path = "/ledger", init = {}) {
+  const stub = durableLedgerStub(key, env);
+  if (!stub) return null;
+  const response = await stub.fetch(
+    new Request(`https://machinesignal-ledger.local${path}`, {
+      ...init,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        ...(init.headers || {})
+      }
+    })
+  );
+  const text = await response.text();
+  let payload = null;
+  try {
+    payload = text ? JSON.parse(text) : null;
+  } catch {
+    payload = { raw: text };
+  }
+  if (!response.ok) {
+    const error = new Error(payload?.message || payload?.error || "Durable ledger request failed.");
+    error.statusCode = response.status;
+    error.payload = payload;
+    throw error;
+  }
+  return payload;
+}
+
 function normalizeLedgerState(raw) {
   const state = { ...clone(DEFAULT_LEDGER_STATE), ...(raw || {}) };
   state.balances = { ...clone(DEFAULT_LEDGER_STATE.balances), ...(state.balances || {}) };
@@ -2067,17 +2107,38 @@ function normalizeLedgerState(raw) {
 
 async function loadLedger(request, env = {}, authContext = {}) {
   const key = ledgerKeyFor(request, env, authContext);
+  if (durableLedgerStub(key, env)) {
+    const payload = await durableLedgerRequest(key, env, "/ledger");
+    return {
+      key,
+      state: normalizeLedgerState(payload?.state),
+      persisted: true,
+      backend: "durable_object"
+    };
+  }
   const kv = env[LEDGER_KV_BINDING];
   if (kv?.get) {
     const saved = await kv.get(key, "json");
-    return { key, state: normalizeLedgerState(saved), persisted: true };
+    return { key, state: normalizeLedgerState(saved), persisted: true, backend: "kv" };
   }
   globalThis.__machinesignalLedgers ||= {};
   globalThis.__machinesignalLedgers[key] ||= clone(DEFAULT_LEDGER_STATE);
-  return { key, state: normalizeLedgerState(globalThis.__machinesignalLedgers[key]), persisted: false };
+  return {
+    key,
+    state: normalizeLedgerState(globalThis.__machinesignalLedgers[key]),
+    persisted: false,
+    backend: "memory"
+  };
 }
 
 async function saveLedger(key, state, env = {}) {
+  if (durableLedgerStub(key, env)) {
+    await durableLedgerRequest(key, env, "/ledger", {
+      method: "PUT",
+      body: JSON.stringify({ state })
+    });
+    return true;
+  }
   const kv = env[LEDGER_KV_BINDING];
   if (kv?.put) {
     await kv.put(key, JSON.stringify(state));
@@ -2111,17 +2172,36 @@ async function saveJsonStore(key, value, env = {}, options = {}) {
 async function loadLedgerByCustomerId(customerId, env = {}) {
   const normalizedCustomerId = normalizeCustomerId(customerId);
   const key = `ledger:customer:${normalizedCustomerId}`;
+  if (durableLedgerStub(key, env)) {
+    const payload = await durableLedgerRequest(key, env, "/ledger");
+    return {
+      key,
+      state: normalizeLedgerState(payload?.state || { customer_id: normalizedCustomerId }),
+      persisted: true,
+      backend: "durable_object"
+    };
+  }
   const kv = env[LEDGER_KV_BINDING];
   if (kv?.get) {
     const saved = await kv.get(key, "json");
-    return { key, state: normalizeLedgerState(saved || { customer_id: normalizedCustomerId }), persisted: true };
+    return {
+      key,
+      state: normalizeLedgerState(saved || { customer_id: normalizedCustomerId }),
+      persisted: true,
+      backend: "kv"
+    };
   }
   globalThis.__machinesignalLedgers ||= {};
   globalThis.__machinesignalLedgers[key] ||= {
     ...clone(DEFAULT_LEDGER_STATE),
     customer_id: normalizedCustomerId
   };
-  return { key, state: normalizeLedgerState(globalThis.__machinesignalLedgers[key]), persisted: false };
+  return {
+    key,
+    state: normalizeLedgerState(globalThis.__machinesignalLedgers[key]),
+    persisted: false,
+    backend: "memory"
+  };
 }
 
 function ledgerBalances(state) {
@@ -2133,10 +2213,11 @@ function ledgerBalances(state) {
   }));
 }
 
-function buildUsagePayload(state, event = null, persisted = false) {
+function buildUsagePayload(state, event = null, persisted = false, backend = null) {
   return {
     customer_id: state.customer_id,
     ledger_persisted: persisted,
+    ledger_backend: backend || (persisted ? "kv" : "memory"),
     balances: ledgerBalances(state),
     current_event: event,
     last_events: state.events.slice(-10),
@@ -2145,6 +2226,146 @@ function buildUsagePayload(state, event = null, persisted = false) {
     real_payment_executed: false,
     external_contact_executed: false
   };
+}
+
+async function consumeLedgerCredit(ledger, env, productCode, requestId, status, reason, metadata = {}) {
+  if (ledger.backend === "durable_object") {
+    const payload = await durableLedgerRequest(ledger.key, env, "/consume", {
+      method: "POST",
+      body: JSON.stringify({ productCode, requestId, status, reason, metadata })
+    });
+    ledger.state = normalizeLedgerState(payload?.state);
+    ledger.persisted = true;
+    ledger.backend = "durable_object";
+    return payload?.event;
+  }
+  return consumeCredit(ledger.state, productCode, requestId, status, reason, metadata);
+}
+
+async function createPurchaseIntentInLedger(ledger, env, input, requestId) {
+  if (ledger.backend === "durable_object") {
+    const payload = await durableLedgerRequest(ledger.key, env, "/purchase-intent", {
+      method: "POST",
+      body: JSON.stringify({ input, requestId })
+    });
+    ledger.state = normalizeLedgerState(payload?.state);
+    ledger.persisted = true;
+    ledger.backend = "durable_object";
+    return {
+      intent: payload?.intent,
+      order: payload?.order,
+      event: payload?.event
+    };
+  }
+  const product = purchaseProductConfig(input?.product_code);
+  const domain = normalizePurchaseSubject(input, product);
+  const event = consumeCredit(
+    ledger.state,
+    product.ledger_product_code,
+    requestId,
+    "valid_output",
+    "beta_order_intent_created",
+    {
+      domain,
+      product_code: product.product_code,
+      source_score_request_id: input?.source_score_request_id || null,
+      real_payment_executed: false,
+      external_contact_executed: false
+    }
+  );
+  const intent = buildPurchaseIntent(input, requestId, event);
+  const order = saveOrderRecord(ledger.state, intent, event);
+  return { intent, order, event };
+}
+
+export class MachineSignalLedgerDurableObject {
+  constructor(ctx, env) {
+    this.ctx = ctx;
+    this.env = env;
+  }
+
+  async readState(defaultState = null) {
+    const saved = await this.ctx.storage.get("ledger");
+    return normalizeLedgerState(saved || defaultState || DEFAULT_LEDGER_STATE);
+  }
+
+  async writeState(state) {
+    const normalized = normalizeLedgerState(state);
+    await this.ctx.storage.put("ledger", normalized);
+    return normalized;
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    try {
+      if (request.method === "GET" && url.pathname === "/ledger") {
+        const state = await this.readState();
+        return jsonResponse({ state, persisted: true, backend: "durable_object" });
+      }
+
+      if (request.method === "PUT" && url.pathname === "/ledger") {
+        const body = await parseJson(request);
+        const state = await this.writeState(body?.state || DEFAULT_LEDGER_STATE);
+        return jsonResponse({ state, persisted: true, backend: "durable_object" });
+      }
+
+      if (request.method === "POST" && url.pathname === "/consume") {
+        const body = await parseJson(request);
+        const state = await this.readState();
+        const event = consumeCredit(
+          state,
+          body?.productCode,
+          body?.requestId,
+          body?.status || "valid_output",
+          body?.reason || "credit_consumed",
+          body?.metadata || {}
+        );
+        const saved = await this.writeState(state);
+        return jsonResponse({ state: saved, event, persisted: true, backend: "durable_object" });
+      }
+
+      if (request.method === "POST" && url.pathname === "/purchase-intent") {
+        const body = await parseJson(request);
+        const input = body?.input || {};
+        const requestId = String(body?.requestId || "").trim();
+        const product = purchaseProductConfig(input?.product_code);
+        const domain = normalizePurchaseSubject(input, product);
+        const state = await this.readState();
+        const event = consumeCredit(
+          state,
+          product.ledger_product_code,
+          requestId,
+          "valid_output",
+          "beta_order_intent_created",
+          {
+            domain,
+            product_code: product.product_code,
+            source_score_request_id: input?.source_score_request_id || null,
+            real_payment_executed: false,
+            external_contact_executed: false
+          }
+        );
+        const intent = buildPurchaseIntent(input, requestId, event);
+        const order = saveOrderRecord(state, intent, event);
+        const saved = await this.writeState(state);
+        return jsonResponse({
+          state: saved,
+          event,
+          intent,
+          order,
+          persisted: true,
+          backend: "durable_object"
+        });
+      }
+
+      return jsonResponse({ error: "not_found", message: "Unknown ledger operation." }, 404);
+    } catch (error) {
+      return jsonResponse(
+        { error: "ledger_error", message: error.message || "Ledger operation failed." },
+        error.statusCode || 400
+      );
+    }
+  }
 }
 
 function makeRequestId(request, body, domain) {
@@ -2651,7 +2872,12 @@ async function createBetaCustomer(input, request, env = {}) {
         external_contact_enabled: false
       }
     },
-    usage: buildUsagePayload(ledgerState, null, true)
+    usage: buildUsagePayload(
+      ledgerState,
+      null,
+      true,
+      durableLedgerStub(`ledger:customer:${customerId}`, env) ? "durable_object" : "kv"
+    )
   };
 }
 
@@ -2921,7 +3147,7 @@ function buildAdminCustomerPayload(customer, ledger, currentEvent = null) {
         "GET /v1/orders"
       ]
     },
-    usage: buildUsagePayload(ledger.state, currentEvent, ledger.persisted),
+    usage: buildUsagePayload(ledger.state, currentEvent, ledger.persisted, ledger.backend),
     real_payment_executed: false,
     external_contact_executed: false
   };
@@ -3305,7 +3531,7 @@ function buildAuthenticatedOnboarding(auth, ledger) {
     customer_id: ledger.state.customer_id,
     auth_type: auth.auth_type,
     machine_contract: buildPublicMachineOnboarding(),
-    usage: buildUsagePayload(ledger.state, null, ledger.persisted),
+    usage: buildUsagePayload(ledger.state, null, ledger.persisted, ledger.backend),
     next_recommended_calls: [
       {
         call: "GET /v1/usage",
@@ -4119,7 +4345,7 @@ export async function handleRequest(request, env = {}) {
       );
     }
     const ledger = await loadLedger(request, env, auth);
-    return jsonResponse(buildUsagePayload(ledger.state, null, ledger.persisted));
+    return jsonResponse(buildUsagePayload(ledger.state, null, ledger.persisted, ledger.backend));
   }
 
   if (request.method === "POST" && url.pathname === "/v1/lead-opportunity-score") {
@@ -4135,8 +4361,9 @@ export async function handleRequest(request, env = {}) {
       const score = scoreLeadOpportunity(body);
       const ledger = await loadLedger(request, env, auth);
       const requestId = makeRequestId(request, body, score.domain);
-      const event = consumeCredit(
-        ledger.state,
+      const event = await consumeLedgerCredit(
+        ledger,
+        env,
         "score_pack_1k",
         requestId,
         "valid_output",
@@ -4148,11 +4375,13 @@ export async function handleRequest(request, env = {}) {
           confidence: score.confidence
         }
       );
-      await saveLedger(ledger.key, ledger.state, env);
+      if (ledger.backend !== "durable_object") {
+        await saveLedger(ledger.key, ledger.state, env);
+      }
       return jsonResponse({
         ...score,
         request_id: requestId,
-        usage: buildUsagePayload(ledger.state, event, ledger.persisted)
+        usage: buildUsagePayload(ledger.state, event, ledger.persisted, ledger.backend)
       });
     } catch (error) {
       return jsonResponse(
@@ -4176,27 +4405,14 @@ export async function handleRequest(request, env = {}) {
       const domain = normalizePurchaseSubject(body, product);
       const ledger = await loadLedger(request, env, auth);
       const requestId = makeRequestId(request, body, domain);
-      const event = consumeCredit(
-        ledger.state,
-        product.ledger_product_code,
-        requestId,
-        "valid_output",
-        "beta_order_intent_created",
-        {
-          domain,
-          product_code: product.product_code,
-          source_score_request_id: body?.source_score_request_id || null,
-          real_payment_executed: false,
-          external_contact_executed: false
-        }
-      );
-      const intent = buildPurchaseIntent(body, requestId, event);
-      const order = saveOrderRecord(ledger.state, intent, event);
-      await saveLedger(ledger.key, ledger.state, env);
+      const { intent, order, event } = await createPurchaseIntentInLedger(ledger, env, body, requestId);
+      if (ledger.backend !== "durable_object") {
+        await saveLedger(ledger.key, ledger.state, env);
+      }
       return jsonResponse({
         ...intent,
         order,
-        usage: buildUsagePayload(ledger.state, event, ledger.persisted)
+        usage: buildUsagePayload(ledger.state, event, ledger.persisted, ledger.backend)
       });
     } catch (error) {
       return jsonResponse(

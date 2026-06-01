@@ -36,6 +36,11 @@ jobs:
             exit 1
           fi
 
+      - name: Run API tests
+        run: |
+          node api_endpoint_minimal/test_api.mjs
+          node api_endpoint_minimal/test_durable_ledger.mjs
+
       - name: Deploy Worker
         uses: cloudflare/wrangler-action@v3
         with:

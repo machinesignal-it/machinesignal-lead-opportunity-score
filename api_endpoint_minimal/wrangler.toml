@@ -8,6 +8,14 @@ workers_dev = true
 binding = "MACHINESIGNAL_LEDGER_KV"
 id = "d00a1591857c4cc5abf9940136905d8c"
 
+[[durable_objects.bindings]]
+name = "MACHINESIGNAL_LEDGER_DO"
+class_name = "MachineSignalLedgerDurableObject"
+
+[[migrations]]
+tag = "v20260601_ledger_do"
+new_sqlite_classes = ["MachineSignalLedgerDurableObject"]
+
 # After the first successful test on workers.dev, add a custom domain in
 # Cloudflare dashboard for:
 # https://api.machinesignal.it

@@ -1,4 +1,6 @@
-import { handleRequest } from "./core.mjs";
+import { handleRequest, MachineSignalLedgerDurableObject } from "./core.mjs";
+
+export { MachineSignalLedgerDurableObject };
 
 export default {
   async fetch(request, env) {
