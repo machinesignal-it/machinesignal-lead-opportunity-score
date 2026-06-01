@@ -389,6 +389,71 @@ export const openApi = {
         }
       }
     },
+    "/v1/sandbox/customers": {
+      post: {
+        operationId: "createSandboxCustomer",
+        summary: "Create a limited sandbox customer API key",
+        description:
+          "Public limited sandbox endpoint for machine evaluators. Creates a sandbox API key with very small credit limits so an external machine can test the beta flow without manual sales contact. It does not execute real payment or external outreach.",
+        parameters: [
+          {
+            name: "Idempotency-Key",
+            in: "header",
+            required: false,
+            schema: { type: "string", example: "sandbox-evaluator-20260601-001" },
+            description:
+              "Optional stable key supplied by the evaluator. Used only to make the generated sandbox customer traceable."
+          }
+        ],
+        requestBody: {
+          required: false,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  evaluator_type: {
+                    type: "string",
+                    example: "ai_agent"
+                  },
+                  integration_target: {
+                    type: "string",
+                    example: "custom CRM workflow"
+                  },
+                  expected_test_path: {
+                    type: "string",
+                    example: "full_flow"
+                  }
+                }
+              },
+              examples: {
+                aiAgentSandbox: {
+                  summary: "Create a limited sandbox key for an AI evaluator",
+                  value: {
+                    evaluator_type: "ai_agent",
+                    integration_target: "custom CRM workflow",
+                    expected_test_path: "full_flow"
+                  }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          200: {
+            description:
+              "Sandbox customer created. Store api_key immediately; it is returned only in this response.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/BetaCustomerCreateResponse" }
+              }
+            }
+          },
+          400: { description: "Invalid request." },
+          403: { description: "Sandbox key creation is disabled." }
+        }
+      }
+    },
     "/v1/lead-opportunity-score": {
       post: {
         operationId: "scoreLeadOpportunity",
@@ -1108,6 +1173,7 @@ Useful endpoints:
 - GET /llms.txt
 - GET /machine-onboarding.json
 - GET /product-catalog.json
+- POST /v1/sandbox/customers
 - GET /v1/onboarding
 - GET /v1/usage
 - POST /v1/lead-opportunity-score
@@ -1127,12 +1193,13 @@ Authentication:
 How a machine should call the score endpoint:
 1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
 2. Fetch /product-catalog.json to read products, exact beta prices, deliverables and credit rules.
-3. Read the required X-API-Key and Idempotency-Key headers.
-4. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
-5. Read decision, machine_next_step and next_purchase.
-6. Read /v1/usage to verify consumed and remaining credits.
-7. If next_purchase.next_product is not null, POST /v1/purchase-intent to create a beta order intent.
-8. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
+3. If no beta key is available, POST /v1/sandbox/customers to create a limited sandbox key for safe testing.
+4. Read the required X-API-Key and Idempotency-Key headers.
+5. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
+6. Read decision, machine_next_step and next_purchase.
+7. Read /v1/usage to verify consumed and remaining credits.
+8. If next_purchase.next_product is not null, POST /v1/purchase-intent to create a beta order intent.
+9. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
 
 Three machine buying flows:
 1. Customer machine has a list: call POST /v1/lead-opportunity-score for each domain, then route each result by decision.
@@ -1192,11 +1259,18 @@ How a machine should retrieve previous orders:
 - order history is beta ledger data, not invoice data.
 
 How beta onboarding works:
+- an evaluator machine can create a limited sandbox key with POST /v1/sandbox/customers;
 - an admin creates a beta customer with POST /v1/beta/customers;
 - the response returns a dedicated API key once;
 - the customer machine then uses that key for score, purchase intent, usage and order history;
 - initial credits are assigned in the customer's ledger;
 - an admin can top up credits, reset usage, suspend or reactivate a customer with PATCH /v1/beta/customers/{customer_id}.
+
+Sandbox limits:
+- POST /v1/sandbox/customers is for low-risk evaluation only;
+- sandbox keys receive 5 score credits, 1 target discovery credit, 1 deep analysis credit, 1 action pack credit, 1 verification credit, 1 nurture signal credit and 1 domain enrichment credit;
+- sandbox keys do not execute real payment and do not contact external targets;
+- for larger tests, request a private beta key.
 
 Machine-first rule:
 - MachineSignal does not require human email persuasion as the primary channel;
@@ -1301,6 +1375,37 @@ const postmanCollection = {
         },
         description:
           "Public machine test kit with safe test paths, acceptance checks and stop rules."
+      },
+      response: []
+    },
+    {
+      name: "Create limited sandbox customer",
+      request: {
+        method: "POST",
+        header: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "Idempotency-Key", value: "postman-sandbox-evaluator-001" }
+        ],
+        body: {
+          mode: "raw",
+          raw: JSON.stringify(
+            {
+              evaluator_type: "ai_agent",
+              integration_target: "custom CRM workflow",
+              expected_test_path: "full_flow"
+            },
+            null,
+            2
+          )
+        },
+        url: {
+          raw: "{{base_url}}/v1/sandbox/customers",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "sandbox", "customers"]
+        },
+        description:
+          "Public limited sandbox onboarding. Creates a low-credit API key for safe machine evaluation without manual sales contact. Store api_key immediately; it is returned only once."
       },
       response: []
     },
@@ -2435,6 +2540,80 @@ async function createBetaCustomer(input, request, env = {}) {
   };
 }
 
+function sandboxCustomerId(request, input = {}) {
+  const explicit = String(input?.customer_id || "").trim().toLowerCase();
+  if (explicit) {
+    const normalized = normalizeCustomerId(explicit);
+    if (!normalized.startsWith("sandbox_")) {
+      throw new Error("sandbox customer_id must start with sandbox_");
+    }
+    return normalized;
+  }
+  const seed = [
+    request.headers.get("idempotency-key") || "",
+    request.headers.get("user-agent") || "",
+    Date.now().toString(),
+    randomToken(10)
+  ].join("|");
+  return `sandbox_${stableHash(seed).toString(16)}_${Date.now().toString(36)}`;
+}
+
+async function createSandboxCustomer(input, request, env = {}) {
+  const sandboxEnabled = String(env.MACHINESIGNAL_SANDBOX_ENABLED ?? "true")
+    .trim()
+    .toLowerCase();
+  if (["false", "0", "off", "disabled"].includes(sandboxEnabled)) {
+    const error = new Error("Sandbox key creation is currently disabled.");
+    error.statusCode = 403;
+    throw error;
+  }
+
+  const customerId = sandboxCustomerId(request, input);
+  const response = await createBetaCustomer(
+    {
+      customer_id: customerId,
+      contact_email: "sandbox@machinesignal.it",
+      plan: "sandbox_limited",
+      score_credits: 5,
+      target_discovery_credits: 1,
+      deep_analysis_credits: 1,
+      action_pack_credits: 1,
+      verification_credits: 1,
+      nurture_signal_credits: 1,
+      domain_enrichment_credits: 1,
+      opportunity_feed_credits: 0
+    },
+    request,
+    env
+  );
+
+  return {
+    ...response,
+    sandbox: true,
+    evaluator_context: {
+      evaluator_type: String(input?.evaluator_type || "unknown").trim() || "unknown",
+      integration_target: String(input?.integration_target || "unknown").trim() || "unknown",
+      expected_test_path: String(input?.expected_test_path || "full_flow").trim() || "full_flow"
+    },
+    guardrails: {
+      real_payment_executed: false,
+      external_contact_executed: false,
+      allowed_use: "low-volume technical evaluation only",
+      upgrade_path: "request a private beta key for larger tests"
+    },
+    sandbox_limits: {
+      score_pack_1k: 5,
+      target_discovery_pack_250: 1,
+      deep_analysis_pack_100: 1,
+      action_pack_25: 1,
+      verification_pack_100: 1,
+      nurture_signal_pack_100: 1,
+      domain_enrichment_pack_100: 1,
+      opportunity_feed_monthly: 0
+    }
+  };
+}
+
 function assertAdminCustomerStatus(status) {
   const normalized = String(status || "").trim().toLowerCase();
   if (!normalized) return null;
@@ -2593,11 +2772,13 @@ function buildPublicMachineOnboarding() {
       postman: "/postman_collection.json",
       product_catalog: "/product-catalog.json",
       machine_onboarding: "/machine-onboarding.json",
+      sandbox_customers: "/v1/sandbox/customers",
       authenticated_onboarding: "/v1/onboarding"
     },
     authentication: {
       type: "apiKey",
       header: "X-API-Key",
+      sandbox_keys_created_by: "POST /v1/sandbox/customers",
       customer_keys_created_by: "POST /v1/beta/customers",
       idempotency_header: "Idempotency-Key"
     },
@@ -2616,24 +2797,30 @@ function buildPublicMachineOnboarding() {
       },
       {
         step: 3,
+        call: "POST /v1/sandbox/customers",
+        auth_required: false,
+        machine_goal: "Create a low-credit sandbox key when no beta key is available."
+      },
+      {
+        step: 4,
         call: "GET /v1/onboarding",
         auth_required: true,
         machine_goal: "Read customer-specific credits and next available calls."
       },
       {
-        step: 4,
+        step: 5,
         call: "POST /v1/lead-opportunity-score",
         auth_required: true,
         machine_goal: "Score a domain and receive a decision."
       },
       {
-        step: 5,
+        step: 6,
         call: "POST /v1/purchase-intent",
         auth_required: true,
         machine_goal: "Create a beta order when next_purchase recommends a product."
       },
       {
-        step: 6,
+        step: 7,
         call: "GET /v1/orders",
         auth_required: true,
         machine_goal: "Retrieve orders and deliveries."
@@ -3377,6 +3564,16 @@ async function parseJson(request) {
   }
 }
 
+async function parseOptionalJson(request) {
+  const text = await request.text();
+  if (!text.trim()) return {};
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error("request body must be valid JSON");
+  }
+}
+
 export async function handleRequest(request, env = {}) {
   const url = new URL(request.url);
 
@@ -3402,6 +3599,7 @@ export async function handleRequest(request, env = {}) {
         llms: "/llms.txt",
         machine_onboarding: "/machine-onboarding.json",
         product_catalog: "/product-catalog.json",
+        sandbox_customers: "/v1/sandbox/customers",
         authenticated_onboarding: "/v1/onboarding",
         usage: "/v1/usage",
         score: "/v1/lead-opportunity-score",
@@ -3430,6 +3628,21 @@ export async function handleRequest(request, env = {}) {
 
   if (request.method === "GET" && url.pathname === "/llms.txt") {
     return textResponse(llmsTxt);
+  }
+
+  if (request.method === "POST" && url.pathname === "/v1/sandbox/customers") {
+    try {
+      const body = await parseOptionalJson(request);
+      return jsonResponse(await createSandboxCustomer(body, request, env));
+    } catch (error) {
+      return jsonResponse(
+        {
+          error: error.statusCode === 403 ? "sandbox_disabled" : "bad_request",
+          message: error.message || "Invalid sandbox request."
+        },
+        error.statusCode || 400
+      );
+    }
   }
 
   if (request.method === "GET" && url.pathname === "/v1/onboarding") {
@@ -3637,7 +3850,7 @@ export async function handleRequest(request, env = {}) {
   return jsonResponse(
     {
       error: "not_found",
-      message: "Use GET /health, GET /openapi.json, GET /v1/usage, GET /v1/orders, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
+      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
     },
     404
   );

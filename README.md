@@ -72,16 +72,36 @@ X-API-Key: <customer_beta_api_key>
 Idempotency-Key: <stable_request_id_for_paid_or_credit_consuming_calls>
 ```
 
+## Limited Sandbox Key
+
+A machine evaluator can create a low-credit sandbox key without a human sales conversation:
+
+```bash
+curl -X POST "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: sandbox-evaluator-001" \
+  -d '{
+    "evaluator_type": "ai_agent",
+    "integration_target": "custom CRM workflow",
+    "expected_test_path": "full_flow"
+  }'
+```
+
+The response returns `api_key` once. Store it immediately and use it as `X-API-Key` for the protected beta endpoints.
+
+Sandbox limits are intentionally small: 5 scores, 1 target discovery, 1 deep analysis, 1 action pack, 1 verification, 1 nurture signal and 1 domain enrichment. The sandbox does not execute real payments or external outreach.
+
 ## Core Flow For Machines
 
 1. Fetch `https://machinesignal.it/machine-onboarding.json`.
 2. Fetch `https://machinesignal.it/product-catalog.json` to read product codes, exact beta prices, deliverables and credit rules.
 3. Fetch `https://machinesignal.it/openapi.json`.
-4. If an API key is available, call `GET /v1/onboarding`.
-5. If the machine already has domains, score them with `POST /v1/lead-opportunity-score`.
-6. If the machine has no list, order `target_discovery` with `POST /v1/purchase-intent`, then score the returned candidate domains.
-7. If `next_purchase` recommends an add-on, create a beta order with `POST /v1/purchase-intent`.
-8. Retrieve previous orders and deliveries with `GET /v1/orders`.
+4. If no beta key is available, create a limited sandbox key with `POST /v1/sandbox/customers`.
+5. Call `GET /v1/onboarding`.
+6. If the machine already has domains, score them with `POST /v1/lead-opportunity-score`.
+7. If the machine has no list, order `target_discovery` with `POST /v1/purchase-intent`, then score the returned candidate domains.
+8. If `next_purchase` recommends an add-on, create a beta order with `POST /v1/purchase-intent`.
+9. Retrieve previous orders and deliveries with `GET /v1/orders`.
 
 ## Beta Tester Onboarding Packet
 
@@ -127,6 +147,7 @@ GET  /product-catalog.json
 GET  /openapi.json
 GET  /llms.txt
 GET  /postman_collection.json
+POST /v1/sandbox/customers
 GET  /v1/onboarding
 GET  /v1/usage
 POST /v1/lead-opportunity-score

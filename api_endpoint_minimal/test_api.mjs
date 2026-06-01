@@ -67,6 +67,7 @@ assert.equal(openApiResponse.status, 200);
 const openApiPayload = await openApiResponse.json();
 assert.ok(openApiPayload.paths["/v1/usage"]);
 assert.ok(openApiPayload.paths["/v1/purchase-intent"]);
+assert.ok(openApiPayload.paths["/v1/sandbox/customers"]);
 assert.ok(openApiPayload.paths["/machine-onboarding.json"]);
 assert.ok(openApiPayload.paths["/product-catalog.json"]);
 assert.ok(openApiPayload.paths["/v1/onboarding"]);
@@ -88,6 +89,7 @@ assert.ok(postmanItemNames.includes("Fetch product catalog"));
 assert.ok(postmanItemNames.includes("Read beta tester onboarding packet"));
 assert.ok(postmanItemNames.includes("Read beta feedback schema"));
 assert.ok(postmanItemNames.includes("Read machine beta test kit"));
+assert.ok(postmanItemNames.includes("Create limited sandbox customer"));
 assert.ok(postmanItemNames.includes("Create beta purchase intent"));
 assert.ok(postmanItemNames.includes("Order target discovery when machine has no list"));
 assert.ok(postmanItemNames.includes("Order deep analysis after a strong score"));
@@ -124,15 +126,68 @@ assert.ok(llmsText.includes("product_code target_discovery"));
 assert.ok(llmsText.includes("/beta/onboarding-packet.json"));
 assert.ok(llmsText.includes("/beta/feedback-schema.json"));
 assert.ok(llmsText.includes("/beta/machine-test-kit.json"));
+assert.ok(llmsText.includes("/v1/sandbox/customers"));
 
 const machineOnboardingResponse = await handleRequest(new Request("http://localhost/machine-onboarding.json"));
 assert.equal(machineOnboardingResponse.status, 200);
 const machineOnboardingPayload = await machineOnboardingResponse.json();
 assert.equal(machineOnboardingPayload.primary_customer_interface, "machine");
 assert.equal(machineOnboardingPayload.discovery.product_catalog, "/product-catalog.json");
+assert.equal(machineOnboardingPayload.discovery.sandbox_customers, "/v1/sandbox/customers");
 assert.equal(machineOnboardingPayload.discovery.authenticated_onboarding, "/v1/onboarding");
+assert.equal(machineOnboardingPayload.authentication.sandbox_keys_created_by, "POST /v1/sandbox/customers");
 assert.equal(machineOnboardingPayload.recommended_agent_policy.must_not_execute_external_outreach, true);
 assert.equal(machineOnboardingPayload.entry_points.has_no_list.product_code, "target_discovery");
+
+const sandboxCustomerResponse = await handleRequest(
+  new Request("http://localhost/v1/sandbox/customers", {
+    method: "POST",
+    body: JSON.stringify({
+      evaluator_type: "ai_agent",
+      integration_target: "custom CRM workflow",
+      expected_test_path: "full_flow"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "idempotency-key": "sandbox-test-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(sandboxCustomerResponse.status, 200);
+const sandboxCustomerPayload = await sandboxCustomerResponse.json();
+assert.equal(sandboxCustomerPayload.sandbox, true);
+assert.equal(sandboxCustomerPayload.plan, "sandbox_limited");
+assert.ok(sandboxCustomerPayload.customer_id.startsWith("sandbox_"));
+assert.ok(sandboxCustomerPayload.api_key.startsWith("ms_cust_"));
+assert.equal(
+  sandboxCustomerPayload.usage.balances.find((item) => item.product_code === "score_pack_1k").credits_purchased,
+  5
+);
+assert.equal(
+  sandboxCustomerPayload.usage.balances.find((item) => item.product_code === "action_pack_25").credits_purchased,
+  1
+);
+
+const sandboxUsageResponse = await handleRequest(
+  new Request("http://localhost/v1/usage", {
+    method: "GET",
+    headers: { "x-api-key": sandboxCustomerPayload.api_key }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(sandboxUsageResponse.status, 200);
+assert.equal((await sandboxUsageResponse.json()).customer_id, sandboxCustomerPayload.customer_id);
+
+const sandboxDisabledResponse = await handleRequest(
+  new Request("http://localhost/v1/sandbox/customers", {
+    method: "POST",
+    body: "{}",
+    headers: { "content-type": "application/json" }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key", MACHINESIGNAL_SANDBOX_ENABLED: "false" }
+);
+assert.equal(sandboxDisabledResponse.status, 403);
 
 const badResponse = await handleRequest(
   new Request("http://localhost/v1/lead-opportunity-score", {
