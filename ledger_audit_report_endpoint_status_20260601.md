@@ -58,3 +58,26 @@ Dopo il deploy:
 2. chiamare `/v1/admin/audit-report?customer_id=<customer_id>`;
 3. salvare output e confrontarlo con `/v1/usage` e `/v1/orders`;
 4. solo dopo diversi audit coerenti valutare D1 come storico reporting a lungo termine.
+
+## Validazione live post-deploy
+
+Workflow GitHub Actions:
+
+- run: `26765219937`;
+- commit: `1d07dad`;
+- esito: `success`.
+
+Audit live eseguito su cliente legacy:
+
+- customer richiesto: `beta_volume_20260601_135904`;
+- customer restituito: `beta_volume_20260601_135904`;
+- ledger backend: `durable_object`;
+- `reconciliation_ok`: `true`;
+- `ready_for_real_payments`: `false`;
+- `real_payment_executed`: `false`;
+- `external_contact_executed`: `false`;
+- score riconciliati: `50`;
+- ordini: `0`;
+- ricavo beta simulato: `4,95 EUR`.
+
+Nota: durante il test non è stato possibile creare un nuovo cliente beta perché Cloudflare KV ha restituito `KV put() limit exceeded for the day`. Per questo è stato usato un cliente esistente; il test è comunque utile perché ha verificato il caso legacy KV -> Durable Object.
