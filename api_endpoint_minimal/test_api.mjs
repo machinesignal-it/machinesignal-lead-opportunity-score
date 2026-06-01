@@ -158,8 +158,12 @@ assert.equal(sandboxCustomerResponse.status, 200);
 const sandboxCustomerPayload = await sandboxCustomerResponse.json();
 assert.equal(sandboxCustomerPayload.sandbox, true);
 assert.equal(sandboxCustomerPayload.plan, "sandbox_limited");
+assert.equal(sandboxCustomerPayload.customer_type, "sandbox");
 assert.ok(sandboxCustomerPayload.customer_id.startsWith("sandbox_"));
 assert.ok(sandboxCustomerPayload.api_key.startsWith("ms_cust_"));
+assert.ok(Date.parse(sandboxCustomerPayload.expires_at) > Date.now());
+assert.equal(sandboxCustomerPayload.guardrails.allowed_use, "low-volume technical evaluation only");
+assert.equal(sandboxCustomerPayload.guardrails.daily_creation_limits.global_limit, 25);
 assert.equal(
   sandboxCustomerPayload.usage.balances.find((item) => item.product_code === "score_pack_1k").credits_purchased,
   5
@@ -179,6 +183,19 @@ const sandboxUsageResponse = await handleRequest(
 assert.equal(sandboxUsageResponse.status, 200);
 assert.equal((await sandboxUsageResponse.json()).customer_id, sandboxCustomerPayload.customer_id);
 
+const sandboxOnboardingResponse = await handleRequest(
+  new Request("http://localhost/v1/onboarding", {
+    method: "GET",
+    headers: { "x-api-key": sandboxCustomerPayload.api_key }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(sandboxOnboardingResponse.status, 200);
+const sandboxOnboardingPayload = await sandboxOnboardingResponse.json();
+assert.equal(sandboxOnboardingPayload.customer_state.sandbox, true);
+assert.equal(sandboxOnboardingPayload.customer_state.customer_type, "sandbox");
+assert.equal(sandboxOnboardingPayload.customer_state.expires_at, sandboxCustomerPayload.expires_at);
+
 const sandboxDisabledResponse = await handleRequest(
   new Request("http://localhost/v1/sandbox/customers", {
     method: "POST",
@@ -188,6 +205,41 @@ const sandboxDisabledResponse = await handleRequest(
   { MACHINESIGNAL_API_KEY: "test-key", MACHINESIGNAL_SANDBOX_ENABLED: "false" }
 );
 assert.equal(sandboxDisabledResponse.status, 403);
+
+const sandboxLimitEnv = {
+  MACHINESIGNAL_API_KEY: "test-key",
+  MACHINESIGNAL_SANDBOX_LIMIT_NAMESPACE: "sandbox_limit_test",
+  MACHINESIGNAL_SANDBOX_DAILY_LIMIT: "1",
+  MACHINESIGNAL_SANDBOX_DAILY_FINGERPRINT_LIMIT: "1"
+};
+const sandboxLimitedFirstResponse = await handleRequest(
+  new Request("http://localhost/v1/sandbox/customers", {
+    method: "POST",
+    body: "{}",
+    headers: {
+      "content-type": "application/json",
+      "user-agent": "sandbox-limit-test-agent",
+      "cf-connecting-ip": "203.0.113.10"
+    }
+  }),
+  sandboxLimitEnv
+);
+assert.equal(sandboxLimitedFirstResponse.status, 200);
+
+const sandboxLimitedSecondResponse = await handleRequest(
+  new Request("http://localhost/v1/sandbox/customers", {
+    method: "POST",
+    body: "{}",
+    headers: {
+      "content-type": "application/json",
+      "user-agent": "sandbox-limit-test-agent",
+      "cf-connecting-ip": "203.0.113.10"
+    }
+  }),
+  sandboxLimitEnv
+);
+assert.equal(sandboxLimitedSecondResponse.status, 429);
+assert.equal((await sandboxLimitedSecondResponse.json()).error, "sandbox_limit_exceeded");
 
 const badResponse = await handleRequest(
   new Request("http://localhost/v1/lead-opportunity-score", {

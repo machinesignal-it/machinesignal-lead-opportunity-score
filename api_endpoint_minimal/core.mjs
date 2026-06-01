@@ -394,7 +394,7 @@ export const openApi = {
         operationId: "createSandboxCustomer",
         summary: "Create a limited sandbox customer API key",
         description:
-          "Public limited sandbox endpoint for machine evaluators. Creates a sandbox API key with very small credit limits so an external machine can test the beta flow without manual sales contact. It does not execute real payment or external outreach.",
+          "Public limited sandbox endpoint for machine evaluators. Creates a sandbox API key with very small credit limits so an external machine can test the beta flow without manual sales contact. Sandbox keys expire, are rate-limited and do not execute real payment or external outreach.",
         parameters: [
           {
             name: "Idempotency-Key",
@@ -450,7 +450,8 @@ export const openApi = {
             }
           },
           400: { description: "Invalid request." },
-          403: { description: "Sandbox key creation is disabled." }
+          403: { description: "Sandbox key creation is disabled." },
+          429: { description: "Sandbox daily creation limit reached." }
         }
       }
     },
@@ -1066,6 +1067,11 @@ export const openApi = {
         properties: {
           customer_id: { type: "string", example: "beta_partner_001" },
           plan: { type: "string", example: "beta_starter" },
+          customer_type: { type: "string", example: "sandbox" },
+          expires_at: {
+            type: ["string", "null"],
+            example: "2026-06-08T08:00:00.000Z"
+          },
           api_key: {
             type: "string",
             description: "Returned only once. Store securely."
@@ -1269,6 +1275,8 @@ How beta onboarding works:
 Sandbox limits:
 - POST /v1/sandbox/customers is for low-risk evaluation only;
 - sandbox keys receive 5 score credits, 1 target discovery credit, 1 deep analysis credit, 1 action pack credit, 1 verification credit, 1 nurture signal credit and 1 domain enrichment credit;
+- sandbox keys expire after 7 days by default;
+- sandbox creation is limited daily to reduce abuse;
 - sandbox keys do not execute real payment and do not contact external targets;
 - for larger tests, request a private beta key.
 
@@ -1935,7 +1943,7 @@ async function authenticateRequest(request, env = {}) {
   }
   if (apiKey) {
     const customer = await loadCustomerByApiKey(apiKey, env);
-    if (customer?.status === "active") {
+    if (customer?.status === "active" && !isExpiredIso(customer.expires_at)) {
       return {
         authorized: true,
         auth_type: "customer",
@@ -1948,6 +1956,12 @@ async function authenticateRequest(request, env = {}) {
     return { authorized: true, auth_type: "open", customer_id: null };
   }
   return { authorized: false, auth_type: "unauthorized", customer_id: null };
+}
+
+function isExpiredIso(value) {
+  if (!value) return false;
+  const timestamp = Date.parse(value);
+  return Number.isFinite(timestamp) && timestamp <= Date.now();
 }
 
 function isAdminAuthorized(request, env = {}) {
@@ -1996,6 +2010,26 @@ async function saveLedger(key, state, env = {}) {
   }
   globalThis.__machinesignalLedgers ||= {};
   globalThis.__machinesignalLedgers[key] = clone(state);
+  return false;
+}
+
+async function loadJsonStore(key, env = {}) {
+  const kv = env[LEDGER_KV_BINDING];
+  if (kv?.get) {
+    return await kv.get(key, "json");
+  }
+  globalThis.__machinesignalJsonStore ||= {};
+  return globalThis.__machinesignalJsonStore[key] || null;
+}
+
+async function saveJsonStore(key, value, env = {}, options = {}) {
+  const kv = env[LEDGER_KV_BINDING];
+  if (kv?.put) {
+    await kv.put(key, JSON.stringify(value), options);
+    return true;
+  }
+  globalThis.__machinesignalJsonStore ||= {};
+  globalThis.__machinesignalJsonStore[key] = clone(value);
   return false;
 }
 
@@ -2494,13 +2528,17 @@ async function createBetaCustomer(input, request, env = {}) {
   const apiKey = `ms_cust_${randomToken(36)}`;
   const now = new Date().toISOString();
   const plan = String(input?.plan || "beta_starter").trim() || "beta_starter";
+  const customerType = String(input?.customer_type || "beta_customer").trim() || "beta_customer";
+  const expiresAt = String(input?.expires_at || "").trim() || null;
   const customerRecord = {
     customer_id: customerId,
     contact_email: String(input?.contact_email || "").trim() || null,
     plan,
+    customer_type: customerType,
     status: "active",
     created_at: now,
-    created_by: "admin_api",
+    created_by: String(input?.created_by || "admin_api").trim() || "admin_api",
+    expires_at: expiresAt,
     real_payment_executed: false,
     external_contact_executed: false
   };
@@ -2518,7 +2556,9 @@ async function createBetaCustomer(input, request, env = {}) {
     customer_id: customerId,
     contact_email: customerRecord.contact_email,
     plan,
+    customer_type: customerType,
     status: "active",
+    expires_at: expiresAt,
     api_key: apiKey,
     api_key_returned_once: true,
     onboarding: {
@@ -2558,6 +2598,80 @@ function sandboxCustomerId(request, input = {}) {
   return `sandbox_${stableHash(seed).toString(16)}_${Date.now().toString(36)}`;
 }
 
+function positiveIntegerFromEnv(value, fallback) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : fallback;
+}
+
+function utcDateKey(date = new Date()) {
+  return date.toISOString().slice(0, 10);
+}
+
+function sandboxFingerprint(request) {
+  const forwardedFor = String(
+    request.headers.get("cf-connecting-ip") ||
+      request.headers.get("x-forwarded-for") ||
+      ""
+  )
+    .split(",")[0]
+    .trim();
+  const userAgent = String(request.headers.get("user-agent") || "unknown").trim();
+  return stableHash(`${forwardedFor}|${userAgent}`).toString(16);
+}
+
+async function consumeSandboxCreationAllowance(request, env = {}) {
+  const namespace = String(env.MACHINESIGNAL_SANDBOX_LIMIT_NAMESPACE || "default")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]+/g, "_")
+    .slice(0, 40) || "default";
+  const today = utcDateKey();
+  const key = `sandbox_daily_limit:${namespace}:${today}`;
+  const globalLimit = positiveIntegerFromEnv(env.MACHINESIGNAL_SANDBOX_DAILY_LIMIT, 25);
+  const fingerprintLimit = positiveIntegerFromEnv(
+    env.MACHINESIGNAL_SANDBOX_DAILY_FINGERPRINT_LIMIT,
+    3
+  );
+  const fingerprint = sandboxFingerprint(request);
+  const tracker = (await loadJsonStore(key, env)) || {
+    date: today,
+    total_created: 0,
+    by_fingerprint: {}
+  };
+  tracker.by_fingerprint ||= {};
+  const fingerprintCount = Number(tracker.by_fingerprint[fingerprint] || 0);
+
+  if (Number(tracker.total_created || 0) >= globalLimit) {
+    const error = new Error("Sandbox daily creation limit reached. Try again tomorrow or request private beta access.");
+    error.statusCode = 429;
+    error.limit_type = "daily_global";
+    throw error;
+  }
+  if (fingerprintCount >= fingerprintLimit) {
+    const error = new Error("Sandbox daily creation limit reached for this evaluator fingerprint.");
+    error.statusCode = 429;
+    error.limit_type = "daily_fingerprint";
+    throw error;
+  }
+
+  tracker.total_created = Number(tracker.total_created || 0) + 1;
+  tracker.by_fingerprint[fingerprint] = fingerprintCount + 1;
+  tracker.updated_at = new Date().toISOString();
+  await saveJsonStore(key, tracker, env, { expirationTtl: 60 * 60 * 48 });
+
+  return {
+    date: today,
+    daily_global_limit: globalLimit,
+    daily_global_remaining: Math.max(0, globalLimit - tracker.total_created),
+    daily_fingerprint_limit: fingerprintLimit,
+    daily_fingerprint_remaining: Math.max(
+      0,
+      fingerprintLimit - tracker.by_fingerprint[fingerprint]
+    ),
+    fingerprint_hash: fingerprint
+  };
+}
+
 async function createSandboxCustomer(input, request, env = {}) {
   const sandboxEnabled = String(env.MACHINESIGNAL_SANDBOX_ENABLED ?? "true")
     .trim()
@@ -2568,12 +2682,18 @@ async function createSandboxCustomer(input, request, env = {}) {
     throw error;
   }
 
+  const allowance = await consumeSandboxCreationAllowance(request, env);
   const customerId = sandboxCustomerId(request, input);
+  const ttlDays = positiveIntegerFromEnv(env.MACHINESIGNAL_SANDBOX_TTL_DAYS, 7);
+  const expiresAt = new Date(Date.now() + ttlDays * 24 * 60 * 60 * 1000).toISOString();
   const response = await createBetaCustomer(
     {
       customer_id: customerId,
       contact_email: "sandbox@machinesignal.it",
       plan: "sandbox_limited",
+      customer_type: "sandbox",
+      created_by: "sandbox_public_endpoint",
+      expires_at: expiresAt,
       score_credits: 5,
       target_discovery_credits: 1,
       deep_analysis_credits: 1,
@@ -2590,6 +2710,7 @@ async function createSandboxCustomer(input, request, env = {}) {
   return {
     ...response,
     sandbox: true,
+    expires_at: expiresAt,
     evaluator_context: {
       evaluator_type: String(input?.evaluator_type || "unknown").trim() || "unknown",
       integration_target: String(input?.integration_target || "unknown").trim() || "unknown",
@@ -2599,7 +2720,15 @@ async function createSandboxCustomer(input, request, env = {}) {
       real_payment_executed: false,
       external_contact_executed: false,
       allowed_use: "low-volume technical evaluation only",
-      upgrade_path: "request a private beta key for larger tests"
+      upgrade_path: "request a private beta key for larger tests",
+      expires_at: expiresAt,
+      daily_creation_limits: {
+        date: allowance.date,
+        global_limit: allowance.daily_global_limit,
+        global_remaining: allowance.daily_global_remaining,
+        fingerprint_limit: allowance.daily_fingerprint_limit,
+        fingerprint_remaining: allowance.daily_fingerprint_remaining
+      }
     },
     sandbox_limits: {
       score_pack_1k: 5,
@@ -2698,10 +2827,12 @@ function buildAdminCustomerPayload(customer, ledger, currentEvent = null) {
     customer_id: customer.customer_id,
     contact_email: customer.contact_email || null,
     plan: customer.plan || null,
+    customer_type: customer.customer_type || null,
     status: customer.status,
     api_key_prefix: customer.api_key_prefix || null,
     created_at: customer.created_at || null,
     updated_at: customer.updated_at || null,
+    expires_at: customer.expires_at || null,
     admin_event: currentEvent,
     onboarding: {
       base_url: "https://machinesignal-api.beta-878.workers.dev",
@@ -2851,7 +2982,13 @@ function buildPublicMachineOnboarding() {
       real_payment_executed: false,
       external_contact_executed: false,
       requires_customer_api_key: true,
-      repeated_idempotency_key_no_extra_charge: true
+      repeated_idempotency_key_no_extra_charge: true,
+      sandbox: {
+        default_expires_after_days: 7,
+        default_daily_global_creation_limit: 25,
+        default_daily_fingerprint_creation_limit: 3,
+        allowed_use: "low-volume technical evaluation only"
+      }
     },
     recommended_agent_policy: {
       can_call_scores: true,
@@ -2888,6 +3025,9 @@ function buildAuthenticatedOnboarding(auth, ledger) {
       }
     ],
     customer_state: {
+      customer_type: auth.customer?.customer_type || null,
+      sandbox: auth.customer?.customer_type === "sandbox",
+      expires_at: auth.customer?.expires_at || null,
       can_score: ledgerBalances(ledger.state).some(
         (item) => item.product_code === "score_pack_1k" && item.credits_remaining > 0
       ),
@@ -3637,7 +3777,12 @@ export async function handleRequest(request, env = {}) {
     } catch (error) {
       return jsonResponse(
         {
-          error: error.statusCode === 403 ? "sandbox_disabled" : "bad_request",
+          error:
+            error.statusCode === 403
+              ? "sandbox_disabled"
+              : error.statusCode === 429
+                ? "sandbox_limit_exceeded"
+                : "bad_request",
           message: error.message || "Invalid sandbox request."
         },
         error.statusCode || 400

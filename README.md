@@ -89,7 +89,7 @@ curl -X POST "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customer
 
 The response returns `api_key` once. Store it immediately and use it as `X-API-Key` for the protected beta endpoints.
 
-Sandbox limits are intentionally small: 5 scores, 1 target discovery, 1 deep analysis, 1 action pack, 1 verification, 1 nurture signal and 1 domain enrichment. The sandbox does not execute real payments or external outreach.
+Sandbox limits are intentionally small: 5 scores, 1 target discovery, 1 deep analysis, 1 action pack, 1 verification, 1 nurture signal and 1 domain enrichment. Sandbox keys expire after 7 days by default, creation is daily-limited to reduce abuse, and the sandbox does not execute real payments or external outreach.
 
 ## Core Flow For Machines
 
