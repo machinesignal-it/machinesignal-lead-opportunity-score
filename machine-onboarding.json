@@ -12,6 +12,8 @@
     "product_catalog": "/product-catalog.json",
     "machine_onboarding": "/machine-onboarding.json",
     "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+    "api_directory_submission": "https://machinesignal.it/distribution/api-directory-submission.json",
+    "well_known_machine_discovery": "https://machinesignal.it/.well-known/machine-discovery.json",
     "sandbox_customers": "/v1/sandbox/customers",
     "authenticated_onboarding": "/v1/onboarding",
     "sandbox_metrics": "/v1/admin/sandbox-metrics"

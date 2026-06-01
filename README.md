@@ -11,6 +11,9 @@ Public discovery starts here:
 - Website: https://machinesignal.it/
 - Machine Discovery Pack: https://machinesignal.it/machine-discovery/
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
+- Technical Distribution Pack: https://machinesignal.it/distribution/
+- API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
+- Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
 - Machine onboarding manifest: https://machinesignal.it/machine-onboarding.json
 - Canonical Worker manifest: https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json
 - Product catalog: https://machinesignal.it/product-catalog.json

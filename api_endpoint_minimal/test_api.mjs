@@ -132,6 +132,8 @@ assert.ok(llmsText.includes("/beta/machine-test-kit.json"));
 assert.ok(llmsText.includes("/v1/sandbox/customers"));
 assert.ok(llmsText.includes("/v1/admin/sandbox-metrics"));
 assert.ok(llmsText.includes("https://machinesignal.it/machine-discovery/machine-discovery-pack.json"));
+assert.ok(llmsText.includes("https://machinesignal.it/distribution/api-directory-submission.json"));
+assert.ok(llmsText.includes("https://machinesignal.it/.well-known/machine-discovery.json"));
 
 const machineOnboardingResponse = await handleRequest(new Request("http://localhost/machine-onboarding.json"));
 assert.equal(machineOnboardingResponse.status, 200);
@@ -144,6 +146,14 @@ assert.equal(machineOnboardingPayload.discovery.sandbox_metrics, "/v1/admin/sand
 assert.equal(
   machineOnboardingPayload.discovery.machine_discovery_pack,
   "https://machinesignal.it/machine-discovery/machine-discovery-pack.json"
+);
+assert.equal(
+  machineOnboardingPayload.discovery.api_directory_submission,
+  "https://machinesignal.it/distribution/api-directory-submission.json"
+);
+assert.equal(
+  machineOnboardingPayload.discovery.well_known_machine_discovery,
+  "https://machinesignal.it/.well-known/machine-discovery.json"
 );
 assert.equal(machineOnboardingPayload.authentication.sandbox_keys_created_by, "POST /v1/sandbox/customers");
 assert.equal(machineOnboardingPayload.recommended_agent_policy.must_not_execute_external_outreach, true);

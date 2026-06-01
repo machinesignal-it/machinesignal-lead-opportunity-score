@@ -1,0 +1,26 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-01",
+  "primary_customer_interface": "machine",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "website": "https://machinesignal.it/",
+  "description": "Machine-readable lead opportunity scoring, target discovery, deep analysis and CRM-ready action packs for CRM systems, AI agents and automated workflows.",
+  "discovery": {
+    "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+    "api_directory_submission": "https://machinesignal.it/distribution/api-directory-submission.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "postman_collection": "https://machinesignal.it/postman_collection.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json"
+  },
+  "sandbox": {
+    "endpoint": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+    "method": "POST",
+    "purpose": "Create a low-credit sandbox key without human sales contact.",
+    "expires_after_days_default": 7,
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  }
+}
+

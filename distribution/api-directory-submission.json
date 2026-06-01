@@ -1,0 +1,76 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-01",
+  "submission_type": "api_directory_listing",
+  "short_description": "Machine-first lead opportunity scoring API for CRM systems, RevOps workflows and AI agents.",
+  "long_description": "MachineSignal helps automated systems decide whether a business domain deserves more analysis, enrichment or CRM action. The API returns a score, confidence, decision and next machine action. A machine can create a limited sandbox key, run valid scores, test Deep Analysis and test Action Pack without a human sales conversation.",
+  "primary_customer_interface": "machine",
+  "human_role": "supervision, approval and audit only",
+  "categories": [
+    "sales_intelligence",
+    "crm_automation",
+    "lead_scoring",
+    "revops",
+    "ai_agent_tools",
+    "workflow_automation"
+  ],
+  "keywords": [
+    "lead opportunity score API",
+    "CRM agent scoring",
+    "AI agent lead routing",
+    "machine-readable sales intelligence",
+    "RevOps workflow API",
+    "lead enrichment decision API",
+    "machine customer API",
+    "OpenAPI lead scoring",
+    "llms.txt API"
+  ],
+  "urls": {
+    "website": "https://machinesignal.it/",
+    "distribution_page": "https://machinesignal.it/distribution/",
+    "machine_discovery_pack": "https://machinesignal.it/machine-discovery/",
+    "machine_discovery_pack_json": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+    "well_known_discovery": "https://machinesignal.it/.well-known/machine-discovery.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "postman_collection": "https://machinesignal.it/postman_collection.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "sandbox_endpoint": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers"
+  },
+  "sandbox_test_path": [
+    "GET /machine-onboarding.json",
+    "GET /product-catalog.json",
+    "POST /v1/sandbox/customers",
+    "GET /v1/onboarding",
+    "POST /v1/lead-opportunity-score",
+    "POST /v1/purchase-intent with product_code deep_analysis when recommended",
+    "POST /v1/purchase-intent with product_code action_pack when useful",
+    "GET /v1/orders"
+  ],
+  "products": [
+    {
+      "product_code": "target_discovery",
+      "summary": "Find coherent targets for a declared commercial objective when the machine has no list."
+    },
+    {
+      "product_code": "score_pack_1k",
+      "summary": "Score business domains and return a decision, confidence and next budget action."
+    },
+    {
+      "product_code": "deep_analysis",
+      "summary": "Return a deeper opportunity decision pack for one scored domain."
+    },
+    {
+      "product_code": "action_pack",
+      "summary": "Return CRM-ready action payload, workflow payload, webhook event, approval gate and stop rules."
+    }
+  ],
+  "safety": {
+    "real_payment_executed_in_beta": false,
+    "external_contact_executed_by_machinesignal": false,
+    "action_pack_sends_email": false,
+    "requires_customer_compliance_gate_before_external_action": true
+  }
+}
+
