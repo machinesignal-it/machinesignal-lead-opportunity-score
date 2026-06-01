@@ -154,6 +154,9 @@ POST /v1/lead-opportunity-score
 POST /v1/purchase-intent
 GET  /v1/orders
 GET  /v1/orders/{order_intent_id}
+POST /v1/beta/customers
+GET/PATCH /v1/beta/customers/{customer_id}
+GET  /v1/admin/sandbox-metrics
 ```
 
 ## Example Score Request
@@ -182,6 +185,17 @@ curl -X POST "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent"
 ```
 
 In beta, purchase-intent consumes beta credits and returns an immediate JSON delivery. It does not execute real payment.
+
+## 7-Day Sandbox Test Metrics
+
+Agents can monitor the public sandbox test without asking the user to rebuild numbers manually:
+
+```bash
+curl "https://machinesignal-api.beta-878.workers.dev/v1/admin/sandbox-metrics" \
+  -H "X-API-Key: $MACHINESIGNAL_ADMIN_API_KEY"
+```
+
+The response aggregates sandbox keys created, active and expired keys, score credits used, Target Discovery, Deep Analysis and Action Pack orders, conversion rates, progress against the 7-day test targets and safety flags. The test targets are 10 sandbox keys, 300 valid scores, 15 Deep Analysis orders and 3 Action Pack orders, with no real payment and no external contact executed.
 
 ## Products Under Validation
 

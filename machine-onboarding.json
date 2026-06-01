@@ -11,11 +11,14 @@
     "postman": "/postman_collection.json",
     "product_catalog": "/product-catalog.json",
     "machine_onboarding": "/machine-onboarding.json",
-    "authenticated_onboarding": "/v1/onboarding"
+    "sandbox_customers": "/v1/sandbox/customers",
+    "authenticated_onboarding": "/v1/onboarding",
+    "sandbox_metrics": "/v1/admin/sandbox-metrics"
   },
   "authentication": {
     "type": "apiKey",
     "header": "X-API-Key",
+    "sandbox_keys_created_by": "POST /v1/sandbox/customers",
     "customer_keys_created_by": "POST /v1/beta/customers",
     "idempotency_header": "Idempotency-Key"
   },
@@ -34,24 +37,30 @@
     },
     {
       "step": 3,
+      "call": "POST /v1/sandbox/customers",
+      "auth_required": false,
+      "machine_goal": "Create a low-credit sandbox key when no beta key is available."
+    },
+    {
+      "step": 4,
       "call": "GET /v1/onboarding",
       "auth_required": true,
       "machine_goal": "Read customer-specific credits and next available calls."
     },
     {
-      "step": 4,
+      "step": 5,
       "call": "POST /v1/lead-opportunity-score",
       "auth_required": true,
       "machine_goal": "Score a domain and receive a decision."
     },
     {
-      "step": 5,
+      "step": 6,
       "call": "POST /v1/purchase-intent",
       "auth_required": true,
       "machine_goal": "Create a beta order when next_purchase recommends a product."
     },
     {
-      "step": 6,
+      "step": 7,
       "call": "GET /v1/orders",
       "auth_required": true,
       "machine_goal": "Retrieve orders and deliveries."
@@ -64,9 +73,11 @@
       "unit": "250 coherent targets",
       "current_beta_endpoint": "POST /v1/purchase-intent",
       "product_code": "target_discovery",
-      "when_to_buy": "When the customer machine does not already have a list of companies or domains to score.",
+      "when_to_buy": "When the customer machine does not already have a list and wants targets for a specific commercial objective, sector and area.",
       "includes": [
         "pre-check of market availability",
+        "commercial objective normalization",
+        "opportunity hypothesis for why the target is commercially relevant",
         "250 normalized and deduplicated targets when the market is available",
         "domain when available",
         "category",
@@ -76,7 +87,7 @@
         "JSON or CSV export"
       ],
       "validity_rule": "The pack is activated only when the pre-check indicates that 250 coherent targets can be produced. If not, the machine receives alternatives: Mini Discovery, wider area, broader criteria or changed commercial objective.",
-      "machine_output": "A target list that can be sent to scoring or CRM enrichment workflows."
+      "machine_output": "A target list built for a declared commercial objective, ready for scoring or CRM enrichment workflows."
     },
     "score_pack_1k": {
       "name": "Score Pack 1k",
@@ -145,16 +156,42 @@
       "product_code": "action_pack",
       "when_to_buy": "When Deep Analysis confirms that a lead deserves a prepared commercial action.",
       "includes": [
-        "initial message angle",
-        "commercial positioning",
-        "CRM tags",
+        "what_is_included contract",
+        "CRM-ready record patch",
+        "CRM task payload",
+        "CRM platform field mappings",
+        "workflow payload",
+        "agent instructions",
+        "webhook event schema",
+        "webhook delivery policy",
+        "audit event",
+        "approval gate",
+        "deduplication key",
+        "message angle with forbidden claims",
+        "stop rules",
+        "compliance guardrail"
+      ],
+      "output_fields": [
+        "what_is_included",
         "priority",
-        "next action",
-        "suggested timing",
-        "instructions readable by CRM systems or AI agents"
+        "crm_record_patch",
+        "crm_task",
+        "crm_platform_mappings",
+        "workflow_payload",
+        "agent_instructions",
+        "webhook_event",
+        "webhook_delivery_policy",
+        "audit_event",
+        "approval_gate",
+        "deduplication_key",
+        "next_api_calls",
+        "message_angle",
+        "stop_rules",
+        "follow_up_sequence",
+        "compliance_guardrail"
       ],
       "validity_rule": "If the lead does not have enough signal for a sensible commercial action, the pack is not consumed and the system returns the exclusion reason.",
-      "machine_output": "A structured action payload for CRM, workflow automation or supervised agent execution."
+      "machine_output": "A CRM-ready JSON action payload for workflow automation, webhook forwarding or supervised agent execution."
     },
     "opportunity_feed_monthly": {
       "name": "Opportunity Feed",
@@ -234,11 +271,81 @@
       "machine_output": "A custom machine-readable scope and delivery agreement."
     }
   },
+  "machine_buying_scenarios": {
+    "customer_has_list": {
+      "machine_goal": "Prioritize an existing list of domains or companies before spending campaign, CRM or agent budget.",
+      "first_call": "POST /v1/lead-opportunity-score",
+      "first_product": "score_pack_1k",
+      "next_products": [
+        "deep_analysis",
+        "verification",
+        "nurture_signal",
+        "action_pack"
+      ]
+    },
+    "customer_has_no_list": {
+      "machine_goal": "Find companies or domains useful for a specific commercial objective, sector and area.",
+      "first_call": "POST /v1/purchase-intent",
+      "first_product": "target_discovery",
+      "required_inputs": [
+        "market",
+        "area",
+        "commercial_objective"
+      ],
+      "example_commercial_objective": "find real estate agency websites worth scoring for digital presence improvement opportunities",
+      "next_products": [
+        "score_pack_1k",
+        "domain_enrichment",
+        "deep_analysis"
+      ]
+    },
+    "customer_wants_next_action": {
+      "machine_goal": "Turn a confirmed opportunity into a CRM- or agent-readable action payload.",
+      "first_call": "POST /v1/purchase-intent",
+      "first_product": "action_pack",
+      "required_inputs": [
+        "domain",
+        "source_score_request_id",
+        "reason"
+      ],
+      "next_products": [
+        "opportunity_feed",
+        "api_pro"
+      ]
+    }
+  },
+  "entry_points": {
+    "has_existing_list": {
+      "start_with": "POST /v1/lead-opportunity-score",
+      "reason": "The machine already has domains or company records and needs prioritization."
+    },
+    "has_no_list": {
+      "start_with": "POST /v1/purchase-intent",
+      "product_code": "target_discovery",
+      "required_inputs": [
+        "market",
+        "area",
+        "commercial_objective"
+      ],
+      "reason": "The machine needs MachineSignal to produce targets for a declared commercial objective."
+    },
+    "wants_action_payload": {
+      "start_with": "POST /v1/purchase-intent",
+      "product_code": "action_pack",
+      "reason": "The machine already has a qualified opportunity and needs a CRM/agent-readable action."
+    }
+  },
   "beta_limits": {
     "real_payment_executed": false,
     "external_contact_executed": false,
     "requires_customer_api_key": true,
-    "repeated_idempotency_key_no_extra_charge": true
+    "repeated_idempotency_key_no_extra_charge": true,
+    "sandbox": {
+      "default_expires_after_days": 7,
+      "default_daily_global_creation_limit": 25,
+      "default_daily_fingerprint_creation_limit": 3,
+      "allowed_use": "low-volume technical evaluation only"
+    }
   },
   "recommended_agent_policy": {
     "can_call_scores": true,

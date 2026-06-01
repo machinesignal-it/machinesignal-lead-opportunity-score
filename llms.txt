@@ -11,6 +11,7 @@ Useful endpoints:
 - GET /llms.txt
 - GET /machine-onboarding.json
 - GET /product-catalog.json
+- POST /v1/sandbox/customers
 - GET /v1/onboarding
 - GET /v1/usage
 - POST /v1/lead-opportunity-score
@@ -18,24 +19,52 @@ Useful endpoints:
 - GET /v1/orders
 - GET /v1/orders/{order_intent_id}
 - POST /v1/beta/customers
+- GET /v1/beta/customers/{customer_id}
+- PATCH /v1/beta/customers/{customer_id}
+- GET /v1/admin/sandbox-metrics
 
 Authentication:
 - protected endpoints require header X-API-Key: <beta key>;
 - public endpoints are /, /health, /openapi.json, /postman_collection.json, /product-catalog.json and /llms.txt.
 - POST /v1/beta/customers requires the admin beta key and returns a dedicated customer key.
+- GET/PATCH /v1/beta/customers/{customer_id} require the admin beta key and never return the full customer API key.
+- GET /v1/admin/sandbox-metrics requires the admin beta key and returns only aggregated sandbox test metrics.
 
 How a machine should call the score endpoint:
 1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
 2. Fetch /product-catalog.json to read products, exact beta prices, deliverables and credit rules.
-3. Read the required X-API-Key and Idempotency-Key headers.
-4. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
-5. Read decision, machine_next_step and next_purchase.
-6. Read /v1/usage to verify consumed and remaining credits.
-7. If next_purchase.next_product is not null, POST /v1/purchase-intent to create a beta order intent.
-8. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
+3. If no beta key is available, POST /v1/sandbox/customers to create a limited sandbox key for safe testing.
+4. Read the required X-API-Key and Idempotency-Key headers.
+5. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
+6. Read decision, machine_next_step and next_purchase.
+7. Read /v1/usage to verify consumed and remaining credits.
+8. If next_purchase.next_product is not null, POST /v1/purchase-intent to create a beta order intent.
+9. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
+
+Three machine buying flows:
+1. Customer machine has a list: call POST /v1/lead-opportunity-score for each domain, then route each result by decision.
+2. Customer machine has no list: call POST /v1/purchase-intent with product_code target_discovery, market, area and commercial_objective. The objective must say what kind of opportunity the machine wants to find, for example "find real estate agency websites worth scoring for digital presence improvement opportunities".
+3. Customer machine wants an action: after a strong score and Deep Analysis, call POST /v1/purchase-intent with product_code action_pack to receive CRM-ready JSON: crm_record_patch, workflow_payload, webhook_event, agent_instructions, message angle, stop rules and follow-up sequence.
+
+Public demos for software, agents and partners:
+- Full machine buyer flow: https://machinesignal.it/demo/machine-buyer-flow/
+- Full flow JSON: https://machinesignal.it/demo/machine-buyer-flow/flow.json
+- Score results JSON: https://machinesignal.it/demo/machine-buyer-flow/score_results.json
+- Order events JSON: https://machinesignal.it/demo/machine-buyer-flow/order_events.json
+- CRM consumer demo: https://machinesignal.it/demo/crm-consumer/
+- CRM records JSON: https://machinesignal.it/demo/crm-consumer/crm_records.json
+- Webhook events JSON: https://machinesignal.it/demo/crm-consumer/webhook_events.json
+
+Beta tester onboarding resources:
+- Beta tester onboarding packet: https://machinesignal.it/beta/onboarding-packet.html
+- Onboarding packet JSON: https://machinesignal.it/beta/onboarding-packet.json
+- Feedback schema JSON: https://machinesignal.it/beta/feedback-schema.json
+- Machine beta test kit: https://machinesignal.it/beta/machine-test-kit.html
+- Machine beta test kit JSON: https://machinesignal.it/beta/machine-test-kit.json
 
 Commercial model under test:
 - Target Discovery Pack: EUR 149 for 250 coherent targets after market availability pre-check;
+- Domain Enrichment Pack 100: EUR 149 for 100 enrichment decisions when a machine has names but not reliable domains;
 - Score Pack 1k: EUR 99 for 1000 valid scores;
 - Deep Analysis Pack 100: EUR 299 for 100 valid deep analyses;
 - Action Pack 25: EUR 399 for 25 valid action packs;
@@ -55,8 +84,13 @@ How a machine should create a beta order intent:
 - body example: {"product_code":"domain_enrichment","target_name":"Studio Dentistico Demo","batch_id":"dentists-lombardy-demo"};
 - supported product_code values: target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack, opportunity_feed;
 - the beta order intent consumes one corresponding pack credit;
-- the response includes delivery, an immediate machine-readable beta output;
+- the response includes delivery, an immediate machine-readable beta output with what_is_included, output_contract, next_machine_call and stop_rules when relevant;
 - no real payment is executed in beta.
+
+Action Pack delivery contract:
+- action_pack returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail;
+- webhook_event.event_type is machinesignal.action_pack.ready;
+- the customer machine should create/update CRM records first, run a compliance gate, and only then prepare any external action.
 
 How a machine should retrieve previous orders:
 - GET /v1/orders with X-API-Key;
@@ -65,10 +99,26 @@ How a machine should retrieve previous orders:
 - order history is beta ledger data, not invoice data.
 
 How beta onboarding works:
+- an evaluator machine can create a limited sandbox key with POST /v1/sandbox/customers;
 - an admin creates a beta customer with POST /v1/beta/customers;
 - the response returns a dedicated API key once;
 - the customer machine then uses that key for score, purchase intent, usage and order history;
-- initial credits are assigned in the customer's ledger.
+- initial credits are assigned in the customer's ledger;
+- an admin can top up credits, reset usage, suspend or reactivate a customer with PATCH /v1/beta/customers/{customer_id}.
+
+Sandbox limits:
+- POST /v1/sandbox/customers is for low-risk evaluation only;
+- sandbox keys receive 5 score credits, 1 target discovery credit, 1 deep analysis credit, 1 action pack credit, 1 verification credit, 1 nurture signal credit and 1 domain enrichment credit;
+- sandbox keys expire after 7 days by default;
+- sandbox creation is limited daily to reduce abuse;
+- sandbox keys do not execute real payment and do not contact external targets;
+- for larger tests, request a private beta key.
+
+7-day sandbox test metrics:
+- admins and agents monitor GET /v1/admin/sandbox-metrics daily;
+- tracked targets are 10 sandbox keys, 300 scores, 15 Deep Analysis orders and 3 Action Pack orders;
+- the endpoint also verifies safety flags: real_payment_executed=false and external_contact_executed=false;
+- use this endpoint to decide whether distribution, onboarding or product packaging needs improvement.
 
 Machine-first rule:
 - MachineSignal does not require human email persuasion as the primary channel;

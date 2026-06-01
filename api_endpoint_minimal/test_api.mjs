@@ -61,6 +61,7 @@ assert.equal(rootPayload.docs.usage, "/v1/usage");
 assert.equal(rootPayload.docs.machine_onboarding, "/machine-onboarding.json");
 assert.equal(rootPayload.docs.product_catalog, "/product-catalog.json");
 assert.equal(rootPayload.docs.authenticated_onboarding, "/v1/onboarding");
+assert.equal(rootPayload.docs.sandbox_metrics, "/v1/admin/sandbox-metrics");
 
 const openApiResponse = await handleRequest(new Request("http://localhost/openapi.json"));
 assert.equal(openApiResponse.status, 200);
@@ -68,6 +69,7 @@ const openApiPayload = await openApiResponse.json();
 assert.ok(openApiPayload.paths["/v1/usage"]);
 assert.ok(openApiPayload.paths["/v1/purchase-intent"]);
 assert.ok(openApiPayload.paths["/v1/sandbox/customers"]);
+assert.ok(openApiPayload.paths["/v1/admin/sandbox-metrics"]);
 assert.ok(openApiPayload.paths["/machine-onboarding.json"]);
 assert.ok(openApiPayload.paths["/product-catalog.json"]);
 assert.ok(openApiPayload.paths["/v1/onboarding"]);
@@ -96,6 +98,7 @@ assert.ok(postmanItemNames.includes("Order deep analysis after a strong score"))
 assert.ok(postmanItemNames.includes("Order action pack after confirmed opportunity"));
 assert.ok(postmanItemNames.includes("Fetch machine onboarding manifest"));
 assert.ok(postmanItemNames.includes("Read authenticated onboarding"));
+assert.ok(postmanItemNames.includes("Admin read sandbox metrics"));
 
 const productCatalogResponse = await handleRequest(new Request("http://localhost/product-catalog.json"));
 assert.equal(productCatalogResponse.status, 200);
@@ -127,6 +130,7 @@ assert.ok(llmsText.includes("/beta/onboarding-packet.json"));
 assert.ok(llmsText.includes("/beta/feedback-schema.json"));
 assert.ok(llmsText.includes("/beta/machine-test-kit.json"));
 assert.ok(llmsText.includes("/v1/sandbox/customers"));
+assert.ok(llmsText.includes("/v1/admin/sandbox-metrics"));
 
 const machineOnboardingResponse = await handleRequest(new Request("http://localhost/machine-onboarding.json"));
 assert.equal(machineOnboardingResponse.status, 200);
@@ -135,6 +139,7 @@ assert.equal(machineOnboardingPayload.primary_customer_interface, "machine");
 assert.equal(machineOnboardingPayload.discovery.product_catalog, "/product-catalog.json");
 assert.equal(machineOnboardingPayload.discovery.sandbox_customers, "/v1/sandbox/customers");
 assert.equal(machineOnboardingPayload.discovery.authenticated_onboarding, "/v1/onboarding");
+assert.equal(machineOnboardingPayload.discovery.sandbox_metrics, "/v1/admin/sandbox-metrics");
 assert.equal(machineOnboardingPayload.authentication.sandbox_keys_created_by, "POST /v1/sandbox/customers");
 assert.equal(machineOnboardingPayload.recommended_agent_policy.must_not_execute_external_outreach, true);
 assert.equal(machineOnboardingPayload.entry_points.has_no_list.product_code, "target_discovery");
@@ -195,6 +200,93 @@ const sandboxOnboardingPayload = await sandboxOnboardingResponse.json();
 assert.equal(sandboxOnboardingPayload.customer_state.sandbox, true);
 assert.equal(sandboxOnboardingPayload.customer_state.customer_type, "sandbox");
 assert.equal(sandboxOnboardingPayload.customer_state.expires_at, sandboxCustomerPayload.expires_at);
+
+const sandboxScoreResponse = await handleRequest(
+  new Request("http://localhost/v1/lead-opportunity-score", {
+    method: "POST",
+    body: JSON.stringify({
+      domain: "sandbox-clinic-demo.it",
+      sector_hint: "dentist",
+      country_hint: "IT"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": sandboxCustomerPayload.api_key,
+      "idempotency-key": "sandbox-score-metrics-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(sandboxScoreResponse.status, 200);
+assert.equal((await sandboxScoreResponse.json()).usage.current_event.credits_consumed, 1);
+
+const sandboxDeepAnalysisResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "deep_analysis",
+      domain: "sandbox-clinic-demo.it",
+      source_score_request_id: "sandbox-score-metrics-001",
+      reason: "Sandbox machine test continues to Deep Analysis"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": sandboxCustomerPayload.api_key,
+      "idempotency-key": "sandbox-deep-analysis-metrics-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(sandboxDeepAnalysisResponse.status, 200);
+const sandboxDeepAnalysisPayload = await sandboxDeepAnalysisResponse.json();
+assert.equal(sandboxDeepAnalysisPayload.product_code, "deep_analysis");
+
+const sandboxActionPackResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "action_pack",
+      domain: "sandbox-clinic-demo.it",
+      source_score_request_id: "sandbox-score-metrics-001",
+      source_order_intent_id: sandboxDeepAnalysisPayload.order_intent_id,
+      reason: "Sandbox machine test continues to Action Pack"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": sandboxCustomerPayload.api_key,
+      "idempotency-key": "sandbox-action-pack-metrics-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(sandboxActionPackResponse.status, 200);
+assert.equal((await sandboxActionPackResponse.json()).product_code, "action_pack");
+
+const unauthorizedSandboxMetricsResponse = await handleRequest(
+  new Request("http://localhost/v1/admin/sandbox-metrics", {
+    method: "GET"
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(unauthorizedSandboxMetricsResponse.status, 401);
+
+const sandboxMetricsResponse = await handleRequest(
+  new Request("http://localhost/v1/admin/sandbox-metrics", {
+    method: "GET",
+    headers: { "x-api-key": "test-key" }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(sandboxMetricsResponse.status, 200);
+const sandboxMetricsPayload = await sandboxMetricsResponse.json();
+assert.ok(sandboxMetricsPayload.sandbox_customers.total >= 1);
+assert.ok(sandboxMetricsPayload.usage.score_credits_used >= 1);
+assert.ok(sandboxMetricsPayload.orders.deep_analysis >= 1);
+assert.ok(sandboxMetricsPayload.orders.action_pack >= 1);
+assert.equal(sandboxMetricsPayload.safety.real_payment_executed, false);
+assert.equal(sandboxMetricsPayload.safety.external_contact_executed, false);
+assert.equal(sandboxMetricsPayload.targets.sandbox_keys, 10);
+assert.equal(sandboxMetricsPayload.progress.safety_ok, true);
 
 const sandboxDisabledResponse = await handleRequest(
   new Request("http://localhost/v1/sandbox/customers", {

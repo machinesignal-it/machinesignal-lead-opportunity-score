@@ -524,6 +524,26 @@ export const openApi = {
         }
       }
     },
+    "/v1/admin/sandbox-metrics": {
+      get: {
+        operationId: "getSandboxMetrics",
+        summary: "Return 7-day sandbox test metrics",
+        description:
+          "Admin-only endpoint. Aggregates sandbox customer creation, score usage, Deep Analysis orders, Action Pack orders and safety flags so agents can monitor the 7-day test without manual spreadsheet work.",
+        security: [{ ApiKeyAuth: [] }],
+        responses: {
+          200: {
+            description: "Sandbox test metrics.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/SandboxMetricsResponse" }
+              }
+            }
+          },
+          401: { description: "Missing or invalid admin X-API-Key." }
+        }
+      }
+    },
     "/v1/purchase-intent": {
       post: {
         operationId: "createPurchaseIntent",
@@ -1139,6 +1159,21 @@ export const openApi = {
           next_recommended_calls: { type: "array", items: { type: "object" } }
         }
       },
+      SandboxMetricsResponse: {
+        type: "object",
+        properties: {
+          generated_at: { type: "string", format: "date-time" },
+          test_window_days: { type: "integer", example: 7 },
+          sandbox_customers: { type: "object" },
+          usage: { type: "object" },
+          orders: { type: "object" },
+          conversion: { type: "object" },
+          safety: { type: "object" },
+          targets: { type: "object" },
+          progress: { type: "object" },
+          interpretation: { type: "string", example: "insufficient_data" }
+        }
+      },
       UsageLedger: {
         type: "object",
         properties: {
@@ -1189,12 +1224,14 @@ Useful endpoints:
 - POST /v1/beta/customers
 - GET /v1/beta/customers/{customer_id}
 - PATCH /v1/beta/customers/{customer_id}
+- GET /v1/admin/sandbox-metrics
 
 Authentication:
 - protected endpoints require header X-API-Key: <beta key>;
 - public endpoints are /, /health, /openapi.json, /postman_collection.json, /product-catalog.json and /llms.txt.
 - POST /v1/beta/customers requires the admin beta key and returns a dedicated customer key.
 - GET/PATCH /v1/beta/customers/{customer_id} require the admin beta key and never return the full customer API key.
+- GET /v1/admin/sandbox-metrics requires the admin beta key and returns only aggregated sandbox test metrics.
 
 How a machine should call the score endpoint:
 1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
@@ -1279,6 +1316,12 @@ Sandbox limits:
 - sandbox creation is limited daily to reduce abuse;
 - sandbox keys do not execute real payment and do not contact external targets;
 - for larger tests, request a private beta key.
+
+7-day sandbox test metrics:
+- admins and agents monitor GET /v1/admin/sandbox-metrics daily;
+- tracked targets are 10 sandbox keys, 300 scores, 15 Deep Analysis orders and 3 Action Pack orders;
+- the endpoint also verifies safety flags: real_payment_executed=false and external_contact_executed=false;
+- use this endpoint to decide whether distribution, onboarding or product packaging needs improvement.
 
 Machine-first rule:
 - MachineSignal does not require human email persuasion as the primary channel;
@@ -1644,6 +1687,22 @@ const postmanCollection = {
         },
         description:
           "Filters order history to verification beta orders only."
+      },
+      response: []
+    },
+    {
+      name: "Admin read sandbox metrics",
+      request: {
+        method: "GET",
+        header: [{ key: "X-API-Key", value: "{{machinesignal_admin_api_key}}" }],
+        url: {
+          raw: "{{base_url}}/v1/admin/sandbox-metrics",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "admin", "sandbox-metrics"]
+        },
+        description:
+          "Admin-only endpoint for the 7-day sandbox test. Aggregates sandbox keys, score usage, Deep Analysis orders, Action Pack orders, conversion rates and safety flags."
       },
       response: []
     },
@@ -2852,6 +2911,223 @@ function buildAdminCustomerPayload(customer, ledger, currentEvent = null) {
   };
 }
 
+async function listStoredKeys(prefix, env = {}) {
+  const keys = new Set();
+  const kv = env[LEDGER_KV_BINDING];
+  if (kv?.list) {
+    let cursor;
+    do {
+      const page = await kv.list({ prefix, cursor });
+      for (const item of page.keys || []) {
+        if (item?.name) keys.add(item.name);
+      }
+      cursor = page.list_complete ? null : page.cursor;
+    } while (cursor);
+  }
+
+  for (const store of [
+    globalThis.__machinesignalCustomers,
+    globalThis.__machinesignalLedgers,
+    globalThis.__machinesignalJsonStore
+  ]) {
+    for (const key of Object.keys(store || {})) {
+      if (key.startsWith(prefix)) keys.add(key);
+    }
+  }
+
+  return [...keys].sort();
+}
+
+function balanceCreditsUsed(ledgerState, productCode) {
+  return Number(ledgerState?.balances?.[productCode]?.credits_used || 0);
+}
+
+function hasTrueFlag(value, flagName) {
+  if (!value || typeof value !== "object") return false;
+  if (value[flagName] === true) return true;
+  if (Array.isArray(value)) return value.some((item) => hasTrueFlag(item, flagName));
+  return Object.values(value).some((item) => hasTrueFlag(item, flagName));
+}
+
+function percentOfTarget(actual, target) {
+  if (!target) return 0;
+  return Number(Math.min(100, (Number(actual || 0) / target) * 100).toFixed(1));
+}
+
+async function buildSandboxMetrics(env = {}) {
+  const now = new Date();
+  const today = utcDateKey(now);
+  const customerKeys = await listStoredKeys("customer:sandbox_", env);
+  const targets = {
+    sandbox_keys: 10,
+    scores: 300,
+    deep_analysis: 15,
+    action_pack: 3,
+    blocking_errors: 0,
+    real_payment_executed: 0,
+    external_contact_executed: 0
+  };
+  const metrics = {
+    generated_at: now.toISOString(),
+    test_window_days: 7,
+    sandbox_customers: {
+      total: 0,
+      active: 0,
+      expired: 0,
+      created_today: 0,
+      expiring_next_24h: 0,
+      recent: []
+    },
+    usage: {
+      score_credits_used: 0,
+      target_discovery_credits_used: 0,
+      deep_analysis_credits_used: 0,
+      action_pack_credits_used: 0,
+      verification_credits_used: 0,
+      nurture_signal_credits_used: 0,
+      domain_enrichment_credits_used: 0
+    },
+    orders: {
+      total: 0,
+      target_discovery: 0,
+      deep_analysis: 0,
+      action_pack: 0,
+      verification: 0,
+      nurture_signal: 0,
+      domain_enrichment: 0,
+      opportunity_feed: 0
+    },
+    conversion: {
+      score_to_deep_analysis_rate: 0,
+      deep_analysis_to_action_pack_rate: 0
+    },
+    safety: {
+      real_payment_executed: false,
+      external_contact_executed: false,
+      blocking_errors: 0
+    },
+    targets,
+    progress: {},
+    interpretation: "insufficient_data"
+  };
+
+  for (const key of customerKeys) {
+    const customerId = key.replace(/^customer:/, "");
+    const customer = await loadCustomerById(customerId, env);
+    if (!customer || customer.customer_type !== "sandbox") continue;
+
+    metrics.sandbox_customers.total += 1;
+    const expired = isExpiredIso(customer.expires_at);
+    const active = customer.status === "active" && !expired;
+    if (active) metrics.sandbox_customers.active += 1;
+    if (expired) metrics.sandbox_customers.expired += 1;
+    if (String(customer.created_at || "").slice(0, 10) === today) {
+      metrics.sandbox_customers.created_today += 1;
+    }
+    const expiresAtMs = Date.parse(customer.expires_at || "");
+    if (
+      Number.isFinite(expiresAtMs) &&
+      expiresAtMs > now.getTime() &&
+      expiresAtMs <= now.getTime() + 24 * 60 * 60 * 1000
+    ) {
+      metrics.sandbox_customers.expiring_next_24h += 1;
+    }
+
+    const ledger = await loadLedgerByCustomerId(customer.customer_id, env);
+    const state = ledger.state;
+    metrics.usage.score_credits_used += balanceCreditsUsed(state, "score_pack_1k");
+    metrics.usage.target_discovery_credits_used += balanceCreditsUsed(
+      state,
+      "target_discovery_pack_250"
+    );
+    metrics.usage.deep_analysis_credits_used += balanceCreditsUsed(state, "deep_analysis_pack_100");
+    metrics.usage.action_pack_credits_used += balanceCreditsUsed(state, "action_pack_25");
+    metrics.usage.verification_credits_used += balanceCreditsUsed(state, "verification_pack_100");
+    metrics.usage.nurture_signal_credits_used += balanceCreditsUsed(state, "nurture_signal_pack_100");
+    metrics.usage.domain_enrichment_credits_used += balanceCreditsUsed(
+      state,
+      "domain_enrichment_pack_100"
+    );
+
+    for (const order of state.orders || []) {
+      metrics.orders.total += 1;
+      const productCode = order.product_code;
+      if (Object.hasOwn(metrics.orders, productCode)) {
+        metrics.orders[productCode] += 1;
+      }
+    }
+
+    if (
+      customer.real_payment_executed === true ||
+      state.real_payment_executed === true ||
+      hasTrueFlag(state.orders, "real_payment_executed")
+    ) {
+      metrics.safety.real_payment_executed = true;
+    }
+    if (
+      customer.external_contact_executed === true ||
+      state.external_contact_executed === true ||
+      hasTrueFlag(state.orders, "external_contact_executed")
+    ) {
+      metrics.safety.external_contact_executed = true;
+    }
+
+    metrics.sandbox_customers.recent.push({
+      customer_id: customer.customer_id,
+      status: customer.status,
+      created_at: customer.created_at || null,
+      expires_at: customer.expires_at || null,
+      active,
+      score_credits_used: balanceCreditsUsed(state, "score_pack_1k"),
+      deep_analysis_orders: (state.orders || []).filter(
+        (order) => order.product_code === "deep_analysis"
+      ).length,
+      action_pack_orders: (state.orders || []).filter(
+        (order) => order.product_code === "action_pack"
+      ).length
+    });
+  }
+
+  metrics.sandbox_customers.recent = metrics.sandbox_customers.recent
+    .sort((a, b) => String(b.created_at || "").localeCompare(String(a.created_at || "")))
+    .slice(0, 10);
+
+  metrics.conversion.score_to_deep_analysis_rate =
+    metrics.usage.score_credits_used > 0
+      ? Number((metrics.orders.deep_analysis / metrics.usage.score_credits_used).toFixed(4))
+      : 0;
+  metrics.conversion.deep_analysis_to_action_pack_rate =
+    metrics.orders.deep_analysis > 0
+      ? Number((metrics.orders.action_pack / metrics.orders.deep_analysis).toFixed(4))
+      : 0;
+
+  metrics.progress = {
+    sandbox_keys_pct: percentOfTarget(metrics.sandbox_customers.total, targets.sandbox_keys),
+    scores_pct: percentOfTarget(metrics.usage.score_credits_used, targets.scores),
+    deep_analysis_pct: percentOfTarget(metrics.orders.deep_analysis, targets.deep_analysis),
+    action_pack_pct: percentOfTarget(metrics.orders.action_pack, targets.action_pack),
+    safety_ok:
+      metrics.safety.blocking_errors === 0 &&
+      metrics.safety.real_payment_executed === false &&
+      metrics.safety.external_contact_executed === false
+  };
+
+  if (!metrics.progress.safety_ok) {
+    metrics.interpretation = "blocked_by_safety_issue";
+  } else if (
+    metrics.sandbox_customers.total >= targets.sandbox_keys &&
+    metrics.usage.score_credits_used >= targets.scores &&
+    metrics.orders.deep_analysis >= targets.deep_analysis &&
+    metrics.orders.action_pack >= targets.action_pack
+  ) {
+    metrics.interpretation = "test_targets_met";
+  } else if (metrics.sandbox_customers.total > 0 || metrics.usage.score_credits_used > 0) {
+    metrics.interpretation = "in_progress";
+  }
+
+  return metrics;
+}
+
 async function getBetaCustomerAdmin(customerId, env = {}) {
   const customer = await loadCustomerById(customerId, env);
   if (!customer) {
@@ -2904,7 +3180,8 @@ function buildPublicMachineOnboarding() {
       product_catalog: "/product-catalog.json",
       machine_onboarding: "/machine-onboarding.json",
       sandbox_customers: "/v1/sandbox/customers",
-      authenticated_onboarding: "/v1/onboarding"
+      authenticated_onboarding: "/v1/onboarding",
+      sandbox_metrics: "/v1/admin/sandbox-metrics"
     },
     authentication: {
       type: "apiKey",
@@ -3745,7 +4022,8 @@ export async function handleRequest(request, env = {}) {
         score: "/v1/lead-opportunity-score",
         purchase_intent: "/v1/purchase-intent",
         orders: "/v1/orders",
-        beta_customers: "/v1/beta/customers"
+        beta_customers: "/v1/beta/customers",
+        sandbox_metrics: "/v1/admin/sandbox-metrics"
       }
     });
   }
@@ -3949,6 +4227,16 @@ export async function handleRequest(request, env = {}) {
     });
   }
 
+  if (request.method === "GET" && url.pathname === "/v1/admin/sandbox-metrics") {
+    if (!isAdminAuthorized(request, env)) {
+      return jsonResponse(
+        { error: "unauthorized", message: "Missing or invalid admin X-API-Key." },
+        401
+      );
+    }
+    return jsonResponse(await buildSandboxMetrics(env));
+  }
+
   if (request.method === "POST" && url.pathname === "/v1/beta/customers") {
     if (!isAdminAuthorized(request, env)) {
       return jsonResponse(
@@ -3995,7 +4283,7 @@ export async function handleRequest(request, env = {}) {
   return jsonResponse(
     {
       error: "not_found",
-      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
+      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, GET /v1/admin/sandbox-metrics, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
     },
     404
   );

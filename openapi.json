@@ -3,7 +3,7 @@
   "info": {
     "title": "MachineSignal Lead Opportunity Score API",
     "version": "0.1.0-beta",
-    "description": "Callable beta endpoint for machine-readable lead opportunity scoring, credit-ledger tracking and budget routing.",
+    "description": "Callable beta endpoint for machine-readable lead opportunity scoring, no-list target discovery, credit-ledger tracking and budget routing.",
     "contact": {
       "name": "Team MachineSignal",
       "email": "beta@machinesignal.it",
@@ -32,7 +32,7 @@
       "get": {
         "operationId": "getProductCatalog",
         "summary": "Return public machine-readable product catalog",
-        "description": "Public catalog for automated systems. Lists product codes, exact beta prices, included deliverables, validity rules and credit consumption rules."
+        "description": "Public catalog for automated systems. Lists machine buying scenarios, product codes, exact beta prices, included deliverables, validity rules and credit consumption rules."
       }
     },
     "/v1/onboarding": {
@@ -58,6 +58,80 @@
           },
           "401": {
             "description": "Missing or invalid X-API-Key."
+          }
+        }
+      }
+    },
+    "/v1/sandbox/customers": {
+      "post": {
+        "operationId": "createSandboxCustomer",
+        "summary": "Create a limited sandbox customer API key",
+        "description": "Public limited sandbox endpoint for machine evaluators. Creates a sandbox API key with very small credit limits so an external machine can test the beta flow without manual sales contact. Sandbox keys expire, are rate-limited and do not execute real payment or external outreach.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "sandbox-evaluator-20260601-001"
+            },
+            "description": "Optional stable key supplied by the evaluator. Used only to make the generated sandbox customer traceable."
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "evaluator_type": {
+                    "type": "string",
+                    "example": "ai_agent"
+                  },
+                  "integration_target": {
+                    "type": "string",
+                    "example": "custom CRM workflow"
+                  },
+                  "expected_test_path": {
+                    "type": "string",
+                    "example": "full_flow"
+                  }
+                }
+              },
+              "examples": {
+                "aiAgentSandbox": {
+                  "summary": "Create a limited sandbox key for an AI evaluator",
+                  "value": {
+                    "evaluator_type": "ai_agent",
+                    "integration_target": "custom CRM workflow",
+                    "expected_test_path": "full_flow"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sandbox customer created. Store api_key immediately; it is returned only in this response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaCustomerCreateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request."
+          },
+          "403": {
+            "description": "Sandbox key creation is disabled."
+          },
+          "429": {
+            "description": "Sandbox daily creation limit reached."
           }
         }
       }
@@ -147,6 +221,33 @@
           },
           "401": {
             "description": "Missing or invalid X-API-Key."
+          }
+        }
+      }
+    },
+    "/v1/admin/sandbox-metrics": {
+      "get": {
+        "operationId": "getSandboxMetrics",
+        "summary": "Return 7-day sandbox test metrics",
+        "description": "Admin-only endpoint. Aggregates sandbox customer creation, score usage, Deep Analysis orders, Action Pack orders and safety flags so agents can monitor the 7-day test without manual spreadsheet work.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sandbox test metrics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SandboxMetricsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid admin X-API-Key."
           }
         }
       }
@@ -375,6 +476,120 @@
         }
       }
     },
+    "/v1/beta/customers/{customer_id}": {
+      "get": {
+        "operationId": "getBetaCustomerAdmin",
+        "summary": "Read beta customer status and usage",
+        "description": "Admin-only endpoint. Returns customer status, API key prefix, balances, recent events and recent orders without exposing the full customer API key.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "beta_partner_001"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Beta customer admin view.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaCustomerAdminResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid admin X-API-Key."
+          },
+          "404": {
+            "description": "Beta customer not found."
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateBetaCustomerAdmin",
+        "summary": "Update beta customer status or credits",
+        "description": "Admin-only endpoint. Can suspend/reactivate a beta customer, add credits, set credit limits or reset usage for controlled beta tests.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "beta_partner_001"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BetaCustomerAdminUpdateRequest"
+              },
+              "examples": {
+                "topUpCredits": {
+                  "summary": "Top up a customer for another beta test",
+                  "value": {
+                    "add_credits": {
+                      "score_pack_1k": 20,
+                      "verification_pack_100": 10,
+                      "deep_analysis_pack_100": 5,
+                      "target_discovery_pack_250": 1
+                    },
+                    "reason": "top up beta test credits"
+                  }
+                },
+                "suspendCustomer": {
+                  "summary": "Suspend a customer",
+                  "value": {
+                    "status": "suspended",
+                    "reason": "pause beta access"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Beta customer updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaCustomerAdminResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request."
+          },
+          "401": {
+            "description": "Missing or invalid admin X-API-Key."
+          },
+          "404": {
+            "description": "Beta customer not found."
+          }
+        }
+      }
+    },
     "/health": {
       "get": {
         "operationId": "healthCheck",
@@ -418,6 +633,16 @@
             "type": "string",
             "description": "Optional sector context used by the scoring model.",
             "example": "dentist"
+          },
+          "target_name": {
+            "type": "string",
+            "description": "Optional business name used by sector-specific quality gates when the machine has target context.",
+            "example": "Studio Dentistico Demo"
+          },
+          "category_hint": {
+            "type": "string",
+            "description": "Optional business category used to reduce false positives in adjacent sectors.",
+            "example": "clinic"
           },
           "country_hint": {
             "type": "string",
@@ -466,6 +691,30 @@
           "reason": {
             "type": "string",
             "example": "Signals suggest a medium opportunity that should be monitored before spending more budget."
+          },
+          "quality_review": {
+            "type": "object",
+            "description": "Sector-specific quality gate result for machine review.",
+            "properties": {
+              "status": {
+                "type": "string",
+                "example": "sector_quality_passed"
+              },
+              "score_delta": {
+                "type": "integer",
+                "example": 0
+              },
+              "confidence_cap": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "example": null
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
           },
           "next_purchase": {
             "type": "object",
@@ -567,13 +816,110 @@
             "example": false
           },
           "delivery": {
-            "type": "object",
-            "description": "Immediate beta deliverable returned to the customer machine after the order intent is accepted."
+            "$ref": "#/components/schemas/BetaDelivery"
           },
           "usage": {
             "$ref": "#/components/schemas/UsageLedger"
           }
         }
+      },
+      "BetaDelivery": {
+        "type": "object",
+        "description": "Immediate machine-readable beta deliverable. The shape changes by product_code, but every delivery explains what was bought, what credit was consumed and what the machine should do next.",
+        "properties": {
+          "delivery_id": {
+            "type": "string",
+            "example": "del_123abc"
+          },
+          "product_code": {
+            "type": "string",
+            "enum": [
+              "target_discovery",
+              "domain_enrichment",
+              "verification",
+              "nurture_signal",
+              "deep_analysis",
+              "action_pack",
+              "opportunity_feed"
+            ],
+            "example": "deep_analysis"
+          },
+          "delivery_type": {
+            "type": "string",
+            "example": "deep_opportunity_analysis"
+          },
+          "status": {
+            "type": "string",
+            "example": "deep_analysis_ready"
+          },
+          "domain": {
+            "type": "string",
+            "example": "quinta-essenza.com"
+          },
+          "beta_delivery": {
+            "type": "boolean",
+            "example": true
+          },
+          "synthetic_demo_mode": {
+            "type": "boolean",
+            "example": true
+          },
+          "real_payment_executed": {
+            "type": "boolean",
+            "example": false
+          },
+          "external_contact_executed": {
+            "type": "boolean",
+            "example": false
+          },
+          "what_is_included": {
+            "type": "object",
+            "description": "Exact description of the unit sold, the machine question answered, returned fields and credit policy.",
+            "example": {
+              "exact_unit_sold": "one deep opportunity decision pack for one scored domain",
+              "machine_question_answered": "Is this strong enough to justify the next paid action, or should the workflow stop?",
+              "credit_policy": "One deep_analysis_pack_100 credit is consumed for each deep analysis decision pack returned."
+            }
+          },
+          "output_contract": {
+            "type": "object",
+            "description": "For batch products such as target_discovery, describes exact row count, row schema, acceptance criteria and fallback rules.",
+            "example": {
+              "exact_unit_sold": "250 coherent target records or a no-go market coverage decision",
+              "row_schema": [
+                "domain",
+                "target_name",
+                "category",
+                "area",
+                "next_machine_action"
+              ]
+            }
+          },
+          "next_machine_call": {
+            "type": "object",
+            "description": "Recommended next API call for the customer machine after reading this delivery.",
+            "example": {
+              "method": "POST",
+              "endpoint": "/v1/purchase-intent",
+              "required_headers": [
+                "X-API-Key",
+                "Idempotency-Key"
+              ]
+            }
+          },
+          "stop_rules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Conditions where the customer machine should stop spending credits on this lead or market."
+          },
+          "machine_recommendation": {
+            "type": "string",
+            "example": "Use this output to decide whether to create an action pack or stop spending."
+          }
+        },
+        "additionalProperties": true
       },
       "OrderResponse": {
         "type": "object",
@@ -668,9 +1014,118 @@
             "type": "string",
             "example": "beta_starter"
           },
+          "customer_type": {
+            "type": "string",
+            "example": "sandbox"
+          },
+          "expires_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "example": "2026-06-08T08:00:00.000Z"
+          },
           "api_key": {
             "type": "string",
             "description": "Returned only once. Store securely."
+          },
+          "onboarding": {
+            "type": "object"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/UsageLedger"
+          }
+        }
+      },
+      "BetaCustomerAdminUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "suspended",
+              "closed"
+            ],
+            "example": "active"
+          },
+          "plan": {
+            "type": "string",
+            "example": "beta_starter"
+          },
+          "contact_email": {
+            "type": "string",
+            "example": "partner@example.com"
+          },
+          "add_credits": {
+            "type": "object",
+            "description": "Adds credits to purchased credit limits. Keys are ledger product codes such as score_pack_1k or verification_pack_100.",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "example": {
+              "score_pack_1k": 20,
+              "verification_pack_100": 10
+            }
+          },
+          "set_credits": {
+            "type": "object",
+            "description": "Sets purchased credit limits exactly. Existing usage is preserved unless reset_usage is true.",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "example": {
+              "target_discovery_pack_250": 1
+            }
+          },
+          "reset_usage": {
+            "type": "boolean",
+            "description": "Resets used credits to zero for all products.",
+            "example": false
+          },
+          "reason": {
+            "type": "string",
+            "example": "top up beta test credits"
+          }
+        }
+      },
+      "BetaCustomerAdminResponse": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "example": "beta_partner_001"
+          },
+          "contact_email": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "example": "partner@example.com"
+          },
+          "plan": {
+            "type": "string",
+            "example": "beta_starter"
+          },
+          "status": {
+            "type": "string",
+            "example": "active"
+          },
+          "api_key_prefix": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Only the prefix is exposed; the full customer API key is never returned again.",
+            "example": "ms_cust_abc123"
+          },
+          "admin_event": {
+            "type": [
+              "object",
+              "null"
+            ]
           },
           "onboarding": {
             "type": "object"
@@ -702,6 +1157,44 @@
             "items": {
               "type": "object"
             }
+          }
+        }
+      },
+      "SandboxMetricsResponse": {
+        "type": "object",
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "test_window_days": {
+            "type": "integer",
+            "example": 7
+          },
+          "sandbox_customers": {
+            "type": "object"
+          },
+          "usage": {
+            "type": "object"
+          },
+          "orders": {
+            "type": "object"
+          },
+          "conversion": {
+            "type": "object"
+          },
+          "safety": {
+            "type": "object"
+          },
+          "targets": {
+            "type": "object"
+          },
+          "progress": {
+            "type": "object"
+          },
+          "interpretation": {
+            "type": "string",
+            "example": "insufficient_data"
           }
         }
       },

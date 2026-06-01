@@ -19,6 +19,49 @@
     ],
     "tracking": "Each consumption event is tracked with request_id, product_code, status, credits_consumed and credits_remaining."
   },
+  "machine_buying_scenarios": {
+    "customer_has_list": {
+      "machine_goal": "Prioritize an existing list of domains or companies before spending campaign, CRM or agent budget.",
+      "first_call": "POST /v1/lead-opportunity-score",
+      "first_product": "score_pack_1k",
+      "next_products": [
+        "deep_analysis",
+        "verification",
+        "nurture_signal",
+        "action_pack"
+      ]
+    },
+    "customer_has_no_list": {
+      "machine_goal": "Find companies or domains useful for a specific commercial objective, sector and area.",
+      "first_call": "POST /v1/purchase-intent",
+      "first_product": "target_discovery",
+      "required_inputs": [
+        "market",
+        "area",
+        "commercial_objective"
+      ],
+      "example_commercial_objective": "find real estate agency websites worth scoring for digital presence improvement opportunities",
+      "next_products": [
+        "score_pack_1k",
+        "domain_enrichment",
+        "deep_analysis"
+      ]
+    },
+    "customer_wants_next_action": {
+      "machine_goal": "Turn a confirmed opportunity into a CRM- or agent-readable action payload.",
+      "first_call": "POST /v1/purchase-intent",
+      "first_product": "action_pack",
+      "required_inputs": [
+        "domain",
+        "source_score_request_id",
+        "reason"
+      ],
+      "next_products": [
+        "opportunity_feed",
+        "api_pro"
+      ]
+    }
+  },
   "products": {
     "target_discovery_pack_250": {
       "name": "Target Discovery Pack",
@@ -26,9 +69,11 @@
       "unit": "250 coherent targets",
       "current_beta_endpoint": "POST /v1/purchase-intent",
       "product_code": "target_discovery",
-      "when_to_buy": "When the customer machine does not already have a list of companies or domains to score.",
+      "when_to_buy": "When the customer machine does not already have a list and wants targets for a specific commercial objective, sector and area.",
       "includes": [
         "pre-check of market availability",
+        "commercial objective normalization",
+        "opportunity hypothesis for why the target is commercially relevant",
         "250 normalized and deduplicated targets when the market is available",
         "domain when available",
         "category",
@@ -38,7 +83,7 @@
         "JSON or CSV export"
       ],
       "validity_rule": "The pack is activated only when the pre-check indicates that 250 coherent targets can be produced. If not, the machine receives alternatives: Mini Discovery, wider area, broader criteria or changed commercial objective.",
-      "machine_output": "A target list that can be sent to scoring or CRM enrichment workflows."
+      "machine_output": "A target list built for a declared commercial objective, ready for scoring or CRM enrichment workflows."
     },
     "score_pack_1k": {
       "name": "Score Pack 1k",
@@ -107,16 +152,42 @@
       "product_code": "action_pack",
       "when_to_buy": "When Deep Analysis confirms that a lead deserves a prepared commercial action.",
       "includes": [
-        "initial message angle",
-        "commercial positioning",
-        "CRM tags",
+        "what_is_included contract",
+        "CRM-ready record patch",
+        "CRM task payload",
+        "CRM platform field mappings",
+        "workflow payload",
+        "agent instructions",
+        "webhook event schema",
+        "webhook delivery policy",
+        "audit event",
+        "approval gate",
+        "deduplication key",
+        "message angle with forbidden claims",
+        "stop rules",
+        "compliance guardrail"
+      ],
+      "output_fields": [
+        "what_is_included",
         "priority",
-        "next action",
-        "suggested timing",
-        "instructions readable by CRM systems or AI agents"
+        "crm_record_patch",
+        "crm_task",
+        "crm_platform_mappings",
+        "workflow_payload",
+        "agent_instructions",
+        "webhook_event",
+        "webhook_delivery_policy",
+        "audit_event",
+        "approval_gate",
+        "deduplication_key",
+        "next_api_calls",
+        "message_angle",
+        "stop_rules",
+        "follow_up_sequence",
+        "compliance_guardrail"
       ],
       "validity_rule": "If the lead does not have enough signal for a sensible commercial action, the pack is not consumed and the system returns the exclusion reason.",
-      "machine_output": "A structured action payload for CRM, workflow automation or supervised agent execution."
+      "machine_output": "A CRM-ready JSON action payload for workflow automation, webhook forwarding or supervised agent execution."
     },
     "opportunity_feed_monthly": {
       "name": "Opportunity Feed",

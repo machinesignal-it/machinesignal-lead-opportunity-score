@@ -2,10 +2,154 @@
   "info": {
     "name": "MachineSignal Lead Opportunity Score API - Callable Beta",
     "_postman_id": "machinesignal-lead-opportunity-score-callable-beta",
-    "description": "Callable beta collection for MachineSignal. Includes score, usage ledger and public contract endpoints.",
+    "description": "Callable beta collection for MachineSignal. Includes score, usage ledger, public contract endpoints, beta onboarding packet and machine test flows.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
+    {
+      "name": "Read full machine buyer flow demo",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://machinesignal.it/demo/machine-buyer-flow/flow.json",
+          "protocol": "https",
+          "host": [
+            "machinesignal",
+            "it"
+          ],
+          "path": [
+            "demo",
+            "machine-buyer-flow",
+            "flow.json"
+          ]
+        },
+        "description": "Public end-to-end demo: customer machine has no list, buys target discovery, scores domains, buys deep analysis, buys action pack and sends output to CRM consumer."
+      },
+      "response": []
+    },
+    {
+      "name": "Read CRM consumer demo output",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://machinesignal.it/demo/crm-consumer/webhook_events.json",
+          "protocol": "https",
+          "host": [
+            "machinesignal",
+            "it"
+          ],
+          "path": [
+            "demo",
+            "crm-consumer",
+            "webhook_events.json"
+          ]
+        },
+        "description": "Public demo output showing how Action Pack becomes CRM-ready webhook events, without external outreach."
+      },
+      "response": []
+    },
+    {
+      "name": "Read beta tester onboarding packet",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://machinesignal.it/beta/onboarding-packet.json",
+          "protocol": "https",
+          "host": [
+            "machinesignal",
+            "it"
+          ],
+          "path": [
+            "beta",
+            "onboarding-packet.json"
+          ]
+        },
+        "description": "Public machine-readable beta onboarding packet. Explains the 6-step beta run, success metrics, stop rules and expected feedback."
+      },
+      "response": []
+    },
+    {
+      "name": "Read beta feedback schema",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://machinesignal.it/beta/feedback-schema.json",
+          "protocol": "https",
+          "host": [
+            "machinesignal",
+            "it"
+          ],
+          "path": [
+            "beta",
+            "feedback-schema.json"
+          ]
+        },
+        "description": "Public JSON schema for structured beta feedback from a partner machine or evaluator."
+      },
+      "response": []
+    },
+    {
+      "name": "Read machine beta test kit",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://machinesignal.it/beta/machine-test-kit.json",
+          "protocol": "https",
+          "host": [
+            "machinesignal",
+            "it"
+          ],
+          "path": [
+            "beta",
+            "machine-test-kit.json"
+          ]
+        },
+        "description": "Public machine test kit with safe test paths, acceptance checks and stop rules."
+      },
+      "response": []
+    },
+    {
+      "name": "Create limited sandbox customer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "postman-sandbox-evaluator-001"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"evaluator_type\": \"ai_agent\",\n  \"integration_target\": \"custom CRM workflow\",\n  \"expected_test_path\": \"full_flow\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/sandbox/customers",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "sandbox",
+            "customers"
+          ]
+        },
+        "description": "Public limited sandbox onboarding. Creates a low-credit API key for safe machine evaluation without manual sales contact. Store api_key immediately; it is returned only once."
+      },
+      "response": []
+    },
     {
       "name": "Score business domain",
       "request": {
@@ -137,6 +281,126 @@
       "response": []
     },
     {
+      "name": "Order target discovery when machine has no list",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "postman-demo-target-discovery-001"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_code\": \"target_discovery\",\n  \"market\": \"medicina estetica\",\n  \"area\": \"Lombardia\",\n  \"commercial_objective\": \"find domains worth scoring for website improvement opportunities\",\n  \"reason\": \"Customer machine has no starting list\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/purchase-intent",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "purchase-intent"
+          ]
+        },
+        "description": "Use this when the customer machine has no list. The delivery returns an output_contract: 250 coherent target records or a no-go market coverage decision."
+      },
+      "response": []
+    },
+    {
+      "name": "Order deep analysis after a strong score",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "postman-demo-deep-analysis-001"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_code\": \"deep_analysis\",\n  \"domain\": \"quinta-essenza.com\",\n  \"source_score_request_id\": \"postman-demo-score-strong-001\",\n  \"reason\": \"Score decision was buy_deep_analysis\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/purchase-intent",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "purchase-intent"
+          ]
+        },
+        "description": "Use this after a strong score. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
+      },
+      "response": []
+    },
+    {
+      "name": "Order action pack after confirmed opportunity",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "postman-demo-action-pack-001"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_code\": \"action_pack\",\n  \"domain\": \"quinta-essenza.com\",\n  \"source_score_request_id\": \"postman-demo-score-strong-001\",\n  \"reason\": \"Deep Analysis confirmed a low-risk opportunity and the CRM needs a machine-readable next action\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/purchase-intent",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "purchase-intent"
+          ]
+        },
+        "description": "Use this when the machine has a confirmed opportunity and wants a CRM/agent-readable action payload. The delivery returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail."
+      },
+      "response": []
+    },
+    {
       "name": "List beta orders",
       "request": {
         "method": "GET",
@@ -199,6 +463,35 @@
       "response": []
     },
     {
+      "name": "Admin read sandbox metrics",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_admin_api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/admin/sandbox-metrics",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "admin",
+            "sandbox-metrics"
+          ]
+        },
+        "description": "Admin-only endpoint for the 7-day sandbox test. Aggregates sandbox keys, score usage, Deep Analysis orders, Action Pack orders, conversion rates and safety flags."
+      },
+      "response": []
+    },
+    {
       "name": "Create beta customer",
       "request": {
         "method": "POST",
@@ -236,6 +529,74 @@
           ]
         },
         "description": "Admin-only beta onboarding endpoint. Creates a machine customer and returns a dedicated API key once."
+      },
+      "response": []
+    },
+    {
+      "name": "Admin read beta customer",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_admin_api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/beta/customers/{{beta_customer_id}}",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "beta",
+            "customers",
+            "{{beta_customer_id}}"
+          ]
+        },
+        "description": "Admin-only endpoint. Reads beta customer status, key prefix, balances and recent ledger activity."
+      },
+      "response": []
+    },
+    {
+      "name": "Admin top up beta customer credits",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_admin_api_key}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"add_credits\": {\n    \"score_pack_1k\": 20,\n    \"verification_pack_100\": 10,\n    \"deep_analysis_pack_100\": 5,\n    \"target_discovery_pack_250\": 1\n  },\n  \"reason\": \"top up beta test credits\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/beta/customers/{{beta_customer_id}}",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "beta",
+            "customers",
+            "{{beta_customer_id}}"
+          ]
+        },
+        "description": "Admin-only endpoint. Adds credits, resets usage if requested, or changes status without returning the full customer API key."
       },
       "response": []
     },
@@ -363,6 +724,10 @@
     {
       "key": "machinesignal_admin_api_key",
       "value": "paste_admin_beta_key_here"
+    },
+    {
+      "key": "beta_customer_id",
+      "value": "beta_partner_001"
     }
   ]
 }
