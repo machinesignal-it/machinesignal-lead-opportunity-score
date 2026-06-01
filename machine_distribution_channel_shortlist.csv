@@ -1,0 +1,11 @@
+priority,channel,status,fit,setup_effort,next_action
+1,Own domain machine surfaces,done,very_high,low,Keep canonical files updated
+2,GitHub repository,active,very_high,low,Add topics and release notes when useful
+3,Postman Public API Network,ready_next,high,medium,Publish public workspace and documentation
+4,RapidAPI Hub,good_beta_test,medium_high,medium,Prepare provider listing and sandbox plan
+5,APILayer / curated API marketplaces,evaluate,medium,medium_high,Check provider submission path
+6,Smithery,later_after_mcp,high_after_mcp,high,Build MCP wrapper before listing
+7,Glama MCP registry,later_after_mcp,high_after_mcp,high,Build MCP wrapper before listing
+8,AgentNDX,later_after_mcp_or_a2a,medium_high_after_mcp,high,Build MCP/A2A/x402-compatible surface first
+9,MCPDrop,later_after_mcp,medium_after_mcp,high,Build MCP wrapper before listing
+

@@ -1216,6 +1216,7 @@ Useful endpoints:
 - GET /product-catalog.json
 - GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - GET https://machinesignal.it/distribution/api-directory-submission.json
+- GET https://machinesignal.it/distribution/channel-shortlist.json
 - GET https://machinesignal.it/.well-known/machine-discovery.json
 - POST /v1/sandbox/customers
 - GET /v1/onboarding
@@ -1257,6 +1258,7 @@ Public demos for software, agents and partners:
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
+- Distribution Channel Shortlist JSON: https://machinesignal.it/distribution/channel-shortlist.json
 - Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
 - Full machine buyer flow: https://machinesignal.it/demo/machine-buyer-flow/
 - Full flow JSON: https://machinesignal.it/demo/machine-buyer-flow/flow.json
@@ -3189,6 +3191,7 @@ function buildPublicMachineOnboarding() {
       machine_onboarding: "/machine-onboarding.json",
       machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
       api_directory_submission: "https://machinesignal.it/distribution/api-directory-submission.json",
+      distribution_channel_shortlist: "https://machinesignal.it/distribution/channel-shortlist.json",
       well_known_machine_discovery: "https://machinesignal.it/.well-known/machine-discovery.json",
       sandbox_customers: "/v1/sandbox/customers",
       authenticated_onboarding: "/v1/onboarding",
@@ -4029,6 +4032,7 @@ export async function handleRequest(request, env = {}) {
         product_catalog: "/product-catalog.json",
         machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
         api_directory_submission: "https://machinesignal.it/distribution/api-directory-submission.json",
+        distribution_channel_shortlist: "https://machinesignal.it/distribution/channel-shortlist.json",
         well_known_machine_discovery: "https://machinesignal.it/.well-known/machine-discovery.json",
         sandbox_customers: "/v1/sandbox/customers",
         authenticated_onboarding: "/v1/onboarding",

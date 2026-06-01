@@ -133,6 +133,7 @@ assert.ok(llmsText.includes("/v1/sandbox/customers"));
 assert.ok(llmsText.includes("/v1/admin/sandbox-metrics"));
 assert.ok(llmsText.includes("https://machinesignal.it/machine-discovery/machine-discovery-pack.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/distribution/api-directory-submission.json"));
+assert.ok(llmsText.includes("https://machinesignal.it/distribution/channel-shortlist.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/.well-known/machine-discovery.json"));
 
 const machineOnboardingResponse = await handleRequest(new Request("http://localhost/machine-onboarding.json"));
@@ -150,6 +151,10 @@ assert.equal(
 assert.equal(
   machineOnboardingPayload.discovery.api_directory_submission,
   "https://machinesignal.it/distribution/api-directory-submission.json"
+);
+assert.equal(
+  machineOnboardingPayload.discovery.distribution_channel_shortlist,
+  "https://machinesignal.it/distribution/channel-shortlist.json"
 );
 assert.equal(
   machineOnboardingPayload.discovery.well_known_machine_discovery,

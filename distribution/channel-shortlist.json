@@ -1,0 +1,104 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-01",
+  "purpose": "Machine-first technical distribution shortlist for API directories, agent registries and developer discovery surfaces.",
+  "primary_rule": "Do not rely on human cold email. Prioritize machine-readable assets, public API documentation and sandbox-callable flows.",
+  "channels": [
+    {
+      "priority": 1,
+      "name": "Own domain machine surfaces",
+      "status": "done_keep_improving",
+      "fit": "very_high",
+      "why": "Highest control and no platform dependency.",
+      "publish": [
+        "https://machinesignal.it/llms.txt",
+        "https://machinesignal.it/openapi.json",
+        "https://machinesignal.it/product-catalog.json",
+        "https://machinesignal.it/machine-onboarding.json",
+        "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+        "https://machinesignal.it/distribution/api-directory-submission.json",
+        "https://machinesignal.it/.well-known/machine-discovery.json"
+      ],
+      "next_action": "Keep canonical files current."
+    },
+    {
+      "priority": 2,
+      "name": "GitHub repository",
+      "status": "active",
+      "fit": "very_high",
+      "why": "Developers, crawlers and agents can inspect versioned docs and JSON assets.",
+      "publish": ["README", "OpenAPI", "Postman collection", "discovery JSON", "distribution JSON"],
+      "next_action": "Add release notes and topics when useful."
+    },
+    {
+      "priority": 3,
+      "name": "Postman Public API Network",
+      "status": "ready_next",
+      "fit": "high",
+      "why": "Strong API discovery surface; public workspaces help onboarding and search discovery.",
+      "publish": ["public workspace", "collection", "documentation", "examples"],
+      "next_action": "Publish public workspace and documentation."
+    },
+    {
+      "priority": 4,
+      "name": "RapidAPI Hub",
+      "status": "good_beta_test",
+      "fit": "medium_high",
+      "why": "API marketplace with provider dashboard, listing metadata, OpenAPI/docs and browser testing.",
+      "publish": ["API listing", "OpenAPI", "docs", "base URL", "sandbox endpoint"],
+      "next_action": "Prepare provider listing and sandbox plan."
+    },
+    {
+      "priority": 5,
+      "name": "APILayer and curated API marketplaces",
+      "status": "evaluate",
+      "fit": "medium",
+      "why": "Potential API buyer traffic, but may be curated and less self-service.",
+      "publish": ["submission profile", "documentation links"],
+      "next_action": "Check provider submission path."
+    },
+    {
+      "priority": 6,
+      "name": "Smithery",
+      "status": "later_after_mcp",
+      "fit": "high_after_mcp",
+      "why": "Relevant for agent/tool discovery, but expects an MCP server URL.",
+      "publish": ["MCP server listing"],
+      "next_action": "Build MCP wrapper before listing."
+    },
+    {
+      "priority": 7,
+      "name": "Glama MCP registry",
+      "status": "later_after_mcp",
+      "fit": "high_after_mcp",
+      "why": "Large MCP registry/discovery surface.",
+      "publish": ["MCP server metadata"],
+      "next_action": "Build MCP wrapper before listing."
+    },
+    {
+      "priority": 8,
+      "name": "AgentNDX",
+      "status": "later_after_mcp_or_a2a",
+      "fit": "medium_high_after_mcp",
+      "why": "Agentic registry focused on MCP, A2A and x402-enabled services.",
+      "publish": ["MCP/A2A/x402 service metadata"],
+      "next_action": "Build MCP/A2A or x402-compatible surface first."
+    },
+    {
+      "priority": 9,
+      "name": "MCPDrop",
+      "status": "later_after_mcp",
+      "fit": "medium_after_mcp",
+      "why": "MCP directory, useful after tool wrapper exists.",
+      "publish": ["MCP server listing"],
+      "next_action": "Build MCP wrapper before listing."
+    }
+  ],
+  "recommended_next_steps": [
+    "Publish and polish Postman public workspace.",
+    "Prepare RapidAPI listing fields from API_DIRECTORY_SUBMISSION.md.",
+    "Keep GitHub and own domain as canonical source of truth.",
+    "Add a future MCP wrapper only after REST sandbox metrics show real usage."
+  ]
+}
+
