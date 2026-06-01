@@ -29,6 +29,7 @@ Useful endpoints:
 - GET /v1/beta/customers/{customer_id}
 - PATCH /v1/beta/customers/{customer_id}
 - GET /v1/admin/sandbox-metrics
+- GET /v1/admin/audit-report?customer_id=<customer_id>
 
 Authentication:
 - protected endpoints require header X-API-Key: <beta key>;
@@ -36,6 +37,7 @@ Authentication:
 - POST /v1/beta/customers requires the admin beta key and returns a dedicated customer key.
 - GET/PATCH /v1/beta/customers/{customer_id} require the admin beta key and never return the full customer API key.
 - GET /v1/admin/sandbox-metrics requires the admin beta key and returns only aggregated sandbox test metrics.
+- GET /v1/admin/audit-report requires the admin beta key and reconciles one customer ledger before real payments.
 
 How a machine should call the score endpoint:
 1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
@@ -135,6 +137,12 @@ Sandbox limits:
 - tracked targets are 10 sandbox keys, 300 scores, 15 Deep Analysis orders and 3 Action Pack orders;
 - the endpoint also verifies safety flags: real_payment_executed=false and external_contact_executed=false;
 - use this endpoint to decide whether distribution, onboarding or product packaging needs improvement.
+
+Ledger audit before real payments:
+- admins and agents call GET /v1/admin/audit-report?customer_id=<customer_id>;
+- the audit report reconciles purchased credits, consumed credits, valid credit events, beta order intents and simulated revenue;
+- reconciliation_ok must be true before any customer is considered ready for paid checkout;
+- safety flags must remain real_payment_executed=false and external_contact_executed=false during beta.
 
 Machine-first rule:
 - MachineSignal does not require human email persuasion as the primary channel;

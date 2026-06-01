@@ -330,6 +330,17 @@ const PRODUCT_CATALOG = {
   }
 };
 
+const SIMULATED_REVENUE_PER_CREDIT_EUR = {
+  score_pack_1k: 0.099,
+  target_discovery_pack_250: 149,
+  domain_enrichment_pack_100: 1.49,
+  verification_pack_100: 1,
+  nurture_signal_pack_100: 1,
+  deep_analysis_pack_100: 2.99,
+  action_pack_25: 15.96,
+  opportunity_feed_monthly: 249
+};
+
 export const openApi = {
   openapi: "3.1.0",
   info: {
@@ -542,6 +553,37 @@ export const openApi = {
             }
           },
           401: { description: "Missing or invalid admin X-API-Key." }
+        }
+      }
+    },
+    "/v1/admin/audit-report": {
+      get: {
+        operationId: "getLedgerAuditReport",
+        summary: "Return ledger reconciliation and simulated revenue audit",
+        description:
+          "Admin-only endpoint. Reconciles balances, credit consumption events, beta order intents, simulated beta revenue and safety flags for one beta customer. Use this before enabling real payments.",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          {
+            name: "customer_id",
+            in: "query",
+            required: true,
+            schema: { type: "string", example: "beta_partner_001" },
+            description: "Beta or sandbox customer id to audit."
+          }
+        ],
+        responses: {
+          200: {
+            description: "Ledger audit report for one customer.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/LedgerAuditReport" }
+              }
+            }
+          },
+          400: { description: "Missing customer_id." },
+          401: { description: "Missing or invalid admin X-API-Key." },
+          404: { description: "Customer or ledger not found." }
         }
       }
     },
@@ -1175,6 +1217,32 @@ export const openApi = {
           interpretation: { type: "string", example: "insufficient_data" }
         }
       },
+      LedgerAuditReport: {
+        type: "object",
+        properties: {
+          generated_at: { type: "string", format: "date-time" },
+          customer_id: { type: "string", example: "beta_partner_001" },
+          ledger_backend: { type: "string", example: "durable_object" },
+          ledger_persisted: { type: "boolean", example: true },
+          summary: {
+            type: "object",
+            properties: {
+              total_events: { type: "integer", example: 301 },
+              valid_credit_events: { type: "integer", example: 300 },
+              blocked_events: { type: "integer", example: 0 },
+              order_count: { type: "integer", example: 280 },
+              simulated_revenue_eur: { type: "number", example: 408.9 },
+              reconciliation_ok: { type: "boolean", example: true }
+            }
+          },
+          product_reconciliation: {
+            type: "array",
+            items: { type: "object" }
+          },
+          safety: { type: "object" },
+          recommended_next_controls: { type: "array", items: { type: "string" } }
+        }
+      },
       UsageLedger: {
         type: "object",
         properties: {
@@ -1233,6 +1301,7 @@ Useful endpoints:
 - GET /v1/beta/customers/{customer_id}
 - PATCH /v1/beta/customers/{customer_id}
 - GET /v1/admin/sandbox-metrics
+- GET /v1/admin/audit-report?customer_id=<customer_id>
 
 Authentication:
 - protected endpoints require header X-API-Key: <beta key>;
@@ -1240,6 +1309,7 @@ Authentication:
 - POST /v1/beta/customers requires the admin beta key and returns a dedicated customer key.
 - GET/PATCH /v1/beta/customers/{customer_id} require the admin beta key and never return the full customer API key.
 - GET /v1/admin/sandbox-metrics requires the admin beta key and returns only aggregated sandbox test metrics.
+- GET /v1/admin/audit-report requires the admin beta key and reconciles one customer ledger before real payments.
 
 How a machine should call the score endpoint:
 1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
@@ -1339,6 +1409,12 @@ Sandbox limits:
 - tracked targets are 10 sandbox keys, 300 scores, 15 Deep Analysis orders and 3 Action Pack orders;
 - the endpoint also verifies safety flags: real_payment_executed=false and external_contact_executed=false;
 - use this endpoint to decide whether distribution, onboarding or product packaging needs improvement.
+
+Ledger audit before real payments:
+- admins and agents call GET /v1/admin/audit-report?customer_id=<customer_id>;
+- the audit report reconciles purchased credits, consumed credits, valid credit events, beta order intents and simulated revenue;
+- reconciliation_ok must be true before any customer is considered ready for paid checkout;
+- safety flags must remain real_payment_executed=false and external_contact_executed=false during beta.
 
 Machine-first rule:
 - MachineSignal does not require human email persuasion as the primary channel;
@@ -1870,6 +1946,23 @@ const postmanCollection = {
         },
         description:
           "Repeat the first request with the same Idempotency-Key. The ledger returns duplicate_request=true and does not consume an extra credit."
+      },
+      response: []
+    },
+    {
+      name: "Admin read ledger audit report",
+      request: {
+        method: "GET",
+        header: [{ key: "X-API-Key", value: "{{machinesignal_admin_api_key}}" }],
+        url: {
+          raw: "{{base_url}}/v1/admin/audit-report?customer_id={{beta_customer_id}}",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "admin", "audit-report"],
+          query: [{ key: "customer_id", value: "{{beta_customer_id}}" }]
+        },
+        description:
+          "Admin-only reconciliation endpoint. Verifies consumed credits, valid events, order count, simulated beta revenue and safety flags before any real payment test."
       },
       response: []
     },
@@ -3184,6 +3277,102 @@ function balanceCreditsUsed(ledgerState, productCode) {
   return Number(ledgerState?.balances?.[productCode]?.credits_used || 0);
 }
 
+function simulatedRevenueForProduct(productCode, creditsConsumed) {
+  const unitRevenue = Number(SIMULATED_REVENUE_PER_CREDIT_EUR[productCode] || 0);
+  return Number((unitRevenue * Number(creditsConsumed || 0)).toFixed(2));
+}
+
+function orderProductMatchesLedgerProduct(orderProductCode, ledgerProductCode) {
+  try {
+    return purchaseProductConfig(orderProductCode).ledger_product_code === ledgerProductCode;
+  } catch {
+    return false;
+  }
+}
+
+function buildLedgerAuditReport(customer, ledger) {
+  const state = normalizeLedgerState(ledger.state);
+  const events = Array.isArray(state.events) ? state.events : [];
+  const orders = Array.isArray(state.orders) ? state.orders : [];
+  const productCodes = Object.keys(state.balances || {});
+  const productReconciliation = productCodes.map((productCode) => {
+    const balance = state.balances[productCode];
+    const productEvents = events.filter((event) => event.product_code === productCode);
+    const validEvents = productEvents.filter((event) => event.status === "valid_output");
+    const blockedEvents = productEvents.filter((event) => event.status !== "valid_output");
+    const creditsConsumedFromEvents = validEvents.reduce(
+      (sum, event) => sum + Number(event.credits_consumed || 0),
+      0
+    );
+    const productOrders = orders.filter((order) =>
+      orderProductMatchesLedgerProduct(order.product_code, productCode)
+    );
+    return {
+      product_code: productCode,
+      credits_purchased: balance.credits_purchased,
+      credits_used: balance.credits_used,
+      credits_remaining: Math.max(0, balance.credits_purchased - balance.credits_used),
+      valid_credit_events: validEvents.length,
+      blocked_events: blockedEvents.length,
+      credits_consumed_from_events: creditsConsumedFromEvents,
+      order_count: productOrders.length,
+      simulated_unit_revenue_eur: Number(SIMULATED_REVENUE_PER_CREDIT_EUR[productCode] || 0),
+      simulated_revenue_eur: simulatedRevenueForProduct(productCode, balance.credits_used),
+      credits_reconcile: Number(balance.credits_used || 0) === creditsConsumedFromEvents
+    };
+  });
+  const validCreditEvents = events.filter((event) => event.status === "valid_output");
+  const blockedEvents = events.filter((event) => event.status !== "valid_output");
+  const simulatedRevenue = productReconciliation.reduce(
+    (sum, item) => sum + Number(item.simulated_revenue_eur || 0),
+    0
+  );
+  const realPaymentExecuted =
+    state.real_payment_executed === true ||
+    events.some((event) => hasTrueFlag(event?.metadata, "real_payment_executed")) ||
+    orders.some((order) => order.real_payment_executed === true || hasTrueFlag(order, "real_payment_executed"));
+  const externalContactExecuted =
+    state.external_contact_executed === true ||
+    events.some((event) => hasTrueFlag(event?.metadata, "external_contact_executed")) ||
+    orders.some(
+      (order) => order.external_contact_executed === true || hasTrueFlag(order, "external_contact_executed")
+    );
+  const reconciliationOk = productReconciliation.every((item) => item.credits_reconcile);
+  return {
+    generated_at: new Date().toISOString(),
+    customer_id: state.customer_id,
+    customer_status: customer?.status || null,
+    customer_type: customer?.customer_type || null,
+    plan: customer?.plan || null,
+    ledger_backend: ledger.backend,
+    ledger_persisted: ledger.persisted,
+    summary: {
+      total_events: events.length,
+      valid_credit_events: validCreditEvents.length,
+      blocked_events: blockedEvents.length,
+      order_count: orders.length,
+      simulated_revenue_eur: Number(simulatedRevenue.toFixed(2)),
+      reconciliation_ok: reconciliationOk,
+      ready_for_real_payments: false
+    },
+    product_reconciliation: productReconciliation,
+    recent_events: events.slice(-20).reverse(),
+    recent_orders: orders.slice(-20).reverse(),
+    safety: {
+      real_payment_executed: realPaymentExecuted,
+      external_contact_executed: externalContactExecuted,
+      beta_payment_guardrail_ok: realPaymentExecuted === false,
+      beta_external_contact_guardrail_ok: externalContactExecuted === false
+    },
+    recommended_next_controls: [
+      "keep real payments disabled during beta",
+      "export audit report before every paid checkout test",
+      "add fiscal/legal approval before production billing",
+      "move long-term audit history to D1 or another reporting database when volume grows"
+    ]
+  };
+}
+
 function hasTrueFlag(value, flagName) {
   if (!value || typeof value !== "object") return false;
   if (value[flagName] === true) return true;
@@ -3405,6 +3594,18 @@ async function updateBetaCustomerAdmin(customerId, input = {}, env = {}) {
   return buildAdminCustomerPayload(customer, ledger, adminEvent);
 }
 
+async function getLedgerAuditReport(customerId, env = {}) {
+  const normalizedCustomerId = normalizeCustomerId(customerId);
+  const customer = await loadCustomerById(normalizedCustomerId, env);
+  if (!customer) {
+    const error = new Error("Beta customer not found.");
+    error.statusCode = 404;
+    throw error;
+  }
+  const ledger = await loadLedgerByCustomerId(customer.customer_id, env);
+  return buildLedgerAuditReport(customer, ledger);
+}
+
 function buildPublicMachineOnboarding() {
   return {
     service: "MachineSignal",
@@ -3430,7 +3631,8 @@ function buildPublicMachineOnboarding() {
       well_known_machine_discovery: "https://machinesignal.it/.well-known/machine-discovery.json",
       sandbox_customers: "/v1/sandbox/customers",
       authenticated_onboarding: "/v1/onboarding",
-      sandbox_metrics: "/v1/admin/sandbox-metrics"
+      sandbox_metrics: "/v1/admin/sandbox-metrics",
+      audit_report: "/v1/admin/audit-report?customer_id=<customer_id>"
     },
     authentication: {
       type: "apiKey",
@@ -4279,7 +4481,8 @@ export async function handleRequest(request, env = {}) {
         purchase_intent: "/v1/purchase-intent",
         orders: "/v1/orders",
         beta_customers: "/v1/beta/customers",
-        sandbox_metrics: "/v1/admin/sandbox-metrics"
+        sandbox_metrics: "/v1/admin/sandbox-metrics",
+        audit_report: "/v1/admin/audit-report?customer_id=<customer_id>"
       }
     });
   }
@@ -4483,6 +4686,33 @@ export async function handleRequest(request, env = {}) {
     return jsonResponse(await buildSandboxMetrics(env));
   }
 
+  if (request.method === "GET" && url.pathname === "/v1/admin/audit-report") {
+    if (!isAdminAuthorized(request, env)) {
+      return jsonResponse(
+        { error: "unauthorized", message: "Missing or invalid admin X-API-Key." },
+        401
+      );
+    }
+    try {
+      const customerId = String(url.searchParams.get("customer_id") || "").trim();
+      if (!customerId) {
+        return jsonResponse(
+          { error: "bad_request", message: "Missing required query parameter customer_id." },
+          400
+        );
+      }
+      return jsonResponse(await getLedgerAuditReport(customerId, env));
+    } catch (error) {
+      return jsonResponse(
+        {
+          error: error.statusCode === 404 ? "not_found" : "bad_request",
+          message: error.message || "Invalid audit report request."
+        },
+        error.statusCode || 400
+      );
+    }
+  }
+
   if (request.method === "POST" && url.pathname === "/v1/beta/customers") {
     if (!isAdminAuthorized(request, env)) {
       return jsonResponse(
@@ -4529,7 +4759,7 @@ export async function handleRequest(request, env = {}) {
   return jsonResponse(
     {
       error: "not_found",
-      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, GET /v1/admin/sandbox-metrics, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
+      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, GET /v1/admin/sandbox-metrics, GET /v1/admin/audit-report?customer_id=<customer_id>, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
     },
     404
   );

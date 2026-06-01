@@ -252,6 +252,51 @@
         }
       }
     },
+    "/v1/admin/audit-report": {
+      "get": {
+        "operationId": "getLedgerAuditReport",
+        "summary": "Return ledger reconciliation and simulated revenue audit",
+        "description": "Admin-only endpoint. Reconciles balances, credit consumption events, beta order intents, simulated beta revenue and safety flags for one beta customer. Use this before enabling real payments.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "beta_partner_001"
+            },
+            "description": "Beta or sandbox customer id to audit."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ledger audit report for one customer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LedgerAuditReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing customer_id."
+          },
+          "401": {
+            "description": "Missing or invalid admin X-API-Key."
+          },
+          "404": {
+            "description": "Customer or ledger not found."
+          }
+        }
+      }
+    },
     "/v1/purchase-intent": {
       "post": {
         "operationId": "createPurchaseIntent",
@@ -1195,6 +1240,71 @@
           "interpretation": {
             "type": "string",
             "example": "insufficient_data"
+          }
+        }
+      },
+      "LedgerAuditReport": {
+        "type": "object",
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customer_id": {
+            "type": "string",
+            "example": "beta_partner_001"
+          },
+          "ledger_backend": {
+            "type": "string",
+            "example": "durable_object"
+          },
+          "ledger_persisted": {
+            "type": "boolean",
+            "example": true
+          },
+          "summary": {
+            "type": "object",
+            "properties": {
+              "total_events": {
+                "type": "integer",
+                "example": 301
+              },
+              "valid_credit_events": {
+                "type": "integer",
+                "example": 300
+              },
+              "blocked_events": {
+                "type": "integer",
+                "example": 0
+              },
+              "order_count": {
+                "type": "integer",
+                "example": 280
+              },
+              "simulated_revenue_eur": {
+                "type": "number",
+                "example": 408.9
+              },
+              "reconciliation_ok": {
+                "type": "boolean",
+                "example": true
+              }
+            }
+          },
+          "product_reconciliation": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "safety": {
+            "type": "object"
+          },
+          "recommended_next_controls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },

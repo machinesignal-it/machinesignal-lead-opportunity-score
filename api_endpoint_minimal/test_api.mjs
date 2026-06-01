@@ -62,6 +62,7 @@ assert.equal(rootPayload.docs.machine_onboarding, "/machine-onboarding.json");
 assert.equal(rootPayload.docs.product_catalog, "/product-catalog.json");
 assert.equal(rootPayload.docs.authenticated_onboarding, "/v1/onboarding");
 assert.equal(rootPayload.docs.sandbox_metrics, "/v1/admin/sandbox-metrics");
+assert.equal(rootPayload.docs.audit_report, "/v1/admin/audit-report?customer_id=<customer_id>");
 assert.equal(rootPayload.docs.postman_public_collection, "https://machinesignal.it/postman_public_collection.json");
 
 const openApiResponse = await handleRequest(new Request("http://localhost/openapi.json"));
@@ -71,6 +72,7 @@ assert.ok(openApiPayload.paths["/v1/usage"]);
 assert.ok(openApiPayload.paths["/v1/purchase-intent"]);
 assert.ok(openApiPayload.paths["/v1/sandbox/customers"]);
 assert.ok(openApiPayload.paths["/v1/admin/sandbox-metrics"]);
+assert.ok(openApiPayload.paths["/v1/admin/audit-report"]);
 assert.ok(openApiPayload.paths["/machine-onboarding.json"]);
 assert.ok(openApiPayload.paths["/product-catalog.json"]);
 assert.ok(openApiPayload.paths["/v1/onboarding"]);
@@ -100,6 +102,7 @@ assert.ok(postmanItemNames.includes("Order action pack after confirmed opportuni
 assert.ok(postmanItemNames.includes("Fetch machine onboarding manifest"));
 assert.ok(postmanItemNames.includes("Read authenticated onboarding"));
 assert.ok(postmanItemNames.includes("Admin read sandbox metrics"));
+assert.ok(postmanItemNames.includes("Admin read ledger audit report"));
 
 const productCatalogResponse = await handleRequest(new Request("http://localhost/product-catalog.json"));
 assert.equal(productCatalogResponse.status, 200);
@@ -132,6 +135,7 @@ assert.ok(llmsText.includes("/beta/feedback-schema.json"));
 assert.ok(llmsText.includes("/beta/machine-test-kit.json"));
 assert.ok(llmsText.includes("/v1/sandbox/customers"));
 assert.ok(llmsText.includes("/v1/admin/sandbox-metrics"));
+assert.ok(llmsText.includes("/v1/admin/audit-report"));
 assert.ok(llmsText.includes("https://machinesignal.it/machine-discovery/machine-discovery-pack.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/distribution/api-directory-submission.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/distribution/rapidapi-listing.json"));
@@ -148,6 +152,10 @@ assert.equal(machineOnboardingPayload.discovery.product_catalog, "/product-catal
 assert.equal(machineOnboardingPayload.discovery.sandbox_customers, "/v1/sandbox/customers");
 assert.equal(machineOnboardingPayload.discovery.authenticated_onboarding, "/v1/onboarding");
 assert.equal(machineOnboardingPayload.discovery.sandbox_metrics, "/v1/admin/sandbox-metrics");
+assert.equal(
+  machineOnboardingPayload.discovery.audit_report,
+  "/v1/admin/audit-report?customer_id=<customer_id>"
+);
 assert.equal(
   machineOnboardingPayload.discovery.machine_discovery_pack,
   "https://machinesignal.it/machine-discovery/machine-discovery-pack.json"
@@ -736,6 +744,38 @@ const adminCustomerReadPayload = await adminCustomerReadResponse.json();
 assert.equal(adminCustomerReadPayload.customer_id, "beta_partner_test");
 assert.ok(adminCustomerReadPayload.api_key_prefix.startsWith("ms_cust_"));
 assert.equal(adminCustomerReadPayload.api_key, undefined);
+
+const unauthorizedAuditResponse = await handleRequest(
+  new Request("http://localhost/v1/admin/audit-report?customer_id=beta_partner_test", {
+    method: "GET"
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(unauthorizedAuditResponse.status, 401);
+
+const auditReportResponse = await handleRequest(
+  new Request("http://localhost/v1/admin/audit-report?customer_id=beta_partner_test", {
+    method: "GET",
+    headers: { "x-api-key": "test-key" }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(auditReportResponse.status, 200);
+const auditReportPayload = await auditReportResponse.json();
+assert.equal(auditReportPayload.customer_id, "beta_partner_test");
+assert.equal(auditReportPayload.summary.reconciliation_ok, true);
+assert.equal(auditReportPayload.summary.ready_for_real_payments, false);
+assert.equal(auditReportPayload.safety.real_payment_executed, false);
+assert.equal(auditReportPayload.safety.external_contact_executed, false);
+assert.ok(
+  auditReportPayload.product_reconciliation.some(
+    (item) =>
+      item.product_code === "score_pack_1k" &&
+      item.credits_used === 1 &&
+      item.credits_consumed_from_events === 1 &&
+      item.credits_reconcile === true
+  )
+);
 
 const adminTopUpResponse = await handleRequest(
   new Request("http://localhost/v1/beta/customers/beta_partner_test", {

@@ -691,6 +691,41 @@
       "response": []
     },
     {
+      "name": "Admin read ledger audit report",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_admin_api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/admin/audit-report?customer_id={{beta_customer_id}}",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "admin",
+            "audit-report"
+          ],
+          "query": [
+            {
+              "key": "customer_id",
+              "value": "{{beta_customer_id}}"
+            }
+          ]
+        },
+        "description": "Admin-only reconciliation endpoint. Verifies consumed credits, valid events, order count, simulated beta revenue and safety flags before any real payment test."
+      },
+      "response": []
+    },
+    {
       "name": "Fetch OpenAPI schema",
       "request": {
         "method": "GET",

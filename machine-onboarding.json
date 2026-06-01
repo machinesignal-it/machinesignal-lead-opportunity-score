@@ -20,7 +20,8 @@
     "well_known_machine_discovery": "https://machinesignal.it/.well-known/machine-discovery.json",
     "sandbox_customers": "/v1/sandbox/customers",
     "authenticated_onboarding": "/v1/onboarding",
-    "sandbox_metrics": "/v1/admin/sandbox-metrics"
+    "sandbox_metrics": "/v1/admin/sandbox-metrics",
+    "audit_report": "/v1/admin/audit-report?customer_id=<customer_id>"
   },
   "authentication": {
     "type": "apiKey",
