@@ -761,6 +761,9 @@ assert.equal(
 );
 assert.ok(discoveredDentalScorePayload.confidence >= 0.52);
 assert.notEqual(discoveredDentalScorePayload.decision, "needs_verification");
+assert.ok(["strong", "medium", "weak"].includes(discoveredDentalScorePayload.commercial_strength.level));
+assert.ok(discoveredDentalScorePayload.commercial_strength.spend_policy);
+assert.ok(Array.isArray(discoveredDentalScorePayload.commercial_strength.allowed_next_products));
 
 const adminCustomerReadResponse = await handleRequest(
   new Request("http://localhost/v1/beta/customers/beta_partner_test", {

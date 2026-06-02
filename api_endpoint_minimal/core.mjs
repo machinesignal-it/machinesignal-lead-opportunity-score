@@ -4464,6 +4464,58 @@ function reasonFor(score, sectorHint, confidence) {
   return "Insufficient public context for a high-priority opportunity signal.";
 }
 
+function commercialStrengthReview(score, confidence, decision, evidenceReview, qualityReview) {
+  const evidenceStatus = evidenceReview?.status || "not_applicable";
+  const qualityStatus = qualityReview?.status || "not_applicable";
+
+  if (confidence < 0.5 || /mismatch|needs_verification/.test(qualityStatus)) {
+    return {
+      level: "weak",
+      spend_policy: "do_not_buy_paid_addons_before_verification",
+      allowed_next_products: [],
+      reason:
+        "Commercial signal is not reliable enough; the customer machine should stop paid add-ons until data quality improves."
+    };
+  }
+
+  if (
+    decision === "buy_deep_analysis" &&
+    score >= 80 &&
+    confidence >= 0.68 &&
+    evidenceStatus === "target_discovery_evidence_passed"
+  ) {
+    return {
+      level: "strong",
+      spend_policy: "buy_deep_analysis_then_consider_action_pack_if_deep_confirms",
+      allowed_next_products: ["deep_analysis", "action_pack_after_deep_analysis"],
+      reason:
+        "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
+    };
+  }
+
+  if (
+    confidence >= 0.52 &&
+    (decision === "buy_deep_analysis" || decision === "nurture")
+  ) {
+    return {
+      level: "medium",
+      spend_policy: "buy_low_or_mid_cost_next_step_only",
+      allowed_next_products:
+        decision === "buy_deep_analysis" ? ["deep_analysis"] : ["nurture_signal"],
+      reason:
+        "The target is commercially usable, but spend should stay limited until stronger evidence is produced."
+    };
+  }
+
+  return {
+    level: "weak",
+    spend_policy: "watchlist_only",
+    allowed_next_products: [],
+    reason:
+      "The target can be kept in watchlist, but it should not trigger extra paid analysis in the current state."
+  };
+}
+
 export function scoreLeadOpportunity(input) {
   const domain = normalizeDomain(input?.domain);
   const sectorHint = String(input?.sector_hint || "").trim();
@@ -4491,6 +4543,13 @@ export function scoreLeadOpportunity(input) {
   );
   const decision = decisionFor(score, confidence);
   const purchase = purchaseRecommendation(decision);
+  const commercialStrength = commercialStrengthReview(
+    score,
+    confidence,
+    decision,
+    evidenceReview,
+    qualityReview
+  );
   return {
     domain,
     opportunity_score: score,
@@ -4500,6 +4559,7 @@ export function scoreLeadOpportunity(input) {
     reason: reasonFor(score, sectorHint, confidence),
     quality_review: qualityReview,
     target_discovery_evidence_review: evidenceReview,
+    commercial_strength: commercialStrength,
     recommended_action: decision,
     product_level: "score_base",
     score_price_range_eur: "0.05-0.20",

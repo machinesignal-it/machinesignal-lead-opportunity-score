@@ -270,6 +270,7 @@ def run() -> dict[str, Any]:
             continue
 
         next_product = ((score.get("next_purchase") or {}).get("next_product") or "").strip() or None
+        commercial_strength = (score.get("commercial_strength") or {})
         score_row = {
             "index": index,
             "stage": "score",
@@ -282,6 +283,8 @@ def run() -> dict[str, Any]:
             "confidence": score.get("confidence"),
             "decision": score.get("decision"),
             "priority": score.get("priority"),
+            "commercial_strength": commercial_strength.get("level"),
+            "spend_policy": commercial_strength.get("spend_policy"),
             "next_product": next_product,
             "score_request_id": score.get("request_id"),
             "quality_review_status": (score.get("quality_review") or {}).get("status"),
@@ -420,6 +423,7 @@ def run() -> dict[str, Any]:
             "external_contact_executed": safety.get("external_contact_executed"),
             "decisions": count_items(score_rows, "decision"),
             "next_products": count_items(score_rows, "next_product"),
+            "commercial_strength": count_items(score_rows, "commercial_strength"),
             "purchases": count_items(purchase_rows, "product_code"),
             "score_to_deep_analysis_rate": round(deep_count / score_count, 4) if score_count else 0,
             "deep_analysis_to_action_pack_rate": round(action_count / deep_count, 4) if deep_count else 0,
@@ -457,6 +461,7 @@ def render_markdown(result: dict[str, Any]) -> str:
         "",
         f"- Decisioni score: `{json.dumps(s['decisions'], ensure_ascii=False)}`",
         f"- Next product raccomandati: `{json.dumps(s['next_products'], ensure_ascii=False)}`",
+        f"- Commercial strength: `{json.dumps(s.get('commercial_strength', {}), ensure_ascii=False)}`",
         f"- Acquisti eseguiti: `{json.dumps(s['purchases'], ensure_ascii=False)}`",
         f"- Score -> Deep Analysis rate: {s['score_to_deep_analysis_rate']}",
         f"- Deep Analysis -> Action Pack rate: {s['deep_analysis_to_action_pack_rate']}",
@@ -481,7 +486,7 @@ def render_markdown(result: dict[str, Any]) -> str:
         "",
         "## Campione operativo",
         "",
-        "| # | Dominio | Citta' | Score | Conf. | Decisione | Prodotto | Stage |",
+        "| # | Dominio | Citta' | Score | Conf. | Decisione | Strength | Prodotto | Stage |",
         "|---:|---|---|---:|---:|---|---|---|",
     ])
     for row in result.get("rows", []):
@@ -490,6 +495,7 @@ def render_markdown(result: dict[str, Any]) -> str:
         lines.append(
             f"| {row.get('index', '')} | {row.get('domain', '')} | {row.get('city', '')} | "
             f"{row.get('score', '')} | {row.get('confidence', '')} | {row.get('decision', '')} | "
+            f"{row.get('commercial_strength', '')} | "
             f"{row.get('product_code') or row.get('next_product') or ''} | {row.get('stage', '')} |"
         )
     lines.extend(["", "## Check", "", "| Check | Esito | Dettaglio |", "|---|---|---|"])
