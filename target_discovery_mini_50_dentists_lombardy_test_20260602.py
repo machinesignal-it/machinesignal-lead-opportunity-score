@@ -143,11 +143,14 @@ def buy_action_pack_gate(score: dict[str, Any], deep_delivery: dict[str, Any]) -
     confidence = float(score.get("confidence") or 0)
     decision = str(score.get("decision") or "")
     quality_status = str((score.get("quality_review") or {}).get("status") or "")
+    commercial_strength = str((score.get("commercial_strength") or {}).get("level") or "")
     deep_status = str(deep_delivery.get("status") or "")
     recommended_next = ((deep_delivery.get("recommended_next_step") or {}).get("product_code") or "").strip()
 
     if decision != "buy_deep_analysis":
         return False, "score did not recommend deep analysis"
+    if commercial_strength != "strong":
+        return False, "commercial strength is not strong enough for action pack"
     if score_value < 80:
         return False, "score below natural action threshold 80"
     if confidence < 0.70:
