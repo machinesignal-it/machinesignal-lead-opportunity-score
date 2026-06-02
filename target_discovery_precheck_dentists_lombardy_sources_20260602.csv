@@ -1,0 +1,7 @@
+source_name,url,evidence,operational_use,risk
+PagineGialle Odontoiatri Milano,https://www.paginegialle.it/lombardia/milano/odontoiatri.html,"Pagina con piu' di 200 risultati per odontoiatri a Milano","Fonte primaria per target iniziali e conferma categoria","Directory: serve deduplica e verifica dominio"
+Imprese.link Dentisti Lombardia,https://imprese.link/dentisti-medici-chirurghi-odontoiatri/lombardia/280/,"Categoria Lombardia con 6994 imprese indicate","Stima dimensione mercato e abbondanza target","Non tutti i record avranno sito valutabile"
+MioDottore Dentisti Milano,https://www.miodottore.it/dentista/milano,"Directory verticale di dentisti a Milano","Fonte di confronto e arricchimento profili","Puo' contenere profili individuali piu' che strutture"
+PagineBianche Studio Dentistico Mariani Monza,https://www.paginebianche.it/studiodentisticomariani-monza,"Scheda studio con descrizione, indirizzo e presenza sito web","Esempio di record normalizzabile","Singolo esempio, non fonte bulk"
+QSalute Studio Dentistico Abaco Monza,https://www.qsalute.it/studio-dentistico-abaco-di-monza/,"Scheda struttura odontoiatrica con recensioni e descrizione","Esempio fonte verticale sanitaria","Dati da usare solo come segnale pubblico"
+Top-Rated Online Studio Dentistico Dott. Dario Russo Monza,https://www.top-rated.online/cities/Monza/place/p/13844366/Studio%2BDentistico%2BDott.%2BDario%2BRusso,"Scheda con dentist e lista similar dentists nearby","Fonte di scoperta aggiuntiva e controllo locale","Va verificata freschezza dei dati"
