@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "version": "2026-06-01",
+  "version": "2026-06-02",
   "primary_customer_interface": "machine",
   "human_role": "supervision, approval and audit only",
   "base_url": "https://machinesignal-api.beta-878.workers.dev",
@@ -54,7 +54,7 @@
       "endpoint": "/v1/lead-opportunity-score",
       "auth": "X-API-Key",
       "headers": ["Idempotency-Key"],
-      "goal": "Score a domain and receive discard, watchlist, nurture, buy_deep_analysis or needs_verification."
+      "goal": "Score a domain and receive decision, commercial_strength, spend_policy and next budget action."
     },
     {
       "step": 6,
@@ -84,8 +84,8 @@
       "beta_price_eur": 149
     },
     "score_pack_1k": {
-      "when_to_buy": "The machine has domains and needs priority, decision and next budget action.",
-      "output": "1000 valid scores.",
+      "when_to_buy": "The machine has domains and needs priority, decision, commercial strength and next budget action.",
+      "output": "1000 valid scores with opportunity_score, confidence, commercial_strength, spend_policy, allowed_next_products and next_purchase.",
       "beta_price_eur": 99
     },
     "deep_analysis": {
@@ -94,7 +94,7 @@
       "beta_price_eur": 299
     },
     "action_pack": {
-      "when_to_buy": "Deep Analysis confirms a useful opportunity and the machine needs CRM/workflow-ready output.",
+      "when_to_buy": "Deep Analysis confirms a useful opportunity, commercial_strength is strong, and the machine needs CRM/workflow-ready output.",
       "output": "CRM record patch, task, workflow payload, webhook event, approval gate, stop rules and audit event.",
       "beta_price_eur": 399
     }
