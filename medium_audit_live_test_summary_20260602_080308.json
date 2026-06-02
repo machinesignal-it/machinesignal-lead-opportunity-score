@@ -1,0 +1,94 @@
+﻿{
+    "ok":  true,
+    "generated_at":  "2026-06-02T08:03:22.1744209Z",
+    "customer_id":  "medium_audit_20260602_080308",
+    "ledger_backend":  "durable_object",
+    "reconciliation_ok":  true,
+    "ready_for_real_payments":  false,
+    "real_payment_executed":  false,
+    "external_contact_executed":  false,
+    "scores_requested":  50,
+    "scores_completed":  50,
+    "purchases_completed":  39,
+    "orders_count":  39,
+    "audit_order_count":  39,
+    "score_credits_used":  50,
+    "simulated_revenue_eur":  111.75,
+    "decisions":  [
+                      {
+                          "decision":  "buy_deep_analysis",
+                          "count":  4
+                      },
+                      {
+                          "decision":  "needs_verification",
+                          "count":  21
+                      },
+                      {
+                          "decision":  "watchlist",
+                          "count":  14
+                      },
+                      {
+                          "decision":  "nurture",
+                          "count":  10
+                      },
+                      {
+                          "decision":  "discard",
+                          "count":  1
+                      }
+                  ],
+    "purchases":  [
+                      {
+                          "product_code":  "deep_analysis",
+                          "count":  4
+                      },
+                      {
+                          "product_code":  "action_pack",
+                          "count":  4
+                      },
+                      {
+                          "product_code":  "verification",
+                          "count":  21
+                      },
+                      {
+                          "product_code":  "nurture_signal",
+                          "count":  10
+                      }
+                  ],
+    "product_reconciliation":  [
+                                   {
+                                       "credits_reconcile":  true,
+                                       "order_count":  0,
+                                       "credits_used":  50,
+                                       "simulated_revenue_eur":  4.95,
+                                       "product_code":  "score_pack_1k"
+                                   },
+                                   {
+                                       "credits_reconcile":  true,
+                                       "order_count":  4,
+                                       "credits_used":  4,
+                                       "simulated_revenue_eur":  11.96,
+                                       "product_code":  "deep_analysis_pack_100"
+                                   },
+                                   {
+                                       "credits_reconcile":  true,
+                                       "order_count":  21,
+                                       "credits_used":  21,
+                                       "simulated_revenue_eur":  21,
+                                       "product_code":  "verification_pack_100"
+                                   },
+                                   {
+                                       "credits_reconcile":  true,
+                                       "order_count":  10,
+                                       "credits_used":  10,
+                                       "simulated_revenue_eur":  10,
+                                       "product_code":  "nurture_signal_pack_100"
+                                   },
+                                   {
+                                       "credits_reconcile":  true,
+                                       "order_count":  4,
+                                       "credits_used":  4,
+                                       "simulated_revenue_eur":  63.84,
+                                       "product_code":  "action_pack_25"
+                                   }
+                               ]
+}
