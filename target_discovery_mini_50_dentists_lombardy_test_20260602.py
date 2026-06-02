@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-MachineSignal 50-target real/semi-real Target Discovery mini test.
+MachineSignal Target Discovery live test.
 
-This test starts from a curated public-domain target list for dentists and dental
-clinics in Lombardy, then simulates the machine buying flow:
+This test starts from a curated public-domain target list, then simulates the
+machine buying flow:
 - target discovery pack order;
-- score 50 targets;
+- score target domains;
 - buy recommended add-ons;
 - buy Action Pack only through a prudent machine gate;
 - audit ledger and safety flags.
@@ -35,6 +35,18 @@ EXPECTED_TARGET_COUNT = int(os.environ.get("MACHINESIGNAL_EXPECTED_TARGET_COUNT"
 RUN_LABEL = os.environ.get("MACHINESIGNAL_RUN_LABEL", "target_discovery_mini_50_dentists_lombardy")
 REPORT_TITLE = os.environ.get("MACHINESIGNAL_REPORT_TITLE", "MachineSignal - Target Discovery Mini 50 test")
 OUTPUT_DIR = Path(os.environ.get("MACHINESIGNAL_MINI_50_OUTPUT_DIR", ".")).resolve()
+MARKET = os.environ.get("MACHINESIGNAL_MARKET", "dentist")
+AREA = os.environ.get("MACHINESIGNAL_AREA", "Lombardia")
+SECTOR_HINT = os.environ.get("MACHINESIGNAL_SECTOR_HINT", MARKET)
+COUNTRY_HINT = os.environ.get("MACHINESIGNAL_COUNTRY_HINT", "IT")
+COMMERCIAL_OBJECTIVE = os.environ.get(
+    "MACHINESIGNAL_COMMERCIAL_OBJECTIVE",
+    "digital presence improvement and CRM-ready action opportunity",
+)
+DISCOVERY_REASON = os.environ.get(
+    "MACHINESIGNAL_DISCOVERY_REASON",
+    f"{EXPECTED_TARGET_COUNT}-target public target discovery test before scaling.",
+)
 
 UNIT_PRICES_EUR = {
     "target_discovery": 149.00,
@@ -138,6 +150,14 @@ def count_items(items: list[dict[str, Any]], key: str) -> dict[str, int]:
     return counts
 
 
+def first_value(row: dict[str, Any], *keys: str) -> Any:
+    for key in keys:
+        value = row.get(key)
+        if value not in (None, ""):
+            return value
+    return None
+
+
 def buy_action_pack_gate(score: dict[str, Any], deep_delivery: dict[str, Any]) -> tuple[bool, str]:
     score_value = int(score.get("opportunity_score") or 0)
     confidence = float(score.get("confidence") or 0)
@@ -203,8 +223,8 @@ def run() -> dict[str, Any]:
         payload={
             "customer_id": customer_id,
             "contact_email": "beta@machinesignal.it",
-            "plan": "target_discovery_mini_50_dentists_lombardy",
-            "customer_type": "beta_customer_target_discovery_mini_50_test",
+            "plan": RUN_LABEL,
+            "customer_type": "beta_customer_target_discovery_test",
             "score_credits": EXPECTED_TARGET_COUNT + 10,
             "deep_analysis_credits": EXPECTED_TARGET_COUNT,
             "verification_credits": EXPECTED_TARGET_COUNT,
@@ -213,7 +233,7 @@ def run() -> dict[str, Any]:
             "target_discovery_credits": 1,
             "domain_enrichment_credits": 5,
             "opportunity_feed_credits": 0,
-            "created_by": "agent_target_discovery_mini_50_test",
+            "created_by": "agent_target_discovery_test",
         },
     )
     customer_key = customer.get("api_key") if isinstance(customer, dict) else None
@@ -228,14 +248,11 @@ def run() -> dict[str, Any]:
         idempotency_key=f"{run_id}-target-discovery-mini-50",
         payload={
             "product_code": "target_discovery",
-            "market": "dentist",
-            "area": "Lombardia",
-            "commercial_objective": (
-                "find dental clinic websites in Lombardy worth scoring for digital presence "
-                "improvement and machine-prepared commercial action opportunities"
-            ),
+            "market": MARKET,
+            "area": AREA,
+            "commercial_objective": COMMERCIAL_OBJECTIVE,
             "max_budget_eur": UNIT_PRICES_EUR["target_discovery"],
-            "reason": f"{EXPECTED_TARGET_COUNT}-target real/semi-real target discovery test before scaling to 250.",
+            "reason": DISCOVERY_REASON,
         },
     )
     discovery_order_id = order_id_from(discovery)
@@ -252,6 +269,11 @@ def run() -> dict[str, Any]:
 
     for index, target in enumerate(targets, start=1):
         domain = target["domain"].strip().lower()
+        target_name = first_value(target, "target_name", "name")
+        category_hint = first_value(target, "category", "category_hint")
+        city = first_value(target, "city", "area")
+        province = first_value(target, "province", "region")
+        source_url = first_value(target, "source_url", "website", "source_record")
         status, score = request_json(
             "POST",
             "/v1/lead-opportunity-score",
@@ -259,12 +281,12 @@ def run() -> dict[str, Any]:
             idempotency_key=f"{run_id}-score-{index:03d}",
             payload={
                 "domain": domain,
-                "sector_hint": "dentist",
-                "country_hint": "IT",
-                "target_name": target.get("target_name"),
-                "category_hint": target.get("category"),
+                "sector_hint": SECTOR_HINT,
+                "country_hint": COUNTRY_HINT,
+                "target_name": target_name,
+                "category_hint": category_hint,
                 "initial_signals": target.get("initial_signals"),
-                "commercial_objective": "digital presence improvement and CRM-ready action opportunity",
+                "commercial_objective": COMMERCIAL_OBJECTIVE,
             },
         )
         if not (status == 200 and isinstance(score, dict) and "opportunity_score" in score):
@@ -277,11 +299,11 @@ def run() -> dict[str, Any]:
         score_row = {
             "index": index,
             "stage": "score",
-            "target_name": target.get("target_name"),
+            "target_name": target_name,
             "domain": domain,
-            "city": target.get("city"),
-            "province": target.get("province"),
-            "source_url": target.get("source_url"),
+            "city": city,
+            "province": province,
+            "source_url": source_url,
             "score": score.get("opportunity_score"),
             "confidence": score.get("confidence"),
             "decision": score.get("decision"),
@@ -308,7 +330,7 @@ def run() -> dict[str, Any]:
                 "domain": domain,
                 "source_score_request_id": score.get("request_id"),
                 "source_order_intent_id": discovery_order_id,
-                "reason": f"Mini 50 flow: score decision {score.get('decision')} recommended {next_product}",
+                "reason": f"{RUN_LABEL}: score decision {score.get('decision')} recommended {next_product}",
                 "max_budget_eur": UNIT_PRICES_EUR[next_product],
             },
         )
@@ -356,7 +378,7 @@ def run() -> dict[str, Any]:
                 "domain": domain,
                 "source_score_request_id": score.get("request_id"),
                 "source_order_intent_id": order_id,
-                "reason": f"Mini 50 natural gate passed after deep analysis: {action_reason}",
+                "reason": f"{RUN_LABEL} natural gate passed after deep analysis: {action_reason}",
                 "max_budget_eur": UNIT_PRICES_EUR["action_pack"],
             },
         )
@@ -471,7 +493,7 @@ def render_markdown(result: dict[str, Any]) -> str:
         "",
         "## Lettura commerciale",
         "",
-        f"Questo test parte da una lista reale/semi-reale di {s['targets_loaded']} domini pubblici di studi dentistici e cliniche odontoiatriche lombarde. Serve a capire se un Target Discovery ridotto puo' generare downstream revenue dopo lo score.",
+        f"Questo test parte da una lista pubblica e strutturata di {s['targets_loaded']} domini nel mercato `{MARKET}` per l'area `{AREA}`. Serve a capire se un Target Discovery puo' generare downstream revenue dopo lo score.",
         "",
         "La lista non contiene contatti personali e non attiva outreach: valuta solo domini e acquisti beta machine-to-machine.",
         "",
