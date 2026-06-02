@@ -2597,6 +2597,63 @@ function isRealEstateSector(sectorHint) {
   return /(real estate|immobil|property|agenzia casa)/.test(String(sectorHint || "").toLowerCase());
 }
 
+function isDentalSector(sectorHint) {
+  return /(dent|odont|clinic|clinica|health|medical)/.test(String(sectorHint || "").toLowerCase());
+}
+
+function signalText(input = {}, domain = "", sectorHint = "") {
+  return [
+    domain,
+    sectorHint,
+    input?.target_name,
+    input?.company_name,
+    input?.category_hint,
+    input?.category,
+    input?.source_type,
+    input?.source_url,
+    input?.initial_signals,
+    input?.reason_for_inclusion
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
+
+function targetDiscoveryEvidenceReview(input, domain, sectorHint) {
+  if (!isDentalSector(sectorHint)) {
+    return {
+      status: "not_applicable",
+      confidence_delta: 0,
+      confidence_floor: null,
+      reason: "No target-discovery evidence boost was applied."
+    };
+  }
+
+  const text = signalText(input, domain, sectorHint);
+  const hasDiscoveryEvidence =
+    /sector_match/.test(text) &&
+    /business_domain_present/.test(text) &&
+    /(official_site|public_web_signal|local_market|regional_market|source_url|https?:\/\/)/.test(text);
+  const hasDentalEvidence = /(dent|odont|clinic|clinica|studio|centro)/.test(text);
+
+  if (hasDiscoveryEvidence && hasDentalEvidence) {
+    return {
+      status: "target_discovery_evidence_passed",
+      confidence_delta: 0.14,
+      confidence_floor: 0.52,
+      reason:
+        "Target Discovery supplied coherent sector, domain and public-web evidence; confidence is raised before routing."
+    };
+  }
+
+  return {
+    status: "target_discovery_evidence_insufficient",
+    confidence_delta: 0,
+    confidence_floor: null,
+    reason: "Target Discovery evidence was not strong enough to raise confidence."
+  };
+}
+
 function aestheticMedicineQualityReview(input, domain, sectorHint) {
   if (!isAestheticMedicineSector(sectorHint)) {
     return {
@@ -4415,11 +4472,19 @@ export function scoreLeadOpportunity(input) {
   const base = 34 + (hash % 32);
   const domainSignals = /\.(it|com|io|ai)$/.test(domain) ? 4 : 0;
   const qualityReview = sectorQualityReview(input, domain, sectorHint);
+  const evidenceReview = targetDiscoveryEvidenceReview(input, domain, sectorHint);
   const score = clamp(base + sectorBoost(sectorHint) + domainSignals + qualityReview.score_delta, 8, 94);
   const rawConfidence = clamp(0.52 + ((hash >> 8) % 36) / 100, 0.35, 0.88);
+  const adjustedConfidence = clamp(
+    rawConfidence + evidenceReview.confidence_delta,
+    evidenceReview.confidence_floor === null ? 0.35 : evidenceReview.confidence_floor,
+    0.88
+  );
   const confidence = Number(
     clamp(
-      qualityReview.confidence_cap === null ? rawConfidence : Math.min(rawConfidence, qualityReview.confidence_cap),
+      qualityReview.confidence_cap === null
+        ? adjustedConfidence
+        : Math.min(adjustedConfidence, qualityReview.confidence_cap),
       0.35,
       0.88
     ).toFixed(2)
@@ -4434,6 +4499,7 @@ export function scoreLeadOpportunity(input) {
     decision,
     reason: reasonFor(score, sectorHint, confidence),
     quality_review: qualityReview,
+    target_discovery_evidence_review: evidenceReview,
     recommended_action: decision,
     product_level: "score_base",
     score_price_range_eur: "0.05-0.20",

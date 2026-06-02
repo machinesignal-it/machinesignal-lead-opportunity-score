@@ -732,6 +732,36 @@ assert.equal(
   11
 );
 
+const discoveredDentalScoreResponse = await handleRequest(
+  new Request("http://localhost/v1/lead-opportunity-score", {
+    method: "POST",
+    body: JSON.stringify({
+      domain: "studiodentisticocozzolino.it",
+      sector_hint: "dentist",
+      country_hint: "IT",
+      target_name: "Studio Dentistico Cozzolino",
+      category_hint: "studio dentistico",
+      source_url: "https://studiodentisticocozzolino.it/",
+      source_type: "official_site",
+      initial_signals: "sector_match;local_market;business_domain_present"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": createCustomerPayload.api_key,
+      "idempotency-key": "customer-score-discovered-dental-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(discoveredDentalScoreResponse.status, 200);
+const discoveredDentalScorePayload = await discoveredDentalScoreResponse.json();
+assert.equal(
+  discoveredDentalScorePayload.target_discovery_evidence_review.status,
+  "target_discovery_evidence_passed"
+);
+assert.ok(discoveredDentalScorePayload.confidence >= 0.52);
+assert.notEqual(discoveredDentalScorePayload.decision, "needs_verification");
+
 const adminCustomerReadResponse = await handleRequest(
   new Request("http://localhost/v1/beta/customers/beta_partner_test", {
     method: "GET",
@@ -771,8 +801,8 @@ assert.ok(
   auditReportPayload.product_reconciliation.some(
     (item) =>
       item.product_code === "score_pack_1k" &&
-      item.credits_used === 1 &&
-      item.credits_consumed_from_events === 1 &&
+      item.credits_used === 2 &&
+      item.credits_consumed_from_events === 2 &&
       item.credits_reconcile === true
   )
 );
@@ -804,7 +834,7 @@ assert.equal(
 );
 assert.equal(
   adminTopUpPayload.usage.balances.find((item) => item.product_code === "score_pack_1k").credits_remaining,
-  16
+  15
 );
 
 const adminSuspendResponse = await handleRequest(
