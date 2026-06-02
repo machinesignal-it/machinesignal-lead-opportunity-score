@@ -1,0 +1,7 @@
+area,confidence,decision,delivery_status,domain,index,next_product,order_intent_id,priority,product_code,quality_review_status,score,score_request_id,sector_hint,stage,status,target_count_returned,target_name
+,,,,,,,ord_2dfed196,,target_discovery,,,,,target_discovery,accepted_beta_order_intent,3,
+Milano e Lombardia,0.52,watchlist,,dentist-milano-e-lombardia-candidate-01.example,1,,,medium,,not_applicable,49,no-list-discovery-20260602_111704-1780391824-score-001,dentist,score,,,dentist candidate 01
+Milano e Lombardia,0.38,needs_verification,,dentist-milano-e-lombardia-candidate-02.example,2,verification,,medium,,not_applicable,62,no-list-discovery-20260602_111704-1780391824-score-002,dentist,score,,,dentist candidate 02
+Milano e Lombardia,0.38,needs_verification,verification_ready,dentist-milano-e-lombardia-candidate-02.example,2,verification,ord_1d9da79,medium,verification,not_applicable,62,no-list-discovery-20260602_111704-1780391824-score-002,dentist,purchase,,,dentist candidate 02
+Milano e Lombardia,0.46,needs_verification,,dentist-milano-e-lombardia-candidate-03.example,3,verification,,high,,not_applicable,75,no-list-discovery-20260602_111704-1780391824-score-003,dentist,score,,,dentist candidate 03
+Milano e Lombardia,0.46,needs_verification,verification_ready,dentist-milano-e-lombardia-candidate-03.example,3,verification,ord_864955a9,high,verification,not_applicable,75,no-list-discovery-20260602_111704-1780391824-score-003,dentist,purchase,,,dentist candidate 03
