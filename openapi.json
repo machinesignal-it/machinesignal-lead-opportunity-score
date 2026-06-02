@@ -761,6 +761,39 @@
               }
             }
           },
+          "commercial_strength": {
+            "type": "object",
+            "description": "Machine-readable budget-routing layer. It classifies the scored target and tells the customer machine which paid next steps are allowed.",
+            "properties": {
+              "level": {
+                "type": "string",
+                "enum": [
+                  "strong",
+                  "medium",
+                  "weak"
+                ],
+                "example": "strong"
+              },
+              "spend_policy": {
+                "type": "string",
+                "example": "buy_deep_analysis_then_consider_action_pack_if_deep_confirms"
+              },
+              "allowed_next_products": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": [
+                  "deep_analysis",
+                  "action_pack_after_deep_analysis"
+                ]
+              },
+              "reason": {
+                "type": "string",
+                "example": "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
+              }
+            }
+          },
           "next_purchase": {
             "type": "object",
             "description": "Machine-readable commercial recommendation. Null next_product means do not buy an add-on now."

@@ -45,9 +45,9 @@ How a machine should call the score endpoint:
 3. If no beta key is available, POST /v1/sandbox/customers to create a limited sandbox key for safe testing.
 4. Read the required X-API-Key and Idempotency-Key headers.
 5. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
-6. Read decision, machine_next_step and next_purchase.
+6. Read decision, commercial_strength, spend_policy, machine_next_step and next_purchase.
 7. Read /v1/usage to verify consumed and remaining credits.
-8. If next_purchase.next_product is not null, POST /v1/purchase-intent to create a beta order intent.
+8. If next_purchase.next_product is not null and commercial_strength allows that spend, POST /v1/purchase-intent to create a beta order intent.
 9. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
 
 Three machine buying flows:
@@ -96,6 +96,11 @@ Machine-readable decisions:
 - nurture: save in nurturing and consider low-cost enrichment;
 - buy_deep_analysis: buy a paid deeper analysis before human/campaign spend;
 - needs_verification: verify data quality before spending more budget.
+
+Commercial strength routing:
+- strong: controlled spend is allowed; buy Deep Analysis and consider Action Pack only after deep confirmation;
+- medium: buy only low or mid-cost next steps such as Nurture Signal or Deep Analysis;
+- weak: keep in watchlist and do not buy paid add-ons now.
 
 How a machine should create a beta order intent:
 - POST /v1/purchase-intent with X-API-Key and Idempotency-Key;

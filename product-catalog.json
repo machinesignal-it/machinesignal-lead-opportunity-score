@@ -98,13 +98,16 @@
         "exclusion of invalid or non-analyzable records",
         "opportunity_score",
         "confidence",
+        "commercial_strength level",
+        "spend_policy",
+        "allowed next products",
         "operational decision",
         "short reason",
         "priority",
         "recommended next purchase"
       ],
       "validity_rule": "Duplicate, invalid or non-analyzable records do not consume score credits. The pack ends after 1000 valid scores.",
-      "machine_output": "Score, confidence, decision, reason, priority and recommended next product."
+      "machine_output": "Score, confidence, commercial strength, spend policy, decision, reason, priority and recommended next product."
     },
     "domain_enrichment_pack_100": {
       "name": "Domain Enrichment Pack 100",

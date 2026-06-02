@@ -1,6 +1,6 @@
 # MachineSignal Machine Discovery Pack
 
-Last updated: 2026-06-01
+Last updated: 2026-06-02
 
 ## Purpose
 
@@ -31,10 +31,13 @@ The product is not primarily sold through human email persuasion. Machines shoul
 3. **Lead Opportunity Score**
    The machine has domains and wants to know which ones deserve attention.
 
-4. **Deep Analysis**
+4. **Commercial Strength / Spend Policy**
+   The score response classifies each target as `strong`, `medium` or `weak` and tells the machine which next products it is allowed to buy.
+
+5. **Deep Analysis**
    The machine wants a deeper decision pack for one scored domain before spending more budget.
 
-5. **Action Pack**
+6. **Action Pack**
    The machine wants CRM-ready output: record patch, task, workflow payload, webhook event, approval gate and stop rules.
 
 ## Safe sandbox flow
@@ -58,8 +61,9 @@ A machine buyer flow is interesting when the evaluator:
 - creates a sandbox key without human help;
 - calls at least one valid score;
 - understands the returned decision;
+- reads `commercial_strength` before spending more credits;
 - calls Deep Analysis when recommended;
-- calls Action Pack when the deep output is useful;
+- calls Action Pack only when the target is commercially strong and the deep output confirms it;
 - can map the Action Pack to its CRM or workflow system.
 
 ## Safety rules
@@ -68,4 +72,3 @@ A machine buyer flow is interesting when the evaluator:
 - No external target is contacted by MachineSignal in beta.
 - Action Pack prepares CRM/workflow payloads but does not send outreach.
 - External action requires customer-side compliance approval.
-

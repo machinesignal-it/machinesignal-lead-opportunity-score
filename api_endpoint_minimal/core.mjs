@@ -142,6 +142,9 @@ const PRODUCT_CATALOG = {
         "exclusion of invalid or non-analyzable records",
         "opportunity_score",
         "confidence",
+        "commercial_strength level",
+        "spend_policy",
+        "allowed next products",
         "operational decision",
         "short reason",
         "priority",
@@ -149,7 +152,8 @@ const PRODUCT_CATALOG = {
       ],
       validity_rule:
         "Duplicate, invalid or non-analyzable records do not consume score credits. The pack ends after 1000 valid scores.",
-      machine_output: "Score, confidence, decision, reason, priority and recommended next product."
+      machine_output:
+        "Score, confidence, commercial strength, spend policy, decision, reason, priority and recommended next product."
     },
     domain_enrichment_pack_100: {
       name: "Domain Enrichment Pack 100",
@@ -934,6 +938,28 @@ export const openApi = {
               reason: { type: "string" }
             }
           },
+          commercial_strength: {
+            type: "object",
+            description:
+              "Machine-readable budget-routing layer. It classifies the scored target and tells the customer machine which paid next steps are allowed.",
+            properties: {
+              level: { type: "string", enum: ["strong", "medium", "weak"], example: "strong" },
+              spend_policy: {
+                type: "string",
+                example: "buy_deep_analysis_then_consider_action_pack_if_deep_confirms"
+              },
+              allowed_next_products: {
+                type: "array",
+                items: { type: "string" },
+                example: ["deep_analysis", "action_pack_after_deep_analysis"]
+              },
+              reason: {
+                type: "string",
+                example:
+                  "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
+              }
+            }
+          },
           next_purchase: {
             type: "object",
             description:
@@ -1317,9 +1343,9 @@ How a machine should call the score endpoint:
 3. If no beta key is available, POST /v1/sandbox/customers to create a limited sandbox key for safe testing.
 4. Read the required X-API-Key and Idempotency-Key headers.
 5. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
-6. Read decision, machine_next_step and next_purchase.
+6. Read decision, commercial_strength, spend_policy, machine_next_step and next_purchase.
 7. Read /v1/usage to verify consumed and remaining credits.
-8. If next_purchase.next_product is not null, POST /v1/purchase-intent to create a beta order intent.
+8. If next_purchase.next_product is not null and commercial_strength allows that spend, POST /v1/purchase-intent to create a beta order intent.
 9. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
 
 Three machine buying flows:
@@ -1368,6 +1394,11 @@ Machine-readable decisions:
 - nurture: save in nurturing and consider low-cost enrichment;
 - buy_deep_analysis: buy a paid deeper analysis before human/campaign spend;
 - needs_verification: verify data quality before spending more budget.
+
+Commercial strength routing:
+- strong: controlled spend is allowed; buy Deep Analysis and consider Action Pack only after deep confirmation;
+- medium: buy only low or mid-cost next steps such as Nurture Signal or Deep Analysis;
+- weak: keep in watchlist and do not buy paid add-ons now.
 
 How a machine should create a beta order intent:
 - POST /v1/purchase-intent with X-API-Key and Idempotency-Key;

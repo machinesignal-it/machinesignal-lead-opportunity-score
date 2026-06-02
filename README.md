@@ -49,6 +49,12 @@ Given a business domain, the API returns a machine-readable opportunity signal:
   "priority": "high",
   "decision": "buy_deep_analysis",
   "reason": "Signals suggest a high-priority opportunity where a paid deep analysis may be justified.",
+  "commercial_strength": {
+    "level": "strong",
+    "spend_policy": "buy_deep_analysis_then_consider_action_pack_if_deep_confirms",
+    "allowed_next_products": ["deep_analysis", "action_pack_after_deep_analysis"],
+    "reason": "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
+  },
   "next_purchase": {
     "next_product": "deep_analysis",
     "price_range_eur": "1-3",
@@ -68,6 +74,8 @@ Given a business domain, the API returns a machine-readable opportunity signal:
 ```
 
 Scores are routing signals, not guarantees. Higher scores indicate stronger potential opportunity for further analysis.
+
+`commercial_strength` is the budget-routing layer. It tells the customer machine whether the target is `strong`, `medium` or `weak`, and which next products are allowed. This makes the output useful for automated buyers: the machine can avoid unnecessary spend on weak records and buy deeper products only when the signal is strong enough.
 
 ## Callable Beta Base URL
 
@@ -110,8 +118,9 @@ Sandbox limits are intentionally small: 5 scores, 1 target discovery, 1 deep ana
 5. Call `GET /v1/onboarding`.
 6. If the machine already has domains, score them with `POST /v1/lead-opportunity-score`.
 7. If the machine has no list, order `target_discovery` with `POST /v1/purchase-intent`, then score the returned candidate domains.
-8. If `next_purchase` recommends an add-on, create a beta order with `POST /v1/purchase-intent`.
-9. Retrieve previous orders and deliveries with `GET /v1/orders`.
+8. Read `commercial_strength` and `spend_policy` before buying add-ons.
+9. If the score and spend policy allow an add-on, create a beta order with `POST /v1/purchase-intent`.
+10. Retrieve previous orders and deliveries with `GET /v1/orders`.
 
 ## Beta Tester Onboarding Packet
 
@@ -212,6 +221,7 @@ The response aggregates sandbox keys created, active and expired keys, score cre
 - `target_discovery`: pre-check and delivery for machines that have a market need but no list yet.
 - `domain_enrichment`: decision pack for machines that have company names but need reliable domains before scoring.
 - `score_pack_1k`: base lead opportunity score.
+- `commercial_strength`: score-attached budget policy that classifies targets as `strong`, `medium` or `weak` and tells the machine which add-ons are allowed.
 - `verification`: data quality verification delivery.
 - `nurture_signal`: lightweight signal for leads that should be saved but not pushed immediately.
 - `deep_analysis`: deeper opportunity analysis before spending campaign or sales budget.

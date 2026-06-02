@@ -10,9 +10,11 @@ Machine-readable lead opportunity scoring for CRM systems, RevOps workflows and 
 
 ## Long Description
 
-MachineSignal returns a structured opportunity score for business domains. It is built for automated systems that need to decide which company records deserve verification, nurturing, deep analysis or CRM action preparation before spending more budget.
+MachineSignal returns a structured opportunity score and a machine-readable budget decision for business domains. It is built for automated systems that need to decide which company records deserve verification, nurturing, deep analysis or CRM action preparation before spending more budget.
 
 The API is machine-first: agents, CRMs and workflows can inspect `machine-onboarding.json`, `llms.txt`, OpenAPI and Postman, then call protected endpoints with an API key.
+
+Each score includes `commercial_strength`: `strong`, `medium` or `weak`. This tells the customer machine whether it can buy Deep Analysis, limit spend to Nurture Signal, keep the target in watchlist, or consider Action Pack only after a confirmed deep analysis.
 
 The current beta supports score calls, credit usage tracking, purchase-intent creation and order/delivery retrieval. Beta purchase intents return machine-readable JSON deliveries and do not execute real payment.
 
@@ -53,7 +55,7 @@ GET  /v1/orders
 
 ## What It Does Not Do
 
-- Does not sell lead lists.
+- Does not sell generic lead lists.
 - Does not send outreach.
 - Does not guarantee buyer intent.
 - Does not execute real payment in beta.
