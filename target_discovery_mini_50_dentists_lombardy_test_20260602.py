@@ -27,7 +27,13 @@ from typing import Any
 
 
 BASE_URL = os.environ.get("MACHINESIGNAL_BASE_URL", "https://machinesignal-api.beta-878.workers.dev").rstrip("/")
-TARGET_CSV = Path("target_discovery_mini_50_dentists_lombardy_targets_20260602.csv")
+TARGET_CSV_INPUT = os.environ.get(
+    "MACHINESIGNAL_TARGET_CSV",
+    "target_discovery_mini_50_dentists_lombardy_targets_20260602.csv",
+)
+EXPECTED_TARGET_COUNT = int(os.environ.get("MACHINESIGNAL_EXPECTED_TARGET_COUNT", "50"))
+RUN_LABEL = os.environ.get("MACHINESIGNAL_RUN_LABEL", "target_discovery_mini_50_dentists_lombardy")
+REPORT_TITLE = os.environ.get("MACHINESIGNAL_REPORT_TITLE", "MachineSignal - Target Discovery Mini 50 test")
 OUTPUT_DIR = Path(os.environ.get("MACHINESIGNAL_MINI_50_OUTPUT_DIR", ".")).resolve()
 
 UNIT_PRICES_EUR = {
@@ -98,7 +104,14 @@ def is_retryable(status_code: int, payload: Any) -> bool:
 
 
 def read_targets() -> list[dict[str, str]]:
-    rows = list(csv.DictReader(TARGET_CSV.open(encoding="utf-8")))
+    paths = [
+        Path(item.strip())
+        for item in TARGET_CSV_INPUT.replace(",", ";").split(";")
+        if item.strip()
+    ]
+    rows: list[dict[str, str]] = []
+    for path in paths:
+        rows.extend(csv.DictReader(path.open(encoding="utf-8")))
     seen: set[str] = set()
     clean_rows: list[dict[str, str]] = []
     for row in rows:
@@ -162,8 +175,8 @@ def run() -> dict[str, Any]:
 
     targets = read_targets()
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    run_id = f"mini-50-dentists-{stamp}-{int(time.time())}"
-    customer_id = f"mini_50_dentists_{stamp.lower()}"
+    run_id = f"{RUN_LABEL}-{stamp}-{int(time.time())}".replace("_", "-")
+    customer_id = f"{RUN_LABEL}_{stamp.lower()}".replace("-", "_")[:80]
     checks: list[dict[str, Any]] = []
     rows: list[dict[str, Any]] = []
     score_rows: list[dict[str, Any]] = []
@@ -172,7 +185,11 @@ def run() -> dict[str, Any]:
     def check(name: str, ok: bool, details: str = "") -> None:
         checks.append({"name": name, "ok": bool(ok), "details": details})
 
-    check("target_count_50", len(targets) == 50, f"targets={len(targets)}")
+    check(
+        f"target_count_{EXPECTED_TARGET_COUNT}",
+        len(targets) == EXPECTED_TARGET_COUNT,
+        f"targets={len(targets)}",
+    )
     check("target_domains_unique", len({row['domain'].lower() for row in targets}) == len(targets), "dedupe by domain")
 
     status, customer = request_json(
@@ -185,11 +202,11 @@ def run() -> dict[str, Any]:
             "contact_email": "beta@machinesignal.it",
             "plan": "target_discovery_mini_50_dentists_lombardy",
             "customer_type": "beta_customer_target_discovery_mini_50_test",
-            "score_credits": 60,
-            "deep_analysis_credits": 50,
-            "verification_credits": 50,
-            "nurture_signal_credits": 50,
-            "action_pack_credits": 20,
+            "score_credits": EXPECTED_TARGET_COUNT + 10,
+            "deep_analysis_credits": EXPECTED_TARGET_COUNT,
+            "verification_credits": EXPECTED_TARGET_COUNT,
+            "nurture_signal_credits": EXPECTED_TARGET_COUNT,
+            "action_pack_credits": max(20, EXPECTED_TARGET_COUNT // 2),
             "target_discovery_credits": 1,
             "domain_enrichment_credits": 5,
             "opportunity_feed_credits": 0,
@@ -215,7 +232,7 @@ def run() -> dict[str, Any]:
                 "improvement and machine-prepared commercial action opportunities"
             ),
             "max_budget_eur": UNIT_PRICES_EUR["target_discovery"],
-            "reason": "Mini 50 real/semi-real target discovery test before scaling to 250.",
+            "reason": f"{EXPECTED_TARGET_COUNT}-target real/semi-real target discovery test before scaling to 250.",
         },
     )
     discovery_order_id = order_id_from(discovery)
@@ -362,7 +379,11 @@ def run() -> dict[str, Any]:
     safety = audit.get("safety") if isinstance(audit, dict) else {}
     reconciliation_ok = bool(audit_summary.get("reconciliation_ok")) if isinstance(audit_summary, dict) else False
 
-    check("scores_completed_50", len(score_rows) == 50, f"{len(score_rows)}/50")
+    check(
+        f"scores_completed_{EXPECTED_TARGET_COUNT}",
+        len(score_rows) == EXPECTED_TARGET_COUNT,
+        f"{len(score_rows)}/{EXPECTED_TARGET_COUNT}",
+    )
     check("score_failures_zero", score_failures == 0, f"failures={score_failures}")
     check("purchase_failures_zero", purchase_failures == 0, f"failures={purchase_failures}")
     check("audit_reconciliation_ok", reconciliation_ok is True, str(reconciliation_ok))
@@ -381,7 +402,7 @@ def run() -> dict[str, Any]:
 
     return {
         "ok": not [item for item in checks if not item["ok"]],
-        "test_name": "target_discovery_mini_50_dentists_lombardy_test",
+        "test_name": f"{RUN_LABEL}_test",
         "finished_at": datetime.now().isoformat(timespec="seconds"),
         "customer_id": customer_id,
         "checks": checks,
@@ -413,7 +434,7 @@ def run() -> dict[str, Any]:
 def render_markdown(result: dict[str, Any]) -> str:
     s = result["summary"]
     lines = [
-        "# MachineSignal - Target Discovery Mini 50 test",
+        f"# {REPORT_TITLE}",
         "",
         f"- Data test: {result['finished_at']}",
         f"- Customer: `{result['customer_id']}`",
@@ -442,7 +463,7 @@ def render_markdown(result: dict[str, Any]) -> str:
         "",
         "## Lettura commerciale",
         "",
-        "Questo test parte da una lista reale/semi-reale di 50 domini pubblici di studi dentistici e cliniche odontoiatriche lombarde. Serve a capire se un Target Discovery ridotto puo' generare downstream revenue dopo lo score.",
+        f"Questo test parte da una lista reale/semi-reale di {s['targets_loaded']} domini pubblici di studi dentistici e cliniche odontoiatriche lombarde. Serve a capire se un Target Discovery ridotto puo' generare downstream revenue dopo lo score.",
         "",
         "La lista non contiene contatti personali e non attiva outreach: valuta solo domini e acquisti beta machine-to-machine.",
         "",
@@ -493,9 +514,9 @@ def main() -> int:
     result = run()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     suffix = datetime.now().strftime("%Y%m%d_%H%M%S")
-    json_path = OUTPUT_DIR / f"target_discovery_mini_50_dentists_lombardy_summary_{suffix}.json"
-    md_path = OUTPUT_DIR / f"target_discovery_mini_50_dentists_lombardy_report_{suffix}.md"
-    csv_path = OUTPUT_DIR / f"target_discovery_mini_50_dentists_lombardy_rows_{suffix}.csv"
+    json_path = OUTPUT_DIR / f"{RUN_LABEL}_summary_{suffix}.json"
+    md_path = OUTPUT_DIR / f"{RUN_LABEL}_report_{suffix}.md"
+    csv_path = OUTPUT_DIR / f"{RUN_LABEL}_rows_{suffix}.csv"
     json_path.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
     md_path.write_text(render_markdown(result), encoding="utf-8")
     write_csv(result, csv_path)
