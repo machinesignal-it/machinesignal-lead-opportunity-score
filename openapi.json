@@ -790,7 +790,7 @@
               },
               "reason": {
                 "type": "string",
-                "example": "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
+                "example": "Score, confidence and Web Architect evidence are strong enough to justify controlled downstream spend."
               }
             }
           },
@@ -808,6 +808,26 @@
           },
           "usage": {
             "$ref": "#/components/schemas/UsageLedger"
+          },
+          "web_architect_review": {
+            "type": "object",
+            "description": "Web Architect AI precheck. It tells the customer machine whether website, sector and local-market evidence is coherent enough to support controlled downstream spend.",
+            "properties": {
+              "status": {
+                "type": "string",
+                "example": "architect_precheck_passed"
+              },
+              "action_pack_evidence": {
+                "type": "boolean",
+                "example": true
+              },
+              "checked_signals": {
+                "type": "object"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
           }
         }
       },

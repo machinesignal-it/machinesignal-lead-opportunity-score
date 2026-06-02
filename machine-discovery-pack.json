@@ -53,15 +53,19 @@
       "method": "POST",
       "endpoint": "/v1/lead-opportunity-score",
       "auth": "X-API-Key",
-      "headers": ["Idempotency-Key"],
-      "goal": "Score a domain and receive decision, commercial_strength, spend_policy and next budget action."
+      "headers": [
+        "Idempotency-Key"
+      ],
+      "goal": "Score a domain and receive decision, web_architect_review, commercial_strength, spend_policy and next budget action."
     },
     {
       "step": 6,
       "method": "POST",
       "endpoint": "/v1/purchase-intent",
       "auth": "X-API-Key",
-      "headers": ["Idempotency-Key"],
+      "headers": [
+        "Idempotency-Key"
+      ],
       "goal": "Order target_discovery, deep_analysis or action_pack when the machine has a valid reason."
     },
     {
@@ -85,7 +89,7 @@
     },
     "score_pack_1k": {
       "when_to_buy": "The machine has domains and needs priority, decision, commercial strength and next budget action.",
-      "output": "1000 valid scores with opportunity_score, confidence, commercial_strength, spend_policy, allowed_next_products and next_purchase.",
+      "output": "1000 valid scores with opportunity_score, confidence, web_architect_review, commercial_strength, spend_policy, allowed_next_products and next_purchase.",
       "beta_price_eur": 99
     },
     "deep_analysis": {
@@ -94,7 +98,7 @@
       "beta_price_eur": 299
     },
     "action_pack": {
-      "when_to_buy": "Deep Analysis confirms a useful opportunity, commercial_strength is strong, and the machine needs CRM/workflow-ready output.",
+      "when_to_buy": "Deep Analysis confirms a useful opportunity, commercial_strength is strong, Web Architect evidence supports controlled action, and the machine needs CRM/workflow-ready output.",
       "output": "CRM record patch, task, workflow payload, webhook event, approval gate, stop rules and audit event.",
       "beta_price_eur": 399
     }

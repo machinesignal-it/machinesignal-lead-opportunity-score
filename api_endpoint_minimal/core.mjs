@@ -938,6 +938,17 @@ export const openApi = {
               reason: { type: "string" }
             }
           },
+          web_architect_review: {
+            type: "object",
+            description:
+              "Web Architect AI precheck. It tells the customer machine whether website, sector and local-market evidence is coherent enough to support controlled downstream spend.",
+            properties: {
+              status: { type: "string", example: "architect_precheck_passed" },
+              action_pack_evidence: { type: "boolean", example: true },
+              checked_signals: { type: "object" },
+              reason: { type: "string" }
+            }
+          },
           commercial_strength: {
             type: "object",
             description:

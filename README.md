@@ -49,11 +49,16 @@ Given a business domain, the API returns a machine-readable opportunity signal:
   "priority": "high",
   "decision": "buy_deep_analysis",
   "reason": "Signals suggest a high-priority opportunity where a paid deep analysis may be justified.",
+  "web_architect_review": {
+    "status": "architect_precheck_passed",
+    "action_pack_evidence": true,
+    "reason": "Web Architect precheck found coherent website, sector and local-market evidence for controlled downstream action."
+  },
   "commercial_strength": {
     "level": "strong",
     "spend_policy": "buy_deep_analysis_then_consider_action_pack_if_deep_confirms",
     "allowed_next_products": ["deep_analysis", "action_pack_after_deep_analysis"],
-    "reason": "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
+    "reason": "Score, confidence and Web Architect evidence are strong enough to justify controlled downstream spend."
   },
   "next_purchase": {
     "next_product": "deep_analysis",
@@ -76,6 +81,8 @@ Given a business domain, the API returns a machine-readable opportunity signal:
 Scores are routing signals, not guarantees. Higher scores indicate stronger potential opportunity for further analysis.
 
 `commercial_strength` is the budget-routing layer. It tells the customer machine whether the target is `strong`, `medium` or `weak`, and which next products are allowed. This makes the output useful for automated buyers: the machine can avoid unnecessary spend on weak records and buy deeper products only when the signal is strong enough.
+
+`web_architect_review` is the Web Architect AI precheck. It does not contact the target. It checks whether website, sector and local-market evidence are coherent enough to support controlled downstream spend, especially before the customer machine buys an Action Pack.
 
 ## Callable Beta Base URL
 

@@ -61,6 +61,7 @@ A machine buyer flow is interesting when the evaluator:
 - creates a sandbox key without human help;
 - calls at least one valid score;
 - understands the returned decision;
+- reads `web_architect_review` to understand whether website, sector and local-market evidence supports controlled downstream action;
 - reads `commercial_strength` before spending more credits;
 - calls Deep Analysis when recommended;
 - calls Action Pack only when the target is commercially strong and the deep output confirms it;
