@@ -285,7 +285,11 @@ def run() -> dict[str, Any]:
                 "country_hint": COUNTRY_HINT,
                 "target_name": target_name,
                 "category_hint": category_hint,
+                "area": city,
+                "region": province,
+                "source_url": source_url,
                 "initial_signals": target.get("initial_signals"),
+                "website_architect_signals": target.get("website_architect_signals"),
                 "commercial_objective": COMMERCIAL_OBJECTIVE,
             },
         )
@@ -313,6 +317,7 @@ def run() -> dict[str, Any]:
             "next_product": next_product,
             "score_request_id": score.get("request_id"),
             "quality_review_status": (score.get("quality_review") or {}).get("status"),
+            "web_architect_status": (score.get("web_architect_review") or {}).get("status"),
         }
         score_rows.append(score_row)
         rows.append(score_row)

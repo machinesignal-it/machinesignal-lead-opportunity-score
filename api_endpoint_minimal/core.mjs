@@ -2640,8 +2640,12 @@ function signalText(input = {}, domain = "", sectorHint = "") {
     input?.company_name,
     input?.category_hint,
     input?.category,
+    input?.area,
+    input?.city,
+    input?.region,
     input?.source_type,
     input?.source_url,
+    input?.website_architect_signals,
     input?.initial_signals,
     input?.reason_for_inclusion
   ]
@@ -2662,9 +2666,9 @@ function targetDiscoveryEvidenceReview(input, domain, sectorHint) {
 
   const text = signalText(input, domain, sectorHint);
   const hasDiscoveryEvidence =
-    /sector_match/.test(text) &&
-    /business_domain_present/.test(text) &&
-    /(official_site|public_web_signal|local_market|regional_market|source_url|https?:\/\/)/.test(text);
+    /(sector_match|sector_dentist|sector_odont|dentist|odont)/.test(text) &&
+    /(business_domain_present|website_domain_available|official_site|public_web_result|https?:\/\/)/.test(text) &&
+    /(official_site|public_web_signal|public_web_result|local_market|regional_market|local_area_available|source_url|https?:\/\/)/.test(text);
   const hasDentalEvidence = /(dent|odont|clinic|clinica|studio|centro)/.test(text);
 
   if (hasDiscoveryEvidence && hasDentalEvidence) {
@@ -2682,6 +2686,62 @@ function targetDiscoveryEvidenceReview(input, domain, sectorHint) {
     confidence_delta: 0,
     confidence_floor: null,
     reason: "Target Discovery evidence was not strong enough to raise confidence."
+  };
+}
+
+function webArchitectOpportunityReview(input, domain, sectorHint, score, confidence, qualityReview) {
+  const text = signalText(input, domain, sectorHint);
+  const qualityStatus = qualityReview?.status || "not_applicable";
+  const websiteEvidence =
+    Boolean(domain) &&
+    /(website_domain_available|business_domain_present|official_site|public_web_result|https?:\/\/)/.test(text);
+  const localEvidence = /(local_area_available|local_market|regional_market|lombardia|milano)/.test(text);
+  const sectorEvidence = isDentalSector(sectorHint)
+    ? /(dent|odont|clinic|clinica|studio|centro|medical|medico)/.test(text)
+    : /(sector_match|service_keyword_present|business_domain_present)/.test(text);
+  const explicitFrictionSignal =
+    /(conversion_friction|cta_unclear|booking_missing|no_online_booking|contact_friction|website_opportunity|weak_cta|outdated_site)/.test(
+      text
+    );
+
+  if (/mismatch|needs_verification/.test(qualityStatus)) {
+    return {
+      status: "architect_review_blocked_by_quality",
+      action_pack_evidence: false,
+      reason:
+        "Architect review cannot support Action Pack while the sector or data quality gate requires verification."
+    };
+  }
+
+  if (score >= 80 && confidence >= 0.7 && websiteEvidence && sectorEvidence && localEvidence) {
+    return {
+      status: explicitFrictionSignal
+        ? "architect_opportunity_signal_passed"
+        : "architect_precheck_passed",
+      action_pack_evidence: true,
+      checked_signals: {
+        websiteEvidence,
+        sectorEvidence,
+        localEvidence,
+        explicitFrictionSignal
+      },
+      reason: explicitFrictionSignal
+        ? "Web Architect signals show a coherent site opportunity and explicit conversion-friction evidence."
+        : "Web Architect precheck found coherent website, sector and local-market evidence for controlled downstream action."
+    };
+  }
+
+  return {
+    status: "architect_signal_insufficient",
+    action_pack_evidence: false,
+    checked_signals: {
+      websiteEvidence,
+      sectorEvidence,
+      localEvidence,
+      explicitFrictionSignal
+    },
+    reason:
+      "Website, sector or local-market evidence is not strong enough for the machine to allow Action Pack spend."
   };
 }
 
@@ -4495,9 +4555,10 @@ function reasonFor(score, sectorHint, confidence) {
   return "Insufficient public context for a high-priority opportunity signal.";
 }
 
-function commercialStrengthReview(score, confidence, decision, evidenceReview, qualityReview) {
+function commercialStrengthReview(score, confidence, decision, evidenceReview, qualityReview, webArchitectReview) {
   const evidenceStatus = evidenceReview?.status || "not_applicable";
   const qualityStatus = qualityReview?.status || "not_applicable";
+  const architectActionEvidence = webArchitectReview?.action_pack_evidence === true;
 
   if (confidence < 0.5 || /mismatch|needs_verification/.test(qualityStatus)) {
     return {
@@ -4513,14 +4574,16 @@ function commercialStrengthReview(score, confidence, decision, evidenceReview, q
     decision === "buy_deep_analysis" &&
     score >= 80 &&
     confidence >= 0.68 &&
-    evidenceStatus === "target_discovery_evidence_passed"
+    (evidenceStatus === "target_discovery_evidence_passed" || architectActionEvidence)
   ) {
     return {
       level: "strong",
       spend_policy: "buy_deep_analysis_then_consider_action_pack_if_deep_confirms",
       allowed_next_products: ["deep_analysis", "action_pack_after_deep_analysis"],
       reason:
-        "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
+        architectActionEvidence
+          ? "Score, confidence and Web Architect evidence are strong enough to justify controlled downstream spend."
+          : "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
     };
   }
 
@@ -4574,12 +4637,21 @@ export function scoreLeadOpportunity(input) {
   );
   const decision = decisionFor(score, confidence);
   const purchase = purchaseRecommendation(decision);
+  const webArchitectReview = webArchitectOpportunityReview(
+    input,
+    domain,
+    sectorHint,
+    score,
+    confidence,
+    qualityReview
+  );
   const commercialStrength = commercialStrengthReview(
     score,
     confidence,
     decision,
     evidenceReview,
-    qualityReview
+    qualityReview,
+    webArchitectReview
   );
   return {
     domain,
@@ -4590,6 +4662,7 @@ export function scoreLeadOpportunity(input) {
     reason: reasonFor(score, sectorHint, confidence),
     quality_review: qualityReview,
     target_discovery_evidence_review: evidenceReview,
+    web_architect_review: webArchitectReview,
     commercial_strength: commercialStrength,
     recommended_action: decision,
     product_level: "score_base",
