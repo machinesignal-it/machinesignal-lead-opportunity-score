@@ -1,0 +1,133 @@
+{
+  "service": "MachineSignal",
+  "pack": "dentists_beta_machine_buyer_pack",
+  "last_updated": "2026-06-02",
+  "primary_customer_interface": "machine",
+  "human_role": "supervision_and_audit_only",
+  "vertical": {
+    "market": "dentists_odontoiatric_clinics",
+    "area": "Lombardia",
+    "commercial_objective": "identify dentist and odontoiatric clinic domains worth scoring for website-led commercial opportunity and CRM-ready follow-up preparation"
+  },
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "public_resources": {
+    "website": "https://machinesignal.it/",
+    "llms": "https://machinesignal.it/llms.txt",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "dentists_beta_pack_json": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
+    "dentists_beta_pack_markdown": "https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md"
+  },
+  "products_in_flow": [
+    {
+      "product_code": "target_discovery",
+      "name": "Target Discovery Pack",
+      "price_eur": 149,
+      "machine_goal": "create a coherent dentist target list when the customer machine does not already have one",
+      "valid_output": "250 normalized and deduplicated targets when the market is available"
+    },
+    {
+      "product_code": "score_pack_1k",
+      "name": "Score Pack 1k",
+      "price_eur": 99,
+      "machine_goal": "score domains and route budget by decision, confidence and commercial strength",
+      "valid_output": "1000 valid scores"
+    },
+    {
+      "product_code": "deep_analysis",
+      "name": "Deep Analysis",
+      "unit_price_eur": 2.99,
+      "machine_goal": "explain a high-potential domain before spending additional budget",
+      "valid_output": "one deeper machine-readable analysis"
+    },
+    {
+      "product_code": "nurture_signal",
+      "name": "Nurture Signal",
+      "unit_price_eur": 1,
+      "machine_goal": "save medium-potential records for later follow-up, monitoring or rescoring",
+      "valid_output": "one nurture-ready signal"
+    },
+    {
+      "product_code": "action_pack",
+      "name": "Action Pack",
+      "unit_price_eur": 15.96,
+      "machine_goal": "prepare CRM-ready action JSON only after strong evidence and deep confirmation",
+      "valid_output": "one CRM/workflow-ready action payload"
+    }
+  ],
+  "strong_lead_gate": {
+    "description": "A dentist lead can become strong only when score, confidence, quality and Web Architect evidence are coherent.",
+    "requires": [
+      "high opportunity_score",
+      "high confidence",
+      "no quality mismatch",
+      "website evidence",
+      "dentist or clinic sector evidence",
+      "local-market evidence",
+      "web_architect_review.action_pack_evidence true"
+    ]
+  },
+  "benchmark": {
+    "test_date": "2026-06-02",
+    "targets_loaded": 250,
+    "targets_scored": 250,
+    "score_failures": 0,
+    "purchase_failures": 0,
+    "ledger_backend": "durable_object",
+    "reconciliation_ok": true,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "total_simulated_revenue_eur": 552.95,
+    "target_discovery_revenue_eur": 149,
+    "downstream_revenue_eur": 403.95,
+    "downstream_revenue_per_target_eur": 1.6158,
+    "decisions": {
+      "buy_deep_analysis": 36,
+      "nurture": 96,
+      "watchlist": 118
+    },
+    "commercial_strength": {
+      "strong": 11,
+      "medium": 121,
+      "weak": 118
+    },
+    "purchases": {
+      "target_discovery": 1,
+      "deep_analysis": 36,
+      "nurture_signal": 96,
+      "action_pack": 11
+    }
+  },
+  "control_test": {
+    "purpose": "verify that Web Architect evidence does not inflate every vertical",
+    "real_estate_50": {
+      "targets_scored": 50,
+      "strong_leads": 0,
+      "action_pack_candidates": 0
+    },
+    "aesthetic_medicine_50": {
+      "targets_scored": 50,
+      "strong_leads": 0,
+      "action_pack_candidates": 0
+    }
+  },
+  "beta_guardrails": {
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "action_pack_sends_outreach": false,
+    "human_supervision_required_for_external_action": true
+  },
+  "recommended_machine_flow": [
+    "GET https://machinesignal.it/llms.txt",
+    "GET https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
+    "GET https://machinesignal.it/product-catalog.json",
+    "POST /v1/sandbox/customers",
+    "GET /v1/onboarding",
+    "POST /v1/purchase-intent with product_code target_discovery",
+    "POST /v1/lead-opportunity-score for returned domains",
+    "POST /v1/purchase-intent for recommended deep_analysis or nurture_signal",
+    "POST /v1/purchase-intent for action_pack only when strong and deep confirms",
+    "GET /v1/orders"
+  ]
+}

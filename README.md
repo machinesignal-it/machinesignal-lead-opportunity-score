@@ -22,6 +22,8 @@ Public discovery starts here:
 - Canonical Worker manifest: https://machinesignal-api.beta-878.workers.dev/machine-onboarding.json
 - Product catalog: https://machinesignal.it/product-catalog.json
 - Canonical Worker product catalog: https://machinesignal-api.beta-878.workers.dev/product-catalog.json
+- Dentists Beta Machine Buyer Pack JSON: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
+- Dentists Beta Machine Buyer Pack Markdown: https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md
 - LLM discovery file: https://machinesignal.it/llms.txt
 - OpenAPI schema: https://machinesignal.it/openapi.json
 - Postman public collection: https://machinesignal.it/postman_public_collection.json
@@ -83,6 +85,31 @@ Scores are routing signals, not guarantees. Higher scores indicate stronger pote
 `commercial_strength` is the budget-routing layer. It tells the customer machine whether the target is `strong`, `medium` or `weak`, and which next products are allowed. This makes the output useful for automated buyers: the machine can avoid unnecessary spend on weak records and buy deeper products only when the signal is strong enough.
 
 `web_architect_review` is the Web Architect AI precheck. It does not contact the target. It checks whether website, sector and local-market evidence are coherent enough to support controlled downstream spend, especially before the customer machine buys an Action Pack.
+
+## Dentists Beta Machine Buyer Pack
+
+The current strongest beta vertical is dentists / odontoiatric clinics in Lombardia.
+
+The latest live benchmark scored 250 domains and produced:
+
+- EUR 552.95 total simulated beta revenue;
+- EUR 149.00 Target Discovery revenue;
+- EUR 403.95 downstream simulated revenue;
+- EUR 1.6158 downstream revenue per target;
+- 36 Deep Analysis intents;
+- 96 Nurture Signal intents;
+- 11 Action Pack intents;
+- 0 score failures;
+- 0 purchase failures;
+- no real payment;
+- no external contact.
+
+The pack is published for machine evaluators at:
+
+- https://machinesignal.it/dentists-beta-machine-buyer-pack.json
+- https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md
+
+Control tests on 50 real estate targets and 50 aesthetic medicine targets produced 0 strong leads and 0 Action Pack candidates, which suggests the Web Architect gate remains selective outside the dentist beta funnel.
 
 ## Callable Beta Base URL
 

@@ -19,6 +19,7 @@
     "postman_collection": "https://machinesignal.it/postman_collection.json",
     "product_catalog": "https://machinesignal.it/product-catalog.json",
     "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "dentists_beta_machine_buyer_pack": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
     "beta_onboarding": "https://machinesignal.it/beta/onboarding-packet.json",
     "machine_test_kit": "https://machinesignal.it/beta/machine-test-kit.json"
   },

@@ -18,6 +18,7 @@ Useful endpoints:
 - GET https://machinesignal.it/distribution/rapidapi-provider-setup.json
 - GET https://machinesignal.it/distribution/channel-shortlist.json
 - GET https://machinesignal.it/.well-known/machine-discovery.json
+- GET https://machinesignal.it/dentists-beta-machine-buyer-pack.json
 - POST /v1/sandbox/customers
 - GET /v1/onboarding
 - GET /v1/usage
@@ -58,6 +59,8 @@ Three machine buying flows:
 Public demos for software, agents and partners:
 - Machine Discovery Pack: https://machinesignal.it/machine-discovery/
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
+- Dentists Beta Machine Buyer Pack JSON: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
+- Dentists Beta Machine Buyer Pack Markdown: https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - RapidAPI Listing JSON: https://machinesignal.it/distribution/rapidapi-listing.json
@@ -81,6 +84,7 @@ Beta tester onboarding resources:
 - Machine beta test kit JSON: https://machinesignal.it/beta/machine-test-kit.json
 
 Commercial model under test:
+- Dentist beta benchmark: 250 Lombardia dentist / odontoiatric clinic domains generated EUR 552.95 simulated beta revenue, including EUR 403.95 downstream revenue after the EUR 149 Target Discovery order. No real payment and no external contact were executed.
 - Target Discovery Pack: EUR 149 for 250 coherent targets after market availability pre-check;
 - Domain Enrichment Pack 100: EUR 149 for 100 enrichment decisions when a machine has names but not reliable domains;
 - Score Pack 1k: EUR 99 for 1000 valid scores;

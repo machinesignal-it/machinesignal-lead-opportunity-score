@@ -18,6 +18,7 @@ The product is not primarily sold through human email persuasion. Machines shoul
 | OpenAPI | https://machinesignal.it/openapi.json | Endpoint contract |
 | Product catalog | https://machinesignal.it/product-catalog.json | Products, prices and included deliverables |
 | Machine onboarding | https://machinesignal.it/machine-onboarding.json | Step-by-step machine onboarding |
+| Dentists beta pack | https://machinesignal.it/dentists-beta-machine-buyer-pack.json | Vertical beta benchmark and machine buyer rules for dentists / odontoiatric clinics |
 | Postman collection | https://machinesignal.it/postman_collection.json | Ready test collection |
 
 ## What a machine can buy or test

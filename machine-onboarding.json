@@ -17,6 +17,7 @@
     "rapidapi_listing": "https://machinesignal.it/distribution/rapidapi-listing.json",
     "rapidapi_provider_setup": "https://machinesignal.it/distribution/rapidapi-provider-setup.json",
     "distribution_channel_shortlist": "https://machinesignal.it/distribution/channel-shortlist.json",
+    "dentists_beta_machine_buyer_pack": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
     "well_known_machine_discovery": "https://machinesignal.it/.well-known/machine-discovery.json",
     "sandbox_customers": "/v1/sandbox/customers",
     "authenticated_onboarding": "/v1/onboarding",
