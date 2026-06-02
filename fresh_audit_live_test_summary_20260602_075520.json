@@ -1,0 +1,53 @@
+﻿{
+    "ok":  true,
+    "generated_at":  "2026-06-02T07:55:24.4973922Z",
+    "customer_id":  "audit_fresh_20260602_075520",
+    "ledger_backend":  "durable_object",
+    "reconciliation_ok":  true,
+    "ready_for_real_payments":  false,
+    "real_payment_executed":  false,
+    "external_contact_executed":  false,
+    "scores_requested":  6,
+    "scores_completed":  6,
+    "purchases_completed":  6,
+    "orders_count":  6,
+    "audit_order_count":  6,
+    "score_credits_used":  6,
+    "simulated_revenue_eur":  25.53,
+    "decisions":  [
+                      {
+                          "decision":  "buy_deep_analysis",
+                          "count":  2
+                      },
+                      {
+                          "decision":  "needs_verification",
+                          "count":  2
+                      },
+                      {
+                          "decision":  "watchlist",
+                          "count":  1
+                      },
+                      {
+                          "decision":  "nurture",
+                          "count":  1
+                      }
+                  ],
+    "purchases":  [
+                      {
+                          "product_code":  "deep_analysis",
+                          "count":  2
+                      },
+                      {
+                          "product_code":  "verification",
+                          "count":  2
+                      },
+                      {
+                          "product_code":  "nurture_signal",
+                          "count":  1
+                      },
+                      {
+                          "product_code":  "action_pack",
+                          "count":  1
+                      }
+                  ]
+}
