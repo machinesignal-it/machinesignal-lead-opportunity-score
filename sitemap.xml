@@ -16,6 +16,9 @@
     <loc>https://machinesignal.it/machine-discovery/machine-discovery-pack.json</loc>
   </url>
   <url>
+    <loc>https://machinesignal.it/mcp-machine-client-installation-pack.json</loc>
+  </url>
+  <url>
     <loc>https://machinesignal.it/mcp-tool-manifest.json</loc>
   </url>
   <url>

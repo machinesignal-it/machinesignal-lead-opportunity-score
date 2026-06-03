@@ -11,6 +11,7 @@ Public discovery starts here:
 - Website: https://machinesignal.it/
 - Machine Discovery Pack: https://machinesignal.it/machine-discovery/
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
+- MCP Machine Client Installation Pack JSON: https://machinesignal.it/mcp-machine-client-installation-pack.json
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - RapidAPI Listing JSON: https://machinesignal.it/distribution/rapidapi-listing.json
@@ -36,6 +37,10 @@ Public discovery starts here:
 - Machine beta test kit JSON: https://machinesignal.it/beta/machine-test-kit.json
 - Full machine buyer flow demo: https://machinesignal.it/demo/machine-buyer-flow/
 - CRM consumer demo: https://machinesignal.it/demo/crm-consumer/
+- MCP machine client installation guide: `MCP_MACHINE_CLIENT_INSTALLATION.md`
+- MCP client config example: `mcp_adapter/mcp_client_config.example.json`
+- MCP no-credit installation validator: `mcp_adapter/validate_machine_client_installation_20260603.py`
+- MCP machine buyer agent runner: `mcp_adapter/machine_buyer_agent_runner_20260603.py`
 
 Primary rule: do not rely on human email persuasion as the primary sales channel. The product should be discoverable and usable through manifests, OpenAPI, Postman and callable endpoints. Humans supervise, approve and audit.
 

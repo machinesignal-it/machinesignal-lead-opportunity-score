@@ -61,6 +61,21 @@ client configuration:
 Run the client from the repository root, or replace the adapter path with an
 absolute path.
 
+## Validate Installation Without Credits
+
+Run this before the full buyer-machine test:
+
+```powershell
+python mcp_adapter\validate_machine_client_installation_20260603.py
+```
+
+This starts the adapter and reads only public resources. It does not create a
+sandbox customer, does not call score tools and does not consume credits.
+
+Full installation guide:
+
+`MCP_MACHINE_CLIENT_INSTALLATION.md`
+
 ## Machine Buyer Agent Test
 
 Run this to simulate a buyer machine using the adapter as MCP-style tools:

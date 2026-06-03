@@ -14,6 +14,7 @@ Source of truth:
 - OpenAPI: `https://machinesignal.it/openapi.json`
 - llms.txt: `https://machinesignal.it/llms.txt`
 - Product catalog: `https://machinesignal.it/product-catalog.json`
+- Machine client installation pack: `https://machinesignal.it/mcp-machine-client-installation-pack.json`
 
 ## MCP Compatibility
 
@@ -23,6 +24,8 @@ A local stdio MCP-style adapter is available in the GitHub repository:
 
 - adapter: `mcp_adapter/machinesignal_mcp_server.py`
 - client config example: `mcp_adapter/mcp_client_config.example.json`
+- installation guide: `MCP_MACHINE_CLIENT_INSTALLATION.md`
+- no-credit installation validator: `mcp_adapter/validate_machine_client_installation_20260603.py`
 - machine buyer agent runner: `mcp_adapter/machine_buyer_agent_runner_20260603.py`
 
 A customer machine or integration partner can build a wrapper that exposes the HTTP endpoints as MCP tools. The wrapper should use:

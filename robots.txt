@@ -7,6 +7,7 @@ AI-agent-discovery: https://machinesignal.it/llms.txt
 MCP-tool-manifest: https://machinesignal.it/mcp-tool-manifest.json
 Well-known-MCP-tool-manifest: https://machinesignal.it/.well-known/mcp-tool-manifest.json
 Machine-discovery-pack: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
+MCP-machine-client-installation-pack: https://machinesignal.it/mcp-machine-client-installation-pack.json
 Dentists-beta-machine-buyer-pack: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
 Dentists-beta-machine-buyer-pack-markdown: https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md
 Technical-distribution-pack: https://machinesignal.it/distribution/api-directory-submission.json
