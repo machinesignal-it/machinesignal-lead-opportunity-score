@@ -31,6 +31,7 @@
   },
   "discovery_resources": {
     "machine_discovery_page": "https://machinesignal.it/machine-discovery/",
+    "integration_ready_page": "https://machinesignal.it/integration-ready/",
     "machine_discovery_json": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
     "mcp_machine_client_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "integration_partner_pack": "https://machinesignal.it/integration-partner-pack.json",

@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MachineSignal Integration Ready</title>
+    <meta
+      name="description"
+      content="MachineSignal integration readiness page for CRM systems, AI agents, RevOps workflows and software automations that need lead opportunity scoring."
+    />
+    <link rel="alternate" type="application/json" title="Integration Partner Pack" href="/integration-partner-pack.json" />
+    <link rel="alternate" type="application/json" title="Machine Discovery Pack" href="/machine-discovery/machine-discovery-pack.json" />
+    <link rel="alternate" type="application/json" title="MCP Machine Client Installation Pack" href="/mcp-machine-client-installation-pack.json" />
+    <link rel="service-desc" type="application/vnd.oai.openapi+json" href="/openapi.json" />
+    <link rel="alternate" type="text/plain" title="LLM discovery file" href="/llms.txt" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #101a17;
+        --muted: #5a6760;
+        --line: #dce6df;
+        --soft: #f4f8f6;
+        --paper: #ffffff;
+        --green: #0d6b4c;
+        --blue: #245f9f;
+        --amber: #8a5a08;
+        --night: #101a17;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        letter-spacing: 0;
+      }
+
+      a {
+        color: var(--green);
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 16px;
+        top: -48px;
+        z-index: 100;
+        border-radius: 6px;
+        background: #fff;
+        color: var(--green);
+        padding: 10px 12px;
+        font-weight: 760;
+        text-decoration: none;
+      }
+
+      .skip-link:focus {
+        top: 12px;
+      }
+
+      header {
+        background: var(--night);
+        color: #fff;
+        padding: 28px 0 46px;
+      }
+
+      .wrap {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-weight: 820;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: #e8fff4;
+        color: var(--green);
+        display: grid;
+        place-items: center;
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      nav {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: rgba(255, 255, 255, 0.84);
+        text-decoration: none;
+      }
+
+      .hero {
+        padding: 56px 0 0;
+      }
+
+      .eyebrow {
+        color: #9ef0ce;
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: 820;
+        margin-bottom: 14px;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 940px;
+        font-size: clamp(38px, 6vw, 70px);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 800px;
+        margin: 18px 0 0;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 19px;
+        line-height: 1.55;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .button {
+        min-height: 44px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        padding: 0 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 760;
+      }
+
+      .button.primary {
+        background: #e8fff4;
+        border-color: #e8fff4;
+        color: var(--green);
+      }
+
+      main section {
+        padding: 42px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 30px;
+        line-height: 1.15;
+      }
+
+      h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+
+      p,
+      li {
+        line-height: 1.58;
+      }
+
+      code {
+        border-radius: 6px;
+        background: #edf4f0;
+        padding: 2px 5px;
+      }
+
+      .sub {
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .two {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 18px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 18px;
+        background: var(--soft);
+      }
+
+      .card.white {
+        background: #fff;
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .flow-step {
+        padding: 18px;
+        background: #fff;
+        border-right: 1px solid var(--line);
+      }
+
+      .flow-step:last-child {
+        border-right: 0;
+      }
+
+      .tag {
+        display: inline-flex;
+        min-height: 26px;
+        align-items: center;
+        border-radius: 6px;
+        padding: 0 8px;
+        background: #e8fff4;
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 820;
+      }
+
+      .tag.blue {
+        background: #eaf2fb;
+        color: var(--blue);
+      }
+
+      .tag.amber {
+        background: #fff5df;
+        color: var(--amber);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+
+      th,
+      td {
+        padding: 13px 14px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+        line-height: 1.45;
+      }
+
+      th {
+        background: var(--soft);
+        color: var(--muted);
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      pre {
+        margin: 0;
+        overflow: auto;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        border-radius: 8px;
+        background: #111a17;
+        color: #dff7ed;
+        padding: 18px;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .endpoint-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .endpoint {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px 16px;
+        background: #fff;
+      }
+
+      footer {
+        padding: 28px 0 40px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 900px) {
+        .grid,
+        .two,
+        .flow {
+          grid-template-columns: 1fr;
+        }
+
+        .flow-step {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .flow-step:last-child {
+          border-bottom: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header>
+      <div class="wrap">
+        <div class="topline">
+          <a class="brand" href="/">
+            <span class="mark">MS</span>
+            <span>MachineSignal</span>
+          </a>
+          <nav aria-label="Main navigation">
+            <a href="/api/">API</a>
+            <a href="/machine-discovery/">Discovery</a>
+            <a href="/openapi.json">OpenAPI</a>
+            <a href="/llms.txt">llms.txt</a>
+          </nav>
+        </div>
+        <div class="hero">
+          <div class="eyebrow">Integration Ready</div>
+          <h1>For CRM systems, AI agents and workflows that buy signals through an API.</h1>
+          <p class="lead">
+            MachineSignal is designed for machine customers first. The customer can be a CRM, an AI
+            agent, an enrichment workflow or a software automation that needs to discover targets,
+            score domains, buy bounded follow-up analysis and retrieve structured JSON deliveries.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="/integration-partner-pack.json">Read integration pack</a>
+            <a class="button" href="/mcp-machine-client-installation-pack.json">Read MCP install pack</a>
+            <a class="button" href="/openapi.json">OpenAPI contract</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section>
+        <div class="wrap">
+          <h2>What The Machine Can Buy</h2>
+          <p class="sub">
+            The machine does not need a sales call to understand the beta flow. It reads the public
+            contract, creates or receives an API key, calls endpoints, consumes credits and stores
+            the resulting JSON.
+          </p>
+          <div class="grid">
+            <article class="card">
+              <span class="tag">Existing list</span>
+              <h3>Score and route known domains</h3>
+              <p>
+                A CRM or workflow sends domains to <code>POST /v1/lead-opportunity-score</code>.
+                MachineSignal returns score, confidence, decision, commercial strength and next
+                budget action.
+              </p>
+            </article>
+            <article class="card">
+              <span class="tag blue">No list</span>
+              <h3>Discover targets before scoring</h3>
+              <p>
+                If the machine has only a market and an objective, it can order
+                <code>target_discovery</code>. The result is a coherent list or a no-go market
+                coverage decision.
+              </p>
+            </article>
+            <article class="card">
+              <span class="tag amber">Confirmed opportunity</span>
+              <h3>Prepare CRM-ready action</h3>
+              <p>
+                After a strong score and Deep Analysis, the machine can order an Action Pack with
+                CRM record patch, task, workflow payload, webhook event, stop rules and audit trail.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Machine Flow</h2>
+          <div class="flow" aria-label="Machine integration flow">
+            <div class="flow-step">
+              <span class="tag">1</span>
+              <h3>Discover</h3>
+              <p>Read <code>llms.txt</code>, OpenAPI, product catalog and machine discovery packs.</p>
+            </div>
+            <div class="flow-step">
+              <span class="tag">2</span>
+              <h3>Test</h3>
+              <p>Create a sandbox customer or use a beta API key, then run score and purchase tests.</p>
+            </div>
+            <div class="flow-step">
+              <span class="tag">3</span>
+              <h3>Buy</h3>
+              <p>Call <code>purchase-intent</code> only when the previous output permits bounded spend.</p>
+            </div>
+            <div class="flow-step">
+              <span class="tag">4</span>
+              <h3>Retrieve</h3>
+              <p>Read orders, deliveries, usage and ledger events for audit and CRM integration.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Latest End-To-End Integration Result</h2>
+          <p class="sub">
+            The latest simulator tested the three core cases without real payment, external contact
+            or human outreach.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Case</th>
+                <th>Result</th>
+                <th>Machine next step</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Existing list</td>
+                <td>Score <strong>61</strong>, decision <code>watchlist</code>.</td>
+                <td>Store in CRM watchlist and avoid downstream spend for now.</td>
+              </tr>
+              <tr>
+                <td>No list</td>
+                <td>Target Discovery returned a candidate with score <strong>77</strong>.</td>
+                <td>Allowed action: buy Deep Analysis before any campaign or human budget.</td>
+              </tr>
+              <tr>
+                <td>Action payload</td>
+                <td>Action Pack produced CRM record, task and webhook-ready event.</td>
+                <td>Customer machine prepares internal workflow and runs its compliance gate.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap two">
+          <div>
+            <h2>Public Resources</h2>
+            <div class="endpoint-list">
+              <div class="endpoint"><a href="/integration-partner-pack.json">Integration Partner Pack JSON</a></div>
+              <div class="endpoint"><a href="/INTEGRATION_PARTNER_PACK.md">Integration Partner Pack Markdown</a></div>
+              <div class="endpoint"><a href="/mcp-machine-client-installation-pack.json">MCP Machine Client Installation Pack</a></div>
+              <div class="endpoint"><a href="/mcp-tool-manifest.json">MCP tool manifest</a></div>
+              <div class="endpoint"><a href="/.well-known/machine-discovery.json">Well-known machine discovery JSON</a></div>
+              <div class="endpoint"><a href="/crm-agent-integration-simulator-readout.md">CRM/Agent simulator readout</a></div>
+              <div class="endpoint"><a href="/crm-agent-integration-simulated-ledger.json">CRM/Agent simulated ledger</a></div>
+            </div>
+          </div>
+          <div>
+            <h2>Callable Contract</h2>
+            <pre>{
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "public_contracts": [
+    "https://machinesignal.it/openapi.json",
+    "https://machinesignal.it/product-catalog.json",
+    "https://machinesignal.it/llms.txt"
+  ],
+  "protected_flow": [
+    "GET /v1/onboarding",
+    "POST /v1/lead-opportunity-score",
+    "POST /v1/purchase-intent",
+    "GET /v1/orders",
+    "GET /v1/usage"
+  ]
+}</pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Safety And Spend Rules</h2>
+          <div class="grid">
+            <article class="card white">
+              <h3>Beta payment rule</h3>
+              <p>No real payment is executed in beta. Purchase intent creates a tracked order intent and delivery.</p>
+            </article>
+            <article class="card white">
+              <h3>No external outreach</h3>
+              <p>MachineSignal prepares internal CRM/workflow payloads. It does not send external emails or messages.</p>
+            </article>
+            <article class="card white">
+              <h3>Budget protection</h3>
+              <p>Weak or uncertain signals route to discard, watchlist or verification instead of paid add-ons.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <p>MachineSignal beta. Machine-readable lead opportunity scoring for CRM systems, AI agents and workflows.</p>
+      </div>
+    </footer>
+  </body>
+</html>

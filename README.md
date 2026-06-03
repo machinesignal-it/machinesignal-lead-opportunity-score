@@ -9,6 +9,7 @@ MachineSignal is a private technical beta. The first customer interface is a mac
 Public discovery starts here:
 
 - Website: https://machinesignal.it/
+- Integration Ready page: https://machinesignal.it/integration-ready/
 - Machine Discovery Pack: https://machinesignal.it/machine-discovery/
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - MCP Machine Client Installation Pack JSON: https://machinesignal.it/mcp-machine-client-installation-pack.json
