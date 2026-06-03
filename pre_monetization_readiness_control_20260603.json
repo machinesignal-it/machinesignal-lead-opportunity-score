@@ -1,0 +1,200 @@
+{
+  "service": "MachineSignal",
+  "report_type": "pre_monetization_readiness_control",
+  "generated_at": "2026-06-03",
+  "primary_customer_interface": "machine",
+  "overall_status": "not_ready_for_real_payments",
+  "controlled_beta_status": "technically_ready_for_controlled_beta",
+  "ready_for_real_payments": false,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "decision": {
+    "allow_now": [
+      "public_machine_discovery",
+      "sandbox_testing",
+      "private_beta_keys",
+      "simulated_purchase_intent",
+      "usage_orders_and_audit_reporting",
+      "partner_technical_evaluation_without_charging_money"
+    ],
+    "block_now": [
+      "real_card_payments",
+      "automatic_subscription_activation",
+      "paid_invoice_issuance",
+      "production_paid_customer_onboarding",
+      "public_paid_marketplace_listing",
+      "automatic_renewals",
+      "system_executed_external_outreach"
+    ]
+  },
+  "gates": [
+    {
+      "id": "G1",
+      "area": "machine_buyer_flow",
+      "status": "pass",
+      "reason": "Discovery, sandbox, scoring, purchase-intent, orders and usage have passed live tests.",
+      "required_before_real_payment": "Keep daily monitor active.",
+      "owner_agent": "Orchestratore, API Product Manager"
+    },
+    {
+      "id": "G2",
+      "area": "ledger_and_audit",
+      "status": "pass_for_beta",
+      "reason": "Durable Object ledger reconciles credits, orders and simulated revenue.",
+      "required_before_real_payment": "Add long-term reporting/export before paid scale.",
+      "owner_agent": "Admin & Finance Controller, Scoring Optimizer"
+    },
+    {
+      "id": "G3",
+      "area": "fiscal_identity",
+      "status": "blocker",
+      "reason": "The business is not yet fiscally ready to issue paid invoices from the project.",
+      "required_before_real_payment": "Confirm legal/fiscal setup, Partita IVA/VAT position, invoice issuer and tax regime with commercialista.",
+      "owner_agent": "Admin & Finance Controller"
+    },
+    {
+      "id": "G4",
+      "area": "electronic_invoicing",
+      "status": "blocker",
+      "reason": "Paid Italian B2B/B2C flows need an invoice process, not only API orders.",
+      "required_before_real_payment": "Select invoicing process/provider, map API order to invoice, define receipt/fattura timing and conservation.",
+      "owner_agent": "Admin & Finance Controller"
+    },
+    {
+      "id": "G5",
+      "area": "payment_provider",
+      "status": "blocker",
+      "reason": "Payment is intentionally disabled and no production checkout reconciliation exists.",
+      "required_before_real_payment": "Configure provider in test mode first, then production only after fiscal/legal approval.",
+      "owner_agent": "Billing & Payment Ops Agent"
+    },
+    {
+      "id": "G6",
+      "area": "terms_of_service",
+      "status": "blocker",
+      "reason": "Customer machines need binding rules: service limits, no guarantees, credit validity, refunds, acceptable use and API responsibilities.",
+      "required_before_real_payment": "Draft and approve terms for API, credits, beta status, automated use and limitation of liability.",
+      "owner_agent": "Legal & Compliance Agent"
+    },
+    {
+      "id": "G7",
+      "area": "privacy_and_data_roles",
+      "status": "blocker",
+      "reason": "Lead/domain data may include business and possibly personal data depending on customer inputs.",
+      "required_before_real_payment": "Privacy policy, DPA template if needed, data categories, lawful basis, retention, deletion and sub-processors.",
+      "owner_agent": "Legal & Compliance Agent, Data Quality & Compliance"
+    },
+    {
+      "id": "G8",
+      "area": "cookie_and_site_compliance",
+      "status": "partial",
+      "reason": "The public site is simple, but privacy/cookie/accessibility notices should be verified before commercial launch.",
+      "required_before_real_payment": "Publish privacy notice and cookie notice/banner only if tracking cookies or analytics are used.",
+      "owner_agent": "Legal & Compliance Agent, Architetto Web AI"
+    },
+    {
+      "id": "G9",
+      "area": "data_retention",
+      "status": "blocker",
+      "reason": "The beta ledger works, but paid production needs documented retention, deletion and export rules.",
+      "required_before_real_payment": "Define retention windows for API logs, orders, customer records, scoring inputs and audit data.",
+      "owner_agent": "Data Quality & Compliance, Admin & Finance Controller"
+    },
+    {
+      "id": "G10",
+      "area": "refund_and_credit_correction",
+      "status": "blocker",
+      "reason": "The API has valid-output credit logic, but paid customers need clear remedies.",
+      "required_before_real_payment": "Define refund, credit top-up, invalid output, dispute and SLA rules.",
+      "owner_agent": "Customer Success & Post-Sale Agent, Admin & Finance Controller"
+    },
+    {
+      "id": "G11",
+      "area": "abuse_and_rate_limits",
+      "status": "partial",
+      "reason": "Sandbox limits exist, but paid plan limits and misuse rules need production policy.",
+      "required_before_real_payment": "Add plan limits, alert thresholds, abuse suspension and high-volume approval rules.",
+      "owner_agent": "Security & Abuse Guard Agent, API Product Manager"
+    },
+    {
+      "id": "G12",
+      "area": "customer_support_automation",
+      "status": "partial",
+      "reason": "Usage and order retrieval exist. Post-sale handling must be automated end to end.",
+      "required_before_real_payment": "Add support intake, incident status, credit correction workflow and customer-facing machine status output.",
+      "owner_agent": "Customer Success & Post-Sale Agent"
+    },
+    {
+      "id": "G13",
+      "area": "commercial_reporting",
+      "status": "partial",
+      "reason": "Simulated revenue is tracked in audit, but paid P&L needs invoice/payment reconciliation.",
+      "required_before_real_payment": "Connect order, payment, invoice, credit ledger and revenue report.",
+      "owner_agent": "Admin & Finance Controller, Business Analyst Agent"
+    },
+    {
+      "id": "G14",
+      "area": "human_supervision_limit",
+      "status": "pass_if_gates_stay_automated",
+      "reason": "The model fits the 1-2 hour/day supervision target if agents handle monitoring and exceptions.",
+      "required_before_real_payment": "Build exception dashboard so the user sees only blockers and approvals.",
+      "owner_agent": "Orchestratore"
+    }
+  ],
+  "non_negotiable_blockers": [
+    "Fiscal setup approved",
+    "Invoice process ready",
+    "Payment provider configured and reconciled in test mode",
+    "Terms of service approved",
+    "Privacy/DPA/retention rules approved",
+    "Refund and credit correction policy approved",
+    "Paid test in test mode reconciles order, payment, invoice placeholder, credit ledger and audit report"
+  ],
+  "machine_facing_commercial_rule": {
+    "current": {
+      "payment_mode": "purchase_intent_only",
+      "real_payment_executed": false,
+      "ready_for_real_payments": false,
+      "allowed_use": "technical_beta_and_partner_evaluation"
+    },
+    "target_after_approval": {
+      "payment_mode": "paid_checkout_enabled",
+      "real_payment_executed": "only_after_customer_machine_or_authorized_operator_approval",
+      "ready_for_real_payments": true
+    }
+  },
+  "recommended_agent_additions": [
+    "Billing & Payment Ops Agent",
+    "Legal & Compliance Agent",
+    "Security & Abuse Guard Agent",
+    "Customer Success & Post-Sale Agent",
+    "Admin & Finance Controller"
+  ],
+  "seven_day_plan": [
+    "Freeze real-payment guardrail and publish pre-monetization status.",
+    "Draft terms of service, privacy policy, DPA skeleton and acceptable-use policy.",
+    "Define fiscal and invoice workflow with commercialista.",
+    "Choose payment provider in test mode and define checkout objects.",
+    "Build payment-test ledger mapping.",
+    "Run fake paid checkout test in provider test mode only.",
+    "Produce go/no-go report."
+  ],
+  "official_references": [
+    {
+      "name": "Agenzia delle Entrate - Fatturazione elettronica",
+      "url": "https://www1.agenziaentrate.gov.it/web_app_entrate/fatturazione_elettronica.html"
+    },
+    {
+      "name": "GDPR Regulation (EU) 2016/679",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    },
+    {
+      "name": "European Commission - Controller/processor roles",
+      "url": "https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/obligations/controllerprocessor/what-data-controller-or-processor_en"
+    },
+    {
+      "name": "Garante Privacy - Cookie guidelines",
+      "url": "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/9679893"
+    }
+  ]
+}
