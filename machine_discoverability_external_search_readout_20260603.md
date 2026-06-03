@@ -36,6 +36,8 @@ Content checks passed:
 - `rapidapi-listing.json` contains dentist tags, 7 product entries and the dentists beta pack URL.
 - `robots.txt` points machines to `llms.txt`, OpenAPI, product catalog, discovery pack, dentists pack, directory JSON and RapidAPI JSON.
 - `sitemap.xml` includes the dentists JSON and Markdown pack.
+- `openapi.json` is the current repo version and includes `/v1/sandbox/customers` plus `/v1/admin/sandbox-metrics`.
+- `machine-onboarding.json`, `product-catalog.json` and `postman_collection.json` were republished from the current repo package, not the older local site copy.
 
 ## External search check
 
