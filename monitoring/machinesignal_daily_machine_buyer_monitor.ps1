@@ -2,7 +2,10 @@ param(
     [string]$BaseUrl = "https://machinesignal-api.beta-878.workers.dev",
     [string]$PublicSite = "https://machinesignal.it",
     [string]$OutputRoot = "outputs\machinesignal_daily_monitor",
-    [string]$MonitorCredentialStorePath = (Join-Path $env:APPDATA "MachineSignal\machinesignal_monitor_api_key.dpapi")
+    [string]$MonitorCredentialStorePath = (Join-Path $env:APPDATA "MachineSignal\machinesignal_monitor_api_key.dpapi"),
+    [int]$MinScoreCredits = 20,
+    [int]$MinTargetDiscoveryCredits = 5,
+    [int]$MinDeepAnalysisCredits = 5
 )
 
 $ErrorActionPreference = "Stop"
@@ -138,6 +141,20 @@ function Get-RecommendedProduct {
     }
 }
 
+function Get-CreditsRemaining {
+    param(
+        [object]$Usage,
+        [string]$ProductCode
+    )
+    if ($null -eq $Usage -or $null -eq $Usage.balances) { return $null }
+    foreach ($balance in @($Usage.balances)) {
+        if ([string]$balance.product_code -eq $ProductCode) {
+            return [int]$balance.credits_remaining
+        }
+    }
+    return $null
+}
+
 $stamp = Get-Date -Format "yyyyMMdd_HHmmss"
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 if (-not [System.IO.Path]::IsPathRooted($OutputRoot)) {
@@ -247,9 +264,22 @@ Add-Check -Checks $checks -Name "usage_reachable" -Ok ($usage.Status -eq 200) -D
 Add-Check -Checks $checks -Name "real_payment_guardrail_false" -Ok ($usage.Body.real_payment_executed -eq $false) -Details ([string]$usage.Body.real_payment_executed)
 Add-Check -Checks $checks -Name "external_contact_guardrail_false" -Ok ($usage.Body.external_contact_executed -eq $false) -Details ([string]$usage.Body.external_contact_executed)
 
+$scoreRemaining = Get-CreditsRemaining -Usage $usage.Body -ProductCode "score_pack_1k"
+$targetDiscoveryRemaining = Get-CreditsRemaining -Usage $usage.Body -ProductCode "target_discovery_pack_250"
+$deepAnalysisRemaining = Get-CreditsRemaining -Usage $usage.Body -ProductCode "deep_analysis_pack_100"
+Add-Check -Checks $checks -Name "score_credits_above_threshold" -Ok (($scoreRemaining -ne $null) -and ($scoreRemaining -ge $MinScoreCredits)) -Details "remaining=$scoreRemaining threshold=$MinScoreCredits"
+Add-Check -Checks $checks -Name "target_discovery_credits_above_threshold" -Ok (($targetDiscoveryRemaining -ne $null) -and ($targetDiscoveryRemaining -ge $MinTargetDiscoveryCredits)) -Details "remaining=$targetDiscoveryRemaining threshold=$MinTargetDiscoveryCredits"
+Add-Check -Checks $checks -Name "deep_analysis_credits_above_threshold" -Ok (($deepAnalysisRemaining -ne $null) -and ($deepAnalysisRemaining -ge $MinDeepAnalysisCredits)) -Details "remaining=$deepAnalysisRemaining threshold=$MinDeepAnalysisCredits"
+
 $ok = -not ($checks | Where-Object { -not $_.ok })
+$failedChecks = @($checks | Where-Object { -not $_.ok })
+$alertRequired = $failedChecks.Count -gt 0
+$alertReasons = @($failedChecks | ForEach-Object { "$($_.name): $($_.details)" })
 $result = [pscustomobject]@{
     ok = $ok
+    alert_required = $alertRequired
+    alert_level = $(if ($alertRequired) { "ALERT" } else { "OK" })
+    alert_reasons = $alertReasons
     monitor_name = "machinesignal_daily_machine_buyer_monitor"
     finished_at = (Get-Date).ToString("s")
     base_url = $BaseUrl
@@ -271,6 +301,16 @@ $result = [pscustomobject]@{
     add_on_status = $addOnStatus
     real_payment_executed = $usage.Body.real_payment_executed
     external_contact_executed = $usage.Body.external_contact_executed
+    credit_thresholds = [pscustomobject]@{
+        score_pack_1k_min = $MinScoreCredits
+        target_discovery_pack_250_min = $MinTargetDiscoveryCredits
+        deep_analysis_pack_100_min = $MinDeepAnalysisCredits
+    }
+    credit_remaining = [pscustomobject]@{
+        score_pack_1k = $scoreRemaining
+        target_discovery_pack_250 = $targetDiscoveryRemaining
+        deep_analysis_pack_100 = $deepAnalysisRemaining
+    }
     output_dir = $outputDir
 }
 
@@ -295,6 +335,7 @@ $report = @"
 
 Finished at: $($result.finished_at)
 Status: $(if ($ok) { "PASS" } else { "FAIL" })
+Alert: $($result.alert_level)
 
 ## Score Summary
 
@@ -316,6 +357,12 @@ $checkRows
 
 - Real payment executed: ``$($result.real_payment_executed)``
 - External contact executed: ``$($result.external_contact_executed)``
+
+## Credit Thresholds
+
+- Score credits remaining: ``$scoreRemaining`` / threshold ``$MinScoreCredits``
+- Target Discovery credits remaining: ``$targetDiscoveryRemaining`` / threshold ``$MinTargetDiscoveryCredits``
+- Deep Analysis credits remaining: ``$deepAnalysisRemaining`` / threshold ``$MinDeepAnalysisCredits``
 "@
 
 $result | Add-Member -NotePropertyName file_output_ok -NotePropertyValue $fileOutputOk -Force

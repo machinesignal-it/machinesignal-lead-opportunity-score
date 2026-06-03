@@ -135,6 +135,12 @@ The monitor should use a stored beta key at:
 
 If no stored key is available, it falls back to public sandbox creation, which can hit the daily sandbox limit.
 
+The monitor returns `alert_level: ALERT` when any live check fails or when monitor credits fall below these default thresholds:
+
+- score credits below 20;
+- Target Discovery credits below 5;
+- Deep Analysis credits below 5.
+
 ## Callable Beta Base URL
 
 ```text
