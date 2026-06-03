@@ -16,6 +16,12 @@
     <loc>https://machinesignal.it/machine-discovery/machine-discovery-pack.json</loc>
   </url>
   <url>
+    <loc>https://machinesignal.it/mcp-tool-manifest.json</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/.well-known/mcp-tool-manifest.json</loc>
+  </url>
+  <url>
     <loc>https://machinesignal.it/dentists-beta-machine-buyer-pack.json</loc>
   </url>
   <url>

@@ -12,6 +12,8 @@ Useful endpoints:
 - GET /llms.txt
 - GET /machine-onboarding.json
 - GET /product-catalog.json
+- GET https://machinesignal.it/mcp-tool-manifest.json
+- GET https://machinesignal.it/.well-known/mcp-tool-manifest.json
 - GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - GET https://machinesignal.it/distribution/api-directory-submission.json
 - GET https://machinesignal.it/distribution/rapidapi-listing.json
@@ -57,6 +59,8 @@ Three machine buying flows:
 3. Customer machine wants an action: after a strong score, Web Architect evidence and Deep Analysis, call POST /v1/purchase-intent with product_code action_pack to receive CRM-ready JSON: crm_record_patch, workflow_payload, webhook_event, agent_instructions, message angle, stop rules and follow-up sequence.
 
 Public demos for software, agents and partners:
+- MCP/tool-style manifest: https://machinesignal.it/mcp-tool-manifest.json
+- Well-known MCP/tool-style manifest: https://machinesignal.it/.well-known/mcp-tool-manifest.json
 - Machine Discovery Pack: https://machinesignal.it/machine-discovery/
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - Dentists Beta Machine Buyer Pack JSON: https://machinesignal.it/dentists-beta-machine-buyer-pack.json

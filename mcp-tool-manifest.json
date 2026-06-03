@@ -1,0 +1,291 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-03",
+  "manifest_type": "tool_style_manifest",
+  "primary_customer_interface": "machine",
+  "website": "https://machinesignal.it/",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "openapi": "https://machinesignal.it/openapi.json",
+  "llms": "https://machinesignal.it/llms.txt",
+  "product_catalog": "https://machinesignal.it/product-catalog.json",
+  "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+  "mcp_compatibility": {
+    "public_mcp_server_live": false,
+    "adapter_required": true,
+    "adapter_guidance": "Expose the HTTP endpoints below as MCP tools. Use the tool names, input schemas, auth rules and safety guardrails in this manifest.",
+    "recommended_wrapper_transport": "stdio or HTTP wrapper controlled by the customer machine",
+    "source_of_truth": "https://machinesignal.it/openapi.json"
+  },
+  "authentication": {
+    "public_tools": [
+      "get_product_catalog",
+      "get_machine_onboarding",
+      "get_dentists_beta_pack",
+      "create_sandbox_customer"
+    ],
+    "customer_auth_header": "X-API-Key",
+    "admin_auth_header": "X-API-Key",
+    "idempotency_header": "Idempotency-Key",
+    "customer_key_source": "POST /v1/sandbox/customers for sandbox tests, or private beta onboarding for larger tests."
+  },
+  "tools": [
+    {
+      "name": "get_product_catalog",
+      "purpose": "Read products, exact beta prices, deliverables, credit rules and allowed next purchases.",
+      "method": "GET",
+      "url": "https://machinesignal.it/product-catalog.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable product catalog and price list."
+    },
+    {
+      "name": "get_machine_onboarding",
+      "purpose": "Read the machine buyer flow, allowed calls, guardrails and public onboarding resources.",
+      "method": "GET",
+      "url": "https://machinesignal.it/machine-onboarding.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Public onboarding contract for automated evaluators."
+    },
+    {
+      "name": "get_dentists_beta_pack",
+      "purpose": "Read the current dentist vertical benchmark, product flow and commercial evidence before testing.",
+      "method": "GET",
+      "url": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Dentist beta pack with 250-target benchmark and routing results."
+    },
+    {
+      "name": "create_sandbox_customer",
+      "purpose": "Create a low-credit sandbox API key so a machine can test the beta flow without human sales contact.",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "evaluator_id": {
+            "type": "string",
+            "description": "Optional stable identifier for the evaluator machine."
+          },
+          "use_case": {
+            "type": "string",
+            "description": "Optional plain-language description of the automated test."
+          }
+        },
+        "required": []
+      },
+      "output_summary": "Sandbox customer id, API key, expiry and small credit balances.",
+      "limits": {
+        "score_credits": 5,
+        "target_discovery_credits": 1,
+        "deep_analysis_credits": 1,
+        "action_pack_credits": 1,
+        "expires_after_days_default": 7
+      }
+    },
+    {
+      "name": "get_customer_onboarding",
+      "purpose": "Read authenticated onboarding, balances, allowed products and next machine calls for one customer key.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/onboarding",
+      "auth": "customer_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Customer-specific onboarding, credits and safe next calls."
+    },
+    {
+      "name": "score_lead_opportunity",
+      "purpose": "Score one business domain and decide whether the machine should discard, watchlist, nurture, buy deep analysis or request verification.",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
+      "auth": "customer_api_key",
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "Business domain without protocol, for example clinic3.it."
+          },
+          "sector_hint": {
+            "type": "string",
+            "description": "Optional sector hint such as dentist, real_estate, aesthetic_medicine."
+          },
+          "country_hint": {
+            "type": "string",
+            "description": "Optional country hint such as IT."
+          }
+        },
+        "required": [
+          "domain"
+        ]
+      },
+      "output_summary": "opportunity_score, confidence, decision, web_architect_review, commercial_strength, spend_policy, next_purchase and usage.",
+      "credit_rule": "Consumes one score credit only when the API produces a valid usable output."
+    },
+    {
+      "name": "create_purchase_intent",
+      "purpose": "Create a beta order intent for a machine-readable paid output such as target discovery, deep analysis, nurture signal or action pack.",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
+      "auth": "customer_api_key",
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "product_code": {
+            "type": "string",
+            "enum": [
+              "target_discovery",
+              "domain_enrichment",
+              "verification",
+              "nurture_signal",
+              "deep_analysis",
+              "action_pack",
+              "opportunity_feed"
+            ]
+          },
+          "domain": {
+            "type": "string",
+            "description": "Domain to analyze when buying domain-level outputs."
+          },
+          "market": {
+            "type": "string",
+            "description": "Market or niche for target discovery."
+          },
+          "area": {
+            "type": "string",
+            "description": "Geographic area for target discovery."
+          },
+          "commercial_objective": {
+            "type": "string",
+            "description": "What opportunity the machine wants to find, not a generic sector label."
+          },
+          "batch_id": {
+            "type": "string",
+            "description": "Optional external batch identifier."
+          }
+        },
+        "required": [
+          "product_code"
+        ]
+      },
+      "output_summary": "Tracked beta order intent, delivery contract, immediate machine-readable output and remaining credits.",
+      "credit_rule": "Consumes the corresponding product credit only when the beta order intent is valid."
+    },
+    {
+      "name": "list_orders",
+      "purpose": "Retrieve previous beta orders and machine-readable deliveries for the authenticated customer.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/orders",
+      "auth": "customer_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "product_code": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "output_summary": "Recent beta order intents and deliveries."
+    },
+    {
+      "name": "get_order",
+      "purpose": "Retrieve one beta order and its delivery by order_intent_id.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/orders/{order_intent_id}",
+      "auth": "customer_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "order_intent_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_intent_id"
+        ]
+      },
+      "output_summary": "One beta order intent and delivery."
+    },
+    {
+      "name": "get_usage",
+      "purpose": "Read current credit balances and usage for the authenticated customer machine.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/usage",
+      "auth": "customer_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Consumed credits, remaining credits and beta usage state."
+    },
+    {
+      "name": "get_admin_sandbox_metrics",
+      "purpose": "Admin-only monitor for 7-day sandbox test metrics, conversion signals and safety flags.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/admin/sandbox-metrics",
+      "auth": "admin_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Sandbox keys, score usage, deep analysis orders, action pack orders, conversion rates and safety flags."
+    }
+  ],
+  "recommended_machine_flow": [
+    "GET https://machinesignal.it/mcp-tool-manifest.json",
+    "GET https://machinesignal.it/product-catalog.json",
+    "POST /v1/sandbox/customers",
+    "GET /v1/onboarding with X-API-Key",
+    "POST /v1/lead-opportunity-score with X-API-Key and Idempotency-Key",
+    "POST /v1/purchase-intent when next_purchase recommends a valid product",
+    "GET /v1/orders to retrieve deliveries",
+    "GET /v1/usage to reconcile credits"
+  ],
+  "decision_values": {
+    "discard": "Do not spend more budget now.",
+    "watchlist": "Save and rescore later.",
+    "nurture": "Save in nurturing and consider low-cost enrichment.",
+    "buy_deep_analysis": "Buy a deeper machine-readable explanation before larger spend.",
+    "needs_verification": "Verify data quality before spending more budget."
+  },
+  "commercial_strength_rules": {
+    "strong": "Controlled spend is allowed; buy Deep Analysis and consider Action Pack only after deep confirmation.",
+    "medium": "Buy only low or mid-cost next steps such as Nurture Signal or Deep Analysis.",
+    "weak": "Keep in watchlist and do not buy paid add-ons now."
+  },
+  "safety": {
+    "real_payment_executed_in_beta": false,
+    "external_contact_executed_by_machinesignal": false,
+    "action_pack_sends_email": false,
+    "requires_customer_compliance_gate_before_external_action": true,
+    "human_role": "supervision, approval and audit only"
+  }
+}

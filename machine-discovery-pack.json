@@ -32,6 +32,8 @@
   "discovery_resources": {
     "machine_discovery_page": "https://machinesignal.it/machine-discovery/",
     "machine_discovery_json": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+    "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "well_known_mcp_tool_manifest": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
     "llms": "https://machinesignal.it/llms.txt",
     "openapi": "https://machinesignal.it/openapi.json",
     "postman_collection": "https://machinesignal.it/postman_collection.json",

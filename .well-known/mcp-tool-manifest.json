@@ -1,0 +1,20 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-03",
+  "manifest_type": "tool_style_manifest",
+  "canonical_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "openapi": "https://machinesignal.it/openapi.json",
+  "llms": "https://machinesignal.it/llms.txt",
+  "mcp_compatibility": {
+    "public_mcp_server_live": false,
+    "adapter_required": true,
+    "source_of_truth": "https://machinesignal.it/mcp-tool-manifest.json"
+  },
+  "tools_url": "https://machinesignal.it/mcp-tool-manifest.json",
+  "public_sandbox_endpoint": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+  "safety": {
+    "real_payment_executed_in_beta": false,
+    "external_contact_executed_by_machinesignal": false
+  }
+}
