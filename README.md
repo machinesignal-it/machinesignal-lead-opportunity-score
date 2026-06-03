@@ -14,6 +14,8 @@ Public discovery starts here:
 - MCP Machine Client Installation Pack JSON: https://machinesignal.it/mcp-machine-client-installation-pack.json
 - Integration Partner Pack JSON: https://machinesignal.it/integration-partner-pack.json
 - Integration Partner Pack Markdown: https://machinesignal.it/INTEGRATION_PARTNER_PACK.md
+- CRM/Agent Integration Simulator Readout: https://machinesignal.it/crm-agent-integration-simulator-readout.md
+- CRM/Agent Simulated Ledger JSON: https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - RapidAPI Listing JSON: https://machinesignal.it/distribution/rapidapi-listing.json
@@ -42,6 +44,7 @@ Public discovery starts here:
 - MCP machine client installation guide: `MCP_MACHINE_CLIENT_INSTALLATION.md`
 - Integration partner guide: `INTEGRATION_PARTNER_PACK.md`
 - Integration examples: `examples/integration_existing_list_score_request.json`, `examples/integration_no_list_target_discovery_request.json`, `examples/integration_action_pack_crm_payload.json`
+- CRM/agent integration simulator: `crm_agent_integration_simulator_20260603.py`
 - MCP client config example: `mcp_adapter/mcp_client_config.example.json`
 - MCP no-credit installation validator: `mcp_adapter/validate_machine_client_installation_20260603.py`
 - MCP machine buyer agent runner: `mcp_adapter/machine_buyer_agent_runner_20260603.py`
