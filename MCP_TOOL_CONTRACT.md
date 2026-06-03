@@ -1,6 +1,6 @@
 # MachineSignal MCP / Tool Contract
 
-Status: public tool-style manifest live; public MCP server not live yet.
+Status: public tool-style manifest live; local stdio MCP adapter available; public hosted MCP server not live yet.
 
 MachineSignal currently exposes a callable HTTP beta API. The public `mcp-tool-manifest.json` describes how an agent, CRM workflow or MCP wrapper can expose the API as tools.
 
@@ -18,6 +18,12 @@ Source of truth:
 ## MCP Compatibility
 
 MachineSignal does not yet provide a public hosted MCP server.
+
+A local stdio MCP-style adapter is available in the GitHub repository:
+
+- adapter: `mcp_adapter/machinesignal_mcp_server.py`
+- client config example: `mcp_adapter/mcp_client_config.example.json`
+- machine buyer agent runner: `mcp_adapter/machine_buyer_agent_runner_20260603.py`
 
 A customer machine or integration partner can build a wrapper that exposes the HTTP endpoints as MCP tools. The wrapper should use:
 

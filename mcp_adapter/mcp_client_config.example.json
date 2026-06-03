@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "machinesignal": {
+      "command": "python",
+      "args": [
+        "mcp_adapter/machinesignal_mcp_server.py"
+      ],
+      "env": {
+        "MACHINESIGNAL_MCP_MANIFEST_URL": "https://machinesignal.it/mcp-tool-manifest.json"
+      }
+    }
+  },
+  "notes": {
+    "purpose": "Example MCP client configuration for connecting a local agent or CRM workflow to MachineSignal tools.",
+    "working_directory": "Run from the repository root, or replace the relative adapter path with an absolute path.",
+    "normal_sandbox_flow": "Call create_sandbox_customer first. The adapter stores the sandbox customer API key in memory and does not return the full key to the client.",
+    "optional_customer_key": "Set MACHINESIGNAL_CUSTOMER_API_KEY only when a pre-created customer key should be used.",
+    "guardrails": [
+      "No real payment is executed in beta.",
+      "No external contact is executed in beta.",
+      "Full API keys are not returned to the MCP client."
+    ]
+  }
+}

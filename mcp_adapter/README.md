@@ -42,6 +42,37 @@ Optional environment variables:
 - `MACHINESIGNAL_CUSTOMER_API_KEY`
 - `MACHINESIGNAL_ADMIN_API_KEY`
 
+## Connect A Client
+
+Use `mcp_client_config.example.json` as the starting point for a local MCP
+client configuration:
+
+```json
+{
+  "mcpServers": {
+    "machinesignal": {
+      "command": "python",
+      "args": ["mcp_adapter/machinesignal_mcp_server.py"]
+    }
+  }
+}
+```
+
+Run the client from the repository root, or replace the adapter path with an
+absolute path.
+
+## Machine Buyer Agent Test
+
+Run this to simulate a buyer machine using the adapter as MCP-style tools:
+
+```powershell
+python mcp_adapter\machine_buyer_agent_runner_20260603.py
+```
+
+The runner creates a sandbox customer, buys a bounded target discovery pack,
+scores one discovered target, buys the recommended add-on only when justified,
+then reads orders and usage.
+
 ## Guardrails
 
 - No real payment is executed in beta.
