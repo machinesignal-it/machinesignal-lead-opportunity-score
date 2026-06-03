@@ -24,6 +24,8 @@
     "integration_ready_external_agent_summary": "https://machinesignal.it/integration_ready_external_agent_summary_20260603.json",
     "integration_ready_external_agent_ledger_audit_readout": "https://machinesignal.it/integration_ready_external_agent_ledger_audit_readout_20260603.md",
     "integration_ready_external_agent_ledger_audit_summary": "https://machinesignal.it/integration_ready_external_agent_ledger_audit_summary_20260603.json",
+    "controlled_beta_operational_readiness_report": "https://machinesignal.it/controlled_beta_operational_readiness_report_20260603.md",
+    "controlled_beta_operational_readiness_summary": "https://machinesignal.it/controlled_beta_operational_readiness_summary_20260603.json",
     "crm_agent_integration_simulator_readout": "https://machinesignal.it/crm-agent-integration-simulator-readout.md",
     "crm_agent_integration_simulated_ledger": "https://machinesignal.it/crm-agent-integration-simulated-ledger.json",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
