@@ -14,7 +14,21 @@
     "adapter_required": true,
     "adapter_guidance": "Expose the HTTP endpoints below as MCP tools. Use the tool names, input schemas, auth rules and safety guardrails in this manifest.",
     "recommended_wrapper_transport": "stdio or HTTP wrapper controlled by the customer machine",
-    "source_of_truth": "https://machinesignal.it/openapi.json"
+    "source_of_truth": "https://machinesignal.it/openapi.json",
+    "local_adapter": {
+      "status": "available_in_github_repo",
+      "transport": "stdio_json_rpc",
+      "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+      "adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
+      "readme_path": "mcp_adapter/README.md",
+      "smoke_test_path": "mcp_adapter/mcp_adapter_smoke_test_20260603.py",
+      "latest_smoke_test_report": "mcp_adapter_smoke_test_readout_20260603.md",
+      "start_command": "python mcp_adapter/machinesignal_mcp_server.py",
+      "tested_flow": "initialize, tools/list, create sandbox customer, buy target discovery, score lead opportunity, buy recommended deep analysis, list orders and usage",
+      "full_api_keys_returned_to_client": false,
+      "real_payment_executed_in_beta": false,
+      "external_contact_executed_in_beta": false
+    }
   },
   "authentication": {
     "public_tools": [

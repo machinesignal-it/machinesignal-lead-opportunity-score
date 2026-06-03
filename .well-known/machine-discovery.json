@@ -18,6 +18,8 @@
     "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
     "well_known_mcp_tool_manifest": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+    "local_mcp_adapter_repo": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score/tree/main/mcp_adapter",
+    "local_mcp_adapter_smoke_test_report": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score/blob/main/mcp_adapter_smoke_test_readout_20260603.md",
     "api_directory_submission": "https://machinesignal.it/distribution/api-directory-submission.json",
     "dentists_beta_machine_buyer_pack": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
     "dentists_beta_machine_buyer_pack_markdown": "https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md",
@@ -26,6 +28,16 @@
     "postman_collection": "https://machinesignal.it/postman_collection.json",
     "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
     "product_catalog": "https://machinesignal.it/product-catalog.json"
+  },
+  "local_mcp_adapter": {
+    "status": "available_in_github_repo",
+    "transport": "stdio_json_rpc",
+    "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+    "adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
+    "start_command": "python mcp_adapter/machinesignal_mcp_server.py",
+    "full_api_keys_returned_to_client": false,
+    "real_payment_executed_in_beta": false,
+    "external_contact_executed_in_beta": false
   },
   "sandbox": {
     "endpoint": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
