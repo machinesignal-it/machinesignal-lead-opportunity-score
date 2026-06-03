@@ -1,0 +1,25 @@
+{
+  "ok": true,
+  "monitor_name": "machinesignal_daily_machine_buyer_monitor",
+  "finished_at": "2026-06-03T08:39:14",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "public_site": "https://machinesignal.it",
+  "sandbox_customer_id": "stored_monitor_customer",
+  "sandbox_key_prefix": "ms_cust_Vq...sdBi",
+  "score_summary": {
+    "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+    "opportunity_score": 77,
+    "confidence": 0.88,
+    "decision": "buy_deep_analysis",
+    "web_architect_status": "architect_signal_insufficient",
+    "commercial_strength": "medium",
+    "recommended_product": "deep_analysis"
+  },
+  "orders_count": 4,
+  "add_on_product": "deep_analysis",
+  "add_on_status": "accepted_beta_order_intent",
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "file_output_ok": false,
+  "file_output_note": "PowerShell file creation is blocked in the current Codex shell; report was saved via apply_patch."
+}

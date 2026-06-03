@@ -111,6 +111,30 @@ The pack is published for machine evaluators at:
 
 Control tests on 50 real estate targets and 50 aesthetic medicine targets produced 0 strong leads and 0 Action Pack candidates, which suggests the Web Architect gate remains selective outside the dentist beta funnel.
 
+## Daily Machine-Buyer Monitor
+
+The daily monitor verifies that the machine-to-machine buyer path is still operational:
+
+- public discovery resources are reachable;
+- the Dentists Beta Machine Buyer Pack is discoverable from `llms.txt`;
+- authenticated onboarding works with the stored monitor beta key;
+- `target_discovery`, score, recommended add-on purchase intent, orders and usage all respond;
+- beta guardrails remain active: no real payment and no external contact.
+
+Script:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\monitoring\machinesignal_daily_machine_buyer_monitor.ps1
+```
+
+The monitor should use a stored beta key at:
+
+```text
+%APPDATA%\MachineSignal\machinesignal_monitor_api_key.dpapi
+```
+
+If no stored key is available, it falls back to public sandbox creation, which can hit the daily sandbox limit.
+
 ## Callable Beta Base URL
 
 ```text
