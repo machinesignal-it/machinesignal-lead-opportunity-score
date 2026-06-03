@@ -12,6 +12,8 @@
     "integration_guide_markdown": "https://machinesignal.it/INTEGRATION_PARTNER_PACK.md",
     "integration_ready_external_agent_readout": "https://machinesignal.it/integration_ready_external_agent_readout_20260603.md",
     "integration_ready_external_agent_summary": "https://machinesignal.it/integration_ready_external_agent_summary_20260603.json",
+    "integration_ready_external_agent_ledger_audit_readout": "https://machinesignal.it/integration_ready_external_agent_ledger_audit_readout_20260603.md",
+    "integration_ready_external_agent_ledger_audit_summary": "https://machinesignal.it/integration_ready_external_agent_ledger_audit_summary_20260603.json",
     "mcp_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
     "openapi": "https://machinesignal.it/openapi.json",

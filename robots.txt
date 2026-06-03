@@ -13,6 +13,8 @@ Integration-partner-pack: https://machinesignal.it/integration-partner-pack.json
 Integration-partner-pack-markdown: https://machinesignal.it/INTEGRATION_PARTNER_PACK.md
 Integration-ready-external-agent-readout: https://machinesignal.it/integration_ready_external_agent_readout_20260603.md
 Integration-ready-external-agent-summary: https://machinesignal.it/integration_ready_external_agent_summary_20260603.json
+Integration-ready-external-agent-ledger-audit-readout: https://machinesignal.it/integration_ready_external_agent_ledger_audit_readout_20260603.md
+Integration-ready-external-agent-ledger-audit-summary: https://machinesignal.it/integration_ready_external_agent_ledger_audit_summary_20260603.json
 CRM-agent-integration-simulator-readout: https://machinesignal.it/crm-agent-integration-simulator-readout.md
 CRM-agent-integration-simulated-ledger: https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 Integration-example-existing-list: https://machinesignal.it/examples/integration_existing_list_score_request.json

@@ -17,6 +17,8 @@ Public discovery starts here:
 - Integration Partner Pack Markdown: https://machinesignal.it/INTEGRATION_PARTNER_PACK.md
 - Integration Ready external-agent test readout: https://machinesignal.it/integration_ready_external_agent_readout_20260603.md
 - Integration Ready external-agent test summary JSON: https://machinesignal.it/integration_ready_external_agent_summary_20260603.json
+- Integration Ready external-agent ledger audit readout: https://machinesignal.it/integration_ready_external_agent_ledger_audit_readout_20260603.md
+- Integration Ready external-agent ledger audit summary JSON: https://machinesignal.it/integration_ready_external_agent_ledger_audit_summary_20260603.json
 - CRM/Agent Integration Simulator Readout: https://machinesignal.it/crm-agent-integration-simulator-readout.md
 - CRM/Agent Simulated Ledger JSON: https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 - Technical Distribution Pack: https://machinesignal.it/distribution/
