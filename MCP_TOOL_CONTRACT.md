@@ -15,6 +15,7 @@ Source of truth:
 - llms.txt: `https://machinesignal.it/llms.txt`
 - Product catalog: `https://machinesignal.it/product-catalog.json`
 - Machine client installation pack: `https://machinesignal.it/mcp-machine-client-installation-pack.json`
+- Integration partner pack: `https://machinesignal.it/integration-partner-pack.json`
 
 ## MCP Compatibility
 
@@ -25,6 +26,7 @@ A local stdio MCP-style adapter is available in the GitHub repository:
 - adapter: `mcp_adapter/machinesignal_mcp_server.py`
 - client config example: `mcp_adapter/mcp_client_config.example.json`
 - installation guide: `MCP_MACHINE_CLIENT_INSTALLATION.md`
+- integration guide: `INTEGRATION_PARTNER_PACK.md`
 - no-credit installation validator: `mcp_adapter/validate_machine_client_installation_20260603.py`
 - machine buyer agent runner: `mcp_adapter/machine_buyer_agent_runner_20260603.py`
 

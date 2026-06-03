@@ -8,6 +8,11 @@ MCP-tool-manifest: https://machinesignal.it/mcp-tool-manifest.json
 Well-known-MCP-tool-manifest: https://machinesignal.it/.well-known/mcp-tool-manifest.json
 Machine-discovery-pack: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 MCP-machine-client-installation-pack: https://machinesignal.it/mcp-machine-client-installation-pack.json
+Integration-partner-pack: https://machinesignal.it/integration-partner-pack.json
+Integration-partner-pack-markdown: https://machinesignal.it/INTEGRATION_PARTNER_PACK.md
+Integration-example-existing-list: https://machinesignal.it/examples/integration_existing_list_score_request.json
+Integration-example-no-list: https://machinesignal.it/examples/integration_no_list_target_discovery_request.json
+Integration-example-action-pack: https://machinesignal.it/examples/integration_action_pack_crm_payload.json
 Dentists-beta-machine-buyer-pack: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
 Dentists-beta-machine-buyer-pack-markdown: https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md
 Technical-distribution-pack: https://machinesignal.it/distribution/api-directory-submission.json

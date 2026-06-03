@@ -15,6 +15,12 @@ Useful endpoints:
 - GET https://machinesignal.it/mcp-tool-manifest.json
 - GET https://machinesignal.it/.well-known/mcp-tool-manifest.json
 - GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
+- GET https://machinesignal.it/mcp-machine-client-installation-pack.json
+- GET https://machinesignal.it/integration-partner-pack.json
+- GET https://machinesignal.it/INTEGRATION_PARTNER_PACK.md
+- GET https://machinesignal.it/examples/integration_existing_list_score_request.json
+- GET https://machinesignal.it/examples/integration_no_list_target_discovery_request.json
+- GET https://machinesignal.it/examples/integration_action_pack_crm_payload.json
 - GET https://machinesignal.it/distribution/api-directory-submission.json
 - GET https://machinesignal.it/distribution/rapidapi-listing.json
 - GET https://machinesignal.it/distribution/rapidapi-provider-setup.json
@@ -63,6 +69,9 @@ Public demos for software, agents and partners:
 - Well-known MCP/tool-style manifest: https://machinesignal.it/.well-known/mcp-tool-manifest.json
 - Machine Discovery Pack: https://machinesignal.it/machine-discovery/
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
+- MCP Machine Client Installation Pack JSON: https://machinesignal.it/mcp-machine-client-installation-pack.json
+- Integration Partner Pack JSON: https://machinesignal.it/integration-partner-pack.json
+- Integration Partner Pack Markdown: https://machinesignal.it/INTEGRATION_PARTNER_PACK.md
 - Dentists Beta Machine Buyer Pack JSON: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
 - Dentists Beta Machine Buyer Pack Markdown: https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md
 - Technical Distribution Pack: https://machinesignal.it/distribution/

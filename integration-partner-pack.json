@@ -1,0 +1,178 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-03",
+  "pack_type": "integration_partner_pack",
+  "status": "beta",
+  "primary_customer_interface": "machine",
+  "purpose": "Define how CRM systems, AI agents, RevOps workflows and software automations should integrate MachineSignal.",
+  "public_resources": {
+    "website": "https://machinesignal.it/",
+    "integration_pack": "https://machinesignal.it/integration-partner-pack.json",
+    "integration_guide_markdown": "https://machinesignal.it/INTEGRATION_PARTNER_PACK.md",
+    "mcp_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+    "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "well_known_machine_discovery": "https://machinesignal.it/.well-known/machine-discovery.json"
+  },
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "authentication": {
+    "header": "X-API-Key",
+    "idempotency_header": "Idempotency-Key",
+    "sandbox_key_endpoint": "POST /v1/sandbox/customers",
+    "protected_calls": [
+      "GET /v1/onboarding",
+      "POST /v1/lead-opportunity-score",
+      "POST /v1/purchase-intent",
+      "GET /v1/orders",
+      "GET /v1/orders/{order_intent_id}",
+      "GET /v1/usage"
+    ]
+  },
+  "integration_cases": {
+    "customer_has_existing_list": {
+      "machine_question": "Which domains in this list deserve budget?",
+      "start_call": "POST /v1/lead-opportunity-score",
+      "required_inputs": [
+        "domain",
+        "X-API-Key",
+        "Idempotency-Key"
+      ],
+      "recommended_inputs": [
+        "sector_hint",
+        "country_hint",
+        "commercial_objective",
+        "target_name",
+        "area",
+        "initial_signals"
+      ],
+      "expected_outputs": [
+        "opportunity_score",
+        "confidence",
+        "decision",
+        "web_architect_review",
+        "commercial_strength",
+        "spend_policy",
+        "next_purchase",
+        "usage"
+      ],
+      "next_action_policy": "Buy only the next product recommended by next_purchase when commercial_strength allows spend."
+    },
+    "customer_has_no_list": {
+      "machine_question": "Which targets should be discovered for this commercial objective?",
+      "start_call": "POST /v1/purchase-intent",
+      "product_code": "target_discovery",
+      "required_inputs": [
+        "product_code",
+        "market",
+        "area",
+        "commercial_objective",
+        "X-API-Key",
+        "Idempotency-Key"
+      ],
+      "commercial_objective_rule": "The objective must describe what opportunity the machine wants to find. A generic sector name is not enough.",
+      "expected_outputs": [
+        "market availability pre-check",
+        "target list or no-go decision",
+        "domain",
+        "category",
+        "area",
+        "initial_signals",
+        "reason_for_inclusion",
+        "next_machine_call"
+      ],
+      "next_action_policy": "Score delivered targets. Stop or widen criteria only when the delivery says the requested market cannot support the pack."
+    },
+    "customer_wants_action_payload": {
+      "machine_question": "What CRM or agent payload should be created after a confirmed opportunity?",
+      "start_call": "POST /v1/purchase-intent",
+      "product_code": "action_pack",
+      "required_inputs": [
+        "product_code",
+        "domain",
+        "source_score_request_id",
+        "reason",
+        "X-API-Key",
+        "Idempotency-Key"
+      ],
+      "preconditions": [
+        "score decision justified downstream spend",
+        "Deep Analysis confirmed enough signal",
+        "customer compliance gate exists"
+      ],
+      "expected_outputs": [
+        "crm_record_patch",
+        "crm_task",
+        "workflow_payload",
+        "agent_instructions",
+        "webhook_event",
+        "approval_gate",
+        "deduplication_key",
+        "message_angle",
+        "stop_rules",
+        "compliance_guardrail"
+      ],
+      "next_action_policy": "Prepare internal CRM/workflow action only. Do not execute external outreach automatically during beta."
+    }
+  },
+  "budget_rules": [
+    {
+      "signal": "weak score, low confidence or failed Web Architect evidence",
+      "machine_decision": "discard_or_watchlist",
+      "allowed_spend": []
+    },
+    {
+      "signal": "medium signal",
+      "machine_decision": "nurture_or_low_cost_review",
+      "allowed_spend": [
+        "nurture_signal",
+        "deep_analysis_only_if_recommended"
+      ]
+    },
+    {
+      "signal": "strong signal and clear next product",
+      "machine_decision": "buy_bounded_add_on",
+      "allowed_spend": [
+        "next_purchase.next_product"
+      ]
+    },
+    {
+      "signal": "Deep Analysis confirms but compliance gate is missing",
+      "machine_decision": "hold",
+      "allowed_spend": []
+    },
+    {
+      "signal": "Deep Analysis confirms and compliance gate exists",
+      "machine_decision": "prepare_action",
+      "allowed_spend": [
+        "action_pack"
+      ]
+    }
+  ],
+  "storage_recommendations": [
+    "request_id",
+    "domain",
+    "opportunity_score",
+    "confidence",
+    "decision",
+    "commercial_strength.level",
+    "next_purchase.next_product",
+    "usage.current_event",
+    "order_intent_id",
+    "delivery"
+  ],
+  "example_files": {
+    "existing_list_score_request": "https://machinesignal.it/examples/integration_existing_list_score_request.json",
+    "no_list_target_discovery_request": "https://machinesignal.it/examples/integration_no_list_target_discovery_request.json",
+    "action_pack_crm_payload": "https://machinesignal.it/examples/integration_action_pack_crm_payload.json"
+  },
+  "guardrails": {
+    "full_api_keys_returned_to_mcp_client": false,
+    "real_payment_executed_in_beta": false,
+    "external_contact_executed_in_beta": false,
+    "action_pack_sends_email": false,
+    "external_action_requires_customer_compliance_gate": true,
+    "humans_supervise_approve_and_audit": true
+  }
+}

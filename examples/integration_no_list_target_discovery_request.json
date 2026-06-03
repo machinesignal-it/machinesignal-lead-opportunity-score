@@ -1,0 +1,22 @@
+{
+  "scenario": "customer_has_no_list",
+  "method": "POST",
+  "url": "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
+  "headers": {
+    "X-API-Key": "<customer_or_sandbox_key>",
+    "Idempotency-Key": "discovery-dentists-lombardia-20260603"
+  },
+  "body": {
+    "product_code": "target_discovery",
+    "market": "dentists_odontoiatric_clinics",
+    "area": "Lombardia",
+    "commercial_objective": "find dentist and odontoiatric clinic domains worth scoring for website-led commercial opportunity and CRM-ready follow-up preparation",
+    "reason": "The buyer machine has no starting list and needs a coherent target set before scoring.",
+    "batch_id": "dentists-lombardia-20260603"
+  },
+  "machine_policy": {
+    "accept_output_only_if": "delivery.status is target_discovery_precheck_ready or equivalent valid target discovery delivery",
+    "next_call": "POST /v1/lead-opportunity-score for delivered domains",
+    "stop_if": "market coverage is insufficient and no widening suggestion is accepted"
+  }
+}

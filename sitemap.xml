@@ -19,6 +19,21 @@
     <loc>https://machinesignal.it/mcp-machine-client-installation-pack.json</loc>
   </url>
   <url>
+    <loc>https://machinesignal.it/integration-partner-pack.json</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/INTEGRATION_PARTNER_PACK.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/examples/integration_existing_list_score_request.json</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/examples/integration_no_list_target_discovery_request.json</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/examples/integration_action_pack_crm_payload.json</loc>
+  </url>
+  <url>
     <loc>https://machinesignal.it/mcp-tool-manifest.json</loc>
   </url>
   <url>

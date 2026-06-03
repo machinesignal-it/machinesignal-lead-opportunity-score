@@ -17,6 +17,8 @@
   "discovery": {
     "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
     "mcp_machine_client_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+    "integration_partner_pack": "https://machinesignal.it/integration-partner-pack.json",
+    "integration_partner_pack_markdown": "https://machinesignal.it/INTEGRATION_PARTNER_PACK.md",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
     "well_known_mcp_tool_manifest": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
     "local_mcp_adapter_repo": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score/tree/main/mcp_adapter",
@@ -39,6 +41,8 @@
     "adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
     "installation_guide_path": "MCP_MACHINE_CLIENT_INSTALLATION.md",
     "installation_pack_url": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+    "integration_guide_path": "INTEGRATION_PARTNER_PACK.md",
+    "integration_pack_url": "https://machinesignal.it/integration-partner-pack.json",
     "client_config_example_path": "mcp_adapter/mcp_client_config.example.json",
     "no_credit_installation_validator_path": "mcp_adapter/validate_machine_client_installation_20260603.py",
     "machine_buyer_agent_runner_path": "mcp_adapter/machine_buyer_agent_runner_20260603.py",

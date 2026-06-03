@@ -10,6 +10,7 @@
   "product_catalog": "https://machinesignal.it/product-catalog.json",
   "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
   "mcp_machine_client_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+  "integration_partner_pack": "https://machinesignal.it/integration-partner-pack.json",
   "mcp_compatibility": {
     "public_mcp_server_live": false,
     "adapter_required": true,
@@ -24,6 +25,8 @@
       "readme_path": "mcp_adapter/README.md",
       "installation_guide_path": "MCP_MACHINE_CLIENT_INSTALLATION.md",
       "installation_pack_url": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+      "integration_guide_path": "INTEGRATION_PARTNER_PACK.md",
+      "integration_pack_url": "https://machinesignal.it/integration-partner-pack.json",
       "client_config_example_path": "mcp_adapter/mcp_client_config.example.json",
       "no_credit_installation_validator_path": "mcp_adapter/validate_machine_client_installation_20260603.py",
       "smoke_test_path": "mcp_adapter/mcp_adapter_smoke_test_20260603.py",

@@ -1,0 +1,41 @@
+{
+  "scenario": "customer_wants_action_payload",
+  "method": "POST",
+  "url": "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
+  "headers": {
+    "X-API-Key": "<customer_or_sandbox_key>",
+    "Idempotency-Key": "action-pack-studio-demo-20260603"
+  },
+  "body": {
+    "product_code": "action_pack",
+    "domain": "studio-odontoiatrico-demo.it",
+    "source_score_request_id": "crm-import-20260603-row-0001-score",
+    "reason": "Deep Analysis confirmed enough signal for a supervised CRM action.",
+    "max_budget_eur": 10
+  },
+  "expected_delivery_fields": {
+    "crm_record_patch": {
+      "opportunity_score": 82,
+      "commercial_strength": "strong",
+      "recommended_next_step": "supervised_action"
+    },
+    "crm_task": {
+      "task_type": "review_opportunity",
+      "owner": "customer_machine_or_supervisor",
+      "status": "pending_approval"
+    },
+    "workflow_payload": {
+      "event_type": "machinesignal.action_pack.ready",
+      "requires_compliance_gate": true
+    },
+    "approval_gate": {
+      "required": true,
+      "reason": "External action is not executed automatically during beta."
+    },
+    "stop_rules": [
+      "stop if compliance gate fails",
+      "stop if CRM record is duplicate",
+      "stop if the customer machine has no approved downstream channel"
+    ]
+  }
+}

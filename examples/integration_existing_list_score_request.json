@@ -1,0 +1,33 @@
+{
+  "scenario": "customer_has_existing_list",
+  "method": "POST",
+  "url": "https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
+  "headers": {
+    "X-API-Key": "<customer_or_sandbox_key>",
+    "Idempotency-Key": "crm-import-20260603-row-0001-score"
+  },
+  "body": {
+    "domain": "studio-odontoiatrico-demo.it",
+    "sector_hint": "dentist",
+    "country_hint": "IT",
+    "target_name": "Studio Odontoiatrico Demo",
+    "area": "Lombardia",
+    "commercial_objective": "prioritize dentist websites worth reviewing for website-led commercial opportunity and CRM-ready follow-up preparation",
+    "initial_signals": [
+      "existing_crm_record",
+      "sector_match",
+      "business_domain_present"
+    ]
+  },
+  "machine_policy": {
+    "store_fields": [
+      "opportunity_score",
+      "confidence",
+      "decision",
+      "commercial_strength",
+      "next_purchase",
+      "usage"
+    ],
+    "buy_next_product_only_if": "next_purchase.next_product is present and commercial_strength allows spend"
+  }
+}
