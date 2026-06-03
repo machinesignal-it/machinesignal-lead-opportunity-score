@@ -18,6 +18,8 @@
     "controlled_beta_operational_readiness_summary": "https://machinesignal.it/controlled_beta_operational_readiness_summary_20260603.json",
     "pre_monetization_readiness_control": "https://machinesignal.it/pre_monetization_readiness_control_20260603.md",
     "pre_monetization_readiness_control_json": "https://machinesignal.it/pre_monetization_readiness_control_20260603.json",
+    "payment_test_mode_plan": "https://machinesignal.it/payment_test_mode_plan_20260603.md",
+    "payment_test_mode_plan_json": "https://machinesignal.it/payment_test_mode_plan_20260603.json",
     "mcp_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
     "openapi": "https://machinesignal.it/openapi.json",

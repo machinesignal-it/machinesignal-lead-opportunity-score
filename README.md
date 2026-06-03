@@ -23,6 +23,8 @@ Public discovery starts here:
 - Controlled beta operational readiness summary JSON: https://machinesignal.it/controlled_beta_operational_readiness_summary_20260603.json
 - Pre-monetization readiness control: https://machinesignal.it/pre_monetization_readiness_control_20260603.md
 - Pre-monetization readiness control JSON: https://machinesignal.it/pre_monetization_readiness_control_20260603.json
+- Payment test mode plan: https://machinesignal.it/payment_test_mode_plan_20260603.md
+- Payment test mode plan JSON: https://machinesignal.it/payment_test_mode_plan_20260603.json
 - CRM/Agent Integration Simulator Readout: https://machinesignal.it/crm-agent-integration-simulator-readout.md
 - CRM/Agent Simulated Ledger JSON: https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 - Technical Distribution Pack: https://machinesignal.it/distribution/

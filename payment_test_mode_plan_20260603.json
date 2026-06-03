@@ -1,0 +1,213 @@
+{
+  "service": "MachineSignal",
+  "report_type": "payment_test_mode_plan",
+  "generated_at": "2026-06-03",
+  "status": "planned_not_implemented",
+  "primary_customer_interface": "machine",
+  "real_payment_executed": false,
+  "ready_for_real_payments": false,
+  "provider_strategy": {
+    "type": "provider_neutral_first",
+    "first_reference_candidate": "stripe_test_mode",
+    "provider_decision": "open_until_fiscal_legal_setup_is_confirmed",
+    "live_keys_allowed": false,
+    "test_keys_allowed_after_implementation": true
+  },
+  "allowed_now": [
+    "design_test_mode_checkout_contract",
+    "simulate_payment_intent_lifecycle",
+    "simulate_success_failure_and_requires_action",
+    "test_webhook_signature_verification",
+    "activate_test_credits_only_after_simulated_success",
+    "produce_audit_with_real_payment_executed_false"
+  ],
+  "blocked_now": [
+    "live_payment_provider_keys",
+    "real_card_payments",
+    "real_subscription_renewals",
+    "real_invoices_to_customers",
+    "live_marketplace_checkout",
+    "automatic_production_upgrade"
+  ],
+  "proposed_machine_flow": [
+    "customer_machine_reads_product_catalog",
+    "customer_machine_selects_product",
+    "customer_machine_creates_order_intent",
+    "machinesignal_creates_test_payment_intent",
+    "provider_returns_simulated_test_payment_object",
+    "machinesignal_maps_order_payment_product_amount_customer",
+    "test_webhook_arrives_and_signature_is_verified",
+    "test_success_activates_test_credits",
+    "test_failure_keeps_credits_inactive",
+    "admin_audit_reconciles_order_payment_credit_invoice_placeholder"
+  ],
+  "state_machine": [
+    {
+      "state": "order_intent_created",
+      "credits_active": false,
+      "real_payment": false
+    },
+    {
+      "state": "test_payment_intent_created",
+      "credits_active": false,
+      "real_payment": false
+    },
+    {
+      "state": "test_payment_requires_action",
+      "credits_active": false,
+      "real_payment": false
+    },
+    {
+      "state": "test_payment_failed",
+      "credits_active": false,
+      "real_payment": false
+    },
+    {
+      "state": "test_payment_succeeded",
+      "credits_active": "pending",
+      "real_payment": false
+    },
+    {
+      "state": "test_credits_activated",
+      "credits_active": true,
+      "real_payment": false
+    },
+    {
+      "state": "test_invoice_placeholder_created",
+      "credits_active": true,
+      "real_payment": false
+    },
+    {
+      "state": "test_reconciled",
+      "credits_active": true,
+      "real_payment": false
+    }
+  ],
+  "proposed_future_endpoints": [
+    "POST /v1/payment-test/intents",
+    "GET /v1/payment-test/intents/{payment_test_id}",
+    "POST /v1/payment-test/webhooks/stripe",
+    "GET /v1/payment-test/reconciliation/{payment_test_id}",
+    "GET /v1/admin/payment-test-report?customer_id=<customer_id>"
+  ],
+  "payment_test_intent_contract": {
+    "request": {
+      "order_intent_id": "ord_demo_123",
+      "customer_id": "beta_customer_123",
+      "product_code": "score_pack_1k",
+      "amount_eur": 99,
+      "currency": "EUR",
+      "provider": "stripe",
+      "provider_mode": "test",
+      "success_behavior": "simulate_success",
+      "idempotency_key": "payment-test-score-pack-001"
+    },
+    "response": {
+      "payment_test_id": "paytest_20260603_001",
+      "order_intent_id": "ord_demo_123",
+      "provider": "stripe",
+      "provider_mode": "test",
+      "provider_payment_intent_id": "pi_test_redacted",
+      "payment_status": "test_payment_intent_created",
+      "real_payment_executed": false,
+      "credits_activated": false,
+      "next_machine_action": "confirm simulated payment and wait for test webhook"
+    }
+  },
+  "reconciliation_rules": [
+    "order_exists",
+    "payment_test_intent_exists",
+    "provider_mode_is_test_or_sandbox",
+    "no_live_provider_key_used",
+    "successful_test_payment_activates_exact_purchased_credits",
+    "failed_test_payment_activates_zero_credits",
+    "duplicate_webhook_does_not_activate_duplicate_credits",
+    "duplicate_idempotency_key_does_not_create_duplicate_payment_intent",
+    "audit_reports_real_payment_executed_false",
+    "audit_reports_ready_for_real_payments_false",
+    "invoice_placeholder_exists_but_no_real_invoice_is_issued"
+  ],
+  "required_test_cases": [
+    {
+      "id": "T1",
+      "name": "successful_score_pack_payment",
+      "expected_result": "credits_activated_once"
+    },
+    {
+      "id": "T2",
+      "name": "duplicate_success_webhook",
+      "expected_result": "no_duplicate_credits"
+    },
+    {
+      "id": "T3",
+      "name": "failed_payment",
+      "expected_result": "no_credits_activated"
+    },
+    {
+      "id": "T4",
+      "name": "requires_action",
+      "expected_result": "credits_remain_pending"
+    },
+    {
+      "id": "T5",
+      "name": "refund_or_credit_reversal_placeholder",
+      "expected_result": "credits_marked_pending_correction_no_live_refund"
+    },
+    {
+      "id": "T6",
+      "name": "wrong_mode_block",
+      "expected_result": "live_mode_flag_blocked"
+    },
+    {
+      "id": "T7",
+      "name": "payment_test_audit",
+      "expected_result": "audit_passed_ready_for_real_payments_false"
+    }
+  ],
+  "hard_safety_rules": [
+    "never_store_live_provider_secret_keys_in_this_phase",
+    "never_accept_real_card_details_in_this_phase",
+    "never_activate_credits_from_unverified_webhook_events",
+    "never_use_webhook_event_if_signature_verification_fails",
+    "never_treat_provider_dashboard_test_object_as_accounting_revenue",
+    "never_create_real_invoice_from_test_payment",
+    "never_switch_to_live_mode_automatically"
+  ],
+  "agent_responsibilities": {
+    "orchestratore": "Own the gate and stop any real-payment activation.",
+    "api_product_manager": "Define endpoint contracts and OpenAPI changes.",
+    "billing_payment_ops_agent": "Map order, payment, invoice placeholder and credit activation.",
+    "admin_finance_controller": "Validate accounting fields and P&L impact.",
+    "legal_compliance_agent": "Validate terms, refunds, privacy and retention implications.",
+    "security_abuse_guard_agent": "Check key separation, webhook verification and replay protection.",
+    "customer_success_post_sale_agent": "Define failed payment, credit correction and customer-machine responses."
+  },
+  "implementation_go": [
+    "build_test_mode_endpoints",
+    "add_provider_neutral_payment_test_records",
+    "simulate_stripe_payment_intent_lifecycle",
+    "add_webhook_verification_placeholder",
+    "add_payment_test_reconciliation_report"
+  ],
+  "real_payment_no_go": [
+    "fiscal_setup_not_approved",
+    "terms_privacy_not_approved",
+    "payment_provider_not_configured_in_live_mode",
+    "invoice_workflow_not_approved",
+    "data_retention_not_approved"
+  ],
+  "official_references": [
+    {
+      "name": "Stripe test mode / sandbox",
+      "url": "https://docs.stripe.com/testing-use-cases"
+    },
+    {
+      "name": "Stripe PaymentIntent lifecycle",
+      "url": "https://docs.stripe.com/payments/paymentintents/lifecycle"
+    },
+    {
+      "name": "Stripe webhooks and signature verification",
+      "url": "https://docs.stripe.com/webhooks"
+    }
+  ]
+}
