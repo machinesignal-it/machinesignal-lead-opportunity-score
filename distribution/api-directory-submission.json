@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "version": "2026-06-01",
+  "version": "2026-06-03",
   "submission_type": "api_directory_listing",
   "short_description": "Machine-first lead opportunity scoring API for CRM systems, RevOps workflows and AI agents.",
   "long_description": "MachineSignal helps automated systems decide whether a business domain deserves more analysis, enrichment or CRM action. The API returns a score, confidence, decision and next machine action. A machine can create a limited sandbox key, run valid scores, test Deep Analysis and test Action Pack without a human sales conversation.",
@@ -16,6 +16,8 @@
   ],
   "keywords": [
     "lead opportunity score API",
+    "dentist lead scoring API",
+    "target discovery API for dentists",
     "CRM agent scoring",
     "AI agent lead routing",
     "machine-readable sales intelligence",
@@ -30,6 +32,7 @@
     "distribution_page": "https://machinesignal.it/distribution/",
     "machine_discovery_pack": "https://machinesignal.it/machine-discovery/",
     "machine_discovery_pack_json": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+    "dentists_beta_machine_buyer_pack": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
     "well_known_discovery": "https://machinesignal.it/.well-known/machine-discovery.json",
     "openapi": "https://machinesignal.it/openapi.json",
     "llms": "https://machinesignal.it/llms.txt",
@@ -49,6 +52,10 @@
     "GET /v1/orders"
   ],
   "products": [
+    {
+      "product_code": "dentists_beta_machine_buyer_pack",
+      "summary": "Vertical beta pack for machines evaluating dentist and odontoiatric clinic opportunities in Lombardia."
+    },
     {
       "product_code": "target_discovery",
       "summary": "Find coherent targets for a declared commercial objective when the machine has no list."
@@ -73,4 +80,3 @@
     "requires_customer_compliance_gate_before_external_action": true
   }
 }
-

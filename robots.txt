@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://machinesignal.it/sitemap.xml
+
+AI-agent-discovery: https://machinesignal.it/llms.txt
+Machine-discovery-pack: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
+Dentists-beta-machine-buyer-pack: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
+Dentists-beta-machine-buyer-pack-markdown: https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md
+Technical-distribution-pack: https://machinesignal.it/distribution/api-directory-submission.json
+RapidAPI-listing: https://machinesignal.it/distribution/rapidapi-listing.json
+RapidAPI-provider-setup: https://machinesignal.it/distribution/rapidapi-provider-setup.json
+Distribution-channel-shortlist: https://machinesignal.it/distribution/channel-shortlist.json
+Postman-public-collection: https://machinesignal.it/postman_public_collection.json
+Well-known-machine-discovery: https://machinesignal.it/.well-known/machine-discovery.json
+Machine-onboarding: https://machinesignal.it/machine-onboarding.json
+Product-catalog: https://machinesignal.it/product-catalog.json
+OpenAPI: https://machinesignal.it/openapi.json

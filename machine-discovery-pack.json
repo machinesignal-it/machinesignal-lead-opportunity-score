@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "version": "2026-06-02",
+  "version": "2026-06-03",
   "primary_customer_interface": "machine",
   "human_role": "supervision, approval and audit only",
   "base_url": "https://machinesignal-api.beta-878.workers.dev",
@@ -10,6 +10,24 @@
     "statement": "MachineSignal is intended to be discovered, tested and consumed by CRM systems, AI agents, RevOps workflows and software automations.",
     "not_primary_channel": "human cold email persuasion",
     "primary_channel": "machine-readable public contract, sandbox key, OpenAPI, llms.txt, product catalog and callable endpoints"
+  },
+  "search_intents": [
+    "lead opportunity score API",
+    "dentist lead scoring API",
+    "target discovery API for dentists",
+    "AI agent lead routing API",
+    "CRM lead scoring API",
+    "RevOps workflow scoring API",
+    "machine-readable sales intelligence API",
+    "OpenAPI lead scoring for agents"
+  ],
+  "primary_beta_vertical": {
+    "market": "dentists and odontoiatric clinics",
+    "area": "Lombardia",
+    "pack": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
+    "benchmark_targets_scored": 250,
+    "benchmark_total_simulated_revenue_eur": 552.95,
+    "benchmark_downstream_revenue_eur": 403.95
   },
   "discovery_resources": {
     "machine_discovery_page": "https://machinesignal.it/machine-discovery/",

@@ -1,13 +1,24 @@
 {
   "service": "MachineSignal",
-  "version": "2026-06-01",
+  "version": "2026-06-03",
   "primary_customer_interface": "machine",
   "base_url": "https://machinesignal-api.beta-878.workers.dev",
   "website": "https://machinesignal.it/",
-  "description": "Machine-readable lead opportunity scoring, target discovery, deep analysis and CRM-ready action packs for CRM systems, AI agents and automated workflows.",
+  "description": "Machine-readable lead opportunity scoring, dentist target discovery, deep analysis and CRM-ready action packs for CRM systems, AI agents and automated workflows.",
+  "search_intents": [
+    "lead opportunity score API",
+    "dentist lead scoring API",
+    "AI agent lead routing API",
+    "CRM lead scoring API",
+    "machine-readable sales intelligence API",
+    "target discovery API for dentists",
+    "RevOps workflow scoring API"
+  ],
   "discovery": {
     "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
     "api_directory_submission": "https://machinesignal.it/distribution/api-directory-submission.json",
+    "dentists_beta_machine_buyer_pack": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
+    "dentists_beta_machine_buyer_pack_markdown": "https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md",
     "openapi": "https://machinesignal.it/openapi.json",
     "llms": "https://machinesignal.it/llms.txt",
     "postman_collection": "https://machinesignal.it/postman_collection.json",
@@ -21,6 +32,13 @@
     "expires_after_days_default": 7,
     "real_payment_executed": false,
     "external_contact_executed": false
+  },
+  "primary_beta_vertical": {
+    "market": "dentists and odontoiatric clinics",
+    "area": "Lombardia",
+    "benchmark_targets_scored": 250,
+    "benchmark_total_simulated_revenue_eur": 552.95,
+    "benchmark_downstream_revenue_eur": 403.95,
+    "pack": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json"
   }
 }
-
