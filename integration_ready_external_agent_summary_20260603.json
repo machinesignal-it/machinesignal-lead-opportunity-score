@@ -1,0 +1,988 @@
+{
+  "ok": true,
+  "test_name": "integration_ready_external_agent_test",
+  "finished_at": "2026-06-03T12:06:30",
+  "run_id": "integration-ready-external-agent-20260603_120626-1780481186",
+  "entry_point": "https://machinesignal.it/integration-ready/",
+  "public_resources": {
+    "integration_ready": {
+      "status": 200,
+      "title": "MachineSignal Integration Ready",
+      "headings": [
+        "For CRM systems, AI agents and workflows that buy signals through an API.",
+        "What The Machine Can Buy",
+        "Machine Flow",
+        "Latest End-To-End Integration Result",
+        "Public Resources",
+        "Callable Contract",
+        "Safety And Spend Rules"
+      ],
+      "link_count": 21
+    },
+    "public_contracts_read": [
+      "llms",
+      "robots",
+      "sitemap",
+      "well_known_machine_discovery",
+      "machine_discovery_pack",
+      "integration_partner_pack",
+      "mcp_installation_pack",
+      "product_catalog",
+      "openapi"
+    ],
+    "integration_cases": [
+      "customer_has_existing_list",
+      "customer_has_no_list",
+      "customer_wants_action_payload"
+    ],
+    "openapi_core_paths": [
+      "/v1/sandbox/customers",
+      "/v1/lead-opportunity-score",
+      "/v1/purchase-intent",
+      "/v1/orders"
+    ]
+  },
+  "decisions": [
+    {
+      "decision": "create_sandbox_customer",
+      "reason": "The external machine has no private beta key yet and should test without a human sales conversation.",
+      "action": "POST /v1/sandbox/customers"
+    },
+    {
+      "decision": "score_existing_list",
+      "reason": "The machine has one known CRM domain and needs a routing decision before spending.",
+      "action": "POST /v1/lead-opportunity-score"
+    },
+    {
+      "decision": "buy_target_discovery",
+      "reason": "The machine has no starting list, so it asks for targets bound to a market, area and commercial objective.",
+      "action": "POST /v1/purchase-intent product_code=target_discovery"
+    },
+    {
+      "decision": "score_discovered_target",
+      "reason": "Target Discovery only produces candidates; the machine still needs a score decision.",
+      "action": "POST /v1/lead-opportunity-score for dentists-odontoiatric-clinics-lombardia-candidate-01.example"
+    },
+    {
+      "decision": "buy_recommended_deep_analysis",
+      "reason": "The score response recommends Deep Analysis and the spend policy allows bounded spend.",
+      "action": "POST /v1/purchase-intent product_code=deep_analysis"
+    },
+    {
+      "decision": "buy_action_pack_after_deep_analysis",
+      "reason": "Deep Analysis recommends Action Pack and the simulated customer machine has a compliance gate.",
+      "action": "POST /v1/purchase-intent product_code=action_pack"
+    }
+  ],
+  "actions": [
+    {
+      "name": "GET llms",
+      "status": 200,
+      "ok": true,
+      "details": "https://machinesignal.it/llms.txt"
+    },
+    {
+      "name": "GET robots",
+      "status": 200,
+      "ok": true,
+      "details": "https://machinesignal.it/robots.txt"
+    },
+    {
+      "name": "GET sitemap",
+      "status": 200,
+      "ok": true,
+      "details": "https://machinesignal.it/sitemap.xml"
+    },
+    {
+      "name": "GET well_known_machine_discovery",
+      "status": 200,
+      "ok": true,
+      "details": "https://machinesignal.it/.well-known/machine-discovery.json"
+    },
+    {
+      "name": "GET machine_discovery_pack",
+      "status": 200,
+      "ok": true,
+      "details": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json"
+    },
+    {
+      "name": "GET integration_partner_pack",
+      "status": 200,
+      "ok": true,
+      "details": "https://machinesignal.it/integration-partner-pack.json"
+    },
+    {
+      "name": "GET mcp_installation_pack",
+      "status": 200,
+      "ok": true,
+      "details": "https://machinesignal.it/mcp-machine-client-installation-pack.json"
+    },
+    {
+      "name": "GET product_catalog",
+      "status": 200,
+      "ok": true,
+      "details": "https://machinesignal.it/product-catalog.json"
+    },
+    {
+      "name": "GET openapi",
+      "status": 200,
+      "ok": true,
+      "details": "https://machinesignal.it/openapi.json"
+    },
+    {
+      "name": "POST sandbox customer",
+      "status": 200,
+      "ok": true,
+      "details": "limited sandbox key created"
+    },
+    {
+      "name": "POST score existing list",
+      "status": 200,
+      "ok": true,
+      "details": "decision=watchlist"
+    },
+    {
+      "name": "POST target discovery",
+      "status": 200,
+      "ok": true,
+      "details": "target_discovery"
+    },
+    {
+      "name": "POST score discovered target",
+      "status": 200,
+      "ok": true,
+      "details": "dentists-odontoiatric-clinics-lombardia-candidate-01.example"
+    },
+    {
+      "name": "POST deep analysis",
+      "status": 200,
+      "ok": true,
+      "details": "domain=dentists-odontoiatric-clinics-lombardia-candidate-01.example"
+    },
+    {
+      "name": "POST action pack",
+      "status": 200,
+      "ok": true,
+      "details": "domain=dentists-odontoiatric-clinics-lombardia-candidate-01.example"
+    },
+    {
+      "name": "GET onboarding",
+      "status": 200,
+      "ok": true,
+      "details": "customer onboarding"
+    },
+    {
+      "name": "GET orders",
+      "status": 200,
+      "ok": true,
+      "details": "orders=3"
+    },
+    {
+      "name": "GET usage",
+      "status": 200,
+      "ok": true,
+      "details": "usage"
+    }
+  ],
+  "checks": [
+    {
+      "name": "integration_ready_page_read",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "integration_ready_has_machine_links",
+      "ok": true,
+      "details": "21 links found"
+    },
+    {
+      "name": "llms_links_integration_ready",
+      "ok": true,
+      "details": "llms.txt contains integration-ready URL"
+    },
+    {
+      "name": "robots_links_integration_ready",
+      "ok": true,
+      "details": "robots.txt contains Integration-ready directive"
+    },
+    {
+      "name": "sitemap_links_integration_ready",
+      "ok": true,
+      "details": "sitemap contains integration-ready URL"
+    },
+    {
+      "name": "well_known_links_integration_ready",
+      "ok": true,
+      "details": "well-known discovery includes integration_ready_page"
+    },
+    {
+      "name": "integration_pack_has_three_cases",
+      "ok": true,
+      "details": "existing list, no list and action payload cases present"
+    },
+    {
+      "name": "openapi_has_core_paths",
+      "ok": true,
+      "details": "core protected paths present"
+    },
+    {
+      "name": "sandbox_customer_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "existing_list_score_returned_decision",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "target_discovery_order_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "target_discovery_returned_samples",
+      "ok": true,
+      "details": "3 samples"
+    },
+    {
+      "name": "discovered_target_1_score_returned_decision",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "machine_spend_policy_read_before_addon",
+      "ok": true,
+      "details": "next_product=deep_analysis; allowed=['deep_analysis']"
+    },
+    {
+      "name": "recommended_deep_analysis_bought",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "action_pack_bought_after_deep_analysis",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "customer_onboarding_read",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "orders_retrieved",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "usage_retrieved",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "no_real_payment_executed",
+      "ok": true,
+      "details": "False"
+    },
+    {
+      "name": "no_external_contact_executed",
+      "ok": true,
+      "details": "False"
+    }
+  ],
+  "score_summaries": [
+    {
+      "source": "existing_list",
+      "domain": "studio-odontoiatrico-demo.it",
+      "opportunity_score": 61,
+      "confidence": 0.62,
+      "decision": "watchlist",
+      "commercial_strength": "weak",
+      "next_product": null
+    },
+    {
+      "source": "target_discovery",
+      "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+      "opportunity_score": 77,
+      "confidence": 0.88,
+      "decision": "buy_deep_analysis",
+      "commercial_strength": "medium",
+      "next_product": "deep_analysis"
+    }
+  ],
+  "ordered_products": [
+    "action_pack",
+    "deep_analysis",
+    "target_discovery"
+  ],
+  "orders_count": 3,
+  "usage": {
+    "customer_id": "sandbox_e4d2d829_mpxwj26h",
+    "ledger_persisted": true,
+    "ledger_backend": "durable_object",
+    "balances": [
+      {
+        "product_code": "score_pack_1k",
+        "credits_purchased": 5,
+        "credits_used": 2,
+        "credits_remaining": 3
+      },
+      {
+        "product_code": "deep_analysis_pack_100",
+        "credits_purchased": 1,
+        "credits_used": 1,
+        "credits_remaining": 0
+      },
+      {
+        "product_code": "verification_pack_100",
+        "credits_purchased": 1,
+        "credits_used": 0,
+        "credits_remaining": 1
+      },
+      {
+        "product_code": "nurture_signal_pack_100",
+        "credits_purchased": 1,
+        "credits_used": 0,
+        "credits_remaining": 1
+      },
+      {
+        "product_code": "action_pack_25",
+        "credits_purchased": 1,
+        "credits_used": 1,
+        "credits_remaining": 0
+      },
+      {
+        "product_code": "target_discovery_pack_250",
+        "credits_purchased": 1,
+        "credits_used": 1,
+        "credits_remaining": 0
+      },
+      {
+        "product_code": "domain_enrichment_pack_100",
+        "credits_purchased": 1,
+        "credits_used": 0,
+        "credits_remaining": 1
+      },
+      {
+        "product_code": "opportunity_feed_monthly",
+        "credits_purchased": 0,
+        "credits_used": 0,
+        "credits_remaining": 0
+      }
+    ],
+    "current_event": null,
+    "last_events": [
+      {
+        "event_id": "evt_0001",
+        "timestamp": "2026-06-03T10:06:30.374Z",
+        "customer_id": "sandbox_e4d2d829_mpxwj26h",
+        "product_code": "score_pack_1k",
+        "request_id": "integration-ready-external-agent-20260603_120626-1780481186-existing-list-score",
+        "status": "valid_output",
+        "reason": "score_delivered",
+        "units_requested": 1,
+        "credits_consumed": 1,
+        "credits_remaining": 4,
+        "metadata": {
+          "domain": "studio-odontoiatrico-demo.it",
+          "decision": "watchlist",
+          "opportunity_score": 61,
+          "confidence": 0.62
+        }
+      },
+      {
+        "event_id": "evt_0002",
+        "timestamp": "2026-06-03T10:06:30.513Z",
+        "customer_id": "sandbox_e4d2d829_mpxwj26h",
+        "product_code": "target_discovery_pack_250",
+        "request_id": "integration-ready-external-agent-20260603_120626-1780481186-target-discovery",
+        "status": "valid_output",
+        "reason": "beta_order_intent_created",
+        "units_requested": 1,
+        "credits_consumed": 1,
+        "credits_remaining": 0,
+        "metadata": {
+          "domain": "integration-ready-external-agent-20260603_120626-1780481186",
+          "product_code": "target_discovery",
+          "source_score_request_id": null,
+          "real_payment_executed": false,
+          "external_contact_executed": false
+        }
+      },
+      {
+        "event_id": "evt_0003",
+        "timestamp": "2026-06-03T10:06:30.653Z",
+        "customer_id": "sandbox_e4d2d829_mpxwj26h",
+        "product_code": "score_pack_1k",
+        "request_id": "integration-ready-external-agent-20260603_120626-1780481186-discovered-score-1",
+        "status": "valid_output",
+        "reason": "score_delivered",
+        "units_requested": 1,
+        "credits_consumed": 1,
+        "credits_remaining": 3,
+        "metadata": {
+          "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+          "decision": "buy_deep_analysis",
+          "opportunity_score": 77,
+          "confidence": 0.88
+        }
+      },
+      {
+        "event_id": "evt_0004",
+        "timestamp": "2026-06-03T10:06:30.779Z",
+        "customer_id": "sandbox_e4d2d829_mpxwj26h",
+        "product_code": "deep_analysis_pack_100",
+        "request_id": "integration-ready-external-agent-20260603_120626-1780481186-deep-analysis",
+        "status": "valid_output",
+        "reason": "beta_order_intent_created",
+        "units_requested": 1,
+        "credits_consumed": 1,
+        "credits_remaining": 0,
+        "metadata": {
+          "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+          "product_code": "deep_analysis",
+          "source_score_request_id": "integration-ready-external-agent-20260603_120626-1780481186-selected-discovered-score",
+          "real_payment_executed": false,
+          "external_contact_executed": false
+        }
+      },
+      {
+        "event_id": "evt_0005",
+        "timestamp": "2026-06-03T10:06:30.906Z",
+        "customer_id": "sandbox_e4d2d829_mpxwj26h",
+        "product_code": "action_pack_25",
+        "request_id": "integration-ready-external-agent-20260603_120626-1780481186-action-pack",
+        "status": "valid_output",
+        "reason": "beta_order_intent_created",
+        "units_requested": 1,
+        "credits_consumed": 1,
+        "credits_remaining": 0,
+        "metadata": {
+          "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+          "product_code": "action_pack",
+          "source_score_request_id": "integration-ready-external-agent-20260603_120626-1780481186-selected-discovered-score",
+          "real_payment_executed": false,
+          "external_contact_executed": false
+        }
+      }
+    ],
+    "recent_orders": [
+      {
+        "order_intent_id": "ord_cc8d01f8",
+        "status": "accepted_beta_order_intent",
+        "product_code": "target_discovery",
+        "ledger_product_code": "target_discovery_pack_250",
+        "domain": "integration-ready-external-agent-20260603_120626-1780481186",
+        "source_score_request_id": null,
+        "reason": "External buyer machine has no starting list and needs a target discovery delivery before scoring.",
+        "max_budget_eur": null,
+        "beta_price_range_eur": "149",
+        "delivery_mode": "target_discovery_precheck",
+        "request_id": "integration-ready-external-agent-20260603_120626-1780481186-target-discovery",
+        "event_id": "evt_0002",
+        "created_at": "2026-06-03T10:06:30.513Z",
+        "real_payment_executed": false,
+        "external_contact_executed": false,
+        "delivery": {
+          "delivery_id": "del_87e76b3e",
+          "product_code": "target_discovery",
+          "domain": "integration-ready-external-agent-20260603_120626-1780481186",
+          "source_score_request_id": null,
+          "generated_at": "2026-06-03T10:06:30.513Z",
+          "beta_delivery": true,
+          "synthetic_demo_mode": true,
+          "real_payment_executed": false,
+          "external_contact_executed": false,
+          "delivery_type": "target_discovery_precheck",
+          "status": "target_discovery_precheck_ready",
+          "requested_market": "dentists_odontoiatric_clinics",
+          "requested_area": "Lombardia",
+          "commercial_objective": "find dentist and odontoiatric clinic domains worth scoring for website-led commercial opportunity and CRM-ready follow-up preparation",
+          "machine_value": "Returns a machine-usable starting batch when the customer machine has no list to score.",
+          "promised_output": {
+            "target_count": 250,
+            "fields": [
+              "domain",
+              "category",
+              "area",
+              "initial_signals",
+              "reason_for_inclusion"
+            ]
+          },
+          "output_contract": {
+            "exact_unit_sold": "250 coherent target records or a no-go market coverage decision",
+            "row_schema": [
+              "domain",
+              "target_name",
+              "category",
+              "area",
+              "source_type",
+              "initial_signals",
+              "reason_for_inclusion",
+              "next_machine_action"
+            ],
+            "acceptance_criteria": [
+              "The target must match the requested market or the commercial objective.",
+              "The target must have enough public signal to justify a score call.",
+              "Duplicate domains are excluded from the delivered batch."
+            ],
+            "credit_policy": "One target_discovery_pack_250 credit is consumed only for an accepted discovery order. If the market cannot support the pack, the machine receives a no-go decision and suggested criteria changes."
+          },
+          "beta_sample_targets": [
+            {
+              "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+              "target_name": "dentists_odontoiatric_clinics candidate 01",
+              "category": "dentists_odontoiatric_clinics",
+              "area": "Lombardia",
+              "source_type": "public_web_signal",
+              "initial_signals": [
+                "sector_match",
+                "local_market",
+                "business_domain_present"
+              ],
+              "reason_for_inclusion": "Synthetic beta target representing the requested market and commercial objective.",
+              "next_machine_action": "send domain to /v1/lead-opportunity-score"
+            },
+            {
+              "domain": "dentists-odontoiatric-clinics-lombardia-candidate-02.example",
+              "target_name": "dentists_odontoiatric_clinics candidate 02",
+              "category": "dentists_odontoiatric_clinics",
+              "area": "Lombardia",
+              "source_type": "public_directory_signal",
+              "initial_signals": [
+                "sector_match",
+                "regional_market",
+                "clinic_keyword_present"
+              ],
+              "reason_for_inclusion": "Synthetic beta target used to validate scoring after discovery.",
+              "next_machine_action": "send domain to /v1/lead-opportunity-score"
+            },
+            {
+              "domain": "dentists-odontoiatric-clinics-lombardia-candidate-03.example",
+              "target_name": "dentists_odontoiatric_clinics candidate 03",
+              "category": "dentists_odontoiatric_clinics",
+              "area": "Lombardia",
+              "source_type": "search_result_signal",
+              "initial_signals": [
+                "sector_match",
+                "service_keyword_present"
+              ],
+              "reason_for_inclusion": "Synthetic beta target for validating the target-discovery-to-score handoff.",
+              "next_machine_action": "send domain to /v1/lead-opportunity-score"
+            }
+          ],
+          "next_machine_call": {
+            "method": "POST",
+            "endpoint": "/v1/lead-opportunity-score",
+            "input_from_delivery": "Use beta_sample_targets[].domain as domain.",
+            "required_headers": [
+              "X-API-Key",
+              "Idempotency-Key"
+            ]
+          },
+          "validity_rule": "Activate the pack only if the market availability pre-check can support 250 coherent targets.",
+          "fallback_if_not_available": [
+            "Mini Discovery",
+            "wider area",
+            "broader criteria",
+            "changed commercial objective"
+          ],
+          "machine_recommendation": "Use this product when the customer machine needs a starting list before score calls."
+        },
+        "beta": true
+      },
+      {
+        "order_intent_id": "ord_b1c2009b",
+        "status": "accepted_beta_order_intent",
+        "product_code": "deep_analysis",
+        "ledger_product_code": "deep_analysis_pack_100",
+        "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+        "source_score_request_id": "integration-ready-external-agent-20260603_120626-1780481186-selected-discovered-score",
+        "reason": "Score response recommended Deep Analysis before any CRM or campaign action.",
+        "max_budget_eur": 3,
+        "beta_price_range_eur": "1-3",
+        "delivery_mode": "deeper_opportunity_analysis",
+        "request_id": "integration-ready-external-agent-20260603_120626-1780481186-deep-analysis",
+        "event_id": "evt_0004",
+        "created_at": "2026-06-03T10:06:30.779Z",
+        "real_payment_executed": false,
+        "external_contact_executed": false,
+        "delivery": {
+          "delivery_id": "del_db140919",
+          "product_code": "deep_analysis",
+          "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+          "source_score_request_id": "integration-ready-external-agent-20260603_120626-1780481186-selected-discovered-score",
+          "generated_at": "2026-06-03T10:06:30.779Z",
+          "beta_delivery": true,
+          "synthetic_demo_mode": true,
+          "real_payment_executed": false,
+          "external_contact_executed": false,
+          "delivery_type": "deep_opportunity_analysis",
+          "status": "deep_analysis_ready",
+          "what_is_included": {
+            "exact_unit_sold": "one deep opportunity decision pack for one scored domain",
+            "machine_question_answered": "Is this strong enough to justify the next paid action, or should the workflow stop?",
+            "returned_decision_fields": [
+              "opportunity_grade",
+              "opportunity_hypothesis",
+              "signals_to_validate",
+              "recommended_next_step",
+              "recommended_budget_cap_eur",
+              "stop_rules"
+            ],
+            "credit_policy": "One deep_analysis_pack_100 credit is consumed for each deep analysis decision pack returned."
+          },
+          "opportunity_grade": "promising_beta_case",
+          "opportunity_hypothesis": "The domain may justify deeper commercial review before campaign or human-sales budget is spent.",
+          "signals_to_validate": [
+            "website conversion friction",
+            "sector-specific demand signal",
+            "local competition and offer fit"
+          ],
+          "recommended_next_step": {
+            "product_code": "action_pack",
+            "condition": "buy only if the customer machine has a compliant action channel and budget approval",
+            "reason": "Deep analysis indicates potential, but the next commercial action must still pass compliance and budget gates."
+          },
+          "stop_rules": [
+            "stop if confidence drops after verification",
+            "stop if the target does not match the customer's commercial objective",
+            "stop if no compliant downstream action is available"
+          ],
+          "risk_flags": [
+            "synthetic_beta_output",
+            "requires real-world validation before outreach"
+          ],
+          "recommended_budget_cap_eur": 3,
+          "machine_recommendation": "Use this output to decide whether to create an action pack or stop spending.",
+          "next_machine_call": {
+            "method": "POST",
+            "endpoint": "/v1/purchase-intent",
+            "payload_template": {
+              "product_code": "action_pack",
+              "source_order_intent_id": "use_this_order_intent_id",
+              "max_budget_eur": 10
+            },
+            "required_headers": [
+              "X-API-Key",
+              "Idempotency-Key"
+            ]
+          }
+        },
+        "beta": true
+      },
+      {
+        "order_intent_id": "ord_cca6f79b",
+        "status": "accepted_beta_order_intent",
+        "product_code": "action_pack",
+        "ledger_product_code": "action_pack_25",
+        "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+        "source_score_request_id": "integration-ready-external-agent-20260603_120626-1780481186-selected-discovered-score",
+        "reason": "Deep Analysis recommended Action Pack and compliance gate is available.",
+        "max_budget_eur": 10,
+        "beta_price_range_eur": "3-10",
+        "delivery_mode": "crm_action_preparation",
+        "request_id": "integration-ready-external-agent-20260603_120626-1780481186-action-pack",
+        "event_id": "evt_0005",
+        "created_at": "2026-06-03T10:06:30.906Z",
+        "real_payment_executed": false,
+        "external_contact_executed": false,
+        "delivery": {
+          "delivery_id": "del_16cad1a3",
+          "product_code": "action_pack",
+          "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+          "source_score_request_id": "integration-ready-external-agent-20260603_120626-1780481186-selected-discovered-score",
+          "generated_at": "2026-06-03T10:06:30.906Z",
+          "beta_delivery": true,
+          "synthetic_demo_mode": true,
+          "real_payment_executed": false,
+          "external_contact_executed": false,
+          "delivery_type": "action_pack",
+          "status": "action_pack_ready",
+          "what_is_included": {
+            "exact_unit_sold": "one CRM-ready action pack for one qualified domain",
+            "machine_question_answered": "What should the customer machine do next with this qualified opportunity?",
+            "returned_decision_fields": [
+              "priority",
+              "crm_record_patch",
+              "crm_task",
+              "crm_platform_mappings",
+              "workflow_payload",
+              "agent_instructions",
+              "webhook_event",
+              "webhook_delivery_policy",
+              "audit_event",
+              "approval_gate",
+              "deduplication_key",
+              "next_api_calls",
+              "stop_rules",
+              "compliance_guardrail"
+            ],
+            "credit_policy": "One action_pack_25 credit is consumed for each action pack returned."
+          },
+          "priority": "review_before_external_contact",
+          "crm_record_patch": {
+            "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+            "lead_status": "qualified_pending_compliance_review",
+            "lifecycle_stage": "opportunity_preparation",
+            "tags": [
+              "machine_signal_action_pack",
+              "requires_compliance_review"
+            ],
+            "next_task": {
+              "task_type": "review_and_prepare_compliant_action",
+              "owner_type": "customer_machine_or_approved_agent",
+              "due_in_hours": 24,
+              "budget_cap_eur": 10
+            }
+          },
+          "crm_task": {
+            "task_id": "ms_task_75aa221e",
+            "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+            "task_type": "qualified_opportunity_review",
+            "title": "Review MachineSignal action pack for dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+            "status": "open",
+            "priority": "high",
+            "owner_type": "customer_machine_or_approved_agent",
+            "due_in_hours": 24,
+            "required_context": [
+              "source_score_request_id",
+              "source_order_intent_id",
+              "crm_record_patch",
+              "message_angle",
+              "compliance_guardrail"
+            ],
+            "completion_criteria": [
+              "CRM record created or updated",
+              "score and deep-analysis context attached",
+              "compliance gate result recorded",
+              "external action blocked unless approved"
+            ]
+          },
+          "crm_platform_mappings": {
+            "hubspot": {
+              "object": "company",
+              "properties": {
+                "domain": "domain",
+                "lead_status": "hs_lead_status",
+                "lifecycle_stage": "lifecyclestage",
+                "tags": "machinesignal_tags",
+                "next_task": "machinesignal_next_task"
+              }
+            },
+            "salesforce": {
+              "object": "Lead",
+              "fields": {
+                "Website": "domain",
+                "Status": "lead_status",
+                "Rating": "priority",
+                "MachineSignal_Tags__c": "tags",
+                "MachineSignal_Next_Task__c": "next_task"
+              }
+            },
+            "pipedrive": {
+              "object": "organization",
+              "fields": {
+                "website": "domain",
+                "label": "machine_signal_action_pack",
+                "next_activity": "next_task"
+              }
+            },
+            "generic_crm": {
+              "operation": "upsert_company_or_lead",
+              "match_key": "dom...",
+              "write_fields": [
+                "lead_status",
+                "lifecycle_stage",
+                "tags",
+                "next_task",
+                "message_angle"
+              ]
+            }
+          },
+          "message_angle": {
+            "summary": "Focus on measurable website opportunity and low-friction diagnostic value.",
+            "do_not_claim": [
+              "guaranteed revenue uplift",
+              "verified customer pain without customer evidence",
+              "automatic legal permission to contact"
+            ],
+            "recommended_value_proposition": "Offer a diagnostic view of visible digital opportunity before the customer spends campaign or human-sales budget."
+          },
+          "workflow_payload": {
+            "workflow_name": "machinesignal_qualified_opportunity_review",
+            "trigger": "action_pack_ready",
+            "deduplication_key": "machinesig...core",
+            "required_inputs": [
+              "domain",
+              "source_score_request_id",
+              "source_order_intent_id"
+            ],
+            "output_targets": [
+              "crm",
+              "workflow_engine",
+              "approved_customer_agent"
+            ],
+            "recommended_steps": [
+              {
+                "step": 1,
+                "action": "create_or_update_crm_record",
+                "payload_ref": "crm_record_patch"
+              },
+              {
+                "step": 2,
+                "action": "attach_score_and_deep_analysis_context",
+                "source_score_request_id": "integration-ready-external-agent-20260603_120626-1780481186-selected-discovered-score"
+              },
+              {
+                "step": 3,
+                "action": "run_compliance_gate",
+                "required_result": "approved_channel_and_lawful_basis"
+              },
+              {
+                "step": 4,
+                "action": "prepare_next_contact_or_internal_task",
+                "condition": "only_after_compliance_gate_passes"
+              }
+            ]
+          },
+          "approval_gate": {
+            "gate_name": "external_action_approval",
+            "default_state": "blocked",
+            "required_signals": [
+              "lawful_basis_confirmed",
+              "approved_channel_available",
+              "customer_policy_allows_action",
+              "crm_audit_record_created"
+            ],
+            "allowed_without_approval": [
+              "create_or_update_crm_record",
+              "create_internal_task",
+              "attach_context",
+              "wait_for_customer_policy"
+            ],
+            "blocked_without_approval": [
+              "send_email",
+              "send_linkedin_message",
+              "call_target",
+              "start_external_sequence"
+            ]
+          },
+          "agent_instructions": [
+            "Do not contact the target automatically.",
+            "First check whether the customer has an approved channel and lawful basis.",
+            "If compliance is not approved, keep the lead in CRM as pending_review.",
+            "If approved, use the message angle as a draft direction, not as a final claim."
+          ],
+          "webhook_event": {
+            "event_type": "machinesignal.action_pack.ready",
+            "version": "2026-05-31",
+            "idempotency_key_hint": "reuse the order_intent_id when forwarding to CRM",
+            "payload_schema": {
+              "domain": "string",
+              "priority": "string",
+              "crm_record_patch": "object",
+              "crm_task": "object",
+              "crm_platform_mappings": "object",
+              "workflow_payload": "object",
+              "approval_gate": "object",
+              "compliance_guardrail": "string"
+            }
+          },
+          "webhook_delivery_policy": {
+            "delivery_mode": "customer_configured_endpoint_only",
+            "retry_policy": {
+              "max_attempts": 3,
+              "backoff_seconds": [
+                30,
+                300,
+                1800
+              ]
+            },
+            "signing": {
+              "recommended_header": "X-MachineSignal-Signature",
+              "algorithm": "hmac-sha256",
+              "secret_owner": "customer"
+            },
+            "idempotency_header": "Idempotency-Key",
+            "should_not_send_if": [
+              "customer_webhook_not_configured",
+              "approval_gate_missing",
+              "payload_schema_validation_failed"
+            ]
+          },
+          "audit_event": {
+            "event_type": "machinesignal.audit.action_pack_created",
+            "actor_type": "machinesignal_api",
+            "domain": "dentists-odontoiatric-clinics-lombardia-candidate-01.example",
+            "source_score_request_id": "integration-ready-external-agent-20260603_120626-1780481186-selected-discovered-score",
+            "source_order_intent_id": "ord_b1c2009b",
+            "external_contact_executed": false,
+            "real_payment_executed": false,
+            "required_customer_audit_action": "record approval_gate result before any external action"
+          },
+          "deduplication_key": "machinesig...core",
+          "next_api_calls": [
+            {
+              "purpose": "verify remaining credits and ledger state",
+              "method": "GET",
+              "endpoint": "/v1/usage"
+            },
+            {
+              "purpose": "retrieve this order delivery later",
+              "method": "GET",
+              "endpoint": "/v1/orders/{order_intent_id}"
+            },
+            {
+              "purpose": "retrieve all customer-machine orders",
+              "method": "GET",
+              "endpoint": "/v1/orders"
+            }
+          ],
+          "stop_rules": [
+            "stop if no lawful basis or approved channel exists",
+            "stop if the domain no longer matches the customer's commercial objective",
+            "stop if data quality verification is required but not completed",
+            "stop if the customer machine cannot record the action in CRM or audit log"
+          ],
+          "follow_up_sequence": [
+            {
+              "step": 1,
+              "channel": "system",
+              "action": "prepare_crm_task"
+            },
+            {
+              "step": 2,
+              "channel": "system",
+              "action": "attach_score_and_reason"
+            },
+            {
+              "step": 3,
+              "channel": "human_or_approved_agent",
+              "action": "send_only_if_compliant_basis_exists"
+            }
+          ],
+          "compliance_guardrail": "Do not send unsolicited outreach automatically unless the customer has a lawful basis and channel policy.",
+          "machine_recommendation": "Prepare actions, but require compliance approval before external contact."
+        },
+        "beta": true
+      }
+    ],
+    "rule": "credits are consumed only when the API produces a valid usable output",
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  },
+  "credits_used": {
+    "scores": 2,
+    "target_discovery": 1,
+    "deep_analysis": 1,
+    "action_pack": 1
+  },
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "summary_path": "C:\\Users\\natal\\AppData\\Local\\Temp\\MachineSignal\\integration_ready_external_agent_20260603\\integration_ready_external_agent_summary_20260603_120626.json",
+  "report_path": "C:\\Users\\natal\\AppData\\Local\\Temp\\MachineSignal\\integration_ready_external_agent_20260603\\integration_ready_external_agent_report_20260603_120626.md",
+  "repo_summary_path": "C:\\Users\\natal\\AppData\\Local\\Temp\\MachineSignal\\github_repo_sync_20260530\\integration_ready_external_agent_summary_20260603.json",
+  "repo_report_path": "C:\\Users\\natal\\AppData\\Local\\Temp\\MachineSignal\\github_repo_sync_20260530\\integration_ready_external_agent_readout_20260603.md"
+}

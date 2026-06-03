@@ -36,6 +36,8 @@
     "mcp_machine_client_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "integration_partner_pack": "https://machinesignal.it/integration-partner-pack.json",
     "integration_partner_pack_markdown": "https://machinesignal.it/INTEGRATION_PARTNER_PACK.md",
+    "integration_ready_external_agent_readout": "https://machinesignal.it/integration_ready_external_agent_readout_20260603.md",
+    "integration_ready_external_agent_summary": "https://machinesignal.it/integration_ready_external_agent_summary_20260603.json",
     "crm_agent_integration_simulator_readout": "https://machinesignal.it/crm-agent-integration-simulator-readout.md",
     "crm_agent_integration_simulated_ledger": "https://machinesignal.it/crm-agent-integration-simulated-ledger.json",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
