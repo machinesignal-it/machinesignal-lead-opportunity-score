@@ -28,7 +28,9 @@
     ],
     "base_url": "https://machinesignal-api.beta-878.workers.dev",
     "openapi_url": "https://machinesignal.it/openapi.json",
-    "public_documentation_url": "https://machinesignal.it/distribution/rapidapi-listing.json",
+    "public_documentation_url": "https://machinesignal.it/sandbox-buyer-kit/",
+    "machine_readable_sandbox_kit": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
+    "listing_metadata_url": "https://machinesignal.it/distribution/rapidapi-listing.json",
     "public_postman_collection": "https://machinesignal.it/postman_public_collection.json"
   },
   "endpoint_groups": [
@@ -138,7 +140,9 @@
     "Protected endpoints work with sandbox key",
     "Repeated score with same Idempotency-Key does not double consume credit",
     "Purchase intent returns JSON delivery and does not execute payment",
-    "GET /v1/orders retrieves the delivery"
+    "GET /v1/orders retrieves the delivery",
+    "POST /v1/payment-test/intents accepts provider_mode sandbox",
+    "GET /v1/payment-test/reconciliation/{payment_test_id} confirms no real payment and no fiscal invoice"
   ],
   "safety": {
     "real_payment_executed_in_beta": false,

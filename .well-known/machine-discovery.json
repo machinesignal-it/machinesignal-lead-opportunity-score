@@ -40,6 +40,7 @@
     "self_service_machine_buyer_sale_simulation_json": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
+    "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
     "readiness_dashboard": "https://machinesignal.it/readiness-dashboard/",
     "readiness_dashboard_json": "https://machinesignal.it/readiness-dashboard/readiness.json",
     "readiness_dashboard_markdown": "https://machinesignal.it/machine_readiness_dashboard_20260604.md",

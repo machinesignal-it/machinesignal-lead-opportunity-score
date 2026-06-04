@@ -29,6 +29,9 @@ Public discovery starts here:
 - CRM/Agent Simulated Ledger JSON: https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
+- Sandbox Buyer Kit: https://machinesignal.it/sandbox-buyer-kit/
+- Sandbox Buyer Kit JSON: https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
+- Sandbox Buyer Kit Distribution Listing: https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json
 - RapidAPI Listing JSON: https://machinesignal.it/distribution/rapidapi-listing.json
 - RapidAPI Provider Setup JSON: https://machinesignal.it/distribution/rapidapi-provider-setup.json
 - Distribution Channel Shortlist JSON: https://machinesignal.it/distribution/channel-shortlist.json
@@ -195,6 +198,13 @@ curl -X POST "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customer
 The response returns `api_key` once. Store it immediately and use it as `X-API-Key` for the protected beta endpoints.
 
 Sandbox limits are intentionally small: 5 scores, 1 target discovery, 1 deep analysis, 1 action pack, 1 verification, 1 nurture signal and 1 domain enrichment. Sandbox keys expire after 7 days by default, creation is daily-limited to reduce abuse, and the sandbox does not execute real payments or external outreach.
+
+The canonical self-service sandbox entry point is:
+
+- https://machinesignal.it/sandbox-buyer-kit/
+- https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
+
+The latest self-service machine buyer sale simulation passed: a buyer machine discovered public files, created a sandbox key, ordered beta deliverables, simulated checkout in sandbox mode, activated test credits and reconciled payment records without real payment, external contact or fiscal invoice.
 
 ## Core Flow For Machines
 

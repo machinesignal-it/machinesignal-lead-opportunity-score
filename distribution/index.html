@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MachineSignal Distribution Pack</title>
+    <meta
+      name="description"
+      content="MachineSignal machine-readable distribution resources for API directories, agent registries, API marketplaces and developer discovery."
+    />
+    <link rel="alternate" type="application/json" title="API Directory Submission" href="/distribution/api-directory-submission.json" />
+    <link rel="alternate" type="application/json" title="Sandbox Buyer Kit Listing" href="/distribution/sandbox-buyer-kit-listing.json" />
+    <link rel="alternate" type="application/json" title="RapidAPI Listing" href="/distribution/rapidapi-listing.json" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #142033;
+        --muted: #58677c;
+        --line: #d9e1ea;
+        --surface: #f6f8fb;
+        --green: #117865;
+        --night: #121923;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--ink);
+        background: #ffffff;
+        line-height: 1.5;
+        letter-spacing: 0;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: var(--green);
+        overflow-wrap: anywhere;
+      }
+
+      header {
+        background: var(--night);
+        color: #ffffff;
+        padding: 34px 0 48px;
+      }
+
+      .wrap {
+        width: min(1080px, calc(100vw - 32px));
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        color: #9ce3c9;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 820px;
+        font-size: 44px;
+        line-height: 1.1;
+        overflow-wrap: anywhere;
+      }
+
+      .lead {
+        max-width: 760px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 18px;
+        overflow-wrap: anywhere;
+      }
+
+      section {
+        padding: 34px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 26px;
+        overflow-wrap: anywhere;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 18px;
+        min-width: 0;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        overflow-wrap: anywhere;
+      }
+
+      .sub { color: var(--muted); }
+
+      ul { padding-left: 20px; }
+
+      @media (max-width: 820px) {
+        .grid { grid-template-columns: 1fr; }
+        header { padding: 24px 0 34px; }
+        h1 { font-size: 28px; }
+        h2 { font-size: 24px; }
+        .lead { font-size: 16px; }
+      }
+
+      @media (max-width: 600px) {
+        .wrap {
+          width: min(100%, 390px);
+          margin-left: 0;
+          margin-right: auto;
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <div class="eyebrow">Distribution pack</div>
+        <h1>Machine-readable listing assets for MachineSignal.</h1>
+        <p class="lead">
+          Use these files to index, list or evaluate MachineSignal in API directories, agent registries,
+          developer tools and machine-first discovery surfaces.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="wrap">
+          <h2>Primary listing files</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Sandbox Buyer Kit Listing</h3>
+              <p class="sub">Best first listing artifact for machine-first sandbox evaluation.</p>
+              <a href="/distribution/sandbox-buyer-kit-listing.json">Open JSON</a>
+            </div>
+            <div class="card">
+              <h3>API Directory Submission</h3>
+              <p class="sub">General metadata for API directories and developer discovery.</p>
+              <a href="/distribution/api-directory-submission.json">Open JSON</a>
+            </div>
+            <div class="card">
+              <h3>RapidAPI Draft</h3>
+              <p class="sub">Draft listing metadata for marketplace-style API publication.</p>
+              <a href="/distribution/rapidapi-listing.json">Open JSON</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Canonical machine entry points</h2>
+          <ul>
+            <li><a href="/sandbox-buyer-kit/">Sandbox Buyer Kit</a></li>
+            <li><a href="/sandbox-buyer-kit/sandbox-buyer-kit.json">Sandbox Buyer Kit JSON</a></li>
+            <li><a href="/llms.txt">llms.txt</a></li>
+            <li><a href="/openapi.json">OpenAPI</a></li>
+            <li><a href="/machine-onboarding.json">Machine onboarding</a></li>
+            <li><a href="/product-catalog.json">Product catalog</a></li>
+            <li><a href="/readiness-dashboard/">Readiness dashboard</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-04",
+  "listing_type": "sandbox_buyer_kit_distribution_listing",
+  "status": "ready_for_machine_discovery",
+  "title": "MachineSignal Sandbox Buyer Kit",
+  "short_description": "Self-service sandbox evaluation kit for CRM systems, AI agents and automated workflows that want to test lead opportunity scoring without human sales contact.",
+  "long_description": "MachineSignal exposes a machine-first evaluation path. A buyer machine can discover public manifests, create a low-credit sandbox key, score a domain, request Target Discovery, Deep Analysis and Action Pack outputs, simulate checkout in sandbox mode and reconcile credits without executing real payment, issuing a fiscal invoice or contacting external targets.",
+  "primary_customer_interface": "machine",
+  "human_role": "supervision, approval and audit only",
+  "recommended_for": [
+    "CRM systems evaluating lead routing APIs",
+    "AI agents looking for callable sales intelligence tools",
+    "RevOps workflows testing opportunity scoring",
+    "API directories and agent registries indexing machine-callable services",
+    "Developers testing sandbox API contracts"
+  ],
+  "canonical_urls": {
+    "sandbox_buyer_kit_page": "https://machinesignal.it/sandbox-buyer-kit/",
+    "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "postman_collection": "https://machinesignal.it/postman_collection.json",
+    "readiness_dashboard": "https://machinesignal.it/readiness-dashboard/",
+    "latest_self_service_validation": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json",
+    "github": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score"
+  },
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "auth": {
+    "type": "apiKey",
+    "header": "X-API-Key",
+    "self_service_sandbox_key_endpoint": "POST /v1/sandbox/customers",
+    "idempotency_header": "Idempotency-Key"
+  },
+  "sandbox_limits": {
+    "score_pack_1k": 5,
+    "target_discovery_pack_250": 1,
+    "deep_analysis_pack_100": 1,
+    "action_pack_25": 1,
+    "verification_pack_100": 1,
+    "nurture_signal_pack_100": 1,
+    "domain_enrichment_pack_100": 1,
+    "expires_after_days_default": 7
+  },
+  "evaluation_flow": [
+    "GET /llms.txt",
+    "GET /sandbox-buyer-kit/sandbox-buyer-kit.json",
+    "POST /v1/sandbox/customers",
+    "GET /v1/onboarding",
+    "POST /v1/purchase-intent with product_code target_discovery",
+    "POST /v1/lead-opportunity-score",
+    "POST /v1/purchase-intent with product_code deep_analysis",
+    "POST /v1/purchase-intent with product_code action_pack",
+    "POST /v1/payment-test/intents with provider_mode sandbox",
+    "GET /v1/payment-test/reconciliation/{payment_test_id}"
+  ],
+  "testable_outputs": [
+    "target_discovery_precheck",
+    "opportunity_score",
+    "confidence",
+    "commercial_strength",
+    "next_purchase",
+    "deep_opportunity_analysis",
+    "crm_record_patch",
+    "workflow_payload",
+    "webhook_event",
+    "approval_gate",
+    "payment_test_reconciliation"
+  ],
+  "latest_validation": {
+    "status": "passed",
+    "validation_url": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md",
+    "validation_json": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json",
+    "customer_type": "sandbox",
+    "orders_created": 3,
+    "payment_mode": "sandbox",
+    "test_credits_activated": 1000,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false
+  },
+  "publication_guardrails": {
+    "safe_to_publish_as_sandbox": true,
+    "safe_to_publish_as_monetized_live_checkout": false,
+    "reason_live_checkout_blocked": "Real payments remain blocked until fiscal, legal, privacy, provider, invoicing and refund controls are complete.",
+    "must_not_claim": [
+      "live checkout is available",
+      "real payments are enabled",
+      "MachineSignal sends external outreach automatically",
+      "Action Pack can bypass customer compliance approval"
+    ]
+  },
+  "suggested_listing_copy": {
+    "headline": "Lead opportunity scoring API built for machine buyers.",
+    "one_liner": "Create a sandbox key, score leads, buy beta deliverables and simulate checkout without talking to sales.",
+    "call_to_action": "Start with the Sandbox Buyer Kit JSON."
+  }
+}

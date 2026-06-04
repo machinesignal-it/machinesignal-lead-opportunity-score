@@ -133,6 +133,9 @@
     <loc>https://machinesignal.it/distribution/api-directory-submission.json</loc>
   </url>
   <url>
+    <loc>https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json</loc>
+  </url>
+  <url>
     <loc>https://machinesignal.it/distribution/rapidapi-listing.json</loc>
   </url>
   <url>
