@@ -1,0 +1,169 @@
+{
+  "service": "MachineSignal",
+  "kit": "sandbox_buyer_kit",
+  "version": "2026-06-04",
+  "primary_customer_interface": "machine",
+  "purpose": "Allow a CRM, AI agent or automated workflow to evaluate MachineSignal without human sales contact and without real payment execution.",
+  "website": "https://machinesignal.it/sandbox-buyer-kit/",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "readiness": {
+    "dashboard": "https://machinesignal.it/readiness-dashboard/",
+    "dashboard_json": "https://machinesignal.it/readiness-dashboard/readiness.json",
+    "controlled_beta_status": "ready_for_controlled_beta",
+    "real_payment_status": "blocked_for_real_payments",
+    "real_payment_enabled": false,
+    "external_contact_enabled": false
+  },
+  "discovery_files": {
+    "llms": "https://machinesignal.it/llms.txt",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_discovery": "https://machinesignal.it/.well-known/machine-discovery.json",
+    "postman_collection": "https://machinesignal.it/postman_collection.json"
+  },
+  "sandbox": {
+    "create_customer": {
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+      "auth_required": false,
+      "idempotency_header": "Idempotency-Key",
+      "example_body": {
+        "customer_id": "sandbox_evaluator_001",
+        "evaluator_type": "machine_buyer",
+        "integration_target": "crm_agentic_workflow",
+        "expected_test_path": "discover_score_buy_payment_test_reconcile"
+      },
+      "important": "Store api_key immediately. It is returned only once."
+    },
+    "limits": {
+      "score_pack_1k": 5,
+      "target_discovery_pack_250": 1,
+      "deep_analysis_pack_100": 1,
+      "action_pack_25": 1,
+      "verification_pack_100": 1,
+      "nurture_signal_pack_100": 1,
+      "domain_enrichment_pack_100": 1,
+      "opportunity_feed_monthly": 0
+    },
+    "expires_after_days_default": 7,
+    "allowed_use": "low-volume technical evaluation only"
+  },
+  "machine_buying_flow": [
+    {
+      "step": 1,
+      "call": "GET /llms.txt",
+      "auth_required": false,
+      "machine_purpose": "Discover MachineSignal and machine-readable entry points."
+    },
+    {
+      "step": 2,
+      "call": "POST /v1/sandbox/customers",
+      "auth_required": false,
+      "machine_purpose": "Create a limited sandbox API key without human sales contact."
+    },
+    {
+      "step": 3,
+      "call": "GET /v1/onboarding",
+      "auth_required": true,
+      "machine_purpose": "Read credits, payment-test mode, product contract and next calls."
+    },
+    {
+      "step": 4,
+      "call": "POST /v1/purchase-intent",
+      "auth_required": true,
+      "product_code": "target_discovery",
+      "machine_purpose": "Request targets when the buyer machine has no starting list."
+    },
+    {
+      "step": 5,
+      "call": "POST /v1/lead-opportunity-score",
+      "auth_required": true,
+      "machine_purpose": "Score a domain and receive opportunity_score, confidence, decision and next_purchase."
+    },
+    {
+      "step": 6,
+      "call": "POST /v1/purchase-intent",
+      "auth_required": true,
+      "product_code": "deep_analysis",
+      "machine_purpose": "Buy deeper JSON analysis when next_purchase recommends it."
+    },
+    {
+      "step": 7,
+      "call": "POST /v1/purchase-intent",
+      "auth_required": true,
+      "product_code": "action_pack",
+      "machine_purpose": "Receive CRM-ready payload, webhook schema, approval gate, stop rules and audit event."
+    },
+    {
+      "step": 8,
+      "call": "POST /v1/payment-test/intents",
+      "auth_required": true,
+      "provider_mode_allowed": ["test", "sandbox"],
+      "provider_mode_blocked": ["live", "production", "prod"],
+      "machine_purpose": "Simulate checkout without charging money."
+    },
+    {
+      "step": 9,
+      "call": "POST /v1/payment-test/webhooks/stripe",
+      "auth_required": false,
+      "machine_purpose": "Simulate a provider webhook using the deterministic signature returned by the payment test intent."
+    },
+    {
+      "step": 10,
+      "call": "GET /v1/payment-test/reconciliation/{payment_test_id}",
+      "auth_required": true,
+      "machine_purpose": "Verify test credits, duplicate webhook handling and no real payment execution."
+    }
+  ],
+  "products_testable_in_sandbox": [
+    {
+      "product_code": "target_discovery",
+      "output": "target_discovery_precheck with beta sample targets and next call instructions"
+    },
+    {
+      "product_code": "score_pack_1k",
+      "output": "opportunity_score, confidence, commercial_strength, decision and recommended next purchase"
+    },
+    {
+      "product_code": "deep_analysis",
+      "output": "deep opportunity analysis, risk, urgency and next product recommendation"
+    },
+    {
+      "product_code": "action_pack",
+      "output": "CRM-ready JSON, workflow payload, webhook event, approval gate, stop rules and compliance guardrail"
+    },
+    {
+      "product_code": "score_pack_1k_payment_test",
+      "output": "simulated checkout, test webhook signatures, test credits and reconciliation report"
+    }
+  ],
+  "safety_rules": {
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "live_payment_mode_allowed": false,
+    "customer_must_not_execute_external_outreach_without_compliance_basis": true,
+    "action_pack_default_approval_gate": "blocked"
+  },
+  "latest_validation": {
+    "self_service_machine_buyer_sale_simulation": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md",
+    "self_service_machine_buyer_sale_simulation_json": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json",
+    "status": "passed",
+    "customer_type": "sandbox",
+    "score": 78,
+    "decision": "buy_deep_analysis",
+    "orders_created": 3,
+    "payment_mode": "sandbox",
+    "test_credits_activated": 1000,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false
+  },
+  "upgrade_path": {
+    "current_state": "controlled_beta_only",
+    "next_state": "private beta key for larger tests",
+    "real_payments": "blocked until fiscal, legal, privacy, provider, invoicing and refund controls are complete",
+    "recommended_machine_action": "use sandbox for technical evaluation, then request private beta access only if integration value is confirmed"
+  }
+}

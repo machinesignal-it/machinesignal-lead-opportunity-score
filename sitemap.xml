@@ -82,6 +82,12 @@
     <loc>https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json</loc>
   </url>
   <url>
+    <loc>https://machinesignal.it/sandbox-buyer-kit/</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json</loc>
+  </url>
+  <url>
     <loc>https://machinesignal.it/readiness-dashboard/</loc>
   </url>
   <url>

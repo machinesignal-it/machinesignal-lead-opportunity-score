@@ -39,6 +39,8 @@ Useful endpoints:
 - GET https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json
 - GET https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md
 - GET https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json
+- GET https://machinesignal.it/sandbox-buyer-kit/
+- GET https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
 - GET https://machinesignal.it/readiness-dashboard/
 - GET https://machinesignal.it/readiness-dashboard/readiness.json
 - GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -126,6 +128,8 @@ Public demos for software, agents and partners:
 - Controlled beta gate runner JSON: https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json
 - Self-service machine buyer sale simulation: https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md
 - Self-service machine buyer sale simulation JSON: https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json
+- Sandbox buyer kit: https://machinesignal.it/sandbox-buyer-kit/
+- Sandbox buyer kit JSON: https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
 - Readiness dashboard: https://machinesignal.it/readiness-dashboard/
 - Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
 - Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md

@@ -1,7 +1,7 @@
 {
   "service": "MachineSignal",
   "report_type": "machine_readiness_dashboard",
-  "generated_at": "2026-06-04T10:49:50.299Z",
+  "generated_at": "2026-06-04T13:03:12.525Z",
   "primary_customer_interface": "machine",
   "overall_recommendation": "proceed_with_controlled_beta_without_real_payments",
   "controlled_beta_status": "ready_for_controlled_beta",
