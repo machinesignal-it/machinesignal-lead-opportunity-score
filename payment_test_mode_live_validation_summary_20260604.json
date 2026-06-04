@@ -1,0 +1,37 @@
+{
+  "service": "MachineSignal",
+  "report_type": "payment_test_mode_live_validation",
+  "generated_date": "2026-06-04",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "status": "passed",
+  "real_payment_enabled": false,
+  "ready_for_real_payments": false,
+  "live_checks": {
+    "temporary_beta_customer_created": true,
+    "live_mode_blocked_http_status": 400,
+    "payment_test_created": true,
+    "succeeded_webhook_accepted": true,
+    "credits_activated": 1000,
+    "duplicate_webhook_no_double_credit": true,
+    "reconciliation_ok": true,
+    "admin_report_payment_test_count": 1,
+    "admin_report_succeeded": 1,
+    "temporary_beta_customer_closed": true
+  },
+  "safety": {
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "live_provider_mode_allowed": false
+  },
+  "remaining_before_real_payment": [
+    "fiscal_partita_iva_decision",
+    "live_payment_provider_configuration",
+    "terms_of_service",
+    "privacy_dpa_retention_policy",
+    "refund_and_credit_policy",
+    "real_invoicing_workflow",
+    "final_admin_approval"
+  ],
+  "machine_first_interpretation": "The payment layer can now be tested by machines through API calls, but live payment remains blocked."
+}
