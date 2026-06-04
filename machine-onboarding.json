@@ -29,7 +29,9 @@
     "readiness_dashboard": "https://machinesignal.it/readiness-dashboard/",
     "readiness_dashboard_json": "https://machinesignal.it/readiness-dashboard/readiness.json",
     "controlled_beta_gate_runner": "https://machinesignal.it/controlled_beta_gate_runner_report_20260604.md",
-    "controlled_beta_gate_runner_json": "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json"
+    "controlled_beta_gate_runner_json": "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json",
+    "self_service_machine_buyer_sale_simulation": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md",
+    "self_service_machine_buyer_sale_simulation_json": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json"
   },
   "authentication": {
     "type": "apiKey",

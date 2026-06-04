@@ -1,7 +1,7 @@
 {
   "service": "MachineSignal",
   "report_type": "machine_readiness_dashboard",
-  "generated_at": "2026-06-04T10:05:33.275Z",
+  "generated_at": "2026-06-04T10:49:50.299Z",
   "primary_customer_interface": "machine",
   "overall_recommendation": "proceed_with_controlled_beta_without_real_payments",
   "controlled_beta_status": "ready_for_controlled_beta",
@@ -53,6 +53,14 @@
     },
     {
       "id": "G6",
+      "label": "Self-service machine buyer",
+      "status": "pass",
+      "ok": true,
+      "evidence": "A buyer machine discovered the API publicly, created a sandbox key, bought beta deliverables and simulated checkout.",
+      "owner_agent": "Growth & Distribution, Billing & Payment Ops, Customer Success & Post-Sale"
+    },
+    {
+      "id": "G7",
       "label": "Real payment readiness",
       "status": "fail",
       "ok": false,
@@ -72,7 +80,15 @@
     "gate_runner_status": "passed",
     "gate_runner_scenarios_passed": 2,
     "gate_runner_order_count": 6,
-    "gate_runner_simulated_revenue_eur": 336.1
+    "gate_runner_simulated_revenue_eur": 336.1,
+    "self_service_sale_status": "passed",
+    "self_service_sale_customer_type": "sandbox",
+    "self_service_sale_score": 78,
+    "self_service_sale_decision": "buy_deep_analysis",
+    "self_service_sale_orders_count": 3,
+    "self_service_sale_payment_mode": "sandbox",
+    "self_service_sale_credits_activated": 1000,
+    "self_service_sale_simulated_revenue_eur": 168.05
   },
   "blockers_before_real_payment": [
     "Fiscal setup approved",
@@ -108,6 +124,7 @@
     "pre_monetization_readiness": "https://machinesignal.it/pre_monetization_readiness_control_20260603.json",
     "payment_test_live_validation": "https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json",
     "machine_customer_e2e_live_test": "https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json",
-    "controlled_beta_gate_runner": "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json"
+    "controlled_beta_gate_runner": "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json",
+    "self_service_machine_buyer_sale_simulation": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json"
   }
 }

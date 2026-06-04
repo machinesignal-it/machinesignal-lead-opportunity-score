@@ -31,6 +31,7 @@ const preMonetization = await readJson("pre_monetization_readiness_control_20260
 const paymentLive = await readJson("payment_test_mode_live_validation_summary_20260604.json");
 const machineE2E = await readJson("machine_customer_e2e_live_test_summary_20260604.json");
 const gateRunner = await readJson("controlled_beta_gate_runner_summary_20260604.json");
+const selfServiceSale = await readJson("self_service_machine_buyer_sale_simulation_summary_20260604.json");
 
 const allControlledChecksOk =
   bool(controlledBeta.ok) &&
@@ -77,6 +78,29 @@ const gateRunnerOk =
   gateRunner.scenarios.length >= 2 &&
   gateRunner.scenarios.every((scenario) => scenario.status === "passed");
 
+const selfServiceSaleOk =
+  selfServiceSale.status === "passed" &&
+  selfServiceSale.customer_type === "sandbox" &&
+  bool(selfServiceSale.readiness_gate?.ok) &&
+  selfServiceSale.readiness_gate?.controlled_beta_status === "ready_for_controlled_beta" &&
+  selfServiceSale.readiness_gate?.real_payment_status === "blocked_for_real_payments" &&
+  bool(selfServiceSale.steps?.sandbox_created?.ok) &&
+  bool(selfServiceSale.steps?.authenticated_onboarding?.ok) &&
+  bool(selfServiceSale.steps?.target_discovery?.ok) &&
+  bool(selfServiceSale.steps?.score?.ok) &&
+  bool(selfServiceSale.steps?.deep_analysis?.ok) &&
+  bool(selfServiceSale.steps?.action_pack?.ok) &&
+  bool(selfServiceSale.steps?.payment_intent?.ok) &&
+  bool(selfServiceSale.steps?.live_payment_mode_block?.ok) &&
+  bool(selfServiceSale.steps?.payment_webhook?.ok) &&
+  bool(selfServiceSale.steps?.duplicate_webhook?.ok) &&
+  bool(selfServiceSale.steps?.reconciliation?.reconciliation_ok) &&
+  selfServiceSale.safety?.real_payment_executed === false &&
+  selfServiceSale.safety?.external_contact_executed === false &&
+  selfServiceSale.safety?.real_invoice_issued === false &&
+  bool(selfServiceSale.internal_admin_checks?.audit_reconciliation_ok) &&
+  bool(selfServiceSale.internal_admin_checks?.payment_report_reconciliation_ok);
+
 const realPaymentBlocked =
   preMonetization.ready_for_real_payments === false &&
   preMonetization.overall_status === "not_ready_for_real_payments" &&
@@ -92,7 +116,10 @@ const safetyOk =
   paymentLive.safety?.real_invoice_issued === false &&
   gateRunner.safety?.real_payment_executed === false &&
   gateRunner.safety?.external_contact_executed === false &&
-  gateRunner.safety?.real_invoice_issued === false;
+  gateRunner.safety?.real_invoice_issued === false &&
+  selfServiceSale.safety?.real_payment_executed === false &&
+  selfServiceSale.safety?.external_contact_executed === false &&
+  selfServiceSale.safety?.real_invoice_issued === false;
 
 const gates = [
   compactGate(
@@ -132,6 +159,13 @@ const gates = [
   ),
   compactGate(
     "G6",
+    "Self-service machine buyer",
+    selfServiceSaleOk,
+    "A buyer machine discovered the API publicly, created a sandbox key, bought beta deliverables and simulated checkout.",
+    "Growth & Distribution, Billing & Payment Ops, Customer Success & Post-Sale"
+  ),
+  compactGate(
+    "G7",
     "Real payment readiness",
     !realPaymentBlocked,
     "Real payments remain blocked by fiscal, legal, privacy, provider, invoicing and refund controls.",
@@ -139,7 +173,7 @@ const gates = [
   )
 ];
 
-const controlledBetaReady = gates.slice(0, 5).every((gate) => gate.ok);
+const controlledBetaReady = gates.slice(0, 6).every((gate) => gate.ok);
 const realPaymentReady = gates.every((gate) => gate.ok) && preMonetization.ready_for_real_payments === true;
 
 const dashboard = {
@@ -171,7 +205,15 @@ const dashboard = {
     gate_runner_status: gateRunner.status,
     gate_runner_scenarios_passed: gateRunner.scenarios.filter((scenario) => scenario.status === "passed").length,
     gate_runner_order_count: gateRunner.admin_reports?.order_count,
-    gate_runner_simulated_revenue_eur: gateRunner.admin_reports?.simulated_revenue_eur
+    gate_runner_simulated_revenue_eur: gateRunner.admin_reports?.simulated_revenue_eur,
+    self_service_sale_status: selfServiceSale.status,
+    self_service_sale_customer_type: selfServiceSale.customer_type,
+    self_service_sale_score: selfServiceSale.steps?.score?.opportunity_score,
+    self_service_sale_decision: selfServiceSale.steps?.score?.decision,
+    self_service_sale_orders_count: selfServiceSale.steps?.orders?.count,
+    self_service_sale_payment_mode: selfServiceSale.steps?.payment_intent?.provider_mode,
+    self_service_sale_credits_activated: selfServiceSale.steps?.payment_webhook?.credits_activated,
+    self_service_sale_simulated_revenue_eur: selfServiceSale.internal_admin_checks?.simulated_revenue_eur
   },
   blockers_before_real_payment: preMonetization.non_negotiable_blockers,
   next_agent_actions: [
@@ -204,7 +246,9 @@ const dashboard = {
     machine_customer_e2e_live_test:
       "https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json",
     controlled_beta_gate_runner:
-      "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json"
+      "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json",
+    self_service_machine_buyer_sale_simulation:
+      "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json"
   }
 };
 
@@ -244,6 +288,14 @@ ${dashboard.gates
 - Gate runner scenarios passed: ${dashboard.latest_live_metrics.gate_runner_scenarios_passed}
 - Gate runner order count: ${dashboard.latest_live_metrics.gate_runner_order_count}
 - Gate runner simulated revenue EUR: ${dashboard.latest_live_metrics.gate_runner_simulated_revenue_eur}
+- Self-service sale status: ${dashboard.latest_live_metrics.self_service_sale_status}
+- Self-service sale customer type: ${dashboard.latest_live_metrics.self_service_sale_customer_type}
+- Self-service sale score: ${dashboard.latest_live_metrics.self_service_sale_score}
+- Self-service sale decision: ${dashboard.latest_live_metrics.self_service_sale_decision}
+- Self-service sale orders: ${dashboard.latest_live_metrics.self_service_sale_orders_count}
+- Self-service sale payment mode: ${dashboard.latest_live_metrics.self_service_sale_payment_mode}
+- Self-service sale credits activated: ${dashboard.latest_live_metrics.self_service_sale_credits_activated}
+- Self-service sale simulated revenue EUR: ${dashboard.latest_live_metrics.self_service_sale_simulated_revenue_eur}
 
 ## Human supervision
 
@@ -272,7 +324,11 @@ function displayStatus(value) {
   const labels = {
     ready_for_controlled_beta: "Ready",
     blocked_for_real_payments: "Blocked",
-    proceed_with_controlled_beta_without_real_payments: "Proceed with controlled beta"
+    proceed_with_controlled_beta_without_real_payments: "Proceed with controlled beta",
+    passed: "Passed",
+    failed: "Failed",
+    review: "Review",
+    blocked: "Blocked"
   };
   return labels[value] ?? String(value).replace(/_/g, " ");
 }
@@ -492,6 +548,7 @@ const html = `<!doctype html>
       <div class="metric"><span>Real payment</span><strong>${escapeHtml(displayStatus(dashboard.real_payment_status))}</strong></div>
       <div class="metric"><span>Latest score</span><strong>${dashboard.latest_live_metrics.machine_e2e_score} - ${escapeHtml(displayDecision(dashboard.latest_live_metrics.machine_e2e_decision))}</strong></div>
       <div class="metric"><span>Gate runner</span><strong>${dashboard.latest_live_metrics.gate_runner_scenarios_passed} scenarios passed</strong></div>
+      <div class="metric"><span>Self-service sale</span><strong>${escapeHtml(displayStatus(dashboard.latest_live_metrics.self_service_sale_status))}</strong></div>
       <div class="metric"><span>Payment test</span><strong>${dashboard.latest_live_metrics.payment_test_credits_activated} credits activated</strong></div>
     </div>
 
@@ -522,6 +579,7 @@ const html = `<!doctype html>
       <a href="/machine_readiness_dashboard_20260604.md">Markdown dashboard</a>
       <a href="/machine_customer_e2e_live_test_summary_20260604.json">Latest E2E JSON</a>
       <a href="/controlled_beta_gate_runner_summary_20260604.json">Gate runner JSON</a>
+      <a href="/self_service_machine_buyer_sale_simulation_summary_20260604.json">Self-service sale JSON</a>
       <a href="/payment_test_mode_live_validation_summary_20260604.json">Payment test JSON</a>
       <a href="/llms.txt">llms.txt</a>
     </section>

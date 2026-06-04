@@ -21,7 +21,8 @@ It is not ready for real payments. Real checkout stays blocked until fiscal, leg
 - G3 Payment test mode: pass. Live mode blocked, test webhook accepted, duplicate webhook did not double-credit, no real invoice.
 - G4 Machine-first safety: pass. No external contact, no real payment, no real invoice in all latest live tests.
 - G5 Controlled beta gate runner: pass. Readiness gate controlled a two-scenario beta test across legal and solar/installation personas.
-- G6 Real payment readiness: fail. Real payments remain blocked by fiscal, legal, privacy, provider, invoicing and refund controls.
+- G6 Self-service machine buyer: pass. A buyer machine discovered the API publicly, created a sandbox key, bought beta deliverables and simulated checkout.
+- G7 Real payment readiness: fail. Real payments remain blocked by fiscal, legal, privacy, provider, invoicing and refund controls.
 
 ## Latest live metrics
 
@@ -37,6 +38,14 @@ It is not ready for real payments. Real checkout stays blocked until fiscal, leg
 - Gate runner scenarios passed: 2
 - Gate runner order count: 6
 - Gate runner simulated revenue EUR: 336.1
+- Self-service sale status: passed
+- Self-service sale customer type: sandbox
+- Self-service sale score: 78
+- Self-service sale decision: buy_deep_analysis
+- Self-service sale orders: 3
+- Self-service sale payment mode: sandbox
+- Self-service sale credits activated: 1000
+- Self-service sale simulated revenue EUR: 168.05
 
 ## Human supervision
 

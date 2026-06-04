@@ -1,0 +1,156 @@
+{
+    "service":  "MachineSignal",
+    "report_type":  "self_service_machine_buyer_sale_simulation",
+    "generated_at":  "2026-06-04T10:47:42.8847033Z",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "website_url":  "https://machinesignal.it",
+    "status":  "passed",
+    "customer_id":  "sandbox_sale_sim_20260604124741",
+    "customer_type":  "sandbox",
+    "primary_customer_interface":  "machine",
+    "readiness_gate":  {
+                           "ok":  true,
+                           "status":  "passed",
+                           "controlled_beta_status":  "ready_for_controlled_beta",
+                           "real_payment_status":  "blocked_for_real_payments",
+                           "gate_count":  6
+                       },
+    "public_discovery":  {
+                             "llms":  {
+                                          "ok":  true,
+                                          "url":  "https://machinesignal.it/llms.txt",
+                                          "bytes":  18096
+                                      },
+                             "machine_onboarding":  {
+                                                        "ok":  true,
+                                                        "url":  "https://machinesignal.it/machine-onboarding.json",
+                                                        "bytes":  16740
+                                                    },
+                             "product_catalog":  {
+                                                     "ok":  true,
+                                                     "url":  "https://machinesignal.it/product-catalog.json",
+                                                     "bytes":  11618
+                                                 },
+                             "machine_discovery":  {
+                                                       "ok":  true,
+                                                       "url":  "https://machinesignal.it/.well-known/machine-discovery.json",
+                                                       "bytes":  7557
+                                                   },
+                             "readiness_dashboard":  {
+                                                         "ok":  true,
+                                                         "url":  "https://machinesignal.it/readiness-dashboard/readiness.json",
+                                                         "bytes":  4824
+                                                     }
+                         },
+    "steps":  {
+                  "sandbox_created":  {
+                                          "ok":  true,
+                                          "customer_type":  "sandbox",
+                                          "expires_at":  "2026-06-11T10:47:44.078Z",
+                                          "real_payment_executed":  false,
+                                          "external_contact_executed":  false,
+                                          "score_limit":  5,
+                                          "deep_analysis_limit":  1,
+                                          "action_pack_limit":  1
+                                      },
+                  "authenticated_onboarding":  {
+                                                   "ok":  true,
+                                                   "primary_customer_interface":  "machine",
+                                                   "customer_type":  "sandbox",
+                                                   "payment_test_mode_enabled":  true,
+                                                   "can_create_payment_tests":  true
+                                               },
+                  "target_discovery":  {
+                                           "ok":  true,
+                                           "order_intent_id":  "ord_cfe1a43b",
+                                           "delivery_type":  "target_discovery_precheck",
+                                           "sample_targets":  3,
+                                           "real_payment_executed":  false,
+                                           "external_contact_executed":  false
+                                       },
+                  "score":  {
+                                "ok":  true,
+                                "domain":  "studiolegale-rossi.it",
+                                "opportunity_score":  78,
+                                "confidence":  0.66,
+                                "decision":  "buy_deep_analysis",
+                                "commercial_strength_level":  "medium",
+                                "spend_policy":  "buy_low_or_mid_cost_next_step_only",
+                                "next_product":  "deep_analysis",
+                                "credits_remaining":  4
+                            },
+                  "deep_analysis":  {
+                                        "ok":  true,
+                                        "order_intent_id":  "ord_5c31b175",
+                                        "delivery_type":  "deep_opportunity_analysis",
+                                        "next_product":  "action_pack",
+                                        "real_payment_executed":  false
+                                    },
+                  "action_pack":  {
+                                      "ok":  true,
+                                      "order_intent_id":  "ord_ba033a22",
+                                      "delivery_type":  "action_pack",
+                                      "webhook_event_type":  "machinesignal.action_pack.ready",
+                                      "approval_gate_default_state":  "blocked",
+                                      "external_contact_executed":  false
+                                  },
+                  "payment_intent":  {
+                                         "ok":  true,
+                                         "payment_test_id":  "paytest_eea98f67",
+                                         "product_code":  "score_pack_1k",
+                                         "provider_mode":  "sandbox",
+                                         "amount_eur":  99,
+                                         "credits_to_activate":  1000,
+                                         "real_payment_executed":  false,
+                                         "ready_for_real_payments":  false
+                                     },
+                  "live_payment_mode_block":  {
+                                                  "ok":  true,
+                                                  "http_status":  400
+                                              },
+                  "payment_webhook":  {
+                                          "ok":  true,
+                                          "payment_status":  "test_payment_succeeded",
+                                          "credits_activated":  1000,
+                                          "real_payment_executed":  false,
+                                          "invoice_real_issued":  false
+                                      },
+                  "duplicate_webhook":  {
+                                            "ok":  true,
+                                            "duplicate_webhook":  true,
+                                            "score_pack_credits_purchased":  1005
+                                        },
+                  "reconciliation":  {
+                                         "ok":  true,
+                                         "reconciliation_ok":  true,
+                                         "ready_for_real_payments":  false,
+                                         "real_payment_executed":  false
+                                     },
+                  "orders":  {
+                                 "ok":  true,
+                                 "count":  3,
+                                 "products":  [
+                                                  "action_pack",
+                                                  "deep_analysis",
+                                                  "target_discovery"
+                                              ]
+                             }
+              },
+    "safety":  {
+                   "real_payment_executed":  false,
+                   "external_contact_executed":  false,
+                   "real_invoice_issued":  false
+               },
+    "internal_admin_checks":  {
+                                  "audit_reconciliation_ok":  true,
+                                  "simulated_revenue_eur":  168.05,
+                                  "payment_test_count":  1,
+                                  "payment_test_succeeded":  1,
+                                  "payment_report_reconciliation_ok":  true,
+                                  "sandbox_customers_total":  19,
+                                  "sandbox_scores_used":  32
+                              },
+    "cleanup":  {
+                    "customer_closed":  true
+                }
+}
