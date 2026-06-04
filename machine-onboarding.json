@@ -25,7 +25,9 @@
     "audit_report": "/v1/admin/audit-report?customer_id=<customer_id>",
     "payment_test_intents": "/v1/payment-test/intents",
     "payment_test_reconciliation": "/v1/payment-test/reconciliation/{payment_test_id}",
-    "payment_test_report": "/v1/admin/payment-test-report?customer_id=<customer_id>"
+    "payment_test_report": "/v1/admin/payment-test-report?customer_id=<customer_id>",
+    "readiness_dashboard": "https://machinesignal.it/readiness-dashboard/",
+    "readiness_dashboard_json": "https://machinesignal.it/readiness-dashboard/readiness.json"
   },
   "authentication": {
     "type": "apiKey",

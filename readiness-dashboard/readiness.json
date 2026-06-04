@@ -1,0 +1,100 @@
+{
+  "service": "MachineSignal",
+  "report_type": "machine_readiness_dashboard",
+  "generated_at": "2026-06-04T09:38:47.955Z",
+  "primary_customer_interface": "machine",
+  "overall_recommendation": "proceed_with_controlled_beta_without_real_payments",
+  "controlled_beta_status": "ready_for_controlled_beta",
+  "real_payment_status": "blocked_for_real_payments",
+  "real_payment_enabled": false,
+  "external_contact_enabled": false,
+  "human_supervision_target": "max_1_2_hours_per_day",
+  "human_supervision_required_today": "No technical action required today unless you want to approve the next controlled beta scenario.",
+  "gates": [
+    {
+      "id": "G1",
+      "label": "Controlled beta operational flow",
+      "status": "pass",
+      "ok": true,
+      "evidence": "Controlled beta readiness report passed all checks, ledger audit reconciled, no real payment/contact.",
+      "owner_agent": "Orchestratore, API Product Manager"
+    },
+    {
+      "id": "G2",
+      "label": "Machine customer E2E flow",
+      "status": "pass",
+      "ok": true,
+      "evidence": "Machine completed no-list discovery, scoring, deep analysis, action pack, payment test, reconciliation and admin reports.",
+      "owner_agent": "Orchestratore, Customer Success & Post-Sale Agent"
+    },
+    {
+      "id": "G3",
+      "label": "Payment test mode",
+      "status": "pass",
+      "ok": true,
+      "evidence": "Live mode blocked, test webhook accepted, duplicate webhook did not double-credit, no real invoice.",
+      "owner_agent": "Billing & Payment Ops Agent"
+    },
+    {
+      "id": "G4",
+      "label": "Machine-first safety",
+      "status": "pass",
+      "ok": true,
+      "evidence": "No external contact, no real payment, no real invoice in all latest live tests.",
+      "owner_agent": "Security & Abuse Guard Agent"
+    },
+    {
+      "id": "G5",
+      "label": "Real payment readiness",
+      "status": "fail",
+      "ok": false,
+      "evidence": "Real payments remain blocked by fiscal, legal, privacy, provider, invoicing and refund controls.",
+      "owner_agent": "Admin & Finance Controller, Legal & Compliance Agent"
+    }
+  ],
+  "latest_live_metrics": {
+    "machine_e2e_score": 81,
+    "machine_e2e_decision": "buy_deep_analysis",
+    "machine_e2e_commercial_strength": "strong",
+    "machine_e2e_orders_count": 3,
+    "payment_test_credits_activated": 1000,
+    "payment_test_live_mode_blocked_http_status": 400,
+    "controlled_beta_audit_reconciliation_ok": true,
+    "controlled_beta_simulated_revenue_eur": 169.05
+  },
+  "blockers_before_real_payment": [
+    "Fiscal setup approved",
+    "Invoice process ready",
+    "Payment provider configured and reconciled in test mode",
+    "Terms of service approved",
+    "Privacy/DPA/retention rules approved",
+    "Refund and credit correction policy approved",
+    "Paid test in test mode reconciles order, payment, invoice placeholder, credit ledger and audit report"
+  ],
+  "next_agent_actions": [
+    {
+      "priority": 1,
+      "action": "Run the same machine E2E test on two additional verticals or personas.",
+      "owner_agent": "Growth & Distribution, Scoring Optimizer, Data Scout",
+      "user_time_required": "none unless approval is requested"
+    },
+    {
+      "priority": 2,
+      "action": "Keep payment mode locked to test/sandbox and monitor admin payment-test reports.",
+      "owner_agent": "Billing & Payment Ops Agent, Admin & Finance Controller",
+      "user_time_required": "none"
+    },
+    {
+      "priority": 3,
+      "action": "Prepare legal, fiscal and invoicing checklist for real payments, but do not enable checkout.",
+      "owner_agent": "Legal & Compliance Agent, Admin & Finance Controller",
+      "user_time_required": "approval only"
+    }
+  ],
+  "source_reports": {
+    "controlled_beta_operational_readiness": "https://machinesignal.it/controlled_beta_operational_readiness_summary_20260603.json",
+    "pre_monetization_readiness": "https://machinesignal.it/pre_monetization_readiness_control_20260603.json",
+    "payment_test_live_validation": "https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json",
+    "machine_customer_e2e_live_test": "https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json"
+  }
+}
