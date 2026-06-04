@@ -22,7 +22,10 @@
     "sandbox_customers": "/v1/sandbox/customers",
     "authenticated_onboarding": "/v1/onboarding",
     "sandbox_metrics": "/v1/admin/sandbox-metrics",
-    "audit_report": "/v1/admin/audit-report?customer_id=<customer_id>"
+    "audit_report": "/v1/admin/audit-report?customer_id=<customer_id>",
+    "payment_test_intents": "/v1/payment-test/intents",
+    "payment_test_reconciliation": "/v1/payment-test/reconciliation/{payment_test_id}",
+    "payment_test_report": "/v1/admin/payment-test-report?customer_id=<customer_id>"
   },
   "authentication": {
     "type": "apiKey",
@@ -73,6 +76,24 @@
       "call": "GET /v1/orders",
       "auth_required": true,
       "machine_goal": "Retrieve orders and deliveries."
+    },
+    {
+      "step": 8,
+      "call": "POST /v1/payment-test/intents",
+      "auth_required": true,
+      "machine_goal": "Create a simulated test-mode payment object without executing a real payment."
+    },
+    {
+      "step": 9,
+      "call": "POST /v1/payment-test/webhooks/stripe",
+      "auth_required": false,
+      "machine_goal": "Simulate a provider webhook with the deterministic test signature returned by the intent."
+    },
+    {
+      "step": 10,
+      "call": "GET /v1/payment-test/reconciliation/{payment_test_id}",
+      "auth_required": true,
+      "machine_goal": "Verify that test credits activated once and no live payment or fiscal invoice occurred."
     }
   ],
   "products": {
@@ -350,6 +371,16 @@
   "beta_limits": {
     "real_payment_executed": false,
     "external_contact_executed": false,
+    "payment_test_mode": {
+      "enabled": true,
+      "provider_mode_allowed": [
+        "test",
+        "sandbox"
+      ],
+      "live_mode_allowed": false,
+      "fiscal_invoice_issued": false,
+      "real_payment_executed": false
+    },
     "requires_customer_api_key": true,
     "repeated_idempotency_key_no_extra_charge": true,
     "sandbox": {
@@ -364,6 +395,8 @@
     "can_create_beta_orders": true,
     "can_read_usage_and_orders": true,
     "must_not_execute_external_outreach": true,
-    "must_not_assume_real_payment": true
+    "must_not_assume_real_payment": true,
+    "can_create_payment_test_intents": true,
+    "must_not_use_live_payment_mode": true
   }
 }

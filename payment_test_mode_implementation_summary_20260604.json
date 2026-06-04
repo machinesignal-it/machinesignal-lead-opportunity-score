@@ -1,0 +1,39 @@
+{
+  "service": "MachineSignal",
+  "report_type": "payment_test_mode_implementation",
+  "generated_date": "2026-06-04",
+  "status": "implemented_local_tests_passed",
+  "real_payment_enabled": false,
+  "ready_for_real_payments": false,
+  "endpoints": [
+    "POST /v1/payment-test/intents",
+    "GET /v1/payment-test/intents/{payment_test_id}",
+    "POST /v1/payment-test/webhooks/stripe",
+    "GET /v1/payment-test/reconciliation/{payment_test_id}",
+    "GET /v1/admin/payment-test-report?customer_id=<customer_id>"
+  ],
+  "controls_validated": {
+    "idempotent_payment_test_intent": true,
+    "invalid_webhook_signature_rejected": true,
+    "success_webhook_activates_test_credits_once": true,
+    "duplicate_webhook_no_double_credit": true,
+    "failed_webhook_no_credit_activation": true,
+    "live_provider_mode_blocked": true,
+    "real_payment_executed": false,
+    "real_invoice_issued": false
+  },
+  "tests": {
+    "api_endpoint_minimal/test_api.mjs": "passed",
+    "api_endpoint_minimal/test_durable_ledger.mjs": "passed"
+  },
+  "remaining_before_real_payment": [
+    "fiscal_partita_iva_decision",
+    "live_payment_provider_account",
+    "terms_of_service",
+    "privacy_dpa_retention_policy",
+    "refund_and_credit_policy",
+    "real_invoicing_workflow",
+    "final_admin_approval"
+  ],
+  "machine_first_interpretation": "The customer interface remains API/machine-first. Payment mode is callable by machines for simulation, but live payment remains blocked."
+}

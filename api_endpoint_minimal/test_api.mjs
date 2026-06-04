@@ -63,6 +63,9 @@ assert.equal(rootPayload.docs.product_catalog, "/product-catalog.json");
 assert.equal(rootPayload.docs.authenticated_onboarding, "/v1/onboarding");
 assert.equal(rootPayload.docs.sandbox_metrics, "/v1/admin/sandbox-metrics");
 assert.equal(rootPayload.docs.audit_report, "/v1/admin/audit-report?customer_id=<customer_id>");
+assert.equal(rootPayload.docs.payment_test_intents, "/v1/payment-test/intents");
+assert.equal(rootPayload.docs.payment_test_reconciliation, "/v1/payment-test/reconciliation/{payment_test_id}");
+assert.equal(rootPayload.docs.payment_test_report, "/v1/admin/payment-test-report?customer_id=<customer_id>");
 assert.equal(rootPayload.docs.postman_public_collection, "https://machinesignal.it/postman_public_collection.json");
 
 const openApiResponse = await handleRequest(new Request("http://localhost/openapi.json"));
@@ -70,6 +73,11 @@ assert.equal(openApiResponse.status, 200);
 const openApiPayload = await openApiResponse.json();
 assert.ok(openApiPayload.paths["/v1/usage"]);
 assert.ok(openApiPayload.paths["/v1/purchase-intent"]);
+assert.ok(openApiPayload.paths["/v1/payment-test/intents"]);
+assert.ok(openApiPayload.paths["/v1/payment-test/intents/{payment_test_id}"]);
+assert.ok(openApiPayload.paths["/v1/payment-test/webhooks/stripe"]);
+assert.ok(openApiPayload.paths["/v1/payment-test/reconciliation/{payment_test_id}"]);
+assert.ok(openApiPayload.paths["/v1/admin/payment-test-report"]);
 assert.ok(openApiPayload.paths["/v1/sandbox/customers"]);
 assert.ok(openApiPayload.paths["/v1/admin/sandbox-metrics"]);
 assert.ok(openApiPayload.paths["/v1/admin/audit-report"]);
@@ -77,6 +85,9 @@ assert.ok(openApiPayload.paths["/machine-onboarding.json"]);
 assert.ok(openApiPayload.paths["/product-catalog.json"]);
 assert.ok(openApiPayload.paths["/v1/onboarding"]);
 assert.ok(openApiPayload.components.schemas.PurchaseIntentRequest);
+assert.ok(openApiPayload.components.schemas.PaymentTestIntentRequest);
+assert.ok(openApiPayload.components.schemas.PaymentTestIntentResponse);
+assert.ok(openApiPayload.components.schemas.PaymentTestWebhookRequest);
 assert.ok(openApiPayload.components.schemas.BetaDelivery);
 assert.equal(
   openApiPayload.components.schemas.PurchaseIntentResponse.properties.delivery.$ref,
@@ -96,6 +107,10 @@ assert.ok(postmanItemNames.includes("Read beta feedback schema"));
 assert.ok(postmanItemNames.includes("Read machine beta test kit"));
 assert.ok(postmanItemNames.includes("Create limited sandbox customer"));
 assert.ok(postmanItemNames.includes("Create beta purchase intent"));
+assert.ok(postmanItemNames.includes("Create payment test intent"));
+assert.ok(postmanItemNames.includes("Simulate payment test success webhook"));
+assert.ok(postmanItemNames.includes("Read payment test reconciliation"));
+assert.ok(postmanItemNames.includes("Admin read payment test report"));
 assert.ok(postmanItemNames.includes("Order target discovery when machine has no list"));
 assert.ok(postmanItemNames.includes("Order deep analysis after a strong score"));
 assert.ok(postmanItemNames.includes("Order action pack after confirmed opportunity"));
@@ -143,6 +158,10 @@ assert.ok(llmsText.includes("https://machinesignal.it/distribution/rapidapi-prov
 assert.ok(llmsText.includes("https://machinesignal.it/distribution/channel-shortlist.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/postman_public_collection.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/.well-known/machine-discovery.json"));
+assert.ok(llmsText.includes("/v1/payment-test/intents"));
+assert.ok(llmsText.includes("/v1/payment-test/webhooks/stripe"));
+assert.ok(llmsText.includes("Payment test mode"));
+assert.ok(llmsText.includes("provider_mode live, production or prod is blocked"));
 
 const machineOnboardingResponse = await handleRequest(new Request("http://localhost/machine-onboarding.json"));
 assert.equal(machineOnboardingResponse.status, 200);
@@ -155,6 +174,15 @@ assert.equal(machineOnboardingPayload.discovery.sandbox_metrics, "/v1/admin/sand
 assert.equal(
   machineOnboardingPayload.discovery.audit_report,
   "/v1/admin/audit-report?customer_id=<customer_id>"
+);
+assert.equal(machineOnboardingPayload.discovery.payment_test_intents, "/v1/payment-test/intents");
+assert.equal(
+  machineOnboardingPayload.discovery.payment_test_reconciliation,
+  "/v1/payment-test/reconciliation/{payment_test_id}"
+);
+assert.equal(
+  machineOnboardingPayload.discovery.payment_test_report,
+  "/v1/admin/payment-test-report?customer_id=<customer_id>"
 );
 assert.equal(
   machineOnboardingPayload.discovery.machine_discovery_pack,
@@ -186,6 +214,9 @@ assert.equal(
 );
 assert.equal(machineOnboardingPayload.authentication.sandbox_keys_created_by, "POST /v1/sandbox/customers");
 assert.equal(machineOnboardingPayload.recommended_agent_policy.must_not_execute_external_outreach, true);
+assert.equal(machineOnboardingPayload.recommended_agent_policy.can_create_payment_test_intents, true);
+assert.equal(machineOnboardingPayload.recommended_agent_policy.must_not_use_live_payment_mode, true);
+assert.equal(machineOnboardingPayload.beta_limits.payment_test_mode.live_mode_allowed, false);
 assert.equal(machineOnboardingPayload.entry_points.has_no_list.product_code, "target_discovery");
 
 const sandboxCustomerResponse = await handleRequest(
@@ -711,6 +742,9 @@ assert.equal(customerOnboardingPayload.customer_id, "beta_partner_test");
 assert.equal(customerOnboardingPayload.auth_type, "customer");
 assert.equal(customerOnboardingPayload.machine_contract.primary_customer_interface, "machine");
 assert.equal(customerOnboardingPayload.customer_state.can_score, true);
+assert.equal(customerOnboardingPayload.customer_state.can_create_payment_tests, true);
+assert.equal(customerOnboardingPayload.customer_state.real_payment_enabled, false);
+assert.equal(customerOnboardingPayload.customer_state.payment_test_mode_enabled, true);
 
 const customerScoreResponse = await handleRequest(
   new Request("http://localhost/v1/lead-opportunity-score", {
@@ -876,5 +910,283 @@ const adminReactivateResponse = await handleRequest(
 );
 assert.equal(adminReactivateResponse.status, 200);
 assert.equal((await adminReactivateResponse.json()).status, "active");
+
+const paymentCustomerResponse = await handleRequest(
+  new Request("http://localhost/v1/beta/customers", {
+    method: "POST",
+    body: JSON.stringify({
+      customer_id: "payment_test_customer",
+      contact_email: "payment-test@example.com",
+      plan: "payment_test_beta",
+      score_credits: 0,
+      target_discovery_credits: 0,
+      domain_enrichment_credits: 0,
+      deep_analysis_credits: 0,
+      action_pack_credits: 0,
+      opportunity_feed_credits: 0
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(paymentCustomerResponse.status, 200);
+const paymentCustomerPayload = await paymentCustomerResponse.json();
+assert.equal(paymentCustomerPayload.customer_id, "payment_test_customer");
+assert.equal(
+  paymentCustomerPayload.usage.balances.find((item) => item.product_code === "score_pack_1k").credits_purchased,
+  0
+);
+
+const liveModePaymentTestResponse = await handleRequest(
+  new Request("http://localhost/v1/payment-test/intents", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "score_pack_1k",
+      amount_eur: 99,
+      provider: "stripe",
+      provider_mode: "live"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": paymentCustomerPayload.api_key,
+      "idempotency-key": "payment-test-live-mode-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(liveModePaymentTestResponse.status, 400);
+const liveModePaymentTestPayload = await liveModePaymentTestResponse.json();
+assert.equal(liveModePaymentTestPayload.error, "live_payment_mode_blocked");
+assert.equal(liveModePaymentTestPayload.real_payment_executed, false);
+assert.equal(liveModePaymentTestPayload.ready_for_real_payments, false);
+
+const paymentTestIntentResponse = await handleRequest(
+  new Request("http://localhost/v1/payment-test/intents", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "score_pack_1k",
+      amount_eur: 99,
+      provider: "stripe",
+      provider_mode: "test",
+      metadata: { crm_run_id: "local-payment-test-001" }
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": paymentCustomerPayload.api_key,
+      "idempotency-key": "payment-test-intent-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(paymentTestIntentResponse.status, 200);
+const paymentTestIntentPayload = await paymentTestIntentResponse.json();
+assert.ok(paymentTestIntentPayload.payment_test_id.startsWith("paytest_"));
+assert.equal(paymentTestIntentPayload.customer_id, "payment_test_customer");
+assert.equal(paymentTestIntentPayload.product_code, "score_pack_1k");
+assert.equal(paymentTestIntentPayload.provider_mode, "test");
+assert.equal(paymentTestIntentPayload.real_payment_executed, false);
+assert.equal(paymentTestIntentPayload.ready_for_real_payments, false);
+assert.equal(paymentTestIntentPayload.credits_to_activate, 1000);
+assert.equal(paymentTestIntentPayload.credits_activated, 0);
+assert.equal(paymentTestIntentPayload.test_webhook_simulation.required_header, "X-MachineSignal-Test-Webhook-Signature");
+assert.ok(paymentTestIntentPayload.test_webhook_simulation.success_signature.startsWith("sigtest_"));
+
+const duplicatePaymentTestIntentResponse = await handleRequest(
+  new Request("http://localhost/v1/payment-test/intents", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "score_pack_1k",
+      amount_eur: 99,
+      provider: "stripe",
+      provider_mode: "test"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": paymentCustomerPayload.api_key,
+      "idempotency-key": "payment-test-intent-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(duplicatePaymentTestIntentResponse.status, 200);
+const duplicatePaymentTestIntentPayload = await duplicatePaymentTestIntentResponse.json();
+assert.equal(duplicatePaymentTestIntentPayload.duplicate_request, true);
+assert.equal(duplicatePaymentTestIntentPayload.payment_test_id, paymentTestIntentPayload.payment_test_id);
+
+const badSignatureWebhookResponse = await handleRequest(
+  new Request("http://localhost/v1/payment-test/webhooks/stripe", {
+    method: "POST",
+    body: JSON.stringify({
+      customer_id: "payment_test_customer",
+      payment_test_id: paymentTestIntentPayload.payment_test_id,
+      event_type: "payment_intent.succeeded",
+      event_id: "evt_bad_signature_001"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-machinesignal-test-webhook-signature": "sigtest_bad"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(badSignatureWebhookResponse.status, 400);
+const badSignatureWebhookPayload = await badSignatureWebhookResponse.json();
+assert.equal(badSignatureWebhookPayload.error, "invalid_test_webhook_signature");
+assert.equal(badSignatureWebhookPayload.real_payment_executed, false);
+
+const paymentSuccessWebhookResponse = await handleRequest(
+  new Request("http://localhost/v1/payment-test/webhooks/stripe", {
+    method: "POST",
+    body: JSON.stringify({
+      customer_id: "payment_test_customer",
+      payment_test_id: paymentTestIntentPayload.payment_test_id,
+      event_type: "payment_intent.succeeded",
+      event_id: "evt_payment_test_success_001"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-machinesignal-test-webhook-signature":
+        paymentTestIntentPayload.test_webhook_simulation.success_signature
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(paymentSuccessWebhookResponse.status, 200);
+const paymentSuccessWebhookPayload = await paymentSuccessWebhookResponse.json();
+assert.equal(paymentSuccessWebhookPayload.payment_status, "test_payment_succeeded");
+assert.equal(paymentSuccessWebhookPayload.credit_activation_status, "test_credits_activated");
+assert.equal(paymentSuccessWebhookPayload.credits_activated, 1000);
+assert.equal(paymentSuccessWebhookPayload.invoice_placeholder.real_invoice_issued, false);
+assert.equal(paymentSuccessWebhookPayload.real_payment_executed, false);
+assert.equal(paymentSuccessWebhookPayload.reconciliation.reconciliation_ok, true);
+assert.equal(paymentSuccessWebhookPayload.reconciliation.ready_for_real_payments, false);
+assert.equal(
+  paymentSuccessWebhookPayload.usage.balances.find((item) => item.product_code === "score_pack_1k").credits_purchased,
+  1000
+);
+
+const duplicatePaymentWebhookResponse = await handleRequest(
+  new Request("http://localhost/v1/payment-test/webhooks/stripe", {
+    method: "POST",
+    body: JSON.stringify({
+      customer_id: "payment_test_customer",
+      payment_test_id: paymentTestIntentPayload.payment_test_id,
+      event_type: "payment_intent.succeeded",
+      event_id: "evt_payment_test_success_001"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-machinesignal-test-webhook-signature":
+        paymentTestIntentPayload.test_webhook_simulation.success_signature
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(duplicatePaymentWebhookResponse.status, 200);
+const duplicatePaymentWebhookPayload = await duplicatePaymentWebhookResponse.json();
+assert.equal(duplicatePaymentWebhookPayload.duplicate_webhook, true);
+assert.equal(
+  duplicatePaymentWebhookPayload.usage.balances.find((item) => item.product_code === "score_pack_1k").credits_purchased,
+  1000
+);
+
+const paymentIntentReadResponse = await handleRequest(
+  new Request(`http://localhost/v1/payment-test/intents/${paymentTestIntentPayload.payment_test_id}`, {
+    method: "GET",
+    headers: { "x-api-key": paymentCustomerPayload.api_key }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(paymentIntentReadResponse.status, 200);
+const paymentIntentReadPayload = await paymentIntentReadResponse.json();
+assert.equal(paymentIntentReadPayload.payment_status, "test_payment_succeeded");
+assert.equal(paymentIntentReadPayload.reconciliation.reconciliation_ok, true);
+
+const paymentReconciliationResponse = await handleRequest(
+  new Request(`http://localhost/v1/payment-test/reconciliation/${paymentTestIntentPayload.payment_test_id}`, {
+    method: "GET",
+    headers: { "x-api-key": paymentCustomerPayload.api_key }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(paymentReconciliationResponse.status, 200);
+const paymentReconciliationPayload = await paymentReconciliationResponse.json();
+assert.equal(paymentReconciliationPayload.reconciliation_ok, true);
+assert.equal(paymentReconciliationPayload.real_payment_executed, false);
+assert.equal(paymentReconciliationPayload.ready_for_real_payments, false);
+
+const failedPaymentIntentResponse = await handleRequest(
+  new Request("http://localhost/v1/payment-test/intents", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "deep_analysis",
+      amount_eur: 299,
+      provider: "stripe",
+      provider_mode: "sandbox"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": paymentCustomerPayload.api_key,
+      "idempotency-key": "payment-test-intent-failed-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(failedPaymentIntentResponse.status, 200);
+const failedPaymentIntentPayload = await failedPaymentIntentResponse.json();
+
+const failedPaymentWebhookResponse = await handleRequest(
+  new Request("http://localhost/v1/payment-test/webhooks/stripe", {
+    method: "POST",
+    body: JSON.stringify({
+      customer_id: "payment_test_customer",
+      payment_test_id: failedPaymentIntentPayload.payment_test_id,
+      event_type: "payment_intent.payment_failed",
+      event_id: "evt_payment_test_failed_001"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-machinesignal-test-webhook-signature":
+        failedPaymentIntentPayload.test_webhook_simulation.failure_signature
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(failedPaymentWebhookResponse.status, 200);
+const failedPaymentWebhookPayload = await failedPaymentWebhookResponse.json();
+assert.equal(failedPaymentWebhookPayload.payment_status, "test_payment_failed");
+assert.equal(failedPaymentWebhookPayload.credits_activated, 0);
+assert.equal(
+  failedPaymentWebhookPayload.usage.balances.find((item) => item.product_code === "deep_analysis_pack_100").credits_purchased,
+  0
+);
+
+const unauthorizedPaymentReportResponse = await handleRequest(
+  new Request("http://localhost/v1/admin/payment-test-report?customer_id=payment_test_customer", {
+    method: "GET"
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(unauthorizedPaymentReportResponse.status, 401);
+
+const paymentReportResponse = await handleRequest(
+  new Request("http://localhost/v1/admin/payment-test-report?customer_id=payment_test_customer", {
+    method: "GET",
+    headers: { "x-api-key": "test-key" }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(paymentReportResponse.status, 200);
+const paymentReportPayload = await paymentReportResponse.json();
+assert.equal(paymentReportPayload.customer_id, "payment_test_customer");
+assert.ok(paymentReportPayload.summary.payment_test_count >= 2);
+assert.equal(paymentReportPayload.summary.succeeded, 1);
+assert.equal(paymentReportPayload.summary.failed, 1);
+assert.equal(paymentReportPayload.summary.ready_for_real_payments, false);
+assert.equal(paymentReportPayload.safety.real_payment_executed, false);
+assert.ok(paymentReportPayload.recommended_next_controls.includes("Keep provider mode locked to test/sandbox until legal, fiscal and payment-provider readiness are complete."));
 
 console.log("MachineSignal minimal API tests passed.");

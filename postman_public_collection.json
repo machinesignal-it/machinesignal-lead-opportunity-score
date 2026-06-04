@@ -228,6 +228,86 @@
       "response": []
     },
     {
+      "name": "Create payment test intent",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "postman-public-payment-test-intent-001"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_code\": \"score_pack_1k\",\n  \"amount_eur\": 99,\n  \"provider\": \"stripe\",\n  \"provider_mode\": \"test\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/payment-test/intents",
+          "protocol": "https",
+          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
+          "path": ["v1", "payment-test", "intents"]
+        },
+        "description": "Creates a simulated checkout object in test mode only. No real payment is executed. Copy payment_test_id and success_signature into the variables before simulating the webhook."
+      },
+      "response": []
+    },
+    {
+      "name": "Simulate payment test success webhook",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-MachineSignal-Test-Webhook-Signature",
+            "value": "{{payment_test_success_signature}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customer_id\": \"{{beta_customer_id}}\",\n  \"payment_test_id\": \"{{payment_test_id}}\",\n  \"event_type\": \"payment_intent.succeeded\",\n  \"event_id\": \"postman-public-evt-test-success-001\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/payment-test/webhooks/stripe",
+          "protocol": "https",
+          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
+          "path": ["v1", "payment-test", "webhooks", "stripe"]
+        },
+        "description": "Simulates a provider webhook using the deterministic test signature returned by the payment test intent. Credits activate once and no fiscal invoice is issued."
+      },
+      "response": []
+    },
+    {
+      "name": "Read payment test reconciliation",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/payment-test/reconciliation/{{payment_test_id}}",
+          "protocol": "https",
+          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
+          "path": ["v1", "payment-test", "reconciliation", "{{payment_test_id}}"]
+        },
+        "description": "Checks that the payment test stayed in test mode, activated credits once and did not issue a real fiscal invoice."
+      },
+      "response": []
+    },
+    {
       "name": "List beta orders",
       "request": {
         "method": "GET",
@@ -271,6 +351,18 @@
     {
       "key": "machinesignal_api_key",
       "value": "paste_sandbox_or_customer_key_here"
+    },
+    {
+      "key": "beta_customer_id",
+      "value": "paste_customer_id_here"
+    },
+    {
+      "key": "payment_test_id",
+      "value": "paste_payment_test_id_here"
+    },
+    {
+      "key": "payment_test_success_signature",
+      "value": "paste_success_signature_here"
     }
   ]
 }

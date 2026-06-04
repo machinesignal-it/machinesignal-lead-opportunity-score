@@ -281,6 +281,150 @@
       "response": []
     },
     {
+      "name": "Create payment test intent",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "postman-payment-test-intent-001"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_code\": \"score_pack_1k\",\n  \"amount_eur\": 99,\n  \"provider\": \"stripe\",\n  \"provider_mode\": \"test\",\n  \"metadata\": {\n    \"machine_buyer\": \"crm_or_agent\",\n    \"purpose\": \"simulate_checkout_before_real_payments\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/payment-test/intents",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "payment-test",
+            "intents"
+          ]
+        },
+        "description": "Creates a simulated checkout object in test mode only. No real payment is executed. Copy payment_test_id and the success_signature into the collection variables before simulating the webhook."
+      },
+      "response": []
+    },
+    {
+      "name": "Simulate payment test success webhook",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-MachineSignal-Test-Webhook-Signature",
+            "value": "{{payment_test_success_signature}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customer_id\": \"{{beta_customer_id}}\",\n  \"payment_test_id\": \"{{payment_test_id}}\",\n  \"event_type\": \"payment_intent.succeeded\",\n  \"event_id\": \"postman-evt-test-success-001\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/payment-test/webhooks/stripe",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "payment-test",
+            "webhooks",
+            "stripe"
+          ]
+        },
+        "description": "Simulates a provider webhook. The signature must match the deterministic success_signature returned by Create payment test intent. Credits activate once; duplicate event_id does not double-credit."
+      },
+      "response": []
+    },
+    {
+      "name": "Read payment test reconciliation",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/payment-test/reconciliation/{{payment_test_id}}",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "payment-test",
+            "reconciliation",
+            "{{payment_test_id}}"
+          ]
+        },
+        "description": "Checks that the test did not execute real money, did not issue a fiscal invoice and activated test credits exactly once."
+      },
+      "response": []
+    },
+    {
+      "name": "Admin read payment test report",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_admin_api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/admin/payment-test-report?customer_id={{beta_customer_id}}",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "admin",
+            "payment-test-report"
+          ],
+          "query": [
+            {
+              "key": "customer_id",
+              "value": "{{beta_customer_id}}"
+            }
+          ]
+        },
+        "description": "Admin-only report that summarizes all simulated payment tests for one customer and keeps ready_for_real_payments=false."
+      },
+      "response": []
+    },
+    {
       "name": "Order target discovery when machine has no list",
       "request": {
         "method": "POST",
@@ -763,6 +907,14 @@
     {
       "key": "beta_customer_id",
       "value": "beta_partner_001"
+    },
+    {
+      "key": "payment_test_id",
+      "value": "paste_payment_test_id_here"
+    },
+    {
+      "key": "payment_test_success_signature",
+      "value": "paste_success_signature_here"
     }
   ]
 }

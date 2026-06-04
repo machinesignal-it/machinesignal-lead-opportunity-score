@@ -29,6 +29,8 @@ Useful endpoints:
 - GET https://machinesignal.it/pre_monetization_readiness_control_20260603.json
 - GET https://machinesignal.it/payment_test_mode_plan_20260603.md
 - GET https://machinesignal.it/payment_test_mode_plan_20260603.json
+- GET https://machinesignal.it/payment_test_mode_implementation_report_20260604.md
+- GET https://machinesignal.it/payment_test_mode_implementation_summary_20260604.json
 - GET https://machinesignal.it/crm-agent-integration-simulator-readout.md
 - GET https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 - GET https://machinesignal.it/examples/integration_existing_list_score_request.json
@@ -45,6 +47,10 @@ Useful endpoints:
 - GET /v1/usage
 - POST /v1/lead-opportunity-score
 - POST /v1/purchase-intent
+- POST /v1/payment-test/intents
+- GET /v1/payment-test/intents/{payment_test_id}
+- POST /v1/payment-test/webhooks/stripe
+- GET /v1/payment-test/reconciliation/{payment_test_id}
 - GET /v1/orders
 - GET /v1/orders/{order_intent_id}
 - POST /v1/beta/customers
@@ -52,6 +58,7 @@ Useful endpoints:
 - PATCH /v1/beta/customers/{customer_id}
 - GET /v1/admin/sandbox-metrics
 - GET /v1/admin/audit-report?customer_id=<customer_id>
+- GET /v1/admin/payment-test-report?customer_id=<customer_id>
 
 Authentication:
 - protected endpoints require header X-API-Key: <beta key>;
@@ -60,6 +67,7 @@ Authentication:
 - GET/PATCH /v1/beta/customers/{customer_id} require the admin beta key and never return the full customer API key.
 - GET /v1/admin/sandbox-metrics requires the admin beta key and returns only aggregated sandbox test metrics.
 - GET /v1/admin/audit-report requires the admin beta key and reconciles one customer ledger before real payments.
+- GET /v1/admin/payment-test-report requires the admin beta key and reconciles simulated payment-test records.
 
 How a machine should call the score endpoint:
 1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
@@ -96,6 +104,8 @@ Public demos for software, agents and partners:
 - Pre-monetization readiness control JSON: https://machinesignal.it/pre_monetization_readiness_control_20260603.json
 - Payment test mode plan: https://machinesignal.it/payment_test_mode_plan_20260603.md
 - Payment test mode plan JSON: https://machinesignal.it/payment_test_mode_plan_20260603.json
+- Payment test mode implementation report: https://machinesignal.it/payment_test_mode_implementation_report_20260604.md
+- Payment test mode implementation summary JSON: https://machinesignal.it/payment_test_mode_implementation_summary_20260604.json
 - CRM/Agent Integration Simulator Readout: https://machinesignal.it/crm-agent-integration-simulator-readout.md
 - CRM/Agent Simulated Ledger JSON: https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 - Dentists Beta Machine Buyer Pack JSON: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
@@ -191,6 +201,14 @@ Ledger audit before real payments:
 - the audit report reconciles purchased credits, consumed credits, valid credit events, beta order intents and simulated revenue;
 - reconciliation_ok must be true before any customer is considered ready for paid checkout;
 - safety flags must remain real_payment_executed=false and external_contact_executed=false during beta.
+
+Payment test mode:
+- POST /v1/payment-test/intents creates a simulated provider-neutral checkout object in test/sandbox mode only;
+- provider_mode live, production or prod is blocked;
+- POST /v1/payment-test/webhooks/stripe accepts only deterministic test signatures returned by the payment test intent;
+- a succeeded test webhook activates test credits once and creates only an invoice placeholder, not a fiscal invoice;
+- duplicate webhook events do not activate duplicate credits;
+- GET /v1/payment-test/reconciliation/{payment_test_id} and GET /v1/admin/payment-test-report?customer_id=<customer_id> keep ready_for_real_payments=false and real_payment_executed=false.
 
 Machine-first rule:
 - MachineSignal does not require human email persuasion as the primary channel;

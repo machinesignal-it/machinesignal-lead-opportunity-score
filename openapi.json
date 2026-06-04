@@ -369,6 +369,241 @@
         }
       }
     },
+    "/v1/payment-test/intents": {
+      "post": {
+        "operationId": "createPaymentTestIntent",
+        "summary": "Create a simulated test-mode payment intent",
+        "description": "Creates a provider-neutral test checkout object for a beta order or product. This endpoint is test/sandbox mode only: it never executes real payment, never issues a fiscal invoice and keeps ready_for_real_payments=false.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "payment-test-score-pack-001"
+            },
+            "description": "Unique payment-test key. Reusing the same key returns the same simulated payment object and does not create another payment test."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentTestIntentRequest"
+              },
+              "examples": {
+                "scorePackTest": {
+                  "summary": "Create a test checkout for Score Pack 1k",
+                  "value": {
+                    "product_code": "score_pack_1k",
+                    "amount_eur": 99,
+                    "provider": "stripe",
+                    "provider_mode": "test"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payment test intent created or returned as duplicate. Use returned test signatures to simulate webhook outcomes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentTestIntentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request or live/production payment mode blocked."
+          },
+          "401": {
+            "description": "Missing or invalid X-API-Key."
+          }
+        }
+      }
+    },
+    "/v1/payment-test/intents/{payment_test_id}": {
+      "get": {
+        "operationId": "getPaymentTestIntent",
+        "summary": "Read one simulated payment-test intent",
+        "description": "Returns one payment-test intent, its current simulated status, test webhook signatures and reconciliation status.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "payment_test_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "paytest_ab12cd34"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment test intent found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentTestIntentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid X-API-Key."
+          },
+          "404": {
+            "description": "Payment test intent not found."
+          }
+        }
+      }
+    },
+    "/v1/payment-test/webhooks/stripe": {
+      "post": {
+        "operationId": "simulateStripePaymentTestWebhook",
+        "summary": "Simulate a Stripe-style test webhook",
+        "description": "Accepts deterministic test signatures returned by POST /v1/payment-test/intents. A succeeded test webhook activates test credits once and creates only an invoice placeholder.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentTestWebhookRequest"
+              },
+              "examples": {
+                "success": {
+                  "summary": "Simulate a succeeded test payment",
+                  "value": {
+                    "customer_id": "beta_partner_001",
+                    "payment_test_id": "paytest_ab12cd34",
+                    "event_type": "payment_intent.succeeded",
+                    "event_id": "evt_test_success_001"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Webhook accepted and reconciled.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentTestIntentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid webhook or bad test signature."
+          },
+          "404": {
+            "description": "Customer or payment-test intent not found."
+          }
+        }
+      }
+    },
+    "/v1/payment-test/reconciliation/{payment_test_id}": {
+      "get": {
+        "operationId": "getPaymentTestReconciliation",
+        "summary": "Reconcile one simulated payment test",
+        "description": "Checks that no live payment occurred, test credits were activated once, duplicate webhooks did not double-credit and no fiscal invoice was issued.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "payment_test_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "paytest_ab12cd34"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment test reconciliation result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentTestReconciliationResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid X-API-Key."
+          },
+          "404": {
+            "description": "Payment test intent not found."
+          }
+        }
+      }
+    },
+    "/v1/admin/payment-test-report": {
+      "get": {
+        "operationId": "getAdminPaymentTestReport",
+        "summary": "Return admin payment-test report for one customer",
+        "description": "Admin-only report for simulated payment tests. It summarizes statuses, activated test credits, duplicate webhooks and blockers before real payment enablement.",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "beta_partner_001"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment-test report for one customer.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentTestReportResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing customer_id."
+          },
+          "401": {
+            "description": "Missing or invalid admin X-API-Key."
+          },
+          "404": {
+            "description": "Customer or ledger not found."
+          }
+        }
+      }
+    },
     "/v1/orders": {
       "get": {
         "operationId": "listOrders",
@@ -761,6 +996,26 @@
               }
             }
           },
+          "web_architect_review": {
+            "type": "object",
+            "description": "Web Architect AI precheck. It tells the customer machine whether website, sector and local-market evidence is coherent enough to support controlled downstream spend.",
+            "properties": {
+              "status": {
+                "type": "string",
+                "example": "architect_precheck_passed"
+              },
+              "action_pack_evidence": {
+                "type": "boolean",
+                "example": true
+              },
+              "checked_signals": {
+                "type": "object"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          },
           "commercial_strength": {
             "type": "object",
             "description": "Machine-readable budget-routing layer. It classifies the scored target and tells the customer machine which paid next steps are allowed.",
@@ -790,7 +1045,7 @@
               },
               "reason": {
                 "type": "string",
-                "example": "Score, confidence and Web Architect evidence are strong enough to justify controlled downstream spend."
+                "example": "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
               }
             }
           },
@@ -808,26 +1063,6 @@
           },
           "usage": {
             "$ref": "#/components/schemas/UsageLedger"
-          },
-          "web_architect_review": {
-            "type": "object",
-            "description": "Web Architect AI precheck. It tells the customer machine whether website, sector and local-market evidence is coherent enough to support controlled downstream spend.",
-            "properties": {
-              "status": {
-                "type": "string",
-                "example": "architect_precheck_passed"
-              },
-              "action_pack_evidence": {
-                "type": "boolean",
-                "example": true
-              },
-              "checked_signals": {
-                "type": "object"
-              },
-              "reason": {
-                "type": "string"
-              }
-            }
           }
         }
       },
@@ -918,6 +1153,235 @@
           },
           "usage": {
             "$ref": "#/components/schemas/UsageLedger"
+          }
+        }
+      },
+      "PaymentTestIntentRequest": {
+        "type": "object",
+        "required": [
+          "product_code",
+          "provider_mode"
+        ],
+        "properties": {
+          "product_code": {
+            "type": "string",
+            "enum": [
+              "score_pack_1k",
+              "target_discovery",
+              "target_discovery_pack",
+              "domain_enrichment",
+              "domain_enrichment_pack",
+              "deep_analysis",
+              "deep_analysis_pack",
+              "action_pack",
+              "action_pack_25",
+              "opportunity_feed",
+              "opportunity_feed_monthly"
+            ],
+            "example": "score_pack_1k"
+          },
+          "order_intent_id": {
+            "type": "string",
+            "description": "Optional beta order intent to connect this simulated checkout to a prior purchase-intent call.",
+            "example": "ord_0001"
+          },
+          "amount_eur": {
+            "type": "number",
+            "description": "Expected test amount. If omitted, MachineSignal uses the beta list price for the product.",
+            "example": 99
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "stripe",
+              "provider_neutral"
+            ],
+            "example": "stripe"
+          },
+          "provider_mode": {
+            "type": "string",
+            "enum": [
+              "test",
+              "sandbox"
+            ],
+            "example": "test",
+            "description": "Live, production and prod are blocked."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true,
+            "example": {
+              "crm_run_id": "crm-batch-20260604-001"
+            }
+          }
+        }
+      },
+      "PaymentTestIntentResponse": {
+        "type": "object",
+        "properties": {
+          "payment_test_id": {
+            "type": "string",
+            "example": "paytest_ab12cd34"
+          },
+          "customer_id": {
+            "type": "string",
+            "example": "beta_partner_001"
+          },
+          "order_intent_id": {
+            "type": "string",
+            "example": "ord_0001"
+          },
+          "product_code": {
+            "type": "string",
+            "example": "score_pack_1k"
+          },
+          "ledger_product_code": {
+            "type": "string",
+            "example": "score_pack_1k"
+          },
+          "provider": {
+            "type": "string",
+            "example": "stripe"
+          },
+          "provider_mode": {
+            "type": "string",
+            "example": "test"
+          },
+          "payment_status": {
+            "type": "string",
+            "example": "test_payment_intent_created"
+          },
+          "real_payment_executed": {
+            "type": "boolean",
+            "example": false
+          },
+          "ready_for_real_payments": {
+            "type": "boolean",
+            "example": false
+          },
+          "credits_to_activate": {
+            "type": "integer",
+            "example": 1000
+          },
+          "credits_activated": {
+            "type": "integer",
+            "example": 0
+          },
+          "test_webhook_simulation": {
+            "type": "object",
+            "description": "Machine-readable instructions for simulating success, failure or requires_action webhooks."
+          },
+          "reconciliation": {
+            "type": "object"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/UsageLedger"
+          }
+        }
+      },
+      "PaymentTestWebhookRequest": {
+        "type": "object",
+        "required": [
+          "customer_id",
+          "payment_test_id",
+          "event_type",
+          "event_id"
+        ],
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "example": "beta_partner_001"
+          },
+          "payment_test_id": {
+            "type": "string",
+            "example": "paytest_ab12cd34"
+          },
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "payment_intent.succeeded",
+              "payment_intent.payment_failed",
+              "payment_intent.requires_action"
+            ],
+            "example": "payment_intent.succeeded"
+          },
+          "event_id": {
+            "type": "string",
+            "description": "Provider event id. Reusing it is treated as a duplicate webhook and must not activate credits twice.",
+            "example": "evt_test_success_001"
+          },
+          "test_signature": {
+            "type": "string",
+            "description": "Alternative to X-MachineSignal-Test-Webhook-Signature. Use the signature returned by the payment-test intent.",
+            "example": "sigtest_ab12cd34"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "PaymentTestReconciliationResponse": {
+        "type": "object",
+        "properties": {
+          "payment_test_id": {
+            "type": "string",
+            "example": "paytest_ab12cd34"
+          },
+          "reconciliation_ok": {
+            "type": "boolean",
+            "example": true
+          },
+          "ready_for_real_payments": {
+            "type": "boolean",
+            "example": false
+          },
+          "real_payment_executed": {
+            "type": "boolean",
+            "example": false
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "blockers_before_live": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "PaymentTestReportResponse": {
+        "type": "object",
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customer_id": {
+            "type": "string",
+            "example": "beta_partner_001"
+          },
+          "summary": {
+            "type": "object"
+          },
+          "safety": {
+            "type": "object"
+          },
+          "payment_tests": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "recommended_next_controls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },

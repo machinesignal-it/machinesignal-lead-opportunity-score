@@ -48,6 +48,7 @@ const DEFAULT_LEDGER_STATE = {
   },
   events: [],
   orders: [],
+  payment_tests: [],
   real_payment_executed: false,
   external_contact_executed: false
 };
@@ -651,6 +652,184 @@ export const openApi = {
         }
       }
     },
+    "/v1/payment-test/intents": {
+      post: {
+        operationId: "createPaymentTestIntent",
+        summary: "Create a simulated test-mode payment intent",
+        description:
+          "Creates a provider-neutral test checkout object for a beta order or product. This endpoint is test/sandbox mode only: it never executes real payment, never issues a fiscal invoice and keeps ready_for_real_payments=false.",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          {
+            name: "Idempotency-Key",
+            in: "header",
+            required: true,
+            schema: { type: "string", example: "payment-test-score-pack-001" },
+            description:
+              "Unique payment-test key. Reusing the same key returns the same simulated payment object and does not create another payment test."
+          }
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/PaymentTestIntentRequest" },
+              examples: {
+                scorePackTest: {
+                  summary: "Create a test checkout for Score Pack 1k",
+                  value: {
+                    product_code: "score_pack_1k",
+                    amount_eur: 99,
+                    provider: "stripe",
+                    provider_mode: "test"
+                  }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          200: {
+            description:
+              "Payment test intent created or returned as duplicate. Use returned test signatures to simulate webhook outcomes.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/PaymentTestIntentResponse" }
+              }
+            }
+          },
+          400: { description: "Invalid request or live/production payment mode blocked." },
+          401: { description: "Missing or invalid X-API-Key." }
+        }
+      }
+    },
+    "/v1/payment-test/intents/{payment_test_id}": {
+      get: {
+        operationId: "getPaymentTestIntent",
+        summary: "Read one simulated payment-test intent",
+        description:
+          "Returns one payment-test intent, its current simulated status, test webhook signatures and reconciliation status.",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          {
+            name: "payment_test_id",
+            in: "path",
+            required: true,
+            schema: { type: "string", example: "paytest_ab12cd34" }
+          }
+        ],
+        responses: {
+          200: {
+            description: "Payment test intent found.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/PaymentTestIntentResponse" }
+              }
+            }
+          },
+          401: { description: "Missing or invalid X-API-Key." },
+          404: { description: "Payment test intent not found." }
+        }
+      }
+    },
+    "/v1/payment-test/webhooks/stripe": {
+      post: {
+        operationId: "simulateStripePaymentTestWebhook",
+        summary: "Simulate a Stripe-style test webhook",
+        description:
+          "Accepts deterministic test signatures returned by POST /v1/payment-test/intents. A succeeded test webhook activates test credits once and creates only an invoice placeholder.",
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/PaymentTestWebhookRequest" },
+              examples: {
+                success: {
+                  summary: "Simulate a succeeded test payment",
+                  value: {
+                    customer_id: "beta_partner_001",
+                    payment_test_id: "paytest_ab12cd34",
+                    event_type: "payment_intent.succeeded",
+                    event_id: "evt_test_success_001"
+                  }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          200: {
+            description: "Webhook accepted and reconciled.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/PaymentTestIntentResponse" }
+              }
+            }
+          },
+          400: { description: "Invalid webhook or bad test signature." },
+          404: { description: "Customer or payment-test intent not found." }
+        }
+      }
+    },
+    "/v1/payment-test/reconciliation/{payment_test_id}": {
+      get: {
+        operationId: "getPaymentTestReconciliation",
+        summary: "Reconcile one simulated payment test",
+        description:
+          "Checks that no live payment occurred, test credits were activated once, duplicate webhooks did not double-credit and no fiscal invoice was issued.",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          {
+            name: "payment_test_id",
+            in: "path",
+            required: true,
+            schema: { type: "string", example: "paytest_ab12cd34" }
+          }
+        ],
+        responses: {
+          200: {
+            description: "Payment test reconciliation result.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/PaymentTestReconciliationResponse" }
+              }
+            }
+          },
+          401: { description: "Missing or invalid X-API-Key." },
+          404: { description: "Payment test intent not found." }
+        }
+      }
+    },
+    "/v1/admin/payment-test-report": {
+      get: {
+        operationId: "getAdminPaymentTestReport",
+        summary: "Return admin payment-test report for one customer",
+        description:
+          "Admin-only report for simulated payment tests. It summarizes statuses, activated test credits, duplicate webhooks and blockers before real payment enablement.",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          {
+            name: "customer_id",
+            in: "query",
+            required: true,
+            schema: { type: "string", example: "beta_partner_001" }
+          }
+        ],
+        responses: {
+          200: {
+            description: "Payment-test report for one customer.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/PaymentTestReportResponse" }
+              }
+            }
+          },
+          400: { description: "Missing customer_id." },
+          401: { description: "Missing or invalid admin X-API-Key." },
+          404: { description: "Customer or ledger not found." }
+        }
+      }
+    },
     "/v1/orders": {
       get: {
         operationId: "listOrders",
@@ -1057,6 +1236,136 @@ export const openApi = {
           usage: { $ref: "#/components/schemas/UsageLedger" }
         }
       },
+      PaymentTestIntentRequest: {
+        type: "object",
+        required: ["product_code", "provider_mode"],
+        properties: {
+          product_code: {
+            type: "string",
+            enum: [
+              "score_pack_1k",
+              "target_discovery",
+              "target_discovery_pack",
+              "domain_enrichment",
+              "domain_enrichment_pack",
+              "deep_analysis",
+              "deep_analysis_pack",
+              "action_pack",
+              "action_pack_25",
+              "opportunity_feed",
+              "opportunity_feed_monthly"
+            ],
+            example: "score_pack_1k"
+          },
+          order_intent_id: {
+            type: "string",
+            description:
+              "Optional beta order intent to connect this simulated checkout to a prior purchase-intent call.",
+            example: "ord_0001"
+          },
+          amount_eur: {
+            type: "number",
+            description:
+              "Expected test amount. If omitted, MachineSignal uses the beta list price for the product.",
+            example: 99
+          },
+          provider: {
+            type: "string",
+            enum: ["stripe", "provider_neutral"],
+            example: "stripe"
+          },
+          provider_mode: {
+            type: "string",
+            enum: ["test", "sandbox"],
+            example: "test",
+            description: "Live, production and prod are blocked."
+          },
+          metadata: {
+            type: "object",
+            additionalProperties: true,
+            example: { crm_run_id: "crm-batch-20260604-001" }
+          }
+        }
+      },
+      PaymentTestIntentResponse: {
+        type: "object",
+        properties: {
+          payment_test_id: { type: "string", example: "paytest_ab12cd34" },
+          customer_id: { type: "string", example: "beta_partner_001" },
+          order_intent_id: { type: "string", example: "ord_0001" },
+          product_code: { type: "string", example: "score_pack_1k" },
+          ledger_product_code: { type: "string", example: "score_pack_1k" },
+          provider: { type: "string", example: "stripe" },
+          provider_mode: { type: "string", example: "test" },
+          payment_status: { type: "string", example: "test_payment_intent_created" },
+          real_payment_executed: { type: "boolean", example: false },
+          ready_for_real_payments: { type: "boolean", example: false },
+          credits_to_activate: { type: "integer", example: 1000 },
+          credits_activated: { type: "integer", example: 0 },
+          test_webhook_simulation: {
+            type: "object",
+            description:
+              "Machine-readable instructions for simulating success, failure or requires_action webhooks."
+          },
+          reconciliation: { type: "object" },
+          usage: { $ref: "#/components/schemas/UsageLedger" }
+        }
+      },
+      PaymentTestWebhookRequest: {
+        type: "object",
+        required: ["customer_id", "payment_test_id", "event_type", "event_id"],
+        properties: {
+          customer_id: { type: "string", example: "beta_partner_001" },
+          payment_test_id: { type: "string", example: "paytest_ab12cd34" },
+          event_type: {
+            type: "string",
+            enum: [
+              "payment_intent.succeeded",
+              "payment_intent.payment_failed",
+              "payment_intent.requires_action"
+            ],
+            example: "payment_intent.succeeded"
+          },
+          event_id: {
+            type: "string",
+            description:
+              "Provider event id. Reusing it is treated as a duplicate webhook and must not activate credits twice.",
+            example: "evt_test_success_001"
+          },
+          test_signature: {
+            type: "string",
+            description:
+              "Alternative to X-MachineSignal-Test-Webhook-Signature. Use the signature returned by the payment-test intent.",
+            example: "sigtest_ab12cd34"
+          },
+          metadata: {
+            type: "object",
+            additionalProperties: true
+          }
+        }
+      },
+      PaymentTestReconciliationResponse: {
+        type: "object",
+        properties: {
+          payment_test_id: { type: "string", example: "paytest_ab12cd34" },
+          reconciliation_ok: { type: "boolean", example: true },
+          ready_for_real_payments: { type: "boolean", example: false },
+          real_payment_executed: { type: "boolean", example: false },
+          checks: { type: "array", items: { type: "object" } },
+          blockers_before_live: { type: "array", items: { type: "string" } }
+        }
+      },
+      PaymentTestReportResponse: {
+        type: "object",
+        properties: {
+          generated_at: { type: "string", format: "date-time" },
+          customer_id: { type: "string", example: "beta_partner_001" },
+          summary: { type: "object" },
+          safety: { type: "object" },
+          payment_tests: { type: "array", items: { type: "object" } },
+          recommended_next_controls: { type: "array", items: { type: "string" } }
+        }
+      },
       BetaDelivery: {
         type: "object",
         description:
@@ -1332,6 +1641,10 @@ Useful endpoints:
 - GET /v1/usage
 - POST /v1/lead-opportunity-score
 - POST /v1/purchase-intent
+- POST /v1/payment-test/intents
+- GET /v1/payment-test/intents/{payment_test_id}
+- POST /v1/payment-test/webhooks/stripe
+- GET /v1/payment-test/reconciliation/{payment_test_id}
 - GET /v1/orders
 - GET /v1/orders/{order_intent_id}
 - POST /v1/beta/customers
@@ -1339,6 +1652,7 @@ Useful endpoints:
 - PATCH /v1/beta/customers/{customer_id}
 - GET /v1/admin/sandbox-metrics
 - GET /v1/admin/audit-report?customer_id=<customer_id>
+- GET /v1/admin/payment-test-report?customer_id=<customer_id>
 
 Authentication:
 - protected endpoints require header X-API-Key: <beta key>;
@@ -1347,6 +1661,7 @@ Authentication:
 - GET/PATCH /v1/beta/customers/{customer_id} require the admin beta key and never return the full customer API key.
 - GET /v1/admin/sandbox-metrics requires the admin beta key and returns only aggregated sandbox test metrics.
 - GET /v1/admin/audit-report requires the admin beta key and reconciles one customer ledger before real payments.
+- GET /v1/admin/payment-test-report requires the admin beta key and reconciles simulated payment-test records.
 
 How a machine should call the score endpoint:
 1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
@@ -1470,6 +1785,14 @@ Important operating rules:
 - credits are consumed only when the API produces a valid usable output;
 - the beta does not execute real payments;
 - the beta does not contact external targets.
+
+Payment test mode:
+- POST /v1/payment-test/intents creates a simulated provider-neutral checkout object in test/sandbox mode only;
+- provider_mode live, production or prod is blocked;
+- POST /v1/payment-test/webhooks/stripe accepts only deterministic test signatures returned by the payment test intent;
+- a succeeded test webhook activates test credits once and creates only an invoice placeholder, not a fiscal invoice;
+- duplicate webhook events do not activate duplicate credits;
+- GET /v1/payment-test/reconciliation/{payment_test_id} and GET /v1/admin/payment-test-report?customer_id=<customer_id> keep ready_for_real_payments=false and real_payment_executed=false.
 
 Contact: beta@machinesignal.it
 Website: https://machinesignal.it/
@@ -1687,6 +2010,111 @@ const postmanCollection = {
         },
         description:
           "Creates a beta order intent for a recommended next product and returns an immediate structured beta delivery. No real payment is executed."
+      },
+      response: []
+    },
+    {
+      name: "Create payment test intent",
+      request: {
+        method: "POST",
+        header: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "X-API-Key", value: "{{machinesignal_api_key}}" },
+          { key: "Idempotency-Key", value: "postman-payment-test-intent-001" }
+        ],
+        body: {
+          mode: "raw",
+          raw: JSON.stringify(
+            {
+              product_code: "score_pack_1k",
+              amount_eur: 99,
+              provider: "stripe",
+              provider_mode: "test",
+              metadata: {
+                machine_buyer: "crm_or_agent",
+                purpose: "simulate_checkout_before_real_payments"
+              }
+            },
+            null,
+            2
+          )
+        },
+        url: {
+          raw: "{{base_url}}/v1/payment-test/intents",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "payment-test", "intents"]
+        },
+        description:
+          "Creates a simulated checkout object in test mode only. No real payment is executed. Copy payment_test_id and the success_signature into the collection variables before simulating the webhook."
+      },
+      response: []
+    },
+    {
+      name: "Simulate payment test success webhook",
+      request: {
+        method: "POST",
+        header: [
+          { key: "Content-Type", value: "application/json" },
+          {
+            key: "X-MachineSignal-Test-Webhook-Signature",
+            value: "{{payment_test_success_signature}}"
+          }
+        ],
+        body: {
+          mode: "raw",
+          raw: JSON.stringify(
+            {
+              customer_id: "{{beta_customer_id}}",
+              payment_test_id: "{{payment_test_id}}",
+              event_type: "payment_intent.succeeded",
+              event_id: "postman-evt-test-success-001"
+            },
+            null,
+            2
+          )
+        },
+        url: {
+          raw: "{{base_url}}/v1/payment-test/webhooks/stripe",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "payment-test", "webhooks", "stripe"]
+        },
+        description:
+          "Simulates a provider webhook. The signature must match the deterministic success_signature returned by Create payment test intent. Credits activate once; duplicate event_id does not double-credit."
+      },
+      response: []
+    },
+    {
+      name: "Read payment test reconciliation",
+      request: {
+        method: "GET",
+        header: [{ key: "X-API-Key", value: "{{machinesignal_api_key}}" }],
+        url: {
+          raw: "{{base_url}}/v1/payment-test/reconciliation/{{payment_test_id}}",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "payment-test", "reconciliation", "{{payment_test_id}}"]
+        },
+        description:
+          "Checks that the test did not execute real money, did not issue a fiscal invoice and activated test credits exactly once."
+      },
+      response: []
+    },
+    {
+      name: "Admin read payment test report",
+      request: {
+        method: "GET",
+        header: [{ key: "X-API-Key", value: "{{machinesignal_admin_api_key}}" }],
+        url: {
+          raw: "{{base_url}}/v1/admin/payment-test-report?customer_id={{beta_customer_id}}",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "admin", "payment-test-report"],
+          query: [{ key: "customer_id", value: "{{beta_customer_id}}" }]
+        },
+        description:
+          "Admin-only report that summarizes all simulated payment tests for one customer and keeps ready_for_real_payments=false."
       },
       response: []
     },
@@ -2027,7 +2455,9 @@ const postmanCollection = {
     { key: "base_url", value: "https://machinesignal-api.beta-878.workers.dev" },
     { key: "machinesignal_api_key", value: "paste_customer_beta_key_here" },
     { key: "machinesignal_admin_api_key", value: "paste_admin_beta_key_here" },
-    { key: "beta_customer_id", value: "beta_partner_001" }
+    { key: "beta_customer_id", value: "beta_partner_001" },
+    { key: "payment_test_id", value: "paste_payment_test_id_here" },
+    { key: "payment_test_success_signature", value: "paste_success_signature_here" }
   ]
 };
 
@@ -2232,6 +2662,7 @@ function normalizeLedgerState(raw) {
   state.balances = { ...clone(DEFAULT_LEDGER_STATE.balances), ...(state.balances || {}) };
   state.events = Array.isArray(state.events) ? state.events : [];
   state.orders = Array.isArray(state.orders) ? state.orders : [];
+  state.payment_tests = Array.isArray(state.payment_tests) ? state.payment_tests : [];
   for (const balance of Object.values(state.balances)) {
     balance.credits_purchased = Number(balance.credits_purchased || 0);
     balance.credits_used = Number(balance.credits_used || 0);
@@ -2401,6 +2832,7 @@ function buildUsagePayload(state, event = null, persisted = false, backend = nul
     current_event: event,
     last_events: state.events.slice(-10),
     recent_orders: state.orders.slice(-10),
+    recent_payment_tests: state.payment_tests.slice(-10),
     rule: "credits are consumed only when the API produces a valid usable output",
     real_payment_executed: false,
     external_contact_executed: false
@@ -3065,6 +3497,445 @@ function filterOrders(orders, url) {
     .filter((order) => !status || String(order.status).toLowerCase() === status)
     .slice()
     .reverse();
+}
+
+function paymentTestProductConfig(productCode) {
+  const normalized = String(productCode || "").trim().toLowerCase();
+  const products = {
+    score_pack_1k: {
+      product_code: "score_pack_1k",
+      ledger_product_code: "score_pack_1k",
+      amount_eur: 99,
+      credits_to_activate: 1000,
+      unit: "1000 valid scores"
+    },
+    target_discovery: {
+      product_code: "target_discovery",
+      ledger_product_code: "target_discovery_pack_250",
+      amount_eur: 149,
+      credits_to_activate: 1,
+      unit: "250 coherent targets"
+    },
+    target_discovery_pack_250: {
+      product_code: "target_discovery",
+      ledger_product_code: "target_discovery_pack_250",
+      amount_eur: 149,
+      credits_to_activate: 1,
+      unit: "250 coherent targets"
+    },
+    domain_enrichment: {
+      product_code: "domain_enrichment",
+      ledger_product_code: "domain_enrichment_pack_100",
+      amount_eur: 149,
+      credits_to_activate: 1,
+      unit: "100 completed domain-enrichment decisions"
+    },
+    domain_enrichment_pack_100: {
+      product_code: "domain_enrichment",
+      ledger_product_code: "domain_enrichment_pack_100",
+      amount_eur: 149,
+      credits_to_activate: 1,
+      unit: "100 completed domain-enrichment decisions"
+    },
+    deep_analysis: {
+      product_code: "deep_analysis",
+      ledger_product_code: "deep_analysis_pack_100",
+      amount_eur: 299,
+      credits_to_activate: 1,
+      unit: "100 valid deep analyses"
+    },
+    deep_analysis_pack_100: {
+      product_code: "deep_analysis",
+      ledger_product_code: "deep_analysis_pack_100",
+      amount_eur: 299,
+      credits_to_activate: 1,
+      unit: "100 valid deep analyses"
+    },
+    action_pack: {
+      product_code: "action_pack",
+      ledger_product_code: "action_pack_25",
+      amount_eur: 399,
+      credits_to_activate: 1,
+      unit: "25 valid action packs"
+    },
+    action_pack_25: {
+      product_code: "action_pack",
+      ledger_product_code: "action_pack_25",
+      amount_eur: 399,
+      credits_to_activate: 1,
+      unit: "25 valid action packs"
+    },
+    opportunity_feed: {
+      product_code: "opportunity_feed",
+      ledger_product_code: "opportunity_feed_monthly",
+      amount_eur: 249,
+      credits_to_activate: 1,
+      unit: "1 month"
+    },
+    opportunity_feed_monthly: {
+      product_code: "opportunity_feed",
+      ledger_product_code: "opportunity_feed_monthly",
+      amount_eur: 249,
+      credits_to_activate: 1,
+      unit: "1 month"
+    }
+  };
+  const product = products[normalized];
+  if (!product) {
+    throw new Error(
+      "unsupported payment test product_code. Use score_pack_1k, target_discovery, domain_enrichment, deep_analysis, action_pack or opportunity_feed"
+    );
+  }
+  return product;
+}
+
+function normalizeProviderMode(value) {
+  const mode = String(value || "test").trim().toLowerCase();
+  if (["live", "production", "prod"].includes(mode)) {
+    const error = new Error("live payment mode is blocked during payment test mode");
+    error.statusCode = 400;
+    error.code = "live_payment_mode_blocked";
+    throw error;
+  }
+  if (!["test", "sandbox"].includes(mode)) {
+    const error = new Error("provider_mode must be test or sandbox");
+    error.statusCode = 400;
+    error.code = "invalid_provider_mode";
+    throw error;
+  }
+  return mode;
+}
+
+function normalizePaymentProvider(value) {
+  const provider = String(value || "stripe").trim().toLowerCase();
+  if (!["stripe", "provider_neutral"].includes(provider)) {
+    const error = new Error("provider must be stripe or provider_neutral during payment test mode");
+    error.statusCode = 400;
+    error.code = "invalid_provider";
+    throw error;
+  }
+  return provider;
+}
+
+function paymentTestSignature(record, eventType = "payment_intent.succeeded") {
+  return `sigtest_${stableHash(
+    `${record.payment_test_id}|${record.provider_payment_intent_id}|${eventType}|${record.customer_id}`
+  ).toString(16)}`;
+}
+
+function buildPaymentTestInvoicePlaceholder(record) {
+  return {
+    invoice_placeholder_id: `invtest_${stableHash(`${record.payment_test_id}|invoice`).toString(16)}`,
+    provider_mode: record.provider_mode,
+    amount_eur: record.amount_eur,
+    currency: record.currency,
+    real_invoice_issued: false,
+    accounting_revenue_recognized: false,
+    note: "Test-mode invoice placeholder only. It is not a fiscal invoice."
+  };
+}
+
+function buildPaymentTestResponse(record, extra = {}) {
+  return {
+    ...record,
+    real_payment_executed: false,
+    ready_for_real_payments: false,
+    test_webhook_simulation: {
+      required_header: "X-MachineSignal-Test-Webhook-Signature",
+      success_event_type: "payment_intent.succeeded",
+      success_signature: paymentTestSignature(record, "payment_intent.succeeded"),
+      failure_signature: paymentTestSignature(record, "payment_intent.payment_failed"),
+      requires_action_signature: paymentTestSignature(record, "payment_intent.requires_action")
+    },
+    ...extra
+  };
+}
+
+function createPaymentTestIntentInState(state, input = {}, requestId = "") {
+  const duplicate = state.payment_tests.find((item) => item.request_id === requestId);
+  if (duplicate) {
+    return buildPaymentTestResponse({ ...duplicate, duplicate_request: true });
+  }
+  const providerMode = normalizeProviderMode(input.provider_mode);
+  const provider = normalizePaymentProvider(input.provider);
+  const product = paymentTestProductConfig(input.product_code);
+  const amountEur =
+    input.amount_eur === undefined || input.amount_eur === null
+      ? product.amount_eur
+      : Number(input.amount_eur);
+  if (!Number.isFinite(amountEur) || amountEur < 0) {
+    throw new Error("amount_eur must be a non-negative number");
+  }
+  const orderIntentId =
+    String(input.order_intent_id || "").trim() ||
+    `payord_${stableHash(`${state.customer_id}|${requestId}|${product.ledger_product_code}`).toString(16)}`;
+  const order = state.orders.find((item) => item.order_intent_id === orderIntentId) || null;
+  const now = new Date().toISOString();
+  const paymentTestId = `paytest_${stableHash(`${state.customer_id}|${requestId}|${orderIntentId}`).toString(16)}`;
+  const record = {
+    payment_test_id: paymentTestId,
+    request_id: requestId,
+    customer_id: state.customer_id,
+    order_intent_id: orderIntentId,
+    order_exists: Boolean(order) || orderIntentId.startsWith("payord_"),
+    order_source: order ? "beta_order_intent" : "payment_test_order_placeholder",
+    product_code: product.product_code,
+    ledger_product_code: product.ledger_product_code,
+    amount_eur: Number(amountEur.toFixed(2)),
+    currency: String(input.currency || "EUR").trim().toUpperCase() || "EUR",
+    provider,
+    provider_mode: providerMode,
+    provider_payment_intent_id: `pi_test_${stableHash(`${paymentTestId}|${provider}`).toString(16)}`,
+    payment_status: "test_payment_intent_created",
+    credit_activation_status: "inactive",
+    credits_to_activate: product.credits_to_activate,
+    credits_activated: 0,
+    unit: product.unit,
+    invoice_placeholder: null,
+    webhook_events: [],
+    created_at: now,
+    updated_at: now,
+    real_payment_executed: false,
+    external_contact_executed: false,
+    ready_for_real_payments: false,
+    live_mode_blocked: false,
+    beta: true
+  };
+  state.payment_tests.push(record);
+  return buildPaymentTestResponse(record);
+}
+
+function verifyPaymentTestWebhookSignature(request, record, body) {
+  const eventType = String(body?.event_type || "payment_intent.succeeded").trim();
+  const expected = paymentTestSignature(record, eventType);
+  const provided =
+    String(request.headers.get("x-machinesignal-test-webhook-signature") || "").trim() ||
+    String(body?.test_signature || "").trim();
+  return {
+    eventType,
+    expected,
+    provided,
+    ok: provided === expected
+  };
+}
+
+function appendPaymentTestLedgerEvent(state, record, status, reason, metadata = {}) {
+  const event = {
+    event_id: `evt_${String(state.events.length + 1).padStart(4, "0")}`,
+    timestamp: new Date().toISOString(),
+    customer_id: state.customer_id,
+    product_code: record.ledger_product_code,
+    request_id: `${record.payment_test_id}:${status}`,
+    status,
+    reason,
+    units_requested: 0,
+    credits_consumed: 0,
+    credits_remaining: Math.max(
+      0,
+      Number(state.balances?.[record.ledger_product_code]?.credits_purchased || 0) -
+        Number(state.balances?.[record.ledger_product_code]?.credits_used || 0)
+    ),
+    metadata: {
+      ...metadata,
+      payment_test_id: record.payment_test_id,
+      provider_payment_intent_id: record.provider_payment_intent_id,
+      provider_mode: record.provider_mode,
+      real_payment_executed: false,
+      external_contact_executed: false
+    }
+  };
+  state.events.push(event);
+  return event;
+}
+
+function activatePaymentTestCredits(state, record) {
+  if (record.credit_activation_status === "test_credits_activated") {
+    return { activated: false, duplicate_activation: true, event: null };
+  }
+  const balance = state.balances[record.ledger_product_code];
+  if (!balance) {
+    throw new Error(`unknown ledger product_code ${record.ledger_product_code}`);
+  }
+  balance.credits_purchased = Number(balance.credits_purchased || 0) + Number(record.credits_to_activate || 0);
+  balance.credits_remaining = Math.max(0, balance.credits_purchased - Number(balance.credits_used || 0));
+  record.credit_activation_status = "test_credits_activated";
+  record.credits_activated = Number(record.credits_to_activate || 0);
+  record.payment_status = "test_payment_succeeded";
+  record.invoice_placeholder = buildPaymentTestInvoicePlaceholder(record);
+  record.updated_at = new Date().toISOString();
+  const event = appendPaymentTestLedgerEvent(
+    state,
+    record,
+    "payment_test_credit_activation",
+    "test_payment_succeeded_credit_activation",
+    {
+      credits_activated: record.credits_activated,
+      invoice_placeholder_id: record.invoice_placeholder.invoice_placeholder_id
+    }
+  );
+  return { activated: true, duplicate_activation: false, event };
+}
+
+function applyPaymentTestWebhook(state, request, input = {}) {
+  const paymentTestId = String(input.payment_test_id || "").trim();
+  const record = state.payment_tests.find((item) => item.payment_test_id === paymentTestId);
+  if (!record) {
+    const error = new Error("Payment test intent not found.");
+    error.statusCode = 404;
+    throw error;
+  }
+  const signature = verifyPaymentTestWebhookSignature(request, record, input);
+  if (!signature.ok) {
+    const error = new Error("Invalid payment test webhook signature.");
+    error.statusCode = 400;
+    error.code = "invalid_test_webhook_signature";
+    throw error;
+  }
+  const eventId =
+    String(input.event_id || "").trim() ||
+    `evt_test_${stableHash(`${record.payment_test_id}|${signature.eventType}`).toString(16)}`;
+  const duplicateWebhook = record.webhook_events.some((event) => event.event_id === eventId);
+  if (duplicateWebhook) {
+    return buildPaymentTestResponse(record, {
+      duplicate_webhook: true,
+      signature_verified: true,
+      webhook_event_id: eventId,
+      reconciliation: buildPaymentTestReconciliation(state, record)
+    });
+  }
+  const webhookEvent = {
+    event_id: eventId,
+    event_type: signature.eventType,
+    received_at: new Date().toISOString(),
+    signature_verified: true,
+    provider_mode: record.provider_mode,
+    real_payment_executed: false
+  };
+  record.webhook_events.push(webhookEvent);
+  if (signature.eventType === "payment_intent.succeeded") {
+    activatePaymentTestCredits(state, record);
+  } else if (signature.eventType === "payment_intent.payment_failed") {
+    record.payment_status = "test_payment_failed";
+    record.credit_activation_status = "inactive";
+    record.updated_at = new Date().toISOString();
+  } else if (signature.eventType === "payment_intent.requires_action") {
+    record.payment_status = "test_payment_requires_action";
+    record.credit_activation_status = "pending_customer_action";
+    record.updated_at = new Date().toISOString();
+  } else {
+    const error = new Error(
+      "unsupported payment test event_type. Use payment_intent.succeeded, payment_intent.payment_failed or payment_intent.requires_action"
+    );
+    error.statusCode = 400;
+    throw error;
+  }
+  return buildPaymentTestResponse(record, {
+    duplicate_webhook: false,
+    signature_verified: true,
+    webhook_event_id: eventId,
+    reconciliation: buildPaymentTestReconciliation(state, record)
+  });
+}
+
+function buildPaymentTestReconciliation(state, record) {
+  const balance = state.balances?.[record.ledger_product_code] || {};
+  const activationEvents = state.events.filter(
+    (event) =>
+      event.status === "payment_test_credit_activation" &&
+      event.metadata?.payment_test_id === record.payment_test_id
+  );
+  const orderExists =
+    Boolean(state.orders.find((item) => item.order_intent_id === record.order_intent_id)) ||
+    record.order_source === "payment_test_order_placeholder";
+  const providerModeOk = ["test", "sandbox"].includes(record.provider_mode);
+  const successfulPayment = record.payment_status === "test_payment_succeeded";
+  const failedOrPending =
+    record.payment_status === "test_payment_failed" ||
+    record.payment_status === "test_payment_requires_action" ||
+    record.payment_status === "test_payment_intent_created";
+  const creditsActivatedOk = successfulPayment
+    ? record.credit_activation_status === "test_credits_activated" &&
+      record.credits_activated === record.credits_to_activate &&
+      activationEvents.length === 1
+    : failedOrPending && Number(record.credits_activated || 0) === 0;
+  const invoiceOk = successfulPayment
+    ? record.invoice_placeholder?.real_invoice_issued === false
+    : record.invoice_placeholder === null;
+  const reconciliationOk =
+    orderExists &&
+    providerModeOk &&
+    record.real_payment_executed === false &&
+    creditsActivatedOk &&
+    invoiceOk;
+  return {
+    payment_test_id: record.payment_test_id,
+    customer_id: state.customer_id,
+    order_intent_id: record.order_intent_id,
+    product_code: record.product_code,
+    ledger_product_code: record.ledger_product_code,
+    payment_status: record.payment_status,
+    credit_activation_status: record.credit_activation_status,
+    checks: {
+      order_exists: orderExists,
+      provider_mode_is_test_or_sandbox: providerModeOk,
+      real_payment_executed_false: record.real_payment_executed === false,
+      external_contact_executed_false: record.external_contact_executed === false,
+      credits_activation_consistent: creditsActivatedOk,
+      duplicate_webhook_no_duplicate_credits: activationEvents.length <= 1,
+      invoice_placeholder_not_real_invoice: invoiceOk
+    },
+    balance_after_test: {
+      product_code: record.ledger_product_code,
+      credits_purchased: Number(balance.credits_purchased || 0),
+      credits_used: Number(balance.credits_used || 0),
+      credits_remaining: Math.max(
+        0,
+        Number(balance.credits_purchased || 0) - Number(balance.credits_used || 0)
+      )
+    },
+    reconciliation_ok: reconciliationOk,
+    ready_for_real_payments: false,
+    real_payment_executed: false
+  };
+}
+
+function buildPaymentTestReport(customer, ledger) {
+  const state = normalizeLedgerState(ledger.state);
+  const records = state.payment_tests || [];
+  const reconciliations = records.map((record) => buildPaymentTestReconciliation(state, record));
+  return {
+    generated_at: new Date().toISOString(),
+    customer_id: state.customer_id,
+    customer_status: customer?.status || null,
+    ledger_backend: ledger.backend,
+    ledger_persisted: ledger.persisted,
+    summary: {
+      payment_test_count: records.length,
+      succeeded: records.filter((record) => record.payment_status === "test_payment_succeeded").length,
+      failed: records.filter((record) => record.payment_status === "test_payment_failed").length,
+      requires_action: records.filter((record) => record.payment_status === "test_payment_requires_action").length,
+      credits_activated_total: records.reduce(
+        (sum, record) => sum + Number(record.credits_activated || 0),
+        0
+      ),
+      reconciliation_ok: reconciliations.every((item) => item.reconciliation_ok),
+      ready_for_real_payments: false
+    },
+    payment_tests: records.slice().reverse(),
+    reconciliations,
+    safety: {
+      real_payment_executed: false,
+      live_provider_keys_allowed: false,
+      live_mode_blocked: true,
+      invoice_real_issued: false
+    },
+    recommended_next_controls: [
+      "Keep provider mode locked to test/sandbox until legal, fiscal and payment-provider readiness are complete.",
+      "Verify that each succeeded test webhook activates credits exactly once.",
+      "Keep invoice output as placeholder only until fiscal invoicing is implemented.",
+      "Re-run payment-test reconciliation before enabling any live checkout."
+    ]
+  };
 }
 
 function buildInitialBalances(input = {}) {
@@ -3844,7 +4715,10 @@ function buildPublicMachineOnboarding() {
       sandbox_customers: "/v1/sandbox/customers",
       authenticated_onboarding: "/v1/onboarding",
       sandbox_metrics: "/v1/admin/sandbox-metrics",
-      audit_report: "/v1/admin/audit-report?customer_id=<customer_id>"
+      audit_report: "/v1/admin/audit-report?customer_id=<customer_id>",
+      payment_test_intents: "/v1/payment-test/intents",
+      payment_test_reconciliation: "/v1/payment-test/reconciliation/{payment_test_id}",
+      payment_test_report: "/v1/admin/payment-test-report?customer_id=<customer_id>"
     },
     authentication: {
       type: "apiKey",
@@ -3895,6 +4769,27 @@ function buildPublicMachineOnboarding() {
         call: "GET /v1/orders",
         auth_required: true,
         machine_goal: "Retrieve orders and deliveries."
+      },
+      {
+        step: 8,
+        call: "POST /v1/payment-test/intents",
+        auth_required: true,
+        machine_goal:
+          "Create a simulated test-mode payment object without executing a real payment."
+      },
+      {
+        step: 9,
+        call: "POST /v1/payment-test/webhooks/stripe",
+        auth_required: false,
+        machine_goal:
+          "Simulate a provider webhook with the deterministic test signature returned by the intent."
+      },
+      {
+        step: 10,
+        call: "GET /v1/payment-test/reconciliation/{payment_test_id}",
+        auth_required: true,
+        machine_goal:
+          "Verify that test credits activated once and no live payment or fiscal invoice occurred."
       }
     ],
     products: PRODUCT_CATALOG.products,
@@ -3921,6 +4816,13 @@ function buildPublicMachineOnboarding() {
     beta_limits: {
       real_payment_executed: false,
       external_contact_executed: false,
+      payment_test_mode: {
+        enabled: true,
+        provider_mode_allowed: ["test", "sandbox"],
+        live_mode_allowed: false,
+        fiscal_invoice_issued: false,
+        real_payment_executed: false
+      },
       requires_customer_api_key: true,
       repeated_idempotency_key_no_extra_charge: true,
       sandbox: {
@@ -3935,7 +4837,9 @@ function buildPublicMachineOnboarding() {
       can_create_beta_orders: true,
       can_read_usage_and_orders: true,
       must_not_execute_external_outreach: true,
-      must_not_assume_real_payment: true
+      must_not_assume_real_payment: true,
+      can_create_payment_test_intents: true,
+      must_not_use_live_payment_mode: true
     }
   };
 }
@@ -3962,6 +4866,10 @@ function buildAuthenticatedOnboarding(auth, ledger) {
       {
         call: "GET /v1/orders",
         reason: "Retrieve order history and deliveries."
+      },
+      {
+        call: "POST /v1/payment-test/intents",
+        reason: "Simulate checkout in test mode only, without real payment."
       }
     ],
     customer_state: {
@@ -3974,7 +4882,9 @@ function buildAuthenticatedOnboarding(auth, ledger) {
       can_create_purchase_intents: ledgerBalances(ledger.state).some(
         (item) => item.product_code !== "score_pack_1k" && item.credits_remaining > 0
       ),
+      can_create_payment_tests: true,
       real_payment_enabled: false,
+      payment_test_mode_enabled: true,
       external_contact_enabled: false
     }
   };
@@ -4700,7 +5610,8 @@ function jsonResponse(payload, status = 200, extraHeaders = {}) {
       "content-type": "application/json; charset=utf-8",
       "access-control-allow-origin": DEFAULT_ALLOWED_ORIGIN,
       "access-control-allow-methods": "GET,POST,OPTIONS",
-      "access-control-allow-headers": "content-type,x-api-key,idempotency-key,x-request-id",
+      "access-control-allow-headers":
+        "content-type,x-api-key,idempotency-key,x-request-id,x-machinesignal-test-webhook-signature,stripe-signature",
       ...extraHeaders
     }
   });
@@ -4713,7 +5624,8 @@ function textResponse(text, status = 200) {
       "content-type": "text/plain; charset=utf-8",
       "access-control-allow-origin": DEFAULT_ALLOWED_ORIGIN,
       "access-control-allow-methods": "GET,POST,OPTIONS",
-      "access-control-allow-headers": "content-type,x-api-key,idempotency-key,x-request-id"
+      "access-control-allow-headers":
+        "content-type,x-api-key,idempotency-key,x-request-id,x-machinesignal-test-webhook-signature,stripe-signature"
     }
   });
 }
@@ -4773,10 +5685,13 @@ export async function handleRequest(request, env = {}) {
         usage: "/v1/usage",
         score: "/v1/lead-opportunity-score",
         purchase_intent: "/v1/purchase-intent",
+        payment_test_intents: "/v1/payment-test/intents",
+        payment_test_reconciliation: "/v1/payment-test/reconciliation/{payment_test_id}",
         orders: "/v1/orders",
         beta_customers: "/v1/beta/customers",
         sandbox_metrics: "/v1/admin/sandbox-metrics",
-        audit_report: "/v1/admin/audit-report?customer_id=<customer_id>"
+        audit_report: "/v1/admin/audit-report?customer_id=<customer_id>",
+        payment_test_report: "/v1/admin/payment-test-report?customer_id=<customer_id>"
       }
     });
   }
@@ -4919,6 +5834,104 @@ export async function handleRequest(request, env = {}) {
     }
   }
 
+  if (request.method === "POST" && url.pathname === "/v1/payment-test/intents") {
+    const auth = await authenticateRequest(request, env);
+    if (!auth.authorized) {
+      return jsonResponse(
+        { error: "unauthorized", message: "Missing or invalid X-API-Key." },
+        401
+      );
+    }
+    try {
+      const body = await parseJson(request);
+      const ledger = await loadLedger(request, env, auth);
+      const requestId = makeRequestId(request, body, body?.order_intent_id || body?.product_code || "payment-test");
+      const paymentTest = createPaymentTestIntentInState(ledger.state, body, requestId);
+      await saveLedger(ledger.key, ledger.state, env);
+      return jsonResponse({
+        ...paymentTest,
+        usage: buildUsagePayload(ledger.state, null, ledger.persisted, ledger.backend)
+      });
+    } catch (error) {
+      return jsonResponse(
+        {
+          error: error.code || "bad_request",
+          message: error.message || "Invalid payment test intent request.",
+          real_payment_executed: false,
+          ready_for_real_payments: false
+        },
+        error.statusCode || 400
+      );
+    }
+  }
+
+  if (request.method === "GET" && url.pathname.startsWith("/v1/payment-test/intents/")) {
+    const auth = await authenticateRequest(request, env);
+    if (!auth.authorized) {
+      return jsonResponse(
+        { error: "unauthorized", message: "Missing or invalid X-API-Key." },
+        401
+      );
+    }
+    const paymentTestId = decodeURIComponent(url.pathname.replace("/v1/payment-test/intents/", "")).trim();
+    const ledger = await loadLedger(request, env, auth);
+    const record = ledger.state.payment_tests.find((item) => item.payment_test_id === paymentTestId);
+    if (!record) {
+      return jsonResponse({ error: "not_found", message: "Payment test intent not found." }, 404);
+    }
+    return jsonResponse({
+      ...buildPaymentTestResponse(record),
+      reconciliation: buildPaymentTestReconciliation(ledger.state, record)
+    });
+  }
+
+  if (request.method === "POST" && url.pathname === "/v1/payment-test/webhooks/stripe") {
+    try {
+      const body = await parseJson(request);
+      const customerId = String(body?.customer_id || "").trim();
+      if (!customerId) {
+        return jsonResponse(
+          { error: "bad_request", message: "Missing required customer_id.", real_payment_executed: false },
+          400
+        );
+      }
+      const ledger = await loadLedgerByCustomerId(customerId, env);
+      const webhookResult = applyPaymentTestWebhook(ledger.state, request, body);
+      await saveLedger(ledger.key, ledger.state, env);
+      return jsonResponse({
+        ...webhookResult,
+        usage: buildUsagePayload(ledger.state, null, ledger.persisted, ledger.backend)
+      });
+    } catch (error) {
+      return jsonResponse(
+        {
+          error: error.code || (error.statusCode === 404 ? "not_found" : "bad_request"),
+          message: error.message || "Invalid payment test webhook.",
+          real_payment_executed: false,
+          ready_for_real_payments: false
+        },
+        error.statusCode || 400
+      );
+    }
+  }
+
+  if (request.method === "GET" && url.pathname.startsWith("/v1/payment-test/reconciliation/")) {
+    const auth = await authenticateRequest(request, env);
+    if (!auth.authorized) {
+      return jsonResponse(
+        { error: "unauthorized", message: "Missing or invalid X-API-Key." },
+        401
+      );
+    }
+    const paymentTestId = decodeURIComponent(url.pathname.replace("/v1/payment-test/reconciliation/", "")).trim();
+    const ledger = await loadLedger(request, env, auth);
+    const record = ledger.state.payment_tests.find((item) => item.payment_test_id === paymentTestId);
+    if (!record) {
+      return jsonResponse({ error: "not_found", message: "Payment test intent not found." }, 404);
+    }
+    return jsonResponse(buildPaymentTestReconciliation(ledger.state, record));
+  }
+
   if (request.method === "GET" && url.pathname === "/v1/orders") {
     const auth = await authenticateRequest(request, env);
     if (!auth.authorized) {
@@ -5007,6 +6020,39 @@ export async function handleRequest(request, env = {}) {
     }
   }
 
+  if (request.method === "GET" && url.pathname === "/v1/admin/payment-test-report") {
+    if (!isAdminAuthorized(request, env)) {
+      return jsonResponse(
+        { error: "unauthorized", message: "Missing or invalid admin X-API-Key." },
+        401
+      );
+    }
+    try {
+      const customerId = String(url.searchParams.get("customer_id") || "").trim();
+      if (!customerId) {
+        return jsonResponse(
+          { error: "bad_request", message: "Missing required query parameter customer_id." },
+          400
+        );
+      }
+      const normalizedCustomerId = normalizeCustomerId(customerId);
+      const customer = await loadCustomerById(normalizedCustomerId, env);
+      if (!customer) {
+        return jsonResponse({ error: "not_found", message: "Beta customer not found." }, 404);
+      }
+      const ledger = await loadLedgerByCustomerId(customer.customer_id, env);
+      return jsonResponse(buildPaymentTestReport(customer, ledger));
+    } catch (error) {
+      return jsonResponse(
+        {
+          error: error.statusCode === 404 ? "not_found" : "bad_request",
+          message: error.message || "Invalid payment test report request."
+        },
+        error.statusCode || 400
+      );
+    }
+  }
+
   if (request.method === "POST" && url.pathname === "/v1/beta/customers") {
     if (!isAdminAuthorized(request, env)) {
       return jsonResponse(
@@ -5053,7 +6099,7 @@ export async function handleRequest(request, env = {}) {
   return jsonResponse(
     {
       error: "not_found",
-      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, GET /v1/admin/sandbox-metrics, GET /v1/admin/audit-report?customer_id=<customer_id>, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
+      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, POST /v1/payment-test/intents, GET /v1/payment-test/reconciliation/{payment_test_id}, GET /v1/admin/sandbox-metrics, GET /v1/admin/audit-report?customer_id=<customer_id>, GET /v1/admin/payment-test-report?customer_id=<customer_id>, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
     },
     404
   );
