@@ -50,6 +50,8 @@ Useful endpoints:
 - GET https://machinesignal.it/examples/integration_existing_list_score_request.json
 - GET https://machinesignal.it/examples/integration_no_list_target_discovery_request.json
 - GET https://machinesignal.it/examples/integration_action_pack_crm_payload.json
+- GET https://machinesignal.it/distribution/marketplace-submission-pack.json
+- GET https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - GET https://machinesignal.it/distribution/api-directory-submission.json
 - GET https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json
 - GET https://machinesignal.it/distribution/rapidapi-listing.json
@@ -140,6 +142,8 @@ Public demos for software, agents and partners:
 - Dentists Beta Machine Buyer Pack JSON: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
 - Dentists Beta Machine Buyer Pack Markdown: https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md
 - Technical Distribution Pack: https://machinesignal.it/distribution/
+- Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
+- Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - Sandbox Buyer Kit Distribution Listing: https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json
 - RapidAPI Listing JSON: https://machinesignal.it/distribution/rapidapi-listing.json

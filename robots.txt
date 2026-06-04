@@ -29,6 +29,8 @@ Controlled-beta-gate-runner: https://machinesignal.it/controlled_beta_gate_runne
 Controlled-beta-gate-runner-json: https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json
 Self-service-machine-buyer-sale-simulation: https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md
 Self-service-machine-buyer-sale-simulation-json: https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json
+Marketplace-submission-pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
+Postman-public-workspace-draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 Sandbox-buyer-kit: https://machinesignal.it/sandbox-buyer-kit/
 Sandbox-buyer-kit-json: https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
 Sandbox-buyer-kit-distribution-listing: https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json

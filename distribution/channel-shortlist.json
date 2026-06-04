@@ -18,6 +18,8 @@
         "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
         "https://machinesignal.it/sandbox-buyer-kit/",
         "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
+        "https://machinesignal.it/distribution/marketplace-submission-pack.json",
+        "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
         "https://machinesignal.it/distribution/api-directory-submission.json",
         "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
         "https://machinesignal.it/.well-known/machine-discovery.json"
@@ -39,8 +41,8 @@
       "status": "ready_next",
       "fit": "high",
       "why": "Strong API discovery surface; public workspaces help onboarding and search discovery.",
-      "publish": ["public workspace", "collection", "documentation", "examples"],
-      "next_action": "Publish public workspace and documentation."
+      "publish": ["public workspace", "collection", "documentation", "examples", "sandbox-only workspace draft"],
+      "next_action": "Use https://machinesignal.it/distribution/postman-public-workspace-draft.json and publish only after confirming no real key is exposed."
     },
     {
       "priority": 4,

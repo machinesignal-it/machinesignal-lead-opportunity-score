@@ -28,6 +28,8 @@ Public discovery starts here:
 - CRM/Agent Integration Simulator Readout: https://machinesignal.it/crm-agent-integration-simulator-readout.md
 - CRM/Agent Simulated Ledger JSON: https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 - Technical Distribution Pack: https://machinesignal.it/distribution/
+- Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
+- Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - Sandbox Buyer Kit: https://machinesignal.it/sandbox-buyer-kit/
 - Sandbox Buyer Kit JSON: https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json

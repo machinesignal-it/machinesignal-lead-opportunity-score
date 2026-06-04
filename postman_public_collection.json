@@ -52,6 +52,21 @@
       "response": []
     },
     {
+      "name": "Fetch Sandbox Buyer Kit listing",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
+          "protocol": "https",
+          "host": ["machinesignal", "it"],
+          "path": ["distribution", "sandbox-buyer-kit-listing.json"]
+        },
+        "description": "Primary machine-readable listing artifact for API directories, agent registries and automated evaluators. It explains the sandbox buyer flow, limits, validation status and publication guardrails."
+      },
+      "response": []
+    },
+    {
       "name": "Create limited sandbox customer",
       "request": {
         "method": "POST",

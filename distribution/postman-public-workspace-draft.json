@@ -1,0 +1,78 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-04",
+  "artifact_type": "postman_public_workspace_draft",
+  "status": "ready_for_public_workspace_setup",
+  "recommended_channel_priority": 1,
+  "workspace": {
+    "suggested_name": "MachineSignal Lead Opportunity Score API",
+    "suggested_visibility": "public",
+    "suggested_summary": "Machine-first lead opportunity scoring API for CRMs, AI agents and workflow automations.",
+    "suggested_description": "MachineSignal lets automated systems create a limited sandbox key, score business domains, request beta deliverables, simulate sandbox checkout and reconcile test credits without a human sales conversation. The public workspace is for sandbox evaluation only. It does not execute real payments, issue fiscal invoices or contact external targets."
+  },
+  "import_assets": {
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
+    "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
+    "sandbox_buyer_kit_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "llms": "https://machinesignal.it/llms.txt"
+  },
+  "environment_variables": [
+    {
+      "name": "base_url",
+      "initial_value": "https://machinesignal-api.beta-878.workers.dev",
+      "type": "public"
+    },
+    {
+      "name": "api_key",
+      "initial_value": "",
+      "type": "secret",
+      "note": "Set after POST /v1/sandbox/customers. Never publish a real key."
+    },
+    {
+      "name": "payment_test_id",
+      "initial_value": "",
+      "type": "temporary",
+      "note": "Set after POST /v1/payment-test/intents."
+    }
+  ],
+  "recommended_collection_order": [
+    "Fetch machine onboarding manifest",
+    "Fetch product catalog",
+    "Fetch distribution channel shortlist",
+    "Fetch Sandbox Buyer Kit listing",
+    "Create limited sandbox customer",
+    "Read onboarding with sandbox key",
+    "Score a domain",
+    "Create Deep Analysis purchase intent",
+    "Create Action Pack purchase intent",
+    "Create sandbox payment test intent",
+    "Read payment test reconciliation"
+  ],
+  "publication_copy": {
+    "headline": "Lead opportunity scoring API built for machine buyers.",
+    "one_liner": "Create a sandbox key, score leads, buy beta deliverables and simulate checkout without talking to sales.",
+    "short_pitch": "MachineSignal is a sandbox-callable API for automated lead scoring, target discovery and CRM-ready action payloads. It is designed for CRMs, AI agents and workflow systems that need structured decisions before spending enrichment, campaign or human review budget.",
+    "not_for": [
+      "Human cold email campaigns",
+      "Real payment checkout during beta",
+      "External outreach without customer-side approval"
+    ]
+  },
+  "acceptance_gates_before_public_visibility": [
+    "Postman collection imports without missing URLs.",
+    "Sandbox customer creation returns a key.",
+    "Score, purchase-intent and order retrieval work with the sandbox key.",
+    "Payment-test sandbox intent and reconciliation work.",
+    "Workspace text clearly says sandbox only and no real payments."
+  ],
+  "human_approval_required_for": [
+    "Making the workspace public if it exposes account-level settings.",
+    "Adding real API keys.",
+    "Claiming live paid checkout availability.",
+    "Publishing terms, pricing or legal commitments outside sandbox."
+  ]
+}

@@ -32,6 +32,8 @@
     "controlled_beta_gate_runner_json": "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json",
     "self_service_machine_buyer_sale_simulation": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md",
     "self_service_machine_buyer_sale_simulation_json": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json",
+    "marketplace_submission_pack": "https://machinesignal.it/distribution/marketplace-submission-pack.json",
+    "postman_public_workspace_draft": "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"

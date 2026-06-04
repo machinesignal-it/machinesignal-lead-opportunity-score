@@ -1,0 +1,121 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-04",
+  "artifact_type": "marketplace_submission_pack",
+  "status": "ready_for_sandbox_publication_drafts",
+  "primary_goal": "Make MachineSignal discoverable and testable by software, CRM systems, AI agents and API directories without relying on human cold email.",
+  "publication_policy": {
+    "mode": "sandbox_only",
+    "external_submission_allowed_without_owner_confirmation": false,
+    "real_payments_allowed": false,
+    "external_outreach_allowed": false,
+    "real_invoice_allowed": false,
+    "reason": "The current business test is machine-first and sandbox-only. Public listing drafts are allowed; irreversible external publication and monetized checkout need owner approval and legal/fiscal readiness."
+  },
+  "recommended_sequence": [
+    {
+      "rank": 1,
+      "channel": "Postman Public API Network",
+      "status": "ready_to_setup_public_workspace_draft",
+      "why_first": "A machine or developer tool can import the collection, read examples and run the sandbox path without real payment.",
+      "submission_asset": "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
+      "main_import_asset": "https://machinesignal.it/postman_public_collection.json"
+    },
+    {
+      "rank": 2,
+      "channel": "Own-domain API and agent discovery surfaces",
+      "status": "published_keep_current",
+      "why_first": "Canonical controlled source for crawlers, agents and software evaluators.",
+      "submission_asset": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
+      "main_import_asset": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json"
+    },
+    {
+      "rank": 3,
+      "channel": "RapidAPI style marketplace draft",
+      "status": "provider_ready_draft_do_not_monetize_yet",
+      "why_first": "Useful marketplace-style metadata, but monetized publication should wait for legal, fiscal and real-payment controls.",
+      "submission_asset": "https://machinesignal.it/distribution/rapidapi-listing.json",
+      "main_import_asset": "https://machinesignal.it/openapi.json"
+    },
+    {
+      "rank": 4,
+      "channel": "Generic API directories",
+      "status": "ready_to_submit_as_sandbox_listing",
+      "why_first": "Low-risk discovery surface for API crawlers and developer search.",
+      "submission_asset": "https://machinesignal.it/distribution/api-directory-submission.json",
+      "main_import_asset": "https://machinesignal.it/openapi.json"
+    },
+    {
+      "rank": 5,
+      "channel": "MCP and agent registries",
+      "status": "later_after_mcp_wrapper",
+      "why_first": "High relevance for AI agents, but should wait until the MCP wrapper is published and tested.",
+      "submission_asset": "https://machinesignal.it/mcp-tool-manifest.json",
+      "main_import_asset": "https://machinesignal.it/mcp-tool-manifest.json"
+    }
+  ],
+  "canonical_public_assets": {
+    "website": "https://machinesignal.it/",
+    "distribution_page": "https://machinesignal.it/distribution/",
+    "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
+    "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
+    "sandbox_buyer_kit_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "postman_public_workspace_draft": "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "readiness_dashboard": "https://machinesignal.it/readiness-dashboard/",
+    "latest_self_service_validation": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json",
+    "github": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score"
+  },
+  "machine_submission_summary": {
+    "api_name": "MachineSignal Lead Opportunity Score API",
+    "short_description": "Machine-first lead opportunity scoring API for CRMs, AI agents and workflow automations.",
+    "categories": [
+      "sales_intelligence",
+      "crm_automation",
+      "lead_scoring",
+      "revops",
+      "ai_agent_tools",
+      "workflow_automation"
+    ],
+    "tags": [
+      "lead-scoring",
+      "crm",
+      "revops",
+      "ai-agents",
+      "machine-customer",
+      "sales-intelligence",
+      "sandbox-api",
+      "openapi",
+      "postman"
+    ],
+    "base_url": "https://machinesignal-api.beta-878.workers.dev",
+    "auth": "X-API-Key for protected endpoints; Idempotency-Key for chargeable POST requests.",
+    "safe_sandbox_entrypoint": "POST /v1/sandbox/customers"
+  },
+  "test_path_for_external_machine": [
+    "GET https://machinesignal.it/distribution/marketplace-submission-pack.json",
+    "GET https://machinesignal.it/distribution/postman-public-workspace-draft.json",
+    "GET https://machinesignal.it/postman_public_collection.json",
+    "POST https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+    "GET https://machinesignal-api.beta-878.workers.dev/v1/onboarding",
+    "POST https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
+    "POST https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
+    "POST https://machinesignal-api.beta-878.workers.dev/v1/payment-test/intents with provider_mode sandbox",
+    "GET https://machinesignal-api.beta-878.workers.dev/v1/payment-test/reconciliation/{payment_test_id}"
+  ],
+  "latest_validation": {
+    "status": "passed",
+    "source": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json",
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false
+  },
+  "next_owner_decision": {
+    "question": "Approve creating or updating the public Postman workspace using this sandbox-only copy?",
+    "recommended_answer": "Yes, after verifying that no real API key is published."
+  }
+}
