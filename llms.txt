@@ -35,6 +35,8 @@ Useful endpoints:
 - GET https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json
 - GET https://machinesignal.it/machine_customer_e2e_live_test_report_20260604.md
 - GET https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json
+- GET https://machinesignal.it/controlled_beta_gate_runner_report_20260604.md
+- GET https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json
 - GET https://machinesignal.it/readiness-dashboard/
 - GET https://machinesignal.it/readiness-dashboard/readiness.json
 - GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -118,6 +120,8 @@ Public demos for software, agents and partners:
 - Payment test mode live validation JSON: https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json
 - Machine customer E2E live test: https://machinesignal.it/machine_customer_e2e_live_test_report_20260604.md
 - Machine customer E2E live test JSON: https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json
+- Controlled beta gate runner: https://machinesignal.it/controlled_beta_gate_runner_report_20260604.md
+- Controlled beta gate runner JSON: https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json
 - Readiness dashboard: https://machinesignal.it/readiness-dashboard/
 - Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
 - Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md

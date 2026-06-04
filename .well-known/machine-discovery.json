@@ -34,6 +34,8 @@
     "payment_test_mode_live_validation_json": "https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json",
     "machine_customer_e2e_live_test": "https://machinesignal.it/machine_customer_e2e_live_test_report_20260604.md",
     "machine_customer_e2e_live_test_json": "https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json",
+    "controlled_beta_gate_runner": "https://machinesignal.it/controlled_beta_gate_runner_report_20260604.md",
+    "controlled_beta_gate_runner_json": "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json",
     "readiness_dashboard": "https://machinesignal.it/readiness-dashboard/",
     "readiness_dashboard_json": "https://machinesignal.it/readiness-dashboard/readiness.json",
     "readiness_dashboard_markdown": "https://machinesignal.it/machine_readiness_dashboard_20260604.md",

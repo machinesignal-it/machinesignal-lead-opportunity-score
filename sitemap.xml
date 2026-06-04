@@ -70,6 +70,12 @@
     <loc>https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json</loc>
   </url>
   <url>
+    <loc>https://machinesignal.it/controlled_beta_gate_runner_report_20260604.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json</loc>
+  </url>
+  <url>
     <loc>https://machinesignal.it/readiness-dashboard/</loc>
   </url>
   <url>

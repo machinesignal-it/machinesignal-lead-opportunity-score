@@ -30,6 +30,7 @@ const controlledBeta = await readJson("controlled_beta_operational_readiness_sum
 const preMonetization = await readJson("pre_monetization_readiness_control_20260603.json");
 const paymentLive = await readJson("payment_test_mode_live_validation_summary_20260604.json");
 const machineE2E = await readJson("machine_customer_e2e_live_test_summary_20260604.json");
+const gateRunner = await readJson("controlled_beta_gate_runner_summary_20260604.json");
 
 const allControlledChecksOk =
   bool(controlledBeta.ok) &&
@@ -60,8 +61,21 @@ const paymentTestOk =
   bool(paymentLive.live_checks?.duplicate_webhook_no_double_credit) &&
   bool(paymentLive.live_checks?.reconciliation_ok) &&
   paymentLive.safety?.real_payment_executed === false &&
-  paymentLive.safety?.real_invoice_issued === false &&
-  paymentLive.safety?.live_provider_mode_allowed === false;
+    paymentLive.safety?.real_invoice_issued === false &&
+    paymentLive.safety?.live_provider_mode_allowed === false;
+
+const gateRunnerOk =
+  gateRunner.status === "passed" &&
+  bool(gateRunner.readiness_gate?.ok) &&
+  gateRunner.readiness_gate?.controlled_beta_status === "ready_for_controlled_beta" &&
+  gateRunner.readiness_gate?.real_payment_status === "blocked_for_real_payments" &&
+  gateRunner.safety?.real_payment_executed === false &&
+  gateRunner.safety?.external_contact_executed === false &&
+  gateRunner.safety?.real_invoice_issued === false &&
+  bool(gateRunner.admin_reports?.audit_reconciliation_ok) &&
+  Array.isArray(gateRunner.scenarios) &&
+  gateRunner.scenarios.length >= 2 &&
+  gateRunner.scenarios.every((scenario) => scenario.status === "passed");
 
 const realPaymentBlocked =
   preMonetization.ready_for_real_payments === false &&
@@ -75,7 +89,10 @@ const safetyOk =
   machineE2E.safety?.real_invoice_issued === false &&
   paymentLive.safety?.real_payment_executed === false &&
   paymentLive.safety?.external_contact_executed === false &&
-  paymentLive.safety?.real_invoice_issued === false;
+  paymentLive.safety?.real_invoice_issued === false &&
+  gateRunner.safety?.real_payment_executed === false &&
+  gateRunner.safety?.external_contact_executed === false &&
+  gateRunner.safety?.real_invoice_issued === false;
 
 const gates = [
   compactGate(
@@ -108,6 +125,13 @@ const gates = [
   ),
   compactGate(
     "G5",
+    "Controlled beta gate runner",
+    gateRunnerOk,
+    "Readiness gate controlled a two-scenario beta test across legal and solar/installation personas.",
+    "Orchestratore, Growth & Distribution, Scoring Optimizer"
+  ),
+  compactGate(
+    "G6",
     "Real payment readiness",
     !realPaymentBlocked,
     "Real payments remain blocked by fiscal, legal, privacy, provider, invoicing and refund controls.",
@@ -115,7 +139,7 @@ const gates = [
   )
 ];
 
-const controlledBetaReady = gates.slice(0, 4).every((gate) => gate.ok);
+const controlledBetaReady = gates.slice(0, 5).every((gate) => gate.ok);
 const realPaymentReady = gates.every((gate) => gate.ok) && preMonetization.ready_for_real_payments === true;
 
 const dashboard = {
@@ -143,15 +167,19 @@ const dashboard = {
     payment_test_credits_activated: paymentLive.live_checks?.credits_activated,
     payment_test_live_mode_blocked_http_status: paymentLive.live_checks?.live_mode_blocked_http_status,
     controlled_beta_audit_reconciliation_ok: controlledBeta.audit_summary?.reconciliation_ok,
-    controlled_beta_simulated_revenue_eur: controlledBeta.audit_summary?.simulated_revenue_eur
+    controlled_beta_simulated_revenue_eur: controlledBeta.audit_summary?.simulated_revenue_eur,
+    gate_runner_status: gateRunner.status,
+    gate_runner_scenarios_passed: gateRunner.scenarios.filter((scenario) => scenario.status === "passed").length,
+    gate_runner_order_count: gateRunner.admin_reports?.order_count,
+    gate_runner_simulated_revenue_eur: gateRunner.admin_reports?.simulated_revenue_eur
   },
   blockers_before_real_payment: preMonetization.non_negotiable_blockers,
   next_agent_actions: [
     {
       priority: 1,
-      action: "Run the same machine E2E test on two additional verticals or personas.",
+      action: "Use the gate runner as the default pre-check before any new controlled beta scenario.",
       owner_agent: "Growth & Distribution, Scoring Optimizer, Data Scout",
-      user_time_required: "none unless approval is requested"
+      user_time_required: "none"
     },
     {
       priority: 2,
@@ -174,7 +202,9 @@ const dashboard = {
     payment_test_live_validation:
       "https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json",
     machine_customer_e2e_live_test:
-      "https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json"
+      "https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json",
+    controlled_beta_gate_runner:
+      "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json"
   }
 };
 
@@ -210,6 +240,10 @@ ${dashboard.gates
 - Live payment mode blocked HTTP status: ${dashboard.latest_live_metrics.payment_test_live_mode_blocked_http_status}
 - Controlled beta audit reconciliation: ${dashboard.latest_live_metrics.controlled_beta_audit_reconciliation_ok}
 - Controlled beta simulated revenue EUR: ${dashboard.latest_live_metrics.controlled_beta_simulated_revenue_eur}
+- Gate runner status: ${dashboard.latest_live_metrics.gate_runner_status}
+- Gate runner scenarios passed: ${dashboard.latest_live_metrics.gate_runner_scenarios_passed}
+- Gate runner order count: ${dashboard.latest_live_metrics.gate_runner_order_count}
+- Gate runner simulated revenue EUR: ${dashboard.latest_live_metrics.gate_runner_simulated_revenue_eur}
 
 ## Human supervision
 
@@ -335,7 +369,7 @@ const html = `<!doctype html>
     }
     .summary {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
       margin: 20px 0;
     }
@@ -457,6 +491,7 @@ const html = `<!doctype html>
       <div class="metric"><span>Controlled beta</span><strong>${escapeHtml(displayStatus(dashboard.controlled_beta_status))}</strong></div>
       <div class="metric"><span>Real payment</span><strong>${escapeHtml(displayStatus(dashboard.real_payment_status))}</strong></div>
       <div class="metric"><span>Latest score</span><strong>${dashboard.latest_live_metrics.machine_e2e_score} - ${escapeHtml(displayDecision(dashboard.latest_live_metrics.machine_e2e_decision))}</strong></div>
+      <div class="metric"><span>Gate runner</span><strong>${dashboard.latest_live_metrics.gate_runner_scenarios_passed} scenarios passed</strong></div>
       <div class="metric"><span>Payment test</span><strong>${dashboard.latest_live_metrics.payment_test_credits_activated} credits activated</strong></div>
     </div>
 
@@ -486,6 +521,7 @@ const html = `<!doctype html>
       <a href="/machine_readiness_dashboard_20260604.json">JSON dashboard</a>
       <a href="/machine_readiness_dashboard_20260604.md">Markdown dashboard</a>
       <a href="/machine_customer_e2e_live_test_summary_20260604.json">Latest E2E JSON</a>
+      <a href="/controlled_beta_gate_runner_summary_20260604.json">Gate runner JSON</a>
       <a href="/payment_test_mode_live_validation_summary_20260604.json">Payment test JSON</a>
       <a href="/llms.txt">llms.txt</a>
     </section>

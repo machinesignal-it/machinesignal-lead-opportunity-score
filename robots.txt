@@ -25,6 +25,8 @@ Readiness-dashboard: https://machinesignal.it/readiness-dashboard/
 Readiness-dashboard-json: https://machinesignal.it/readiness-dashboard/readiness.json
 Readiness-dashboard-markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md
 Readiness-dashboard-root-json: https://machinesignal.it/machine_readiness_dashboard_20260604.json
+Controlled-beta-gate-runner: https://machinesignal.it/controlled_beta_gate_runner_report_20260604.md
+Controlled-beta-gate-runner-json: https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json
 CRM-agent-integration-simulator-readout: https://machinesignal.it/crm-agent-integration-simulator-readout.md
 CRM-agent-integration-simulated-ledger: https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 Integration-example-existing-list: https://machinesignal.it/examples/integration_existing_list_score_request.json

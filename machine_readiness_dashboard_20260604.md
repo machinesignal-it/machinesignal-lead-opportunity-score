@@ -20,7 +20,8 @@ It is not ready for real payments. Real checkout stays blocked until fiscal, leg
 - G2 Machine customer E2E flow: pass. Machine completed no-list discovery, scoring, deep analysis, action pack, payment test, reconciliation and admin reports.
 - G3 Payment test mode: pass. Live mode blocked, test webhook accepted, duplicate webhook did not double-credit, no real invoice.
 - G4 Machine-first safety: pass. No external contact, no real payment, no real invoice in all latest live tests.
-- G5 Real payment readiness: fail. Real payments remain blocked by fiscal, legal, privacy, provider, invoicing and refund controls.
+- G5 Controlled beta gate runner: pass. Readiness gate controlled a two-scenario beta test across legal and solar/installation personas.
+- G6 Real payment readiness: fail. Real payments remain blocked by fiscal, legal, privacy, provider, invoicing and refund controls.
 
 ## Latest live metrics
 
@@ -32,6 +33,10 @@ It is not ready for real payments. Real checkout stays blocked until fiscal, leg
 - Live payment mode blocked HTTP status: 400
 - Controlled beta audit reconciliation: true
 - Controlled beta simulated revenue EUR: 169.05
+- Gate runner status: passed
+- Gate runner scenarios passed: 2
+- Gate runner order count: 6
+- Gate runner simulated revenue EUR: 336.1
 
 ## Human supervision
 
@@ -39,7 +44,7 @@ No technical action required today unless you want to approve the next controlle
 
 ## Next agent actions
 
-- P1: Run the same machine E2E test on two additional verticals or personas. Owner: Growth & Distribution, Scoring Optimizer, Data Scout. User time: none unless approval is requested.
+- P1: Use the gate runner as the default pre-check before any new controlled beta scenario. Owner: Growth & Distribution, Scoring Optimizer, Data Scout. User time: none.
 - P2: Keep payment mode locked to test/sandbox and monitor admin payment-test reports. Owner: Billing & Payment Ops Agent, Admin & Finance Controller. User time: none.
 - P3: Prepare legal, fiscal and invoicing checklist for real payments, but do not enable checkout. Owner: Legal & Compliance Agent, Admin & Finance Controller. User time: approval only.
 

@@ -1,0 +1,133 @@
+{
+    "service":  "MachineSignal",
+    "report_type":  "controlled_beta_gate_runner",
+    "generated_at":  "2026-06-04T10:02:12.9161550Z",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "readiness_url":  "https://machinesignal.it/readiness-dashboard/readiness.json",
+    "status":  "passed",
+    "customer_id":  "controlled_beta_gate_20260604120212",
+    "primary_customer_interface":  "machine",
+    "safety":  {
+                   "real_payment_executed":  false,
+                   "external_contact_executed":  false,
+                   "real_invoice_issued":  false
+               },
+    "readiness_gate":  {
+                           "ok":  true,
+                           "status":  "passed",
+                           "controlled_beta_status":  "ready_for_controlled_beta",
+                           "real_payment_status":  "blocked_for_real_payments",
+                           "real_payment_enabled":  false,
+                           "external_contact_enabled":  false,
+                           "recommendation":  "proceed_with_controlled_beta_without_real_payments",
+                           "gate_count":  5
+                       },
+    "scenarios":  [
+                      {
+                          "id":  "legal_crm_agent",
+                          "machine_persona":  "CRM prioritization agent",
+                          "market":  "studi legali",
+                          "area":  "Milano e Lombardia",
+                          "domain":  "studiolegale-rossi.it",
+                          "status":  "passed",
+                          "target_discovery":  {
+                                                   "ok":  true,
+                                                   "order_intent_id":  "ord_ac6e5654",
+                                                   "delivery_type":  "target_discovery_precheck",
+                                                   "sample_targets":  3,
+                                                   "real_payment_executed":  false,
+                                                   "external_contact_executed":  false
+                                               },
+                          "score":  {
+                                        "ok":  true,
+                                        "opportunity_score":  78,
+                                        "confidence":  0.66,
+                                        "decision":  "buy_deep_analysis",
+                                        "commercial_strength_level":  "medium",
+                                        "spend_policy":  "buy_low_or_mid_cost_next_step_only",
+                                        "next_product":  "deep_analysis",
+                                        "credits_remaining":  3
+                                    },
+                          "deep_analysis":  {
+                                                "ok":  true,
+                                                "order_intent_id":  "ord_7b55e966",
+                                                "delivery_type":  "deep_opportunity_analysis",
+                                                "next_product":  "action_pack",
+                                                "real_payment_executed":  false
+                                            },
+                          "action_pack":  {
+                                              "ok":  true,
+                                              "order_intent_id":  "ord_d0fbe9c5",
+                                              "delivery_type":  "action_pack",
+                                              "webhook_event_type":  "machinesignal.action_pack.ready",
+                                              "approval_gate_default_state":  "blocked",
+                                              "external_contact_executed":  false
+                                          },
+                          "safety":  {
+                                         "real_payment_executed":  false,
+                                         "external_contact_executed":  false
+                                     }
+                      },
+                      {
+                          "id":  "solar_installer_agent",
+                          "machine_persona":  "Market discovery agent",
+                          "market":  "fotovoltaico e impianti",
+                          "area":  "Lombardia",
+                          "domain":  "edilsolare.it",
+                          "status":  "passed",
+                          "target_discovery":  {
+                                                   "ok":  true,
+                                                   "order_intent_id":  "ord_40ba7503",
+                                                   "delivery_type":  "target_discovery_precheck",
+                                                   "sample_targets":  3,
+                                                   "real_payment_executed":  false,
+                                                   "external_contact_executed":  false
+                                               },
+                          "score":  {
+                                        "ok":  true,
+                                        "opportunity_score":  76,
+                                        "confidence":  0.86,
+                                        "decision":  "buy_deep_analysis",
+                                        "commercial_strength_level":  "medium",
+                                        "spend_policy":  "buy_low_or_mid_cost_next_step_only",
+                                        "next_product":  "deep_analysis",
+                                        "credits_remaining":  2
+                                    },
+                          "deep_analysis":  {
+                                                "ok":  true,
+                                                "order_intent_id":  "ord_b07a4b83",
+                                                "delivery_type":  "deep_opportunity_analysis",
+                                                "next_product":  "action_pack",
+                                                "real_payment_executed":  false
+                                            },
+                          "action_pack":  {
+                                              "ok":  true,
+                                              "order_intent_id":  "ord_4c649258",
+                                              "delivery_type":  "action_pack",
+                                              "webhook_event_type":  "machinesignal.action_pack.ready",
+                                              "approval_gate_default_state":  "blocked",
+                                              "external_contact_executed":  false
+                                          },
+                          "safety":  {
+                                         "real_payment_executed":  false,
+                                         "external_contact_executed":  false
+                                     }
+                      }
+                  ],
+    "admin_reports":  {
+                          "order_count":  6,
+                          "products":  [
+                                           "action_pack",
+                                           "deep_analysis",
+                                           "target_discovery",
+                                           "action_pack",
+                                           "deep_analysis",
+                                           "target_discovery"
+                                       ],
+                          "audit_reconciliation_ok":  true,
+                          "simulated_revenue_eur":  336.1
+                      },
+    "cleanup":  {
+                    "customer_closed":  true
+                }
+}

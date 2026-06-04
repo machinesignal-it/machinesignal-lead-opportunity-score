@@ -27,7 +27,9 @@
     "payment_test_reconciliation": "/v1/payment-test/reconciliation/{payment_test_id}",
     "payment_test_report": "/v1/admin/payment-test-report?customer_id=<customer_id>",
     "readiness_dashboard": "https://machinesignal.it/readiness-dashboard/",
-    "readiness_dashboard_json": "https://machinesignal.it/readiness-dashboard/readiness.json"
+    "readiness_dashboard_json": "https://machinesignal.it/readiness-dashboard/readiness.json",
+    "controlled_beta_gate_runner": "https://machinesignal.it/controlled_beta_gate_runner_report_20260604.md",
+    "controlled_beta_gate_runner_json": "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json"
   },
   "authentication": {
     "type": "apiKey",

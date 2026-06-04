@@ -56,7 +56,7 @@
     }
     .summary {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
       margin: 20px 0;
     }
@@ -178,6 +178,7 @@
       <div class="metric"><span>Controlled beta</span><strong>Ready</strong></div>
       <div class="metric"><span>Real payment</span><strong>Blocked</strong></div>
       <div class="metric"><span>Latest score</span><strong>81 - Buy deep analysis</strong></div>
+      <div class="metric"><span>Gate runner</span><strong>2 scenarios passed</strong></div>
       <div class="metric"><span>Payment test</span><strong>1000 credits activated</strong></div>
     </div>
 
@@ -216,6 +217,12 @@
       <td>Security &amp; Abuse Guard Agent</td>
     </tr><tr>
       <td>G5</td>
+      <td>Controlled beta gate runner</td>
+      <td><span class="status pass">pass</span></td>
+      <td>Readiness gate controlled a two-scenario beta test across legal and solar/installation personas.</td>
+      <td>Orchestratore, Growth &amp; Distribution, Scoring Optimizer</td>
+    </tr><tr>
+      <td>G6</td>
       <td>Real payment readiness</td>
       <td><span class="status block">fail</span></td>
       <td>Real payments remain blocked by fiscal, legal, privacy, provider, invoicing and refund controls.</td>
@@ -230,9 +237,9 @@
         <thead><tr><th>Priority</th><th>Action</th><th>Owner</th><th>User time</th></tr></thead>
         <tbody><tr>
       <td>1</td>
-      <td>Run the same machine E2E test on two additional verticals or personas.</td>
+      <td>Use the gate runner as the default pre-check before any new controlled beta scenario.</td>
       <td>Growth &amp; Distribution, Scoring Optimizer, Data Scout</td>
-      <td>none unless approval is requested</td>
+      <td>none</td>
     </tr><tr>
       <td>2</td>
       <td>Keep payment mode locked to test/sandbox and monitor admin payment-test reports.</td>
@@ -252,6 +259,7 @@
       <a href="/machine_readiness_dashboard_20260604.json">JSON dashboard</a>
       <a href="/machine_readiness_dashboard_20260604.md">Markdown dashboard</a>
       <a href="/machine_customer_e2e_live_test_summary_20260604.json">Latest E2E JSON</a>
+      <a href="/controlled_beta_gate_runner_summary_20260604.json">Gate runner JSON</a>
       <a href="/payment_test_mode_live_validation_summary_20260604.json">Payment test JSON</a>
       <a href="/llms.txt">llms.txt</a>
     </section>

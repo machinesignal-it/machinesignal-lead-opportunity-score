@@ -1,7 +1,7 @@
 {
   "service": "MachineSignal",
   "report_type": "machine_readiness_dashboard",
-  "generated_at": "2026-06-04T09:38:47.955Z",
+  "generated_at": "2026-06-04T10:05:33.275Z",
   "primary_customer_interface": "machine",
   "overall_recommendation": "proceed_with_controlled_beta_without_real_payments",
   "controlled_beta_status": "ready_for_controlled_beta",
@@ -45,6 +45,14 @@
     },
     {
       "id": "G5",
+      "label": "Controlled beta gate runner",
+      "status": "pass",
+      "ok": true,
+      "evidence": "Readiness gate controlled a two-scenario beta test across legal and solar/installation personas.",
+      "owner_agent": "Orchestratore, Growth & Distribution, Scoring Optimizer"
+    },
+    {
+      "id": "G6",
       "label": "Real payment readiness",
       "status": "fail",
       "ok": false,
@@ -60,7 +68,11 @@
     "payment_test_credits_activated": 1000,
     "payment_test_live_mode_blocked_http_status": 400,
     "controlled_beta_audit_reconciliation_ok": true,
-    "controlled_beta_simulated_revenue_eur": 169.05
+    "controlled_beta_simulated_revenue_eur": 169.05,
+    "gate_runner_status": "passed",
+    "gate_runner_scenarios_passed": 2,
+    "gate_runner_order_count": 6,
+    "gate_runner_simulated_revenue_eur": 336.1
   },
   "blockers_before_real_payment": [
     "Fiscal setup approved",
@@ -74,9 +86,9 @@
   "next_agent_actions": [
     {
       "priority": 1,
-      "action": "Run the same machine E2E test on two additional verticals or personas.",
+      "action": "Use the gate runner as the default pre-check before any new controlled beta scenario.",
       "owner_agent": "Growth & Distribution, Scoring Optimizer, Data Scout",
-      "user_time_required": "none unless approval is requested"
+      "user_time_required": "none"
     },
     {
       "priority": 2,
@@ -95,6 +107,7 @@
     "controlled_beta_operational_readiness": "https://machinesignal.it/controlled_beta_operational_readiness_summary_20260603.json",
     "pre_monetization_readiness": "https://machinesignal.it/pre_monetization_readiness_control_20260603.json",
     "payment_test_live_validation": "https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json",
-    "machine_customer_e2e_live_test": "https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json"
+    "machine_customer_e2e_live_test": "https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json",
+    "controlled_beta_gate_runner": "https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json"
   }
 }
