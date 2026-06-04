@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "version": "2026-06-03",
+  "version": "2026-06-04",
   "submission_type": "api_directory_listing",
   "short_description": "Machine-first lead opportunity scoring API for CRM systems, RevOps workflows and AI agents.",
   "long_description": "MachineSignal helps automated systems decide whether a business domain deserves more analysis, enrichment or CRM action. The API returns a score, confidence, decision and next machine action. A machine can create a limited sandbox key, run valid scores, test Deep Analysis and test Action Pack without a human sales conversation.",
@@ -30,6 +30,8 @@
   "urls": {
     "website": "https://machinesignal.it/",
     "distribution_page": "https://machinesignal.it/distribution/",
+    "mcp_wrapper": "https://machinesignal.it/mcp/",
+    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
     "machine_discovery_pack": "https://machinesignal.it/machine-discovery/",
     "machine_discovery_pack_json": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
     "dentists_beta_machine_buyer_pack": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
@@ -49,6 +51,7 @@
     "self_service_sale_validation_json": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json"
   },
   "sandbox_test_path": [
+    "GET /mcp/machinesignal-mcp-wrapper.json",
     "GET /machine-api-sandbox-test/machine-api-sandbox-test.json",
     "GET /machine-onboarding.json",
     "GET /product-catalog.json",

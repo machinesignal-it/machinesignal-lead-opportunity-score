@@ -142,6 +142,7 @@ try {
         "Fetch product catalog",
         "Fetch distribution channel shortlist",
         "Fetch Sandbox Buyer Kit listing",
+        "Fetch MCP Wrapper Pack",
         "Create limited sandbox customer",
         "Read authenticated onboarding",
         "Score business domain",

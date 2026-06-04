@@ -5,6 +5,8 @@ Sitemap: https://machinesignal.it/sitemap.xml
 
 AI-agent-discovery: https://machinesignal.it/llms.txt
 Integration-ready: https://machinesignal.it/integration-ready/
+MCP-wrapper: https://machinesignal.it/mcp/
+MCP-wrapper-pack: https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json
 MCP-tool-manifest: https://machinesignal.it/mcp-tool-manifest.json
 Well-known-MCP-tool-manifest: https://machinesignal.it/.well-known/mcp-tool-manifest.json
 Machine-discovery-pack: https://machinesignal.it/machine-discovery/machine-discovery-pack.json

@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "version": "2026-06-03",
+  "version": "2026-06-04",
   "submission_type": "rapidapi_provider_listing",
   "status": "provider_ready_draft",
   "publication_gate": "Prepare now; publish monetized listing after sandbox metrics, abuse limits and terms are confirmed.",
@@ -49,6 +49,8 @@
     "GET /v1/usage",
     "POST /v1/lead-opportunity-score",
     "POST /v1/purchase-intent",
+    "POST /v1/payment-test/intents",
+    "GET /v1/payment-test/reconciliation/{payment_test_id}",
     "GET /v1/orders",
     "GET /v1/orders/{order_intent_id}"
   ],
@@ -104,6 +106,7 @@
     }
   ],
   "sandbox_test_path": [
+    "GET /mcp/machinesignal-mcp-wrapper.json",
     "GET /machine-api-sandbox-test/machine-api-sandbox-test.json",
     "GET /machine-onboarding.json",
     "GET /product-catalog.json",
@@ -112,6 +115,8 @@
     "POST /v1/lead-opportunity-score",
     "POST /v1/purchase-intent with product_code deep_analysis when recommended",
     "POST /v1/purchase-intent with product_code action_pack when useful",
+    "POST /v1/payment-test/intents with provider_mode sandbox",
+    "GET /v1/payment-test/reconciliation/{payment_test_id}",
     "GET /v1/orders"
   ],
   "example_request": {
@@ -143,6 +148,8 @@
     "api_directory_json": "https://machinesignal.it/distribution/api-directory-submission.json",
     "openapi": "https://machinesignal.it/openapi.json",
     "llms": "https://machinesignal.it/llms.txt",
+    "mcp_wrapper": "https://machinesignal.it/mcp/",
+    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
     "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
     "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",

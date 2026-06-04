@@ -16,6 +16,8 @@
         "https://machinesignal.it/product-catalog.json",
         "https://machinesignal.it/machine-onboarding.json",
         "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+        "https://machinesignal.it/mcp/",
+        "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
         "https://machinesignal.it/sandbox-buyer-kit/",
         "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
         "https://machinesignal.it/machine-api-sandbox-test/",
@@ -67,20 +69,20 @@
     {
       "priority": 6,
       "name": "Smithery",
-      "status": "later_after_mcp",
+      "status": "metadata_ready_hosted_server_not_live",
       "fit": "high_after_mcp",
-      "why": "Relevant for agent/tool discovery, but expects an MCP server URL.",
-      "publish": ["MCP server listing"],
-      "next_action": "Build MCP wrapper before listing."
+      "why": "Relevant for agent/tool discovery; current asset is a local stdio adapter plus wrapper pack, while a hosted MCP server is not live.",
+      "publish": ["MCP wrapper pack", "tool manifest", "local adapter repo"],
+      "next_action": "Validate the wrapper pack, then decide whether a hosted MCP endpoint is needed for listing."
     },
     {
       "priority": 7,
       "name": "Glama MCP registry",
-      "status": "later_after_mcp",
+      "status": "metadata_ready_hosted_server_not_live",
       "fit": "high_after_mcp",
       "why": "Large MCP registry/discovery surface.",
-      "publish": ["MCP server metadata"],
-      "next_action": "Build MCP wrapper before listing."
+      "publish": ["MCP wrapper pack", "tool manifest", "local adapter repo"],
+      "next_action": "Validate whether local stdio adapter listings are accepted or whether hosted MCP is required."
     },
     {
       "priority": 8,
@@ -94,17 +96,17 @@
     {
       "priority": 9,
       "name": "MCPDrop",
-      "status": "later_after_mcp",
+      "status": "metadata_ready_hosted_server_not_live",
       "fit": "medium_after_mcp",
       "why": "MCP directory, useful after tool wrapper exists.",
-      "publish": ["MCP server listing"],
-      "next_action": "Build MCP wrapper before listing."
+      "publish": ["MCP wrapper pack", "tool manifest", "local adapter repo"],
+      "next_action": "Prepare sandbox-only listing draft after validation."
     }
   ],
   "recommended_next_steps": [
     "Publish and polish Postman public workspace.",
     "Prepare RapidAPI listing fields from API_DIRECTORY_SUBMISSION.md.",
     "Keep GitHub and own domain as canonical source of truth.",
-    "Add a future MCP wrapper only after REST sandbox metrics show real usage."
+    "Validate the public MCP wrapper pack and prepare sandbox-only MCP directory drafts."
   ]
 }

@@ -9,11 +9,17 @@ Canonical manifest:
 - `https://machinesignal.it/mcp-tool-manifest.json`
 - `https://machinesignal.it/.well-known/mcp-tool-manifest.json`
 
+Canonical wrapper pack:
+
+- `https://machinesignal.it/mcp/`
+- `https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json`
+
 Source of truth:
 
 - OpenAPI: `https://machinesignal.it/openapi.json`
 - llms.txt: `https://machinesignal.it/llms.txt`
 - Product catalog: `https://machinesignal.it/product-catalog.json`
+- Direct sandbox test contract: `https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json`
 - Machine client installation pack: `https://machinesignal.it/mcp-machine-client-installation-pack.json`
 - Integration partner pack: `https://machinesignal.it/integration-partner-pack.json`
 
@@ -55,6 +61,14 @@ Reads the machine buyer flow and guardrails.
 HTTP mapping:
 
 `GET https://machinesignal.it/machine-onboarding.json`
+
+### get_machine_api_sandbox_test
+
+Reads the canonical direct sandbox test path for CRMs, AI agents and automated workflows.
+
+HTTP mapping:
+
+`GET https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json`
 
 ### get_dentists_beta_pack
 
@@ -161,6 +175,34 @@ HTTP mapping:
 
 `GET https://machinesignal-api.beta-878.workers.dev/v1/usage`
 
+### create_payment_test_intent
+
+Creates a simulated test-mode checkout object. This is for sandbox validation only and does not execute a real payment.
+
+HTTP mapping:
+
+`POST https://machinesignal-api.beta-878.workers.dev/v1/payment-test/intents`
+
+Required:
+
+`Idempotency-Key: <stable_payment_test_key>`
+
+### get_payment_test_intent
+
+Reads one simulated payment-test intent.
+
+HTTP mapping:
+
+`GET https://machinesignal-api.beta-878.workers.dev/v1/payment-test/intents/{payment_test_id}`
+
+### get_payment_test_reconciliation
+
+Verifies that a simulated payment test did not execute a live payment, did not activate duplicate credits and did not issue a fiscal invoice.
+
+HTTP mapping:
+
+`GET https://machinesignal-api.beta-878.workers.dev/v1/payment-test/reconciliation/{payment_test_id}`
+
 ## Admin Tool
 
 ### get_admin_sandbox_metrics
@@ -174,6 +216,7 @@ HTTP mapping:
 ## Safety Rules
 
 - The beta does not execute real payment.
+- Payment-test tools are simulated and do not issue fiscal invoices.
 - The beta does not contact external targets.
 - Action Pack does not send email.
 - External actions require the customer machine's compliance gate.

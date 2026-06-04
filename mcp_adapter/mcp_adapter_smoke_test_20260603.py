@@ -159,7 +159,7 @@ def run() -> dict[str, Any]:
             {
                 "protocolVersion": "2024-11-05",
                 "capabilities": {},
-                "clientInfo": {"name": "machinesignal-mcp-smoke-test", "version": "2026-06-03"},
+                "clientInfo": {"name": "machinesignal-mcp-smoke-test", "version": "2026-06-04"},
             },
         )
         check("mcp_initialize", init.get("serverInfo", {}).get("name") == "machinesignal-local-mcp-adapter", str(init.get("serverInfo")))
@@ -171,6 +171,7 @@ def run() -> dict[str, Any]:
         required_tools = {
             "get_product_catalog",
             "get_machine_onboarding",
+            "get_machine_api_sandbox_test",
             "get_dentists_beta_pack",
             "create_sandbox_customer",
             "get_customer_onboarding",
@@ -179,6 +180,9 @@ def run() -> dict[str, Any]:
             "list_orders",
             "get_order",
             "get_usage",
+            "create_payment_test_intent",
+            "get_payment_test_intent",
+            "get_payment_test_reconciliation",
         }
         check("mcp_tools_list", required_tools.issubset(tool_names), f"{len(tools)} tools")
 
@@ -189,6 +193,10 @@ def run() -> dict[str, Any]:
         onboarding = client.call_tool("get_machine_onboarding")
         record_tool("get_machine_onboarding", onboarding)
         check("tool_get_machine_onboarding", onboarding.get("ok") is True, f"HTTP {onboarding.get('http_status')}")
+
+        sandbox_test = client.call_tool("get_machine_api_sandbox_test")
+        record_tool("get_machine_api_sandbox_test", sandbox_test)
+        check("tool_get_machine_api_sandbox_test", sandbox_test.get("ok") is True, f"HTTP {sandbox_test.get('http_status')}")
 
         dentists_pack = client.call_tool("get_dentists_beta_pack")
         record_tool("get_dentists_beta_pack", dentists_pack)

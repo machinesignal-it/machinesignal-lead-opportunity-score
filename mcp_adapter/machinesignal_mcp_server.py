@@ -54,7 +54,7 @@ def request_payload(
 ) -> tuple[int, Any]:
     headers = {
         "Accept": "application/json,text/plain,*/*",
-        "User-Agent": "MachineSignalLocalMcpAdapter/2026-06-03",
+        "User-Agent": "MachineSignalLocalMcpAdapter/2026-06-04",
     }
     body = None
     method_upper = method.upper()
@@ -75,7 +75,8 @@ def request_payload(
     try:
         with urllib.request.urlopen(req, timeout=timeout) as response:
             raw = response.read().decode("utf-8", errors="replace")
-            return int(response.status), parse_payload(raw)
+            status = getattr(response, "status", None) or getattr(response, "code", None) or 200
+            return int(status), parse_payload(raw)
     except urllib.error.HTTPError as exc:
         raw = exc.read().decode("utf-8", errors="replace")
         return int(exc.code), parse_payload(raw)
@@ -144,7 +145,7 @@ class MachineSignalMcpAdapter:
             "capabilities": {"tools": {}},
             "serverInfo": {
                 "name": "machinesignal-local-mcp-adapter",
-                "version": "2026-06-03",
+                "version": "2026-06-04",
             },
             "instructions": (
                 "MachineSignal local MCP adapter. Create a sandbox customer first, "

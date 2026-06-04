@@ -201,7 +201,7 @@ class MachineBuyerAgent:
                 {
                     "protocolVersion": "2024-11-05",
                     "capabilities": {},
-                    "clientInfo": {"name": "machinesignal-machine-buyer-agent", "version": "2026-06-03"},
+                    "clientInfo": {"name": "machinesignal-machine-buyer-agent", "version": "2026-06-04"},
                 },
             )
             self.check("initialize", safe_get(init, "serverInfo", "name") == "machinesignal-local-mcp-adapter", str(init.get("serverInfo")))
@@ -212,12 +212,15 @@ class MachineBuyerAgent:
             required = {
                 "get_product_catalog",
                 "get_machine_onboarding",
+                "get_machine_api_sandbox_test",
                 "create_sandbox_customer",
                 "get_customer_onboarding",
                 "create_purchase_intent",
                 "score_lead_opportunity",
                 "list_orders",
                 "get_usage",
+                "create_payment_test_intent",
+                "get_payment_test_reconciliation",
             }
             self.check("tools_available", required.issubset(tool_names), f"{len(tools)} tools listed")
 
@@ -226,6 +229,9 @@ class MachineBuyerAgent:
 
             onboarding = self.call_tool("get_machine_onboarding")
             self.check("onboarding_read", onboarding.get("ok") is True, f"HTTP {onboarding.get('http_status')}")
+
+            sandbox_test = self.call_tool("get_machine_api_sandbox_test")
+            self.check("machine_api_sandbox_test_read", sandbox_test.get("ok") is True, f"HTTP {sandbox_test.get('http_status')}")
 
             self.decide(
                 "start_with_sandbox",

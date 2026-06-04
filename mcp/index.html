@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MachineSignal MCP Wrapper</title>
+  <meta name="description" content="MachineSignal MCP-style wrapper pack for CRMs, AI agents and automated workflows.">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #0e1b2f;
+      --muted: #53637c;
+      --line: #d8e0ea;
+      --panel: #f6f8fb;
+      --accent: #00856f;
+      --accent-2: #174b7a;
+      --gold: #bd7a14;
+      --dark: #0f1726;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.55;
+    }
+
+    a {
+      color: #075c9f;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    header {
+      background: var(--dark);
+      color: var(--white);
+      padding: 26px 24px 58px;
+    }
+
+    nav {
+      max-width: 1120px;
+      margin: 0 auto 52px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 18px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      border-bottom-color: var(--white);
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+      gap: 42px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      color: #93f1d7;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 46px;
+      line-height: 1.08;
+      letter-spacing: 0;
+      max-width: 760px;
+    }
+
+    .lead {
+      margin: 20px 0 0;
+      font-size: 18px;
+      color: #d9e5f2;
+      max-width: 720px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: 7px;
+      border: 1px solid #ffffff4f;
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .button.primary {
+      background: #e8fff7;
+      color: #006350;
+      border-color: #e8fff7;
+    }
+
+    .status-panel {
+      border: 1px solid #ffffff38;
+      background: #182437;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .status-panel h2 {
+      font-size: 18px;
+      margin: 0 0 16px;
+      color: var(--white);
+    }
+
+    .status-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid #ffffff26;
+      padding-top: 12px;
+      color: #dce8f5;
+    }
+
+    .status-row strong {
+      color: var(--white);
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 24px 64px;
+    }
+
+    section {
+      padding: 34px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    section:last-child {
+      border-bottom: 0;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 28px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 18px;
+      min-height: 150px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .flow {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .flow th,
+    .flow td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .flow th {
+      background: #edf3f9;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: #40506a;
+    }
+
+    .flow tr:last-child td {
+      border-bottom: 0;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      background: #eef4f8;
+      border: 1px solid #d9e5ed;
+      border-radius: 5px;
+      padding: 2px 5px;
+      word-break: break-word;
+    }
+
+    .callout {
+      border-left: 5px solid var(--accent);
+      background: #f0fbf7;
+      padding: 18px 20px;
+      border-radius: 0 8px 8px 0;
+      color: #193c36;
+    }
+
+    .tool-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tool-list li {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 10px 12px;
+      background: #ffffff;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #f4f7fa;
+      color: var(--muted);
+      padding: 26px 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    footer div {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 820px) {
+      header {
+        padding: 24px 16px 44px;
+      }
+
+      nav,
+      .hero {
+        display: block;
+      }
+
+      nav ul {
+        margin-top: 16px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .status-panel {
+        margin-top: 28px;
+      }
+
+      main {
+        padding: 30px 16px 48px;
+      }
+
+      .grid,
+      .tool-list {
+        grid-template-columns: 1fr;
+      }
+
+      .flow,
+      .flow thead,
+      .flow tbody,
+      .flow tr,
+      .flow th,
+      .flow td {
+        display: block;
+      }
+
+      .flow thead {
+        display: none;
+      }
+
+      .flow tr {
+        border-bottom: 1px solid var(--line);
+        padding: 12px 14px;
+      }
+
+      .flow td {
+        border-bottom: 0;
+        padding: 6px 0;
+      }
+
+      .flow td::before {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        color: #40506a;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+      }
+
+      .flow td:nth-child(1)::before {
+        content: "Step";
+      }
+
+      .flow td:nth-child(2)::before {
+        content: "Machine action";
+      }
+
+      .flow td:nth-child(3)::before {
+        content: "Call";
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Primary">
+      <div class="brand">MachineSignal</div>
+      <ul>
+        <li><a href="/machine-api-sandbox-test/">Sandbox Test</a></li>
+        <li><a href="/mcp-tool-manifest.json">Tool Manifest</a></li>
+        <li><a href="/distribution/">Distribution</a></li>
+      </ul>
+    </nav>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">MCP Wrapper Pack</p>
+        <h1>Expose MachineSignal as tools for CRMs, AI agents and automated workflows.</h1>
+        <p class="lead">MachineSignal currently provides a local stdio MCP-style adapter and a public tool manifest. A buyer machine can read the pack, start the adapter, create a sandbox key and test scoring, orders and payment-test reconciliation without human sales contact.</p>
+        <div class="actions">
+          <a class="button primary" href="/mcp/machinesignal-mcp-wrapper.json">Open wrapper JSON</a>
+          <a class="button" href="/mcp-tool-manifest.json">Open tool manifest</a>
+          <a class="button" href="https://github.com/machinesignal-it/machinesignal-lead-opportunity-score/tree/main/mcp_adapter">Open adapter repo</a>
+        </div>
+      </div>
+      <aside class="status-panel" aria-label="MCP status">
+        <h2>Status</h2>
+        <div class="status-grid">
+          <div class="status-row"><span>Hosted MCP</span><strong>Not live</strong></div>
+          <div class="status-row"><span>Local adapter</span><strong>Available</strong></div>
+          <div class="status-row"><span>Transport</span><strong>stdio JSON-RPC</strong></div>
+          <div class="status-row"><span>Sales contact</span><strong>Not required for sandbox</strong></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>What This Gives A Machine</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Tool discovery</h3>
+          <p>The machine reads a public tool manifest and sees exact callable tool names, inputs, auth rules and guardrails.</p>
+        </article>
+        <article class="card">
+          <h3>Sandbox execution</h3>
+          <p>The machine creates a limited sandbox customer, tests lead scoring and retrieves orders without a human email flow.</p>
+        </article>
+        <article class="card">
+          <h3>Payment safety</h3>
+          <p>The machine can create and reconcile test-mode payment intents while real payment and fiscal invoice remain blocked.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Machine Installation Flow</h2>
+      <table class="flow">
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Machine action</th>
+            <th>Call</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Read the MCP wrapper pack.</td>
+            <td><code>GET /mcp/machinesignal-mcp-wrapper.json</code></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Read the tool manifest.</td>
+            <td><code>GET /mcp-tool-manifest.json</code></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Clone and start the local adapter.</td>
+            <td><code>python mcp_adapter/machinesignal_mcp_server.py</code></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Validate without consuming credits.</td>
+            <td><code>python mcp_adapter/validate_machine_client_installation_20260603.py</code></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Run the sandbox buyer-machine test.</td>
+            <td><code>python mcp_adapter/machine_buyer_agent_runner_20260603.py</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Core Tools</h2>
+      <ul class="tool-list">
+        <li>get_product_catalog</li>
+        <li>get_machine_onboarding</li>
+        <li>get_machine_api_sandbox_test</li>
+        <li>create_sandbox_customer</li>
+        <li>score_lead_opportunity</li>
+        <li>create_purchase_intent</li>
+        <li>create_payment_test_intent</li>
+        <li>get_payment_test_reconciliation</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Guardrails</h2>
+      <div class="callout">
+        Real payment, fiscal invoice and external contact are not executed in beta. The wrapper is designed for machine evaluation, CRM integration and controlled sandbox testing. Humans supervise and approve irreversible publication or live payment activation.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      MachineSignal MCP Wrapper Pack - <a href="/llms.txt">llms.txt</a> - <a href="/openapi.json">OpenAPI</a> - <a href="/machine-onboarding.json">Machine onboarding</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -14,6 +14,8 @@
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
     "postman_public_collection_smoke_report": "https://machinesignal.it/postman_public_collection_smoke_report_20260604.md",
     "postman_public_collection_smoke_json": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
+    "mcp_wrapper": "https://machinesignal.it/mcp/",
+    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
     "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
     "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
     "openapi": "https://machinesignal.it/openapi.json",

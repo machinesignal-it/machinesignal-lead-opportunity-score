@@ -161,7 +161,7 @@ def run() -> dict[str, Any]:
             {
                 "protocolVersion": "2024-11-05",
                 "capabilities": {},
-                "clientInfo": {"name": "machinesignal-installation-validator", "version": "2026-06-03"},
+                "clientInfo": {"name": "machinesignal-installation-validator", "version": "2026-06-04"},
             },
         )
         check("mcp_initialize", safe_get(init, "serverInfo", "name") == "machinesignal-local-mcp-adapter", str(init.get("serverInfo")))
@@ -173,6 +173,7 @@ def run() -> dict[str, Any]:
         required_public_tools = {
             "get_product_catalog",
             "get_machine_onboarding",
+            "get_machine_api_sandbox_test",
             "get_dentists_beta_pack",
             "create_sandbox_customer",
         }
@@ -184,6 +185,9 @@ def run() -> dict[str, Any]:
 
         onboarding = client.call_tool("get_machine_onboarding")
         check("public_onboarding_read", onboarding.get("ok") is True, f"HTTP {onboarding.get('http_status')}")
+
+        sandbox_test = client.call_tool("get_machine_api_sandbox_test")
+        check("public_machine_api_sandbox_test_read", sandbox_test.get("ok") is True, f"HTTP {sandbox_test.get('http_status')}")
 
         dentists_pack = client.call_tool("get_dentists_beta_pack")
         check("dentists_beta_pack_read", dentists_pack.get("ok") is True, f"HTTP {dentists_pack.get('http_status')}")

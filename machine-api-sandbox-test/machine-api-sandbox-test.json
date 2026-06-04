@@ -14,6 +14,9 @@
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
     "postman_public_collection_smoke_report": "https://machinesignal.it/postman_public_collection_smoke_report_20260604.md",
     "postman_public_collection_smoke_json": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
+    "mcp_wrapper": "https://machinesignal.it/mcp/",
+    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+    "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
     "openapi": "https://machinesignal.it/openapi.json",
     "llms": "https://machinesignal.it/llms.txt",
     "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
@@ -40,48 +43,54 @@
     },
     {
       "step": 2,
+      "asset_or_call": "GET https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+      "auth_required": false,
+      "purpose": "Read the MCP wrapper pack when the evaluator wants to expose MachineSignal as tools."
+    },
+    {
+      "step": 3,
       "asset_or_call": "GET https://machinesignal.it/postman_public_collection.json",
       "auth_required": false,
       "purpose": "Import request examples without real keys."
     },
     {
-      "step": 3,
+      "step": 4,
       "asset_or_call": "GET https://machinesignal.it/openapi.json",
       "auth_required": false,
       "purpose": "Inspect the canonical API schema."
     },
     {
-      "step": 4,
+      "step": 5,
       "asset_or_call": "POST https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
       "auth_required": false,
       "purpose": "Create a limited sandbox key when the anti-abuse limit allows it."
     },
     {
-      "step": 5,
+      "step": 6,
       "asset_or_call": "GET https://machinesignal-api.beta-878.workers.dev/v1/onboarding",
       "auth_required": true,
       "purpose": "Read available credits, limits and customer-specific status."
     },
     {
-      "step": 6,
+      "step": 7,
       "asset_or_call": "POST https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
       "auth_required": true,
       "purpose": "Score a domain and receive decision, confidence and next purchase signal."
     },
     {
-      "step": 7,
+      "step": 8,
       "asset_or_call": "POST https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
       "auth_required": true,
       "purpose": "Request Deep Analysis or Action Pack beta deliverables."
     },
     {
-      "step": 8,
+      "step": 9,
       "asset_or_call": "POST https://machinesignal-api.beta-878.workers.dev/v1/payment-test/intents",
       "auth_required": true,
       "purpose": "Simulate checkout in sandbox mode only."
     },
     {
-      "step": 9,
+      "step": 10,
       "asset_or_call": "GET https://machinesignal-api.beta-878.workers.dev/v1/payment-test/reconciliation/{payment_test_id}",
       "auth_required": true,
       "purpose": "Confirm no real payment, no external contact and no fiscal invoice."

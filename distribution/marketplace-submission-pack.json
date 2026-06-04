@@ -48,14 +48,16 @@
     {
       "rank": 5,
       "channel": "MCP and agent registries",
-      "status": "later_after_mcp_wrapper",
-      "why_first": "High relevance for AI agents, but should wait until the MCP wrapper is published and tested.",
-      "submission_asset": "https://machinesignal.it/mcp-tool-manifest.json",
+      "status": "ready_for_sandbox_validation_after_wrapper_publication",
+      "why_first": "High relevance for AI agents because the local MCP wrapper pack is now public and machine-readable.",
+      "submission_asset": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
       "main_import_asset": "https://machinesignal.it/mcp-tool-manifest.json"
     }
   ],
   "canonical_public_assets": {
     "website": "https://machinesignal.it/",
+    "mcp_wrapper": "https://machinesignal.it/mcp/",
+    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
     "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
     "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
     "distribution_page": "https://machinesignal.it/distribution/",
@@ -102,6 +104,7 @@
   },
   "test_path_for_external_machine": [
     "GET https://machinesignal.it/distribution/marketplace-submission-pack.json",
+    "GET https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
     "GET https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
     "GET https://machinesignal.it/distribution/postman-public-workspace-draft.json",
     "GET https://machinesignal.it/postman_public_collection.json",

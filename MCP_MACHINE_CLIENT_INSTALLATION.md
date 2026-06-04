@@ -15,6 +15,8 @@ The package exposes MachineSignal as MCP-style tools through a local adapter:
 - client config example: `mcp_adapter/mcp_client_config.example.json`
 - no-credit validation: `mcp_adapter/validate_machine_client_installation_20260603.py`
 - full buyer-machine test: `mcp_adapter/machine_buyer_agent_runner_20260603.py`
+- public wrapper pack: `https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json`
+- direct sandbox test contract: `https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json`
 
 The adapter calls the live HTTP beta API and keeps full API keys out of tool
 responses.
@@ -44,7 +46,7 @@ This validation checks:
 - the adapter process starts;
 - MCP `initialize` works;
 - MCP `tools/list` returns the expected tools;
-- public catalog, onboarding and dentist beta pack are readable;
+- public catalog, onboarding, direct sandbox test contract and dentist beta pack are readable;
 - no sandbox key is created;
 - no paid or credit-consuming endpoint is called.
 
@@ -91,12 +93,13 @@ python mcp_adapter\machine_buyer_agent_runner_20260603.py
 
 This test simulates a buyer machine that:
 
-1. reads catalog and onboarding;
+1. reads catalog, onboarding and the direct sandbox test contract;
 2. creates a limited sandbox customer;
 3. buys `target_discovery` when it has no starting list;
 4. scores one discovered target;
 5. buys only the recommended `deep_analysis` add-on;
-6. reads orders and usage.
+6. creates and reconciles a simulated payment-test intent when available;
+7. reads orders and usage.
 
 This uses sandbox credits only. It does not execute real payment and does not
 contact external targets.
@@ -107,13 +110,16 @@ Recommended sequence:
 
 1. `get_product_catalog`
 2. `get_machine_onboarding`
-3. `create_sandbox_customer`
-4. `get_customer_onboarding`
-5. `create_purchase_intent` with `product_code=target_discovery` if no list is available
-6. `score_lead_opportunity` for selected domains
-7. `create_purchase_intent` only when `next_purchase.next_product` recommends a bounded add-on
-8. `list_orders`
-9. `get_usage`
+3. `get_machine_api_sandbox_test`
+4. `create_sandbox_customer`
+5. `get_customer_onboarding`
+6. `create_purchase_intent` with `product_code=target_discovery` if no list is available
+7. `score_lead_opportunity` for selected domains
+8. `create_purchase_intent` only when `next_purchase.next_product` recommends a bounded add-on
+9. `create_payment_test_intent` with `provider_mode=sandbox` or `provider_mode=test`
+10. `get_payment_test_reconciliation`
+11. `list_orders`
+12. `get_usage`
 
 ## Guardrails
 
@@ -129,6 +135,10 @@ Recommended sequence:
 Machine-readable installation pack:
 
 `https://machinesignal.it/mcp-machine-client-installation-pack.json`
+
+MCP wrapper pack:
+
+`https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json`
 
 Tool manifest:
 

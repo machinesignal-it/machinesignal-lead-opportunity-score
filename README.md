@@ -12,6 +12,8 @@ Public discovery starts here:
 - Integration Ready page: https://machinesignal.it/integration-ready/
 - Machine Discovery Pack: https://machinesignal.it/machine-discovery/
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
+- MCP Wrapper page: https://machinesignal.it/mcp/
+- MCP Wrapper Pack JSON: https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json
 - MCP Machine Client Installation Pack JSON: https://machinesignal.it/mcp-machine-client-installation-pack.json
 - Integration Partner Pack JSON: https://machinesignal.it/integration-partner-pack.json
 - Integration Partner Pack Markdown: https://machinesignal.it/INTEGRATION_PARTNER_PACK.md

@@ -13,6 +13,8 @@ Useful endpoints:
 - GET /machine-onboarding.json
 - GET /product-catalog.json
 - GET https://machinesignal.it/integration-ready/
+- GET https://machinesignal.it/mcp/
+- GET https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json
 - GET https://machinesignal.it/mcp-tool-manifest.json
 - GET https://machinesignal.it/.well-known/mcp-tool-manifest.json
 - GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
@@ -108,6 +110,8 @@ Three machine buying flows:
 Public demos for software, agents and partners:
 - MCP/tool-style manifest: https://machinesignal.it/mcp-tool-manifest.json
 - Well-known MCP/tool-style manifest: https://machinesignal.it/.well-known/mcp-tool-manifest.json
+- MCP Wrapper page: https://machinesignal.it/mcp/
+- MCP Wrapper Pack JSON: https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json
 - Integration Ready page: https://machinesignal.it/integration-ready/
 - Machine Discovery Pack: https://machinesignal.it/machine-discovery/
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json

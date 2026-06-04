@@ -12,6 +12,7 @@ It exposes the HTTP beta API as tools using the public manifest:
 - Tool-style manifest: live.
 - Local MCP stdio adapter: available in this folder.
 - Hosted public MCP server: not live yet.
+- Public wrapper pack: https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json
 
 ## Run
 
@@ -86,11 +87,13 @@ python mcp_adapter\machine_buyer_agent_runner_20260603.py
 
 The runner creates a sandbox customer, buys a bounded target discovery pack,
 scores one discovered target, buys the recommended add-on only when justified,
-then reads orders and usage.
+then can create a simulated payment-test intent, reconcile it, and read orders
+and usage.
 
 ## Guardrails
 
 - No real payment is executed in beta.
+- Payment-test tools remain simulated and do not issue fiscal invoices.
 - No external contact is executed.
 - Action Pack does not send email.
 - External action requires a customer compliance gate.

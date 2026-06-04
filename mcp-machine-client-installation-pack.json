@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "version": "2026-06-03",
+  "version": "2026-06-04",
   "pack_type": "mcp_machine_client_installation_pack",
   "primary_customer_interface": "machine",
   "status": "beta",
@@ -8,9 +8,13 @@
   "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
   "public_resources": {
     "website": "https://machinesignal.it/",
+    "mcp_page": "https://machinesignal.it/mcp/",
+    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
     "well_known_mcp_tool_manifest": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
     "machine_discovery": "https://machinesignal.it/.well-known/machine-discovery.json",
+    "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
+    "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
     "installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "openapi": "https://machinesignal.it/openapi.json",
     "product_catalog": "https://machinesignal.it/product-catalog.json",
@@ -68,10 +72,12 @@
   "expected_full_buyer_machine_flow": [
     "read product catalog",
     "read machine onboarding",
+    "read machine API sandbox test contract",
     "create sandbox customer",
     "buy target_discovery when no starting list is available",
     "score one selected target",
     "buy only the recommended add-on",
+    "create and reconcile a simulated payment-test intent",
     "read orders",
     "read usage"
   ],

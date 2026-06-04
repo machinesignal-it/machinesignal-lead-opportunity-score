@@ -1,0 +1,128 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-04",
+  "artifact_type": "mcp_wrapper_pack",
+  "primary_customer_interface": "machine",
+  "status": "local_stdio_adapter_live_public_hosted_mcp_not_live",
+  "purpose": "Help CRMs, AI agents and workflow engines expose MachineSignal as MCP-style tools and test the flow without human sales contact.",
+  "canonical_urls": {
+    "mcp_page": "https://machinesignal.it/mcp/",
+    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+    "tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "well_known_tool_manifest": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+    "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
+    "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+    "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score"
+  },
+  "mcp_status": {
+    "hosted_public_mcp_server_live": false,
+    "local_stdio_adapter_available": true,
+    "recommended_transport_now": "stdio_json_rpc",
+    "recommended_transport_next": "hosted MCP endpoint after more sandbox evidence",
+    "adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
+    "start_command": "python mcp_adapter/machinesignal_mcp_server.py",
+    "client_config_example_path": "mcp_adapter/mcp_client_config.example.json"
+  },
+  "machine_installation_flow": [
+    {
+      "step": 1,
+      "machine_action": "Fetch this wrapper pack.",
+      "call": "GET https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+      "credits_consumed": false
+    },
+    {
+      "step": 2,
+      "machine_action": "Fetch the tool manifest and list available tools.",
+      "call": "GET https://machinesignal.it/mcp-tool-manifest.json",
+      "credits_consumed": false
+    },
+    {
+      "step": 3,
+      "machine_action": "Clone the repository and start the local stdio adapter.",
+      "command": "git clone https://github.com/machinesignal-it/machinesignal-lead-opportunity-score.git && cd machinesignal-lead-opportunity-score && python mcp_adapter/machinesignal_mcp_server.py",
+      "credits_consumed": false
+    },
+    {
+      "step": 4,
+      "machine_action": "Validate installation without using credits.",
+      "command": "python mcp_adapter/validate_machine_client_installation_20260603.py",
+      "credits_consumed": false
+    },
+    {
+      "step": 5,
+      "machine_action": "Run the buyer-machine sandbox flow only if sandbox credits are available.",
+      "command": "python mcp_adapter/machine_buyer_agent_runner_20260603.py",
+      "credits_consumed": true
+    }
+  ],
+  "mcp_tools_expected": [
+    "get_product_catalog",
+    "get_machine_onboarding",
+    "get_machine_api_sandbox_test",
+    "get_dentists_beta_pack",
+    "create_sandbox_customer",
+    "get_customer_onboarding",
+    "score_lead_opportunity",
+    "create_purchase_intent",
+    "list_orders",
+    "get_order",
+    "get_usage",
+    "create_payment_test_intent",
+    "get_payment_test_intent",
+    "get_payment_test_reconciliation",
+    "get_admin_sandbox_metrics"
+  ],
+  "machine_buyer_test_flow": [
+    "read public catalog",
+    "read machine onboarding",
+    "read direct sandbox test contract",
+    "create sandbox customer",
+    "read authenticated onboarding",
+    "if no list exists, buy target_discovery",
+    "score one selected domain",
+    "buy only the recommended add-on when spend policy allows it",
+    "create payment-test intent in sandbox or test mode",
+    "reconcile payment test",
+    "read orders and usage"
+  ],
+  "safety": {
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "action_pack_sends_email": false,
+    "full_api_keys_returned_to_client": false,
+    "human_sales_contact_required_for_sandbox": false,
+    "owner_approval_required_before_irreversible_external_publication": true
+  },
+  "what_this_sells_to_machines": [
+    {
+      "product_code": "target_discovery",
+      "machine_question": "Find companies or domains worth scoring for a specific commercial objective.",
+      "machine_output": "Bounded target list or no-go coverage decision."
+    },
+    {
+      "product_code": "score_pack_1k",
+      "machine_question": "Which records deserve more budget?",
+      "machine_output": "Score, confidence, decision, spend policy and recommended next product."
+    },
+    {
+      "product_code": "deep_analysis",
+      "machine_question": "Is this lead strong enough to justify the next paid action?",
+      "machine_output": "Deeper opportunity explanation, false-positive risk and next-step recommendation."
+    },
+    {
+      "product_code": "action_pack",
+      "machine_question": "What CRM/workflow payload should be prepared after a strong lead?",
+      "machine_output": "CRM record patch, task payload, webhook event, agent instructions and stop rules."
+    }
+  ],
+  "next_publication_step": {
+    "recommended": "Submit the MCP wrapper pack to agent/MCP directories only after another no-credit validation and one sandbox buyer-machine run pass.",
+    "reason": "The wrapper is publicly discoverable now, but external registry publication should happen after the latest manifest and adapter changes are verified."
+  }
+}

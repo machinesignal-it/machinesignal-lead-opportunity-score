@@ -306,6 +306,7 @@
           <a class="brand" href="/">MachineSignal</a>
           <nav aria-label="Primary">
             <a href="/sandbox-buyer-kit/">Sandbox Buyer Kit</a>
+            <a href="/mcp/">MCP</a>
             <a href="/distribution/">Distribution</a>
             <a href="/readiness-dashboard/">Readiness</a>
           </nav>
@@ -319,6 +320,7 @@
           </p>
           <div class="actions">
             <a class="button primary" href="/machine-api-sandbox-test/machine-api-sandbox-test.json">Open test JSON</a>
+            <a class="button" href="/mcp/machinesignal-mcp-wrapper.json">Open MCP wrapper</a>
             <a class="button" href="/postman_public_collection.json">Import collection</a>
             <a class="button" href="/openapi.json">Open OpenAPI</a>
           </div>
@@ -334,6 +336,10 @@
             <div class="card">
               <strong>For machines</strong>
               <p class="sub">CRMs, agents and workflows can read public JSON, create a limited sandbox key and run the API flow.</p>
+            </div>
+            <div class="card">
+              <strong>For MCP-style clients</strong>
+              <p class="sub">Agents can read the wrapper pack and expose MachineSignal as tools through the local stdio adapter.</p>
             </div>
             <div class="card">
               <strong>For sandbox evaluation</strong>
@@ -366,36 +372,41 @@
               </tr>
               <tr>
                 <td>2</td>
+                <td><a href="/mcp/machinesignal-mcp-wrapper.json">GET machinesignal-mcp-wrapper.json</a></td>
+                <td>Read MCP-style adapter metadata and expected tools.</td>
+              </tr>
+              <tr>
+                <td>3</td>
                 <td><a href="/postman_public_collection.json">GET postman_public_collection.json</a></td>
                 <td>Import request examples without exposing real keys.</td>
               </tr>
               <tr>
-                <td>3</td>
+                <td>4</td>
                 <td><a href="/openapi.json">GET openapi.json</a></td>
                 <td>Inspect the canonical API schema.</td>
               </tr>
               <tr>
-                <td>4</td>
+                <td>5</td>
                 <td><code>POST /v1/sandbox/customers</code></td>
                 <td>Create a limited sandbox key when the daily anti-abuse limit allows it.</td>
               </tr>
               <tr>
-                <td>5</td>
+                <td>6</td>
                 <td><code>POST /v1/lead-opportunity-score</code></td>
                 <td>Score a domain and receive decision, confidence and next purchase signal.</td>
               </tr>
               <tr>
-                <td>6</td>
+                <td>7</td>
                 <td><code>POST /v1/purchase-intent</code></td>
                 <td>Request Deep Analysis or Action Pack beta deliverables.</td>
               </tr>
               <tr>
-                <td>7</td>
+                <td>8</td>
                 <td><code>POST /v1/payment-test/intents</code></td>
                 <td>Simulate checkout in sandbox mode only.</td>
               </tr>
               <tr>
-                <td>8</td>
+                <td>9</td>
                 <td><code>GET /v1/payment-test/reconciliation/{payment_test_id}</code></td>
                 <td>Confirm no real payment, no external contact and no fiscal invoice.</td>
               </tr>
@@ -415,6 +426,10 @@
             <div class="card">
               <strong>Postman collection</strong>
               <a href="/postman_public_collection.json">/postman_public_collection.json</a>
+            </div>
+            <div class="card">
+              <strong>MCP Wrapper Pack</strong>
+              <a href="/mcp/machinesignal-mcp-wrapper.json">/mcp/machinesignal-mcp-wrapper.json</a>
             </div>
             <div class="card">
               <strong>Smoke report</strong>

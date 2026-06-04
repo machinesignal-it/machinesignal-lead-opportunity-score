@@ -13,6 +13,8 @@
     "product_catalog": "/product-catalog.json",
     "machine_onboarding": "/machine-onboarding.json",
     "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+    "mcp_wrapper": "https://machinesignal.it/mcp/",
+    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
     "api_directory_submission": "https://machinesignal.it/distribution/api-directory-submission.json",
     "rapidapi_listing": "https://machinesignal.it/distribution/rapidapi-listing.json",
     "rapidapi_provider_setup": "https://machinesignal.it/distribution/rapidapi-provider-setup.json",

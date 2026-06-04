@@ -67,6 +67,21 @@
       "response": []
     },
     {
+      "name": "Fetch MCP Wrapper Pack",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+          "protocol": "https",
+          "host": ["machinesignal", "it"],
+          "path": ["mcp", "machinesignal-mcp-wrapper.json"]
+        },
+        "description": "Public MCP-style wrapper pack for CRMs, AI agents and automated workflows. It describes the local stdio adapter, expected tools, sandbox flow and safety guardrails."
+      },
+      "response": []
+    },
+    {
       "name": "Create limited sandbox customer",
       "request": {
         "method": "POST",

@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "version": "2026-06-03",
+  "version": "2026-06-04",
   "primary_customer_interface": "machine",
   "base_url": "https://machinesignal-api.beta-878.workers.dev",
   "website": "https://machinesignal.it/",
@@ -16,6 +16,8 @@
   ],
   "discovery": {
     "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+    "mcp_wrapper": "https://machinesignal.it/mcp/",
+    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
     "integration_ready_page": "https://machinesignal.it/integration-ready/",
     "mcp_machine_client_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "integration_partner_pack": "https://machinesignal.it/integration-partner-pack.json",
@@ -71,6 +73,7 @@
   "local_mcp_adapter": {
     "status": "available_in_github_repo",
     "transport": "stdio_json_rpc",
+    "wrapper_pack_url": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
     "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
     "adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
     "installation_guide_path": "MCP_MACHINE_CLIENT_INSTALLATION.md",
