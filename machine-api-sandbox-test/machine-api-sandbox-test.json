@@ -1,0 +1,113 @@
+{
+  "service": "MachineSignal",
+  "version": "2026-06-04",
+  "artifact_type": "machine_api_sandbox_test",
+  "status": "ready_for_machine_sandbox_evaluation",
+  "purpose": "Canonical public sandbox test entry point for CRMs, AI agents and automated workflows evaluating MachineSignal without relying on external Postman workspace UI.",
+  "primary_customer_interface": "machine",
+  "human_role": "supervision, approval and audit only",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "page_url": "https://machinesignal.it/machine-api-sandbox-test/",
+  "machine_readable_url": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
+  "why_this_exists": "GitHub OAuth temporarily blocked the external Postman UI publication step. The public Postman collection itself is available, importable and smoke-tested, so this page acts as the canonical machine-first fallback.",
+  "canonical_assets": {
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "postman_public_collection_smoke_report": "https://machinesignal.it/postman_public_collection_smoke_report_20260604.md",
+    "postman_public_collection_smoke_json": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
+    "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
+    "marketplace_submission_pack": "https://machinesignal.it/distribution/marketplace-submission-pack.json",
+    "distribution_page": "https://machinesignal.it/distribution/",
+    "readiness_dashboard": "https://machinesignal.it/readiness-dashboard/"
+  },
+  "auth": {
+    "type": "apiKey",
+    "header": "X-API-Key",
+    "idempotency_header": "Idempotency-Key",
+    "sandbox_key_endpoint": "POST /v1/sandbox/customers",
+    "note": "Sandbox key creation is intentionally rate-limited. If the daily anti-abuse limit is reached, retry later or use an already issued test key."
+  },
+  "machine_test_flow": [
+    {
+      "step": 1,
+      "asset_or_call": "GET https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
+      "auth_required": false,
+      "purpose": "Read the canonical sandbox test contract."
+    },
+    {
+      "step": 2,
+      "asset_or_call": "GET https://machinesignal.it/postman_public_collection.json",
+      "auth_required": false,
+      "purpose": "Import request examples without real keys."
+    },
+    {
+      "step": 3,
+      "asset_or_call": "GET https://machinesignal.it/openapi.json",
+      "auth_required": false,
+      "purpose": "Inspect the canonical API schema."
+    },
+    {
+      "step": 4,
+      "asset_or_call": "POST https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+      "auth_required": false,
+      "purpose": "Create a limited sandbox key when the anti-abuse limit allows it."
+    },
+    {
+      "step": 5,
+      "asset_or_call": "GET https://machinesignal-api.beta-878.workers.dev/v1/onboarding",
+      "auth_required": true,
+      "purpose": "Read available credits, limits and customer-specific status."
+    },
+    {
+      "step": 6,
+      "asset_or_call": "POST https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
+      "auth_required": true,
+      "purpose": "Score a domain and receive decision, confidence and next purchase signal."
+    },
+    {
+      "step": 7,
+      "asset_or_call": "POST https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
+      "auth_required": true,
+      "purpose": "Request Deep Analysis or Action Pack beta deliverables."
+    },
+    {
+      "step": 8,
+      "asset_or_call": "POST https://machinesignal-api.beta-878.workers.dev/v1/payment-test/intents",
+      "auth_required": true,
+      "purpose": "Simulate checkout in sandbox mode only."
+    },
+    {
+      "step": 9,
+      "asset_or_call": "GET https://machinesignal-api.beta-878.workers.dev/v1/payment-test/reconciliation/{payment_test_id}",
+      "auth_required": true,
+      "purpose": "Confirm no real payment, no external contact and no fiscal invoice."
+    }
+  ],
+  "latest_validation": {
+    "status": "passed",
+    "source": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
+    "collection_contains_real_api_keys": false,
+    "provider_mode": "sandbox",
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false
+  },
+  "publication_guardrails": {
+    "safe_to_publish": true,
+    "safe_to_publish_as_live_paid_checkout": false,
+    "must_not_claim": [
+      "real payments are enabled",
+      "external outreach is executed automatically",
+      "real invoices are issued",
+      "public collection contains live API keys"
+    ]
+  },
+  "recommended_next_step": {
+    "for_machine": "Import https://machinesignal.it/postman_public_collection.json or read https://machinesignal.it/openapi.json.",
+    "for_owner": "Use this page as the public machine-first test entry point while Postman UI OAuth remains blocked."
+  }
+}

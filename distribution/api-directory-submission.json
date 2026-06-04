@@ -39,6 +39,8 @@
     "postman_collection": "https://machinesignal.it/postman_collection.json",
     "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
     "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
+    "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
     "sandbox_endpoint": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
@@ -47,6 +49,7 @@
     "self_service_sale_validation_json": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json"
   },
   "sandbox_test_path": [
+    "GET /machine-api-sandbox-test/machine-api-sandbox-test.json",
     "GET /machine-onboarding.json",
     "GET /product-catalog.json",
     "GET /sandbox-buyer-kit/sandbox-buyer-kit.json",

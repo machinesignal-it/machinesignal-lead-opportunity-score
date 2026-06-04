@@ -41,6 +41,8 @@ Useful endpoints:
 - GET https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json
 - GET https://machinesignal.it/sandbox-buyer-kit/
 - GET https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
+- GET https://machinesignal.it/machine-api-sandbox-test/
+- GET https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json
 - GET https://machinesignal.it/readiness-dashboard/
 - GET https://machinesignal.it/readiness-dashboard/readiness.json
 - GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -134,6 +136,8 @@ Public demos for software, agents and partners:
 - Self-service machine buyer sale simulation JSON: https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json
 - Sandbox buyer kit: https://machinesignal.it/sandbox-buyer-kit/
 - Sandbox buyer kit JSON: https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
+- Machine API Sandbox Test: https://machinesignal.it/machine-api-sandbox-test/
+- Machine API Sandbox Test JSON: https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json
 - Readiness dashboard: https://machinesignal.it/readiness-dashboard/
 - Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
 - Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md

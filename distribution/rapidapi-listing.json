@@ -104,6 +104,7 @@
     }
   ],
   "sandbox_test_path": [
+    "GET /machine-api-sandbox-test/machine-api-sandbox-test.json",
     "GET /machine-onboarding.json",
     "GET /product-catalog.json",
     "POST /v1/sandbox/customers",
@@ -143,6 +144,8 @@
     "openapi": "https://machinesignal.it/openapi.json",
     "llms": "https://machinesignal.it/llms.txt",
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
+    "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
     "dentists_beta_machine_buyer_pack": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
     "product_catalog": "https://machinesignal.it/product-catalog.json",
     "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",

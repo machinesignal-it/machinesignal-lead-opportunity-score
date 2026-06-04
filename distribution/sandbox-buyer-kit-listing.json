@@ -18,6 +18,8 @@
   "canonical_urls": {
     "sandbox_buyer_kit_page": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
+    "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
+    "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
     "openapi": "https://machinesignal.it/openapi.json",
     "llms": "https://machinesignal.it/llms.txt",
     "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",

@@ -56,6 +56,8 @@
   ],
   "canonical_public_assets": {
     "website": "https://machinesignal.it/",
+    "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
+    "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
     "distribution_page": "https://machinesignal.it/distribution/",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
@@ -100,6 +102,7 @@
   },
   "test_path_for_external_machine": [
     "GET https://machinesignal.it/distribution/marketplace-submission-pack.json",
+    "GET https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
     "GET https://machinesignal.it/distribution/postman-public-workspace-draft.json",
     "GET https://machinesignal.it/postman_public_collection.json",
     "POST https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",

@@ -88,6 +88,12 @@
     <loc>https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json</loc>
   </url>
   <url>
+    <loc>https://machinesignal.it/machine-api-sandbox-test/</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json</loc>
+  </url>
+  <url>
     <loc>https://machinesignal.it/readiness-dashboard/</loc>
   </url>
   <url>
