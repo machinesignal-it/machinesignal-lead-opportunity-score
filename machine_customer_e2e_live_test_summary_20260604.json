@@ -1,0 +1,110 @@
+{
+    "service":  "MachineSignal",
+    "report_type":  "machine_customer_e2e_live_test",
+    "generated_at":  "2026-06-04T08:51:26.9864578Z",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "status":  "passed",
+    "real_payment_enabled":  false,
+    "ready_for_real_payments":  false,
+    "customer_id":  "machine_e2e_20260604105126",
+    "steps":  {
+                  "customer_created":  {
+                                           "ok":  true,
+                                           "plan":  "machine_customer_e2e_validation",
+                                           "customer_type":  "beta_customer"
+                                       },
+                  "authenticated_onboarding":  {
+                                                   "ok":  true,
+                                                   "primary_customer_interface":  "machine",
+                                                   "payment_test_mode_enabled":  true,
+                                                   "can_create_payment_tests":  true
+                                               },
+                  "target_discovery":  {
+                                           "order_intent_id":  "ord_17fdf789",
+                                           "product_code":  "target_discovery",
+                                           "ok":  true,
+                                           "sample_targets":  3,
+                                           "external_contact_executed":  false,
+                                           "delivery_type":  "target_discovery_precheck",
+                                           "real_payment_executed":  false
+                                       },
+                  "score":  {
+                                "opportunity_score":  81,
+                                "domain":  "quinta-essenza.com",
+                                "commercial_strength_level":  "strong",
+                                "ok":  true,
+                                "next_product":  "deep_analysis",
+                                "decision":  "buy_deep_analysis",
+                                "credits_remaining":  4
+                            },
+                  "deep_analysis":  {
+                                        "ok":  true,
+                                        "real_payment_executed":  false,
+                                        "next_product":  "action_pack",
+                                        "delivery_type":  "deep_opportunity_analysis",
+                                        "order_intent_id":  "ord_f727f37"
+                                    },
+                  "action_pack":  {
+                                      "order_intent_id":  "ord_81623379",
+                                      "webhook_event_type":  "machinesignal.action_pack.ready",
+                                      "ok":  true,
+                                      "approval_gate_default_state":  "blocked",
+                                      "delivery_type":  "action_pack",
+                                      "external_contact_executed":  false
+                                  },
+                  "payment_test_intent":  {
+                                              "ready_for_real_payments":  false,
+                                              "payment_test_id":  "paytest_37f4c6aa",
+                                              "ok":  true,
+                                              "credits_to_activate":  1000,
+                                              "provider_mode":  "test",
+                                              "real_payment_executed":  false
+                                          },
+                  "live_payment_mode_block":  {
+                                                  "http_status":  400,
+                                                  "ok":  true
+                                              },
+                  "payment_test_webhook":  {
+                                               "payment_status":  "test_payment_succeeded",
+                                               "ok":  true,
+                                               "invoice_real_issued":  false,
+                                               "credits_activated":  1000,
+                                               "real_payment_executed":  false
+                                           },
+                  "duplicate_webhook":  {
+                                            "ok":  true,
+                                            "score_pack_credits_purchased":  1005,
+                                            "duplicate_webhook":  true
+                                        },
+                  "reconciliation":  {
+                                         "ok":  true,
+                                         "real_payment_executed":  false,
+                                         "ready_for_real_payments":  false,
+                                         "reconciliation_ok":  true
+                                     },
+                  "order_history":  {
+                                        "ok":  true,
+                                        "products":  [
+                                                         "action_pack",
+                                                         "deep_analysis",
+                                                         "target_discovery"
+                                                     ],
+                                        "count":  3
+                                    },
+                  "admin_reports":  {
+                                        "payment_test_count":  1,
+                                        "ok":  true,
+                                        "audit_reconciliation_ok":  true,
+                                        "payment_test_succeeded":  1,
+                                        "ready_for_real_payments":  false
+                                    },
+                  "customer_closed":  {
+                                          "ok":  true
+                                      }
+              },
+    "safety":  {
+                   "real_payment_executed":  false,
+                   "external_contact_executed":  false,
+                   "real_invoice_issued":  false
+               }
+}

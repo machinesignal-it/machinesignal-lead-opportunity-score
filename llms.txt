@@ -33,6 +33,8 @@ Useful endpoints:
 - GET https://machinesignal.it/payment_test_mode_implementation_summary_20260604.json
 - GET https://machinesignal.it/payment_test_mode_live_validation_20260604.md
 - GET https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json
+- GET https://machinesignal.it/machine_customer_e2e_live_test_report_20260604.md
+- GET https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json
 - GET https://machinesignal.it/crm-agent-integration-simulator-readout.md
 - GET https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 - GET https://machinesignal.it/examples/integration_existing_list_score_request.json
@@ -110,6 +112,8 @@ Public demos for software, agents and partners:
 - Payment test mode implementation summary JSON: https://machinesignal.it/payment_test_mode_implementation_summary_20260604.json
 - Payment test mode live validation: https://machinesignal.it/payment_test_mode_live_validation_20260604.md
 - Payment test mode live validation JSON: https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json
+- Machine customer E2E live test: https://machinesignal.it/machine_customer_e2e_live_test_report_20260604.md
+- Machine customer E2E live test JSON: https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json
 - CRM/Agent Integration Simulator Readout: https://machinesignal.it/crm-agent-integration-simulator-readout.md
 - CRM/Agent Simulated Ledger JSON: https://machinesignal.it/crm-agent-integration-simulated-ledger.json
 - Dentists Beta Machine Buyer Pack JSON: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
