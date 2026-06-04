@@ -31,6 +31,8 @@ Self-service-machine-buyer-sale-simulation: https://machinesignal.it/self_servic
 Self-service-machine-buyer-sale-simulation-json: https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json
 Marketplace-submission-pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 Postman-public-workspace-draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
+Postman-public-collection-smoke-report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
+Postman-public-collection-smoke-json: https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json
 Sandbox-buyer-kit: https://machinesignal.it/sandbox-buyer-kit/
 Sandbox-buyer-kit-json: https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
 Sandbox-buyer-kit-distribution-listing: https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json

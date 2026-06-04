@@ -1,0 +1,117 @@
+{
+    "status":  "passed",
+    "run_id":  "20260604143256",
+    "customer_id":  "postman_public_smoke_20260604143256",
+    "execution_mode":  "stored_internal_monitor_key_after_sandbox_creation_block",
+    "collection":  {
+                       "ok":  true,
+                       "url":  "https://machinesignal.it/postman_public_collection.json",
+                       "name":  "MachineSignal Lead Opportunity Score API - Public Machine Discovery",
+                       "item_count":  15,
+                       "missing_items":  [
+
+                                         ],
+                       "secret_hits":  [
+
+                                       ],
+                       "uses_sandbox_payment_mode":  true
+                   },
+    "public_assets":  {
+                          "marketplace_submission_pack":  {
+                                                              "ok":  true,
+                                                              "url":  "https://machinesignal.it/distribution/marketplace-submission-pack.json",
+                                                              "bytes":  6188
+                                                          },
+                          "postman_workspace_draft":  {
+                                                          "ok":  true,
+                                                          "url":  "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
+                                                          "bytes":  3720
+                                                      },
+                          "sandbox_buyer_kit_listing":  {
+                                                            "ok":  true,
+                                                            "url":  "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
+                                                            "bytes":  4703
+                                                        }
+                      },
+    "steps":  {
+                  "sandbox_created":  {
+                                          "ok":  true,
+                                          "mode":  "guardrail_block_then_internal_monitor_fallback",
+                                          "http_status":  429,
+                                          "note":  "New sandbox creation was blocked by validation or daily anti-abuse limit; smoke continued with stored internal monitor key.",
+                                          "real_payment_executed":  false,
+                                          "external_contact_executed":  false
+                                      },
+                  "authenticated_onboarding":  {
+                                                   "ok":  true,
+                                                   "customer_id":  "daily_monitor_machine_buyer",
+                                                   "customer_type":  "internal_monitor",
+                                                   "payment_test_mode_enabled":  true
+                                               },
+                  "score":  {
+                                "ok":  true,
+                                "domain":  "quinta-essenza.com",
+                                "opportunity_score":  55,
+                                "confidence":  0.78,
+                                "decision":  "watchlist",
+                                "next_product":  null,
+                                "credits_remaining":  195
+                            },
+                  "deep_analysis":  {
+                                        "ok":  true,
+                                        "order_intent_id":  "ord_79250d42",
+                                        "delivery_type":  "deep_opportunity_analysis",
+                                        "real_payment_executed":  false
+                                    },
+                  "action_pack":  {
+                                      "ok":  true,
+                                      "order_intent_id":  "ord_24da9273",
+                                      "delivery_type":  "action_pack",
+                                      "approval_gate_default_state":  "blocked",
+                                      "external_contact_executed":  false
+                                  },
+                  "payment_intent":  {
+                                         "ok":  true,
+                                         "payment_test_id":  "paytest_c9806d30",
+                                         "provider_mode":  "sandbox",
+                                         "amount_eur":  99,
+                                         "credits_to_activate":  1000,
+                                         "real_payment_executed":  false,
+                                         "ready_for_real_payments":  false
+                                     },
+                  "payment_webhook":  {
+                                          "ok":  true,
+                                          "payment_status":  "test_payment_succeeded",
+                                          "credits_activated":  1000,
+                                          "real_payment_executed":  false,
+                                          "invoice_real_issued":  false
+                                      },
+                  "reconciliation":  {
+                                         "ok":  true,
+                                         "reconciliation_ok":  true,
+                                         "ready_for_real_payments":  false,
+                                         "real_payment_executed":  false
+                                     },
+                  "orders":  {
+                                 "ok":  true,
+                                 "count":  10,
+                                 "products":  [
+                                                  "action_pack",
+                                                  "deep_analysis",
+                                                  "action_pack",
+                                                  "deep_analysis",
+                                                  "deep_analysis",
+                                                  "target_discovery",
+                                                  "deep_analysis",
+                                                  "target_discovery",
+                                                  "deep_analysis",
+                                                  "target_discovery"
+                                              ]
+                             }
+              },
+    "safety":  {
+                   "real_payment_executed":  false,
+                   "external_contact_executed":  false,
+                   "real_invoice_issued":  false
+               }
+}

@@ -262,7 +262,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"product_code\": \"score_pack_1k\",\n  \"amount_eur\": 99,\n  \"provider\": \"stripe\",\n  \"provider_mode\": \"test\"\n}"
+          "raw": "{\n  \"product_code\": \"score_pack_1k\",\n  \"amount_eur\": 99,\n  \"provider\": \"stripe\",\n  \"provider_mode\": \"sandbox\"\n}"
         },
         "url": {
           "raw": "{{base_url}}/v1/payment-test/intents",
@@ -270,7 +270,7 @@
           "host": ["machinesignal-api", "beta-878", "workers", "dev"],
           "path": ["v1", "payment-test", "intents"]
         },
-        "description": "Creates a simulated checkout object in test mode only. No real payment is executed. Copy payment_test_id and success_signature into the variables before simulating the webhook."
+        "description": "Creates a simulated checkout object in sandbox mode only. No real payment is executed. Copy payment_test_id and success_signature into the variables before simulating the webhook."
       },
       "response": []
     },

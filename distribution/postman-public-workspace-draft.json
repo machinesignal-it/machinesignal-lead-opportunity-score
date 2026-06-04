@@ -12,6 +12,8 @@
   },
   "import_assets": {
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "postman_public_collection_smoke_report": "https://machinesignal.it/postman_public_collection_smoke_report_20260604.md",
+    "postman_public_collection_smoke_json": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
     "openapi": "https://machinesignal.it/openapi.json",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
@@ -45,11 +47,11 @@
     "Fetch distribution channel shortlist",
     "Fetch Sandbox Buyer Kit listing",
     "Create limited sandbox customer",
-    "Read onboarding with sandbox key",
-    "Score a domain",
-    "Create Deep Analysis purchase intent",
-    "Create Action Pack purchase intent",
-    "Create sandbox payment test intent",
+    "Read authenticated onboarding",
+    "Score business domain",
+    "Order deep analysis after strong score",
+    "Order action pack after confirmed opportunity",
+    "Create payment test intent",
     "Read payment test reconciliation"
   ],
   "publication_copy": {
@@ -64,6 +66,7 @@
   },
   "acceptance_gates_before_public_visibility": [
     "Postman collection imports without missing URLs.",
+    "Postman public collection smoke test is passed.",
     "Sandbox customer creation returns a key.",
     "Score, purchase-intent and order retrieval work with the sandbox key.",
     "Payment-test sandbox intent and reconciliation work.",

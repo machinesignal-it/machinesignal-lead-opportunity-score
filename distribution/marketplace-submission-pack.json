@@ -61,6 +61,8 @@
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "postman_public_collection_smoke_report": "https://machinesignal.it/postman_public_collection_smoke_report_20260604.md",
+    "postman_public_collection_smoke_json": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
     "postman_public_workspace_draft": "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
     "openapi": "https://machinesignal.it/openapi.json",
     "llms": "https://machinesignal.it/llms.txt",
@@ -110,6 +112,7 @@
   "latest_validation": {
     "status": "passed",
     "source": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json",
+    "postman_public_collection_smoke": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
     "real_payment_executed": false,
     "external_contact_executed": false,
     "real_invoice_issued": false

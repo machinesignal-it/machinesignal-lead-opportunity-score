@@ -30,6 +30,8 @@ Public discovery starts here:
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
+- Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
+- Postman Public Collection Smoke JSON: https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - Sandbox Buyer Kit: https://machinesignal.it/sandbox-buyer-kit/
 - Sandbox Buyer Kit JSON: https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
