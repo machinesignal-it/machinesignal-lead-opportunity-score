@@ -58,6 +58,9 @@ Useful endpoints:
 - GET https://machinesignal.it/score_volume_quality_review_report_20260605.md
 - GET https://machinesignal.it/score_volume_quality_review_summary_20260605.json
 - GET https://machinesignal.it/score_volume_quality_review_rows_20260605.csv
+- GET https://machinesignal.it/score_volume_25_quality_review_report_20260605.md
+- GET https://machinesignal.it/score_volume_25_quality_review_summary_20260605.json
+- GET https://machinesignal.it/score_volume_25_quality_review_rows_20260605.csv
 - GET https://machinesignal.it/readiness-dashboard/
 - GET https://machinesignal.it/readiness-dashboard/readiness.json
 - GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -168,6 +171,9 @@ Public demos for software, agents and partners:
 - Score Volume Quality Review: https://machinesignal.it/score_volume_quality_review_report_20260605.md
 - Score Volume Quality Review JSON: https://machinesignal.it/score_volume_quality_review_summary_20260605.json
 - Score Volume Quality Review CSV: https://machinesignal.it/score_volume_quality_review_rows_20260605.csv
+- Score Volume 25 Quality Review: https://machinesignal.it/score_volume_25_quality_review_report_20260605.md
+- Score Volume 25 Quality Review JSON: https://machinesignal.it/score_volume_25_quality_review_summary_20260605.json
+- Score Volume 25 Quality Review CSV: https://machinesignal.it/score_volume_25_quality_review_rows_20260605.csv
 - Readiness dashboard: https://machinesignal.it/readiness-dashboard/
 - Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
 - Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md

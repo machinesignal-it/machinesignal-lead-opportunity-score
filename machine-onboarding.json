@@ -53,6 +53,9 @@
     "score_volume_quality_review": "https://machinesignal.it/score_volume_quality_review_report_20260605.md",
     "score_volume_quality_review_json": "https://machinesignal.it/score_volume_quality_review_summary_20260605.json",
     "score_volume_quality_review_rows": "https://machinesignal.it/score_volume_quality_review_rows_20260605.csv",
+    "score_volume_25_quality_review": "https://machinesignal.it/score_volume_25_quality_review_report_20260605.md",
+    "score_volume_25_quality_review_json": "https://machinesignal.it/score_volume_25_quality_review_summary_20260605.json",
+    "score_volume_25_quality_review_rows": "https://machinesignal.it/score_volume_25_quality_review_rows_20260605.csv",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"
@@ -79,7 +82,9 @@
     "latest_bounded_score_volume_25_probe_status": "PASS",
     "latest_bounded_score_volume_25_probe_json": "https://machinesignal.it/bounded_score_volume_25_probe_summary_20260605.json",
     "latest_score_volume_quality_review_status": "PASS",
-    "latest_score_volume_quality_review_json": "https://machinesignal.it/score_volume_quality_review_summary_20260605.json"
+    "latest_score_volume_quality_review_json": "https://machinesignal.it/score_volume_quality_review_summary_20260605.json",
+    "latest_score_volume_25_quality_review_status": "PASS",
+    "latest_score_volume_25_quality_review_json": "https://machinesignal.it/score_volume_25_quality_review_summary_20260605.json"
   },
   "callable_flow": [
     {

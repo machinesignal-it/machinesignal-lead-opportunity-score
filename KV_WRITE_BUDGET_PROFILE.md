@@ -59,12 +59,11 @@ The score ledger is intended to use Durable Object storage, not KV, after the le
 
 ## Recommended Next Test
 
-Run a quality review on the 25-score bounded batch before increasing volume again or creating purchase intents. This review should not consume score credits. The goal is to confirm that:
+Run a bounded purchase-intent simulation only for the 3 rows that received `buy_deep_analysis` in the 25-score batch. The goal is to confirm that:
 
-- decision routing remains commercially coherent;
-- low-confidence rows are handled conservatively;
-- `buy_deep_analysis` remains reserved for stronger records;
-- `needs_verification` appears when confidence is too low;
+- only commercially justified rows consume Deep Analysis credits;
+- no Action Pack is bought yet;
+- no sandbox customer is created;
 - no real payment, external contact or real invoice occurs.
 
 ## Latest Bounded Probe
@@ -165,3 +164,24 @@ Machine-readable summary: https://machinesignal.it/bounded_score_volume_25_probe
 Rows CSV: https://machinesignal.it/bounded_score_volume_25_probe_rows_20260605.csv
 
 Report: https://machinesignal.it/bounded_score_volume_25_probe_report_20260605.md
+
+## Latest Score Volume 25 Quality Review
+
+Generated at: 2026-06-05T15:08:29
+
+Status: `PASS`
+
+- Reviewed rows: `25`
+- Decision-rule matches: `25`
+- Next-product rule matches: `25`
+- Commercial review-needed rows: `0`
+- Low-confidence nurture caution rows: `4`
+- High-score low-confidence verification rows: `1`
+- Near-threshold watchlist rows: `5`
+- Conclusion: the 25-score batch is commercially coherent and still conservative enough to proceed to a bounded purchase-intent simulation for the 3 `buy_deep_analysis` rows only.
+
+Machine-readable summary: https://machinesignal.it/score_volume_25_quality_review_summary_20260605.json
+
+Rows CSV: https://machinesignal.it/score_volume_25_quality_review_rows_20260605.csv
+
+Report: https://machinesignal.it/score_volume_25_quality_review_report_20260605.md
