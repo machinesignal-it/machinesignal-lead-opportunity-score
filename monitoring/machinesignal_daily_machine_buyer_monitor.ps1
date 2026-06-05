@@ -3,6 +3,8 @@ param(
     [string]$PublicSite = "https://machinesignal.it",
     [string]$OutputRoot = "outputs\machinesignal_daily_monitor",
     [string]$MonitorCredentialStorePath = (Join-Path $env:APPDATA "MachineSignal\machinesignal_monitor_api_key.dpapi"),
+    [ValidateSet("NoWrite", "Full")]
+    [string]$Mode = "NoWrite",
     [int]$MinScoreCredits = 20,
     [int]$MinTargetDiscoveryCredits = 5,
     [int]$MinDeepAnalysisCredits = 5
@@ -169,6 +171,9 @@ $checks = New-Object "System.Collections.Generic.List[object]"
 
 $resources = @{
     llms = "$PublicSite/llms.txt"
+    mcp_wrapper = "$PublicSite/mcp/machinesignal-mcp-wrapper.json"
+    mcp_tool_manifest = "$PublicSite/mcp-tool-manifest.json"
+    machine_api_sandbox_test = "$PublicSite/machine-api-sandbox-test/machine-api-sandbox-test.json"
     dentists_beta_pack = "$PublicSite/dentists-beta-machine-buyer-pack.json"
     product_catalog = "$PublicSite/product-catalog.json"
     machine_onboarding = "$PublicSite/machine-onboarding.json"
@@ -184,7 +189,73 @@ foreach ($name in $resources.Keys) {
 
 $llmsText = [string]$fetched["llms"]
 Add-Check -Checks $checks -Name "machine_can_discover_dentists_pack" -Ok ($llmsText.Contains("dentists-beta-machine-buyer-pack.json")) -Details "llms.txt includes dentists pack"
+Add-Check -Checks $checks -Name "machine_can_discover_mcp_wrapper" -Ok ($llmsText.Contains("mcp/machinesignal-mcp-wrapper.json")) -Details "llms.txt includes MCP wrapper pack"
 Add-Check -Checks $checks -Name "dentists_pack_contains_benchmark" -Ok ($fetched["dentists_beta_pack"].benchmark.targets_scored -eq 250) -Details "expected benchmark targets_scored=250"
+Add-Check -Checks $checks -Name "mcp_manifest_lists_tools" -Ok (@($fetched["mcp_tool_manifest"].tools).Count -ge 10) -Details "tools=$(@($fetched["mcp_tool_manifest"].tools).Count)"
+Add-Check -Checks $checks -Name "mcp_wrapper_lists_expected_tools" -Ok (@($fetched["mcp_wrapper"].mcp_tools_expected).Count -ge 10) -Details "tools=$(@($fetched["mcp_wrapper"].mcp_tools_expected).Count)"
+
+if ($Mode -eq "NoWrite") {
+    Add-Check -Checks $checks -Name "kv_write_guardrail_no_write_mode" -Ok $true -Details "No POST/write calls executed; use -Mode Full for sandbox scoring tests."
+    $ok = -not ($checks | Where-Object { -not $_.ok })
+    $failedChecks = @($checks | Where-Object { -not $_.ok })
+    $alertRequired = $failedChecks.Count -gt 0
+    $alertReasons = @($failedChecks | ForEach-Object { "$($_.name): $($_.details)" })
+    $result = [pscustomobject]@{
+        ok = $ok
+        alert_required = $alertRequired
+        alert_level = $(if ($alertRequired) { "ALERT" } else { "OK" })
+        alert_reasons = $alertReasons
+        monitor_name = "machinesignal_daily_machine_buyer_monitor"
+        mode = $Mode
+        write_calls_executed = 0
+        finished_at = (Get-Date).ToString("s")
+        base_url = $BaseUrl
+        public_site = $PublicSite
+        checks = $checks
+        safety = [pscustomobject]@{
+            real_payment_executed = $false
+            external_contact_executed = $false
+            kv_write_limit_protected = $true
+        }
+        output_dir = $outputDir
+    }
+
+    $summaryPath = Join-Path $outputDir ("summary_{0}.json" -f $stamp)
+    $reportPath = Join-Path $outputDir ("report_{0}.md" -f $stamp)
+    $result | Add-Member -NotePropertyName summary_path -NotePropertyValue $summaryPath -Force
+    $result | Add-Member -NotePropertyName report_path -NotePropertyValue $reportPath -Force
+    $result | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $summaryPath -Encoding UTF8
+
+    $checkRows = ($checks | ForEach-Object {
+        $status = if ($_.ok) { "OK" } else { "FAIL" }
+        "| $($_.name) | $status | $($_.details) |"
+    }) -join "`n"
+    $report = @"
+# MachineSignal Daily Machine-Buyer Monitor
+
+Finished at: $($result.finished_at)
+Status: $(if ($ok) { "PASS" } else { "FAIL" })
+Mode: $Mode
+Alert: $($result.alert_level)
+Write calls executed: 0
+
+## Checks
+
+| Check | Result | Details |
+|---|---|---|
+$checkRows
+
+## Guardrails
+
+- KV write protected: ``true``
+- Real payment executed: ``false``
+- External contact executed: ``false``
+- Full sandbox test: run manually with ``-Mode Full`` only when write quota budget is acceptable.
+"@
+    $report | Set-Content -LiteralPath $reportPath -Encoding UTF8
+    $result | ConvertTo-Json -Depth 20
+    return
+}
 
 $apiKey = Get-StoredMonitorApiKey -CredentialPath $MonitorCredentialStorePath
 $customerId = "stored_monitor_customer"
