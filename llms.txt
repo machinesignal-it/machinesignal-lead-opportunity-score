@@ -64,6 +64,9 @@ Useful endpoints:
 - GET https://machinesignal.it/bounded_deep_analysis_purchase_probe_report_20260605.md
 - GET https://machinesignal.it/bounded_deep_analysis_purchase_probe_summary_20260605.json
 - GET https://machinesignal.it/bounded_deep_analysis_purchase_probe_rows_20260605.csv
+- GET https://machinesignal.it/deep_analysis_delivery_quality_review_report_20260605.md
+- GET https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json
+- GET https://machinesignal.it/deep_analysis_delivery_quality_review_rows_20260605.csv
 - GET https://machinesignal.it/readiness-dashboard/
 - GET https://machinesignal.it/readiness-dashboard/readiness.json
 - GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -180,6 +183,9 @@ Public demos for software, agents and partners:
 - Bounded Deep Analysis Purchase Probe: https://machinesignal.it/bounded_deep_analysis_purchase_probe_report_20260605.md
 - Bounded Deep Analysis Purchase Probe JSON: https://machinesignal.it/bounded_deep_analysis_purchase_probe_summary_20260605.json
 - Bounded Deep Analysis Purchase Probe CSV: https://machinesignal.it/bounded_deep_analysis_purchase_probe_rows_20260605.csv
+- Deep Analysis Delivery Quality Review: https://machinesignal.it/deep_analysis_delivery_quality_review_report_20260605.md
+- Deep Analysis Delivery Quality Review JSON: https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json
+- Deep Analysis Delivery Quality Review CSV: https://machinesignal.it/deep_analysis_delivery_quality_review_rows_20260605.csv
 - Readiness dashboard: https://machinesignal.it/readiness-dashboard/
 - Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
 - Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md

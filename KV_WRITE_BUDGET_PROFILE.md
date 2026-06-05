@@ -59,11 +59,12 @@ The score ledger is intended to use Durable Object storage, not KV, after the le
 
 ## Recommended Next Test
 
-Run a no-credit quality review of the Deep Analysis deliveries before any Action Pack simulation. The goal is to confirm that:
+Run at most one bounded Action Pack contract probe on the strongest reviewed row. The goal is to confirm that:
 
-- each Deep Analysis delivery gives a useful reason to continue or stop;
-- Action Pack is recommended only behind the correct approval gates;
-- duplicate Deep Analysis spend is avoided;
+- Action Pack delivery creates CRM/workflow payload correctly;
+- no external action is executed;
+- no real payment occurs;
+- synthetic-output caveat stays visible;
 - no real payment, external contact or real invoice occurs.
 
 ## Latest Bounded Probe
@@ -213,3 +214,27 @@ Machine-readable summary: https://machinesignal.it/bounded_deep_analysis_purchas
 Rows CSV: https://machinesignal.it/bounded_deep_analysis_purchase_probe_rows_20260605.csv
 
 Report: https://machinesignal.it/bounded_deep_analysis_purchase_probe_report_20260605.md
+
+## Latest Deep Analysis Delivery Quality Review
+
+Generated at: 2026-06-05T16:58:23
+
+Status: `PASS`
+
+- Reviewed deliveries: `3`
+- Contract-valid deliveries: `3`
+- Synthetic demo deliveries: `3`
+- Commercial review-needed rows: `0`
+- Deep Analysis credit delta: `0`
+- Action Pack credit delta: `0`
+- Expected KV puts with Durable Object: `0`
+- Expected Durable Object writes: `0`
+- Real payment executed: `false`
+- External contact executed: `false`
+- Conclusion: the Deep Analysis delivery contract is valid, but content is still synthetic beta output. This validates the machine buying flow, not yet final commercial-grade Deep Analysis value.
+
+Machine-readable summary: https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json
+
+Rows CSV: https://machinesignal.it/deep_analysis_delivery_quality_review_rows_20260605.csv
+
+Report: https://machinesignal.it/deep_analysis_delivery_quality_review_report_20260605.md

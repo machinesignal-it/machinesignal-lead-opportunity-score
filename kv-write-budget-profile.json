@@ -126,10 +126,10 @@
     "Escalate to human supervision before high-volume Full tests or paid Cloudflare upgrade decisions."
   ],
   "next_recommended_test": {
-    "name": "deep_analysis_delivery_quality_review",
-    "description": "Run a no-credit review of the Deep Analysis deliveries before any bounded Action Pack simulation.",
-    "requires_human_approval": false,
-    "suggested_frequency": "after bounded Deep Analysis purchase-intent probes"
+    "name": "bounded_action_pack_contract_probe",
+    "description": "Run at most one bounded Action Pack contract probe on the strongest reviewed row, keeping the synthetic-output caveat visible.",
+    "requires_human_approval": true,
+    "suggested_frequency": "manual only, not daily"
   },
   "latest_bounded_write_budget_probe": {
     "finished_at": "2026-06-05T11:16:32",
@@ -254,5 +254,26 @@
     "summary_json": "https://machinesignal.it/bounded_deep_analysis_purchase_probe_summary_20260605.json",
     "rows_csv": "https://machinesignal.it/bounded_deep_analysis_purchase_probe_rows_20260605.csv",
     "report": "https://machinesignal.it/bounded_deep_analysis_purchase_probe_report_20260605.md"
+  },
+  "latest_deep_analysis_delivery_quality_review": {
+    "generated_at": "2026-06-05T16:58:23",
+    "status": "PASS",
+    "mode": "NoCreditDeepAnalysisDeliveryQualityReview",
+    "source_purchase_probe_id": "bounded-deep-analysis-purchase-probe-20260605",
+    "reviewed_deliveries": 3,
+    "contract_valid_count": 3,
+    "commercial_review_needed_count": 0,
+    "synthetic_demo_delivery_count": 3,
+    "deep_analysis_credit_delta": 0,
+    "action_pack_credit_delta": 0,
+    "estimated_kv_puts_with_durable_object": 0,
+    "estimated_durable_object_writes": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "conclusion": "The 3 Deep Analysis deliveries pass the API contract review, but all are still synthetic beta deliveries. They are suitable for a bounded Action Pack contract probe, not yet proof of commercial-grade Deep Analysis value.",
+    "recommended_next_step": "Run at most one bounded Action Pack contract probe on the strongest reviewed row, while keeping synthetic-output caveat visible and no real payment or external contact.",
+    "summary_json": "https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json",
+    "rows_csv": "https://machinesignal.it/deep_analysis_delivery_quality_review_rows_20260605.csv",
+    "report": "https://machinesignal.it/deep_analysis_delivery_quality_review_report_20260605.md"
   }
 }
