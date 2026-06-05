@@ -49,6 +49,9 @@ Useful endpoints:
 - GET https://machinesignal.it/kv-write-budget-profile.json
 - GET https://machinesignal.it/bounded_write_budget_probe_report_20260605.md
 - GET https://machinesignal.it/bounded_write_budget_probe_summary_20260605.json
+- GET https://machinesignal.it/bounded_score_volume_probe_report_20260605.md
+- GET https://machinesignal.it/bounded_score_volume_probe_summary_20260605.json
+- GET https://machinesignal.it/bounded_score_volume_probe_rows_20260605.csv
 - GET https://machinesignal.it/readiness-dashboard/
 - GET https://machinesignal.it/readiness-dashboard/readiness.json
 - GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -150,6 +153,9 @@ Public demos for software, agents and partners:
 - KV Write Budget Profile JSON: https://machinesignal.it/kv-write-budget-profile.json
 - Bounded Write Budget Probe: https://machinesignal.it/bounded_write_budget_probe_report_20260605.md
 - Bounded Write Budget Probe JSON: https://machinesignal.it/bounded_write_budget_probe_summary_20260605.json
+- Bounded Score Volume Probe: https://machinesignal.it/bounded_score_volume_probe_report_20260605.md
+- Bounded Score Volume Probe JSON: https://machinesignal.it/bounded_score_volume_probe_summary_20260605.json
+- Bounded Score Volume Probe CSV: https://machinesignal.it/bounded_score_volume_probe_rows_20260605.csv
 - Readiness dashboard: https://machinesignal.it/readiness-dashboard/
 - Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
 - Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md

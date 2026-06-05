@@ -147,5 +147,26 @@
     "external_contact_executed": false,
     "summary_json": "https://machinesignal.it/bounded_write_budget_probe_summary_20260605.json",
     "report": "https://machinesignal.it/bounded_write_budget_probe_report_20260605.md"
+  },
+  "latest_bounded_score_volume_probe": {
+    "finished_at": "2026-06-05T11:41:18",
+    "status": "PASS",
+    "mode": "BoundedScoreVolume10",
+    "score_requests": 10,
+    "sandbox_customer_created": false,
+    "target_discovery_created": false,
+    "purchase_intents_created": 0,
+    "ledger_backend_before": "durable_object",
+    "ledger_backend_after": "durable_object",
+    "score_credits_before": 1193,
+    "score_credits_after": 1183,
+    "score_credit_delta": 10,
+    "estimated_kv_puts_with_durable_object": 0,
+    "estimated_durable_object_writes": 10,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "summary_json": "https://machinesignal.it/bounded_score_volume_probe_summary_20260605.json",
+    "rows_csv": "https://machinesignal.it/bounded_score_volume_probe_rows_20260605.csv",
+    "report": "https://machinesignal.it/bounded_score_volume_probe_report_20260605.md"
   }
 }

@@ -36,6 +36,9 @@ Public discovery starts here:
 - KV Write Budget Profile JSON: https://machinesignal.it/kv-write-budget-profile.json
 - Bounded Write Budget Probe: https://machinesignal.it/bounded_write_budget_probe_report_20260605.md
 - Bounded Write Budget Probe JSON: https://machinesignal.it/bounded_write_budget_probe_summary_20260605.json
+- Bounded Score Volume Probe: https://machinesignal.it/bounded_score_volume_probe_report_20260605.md
+- Bounded Score Volume Probe JSON: https://machinesignal.it/bounded_score_volume_probe_summary_20260605.json
+- Bounded Score Volume Probe CSV: https://machinesignal.it/bounded_score_volume_probe_rows_20260605.csv
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md

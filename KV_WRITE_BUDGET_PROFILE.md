@@ -87,3 +87,29 @@ Status: `PASS`
 Machine-readable summary: https://machinesignal.it/bounded_write_budget_probe_summary_20260605.json
 
 Report: https://machinesignal.it/bounded_write_budget_probe_report_20260605.md
+
+## Latest Score Volume Probe
+
+Last run: 2026-06-05T11:41:18
+
+Status: `PASS`
+
+- Score requests: `10`
+- New sandbox customer created: `false`
+- Target discovery order created: `false`
+- Purchase intents created: `0`
+- Ledger backend before: `durable_object`
+- Ledger backend after: `durable_object`
+- Score credits before: `1193`
+- Score credits after: `1183`
+- Score credit delta: `10`
+- Expected KV puts with Durable Object: `0`
+- Expected Durable Object writes: `10`
+- Real payment executed: `false`
+- External contact executed: `false`
+
+Machine-readable summary: https://machinesignal.it/bounded_score_volume_probe_summary_20260605.json
+
+Rows CSV: https://machinesignal.it/bounded_score_volume_probe_rows_20260605.csv
+
+Report: https://machinesignal.it/bounded_score_volume_probe_report_20260605.md

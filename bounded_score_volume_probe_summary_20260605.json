@@ -1,0 +1,185 @@
+{
+    "ok":  true,
+    "run_id":  "bounded-score-volume-probe-20260605-113755",
+    "finished_at":  "2026-06-05T11:41:18",
+    "mode":  "BoundedScoreVolume10",
+    "recovery_note":  "The API calls completed; report was reconstructed from /v1/usage last_events after a local reporting aggregation error.",
+    "target_count":  10,
+    "sandbox_customer_created":  false,
+    "target_discovery_created":  false,
+    "purchase_intents_created":  0,
+    "expected_kv_puts_with_durable_object":  0,
+    "expected_durable_object_writes":  10,
+    "fallback_kv_puts_if_durable_object_unavailable":  10,
+    "usage_before":  {
+                         "ledger_backend":  "durable_object",
+                         "score_remaining":  1193
+                     },
+    "usage_after":  {
+                        "ledger_backend":  "durable_object",
+                        "score_remaining":  1183,
+                        "score_delta":  10,
+                        "real_payment_executed":  false,
+                        "external_contact_executed":  false
+                    },
+    "results":  {
+                    "ok_rows":  10,
+                    "failed_rows":  0,
+                    "decisions":  [
+                                      {
+                                          "decision":  "buy_deep_analysis",
+                                          "count":  1
+                                      },
+                                      {
+                                          "decision":  "nurture",
+                                          "count":  5
+                                      },
+                                      {
+                                          "decision":  "watchlist",
+                                          "count":  4
+                                      }
+                                  ],
+                    "inferred_next_products":  [
+                                                   {
+                                                       "next_product":  "deep_analysis",
+                                                       "count":  1
+                                                   },
+                                                   {
+                                                       "next_product":  "nurture_signal",
+                                                       "count":  5
+                                                   },
+                                                   {
+                                                       "next_product":  "none",
+                                                       "count":  4
+                                                   }
+                                               ]
+                },
+    "guardrails":  {
+                       "real_payment_executed":  false,
+                       "external_contact_executed":  false,
+                       "no_purchase_intents_created":  true,
+                       "no_sandbox_customer_created":  true
+                   },
+    "rows":  [
+                 {
+                     "index":  1,
+                     "event_id":  "evt_0020",
+                     "request_id":  "bounded-score-volume-probe-20260605-113755-score-1",
+                     "status":  "valid_output",
+                     "domain":  "clinic3.it",
+                     "opportunity_score":  81,
+                     "confidence":  0.88,
+                     "decision":  "buy_deep_analysis",
+                     "inferred_next_product":  "deep_analysis",
+                     "credits_consumed":  1
+                 },
+                 {
+                     "index":  2,
+                     "event_id":  "evt_0021",
+                     "request_id":  "bounded-score-volume-probe-20260605-113755-score-2",
+                     "status":  "valid_output",
+                     "domain":  "studiorossidentale.it",
+                     "opportunity_score":  55,
+                     "confidence":  0.88,
+                     "decision":  "watchlist",
+                     "inferred_next_product":  null,
+                     "credits_consumed":  1
+                 },
+                 {
+                     "index":  3,
+                     "event_id":  "evt_0022",
+                     "request_id":  "bounded-score-volume-probe-20260605-113755-score-3",
+                     "status":  "valid_output",
+                     "domain":  "odontoiatriabrianza.it",
+                     "opportunity_score":  66,
+                     "confidence":  0.66,
+                     "decision":  "nurture",
+                     "inferred_next_product":  "nurture_signal",
+                     "credits_consumed":  1
+                 },
+                 {
+                     "index":  4,
+                     "event_id":  "evt_0023",
+                     "request_id":  "bounded-score-volume-probe-20260605-113755-score-4",
+                     "status":  "valid_output",
+                     "domain":  "dentistalodi.it",
+                     "opportunity_score":  50,
+                     "confidence":  0.53,
+                     "decision":  "watchlist",
+                     "inferred_next_product":  null,
+                     "credits_consumed":  1
+                 },
+                 {
+                     "index":  5,
+                     "event_id":  "evt_0024",
+                     "request_id":  "bounded-score-volume-probe-20260605-113755-score-5",
+                     "status":  "valid_output",
+                     "domain":  "clinicaoralemilano.it",
+                     "opportunity_score":  74,
+                     "confidence":  0.52,
+                     "decision":  "nurture",
+                     "inferred_next_product":  "nurture_signal",
+                     "credits_consumed":  1
+                 },
+                 {
+                     "index":  6,
+                     "event_id":  "evt_0025",
+                     "request_id":  "bounded-score-volume-probe-20260605-113755-score-6",
+                     "status":  "valid_output",
+                     "domain":  "sorrisobergamo.it",
+                     "opportunity_score":  62,
+                     "confidence":  0.56,
+                     "decision":  "watchlist",
+                     "inferred_next_product":  null,
+                     "credits_consumed":  1
+                 },
+                 {
+                     "index":  7,
+                     "event_id":  "evt_0026",
+                     "request_id":  "bounded-score-volume-probe-20260605-113755-score-7",
+                     "status":  "valid_output",
+                     "domain":  "implantologiacomo.it",
+                     "opportunity_score":  78,
+                     "confidence":  0.52,
+                     "decision":  "nurture",
+                     "inferred_next_product":  "nurture_signal",
+                     "credits_consumed":  1
+                 },
+                 {
+                     "index":  8,
+                     "event_id":  "evt_0027",
+                     "request_id":  "bounded-score-volume-probe-20260605-113755-score-8",
+                     "status":  "valid_output",
+                     "domain":  "studiodentalepavia.it",
+                     "opportunity_score":  76,
+                     "confidence":  0.54,
+                     "decision":  "nurture",
+                     "inferred_next_product":  "nurture_signal",
+                     "credits_consumed":  1
+                 },
+                 {
+                     "index":  9,
+                     "event_id":  "evt_0028",
+                     "request_id":  "bounded-score-volume-probe-20260605-113755-score-9",
+                     "status":  "valid_output",
+                     "domain":  "ortodonziabrescia.it",
+                     "opportunity_score":  50,
+                     "confidence":  0.57,
+                     "decision":  "watchlist",
+                     "inferred_next_product":  null,
+                     "credits_consumed":  1
+                 },
+                 {
+                     "index":  10,
+                     "event_id":  "evt_0029",
+                     "request_id":  "bounded-score-volume-probe-20260605-113755-score-10",
+                     "status":  "valid_output",
+                     "domain":  "dentistavarese.it",
+                     "opportunity_score":  68,
+                     "confidence":  0.88,
+                     "decision":  "nurture",
+                     "inferred_next_product":  "nurture_signal",
+                     "credits_consumed":  1
+                 }
+             ]
+}
