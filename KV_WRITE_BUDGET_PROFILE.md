@@ -66,3 +66,24 @@ Run one bounded Full-mode sandbox flow only when approved. The goal is not volum
 - one recommended purchase intent can be created;
 - usage ledger remains consistent;
 - no real payment, external contact or real invoice occurs.
+
+## Latest Bounded Probe
+
+Last run: 2026-06-05T11:16:32
+
+Status: `PASS`
+
+- New sandbox customer created: `false`
+- Target discovery order created: `false`
+- Score requests: `1`
+- Purchase intents: `1`
+- Ledger backend before: `durable_object`
+- Ledger backend after: `durable_object`
+- Expected KV puts with Durable Object: `0`
+- Expected Durable Object writes: `2`
+- Real payment executed: `false`
+- External contact executed: `false`
+
+Machine-readable summary: https://machinesignal.it/bounded_write_budget_probe_summary_20260605.json
+
+Report: https://machinesignal.it/bounded_write_budget_probe_report_20260605.md

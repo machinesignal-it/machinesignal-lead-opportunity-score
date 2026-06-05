@@ -130,5 +130,22 @@
     "description": "Run one explicit Full-mode sandbox flow, then compare reported API behavior with this budget profile.",
     "requires_human_approval": true,
     "suggested_frequency": "manual only, not daily"
+  },
+  "latest_bounded_write_budget_probe": {
+    "finished_at": "2026-06-05T11:16:32",
+    "status": "PASS",
+    "mode": "BoundedFull",
+    "sandbox_customer_created": false,
+    "target_discovery_created": false,
+    "score_requests": 1,
+    "purchase_intents": 1,
+    "ledger_backend_before": "durable_object",
+    "ledger_backend_after": "durable_object",
+    "estimated_kv_puts_with_durable_object": 0,
+    "estimated_durable_object_writes": 2,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "summary_json": "https://machinesignal.it/bounded_write_budget_probe_summary_20260605.json",
+    "report": "https://machinesignal.it/bounded_write_budget_probe_report_20260605.md"
   }
 }

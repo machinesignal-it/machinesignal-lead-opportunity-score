@@ -1,0 +1,62 @@
+{
+  "ok": true,
+  "run_id": "bounded-write-budget-probe-20260605-111628",
+  "finished_at": "2026-06-05T11:16:32",
+  "mode": "BoundedFull",
+  "sandbox_customer_created": false,
+  "target_discovery_created": false,
+  "planned_write_calls": {
+    "kv_puts_expected_with_durable_object": 0,
+    "durable_object_writes_expected": 2,
+    "fallback_kv_puts_if_durable_object_unavailable": 2
+  },
+  "endpoints_called": [
+    "GET /v1/usage before",
+    "POST /v1/lead-opportunity-score",
+    "POST /v1/purchase-intent",
+    "GET /v1/usage after",
+    "GET /v1/orders"
+  ],
+  "usage_before": {
+    "status": 200,
+    "ledger_backend": "durable_object",
+    "score_remaining": 1194,
+    "deep_analysis_remaining": 45,
+    "error": null
+  },
+  "score": {
+    "status": 200,
+    "domain": "clinic3.it",
+    "opportunity_score": 81,
+    "confidence": 0.79,
+    "decision": "buy_deep_analysis",
+    "commercial_strength": "medium",
+    "recommended_product": "deep_analysis",
+    "credits_consumed": 1,
+    "error": null
+  },
+  "purchase_intent": {
+    "status": 200,
+    "product_code": "deep_analysis",
+    "ledger_product_code": "deep_analysis_pack_100",
+    "order_intent_id": "ord_da750cd6",
+    "credits_consumed": 1,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "error": null
+  },
+  "usage_after": {
+    "status": 200,
+    "ledger_backend": "durable_object",
+    "score_remaining": 1193,
+    "deep_analysis_remaining": 44,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "error": null
+  },
+  "orders": {
+    "status": 200,
+    "count": 11,
+    "error": null
+  }
+}

@@ -106,6 +106,12 @@
     <loc>https://machinesignal.it/kv-write-budget-profile.json</loc>
   </url>
   <url>
+    <loc>https://machinesignal.it/bounded_write_budget_probe_report_20260605.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/bounded_write_budget_probe_summary_20260605.json</loc>
+  </url>
+  <url>
     <loc>https://machinesignal.it/readiness-dashboard/</loc>
   </url>
   <url>
