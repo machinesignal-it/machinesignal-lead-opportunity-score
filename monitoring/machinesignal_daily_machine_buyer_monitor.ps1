@@ -174,6 +174,7 @@ $resources = @{
     mcp_wrapper = "$PublicSite/mcp/machinesignal-mcp-wrapper.json"
     mcp_tool_manifest = "$PublicSite/mcp-tool-manifest.json"
     machine_api_sandbox_test = "$PublicSite/machine-api-sandbox-test/machine-api-sandbox-test.json"
+    kv_write_budget_profile = "$PublicSite/kv-write-budget-profile.json"
     dentists_beta_pack = "$PublicSite/dentists-beta-machine-buyer-pack.json"
     product_catalog = "$PublicSite/product-catalog.json"
     machine_onboarding = "$PublicSite/machine-onboarding.json"
@@ -193,6 +194,7 @@ Add-Check -Checks $checks -Name "machine_can_discover_mcp_wrapper" -Ok ($llmsTex
 Add-Check -Checks $checks -Name "dentists_pack_contains_benchmark" -Ok ($fetched["dentists_beta_pack"].benchmark.targets_scored -eq 250) -Details "expected benchmark targets_scored=250"
 Add-Check -Checks $checks -Name "mcp_manifest_lists_tools" -Ok (@($fetched["mcp_tool_manifest"].tools).Count -ge 10) -Details "tools=$(@($fetched["mcp_tool_manifest"].tools).Count)"
 Add-Check -Checks $checks -Name "mcp_wrapper_lists_expected_tools" -Ok (@($fetched["mcp_wrapper"].mcp_tools_expected).Count -ge 10) -Details "tools=$(@($fetched["mcp_wrapper"].mcp_tools_expected).Count)"
+Add-Check -Checks $checks -Name "kv_budget_profile_no_write_default" -Ok ($fetched["kv_write_budget_profile"].default_monitor_policy.mode -eq "NoWrite" -and $fetched["kv_write_budget_profile"].default_monitor_policy.write_calls_executed -eq 0) -Details "mode=$($fetched["kv_write_budget_profile"].default_monitor_policy.mode), write_calls=$($fetched["kv_write_budget_profile"].default_monitor_policy.write_calls_executed)"
 
 if ($Mode -eq "NoWrite") {
     Add-Check -Checks $checks -Name "kv_write_guardrail_no_write_mode" -Ok $true -Details "No POST/write calls executed; use -Mode Full for sandbox scoring tests."

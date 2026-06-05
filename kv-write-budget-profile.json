@@ -1,0 +1,134 @@
+{
+  "service": "MachineSignal",
+  "profile_name": "kv_write_budget_profile",
+  "version": "2026-06-05",
+  "purpose": "Help machines, agents and monitors choose safe read-only tests by default and reserve Cloudflare KV write budget for controlled sandbox or customer operations.",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "public_site": "https://machinesignal.it",
+  "reason_for_profile": {
+    "event": "Cloudflare Workers KV free-tier daily put limit warning",
+    "risk": "Unbounded automated tests can create too many KV put operations.",
+    "operational_response": "Daily monitoring must run in no-write mode. Full sandbox tests require an explicit write budget decision."
+  },
+  "storage_model": {
+    "customer_records": {
+      "backend": "Cloudflare Workers KV",
+      "writes_when": "Creating or updating sandbox or beta customer records."
+    },
+    "usage_ledger": {
+      "primary_backend": "Cloudflare Durable Object",
+      "fallback_backend": "Cloudflare Workers KV",
+      "writes_when": "Scoring, purchase intents, payment-test intents and payment-test webhooks update customer ledger state."
+    }
+  },
+  "default_monitor_policy": {
+    "mode": "NoWrite",
+    "allowed_methods": ["GET"],
+    "write_calls_executed": 0,
+    "safe_for_daily_automation": true,
+    "full_mode_rule": "Run Full mode manually only when KV and Durable Object write budget is acceptable."
+  },
+  "endpoint_budget": [
+    {
+      "endpoint": "GET public discovery endpoints",
+      "examples": [
+        "/health",
+        "/openapi.json",
+        "/machine-onboarding.json",
+        "/product-catalog.json",
+        "https://machinesignal.it/llms.txt",
+        "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+        "https://machinesignal.it/mcp-tool-manifest.json"
+      ],
+      "estimated_kv_puts_with_durable_object": 0,
+      "estimated_durable_object_writes": 0,
+      "safe_for_daily_automation": true,
+      "notes": "Use these calls for machine discovery, smoke checks and daily monitoring."
+    },
+    {
+      "endpoint": "GET authenticated read endpoints",
+      "examples": [
+        "/v1/onboarding",
+        "/v1/usage",
+        "/v1/orders",
+        "/v1/orders/{order_intent_id}",
+        "/v1/payment-test/reconciliation/{payment_test_id}"
+      ],
+      "estimated_kv_puts_with_durable_object": 0,
+      "estimated_durable_object_writes": 0,
+      "safe_for_daily_automation": true,
+      "notes": "Reads may consume API execution time but should not write KV."
+    },
+    {
+      "endpoint": "POST /v1/sandbox/customers",
+      "estimated_kv_puts_with_durable_object": 3,
+      "estimated_durable_object_writes": 1,
+      "fallback_estimated_kv_puts_without_durable_object": 4,
+      "safe_for_daily_automation": false,
+      "notes": "Creates one sandbox daily-limit tracker record update, two customer lookup records and one ledger initialization."
+    },
+    {
+      "endpoint": "POST /v1/beta/customers",
+      "estimated_kv_puts_with_durable_object": 2,
+      "estimated_durable_object_writes": 1,
+      "fallback_estimated_kv_puts_without_durable_object": 3,
+      "safe_for_daily_automation": false,
+      "notes": "Admin-only customer creation. Use sparingly and never in unattended loops."
+    },
+    {
+      "endpoint": "PATCH /v1/beta/customers/{customer_id}",
+      "estimated_kv_puts_with_durable_object": 2,
+      "estimated_durable_object_writes": 1,
+      "fallback_estimated_kv_puts_without_durable_object": 3,
+      "safe_for_daily_automation": false,
+      "notes": "Admin-only customer and credit update. Use for controlled setup, not daily monitoring."
+    },
+    {
+      "endpoint": "POST /v1/lead-opportunity-score",
+      "estimated_kv_puts_with_durable_object": 0,
+      "estimated_durable_object_writes": 1,
+      "fallback_estimated_kv_puts_without_durable_object": 1,
+      "safe_for_daily_automation": "bounded_only",
+      "notes": "Consumes one score credit and writes ledger state. Reuse a customer key and idempotency key during tests."
+    },
+    {
+      "endpoint": "POST /v1/purchase-intent",
+      "estimated_kv_puts_with_durable_object": 0,
+      "estimated_durable_object_writes": 1,
+      "fallback_estimated_kv_puts_without_durable_object": 1,
+      "safe_for_daily_automation": "bounded_only",
+      "notes": "Consumes one product credit and writes order intent state. Use only after score routing recommends a next product."
+    },
+    {
+      "endpoint": "POST /v1/payment-test/intents",
+      "estimated_kv_puts_with_durable_object": 0,
+      "estimated_durable_object_writes": 1,
+      "fallback_estimated_kv_puts_without_durable_object": 1,
+      "safe_for_daily_automation": "bounded_only",
+      "notes": "Creates simulated payment-test state. No real payment is executed."
+    },
+    {
+      "endpoint": "POST /v1/payment-test/webhooks/stripe",
+      "estimated_kv_puts_with_durable_object": 0,
+      "estimated_durable_object_writes": 1,
+      "fallback_estimated_kv_puts_without_durable_object": 1,
+      "safe_for_daily_automation": "bounded_only",
+      "notes": "Simulates provider callback state. No live provider or real invoice is used."
+    }
+  ],
+  "agent_rules": [
+    "Daily checks must use NoWrite mode unless explicitly approved.",
+    "Prefer public GET discovery before creating sandbox keys.",
+    "Reuse existing sandbox or beta keys during test sessions.",
+    "Use idempotency keys for every write endpoint.",
+    "Never run unbounded loops against POST endpoints.",
+    "Treat sandbox customer creation as the main KV budget risk.",
+    "Escalate to human supervision before high-volume Full tests or paid Cloudflare upgrade decisions."
+  ],
+  "next_recommended_test": {
+    "name": "bounded_write_budget_probe",
+    "description": "Run one explicit Full-mode sandbox flow, then compare reported API behavior with this budget profile.",
+    "requires_human_approval": true,
+    "suggested_frequency": "manual only, not daily"
+  }
+}

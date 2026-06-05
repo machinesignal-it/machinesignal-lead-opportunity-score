@@ -40,6 +40,8 @@
     "postman_public_collection_smoke_json": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
     "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
     "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
+    "kv_write_budget_profile": "https://machinesignal.it/kv-write-budget-profile.json",
+    "kv_write_budget_profile_readout": "https://machinesignal.it/KV_WRITE_BUDGET_PROFILE.md",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"
@@ -50,6 +52,15 @@
     "sandbox_keys_created_by": "POST /v1/sandbox/customers",
     "customer_keys_created_by": "POST /v1/beta/customers",
     "idempotency_header": "Idempotency-Key"
+  },
+  "quota_guardrails": {
+    "daily_monitor_default_mode": "NoWrite",
+    "daily_monitor_write_calls_executed": 0,
+    "safe_daily_methods": ["GET"],
+    "kv_budget_profile": "https://machinesignal.it/kv-write-budget-profile.json",
+    "full_mode_rule": "Run write endpoints only in bounded manual tests after KV and Durable Object write budget is approved.",
+    "main_kv_risk": "Creating or updating sandbox and beta customer records.",
+    "machine_instruction": "Fetch the KV write budget profile before running sandbox creation, scoring, purchase intent or payment-test flows."
   },
   "callable_flow": [
     {

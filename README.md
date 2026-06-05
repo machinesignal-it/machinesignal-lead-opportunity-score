@@ -32,6 +32,8 @@ Public discovery starts here:
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - Machine API Sandbox Test: https://machinesignal.it/machine-api-sandbox-test/
 - Machine API Sandbox Test JSON: https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json
+- KV Write Budget Profile: https://machinesignal.it/KV_WRITE_BUDGET_PROFILE.md
+- KV Write Budget Profile JSON: https://machinesignal.it/kv-write-budget-profile.json
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
