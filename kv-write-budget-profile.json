@@ -126,10 +126,10 @@
     "Escalate to human supervision before high-volume Full tests or paid Cloudflare upgrade decisions."
   ],
   "next_recommended_test": {
-    "name": "bounded_write_budget_probe",
-    "description": "Run one explicit Full-mode sandbox flow, then compare reported API behavior with this budget profile.",
-    "requires_human_approval": true,
-    "suggested_frequency": "manual only, not daily"
+    "name": "bounded_score_volume_25_quality_review",
+    "description": "Run a no-credit qualitative review of the 25-score bounded batch before increasing score volume or creating purchase intents.",
+    "requires_human_approval": false,
+    "suggested_frequency": "after bounded score volume tests"
   },
   "latest_bounded_write_budget_probe": {
     "finished_at": "2026-06-05T11:16:32",
@@ -182,5 +182,32 @@
     "summary_json": "https://machinesignal.it/score_volume_quality_review_summary_20260605.json",
     "rows_csv": "https://machinesignal.it/score_volume_quality_review_rows_20260605.csv",
     "report": "https://machinesignal.it/score_volume_quality_review_report_20260605.md"
+  },
+  "latest_bounded_score_volume_25_probe": {
+    "finished_at": "2026-06-05T12:11:29",
+    "status": "PASS",
+    "mode": "BoundedScoreVolume25",
+    "score_requests": 25,
+    "sandbox_customer_created": false,
+    "target_discovery_created": false,
+    "purchase_intents_created": 0,
+    "ledger_backend_before": "durable_object",
+    "ledger_backend_after": "durable_object",
+    "score_credits_before": 1183,
+    "score_credits_after": 1158,
+    "score_credit_delta": 25,
+    "estimated_kv_puts_with_durable_object": 0,
+    "estimated_durable_object_writes": 25,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "decision_distribution": {
+      "buy_deep_analysis": 3,
+      "watchlist": 12,
+      "nurture": 8,
+      "needs_verification": 2
+    },
+    "summary_json": "https://machinesignal.it/bounded_score_volume_25_probe_summary_20260605.json",
+    "rows_csv": "https://machinesignal.it/bounded_score_volume_25_probe_rows_20260605.csv",
+    "report": "https://machinesignal.it/bounded_score_volume_25_probe_report_20260605.md"
   }
 }

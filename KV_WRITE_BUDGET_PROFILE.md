@@ -59,12 +59,12 @@ The score ledger is intended to use Durable Object storage, not KV, after the le
 
 ## Recommended Next Test
 
-Run one bounded Full-mode sandbox flow only when approved. The goal is not volume. The goal is to confirm that:
+Run a quality review on the 25-score bounded batch before increasing volume again or creating purchase intents. This review should not consume score credits. The goal is to confirm that:
 
-- public discovery works;
-- one sandbox or stored customer key can score;
-- one recommended purchase intent can be created;
-- usage ledger remains consistent;
+- decision routing remains commercially coherent;
+- low-confidence rows are handled conservatively;
+- `buy_deep_analysis` remains reserved for stronger records;
+- `needs_verification` appears when confidence is too low;
 - no real payment, external contact or real invoice occurs.
 
 ## Latest Bounded Probe
@@ -132,3 +132,36 @@ Machine-readable summary: https://machinesignal.it/score_volume_quality_review_s
 Rows CSV: https://machinesignal.it/score_volume_quality_review_rows_20260605.csv
 
 Report: https://machinesignal.it/score_volume_quality_review_report_20260605.md
+
+## Latest Bounded Score Volume 25 Probe
+
+Last run: 2026-06-05T12:11:29
+
+Status: `PASS`
+
+- Score requests: `25`
+- New sandbox customer created: `false`
+- Target discovery order created: `false`
+- Purchase intents created: `0`
+- Ledger backend before: `durable_object`
+- Ledger backend after: `durable_object`
+- Score credits before: `1183`
+- Score credits after: `1158`
+- Score credit delta: `25`
+- Expected KV puts with Durable Object: `0`
+- Expected Durable Object writes: `25`
+- Real payment executed: `false`
+- External contact executed: `false`
+
+Decision distribution:
+
+- `buy_deep_analysis`: `3`
+- `watchlist`: `12`
+- `nurture`: `8`
+- `needs_verification`: `2`
+
+Machine-readable summary: https://machinesignal.it/bounded_score_volume_25_probe_summary_20260605.json
+
+Rows CSV: https://machinesignal.it/bounded_score_volume_25_probe_rows_20260605.csv
+
+Report: https://machinesignal.it/bounded_score_volume_25_probe_report_20260605.md
