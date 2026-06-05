@@ -1,0 +1,101 @@
+{
+    "ok":  true,
+    "run_id":  "bounded-deep-analysis-purchase-probe-20260605",
+    "source_quality_review_id":  "score-volume-25-quality-review-20260605",
+    "source_run_id":  "bounded-score-volume-25-probe-20260605-121122",
+    "finished_at":  "2026-06-05T16:37:33",
+    "mode":  "BoundedDeepAnalysisPurchaseIntent",
+    "candidate_count":  3,
+    "existing_orders_found":  1,
+    "purchase_intents_created":  2,
+    "action_pack_purchase_intents_created":  0,
+    "sandbox_customer_created":  false,
+    "target_discovery_created":  false,
+    "expected_kv_puts_with_durable_object":  0,
+    "expected_durable_object_writes":  2,
+    "fallback_kv_puts_if_durable_object_unavailable":  2,
+    "usage_before":  {
+                         "status":  200,
+                         "ledger_backend":  "durable_object",
+                         "deep_analysis_remaining":  44
+                     },
+    "usage_after":  {
+                        "status":  200,
+                        "ledger_backend":  "durable_object",
+                        "deep_analysis_remaining":  42,
+                        "deep_analysis_delta":  2,
+                        "real_payment_executed":  false,
+                        "external_contact_executed":  false
+                    },
+    "guardrails":  {
+                       "real_payment_executed":  false,
+                       "external_contact_executed":  false,
+                       "no_action_pack_created":  true,
+                       "no_sandbox_customer_created":  true,
+                       "duplicate_deep_analysis_orders_avoided":  true
+                   },
+    "results":  {
+                    "ok_created_rows":  2,
+                    "skipped_existing_rows":  1,
+                    "failed_rows":  0,
+                    "recommended_next_products":  [
+                                                      {
+                                                          "next_product":  "action_pack",
+                                                          "count":  3
+                                                      }
+                                                  ]
+                },
+    "rows":  [
+                 {
+                     "index":  1,
+                     "domain":  "clinic3.it",
+                     "score":  81,
+                     "confidence":  0.88,
+                     "action":  "skipped_existing_order",
+                     "status":  200,
+                     "existing_order_found":  true,
+                     "order_intent_id":  "ord_da750cd6",
+                     "delivery_type":  "deep_opportunity_analysis",
+                     "recommended_next_product":  "action_pack",
+                     "credits_consumed":  0,
+                     "real_payment_executed":  false,
+                     "external_contact_executed":  false,
+                     "idempotency_key":  null,
+                     "error":  null
+                 },
+                 {
+                     "index":  13,
+                     "domain":  "studiobianchiortodonzia.it",
+                     "score":  77,
+                     "confidence":  0.88,
+                     "action":  "created_purchase_intent",
+                     "status":  200,
+                     "existing_order_found":  false,
+                     "order_intent_id":  "ord_2907ad93",
+                     "delivery_type":  "deep_opportunity_analysis",
+                     "recommended_next_product":  "action_pack",
+                     "credits_consumed":  1,
+                     "real_payment_executed":  false,
+                     "external_contact_executed":  false,
+                     "idempotency_key":  "bounded-deep-analysis-purchase-20260605-row-13",
+                     "error":  null
+                 },
+                 {
+                     "index":  21,
+                     "domain":  "studiodentalelecco.it",
+                     "score":  75,
+                     "confidence":  0.67,
+                     "action":  "created_purchase_intent",
+                     "status":  200,
+                     "existing_order_found":  false,
+                     "order_intent_id":  "ord_ce2b3d8c",
+                     "delivery_type":  "deep_opportunity_analysis",
+                     "recommended_next_product":  "action_pack",
+                     "credits_consumed":  1,
+                     "real_payment_executed":  false,
+                     "external_contact_executed":  false,
+                     "idempotency_key":  "bounded-deep-analysis-purchase-20260605-row-21",
+                     "error":  null
+                 }
+             ]
+}

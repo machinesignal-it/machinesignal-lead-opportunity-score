@@ -48,6 +48,9 @@ Public discovery starts here:
 - Score Volume 25 Quality Review: https://machinesignal.it/score_volume_25_quality_review_report_20260605.md
 - Score Volume 25 Quality Review JSON: https://machinesignal.it/score_volume_25_quality_review_summary_20260605.json
 - Score Volume 25 Quality Review CSV: https://machinesignal.it/score_volume_25_quality_review_rows_20260605.csv
+- Bounded Deep Analysis Purchase Probe: https://machinesignal.it/bounded_deep_analysis_purchase_probe_report_20260605.md
+- Bounded Deep Analysis Purchase Probe JSON: https://machinesignal.it/bounded_deep_analysis_purchase_probe_summary_20260605.json
+- Bounded Deep Analysis Purchase Probe CSV: https://machinesignal.it/bounded_deep_analysis_purchase_probe_rows_20260605.csv
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md

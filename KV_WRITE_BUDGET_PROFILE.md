@@ -59,11 +59,11 @@ The score ledger is intended to use Durable Object storage, not KV, after the le
 
 ## Recommended Next Test
 
-Run a bounded purchase-intent simulation only for the 3 rows that received `buy_deep_analysis` in the 25-score batch. The goal is to confirm that:
+Run a no-credit quality review of the Deep Analysis deliveries before any Action Pack simulation. The goal is to confirm that:
 
-- only commercially justified rows consume Deep Analysis credits;
-- no Action Pack is bought yet;
-- no sandbox customer is created;
+- each Deep Analysis delivery gives a useful reason to continue or stop;
+- Action Pack is recommended only behind the correct approval gates;
+- duplicate Deep Analysis spend is avoided;
 - no real payment, external contact or real invoice occurs.
 
 ## Latest Bounded Probe
@@ -185,3 +185,31 @@ Machine-readable summary: https://machinesignal.it/score_volume_25_quality_revie
 Rows CSV: https://machinesignal.it/score_volume_25_quality_review_rows_20260605.csv
 
 Report: https://machinesignal.it/score_volume_25_quality_review_report_20260605.md
+
+## Latest Bounded Deep Analysis Purchase Probe
+
+Last run: 2026-06-05T16:37:33
+
+Status: `PASS`
+
+- Source quality review: `score-volume-25-quality-review-20260605`
+- Candidate rows: `3`
+- Existing Deep Analysis orders found: `1`
+- New Deep Analysis purchase intents created: `2`
+- Action Pack purchase intents created: `0`
+- Ledger backend before: `durable_object`
+- Ledger backend after: `durable_object`
+- Deep Analysis credits before: `44`
+- Deep Analysis credits after: `42`
+- Deep Analysis credit delta: `2`
+- Expected KV puts with Durable Object: `0`
+- Expected Durable Object writes: `2`
+- Real payment executed: `false`
+- External contact executed: `false`
+- Duplicate Deep Analysis orders avoided: `true`
+
+Machine-readable summary: https://machinesignal.it/bounded_deep_analysis_purchase_probe_summary_20260605.json
+
+Rows CSV: https://machinesignal.it/bounded_deep_analysis_purchase_probe_rows_20260605.csv
+
+Report: https://machinesignal.it/bounded_deep_analysis_purchase_probe_report_20260605.md
