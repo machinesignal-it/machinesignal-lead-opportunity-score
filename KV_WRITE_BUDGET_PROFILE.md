@@ -59,13 +59,13 @@ The score ledger is intended to use Durable Object storage, not KV, after the le
 
 ## Recommended Next Test
 
-Run at most one bounded Action Pack contract probe on the strongest reviewed row. The goal is to confirm that:
+Do not buy more Action Packs for now. The next work should upgrade Deep Analysis content from synthetic beta output into domain-specific commercial evidence before monetization. The goal is to confirm that:
 
-- Action Pack delivery creates CRM/workflow payload correctly;
-- no external action is executed;
-- no real payment occurs;
-- synthetic-output caveat stays visible;
-- no real payment, external contact or real invoice occurs.
+- Deep Analysis gives a buyer machine concrete reasons to spend more;
+- sector-specific evidence is stronger than generic website commentary;
+- Action Pack is triggered only after clear commercial evidence;
+- no external action is executed without approval;
+- no real payment, external contact or real invoice occurs during beta tests.
 
 ## Latest Bounded Probe
 
@@ -238,3 +238,33 @@ Machine-readable summary: https://machinesignal.it/deep_analysis_delivery_qualit
 Rows CSV: https://machinesignal.it/deep_analysis_delivery_quality_review_rows_20260605.csv
 
 Report: https://machinesignal.it/deep_analysis_delivery_quality_review_report_20260605.md
+
+## Latest Bounded Action Pack Contract Probe
+
+Last run: 2026-06-05T18:07:15
+
+Status: `PASS`
+
+- Source Deep Analysis delivery review: `deep-analysis-delivery-quality-review-20260605`
+- Domain tested: `clinic3.it`
+- Source score: `81`
+- Source confidence: `0.88`
+- New Action Pack purchase intents created: `1`
+- Action Pack credits before: `18`
+- Action Pack credits after: `17`
+- Action Pack credit delta: `1`
+- Contract checks passed: `19 / 19`
+- Approval gate default state: `blocked`
+- Send email blocked without approval: `true`
+- Expected KV puts with Durable Object: `0`
+- Expected Durable Object writes: `1`
+- Real payment executed: `false`
+- External contact executed: `false`
+
+Conclusion: the Action Pack contract is valid for one strongest reviewed row. It produced CRM, workflow and webhook payloads and kept external actions blocked by default. This validates the machine contract, not yet final commercial-grade value.
+
+Machine-readable summary: https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json
+
+Rows CSV: https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv
+
+Report: https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md

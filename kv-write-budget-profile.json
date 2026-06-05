@@ -126,10 +126,10 @@
     "Escalate to human supervision before high-volume Full tests or paid Cloudflare upgrade decisions."
   ],
   "next_recommended_test": {
-    "name": "bounded_action_pack_contract_probe",
-    "description": "Run at most one bounded Action Pack contract probe on the strongest reviewed row, keeping the synthetic-output caveat visible.",
-    "requires_human_approval": true,
-    "suggested_frequency": "manual only, not daily"
+    "name": "deep_analysis_content_upgrade",
+    "description": "Stop buying more Action Packs for now and improve Deep Analysis content from synthetic beta output into domain-specific commercial evidence before monetization.",
+    "requires_human_approval": false,
+    "suggested_frequency": "product work before monetization"
   },
   "latest_bounded_write_budget_probe": {
     "finished_at": "2026-06-05T11:16:32",
@@ -275,5 +275,36 @@
     "summary_json": "https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json",
     "rows_csv": "https://machinesignal.it/deep_analysis_delivery_quality_review_rows_20260605.csv",
     "report": "https://machinesignal.it/deep_analysis_delivery_quality_review_report_20260605.md"
+  },
+  "latest_bounded_action_pack_contract_probe": {
+    "finished_at": "2026-06-05T18:07:15",
+    "status": "PASS",
+    "mode": "BoundedActionPackContractProbe",
+    "source_deep_analysis_delivery_review_id": "deep-analysis-delivery-quality-review-20260605",
+    "domain": "clinic3.it",
+    "source_score": 81,
+    "source_confidence": 0.88,
+    "purchase_intents_created": 1,
+    "existing_orders_found": 0,
+    "sandbox_customer_created": false,
+    "target_discovery_created": false,
+    "ledger_backend_before": "durable_object",
+    "ledger_backend_after": "durable_object",
+    "action_pack_credits_before": 18,
+    "action_pack_credits_after": 17,
+    "action_pack_credit_delta": 1,
+    "contract_checks_passed": 19,
+    "contract_checks_total": 19,
+    "approval_gate_default_blocked": true,
+    "send_email_blocked_without_approval": true,
+    "estimated_kv_puts_with_durable_object": 0,
+    "estimated_durable_object_writes": 1,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "conclusion": "The Action Pack contract probe passed for one strongest reviewed row. It produced CRM/workflow/webhook payloads and kept external actions blocked by default. This validates the contract, not final commercial value.",
+    "recommended_next_step": "Stop buying more Action Packs for now and improve Deep Analysis content from synthetic beta output into domain-specific commercial evidence before monetization.",
+    "summary_json": "https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json",
+    "rows_csv": "https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv",
+    "report": "https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md"
   }
 }

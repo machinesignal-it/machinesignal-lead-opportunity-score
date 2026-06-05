@@ -62,6 +62,9 @@
     "deep_analysis_delivery_quality_review": "https://machinesignal.it/deep_analysis_delivery_quality_review_report_20260605.md",
     "deep_analysis_delivery_quality_review_json": "https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json",
     "deep_analysis_delivery_quality_review_rows": "https://machinesignal.it/deep_analysis_delivery_quality_review_rows_20260605.csv",
+    "bounded_action_pack_contract_probe": "https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md",
+    "bounded_action_pack_contract_probe_json": "https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json",
+    "bounded_action_pack_contract_probe_rows": "https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"
@@ -94,7 +97,10 @@
     "latest_bounded_deep_analysis_purchase_probe_status": "PASS",
     "latest_bounded_deep_analysis_purchase_probe_json": "https://machinesignal.it/bounded_deep_analysis_purchase_probe_summary_20260605.json",
     "latest_deep_analysis_delivery_quality_review_status": "PASS",
-    "latest_deep_analysis_delivery_quality_review_json": "https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json"
+    "latest_deep_analysis_delivery_quality_review_json": "https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json",
+    "latest_bounded_action_pack_contract_probe_status": "PASS",
+    "latest_bounded_action_pack_contract_probe_json": "https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json",
+    "latest_bounded_action_pack_contract_probe_rule": "Contract validated for one strongest reviewed row; stop further Action Pack credit spend until Deep Analysis content is upgraded from synthetic beta output to domain-specific commercial evidence."
   },
   "callable_flow": [
     {
