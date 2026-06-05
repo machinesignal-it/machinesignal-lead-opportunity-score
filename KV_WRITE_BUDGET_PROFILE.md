@@ -113,3 +113,22 @@ Machine-readable summary: https://machinesignal.it/bounded_score_volume_probe_su
 Rows CSV: https://machinesignal.it/bounded_score_volume_probe_rows_20260605.csv
 
 Report: https://machinesignal.it/bounded_score_volume_probe_report_20260605.md
+
+## Latest Score Volume Quality Review
+
+Generated at: 2026-06-05T11:51:06
+
+Status: `PASS`
+
+- Reviewed rows: `10`
+- Decision-rule matches: `10`
+- Commercial review-needed rows: `0`
+- Low-confidence nurture caution rows: `3`
+- Conclusion: the 10-score batch is commercially coherent and conservative enough to proceed to a bounded 25-score test.
+- Caution: nurture at confidence `0.52-0.54` should remain low-cost only.
+
+Machine-readable summary: https://machinesignal.it/score_volume_quality_review_summary_20260605.json
+
+Rows CSV: https://machinesignal.it/score_volume_quality_review_rows_20260605.csv
+
+Report: https://machinesignal.it/score_volume_quality_review_report_20260605.md

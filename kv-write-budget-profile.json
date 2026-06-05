@@ -168,5 +168,19 @@
     "summary_json": "https://machinesignal.it/bounded_score_volume_probe_summary_20260605.json",
     "rows_csv": "https://machinesignal.it/bounded_score_volume_probe_rows_20260605.csv",
     "report": "https://machinesignal.it/bounded_score_volume_probe_report_20260605.md"
+  },
+  "latest_score_volume_quality_review": {
+    "generated_at": "2026-06-05T11:51:06",
+    "status": "PASS",
+    "source_run_id": "bounded-score-volume-probe-20260605-113755",
+    "reviewed_rows": 10,
+    "decision_rule_match_count": 10,
+    "commercial_review_needed_count": 0,
+    "low_confidence_nurture_watch_count": 3,
+    "conclusion": "The 10-score batch is commercially coherent and conservative enough to proceed to a bounded 25-score test, with one caution: nurture at confidence 0.52-0.54 should remain low-cost only.",
+    "recommended_next_step": "Run a 25-score bounded test only after preserving NoWrite daily monitor policy and avoiding purchase intents.",
+    "summary_json": "https://machinesignal.it/score_volume_quality_review_summary_20260605.json",
+    "rows_csv": "https://machinesignal.it/score_volume_quality_review_rows_20260605.csv",
+    "report": "https://machinesignal.it/score_volume_quality_review_report_20260605.md"
   }
 }

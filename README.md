@@ -39,6 +39,9 @@ Public discovery starts here:
 - Bounded Score Volume Probe: https://machinesignal.it/bounded_score_volume_probe_report_20260605.md
 - Bounded Score Volume Probe JSON: https://machinesignal.it/bounded_score_volume_probe_summary_20260605.json
 - Bounded Score Volume Probe CSV: https://machinesignal.it/bounded_score_volume_probe_rows_20260605.csv
+- Score Volume Quality Review: https://machinesignal.it/score_volume_quality_review_report_20260605.md
+- Score Volume Quality Review JSON: https://machinesignal.it/score_volume_quality_review_summary_20260605.json
+- Score Volume Quality Review CSV: https://machinesignal.it/score_volume_quality_review_rows_20260605.csv
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
