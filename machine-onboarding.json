@@ -86,6 +86,8 @@
     "postman_public_environment_template": "https://machinesignal.it/postman_public_environment_template.json",
     "postman_workspace_secret_scan": "https://machinesignal.it/postman_workspace_secret_scan_20260606.md",
     "postman_workspace_secret_scan_json": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+    "machine_buyer_postman_discovery_probe": "https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_report.md",
+    "machine_buyer_postman_discovery_probe_json": "https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_summary.json",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"
@@ -151,6 +153,9 @@
     "latest_postman_import_page_status": "PUBLISHED_CANDIDATE",
     "latest_postman_import_page": "https://machinesignal.it/postman/",
     "latest_postman_import_page_rule": "Public Postman import page exposes the direct import URL, collection JSON, blank environment template, import checklist and secret scan for private workspace evaluation.",
+    "latest_machine_buyer_postman_discovery_probe_status": "PASS",
+    "latest_machine_buyer_postman_discovery_probe_json": "https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_summary.json",
+    "latest_machine_buyer_postman_discovery_probe_rule": "A machine buyer can discover /postman/ from llms.txt, validate the 23-request collection, read the blank environment template and verify the secret scan without human email outreach, real payment or live credit consumption.",
     "latest_postman_workspace_secret_scan_rule": "Local secret scan passed: 23 collection items, new marketplace/publication/evaluation resources present, sensitive variables blank, no secret hits, no live credits consumed."
   },
   "callable_flow": [

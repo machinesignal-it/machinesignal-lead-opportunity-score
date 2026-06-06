@@ -1,0 +1,187 @@
+{
+    "ok":  true,
+    "probe_name":  "machine_buyer_postman_discovery_probe",
+    "run_date":  "2026-06-06",
+    "public_site":  "https://machinesignal.it",
+    "machine_path":  [
+                         "https://machinesignal.it/llms.txt",
+                         "https://machinesignal.it/postman/",
+                         "https://machinesignal.it/postman_public_collection.json",
+                         "https://machinesignal.it/postman_public_environment_template.json",
+                         "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+                         "https://machinesignal.it/machine-onboarding.json"
+                     ],
+    "postman_import_url":  "https://go.postman.co/import?url=https%3A%2F%2Fmachinesignal.it%2Fpostman_public_collection.json",
+    "collection_item_count":  23,
+    "secret_variables":  4,
+    "non_blank_secret_variables":  0,
+    "live_credits_consumed":  0,
+    "real_payment_executed":  false,
+    "external_contact_executed":  false,
+    "checks":  [
+                   {
+                       "name":  "postman_page_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "onboarding_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "import_pack_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "secret_scan_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "collection_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "sitemap_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "llms_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "environment_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "llms_lists_postman_page",
+                       "ok":  true,
+                       "details":  "llms.txt includes /postman/"
+                   },
+                   {
+                       "name":  "llms_lists_postman_collection",
+                       "ok":  true,
+                       "details":  "llms.txt includes public collection"
+                   },
+                   {
+                       "name":  "llms_lists_environment_template",
+                       "ok":  true,
+                       "details":  "llms.txt includes environment template"
+                   },
+                   {
+                       "name":  "llms_lists_secret_scan",
+                       "ok":  true,
+                       "details":  "llms.txt includes secret scan"
+                   },
+                   {
+                       "name":  "postman_page_has_import_link",
+                       "ok":  true,
+                       "details":  "direct Postman import URL present"
+                   },
+                   {
+                       "name":  "postman_page_links_collection",
+                       "ok":  true,
+                       "details":  "collection JSON linked"
+                   },
+                   {
+                       "name":  "postman_page_links_environment",
+                       "ok":  true,
+                       "details":  "environment template linked"
+                   },
+                   {
+                       "name":  "postman_page_links_secret_scan",
+                       "ok":  true,
+                       "details":  "secret scan linked"
+                   },
+                   {
+                       "name":  "collection_valid_json",
+                       "ok":  true,
+                       "details":  "MachineSignal Lead Opportunity Score API - Public Machine Discovery"
+                   },
+                   {
+                       "name":  "collection_has_expected_request_count",
+                       "ok":  true,
+                       "details":  "items=23"
+                   },
+                   {
+                       "name":  "collection_secret_variables_blank",
+                       "ok":  true,
+                       "details":  "secret_variables=4, non_blank=0"
+                   },
+                   {
+                       "name":  "collection_has_import_pack_request",
+                       "ok":  true,
+                       "details":  "import pack request present"
+                   },
+                   {
+                       "name":  "collection_has_secret_scan_request",
+                       "ok":  true,
+                       "details":  "secret scan request present"
+                   },
+                   {
+                       "name":  "environment_valid_json",
+                       "ok":  true,
+                       "details":  "MachineSignal Public Sandbox Environment"
+                   },
+                   {
+                       "name":  "environment_base_url_present",
+                       "ok":  true,
+                       "details":  "base_url=https://machinesignal-api.beta-878.workers.dev"
+                   },
+                   {
+                       "name":  "environment_private_values_blank",
+                       "ok":  true,
+                       "details":  "non_blank_private_values=0"
+                   },
+                   {
+                       "name":  "secret_scan_passed",
+                       "ok":  true,
+                       "details":  "status=passed"
+                   },
+                   {
+                       "name":  "secret_scan_no_secret_hits",
+                       "ok":  true,
+                       "details":  "secret_hits=0"
+                   },
+                   {
+                       "name":  "secret_scan_no_live_credits",
+                       "ok":  true,
+                       "details":  "live_credits_consumed=0"
+                   },
+                   {
+                       "name":  "import_pack_private_workspace_rule",
+                       "ok":  true,
+                       "details":  "private workspace language present"
+                   },
+                   {
+                       "name":  "onboarding_lists_postman_import_page",
+                       "ok":  true,
+                       "details":  "postman_import_page=https://machinesignal.it/postman/"
+                   },
+                   {
+                       "name":  "onboarding_latest_status_published_candidate",
+                       "ok":  true,
+                       "details":  "latest status field present"
+                   },
+                   {
+                       "name":  "sitemap_valid_xml",
+                       "ok":  true,
+                       "details":  "urlset present"
+                   },
+                   {
+                       "name":  "sitemap_lists_postman_page",
+                       "ok":  true,
+                       "details":  "sitemap includes /postman/"
+                   }
+               ],
+    "failed_checks":  [
+
+                      ],
+    "conclusion":  "PASS: a machine buyer can discover the Postman import route, validate the collection, import a blank environment template and verify the secret scan without human email outreach."
+}

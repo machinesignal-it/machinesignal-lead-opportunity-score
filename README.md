@@ -80,6 +80,8 @@ Public discovery starts here:
 - Postman Public Environment Template: https://machinesignal.it/postman_public_environment_template.json
 - Postman Workspace Secret Scan: https://machinesignal.it/postman_workspace_secret_scan_20260606.md
 - Postman Workspace Secret Scan JSON: https://machinesignal.it/postman_workspace_secret_scan_20260606.json
+- Machine Buyer Postman Discovery Probe: https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_report.md
+- Machine Buyer Postman Discovery Probe JSON: https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_summary.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
 - Postman Public Collection Smoke JSON: https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
