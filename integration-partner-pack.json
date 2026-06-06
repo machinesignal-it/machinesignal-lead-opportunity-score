@@ -26,6 +26,8 @@
     "machine_buyer_evaluation_pack_json": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
     "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
     "marketplace_api_directory_pack_json": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+    "marketplace_publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.md",
+    "marketplace_publication_execution_pack_json": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
     "mcp_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
     "openapi": "https://machinesignal.it/openapi.json",
@@ -214,6 +216,17 @@
     ],
     "markdown": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
     "json": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json"
+  },
+  "marketplace_publication_execution_pack": {
+    "purpose": "Operational publication instructions for agents preparing sandbox-only Postman, RapidAPI-style, generic API directory and MCP/tool registry listings.",
+    "guardrails": [
+      "do not publish real API keys",
+      "do not claim live payment availability",
+      "do not enable monetized checkout",
+      "do not submit externally without owner approval"
+    ],
+    "markdown": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.md",
+    "json": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json"
   },
   "storage_recommendations": [
     "request_id",

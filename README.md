@@ -70,6 +70,8 @@ Public discovery starts here:
 - Machine Buyer Evaluation Pack JSON: https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json
 - Marketplace API Directory Pack: https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - Marketplace API Directory Pack JSON: https://machinesignal.it/marketplace_api_directory_pack_20260606.json
+- Marketplace Publication Execution Pack: https://machinesignal.it/marketplace_publication_execution_pack_20260606.md
+- Marketplace Publication Execution Pack JSON: https://machinesignal.it/marketplace_publication_execution_pack_20260606.json
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
@@ -297,6 +299,8 @@ Public assets:
 - https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json
 - https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - https://machinesignal.it/marketplace_api_directory_pack_20260606.json
+- https://machinesignal.it/marketplace_publication_execution_pack_20260606.md
+- https://machinesignal.it/marketplace_publication_execution_pack_20260606.json
 
 ## Full Machine Buyer Flow Demo
 

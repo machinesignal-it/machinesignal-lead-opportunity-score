@@ -31,6 +31,7 @@
     "public_documentation_url": "https://machinesignal.it/sandbox-buyer-kit/",
     "machine_readable_sandbox_kit": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+    "marketplace_publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
     "machine_buyer_evaluation_pack": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
     "listing_metadata_url": "https://machinesignal.it/distribution/rapidapi-listing.json",
     "public_postman_collection": "https://machinesignal.it/postman_public_collection.json"

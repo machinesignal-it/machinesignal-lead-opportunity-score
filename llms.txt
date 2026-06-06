@@ -83,6 +83,8 @@ Useful endpoints:
 - GET https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json
 - GET https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - GET https://machinesignal.it/marketplace_api_directory_pack_20260606.json
+- GET https://machinesignal.it/marketplace_publication_execution_pack_20260606.md
+- GET https://machinesignal.it/marketplace_publication_execution_pack_20260606.json
 - GET https://machinesignal.it/readiness-dashboard/
 - GET https://machinesignal.it/readiness-dashboard/readiness.json
 - GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -218,6 +220,8 @@ Public demos for software, agents and partners:
 - Machine Buyer Evaluation Pack JSON: https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json
 - Marketplace API Directory Pack: https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - Marketplace API Directory Pack JSON: https://machinesignal.it/marketplace_api_directory_pack_20260606.json
+- Marketplace Publication Execution Pack: https://machinesignal.it/marketplace_publication_execution_pack_20260606.md
+- Marketplace Publication Execution Pack JSON: https://machinesignal.it/marketplace_publication_execution_pack_20260606.json
 - Readiness dashboard: https://machinesignal.it/readiness-dashboard/
 - Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
 - Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md

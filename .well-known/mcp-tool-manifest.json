@@ -10,6 +10,7 @@
   "product_catalog": "https://machinesignal.it/product-catalog.json",
   "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
   "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+  "marketplace_publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
   "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
   "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
   "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
@@ -100,6 +101,19 @@
         "required": []
       },
       "output_summary": "Machine-readable channel copy, product table, endpoint showcase and beta guardrails."
+    },
+    {
+      "name": "get_marketplace_publication_execution_pack",
+      "purpose": "Read operational publication instructions for sandbox-only Postman, RapidAPI-style, generic API directory and MCP/tool registry listings.",
+      "method": "GET",
+      "url": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Agent runbook for channel-specific publication preparation with guardrails."
     },
     {
       "name": "get_machine_api_sandbox_test",
