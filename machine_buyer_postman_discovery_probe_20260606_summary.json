@@ -1,4 +1,4 @@
-{
+﻿{
     "ok":  true,
     "probe_name":  "machine_buyer_postman_discovery_probe",
     "run_date":  "2026-06-06",
@@ -12,7 +12,7 @@
                          "https://machinesignal.it/machine-onboarding.json"
                      ],
     "postman_import_url":  "https://go.postman.co/import?url=https%3A%2F%2Fmachinesignal.it%2Fpostman_public_collection.json",
-    "collection_item_count":  23,
+    "collection_item_count":  24,
     "secret_variables":  4,
     "non_blank_secret_variables":  0,
     "live_credits_consumed":  0,
@@ -107,7 +107,7 @@
                    {
                        "name":  "collection_has_expected_request_count",
                        "ok":  true,
-                       "details":  "items=23"
+                       "details":  "items=24"
                    },
                    {
                        "name":  "collection_secret_variables_blank",

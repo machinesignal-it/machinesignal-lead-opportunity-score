@@ -942,6 +942,10 @@
       "value": "paste_payment_test_id_here"
     },
     {
+      "key": "order_intent_id",
+      "value": "paste_order_intent_id_here"
+    },
+    {
       "key": "payment_test_success_signature",
       "value": "paste_success_signature_here"
     }

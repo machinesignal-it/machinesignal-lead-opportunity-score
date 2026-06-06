@@ -1,0 +1,101 @@
+{
+  "service": "MachineSignal",
+  "artifact": "agent_meeting_machine_buyer_readiness_review",
+  "generated_at": "2026-06-06",
+  "mode": "NoWrite",
+  "primary_customer_interface": "machine",
+  "objective": "Decide whether MachineSignal is ready for a larger machine-buyer sandbox/private beta test.",
+  "decision": {
+    "bounded_private_beta": "GO_CONDITIONAL",
+    "large_unattended_sandbox": "NO_GO",
+    "real_payment": "NO_GO",
+    "real_invoice": "NO_GO",
+    "external_outreach": "NO_GO",
+    "public_paid_marketplace": "NO_GO"
+  },
+  "readiness_scores": {
+    "technical_api": 78,
+    "commercial_product": 74,
+    "compliance_admin_finance": 74,
+    "overall_bounded_private_beta": 75
+  },
+  "objective_evidence": {
+    "product_evaluation_probe": {
+      "status": "PASS",
+      "summary_json": "https://machinesignal.it/machine_buyer_product_evaluation_probe_20260606_summary.json",
+      "live_credits_consumed": 0,
+      "real_payment_executed": false,
+      "external_contact_executed": false
+    },
+    "routing_decision_probe": {
+      "status": "PASS",
+      "summary_json": "https://machinesignal.it/machine_buyer_routing_decision_probe_20260606_summary.json",
+      "live_credits_consumed": 0,
+      "real_payment_executed": false,
+      "external_contact_executed": false
+    },
+    "delivery_retrieval_probe": {
+      "status": "PASS",
+      "summary_json": "https://machinesignal.it/machine_buyer_delivery_retrieval_probe_20260606_summary.json",
+      "mode": "NoWrite",
+      "write_calls_executed": 0,
+      "live_credits_consumed": 0
+    },
+    "postman_discovery_probe": {
+      "status": "PASS",
+      "summary_json": "https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_summary.json",
+      "collection_item_count": 24,
+      "non_blank_secret_variables": 0,
+      "live_credits_consumed": 0
+    },
+    "bounded_live_deep_analysis_delivery_persistence_probe": {
+      "status": "PASS",
+      "summary_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
+      "order_intent_id": "ord_e128da05",
+      "checks": "21/21",
+      "deep_analysis_credit_delta": 1,
+      "action_pack_credit_delta": 0
+    }
+  },
+  "main_strengths": [
+    "Machine-readable discovery is strong: llms.txt, OpenAPI, product catalog, onboarding and Postman.",
+    "The commercial ladder is understandable: score, deep_analysis, action_pack.",
+    "Orders and deliveries can be retrieved by API.",
+    "Payment and outreach are blocked in beta.",
+    "NoWrite monitoring and KV budget profile are in place."
+  ],
+  "main_risks": [
+    "Commercial demand is still internally simulated; external willingness-to-pay is not proven.",
+    "Action Pack gating should be hardened in API or runner before wider tests.",
+    "Public sandbox is low-volume and should not be used for a larger test.",
+    "Real monetization is blocked by fiscal, legal, privacy, invoicing and payment-provider controls.",
+    "A larger test needs explicit write budget because scoring and purchase intents write ledger state."
+  ],
+  "recommended_test": {
+    "name": "bounded_private_beta_machine_buyer_run",
+    "base_url": "https://machinesignal-api.beta-878.workers.dev",
+    "key_type": "private_beta_or_stored_key",
+    "payment_mode": "test_or_sandbox_only",
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "pre_monitor": "NoWrite",
+    "post_monitor": "NoWrite",
+    "limits": {
+      "runs": 1,
+      "valid_scores_max": 5,
+      "deep_analysis_max": 1,
+      "action_pack_default": 0,
+      "action_pack_max_if_deep_gate_passes": 1,
+      "external_outreach": 0
+    },
+    "stop_conditions": [
+      "any safety flag becomes true",
+      "credit delta exceeds approved cap",
+      "ledger reconciliation fails",
+      "Action Pack is requested without valid Deep Analysis proof",
+      "payment mode is not test/sandbox"
+    ]
+  },
+  "recommended_next_step": "Implement pre-flight hardening for Action Pack gating and prepare a bounded private beta runner before consuming more credits."
+}

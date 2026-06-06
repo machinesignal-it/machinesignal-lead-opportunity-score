@@ -1,4 +1,4 @@
-# Machine buyer Postman discovery probe - 2026-06-06
+﻿# Machine buyer Postman discovery probe - 2026-06-06
 
 ## Scope
 
@@ -7,7 +7,7 @@ This probe verifies whether a software system, CRM workflow or AI agent can disc
 ## Result
 
 - Status: **True**
-- Collection requests: 23
+- Collection requests: 24
 - Secret variables: 4
 - Non-blank secret variables: 0
 - Live credits consumed: 0
@@ -46,7 +46,7 @@ This probe verifies whether a software system, CRM workflow or AI agent can disc
 - PASS - postman_page_links_environment: environment template linked
 - PASS - postman_page_links_secret_scan: secret scan linked
 - PASS - collection_valid_json: MachineSignal Lead Opportunity Score API - Public Machine Discovery
-- PASS - collection_has_expected_request_count: items=23
+- PASS - collection_has_expected_request_count: items=24
 - PASS - collection_secret_variables_blank: secret_variables=4, non_blank=0
 - PASS - collection_has_import_pack_request: import pack request present
 - PASS - collection_has_secret_scan_request: secret scan request present
