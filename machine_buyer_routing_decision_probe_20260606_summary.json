@@ -1,0 +1,394 @@
+{
+    "ok":  true,
+    "probe_name":  "machine_buyer_routing_decision_probe",
+    "run_date":  "2026-06-06",
+    "public_site":  "https://machinesignal.it",
+    "machine_path":  [
+                         "https://machinesignal.it/llms.txt",
+                         "https://machinesignal.it/openapi.json",
+                         "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
+                         "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
+                         "https://machinesignal.it/product-catalog.json"
+                     ],
+    "score_scenarios":  [
+                            {
+                                "scenario":  "weak_discard",
+                                "expected_route":  "discard",
+                                "actual_route":  "discard",
+                                "expected_buy_product":  null,
+                                "actual_buy_product":  null,
+                                "action_pack_allowed":  false,
+                                "ok":  true,
+                                "reason":  "Weak or discarded score: do not spend more budget."
+                            },
+                            {
+                                "scenario":  "medium_watchlist",
+                                "expected_route":  "watchlist",
+                                "actual_route":  "watchlist",
+                                "expected_buy_product":  null,
+                                "actual_buy_product":  null,
+                                "action_pack_allowed":  false,
+                                "ok":  true,
+                                "reason":  "Monitor the lead; do not buy paid add-ons now."
+                            },
+                            {
+                                "scenario":  "medium_nurture",
+                                "expected_route":  "nurturing",
+                                "actual_route":  "nurturing",
+                                "expected_buy_product":  null,
+                                "actual_buy_product":  null,
+                                "action_pack_allowed":  false,
+                                "ok":  true,
+                                "reason":  "Save for nurturing; Action Pack is blocked."
+                            },
+                            {
+                                "scenario":  "needs_verification",
+                                "expected_route":  "request_verification",
+                                "actual_route":  "request_verification",
+                                "expected_buy_product":  "verification",
+                                "actual_buy_product":  "verification",
+                                "action_pack_allowed":  false,
+                                "ok":  true,
+                                "reason":  "Verify data quality before any further spend."
+                            },
+                            {
+                                "scenario":  "strong_buy_deep_analysis",
+                                "expected_route":  "buy_deep_analysis",
+                                "actual_route":  "buy_deep_analysis",
+                                "expected_buy_product":  "deep_analysis",
+                                "actual_buy_product":  "deep_analysis",
+                                "action_pack_allowed":  false,
+                                "ok":  true,
+                                "reason":  "Buy Deep Analysis first; Action Pack remains blocked until deep gates pass."
+                            },
+                            {
+                                "scenario":  "strong_score_does_not_allow_direct_action_pack",
+                                "expected_route":  "buy_deep_analysis",
+                                "actual_route":  "buy_deep_analysis",
+                                "expected_buy_product":  "deep_analysis",
+                                "actual_buy_product":  "deep_analysis",
+                                "action_pack_allowed":  false,
+                                "ok":  true,
+                                "reason":  "Buy Deep Analysis first; Action Pack remains blocked until deep gates pass."
+                            }
+                        ],
+    "deep_analysis_scenarios":  [
+                                    {
+                                        "scenario":  "deep_confirms_all_gates",
+                                        "expected_route":  "buy_action_pack",
+                                        "actual_route":  "buy_action_pack",
+                                        "expected_buy_product":  "action_pack",
+                                        "actual_buy_product":  "action_pack",
+                                        "action_pack_allowed":  true,
+                                        "ok":  true,
+                                        "reason":  "Deep Analysis confirms all gates."
+                                    },
+                                    {
+                                        "scenario":  "deep_partial_evidence",
+                                        "expected_route":  "watchlist",
+                                        "actual_route":  "watchlist",
+                                        "expected_buy_product":  null,
+                                        "actual_buy_product":  null,
+                                        "action_pack_allowed":  false,
+                                        "ok":  true,
+                                        "reason":  "Evidence is partial or conditional; keep in watchlist."
+                                    },
+                                    {
+                                        "scenario":  "deep_missing_compliance",
+                                        "expected_route":  "block_action_pack",
+                                        "actual_route":  "block_action_pack",
+                                        "expected_buy_product":  null,
+                                        "actual_buy_product":  null,
+                                        "action_pack_allowed":  false,
+                                        "ok":  true,
+                                        "reason":  "At least one gate failed or compliance/budget approval is missing."
+                                    },
+                                    {
+                                        "scenario":  "deep_missing_budget_approval",
+                                        "expected_route":  "block_action_pack",
+                                        "actual_route":  "block_action_pack",
+                                        "expected_buy_product":  null,
+                                        "actual_buy_product":  null,
+                                        "action_pack_allowed":  false,
+                                        "ok":  true,
+                                        "reason":  "At least one gate failed or compliance/budget approval is missing."
+                                    }
+                                ],
+    "routing_policy":  {
+                           "discard":  "Do not spend more budget.",
+                           "watchlist":  "Monitor without buying add-ons.",
+                           "nurturing":  "Save internally for nurturing; Action Pack blocked.",
+                           "request_verification":  "Buy verification only if next_purchase recommends verification and it is allowed.",
+                           "buy_deep_analysis":  "Buy Deep Analysis first; Action Pack remains blocked.",
+                           "buy_action_pack":  "Allowed only after Deep Analysis confirms all gates."
+                       },
+    "live_credits_consumed":  0,
+    "real_payment_executed":  false,
+    "external_contact_executed":  false,
+    "checks":  [
+                   {
+                       "name":  "product_catalog_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "onboarding_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "evaluation_pack_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "llms_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "deep_analysis_brief_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "openapi_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "sitemap_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "openapi_decision_enum_has_discard",
+                       "ok":  true,
+                       "details":  "decision enum contains discard"
+                   },
+                   {
+                       "name":  "openapi_decision_enum_has_watchlist",
+                       "ok":  true,
+                       "details":  "decision enum contains watchlist"
+                   },
+                   {
+                       "name":  "openapi_decision_enum_has_nurture",
+                       "ok":  true,
+                       "details":  "decision enum contains nurture"
+                   },
+                   {
+                       "name":  "openapi_decision_enum_has_buy_deep_analysis",
+                       "ok":  true,
+                       "details":  "decision enum contains buy_deep_analysis"
+                   },
+                   {
+                       "name":  "openapi_decision_enum_has_needs_verification",
+                       "ok":  true,
+                       "details":  "decision enum contains needs_verification"
+                   },
+                   {
+                       "name":  "openapi_purchase_code_has_verification",
+                       "ok":  true,
+                       "details":  "purchase-intent supports verification"
+                   },
+                   {
+                       "name":  "openapi_purchase_code_has_nurture_signal",
+                       "ok":  true,
+                       "details":  "purchase-intent supports nurture_signal"
+                   },
+                   {
+                       "name":  "openapi_purchase_code_has_deep_analysis",
+                       "ok":  true,
+                       "details":  "purchase-intent supports deep_analysis"
+                   },
+                   {
+                       "name":  "openapi_purchase_code_has_action_pack",
+                       "ok":  true,
+                       "details":  "purchase-intent supports action_pack"
+                   },
+                   {
+                       "name":  "openapi_has_commercial_strength",
+                       "ok":  true,
+                       "details":  "commercial_strength present"
+                   },
+                   {
+                       "name":  "openapi_has_spend_policy",
+                       "ok":  true,
+                       "details":  "spend_policy present"
+                   },
+                   {
+                       "name":  "openapi_has_next_purchase",
+                       "ok":  true,
+                       "details":  "next_purchase present"
+                   },
+                   {
+                       "name":  "evaluation_pack_has_score_response_shape",
+                       "ok":  true,
+                       "details":  "score response routing example present"
+                   },
+                   {
+                       "name":  "evaluation_pack_has_deep_gate",
+                       "ok":  true,
+                       "details":  "deep gate example present"
+                   },
+                   {
+                       "name":  "deep_brief_has_routing_policy",
+                       "ok":  true,
+                       "details":  "weak/medium/strong policy present"
+                   },
+                   {
+                       "name":  "product_catalog_score_pack_returns_routing_fields",
+                       "ok":  true,
+                       "details":  "score pack returns routing fields"
+                   },
+                   {
+                       "name":  "llms_explains_routing_decisions",
+                       "ok":  true,
+                       "details":  "llms includes routing decisions"
+                   },
+                   {
+                       "name":  "onboarding_embeds_score_products",
+                       "ok":  true,
+                       "details":  "onboarding embeds products"
+                   },
+                   {
+                       "name":  "sitemap_valid_xml",
+                       "ok":  true,
+                       "details":  "urlset present"
+                   },
+                   {
+                       "name":  "score_route_weak_discard_route_ok",
+                       "ok":  true,
+                       "details":  "expected=discard; actual=discard"
+                   },
+                   {
+                       "name":  "score_route_weak_discard_buy_product_ok",
+                       "ok":  true,
+                       "details":  "expected=; actual="
+                   },
+                   {
+                       "name":  "score_route_weak_discard_action_pack_blocked",
+                       "ok":  true,
+                       "details":  "action_pack_allowed=False"
+                   },
+                   {
+                       "name":  "score_route_medium_watchlist_route_ok",
+                       "ok":  true,
+                       "details":  "expected=watchlist; actual=watchlist"
+                   },
+                   {
+                       "name":  "score_route_medium_watchlist_buy_product_ok",
+                       "ok":  true,
+                       "details":  "expected=; actual="
+                   },
+                   {
+                       "name":  "score_route_medium_watchlist_action_pack_blocked",
+                       "ok":  true,
+                       "details":  "action_pack_allowed=False"
+                   },
+                   {
+                       "name":  "score_route_medium_nurture_route_ok",
+                       "ok":  true,
+                       "details":  "expected=nurturing; actual=nurturing"
+                   },
+                   {
+                       "name":  "score_route_medium_nurture_buy_product_ok",
+                       "ok":  true,
+                       "details":  "expected=; actual="
+                   },
+                   {
+                       "name":  "score_route_medium_nurture_action_pack_blocked",
+                       "ok":  true,
+                       "details":  "action_pack_allowed=False"
+                   },
+                   {
+                       "name":  "score_route_needs_verification_route_ok",
+                       "ok":  true,
+                       "details":  "expected=request_verification; actual=request_verification"
+                   },
+                   {
+                       "name":  "score_route_needs_verification_buy_product_ok",
+                       "ok":  true,
+                       "details":  "expected=verification; actual=verification"
+                   },
+                   {
+                       "name":  "score_route_needs_verification_action_pack_blocked",
+                       "ok":  true,
+                       "details":  "action_pack_allowed=False"
+                   },
+                   {
+                       "name":  "score_route_strong_buy_deep_analysis_route_ok",
+                       "ok":  true,
+                       "details":  "expected=buy_deep_analysis; actual=buy_deep_analysis"
+                   },
+                   {
+                       "name":  "score_route_strong_buy_deep_analysis_buy_product_ok",
+                       "ok":  true,
+                       "details":  "expected=deep_analysis; actual=deep_analysis"
+                   },
+                   {
+                       "name":  "score_route_strong_buy_deep_analysis_action_pack_blocked",
+                       "ok":  true,
+                       "details":  "action_pack_allowed=False"
+                   },
+                   {
+                       "name":  "score_route_strong_score_does_not_allow_direct_action_pack_route_ok",
+                       "ok":  true,
+                       "details":  "expected=buy_deep_analysis; actual=buy_deep_analysis"
+                   },
+                   {
+                       "name":  "score_route_strong_score_does_not_allow_direct_action_pack_buy_product_ok",
+                       "ok":  true,
+                       "details":  "expected=deep_analysis; actual=deep_analysis"
+                   },
+                   {
+                       "name":  "score_route_strong_score_does_not_allow_direct_action_pack_action_pack_blocked",
+                       "ok":  true,
+                       "details":  "action_pack_allowed=False"
+                   },
+                   {
+                       "name":  "deep_route_deep_confirms_all_gates_route_ok",
+                       "ok":  true,
+                       "details":  "expected=buy_action_pack; actual=buy_action_pack"
+                   },
+                   {
+                       "name":  "deep_route_deep_confirms_all_gates_buy_product_ok",
+                       "ok":  true,
+                       "details":  "expected=action_pack; actual=action_pack"
+                   },
+                   {
+                       "name":  "deep_route_deep_partial_evidence_route_ok",
+                       "ok":  true,
+                       "details":  "expected=watchlist; actual=watchlist"
+                   },
+                   {
+                       "name":  "deep_route_deep_partial_evidence_buy_product_ok",
+                       "ok":  true,
+                       "details":  "expected=; actual="
+                   },
+                   {
+                       "name":  "deep_route_deep_missing_compliance_route_ok",
+                       "ok":  true,
+                       "details":  "expected=block_action_pack; actual=block_action_pack"
+                   },
+                   {
+                       "name":  "deep_route_deep_missing_compliance_buy_product_ok",
+                       "ok":  true,
+                       "details":  "expected=; actual="
+                   },
+                   {
+                       "name":  "deep_route_deep_missing_budget_approval_route_ok",
+                       "ok":  true,
+                       "details":  "expected=block_action_pack; actual=block_action_pack"
+                   },
+                   {
+                       "name":  "deep_route_deep_missing_budget_approval_buy_product_ok",
+                       "ok":  true,
+                       "details":  "expected=; actual="
+                   }
+               ],
+    "failed_checks":  [
+
+                      ],
+    "conclusion":  "PASS: a machine buyer can route score and Deep Analysis signals into discard, watchlist, nurturing, verification, Deep Analysis purchase or Action Pack blocking/approval without human email outreach."
+}
