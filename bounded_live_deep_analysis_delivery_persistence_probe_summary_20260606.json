@@ -1,0 +1,66 @@
+{
+    "ok":  true,
+    "run_id":  "bounded-live-deep-analysis-delivery-persistence-probe-20260606",
+    "finished_at":  "2026-06-06T10:39:23",
+    "mode":  "BoundedLiveDeepAnalysisDeliveryPersistenceProbe",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "domain":  "deep-persistence-dental-demo-20260606103921.it",
+    "idempotency_key":  "bounded-live-deep-analysis-persistence-20260606-20260606103921",
+    "source_score_request_id":  "bounded-live-deep-analysis-persistence-score-20260606-20260606103921",
+    "purchase_status":  200,
+    "order_intent_id":  "ord_e128da05",
+    "order_retrieval_status":  200,
+    "credits":  {
+                    "deep_analysis_before":  42,
+                    "deep_analysis_after":  41,
+                    "deep_analysis_delta":  1,
+                    "action_pack_before":  17,
+                    "action_pack_after":  17,
+                    "action_pack_delta":  0
+                },
+    "contract":  {
+                     "valid":  true,
+                     "checks_passed":  21,
+                     "checks_total":  21,
+                     "checks":  {
+                                    "purchase_status_200":  true,
+                                    "accepted_beta_order_intent":  true,
+                                    "product_is_deep_analysis":  true,
+                                    "ledger_product_is_deep_analysis_pack":  true,
+                                    "delivery_type_valid":  true,
+                                    "delivery_version_valid":  true,
+                                    "sector_context_valid":  true,
+                                    "commercial_evidence_present":  true,
+                                    "machine_decision_matrix_present":  true,
+                                    "action_pack_gate_conditional":  true,
+                                    "crm_summary_payload_valid":  true,
+                                    "stop_rules_present":  true,
+                                    "next_call_purchase_intent":  true,
+                                    "order_retrieval_status_200":  true,
+                                    "order_persisted_same_id":  true,
+                                    "stored_delivery_version_valid":  true,
+                                    "stored_delivery_gate_persisted":  true,
+                                    "exactly_one_deep_credit_consumed":  true,
+                                    "no_action_pack_credit_consumed":  true,
+                                    "no_real_payment":  true,
+                                    "no_external_contact":  true
+                                }
+                 },
+    "delivery":  {
+                     "product_code":  "deep_analysis",
+                     "delivery_type":  "deep_opportunity_analysis",
+                     "deep_analysis_version":  "domain_specific_commercial_evidence_v1",
+                     "sector_code":  "dentists_clinics",
+                     "commercial_evidence_count":  4,
+                     "stop_rules_count":  5,
+                     "action_pack_gate":  "conditional",
+                     "next_product_allowed":  "conditional"
+                 },
+    "guardrails":  {
+                       "real_payment_executed":  false,
+                       "external_contact_executed":  false,
+                       "action_pack_purchase_created":  false
+                   },
+    "conclusion":  "The live Deep Analysis delivery persistence probe created one Deep Analysis order, consumed exactly one Deep Analysis credit, persisted the upgraded delivery fields, and did not create any Action Pack, payment or external contact.",
+    "recommended_next_step":  "Stop live credit-consuming probes and use this persisted delivery as evidence before updating commercial materials or deciding whether to test one Action Pack again."
+}

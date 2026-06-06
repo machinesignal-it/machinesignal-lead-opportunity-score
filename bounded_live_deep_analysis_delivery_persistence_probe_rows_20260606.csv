@@ -1,0 +1,2 @@
+"domain","order_intent_id","purchase_status","order_retrieval_status","deep_analysis_delta","action_pack_delta","checks_passed","checks_total","delivery_version","commercial_evidence_count","action_pack_gate","real_payment_executed","external_contact_executed"
+"deep-persistence-dental-demo-20260606103921.it","ord_e128da05","200","200","1","0","21","21","domain_specific_commercial_evidence_v1","4","conditional","False","False"

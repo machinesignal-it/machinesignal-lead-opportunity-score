@@ -59,7 +59,7 @@ The score ledger is intended to use Durable Object storage, not KV, after the le
 
 ## Recommended Next Test
 
-If live delivery persistence must be verified, run one bounded Deep Analysis purchase intent with a new idempotency key and stop after one credit. Do not buy more Action Packs for now. The goal is to confirm that:
+Stop live credit-consuming probes for now. The next work should use the persisted Deep Analysis delivery as commercial evidence and update sales/materials, without buying more Deep Analysis or Action Pack credits. The goal is to confirm that:
 
 - Deep Analysis gives a buyer machine concrete reasons to spend more;
 - sector-specific evidence is stronger than generic website commentary;
@@ -312,3 +312,33 @@ Status: `PASS`
 Machine-readable summary: https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json
 
 Report: https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md
+
+## Latest Bounded Live Deep Analysis Delivery Persistence Probe
+
+Finished at: 2026-06-06T10:39:23
+
+Status: `PASS`
+
+- Mode: `BoundedLiveDeepAnalysisDeliveryPersistenceProbe`
+- Domain: `deep-persistence-dental-demo-20260606103921.it`
+- Product: `deep_analysis`
+- Order intent: `ord_e128da05`
+- Order retrieval status: `200`
+- Deep Analysis credits before: `42`
+- Deep Analysis credits after: `41`
+- Deep Analysis credit delta: `1`
+- Action Pack credits before: `17`
+- Action Pack credits after: `17`
+- Action Pack credit delta: `0`
+- Checks passed: `21 / 21`
+- Delivery version: `domain_specific_commercial_evidence_v1`
+- Commercial evidence items: `4`
+- Action Pack gate: `conditional`
+- Real payment executed: `false`
+- External contact executed: `false`
+
+Machine-readable summary: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json
+
+Rows CSV: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv
+
+Report: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md

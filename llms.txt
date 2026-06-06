@@ -74,6 +74,9 @@ Useful endpoints:
 - GET https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json
 - GET https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md
 - GET https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json
+- GET https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md
+- GET https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json
+- GET https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv
 - GET https://machinesignal.it/readiness-dashboard/
 - GET https://machinesignal.it/readiness-dashboard/readiness.json
 - GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -200,6 +203,9 @@ Public demos for software, agents and partners:
 - Deep Analysis Content Upgrade JSON: https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json
 - Deep Analysis No-Credit Delivery Verification: https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md
 - Deep Analysis No-Credit Delivery Verification JSON: https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json
+- Bounded Live Deep Analysis Delivery Persistence Probe: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md
+- Bounded Live Deep Analysis Delivery Persistence Probe JSON: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json
+- Bounded Live Deep Analysis Delivery Persistence Probe CSV: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv
 - Readiness dashboard: https://machinesignal.it/readiness-dashboard/
 - Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
 - Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md

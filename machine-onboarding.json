@@ -69,6 +69,9 @@
     "deep_analysis_content_upgrade_json": "https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json",
     "deep_analysis_no_credit_delivery_verification": "https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md",
     "deep_analysis_no_credit_delivery_verification_json": "https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json",
+    "bounded_live_deep_analysis_delivery_persistence_probe": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md",
+    "bounded_live_deep_analysis_delivery_persistence_probe_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
+    "bounded_live_deep_analysis_delivery_persistence_probe_rows": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"
@@ -110,7 +113,10 @@
     "latest_deep_analysis_content_upgrade_rule": "Deep Analysis now returns commercial_evidence, machine_decision_matrix, action_pack_purchase_gate and crm_summary_payload.",
     "latest_deep_analysis_no_credit_delivery_verification_status": "PASS",
     "latest_deep_analysis_no_credit_delivery_verification_json": "https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json",
-    "latest_deep_analysis_no_credit_delivery_verification_rule": "Live Worker documentation and local delivery shape passed without live credit consumption. Next optional step is one bounded live Deep Analysis purchase intent if delivery persistence must be verified."
+    "latest_deep_analysis_no_credit_delivery_verification_rule": "Live Worker documentation and local delivery shape passed without live credit consumption.",
+    "latest_bounded_live_deep_analysis_delivery_persistence_probe_status": "PASS",
+    "latest_bounded_live_deep_analysis_delivery_persistence_probe_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
+    "latest_bounded_live_deep_analysis_delivery_persistence_probe_rule": "One live Deep Analysis order persisted the upgraded delivery fields. Deep Analysis credits 42 to 41; Action Pack credits unchanged at 17. Stop live credit-consuming probes for now."
   },
   "callable_flow": [
     {

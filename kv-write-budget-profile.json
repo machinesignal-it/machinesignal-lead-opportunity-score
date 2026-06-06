@@ -126,10 +126,10 @@
     "Escalate to human supervision before high-volume Full tests or paid Cloudflare upgrade decisions."
   ],
   "next_recommended_test": {
-    "name": "bounded_live_deep_analysis_delivery_persistence_probe",
-    "description": "If live delivery persistence must be verified, run one bounded Deep Analysis purchase intent with a new idempotency key and stop after one credit.",
+    "name": "commercial_materials_update_from_persisted_deep_analysis",
+    "description": "Stop live credit-consuming probes for now and use the persisted Deep Analysis delivery as evidence for commercial materials and partner-facing documentation.",
     "requires_human_approval": false,
-    "suggested_frequency": "optional once, not daily"
+    "suggested_frequency": "product/commercial work, no live credit spend"
   },
   "latest_bounded_write_budget_probe": {
     "finished_at": "2026-06-05T11:16:32",
@@ -344,5 +344,30 @@
     "action_pack_gate": "conditional",
     "summary_json": "https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json",
     "report": "https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md"
+  },
+  "latest_bounded_live_deep_analysis_delivery_persistence_probe": {
+    "finished_at": "2026-06-06T10:39:23",
+    "status": "PASS",
+    "mode": "BoundedLiveDeepAnalysisDeliveryPersistenceProbe",
+    "domain": "deep-persistence-dental-demo-20260606103921.it",
+    "product": "deep_analysis",
+    "order_intent_id": "ord_e128da05",
+    "order_retrieval_status": 200,
+    "deep_analysis_credits_before": 42,
+    "deep_analysis_credits_after": 41,
+    "deep_analysis_credit_delta": 1,
+    "action_pack_credits_before": 17,
+    "action_pack_credits_after": 17,
+    "action_pack_credit_delta": 0,
+    "checks_passed": 21,
+    "checks_total": 21,
+    "delivery_version": "domain_specific_commercial_evidence_v1",
+    "commercial_evidence_items": 4,
+    "action_pack_gate": "conditional",
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "summary_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
+    "rows_csv": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv",
+    "report": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md"
   }
 }
