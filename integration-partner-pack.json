@@ -22,6 +22,8 @@
     "payment_test_mode_plan_json": "https://machinesignal.it/payment_test_mode_plan_20260603.json",
     "deep_analysis_commercial_partner_brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md",
     "deep_analysis_commercial_partner_brief_json": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
+    "machine_buyer_evaluation_pack": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.md",
+    "machine_buyer_evaluation_pack_json": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
     "mcp_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
     "openapi": "https://machinesignal.it/openapi.json",
@@ -186,6 +188,18 @@
       "summary_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
       "partner_brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json"
     }
+  },
+  "machine_buyer_evaluation_pack": {
+    "purpose": "Short machine-readable evaluation packet for CRMs, agents and software platforms.",
+    "questions_answered": [
+      "what the machine buys",
+      "when each product is bought",
+      "what JSON is returned",
+      "which actions are blocked",
+      "how budget waste is avoided"
+    ],
+    "markdown": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.md",
+    "json": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json"
   },
   "storage_recommendations": [
     "request_id",

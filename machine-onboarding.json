@@ -74,6 +74,8 @@
     "bounded_live_deep_analysis_delivery_persistence_probe_rows": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv",
     "deep_analysis_commercial_partner_brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md",
     "deep_analysis_commercial_partner_brief_json": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
+    "machine_buyer_evaluation_pack": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.md",
+    "machine_buyer_evaluation_pack_json": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"
@@ -121,7 +123,10 @@
     "latest_bounded_live_deep_analysis_delivery_persistence_probe_rule": "One live Deep Analysis order persisted the upgraded delivery fields. Deep Analysis credits 42 to 41; Action Pack credits unchanged at 17. Stop live credit-consuming probes for now.",
     "latest_deep_analysis_commercial_partner_brief_status": "PUBLISHED_CANDIDATE",
     "latest_deep_analysis_commercial_partner_brief_json": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
-    "latest_deep_analysis_commercial_partner_brief_rule": "Deep Analysis is positioned as the spend-control layer between Score Pack and Action Pack, proving what the customer machine buys and why Action Pack is conditional."
+    "latest_deep_analysis_commercial_partner_brief_rule": "Deep Analysis is positioned as the spend-control layer between Score Pack and Action Pack, proving what the customer machine buys and why Action Pack is conditional.",
+    "latest_machine_buyer_evaluation_pack_status": "PUBLISHED_CANDIDATE",
+    "latest_machine_buyer_evaluation_pack_json": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
+    "latest_machine_buyer_evaluation_pack_rule": "Short evaluation pack for machines: what to buy, when to buy it, what JSON is returned, which actions are blocked and how budget waste is avoided."
   },
   "callable_flow": [
     {

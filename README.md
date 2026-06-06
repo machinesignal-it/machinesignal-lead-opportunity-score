@@ -66,6 +66,8 @@ Public discovery starts here:
 - Bounded Live Deep Analysis Delivery Persistence Probe CSV: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv
 - Deep Analysis Commercial Partner Brief: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md
 - Deep Analysis Commercial Partner Brief JSON: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
+- Machine Buyer Evaluation Pack: https://machinesignal.it/machine_buyer_evaluation_pack_20260606.md
+- Machine Buyer Evaluation Pack JSON: https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
@@ -274,6 +276,23 @@ It provides:
 - links to the machine test kit and demo outputs.
 
 The goal is simple: let a machine decide whether MachineSignal is useful enough to integrate, while a human only supervises approval and audit.
+
+## Machine Buyer Evaluation Pack
+
+The Machine Buyer Evaluation Pack is the short decision packet for a CRM, AI agent, RevOps workflow or software platform that wants to evaluate MachineSignal before integration.
+
+It answers five questions:
+
+- what the machine buys;
+- when it buys each product;
+- what JSON it receives;
+- which actions are blocked;
+- how it avoids wasting budget.
+
+Public assets:
+
+- https://machinesignal.it/machine_buyer_evaluation_pack_20260606.md
+- https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json
 
 ## Full Machine Buyer Flow Demo
 

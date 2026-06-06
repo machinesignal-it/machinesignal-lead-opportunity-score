@@ -1,0 +1,248 @@
+{
+  "service": "MachineSignal",
+  "artifact": "machine_buyer_evaluation_pack",
+  "generated_at": "2026-06-06",
+  "status": "published_candidate",
+  "primary_customer_interface": "machine",
+  "human_role": "budget owner, legal responsibility, approval and audit",
+  "purpose": "Let a CRM, AI agent, RevOps workflow, enrichment pipeline, SaaS platform or marketplace integration evaluate what MachineSignal sells, when to buy each product, what JSON is returned and which stop rules apply.",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "public_resources": {
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "deep_analysis_commercial_brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md",
+    "deep_analysis_commercial_brief_json": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json"
+  },
+  "commercial_ladder": [
+    {
+      "step": 1,
+      "product_code": "score_pack_1k",
+      "price_eur": 99,
+      "unit": "1000 valid scores",
+      "machine_buys": "ranking and budget routing",
+      "machine_receives": [
+        "opportunity_score",
+        "confidence",
+        "commercial_strength",
+        "spend_policy",
+        "decision",
+        "next_purchase"
+      ]
+    },
+    {
+      "step": 2,
+      "product_code": "deep_analysis",
+      "price_eur": 299,
+      "unit": "100 valid deep analyses",
+      "machine_buys": "evidence and spend-control gate before Action Pack",
+      "machine_receives": [
+        "commercial_evidence",
+        "machine_decision_matrix",
+        "action_pack_purchase_gate",
+        "crm_summary_payload",
+        "signals_to_validate",
+        "stop_rules",
+        "next_machine_call"
+      ]
+    },
+    {
+      "step": 3,
+      "product_code": "action_pack",
+      "price_eur": 399,
+      "unit": "25 valid action packs",
+      "machine_buys": "CRM/workflow action payload after Deep Analysis confirmation",
+      "machine_receives": [
+        "crm_record_patch",
+        "crm_task",
+        "crm_platform_mappings",
+        "workflow_payload",
+        "webhook_event",
+        "agent_instructions",
+        "approval_gate",
+        "compliance_guardrail"
+      ]
+    }
+  ],
+  "product_table": [
+    {
+      "product_code": "target_discovery",
+      "name": "Target Discovery Pack",
+      "price_eur": 149,
+      "when_to_buy": "When the machine has no list and needs targets for a specific sector, area and commercial objective.",
+      "machine_receives": "250 coherent targets, deduplication, category, area, initial signals, reason for inclusion, JSON/CSV export, or a no-go/alternative if 250 targets are not available."
+    },
+    {
+      "product_code": "domain_enrichment",
+      "name": "Domain Enrichment Pack 100",
+      "price_eur": 149,
+      "when_to_buy": "When the machine has company names but not reliable domains.",
+      "machine_receives": "100 enrichment decisions: verified domain, candidate rejected or no reliable domain, confidence and reason."
+    },
+    {
+      "product_code": "score_pack_1k",
+      "name": "Score Pack 1k",
+      "price_eur": 99,
+      "when_to_buy": "When the machine already has domains and needs to prioritize budget.",
+      "machine_receives": "1000 valid scores with opportunity_score, confidence, commercial_strength, spend_policy, decision and next_purchase."
+    },
+    {
+      "product_code": "deep_analysis",
+      "name": "Deep Analysis Pack 100",
+      "price_eur": 299,
+      "when_to_buy": "When a strong or recommended score needs evidence before Action Pack.",
+      "machine_receives": "100 valid Deep Analysis outputs with commercial_evidence, machine_decision_matrix, action_pack_purchase_gate, crm_summary_payload, stop_rules and next_machine_call."
+    },
+    {
+      "product_code": "action_pack",
+      "name": "Action Pack 25",
+      "price_eur": 399,
+      "when_to_buy": "Only after Deep Analysis confirms the gates.",
+      "machine_receives": "25 CRM/workflow payloads with record patch, task, CRM mappings, workflow payload, webhook event, agent instructions, approval gate and compliance guardrail."
+    },
+    {
+      "product_code": "opportunity_feed",
+      "name": "Opportunity Feed",
+      "price_eur": 249,
+      "unit": "month",
+      "when_to_buy": "When the machine wants recurring opportunities without launching one-off discovery each time.",
+      "machine_receives": "4 scheduled scans and 4 deliveries with new or updated targets, scores, signals and API/file/webhook output."
+    },
+    {
+      "product_code": "api_starter",
+      "name": "API Starter",
+      "price_eur": 99,
+      "unit": "month",
+      "when_to_buy": "For light recurring use.",
+      "machine_receives": "API key, docs, demo environment, 500 valid scores per month and basic usage report."
+    },
+    {
+      "product_code": "api_pro",
+      "name": "API Pro",
+      "price_eur": 499,
+      "unit": "month",
+      "when_to_buy": "For recurring volume and workflow integration.",
+      "machine_receives": "Advanced API key, 3000 valid scores per month, 50 Deep Analysis per month, 1 monthly Opportunity Feed, webhook support and advanced usage report."
+    }
+  ],
+  "evaluation_flows": {
+    "machine_has_domains": [
+      "GET https://machinesignal.it/machine-onboarding.json",
+      "GET https://machinesignal.it/product-catalog.json",
+      "POST /v1/lead-opportunity-score",
+      "read decision, commercial_strength, spend_policy and next_purchase",
+      "POST /v1/purchase-intent with product_code deep_analysis only when recommended",
+      "POST /v1/purchase-intent with product_code action_pack only if Deep Analysis confirms the gate",
+      "GET /v1/orders"
+    ],
+    "machine_has_no_list": [
+      "POST /v1/purchase-intent with product_code target_discovery, market, area and commercial_objective",
+      "score delivered targets",
+      "buy deep_analysis only for recommended records",
+      "buy action_pack only after Deep Analysis confirms the gate"
+    ]
+  },
+  "mini_demo": {
+    "score_request": {
+      "domain": "clinic3.it",
+      "sector_hint": "dentist",
+      "country_hint": "IT",
+      "commercial_objective": "identify website-led opportunity for CRM-ready follow-up preparation"
+    },
+    "score_response_shape": {
+      "domain": "clinic3.it",
+      "opportunity_score": 81,
+      "confidence": 0.88,
+      "priority": "high",
+      "decision": "buy_deep_analysis",
+      "commercial_strength": {
+        "level": "strong",
+        "spend_policy": "buy_deep_analysis_then_consider_action_pack_if_deep_confirms",
+        "allowed_next_products": [
+          "deep_analysis",
+          "action_pack_after_deep_analysis"
+        ]
+      },
+      "next_purchase": {
+        "next_product": "deep_analysis",
+        "machine_instruction": "Buy Deep Analysis before spending campaign or Action Pack budget."
+      }
+    },
+    "deep_analysis_purchase_intent": {
+      "product_code": "deep_analysis",
+      "domain": "clinic3.it",
+      "reason": "Score response recommended deeper opportunity evidence before Action Pack.",
+      "max_budget_eur": 3
+    },
+    "deep_analysis_output_shape": {
+      "deep_analysis_version": "domain_specific_commercial_evidence_v1",
+      "commercial_evidence": [
+        "sector fit",
+        "digital friction",
+        "local-market relevance",
+        "CRM/workflow actionability"
+      ],
+      "machine_decision_matrix": {
+        "buy_action_pack": "only if all purchase gates pass",
+        "watchlist": "if evidence is partial but not negative",
+        "stop": "if sector fit, data quality or compliance gate fails"
+      },
+      "action_pack_purchase_gate": {
+        "status": "conditional",
+        "required_gates": [
+          "sector_fit",
+          "digital_friction",
+          "crm_or_workflow_destination",
+          "customer_compliance_gate",
+          "budget_approval"
+        ]
+      },
+      "crm_summary_payload": {
+        "recommended_status": "qualified_for_deep_review",
+        "next_machine_call": "POST /v1/purchase-intent with product_code action_pack only if all gates pass"
+      }
+    }
+  },
+  "stop_rules": [
+    "Do not execute real payment during beta.",
+    "Do not contact external targets during beta.",
+    "Do not buy Action Pack unless Deep Analysis confirms all gates.",
+    "Do not consume credits for duplicate, invalid or non-analyzable records.",
+    "Do not use MachineSignal for spam, sensitive personal inference or high-stakes decisions without review.",
+    "Reuse idempotency keys for every credit-consuming request.",
+    "Run daily monitoring in NoWrite mode unless a bounded write test is explicitly approved."
+  ],
+  "proof_already_collected": {
+    "bounded_live_deep_analysis_delivery_persistence_probe": {
+      "status": "PASS",
+      "order_intent_id": "ord_e128da05",
+      "checks_passed": 21,
+      "checks_total": 21,
+      "deep_analysis_credits": "42 -> 41",
+      "action_pack_credits": "17 -> 17",
+      "real_payment_executed": false,
+      "external_contact_executed": false,
+      "report": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md",
+      "summary_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json"
+    }
+  },
+  "internal_documents_for_human_supervision": [
+    "MachineSignal_PL_3_years_v21_deep_analysis_gate.xlsx",
+    "MachineSignal_partner_brief_v16_deep_analysis_gate.docx",
+    "MachineSignal_business_plan_partner_deck_v11_deep_analysis_gate.pptx",
+    "MachineSignal_agent_meeting_review_v21_deep_analysis_gate_20260606.md"
+  ],
+  "evaluation_questions": [
+    "What do I buy?",
+    "When do I buy it?",
+    "What JSON do I receive?",
+    "Which actions are blocked?",
+    "How do I avoid wasting budget?"
+  ],
+  "next_recommended_step": {
+    "name": "marketplace_api_directory_packaging",
+    "description": "Use the evaluation pack to prepare short marketplace, Postman, MCP and API-directory copy before any new live credit-consuming test.",
+    "live_credits_to_consume": 0
+  }
+}
