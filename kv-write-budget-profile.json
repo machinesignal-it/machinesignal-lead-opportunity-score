@@ -126,10 +126,10 @@
     "Escalate to human supervision before high-volume Full tests or paid Cloudflare upgrade decisions."
   ],
   "next_recommended_test": {
-    "name": "deep_analysis_content_upgrade",
-    "description": "Stop buying more Action Packs for now and improve Deep Analysis content from synthetic beta output into domain-specific commercial evidence before monetization.",
+    "name": "deploy_and_no_credit_deep_analysis_retrieval_review",
+    "description": "Deploy the upgraded Deep Analysis delivery, then run a no-credit retrieval review before buying more Action Packs.",
     "requires_human_approval": false,
-    "suggested_frequency": "product work before monetization"
+    "suggested_frequency": "once after deployment"
   },
   "latest_bounded_write_budget_probe": {
     "finished_at": "2026-06-05T11:16:32",
@@ -306,5 +306,26 @@
     "summary_json": "https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json",
     "rows_csv": "https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv",
     "report": "https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md"
+  },
+  "latest_deep_analysis_content_upgrade": {
+    "generated_at": "2026-06-06",
+    "status": "PASS",
+    "mode": "NoCreditProductUpgrade",
+    "product": "deep_analysis",
+    "version": "domain_specific_commercial_evidence_v1",
+    "credits_consumed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "added_fields": [
+      "commercial_evidence",
+      "machine_decision_matrix",
+      "action_pack_purchase_gate",
+      "crm_summary_payload",
+      "sector_specific_signals",
+      "evidence_limitations",
+      "stronger_stop_rules"
+    ],
+    "summary_json": "https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json",
+    "report": "https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md"
   }
 }

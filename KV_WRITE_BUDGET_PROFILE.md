@@ -59,7 +59,7 @@ The score ledger is intended to use Durable Object storage, not KV, after the le
 
 ## Recommended Next Test
 
-Do not buy more Action Packs for now. The next work should upgrade Deep Analysis content from synthetic beta output into domain-specific commercial evidence before monetization. The goal is to confirm that:
+Deploy the upgraded Deep Analysis delivery and run a no-credit retrieval review first. Do not buy more Action Packs for now. The goal is to confirm that:
 
 - Deep Analysis gives a buyer machine concrete reasons to spend more;
 - sector-specific evidence is stronger than generic website commentary;
@@ -268,3 +268,25 @@ Machine-readable summary: https://machinesignal.it/bounded_action_pack_contract_
 Rows CSV: https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv
 
 Report: https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md
+
+## Latest Deep Analysis Content Upgrade
+
+Generated at: 2026-06-06
+
+Status: `PASS`
+
+- Mode: `NoCreditProductUpgrade`
+- Product: `deep_analysis`
+- Version: `domain_specific_commercial_evidence_v1`
+- Credits consumed: `0`
+- Real payment executed: `false`
+- External contact executed: `false`
+- Added `commercial_evidence`
+- Added `machine_decision_matrix`
+- Added `action_pack_purchase_gate`
+- Added `crm_summary_payload`
+- Added stronger sector-specific signals and stop rules
+
+Machine-readable summary: https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json
+
+Report: https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md

@@ -569,6 +569,10 @@ const deepAnalysisResponse = await handleRequest(
     body: JSON.stringify({
       product_code: "deep_analysis",
       domain: "strong-clinic.it",
+      sector_hint: "dentist",
+      area: "Lombardy",
+      commercial_objective:
+        "Find dental clinic websites that deserve CRM-ready digital opportunity action",
       source_score_request_id: "test-score-strong-001",
       reason: "Score recommended deep analysis"
     }),
@@ -584,8 +588,22 @@ assert.equal(deepAnalysisResponse.status, 200);
 const deepAnalysisPayload = await deepAnalysisResponse.json();
 assert.equal(deepAnalysisPayload.product_code, "deep_analysis");
 assert.equal(deepAnalysisPayload.delivery.delivery_type, "deep_opportunity_analysis");
+assert.equal(deepAnalysisPayload.delivery.deep_analysis_version, "domain_specific_commercial_evidence_v1");
 assert.equal(deepAnalysisPayload.delivery.what_is_included.exact_unit_sold, "one deep opportunity decision pack for one scored domain");
+assert.equal(deepAnalysisPayload.delivery.sector_context.code, "dentists_clinics");
+assert.equal(deepAnalysisPayload.delivery.requested_area, "Lombardy");
+assert.ok(deepAnalysisPayload.delivery.what_is_included.returned_decision_fields.includes("commercial_evidence"));
+assert.ok(deepAnalysisPayload.delivery.what_is_included.returned_decision_fields.includes("machine_decision_matrix"));
+assert.ok(deepAnalysisPayload.delivery.commercial_evidence.length >= 4);
+assert.ok(deepAnalysisPayload.delivery.commercial_evidence.some((item) => item.code === "digital_friction"));
+assert.ok(deepAnalysisPayload.delivery.machine_decision_matrix.buy_action_pack_if.includes("budget approval exists"));
+assert.ok(deepAnalysisPayload.delivery.machine_decision_matrix.stop_if.includes("sector fit fails"));
+assert.equal(deepAnalysisPayload.delivery.action_pack_purchase_gate.product_code, "action_pack");
+assert.ok(deepAnalysisPayload.delivery.action_pack_purchase_gate.required_before_purchase.includes("budget_approval"));
+assert.equal(deepAnalysisPayload.delivery.crm_summary_payload.domain, "strong-clinic.it");
+assert.equal(deepAnalysisPayload.delivery.crm_summary_payload.next_product_allowed, "conditional");
 assert.equal(deepAnalysisPayload.delivery.recommended_next_step.product_code, "action_pack");
+assert.ok(deepAnalysisPayload.delivery.recommended_next_step.condition.includes("sector fit"));
 assert.equal(deepAnalysisPayload.delivery.next_machine_call.endpoint, "/v1/purchase-intent");
 
 const actionPackResponse = await handleRequest(

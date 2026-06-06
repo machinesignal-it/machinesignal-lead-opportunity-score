@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "run_id": "deep-analysis-content-upgrade-20260606",
+  "generated_at": "2026-06-06",
+  "mode": "NoCreditProductUpgrade",
+  "product": "deep_analysis",
+  "version": "domain_specific_commercial_evidence_v1",
+  "credits_consumed": 0,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "what_changed": [
+    "Deep Analysis now returns sector_context.",
+    "Deep Analysis now returns commercial_evidence.",
+    "Deep Analysis now returns machine_decision_matrix.",
+    "Deep Analysis now returns action_pack_purchase_gate.",
+    "Deep Analysis now returns crm_summary_payload.",
+    "Deep Analysis now returns evidence_limitations and stronger stop_rules."
+  ],
+  "machine_value": "The customer machine can now decide whether to buy Action Pack, keep the lead in watchlist or stop spending based on explicit commercial gates.",
+  "tests": {
+    "api_endpoint_minimal_test_api": "PASS",
+    "api_endpoint_minimal_test_durable_ledger": "PASS",
+    "json_manifests": "PASS"
+  },
+  "recommended_next_step": "Deploy the upgraded Worker, then run a no-credit retrieval review against one existing Deep Analysis order or a sandbox-only purchase intent if deployment needs live confirmation."
+}

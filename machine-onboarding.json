@@ -65,6 +65,8 @@
     "bounded_action_pack_contract_probe": "https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md",
     "bounded_action_pack_contract_probe_json": "https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json",
     "bounded_action_pack_contract_probe_rows": "https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv",
+    "deep_analysis_content_upgrade": "https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md",
+    "deep_analysis_content_upgrade_json": "https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"
@@ -100,7 +102,10 @@
     "latest_deep_analysis_delivery_quality_review_json": "https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json",
     "latest_bounded_action_pack_contract_probe_status": "PASS",
     "latest_bounded_action_pack_contract_probe_json": "https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json",
-    "latest_bounded_action_pack_contract_probe_rule": "Contract validated for one strongest reviewed row; stop further Action Pack credit spend until Deep Analysis content is upgraded from synthetic beta output to domain-specific commercial evidence."
+    "latest_bounded_action_pack_contract_probe_rule": "Contract validated for one strongest reviewed row; stop further Action Pack credit spend until Deep Analysis content is upgraded from synthetic beta output to domain-specific commercial evidence.",
+    "latest_deep_analysis_content_upgrade_status": "PASS",
+    "latest_deep_analysis_content_upgrade_json": "https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json",
+    "latest_deep_analysis_content_upgrade_rule": "Deep Analysis now returns commercial_evidence, machine_decision_matrix, action_pack_purchase_gate and crm_summary_payload. Next step is deploy and no-credit retrieval verification."
   },
   "callable_flow": [
     {
@@ -237,17 +242,40 @@
       "unit": "100 valid deep analyses",
       "current_beta_endpoint": "POST /v1/purchase-intent",
       "product_code": "deep_analysis",
-      "when_to_buy": "When a high score needs an explanation before the workflow spends more budget.",
+      "when_to_buy": "When a high score needs operational commercial evidence before the workflow buys Action Pack or spends more budget.",
       "includes": [
-        "commercial signal analysis",
-        "score explanation",
-        "possible sellable service",
-        "false-positive risk",
-        "urgency level",
-        "buy, hold or skip recommendation"
+        "what_is_included contract",
+        "sector context",
+        "commercial objective",
+        "commercial evidence matrix",
+        "machine decision matrix",
+        "Action Pack purchase gate",
+        "CRM summary payload",
+        "sector-specific signals",
+        "signals to validate",
+        "risk flags",
+        "stop rules",
+        "recommended next machine call"
+      ],
+      "output_fields": [
+        "what_is_included",
+        "deep_analysis_version",
+        "sector_context",
+        "commercial_objective",
+        "commercial_evidence",
+        "machine_decision_matrix",
+        "action_pack_purchase_gate",
+        "crm_summary_payload",
+        "sector_specific_signals",
+        "signals_to_validate",
+        "recommended_next_step",
+        "recommended_budget_cap_eur",
+        "stop_rules",
+        "evidence_limitations",
+        "next_machine_call"
       ],
       "validity_rule": "Leads without enough data for a complete analysis do not consume deep-analysis credits and are returned with an exclusion reason.",
-      "machine_output": "A deeper JSON analysis that tells the workflow whether to continue, pause or stop."
+      "machine_output": "A spend-control JSON decision pack that tells the workflow whether to buy Action Pack, keep the lead in watchlist or stop."
     },
     "action_pack_25": {
       "name": "Action Pack 25",

@@ -186,19 +186,42 @@ const PRODUCT_CATALOG = {
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "deep_analysis",
       when_to_buy:
-        "When a high score needs an explanation before the workflow spends more budget.",
+        "When a high score needs operational commercial evidence before the workflow buys Action Pack or spends more budget.",
       includes: [
-        "commercial signal analysis",
-        "score explanation",
-        "possible sellable service",
-        "false-positive risk",
-        "urgency level",
-        "buy, hold or skip recommendation"
+        "what_is_included contract",
+        "sector context",
+        "commercial objective",
+        "commercial evidence matrix",
+        "machine decision matrix",
+        "Action Pack purchase gate",
+        "CRM summary payload",
+        "sector-specific signals",
+        "signals to validate",
+        "risk flags",
+        "stop rules",
+        "recommended next machine call"
+      ],
+      output_fields: [
+        "what_is_included",
+        "deep_analysis_version",
+        "sector_context",
+        "commercial_objective",
+        "commercial_evidence",
+        "machine_decision_matrix",
+        "action_pack_purchase_gate",
+        "crm_summary_payload",
+        "sector_specific_signals",
+        "signals_to_validate",
+        "recommended_next_step",
+        "recommended_budget_cap_eur",
+        "stop_rules",
+        "evidence_limitations",
+        "next_machine_call"
       ],
       validity_rule:
         "Leads without enough data for a complete analysis do not consume deep-analysis credits and are returned with an exclusion reason.",
       machine_output:
-        "A deeper JSON analysis that tells the workflow whether to continue, pause or stop."
+        "A spend-control JSON decision pack that tells the workflow whether to buy Action Pack, keep the lead in watchlist or stop."
     },
     action_pack_25: {
       name: "Action Pack 25",
@@ -1733,6 +1756,12 @@ How a machine should create a beta order intent:
 - the beta order intent consumes one corresponding pack credit;
 - the response includes delivery, an immediate machine-readable beta output with what_is_included, output_contract, next_machine_call and stop_rules when relevant;
 - no real payment is executed in beta.
+
+Deep Analysis delivery contract:
+- deep_analysis returns what_is_included, deep_analysis_version, sector_context, commercial_objective, commercial_evidence, machine_decision_matrix, action_pack_purchase_gate, crm_summary_payload, sector_specific_signals, signals_to_validate, recommended_next_step, recommended_budget_cap_eur, stop_rules, evidence_limitations and next_machine_call;
+- deep_analysis_version is domain_specific_commercial_evidence_v1;
+- the customer machine should buy action_pack only if sector fit, digital friction, CRM/workflow destination, compliance gate and budget approval are present;
+- if those gates are not present, the customer machine should keep the lead in watchlist or stop spending.
 
 Action Pack delivery contract:
 - action_pack returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail;
@@ -3420,6 +3449,183 @@ function normalizePurchaseSubject(input = {}, product = {}) {
       .slice(0, 120);
   }
   return normalizeDomain(input?.domain);
+}
+
+function inferCommercialSector(input = {}, domain = "") {
+  const raw = [
+    input?.sector_hint,
+    input?.category_hint,
+    input?.market,
+    input?.commercial_objective,
+    domain
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  if (/dent|odont|clinic|studio|dental/.test(raw)) {
+    return {
+      code: "dentists_clinics",
+      label: "dentists and odontoiatric clinics",
+      buyer_problem:
+        "The customer machine needs to detect clinics where visible digital friction can justify a diagnostic or CRM action.",
+      sector_specific_signals: [
+        "local intent and service pages are commercially relevant",
+        "appointment or contact friction can reduce lead capture",
+        "trust signals such as reviews, doctors, services and opening hours matter",
+        "the clinic website is often used before a patient chooses a provider"
+      ],
+      evidence_focus: ["booking friction", "trust clarity", "local visibility", "service-page clarity"]
+    };
+  }
+
+  if (/real estate|immobil|agency|agenzia/.test(raw)) {
+    return {
+      code: "real_estate_agencies",
+      label: "real estate agencies",
+      buyer_problem:
+        "The customer machine needs to separate local agencies from portals and detect websites worth digital-presence review.",
+      sector_specific_signals: [
+        "local agency identity must be distinguishable from portals",
+        "property-search and lead-capture paths are commercially relevant",
+        "franchise or portal roots require extra verification before paid action",
+        "area coverage and service positioning affect opportunity value"
+      ],
+      evidence_focus: ["agency identity", "lead capture", "area fit", "portal/franchise risk"]
+    };
+  }
+
+  if (/aesthetic|estet|beauty|medical beauty|medicina estetica/.test(raw)) {
+    return {
+      code: "aesthetic_medicine",
+      label: "aesthetic medicine clinics",
+      buyer_problem:
+        "The customer machine needs to confirm that the target is really an aesthetic medicine provider before buying commercial action.",
+      sector_specific_signals: [
+        "sector mismatch risk is high and must be checked",
+        "treatment pages and medical positioning are relevant",
+        "trust and compliance sensitivity are higher than generic local services",
+        "generic wellness sites should be verified before extra spend"
+      ],
+      evidence_focus: ["sector match", "treatment clarity", "trust/compliance sensitivity", "mismatch risk"]
+    };
+  }
+
+  return {
+    code: "general_b2b_local_services",
+    label: "general B2B or local-service websites",
+    buyer_problem:
+      "The customer machine needs stronger commercial evidence before spending beyond basic score and enrichment.",
+    sector_specific_signals: [
+      "website clarity and contact friction are relevant",
+      "sector fit must be checked before action",
+      "local or service-positioning evidence affects opportunity value",
+      "weak public evidence should stop extra spend"
+    ],
+    evidence_focus: ["sector fit", "contact friction", "offer clarity", "data reliability"]
+  };
+}
+
+function buildDeepAnalysisCommercialEvidence(input = {}, domain = "") {
+  const sector = inferCommercialSector(input, domain);
+  const area = String(input?.area || input?.country_hint || "").trim() || "requested area";
+  const objective =
+    String(input?.commercial_objective || input?.objective || input?.reason || "").trim() ||
+    "decide whether this scored domain deserves the next paid machine action";
+
+  return {
+    version: "domain_specific_commercial_evidence_v1",
+    sector,
+    area,
+    objective,
+    commercial_evidence: [
+      {
+        code: "sector_fit",
+        finding: `The domain is treated as a ${sector.label} candidate for this beta delivery.`,
+        why_it_matters:
+          "The customer machine should spend only when the target matches the intended commercial objective.",
+        validation_needed: "Confirm sector and business identity from public website or trusted data source.",
+        machine_weight: "high"
+      },
+      {
+        code: "digital_friction",
+        finding: `Evidence focus includes ${sector.evidence_focus.slice(0, 2).join(" and ")}.`,
+        why_it_matters:
+          "Digital friction is the practical reason a customer workflow may buy an Action Pack instead of only storing the lead.",
+        validation_needed: "Check website navigation, contact path, conversion path and service-page clarity.",
+        machine_weight: "high"
+      },
+      {
+        code: "local_or_market_fit",
+        finding: `The requested area is ${area}; local or market fit must remain coherent before downstream spend.`,
+        why_it_matters:
+          "A good-looking target outside the customer machine's market should not trigger extra paid actions.",
+        validation_needed: "Confirm geography, service area or market coverage.",
+        machine_weight: "medium"
+      },
+      {
+        code: "actionability",
+        finding:
+          "The next paid step is useful only if the customer machine has a CRM/workflow destination and an approved action policy.",
+        why_it_matters:
+          "Action Pack value comes from machine execution readiness, not from generic analysis text.",
+        validation_needed: "Confirm CRM field mapping, webhook destination and approval gate.",
+        machine_weight: "high"
+      }
+    ],
+    machine_decision_matrix: {
+      buy_action_pack_if: [
+        "sector_fit is confirmed",
+        "digital_friction has at least one actionable finding",
+        "customer machine has CRM or workflow destination",
+        "budget approval exists",
+        "external contact remains blocked until compliance approval"
+      ],
+      keep_in_watchlist_if: [
+        "sector and area are coherent but commercial friction is weak",
+        "confidence is acceptable but no immediate CRM action exists",
+        "the customer machine wants periodic rescoring before spend"
+      ],
+      stop_if: [
+        "sector fit fails",
+        "domain belongs to a portal, unrelated business or generic directory",
+        "no compliant downstream action channel exists",
+        "the customer machine cannot store audit evidence"
+      ]
+    },
+    action_pack_purchase_gate: {
+      product_code: "action_pack",
+      allowed: "conditional",
+      required_before_purchase: [
+        "sector_fit_confirmed",
+        "budget_approval",
+        "crm_or_workflow_destination",
+        "external_action_approval_gate"
+      ],
+      blocked_when: [
+        "synthetic evidence is the only evidence available",
+        "data quality verification is still required",
+        "the customer machine would send outreach automatically"
+      ],
+      machine_instruction:
+        "Buy Action Pack only when this Deep Analysis becomes operational evidence for CRM or workflow execution."
+    },
+    crm_summary_payload: {
+      domain,
+      sector_code: sector.code,
+      area,
+      opportunity_stage: "deep_analysis_ready_for_machine_review",
+      recommended_next_product: "action_pack",
+      next_product_allowed: "conditional",
+      audit_note:
+        "Deep Analysis is a decision pack for machine spend control; it does not authorize external contact."
+    },
+    evidence_limitations: [
+      "This beta output is synthetic and must be validated against real public evidence before outreach.",
+      "The API does not verify legal permission to contact the target.",
+      "The customer machine must keep budget and compliance gates active."
+    ]
+  };
 }
 
 export function buildPurchaseIntent(input, requestId, event) {
@@ -5136,17 +5342,23 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
   }
 
   if (productCode === "deep_analysis") {
+    const deepAnalysis = buildDeepAnalysisCommercialEvidence(input, domain);
     return {
       ...common,
       delivery_type: "deep_opportunity_analysis",
       status: "deep_analysis_ready",
+      deep_analysis_version: deepAnalysis.version,
       what_is_included: {
         exact_unit_sold: "one deep opportunity decision pack for one scored domain",
         machine_question_answered:
-          "Is this strong enough to justify the next paid action, or should the workflow stop?",
+          "Is this target strong enough to justify the next paid machine action, and what evidence must be present before buying it?",
         returned_decision_fields: [
           "opportunity_grade",
           "opportunity_hypothesis",
+          "commercial_evidence",
+          "machine_decision_matrix",
+          "action_pack_purchase_gate",
+          "crm_summary_payload",
           "signals_to_validate",
           "recommended_next_step",
           "recommended_budget_cap_eur",
@@ -5155,35 +5367,54 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
         credit_policy:
           "One deep_analysis_pack_100 credit is consumed for each deep analysis decision pack returned."
       },
+      sector_context: deepAnalysis.sector,
+      requested_area: deepAnalysis.area,
+      commercial_objective: deepAnalysis.objective,
       opportunity_grade: "promising_beta_case",
       opportunity_hypothesis:
-        "The domain may justify deeper commercial review before campaign or human-sales budget is spent.",
+        `The domain may justify an operational machine action if ${deepAnalysis.sector.evidence_focus.join(", ")} are validated.`,
+      buyer_machine_value:
+        "This delivery is meant to reduce wasted downstream spend: the customer machine gets concrete gates for buying Action Pack, saving to CRM or stopping.",
+      commercial_evidence: deepAnalysis.commercial_evidence,
+      machine_decision_matrix: deepAnalysis.machine_decision_matrix,
+      action_pack_purchase_gate: deepAnalysis.action_pack_purchase_gate,
+      crm_summary_payload: deepAnalysis.crm_summary_payload,
+      evidence_limitations: deepAnalysis.evidence_limitations,
+      sector_specific_signals: deepAnalysis.sector.sector_specific_signals,
       signals_to_validate: [
+        "sector fit and business identity",
         "website conversion friction",
-        "sector-specific demand signal",
-        "local competition and offer fit"
+        "trust or service-page clarity",
+        "local competition and offer fit",
+        "CRM or workflow destination availability"
       ],
       recommended_next_step: {
         product_code: "action_pack",
-        condition: "buy only if the customer machine has a compliant action channel and budget approval",
+        condition:
+          "buy only if sector fit, commercial friction, CRM/workflow destination, compliant action channel and budget approval are present",
         reason:
-          "Deep analysis indicates potential, but the next commercial action must still pass compliance and budget gates."
+          "Deep Analysis now returns operational evidence gates; Action Pack is useful only when those gates are strong enough for CRM/workflow preparation."
       },
       stop_rules: [
         "stop if confidence drops after verification",
         "stop if the target does not match the customer's commercial objective",
+        "stop if no actionable digital friction is found",
+        "stop if no CRM or workflow destination exists",
         "stop if no compliant downstream action is available"
       ],
       risk_flags: ["synthetic_beta_output", "requires real-world validation before outreach"],
       recommended_budget_cap_eur: 3,
-      machine_recommendation: "Use this output to decide whether to create an action pack or stop spending.",
+      machine_recommendation:
+        "Use this output as a spend-control decision pack: buy Action Pack only if the machine decision matrix passes; otherwise keep the target in watchlist or stop.",
       next_machine_call: {
         method: "POST",
         endpoint: "/v1/purchase-intent",
         payload_template: {
           product_code: "action_pack",
           source_order_intent_id: "use_this_order_intent_id",
-          max_budget_eur: 10
+          max_budget_eur: 10,
+          reason:
+            "Deep Analysis evidence matrix passed sector, friction, CRM destination and budget gates"
         },
         required_headers: ["X-API-Key", "Idempotency-Key"]
       }

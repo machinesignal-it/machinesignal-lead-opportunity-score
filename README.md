@@ -57,6 +57,8 @@ Public discovery starts here:
 - Bounded Action Pack Contract Probe: https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md
 - Bounded Action Pack Contract Probe JSON: https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json
 - Bounded Action Pack Contract Probe CSV: https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv
+- Deep Analysis Content Upgrade: https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md
+- Deep Analysis Content Upgrade JSON: https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
@@ -354,8 +356,24 @@ The response aggregates sandbox keys created, active and expired keys, score cre
 - `commercial_strength`: score-attached budget policy that classifies targets as `strong`, `medium` or `weak` and tells the machine which add-ons are allowed.
 - `verification`: data quality verification delivery.
 - `nurture_signal`: lightweight signal for leads that should be saved but not pushed immediately.
-- `deep_analysis`: deeper opportunity analysis before spending campaign or sales budget.
+- `deep_analysis`: spend-control decision pack with sector context, commercial evidence, machine decision matrix, Action Pack purchase gate, CRM summary payload and stop rules before spending more budget.
 - `action_pack`: CRM-ready action delivery with record patch, CRM task, platform mappings, workflow payload, webhook policy, audit event, approval gate, agent instructions, stop rules and follow-up sequence.
+
+## Deep Analysis Contract
+
+`deep_analysis` is the paid product that turns a high score into operational evidence for the customer machine.
+
+It returns:
+
+- `commercial_evidence`: concrete evidence categories the machine must validate.
+- `machine_decision_matrix`: when to buy Action Pack, when to keep watchlist and when to stop.
+- `action_pack_purchase_gate`: required gates before buying Action Pack.
+- `crm_summary_payload`: compact payload that can be stored in CRM or workflow logs.
+- `sector_context`: sector-specific buyer problem and signals.
+- `signals_to_validate`: checks to run before downstream spend.
+- `stop_rules`: conditions where the workflow must stop.
+
+The key rule: `deep_analysis` does not authorize outreach. It tells the customer machine whether buying an `action_pack` is justified.
 
 ## Action Pack Contract
 

@@ -70,6 +70,8 @@ Useful endpoints:
 - GET https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md
 - GET https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json
 - GET https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv
+- GET https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md
+- GET https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json
 - GET https://machinesignal.it/readiness-dashboard/
 - GET https://machinesignal.it/readiness-dashboard/readiness.json
 - GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -192,6 +194,8 @@ Public demos for software, agents and partners:
 - Bounded Action Pack Contract Probe: https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md
 - Bounded Action Pack Contract Probe JSON: https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json
 - Bounded Action Pack Contract Probe CSV: https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv
+- Deep Analysis Content Upgrade: https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md
+- Deep Analysis Content Upgrade JSON: https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json
 - Readiness dashboard: https://machinesignal.it/readiness-dashboard/
 - Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
 - Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -257,6 +261,12 @@ How a machine should create a beta order intent:
 - the beta order intent consumes one corresponding pack credit;
 - the response includes delivery, an immediate machine-readable beta output with what_is_included, output_contract, next_machine_call and stop_rules when relevant;
 - no real payment is executed in beta.
+
+Deep Analysis delivery contract:
+- deep_analysis returns what_is_included, deep_analysis_version, sector_context, commercial_objective, commercial_evidence, machine_decision_matrix, action_pack_purchase_gate, crm_summary_payload, sector_specific_signals, signals_to_validate, recommended_next_step, recommended_budget_cap_eur, stop_rules, evidence_limitations and next_machine_call;
+- deep_analysis_version is domain_specific_commercial_evidence_v1;
+- the customer machine should buy action_pack only if sector fit, digital friction, CRM/workflow destination, compliance gate and budget approval are present;
+- if those gates are not present, the customer machine should keep the lead in watchlist or stop spending.
 
 Action Pack delivery contract:
 - action_pack returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail;
