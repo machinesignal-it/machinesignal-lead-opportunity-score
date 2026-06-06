@@ -573,6 +573,35 @@
       "response": []
     },
     {
+      "name": "Get beta order by id",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{machinesignal_api_key}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/orders/{{order_intent_id}}",
+          "protocol": "https",
+          "host": [
+            "machinesignal-api",
+            "beta-878",
+            "workers",
+            "dev"
+          ],
+          "path": [
+            "v1",
+            "orders",
+            "{{order_intent_id}}"
+          ]
+        },
+        "description": "Retrieves one beta order and its machine-readable delivery by order_intent_id. Use an id returned by purchase-intent or by the List beta orders request."
+      },
+      "response": []
+    },
+    {
       "name": "List verification orders",
       "request": {
         "method": "GET",

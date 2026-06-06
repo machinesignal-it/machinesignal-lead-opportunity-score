@@ -4,7 +4,7 @@ Generated: 2026-06-06
 
 Status: passed
 
-Collection item count: 23
+Collection item count: 24
 
 ## Files Scanned
 - postman_public_collection.json
@@ -21,6 +21,7 @@ Collection item count: 23
 - Fetch Postman Workspace Import Pack: present=True
 - Fetch Postman Public Environment Template: present=True
 - Fetch Postman Workspace Secret Scan: present=True
+- Get beta order by id: present=True
 
 ## Variable Checks
 - machinesignal_api_key: collection_blank=True, collection_type=secret, environment_blank=True, environment_type=secret

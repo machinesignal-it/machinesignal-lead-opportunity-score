@@ -1,0 +1,507 @@
+{
+    "ok":  true,
+    "probe_name":  "machine_buyer_delivery_retrieval_probe",
+    "run_date":  "2026-06-06",
+    "public_site":  "https://machinesignal.it",
+    "mode":  "NoWrite",
+    "write_calls_executed":  0,
+    "live_credits_consumed":  0,
+    "real_payment_executed":  false,
+    "external_contact_executed":  false,
+    "machine_path":  [
+                         "https://machinesignal.it/llms.txt",
+                         "https://machinesignal.it/openapi.json",
+                         "https://machinesignal.it/machine-onboarding.json",
+                         "https://machinesignal.it/product-catalog.json",
+                         "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
+                         "https://machinesignal.it/postman_public_collection.json"
+                     ],
+    "retrieval_contract":  {
+                               "list_orders":  "GET /v1/orders",
+                               "get_order":  "GET /v1/orders/{order_intent_id}",
+                               "delivery_schema":  "BetaDelivery",
+                               "required_delivery_fields":  [
+                                                                "delivery_id",
+                                                                "product_code",
+                                                                "delivery_type",
+                                                                "status",
+                                                                "what_is_included",
+                                                                "output_contract",
+                                                                "next_machine_call",
+                                                                "stop_rules",
+                                                                "machine_recommendation",
+                                                                "real_payment_executed",
+                                                                "external_contact_executed"
+                                                            ],
+                               "postman_collection_items":  24
+                           },
+    "proof_inputs":  {
+                         "self_service_sale_status":  "passed",
+                         "self_service_orders":  3,
+                         "bounded_live_order_intent_id":  "ord_e128da05",
+                         "bounded_live_order_retrieval_status":  200,
+                         "bounded_live_checks":  "21/21"
+                     },
+    "checks":  [
+                   {
+                       "name":  "product_catalog_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "llms_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "bounded_live_delivery_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "evaluation_pack_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "openapi_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "sitemap_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "postman_secret_scan_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "postman_environment_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "self_service_sale_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "postman_collection_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "machine_onboarding_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "openapi_has_order_list_endpoint",
+                       "ok":  true,
+                       "details":  "GET /v1/orders"
+                   },
+                   {
+                       "name":  "openapi_has_single_order_endpoint",
+                       "ok":  true,
+                       "details":  "GET /v1/orders/{order_intent_id}"
+                   },
+                   {
+                       "name":  "openapi_order_list_operation_id",
+                       "ok":  true,
+                       "details":  "operationId=listOrders"
+                   },
+                   {
+                       "name":  "openapi_single_order_operation_id",
+                       "ok":  true,
+                       "details":  "operationId=getOrder"
+                   },
+                   {
+                       "name":  "openapi_order_list_mentions_deliveries",
+                       "ok":  true,
+                       "details":  "List beta order intents and deliveries"
+                   },
+                   {
+                       "name":  "openapi_single_order_mentions_delivery",
+                       "ok":  true,
+                       "details":  "Get one beta order intent and delivery"
+                   },
+                   {
+                       "name":  "openapi_orders_are_authenticated",
+                       "ok":  true,
+                       "details":  "ApiKeyAuth security present"
+                   },
+                   {
+                       "name":  "openapi_single_order_path_param_required",
+                       "ok":  true,
+                       "details":  "order_intent_id required"
+                   },
+                   {
+                       "name":  "openapi_order_list_schema_ref",
+                       "ok":  true,
+                       "details":  "OrderListResponse"
+                   },
+                   {
+                       "name":  "openapi_single_order_schema_ref",
+                       "ok":  true,
+                       "details":  "OrderResponse"
+                   },
+                   {
+                       "name":  "openapi_order_list_response_shape",
+                       "ok":  true,
+                       "details":  "orders and count present"
+                   },
+                   {
+                       "name":  "openapi_order_response_shape",
+                       "ok":  true,
+                       "details":  "order object present"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_delivery_id",
+                       "ok":  true,
+                       "details":  "BetaDelivery.delivery_id"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_product_code",
+                       "ok":  true,
+                       "details":  "BetaDelivery.product_code"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_delivery_type",
+                       "ok":  true,
+                       "details":  "BetaDelivery.delivery_type"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_status",
+                       "ok":  true,
+                       "details":  "BetaDelivery.status"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_what_is_included",
+                       "ok":  true,
+                       "details":  "BetaDelivery.what_is_included"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_output_contract",
+                       "ok":  true,
+                       "details":  "BetaDelivery.output_contract"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_next_machine_call",
+                       "ok":  true,
+                       "details":  "BetaDelivery.next_machine_call"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_stop_rules",
+                       "ok":  true,
+                       "details":  "BetaDelivery.stop_rules"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_machine_recommendation",
+                       "ok":  true,
+                       "details":  "BetaDelivery.machine_recommendation"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_real_payment_executed",
+                       "ok":  true,
+                       "details":  "BetaDelivery.real_payment_executed"
+                   },
+                   {
+                       "name":  "openapi_beta_delivery_has_external_contact_executed",
+                       "ok":  true,
+                       "details":  "BetaDelivery.external_contact_executed"
+                   },
+                   {
+                       "name":  "onboarding_flow_has_order_retrieval",
+                       "ok":  true,
+                       "details":  "GET /v1/orders in callable_flow"
+                   },
+                   {
+                       "name":  "onboarding_order_goal_mentions_deliveries",
+                       "ok":  true,
+                       "details":  "Retrieve orders and deliveries."
+                   },
+                   {
+                       "name":  "onboarding_policy_can_read_usage_and_orders",
+                       "ok":  true,
+                       "details":  "can_read_usage_and_orders=true"
+                   },
+                   {
+                       "name":  "onboarding_links_delivery_proof",
+                       "ok":  true,
+                       "details":  "bounded delivery proof linked"
+                   },
+                   {
+                       "name":  "onboarding_links_routing_probe",
+                       "ok":  true,
+                       "details":  "routing proof linked"
+                   },
+                   {
+                       "name":  "catalog_target_discovery_pack_250_has_machine_output",
+                       "ok":  true,
+                       "details":  "machine_output present"
+                   },
+                   {
+                       "name":  "catalog_target_discovery_pack_250_has_validity_rule",
+                       "ok":  true,
+                       "details":  "validity_rule present"
+                   },
+                   {
+                       "name":  "catalog_target_discovery_pack_250_has_includes",
+                       "ok":  true,
+                       "details":  "includes count=10"
+                   },
+                   {
+                       "name":  "catalog_score_pack_1k_has_machine_output",
+                       "ok":  true,
+                       "details":  "machine_output present"
+                   },
+                   {
+                       "name":  "catalog_score_pack_1k_has_validity_rule",
+                       "ok":  true,
+                       "details":  "validity_rule present"
+                   },
+                   {
+                       "name":  "catalog_score_pack_1k_has_includes",
+                       "ok":  true,
+                       "details":  "includes count=12"
+                   },
+                   {
+                       "name":  "catalog_domain_enrichment_pack_100_has_machine_output",
+                       "ok":  true,
+                       "details":  "machine_output present"
+                   },
+                   {
+                       "name":  "catalog_domain_enrichment_pack_100_has_validity_rule",
+                       "ok":  true,
+                       "details":  "validity_rule present"
+                   },
+                   {
+                       "name":  "catalog_domain_enrichment_pack_100_has_includes",
+                       "ok":  true,
+                       "details":  "includes count=8"
+                   },
+                   {
+                       "name":  "catalog_deep_analysis_pack_100_has_machine_output",
+                       "ok":  true,
+                       "details":  "machine_output present"
+                   },
+                   {
+                       "name":  "catalog_deep_analysis_pack_100_has_validity_rule",
+                       "ok":  true,
+                       "details":  "validity_rule present"
+                   },
+                   {
+                       "name":  "catalog_deep_analysis_pack_100_has_includes",
+                       "ok":  true,
+                       "details":  "includes count=12"
+                   },
+                   {
+                       "name":  "catalog_action_pack_25_has_machine_output",
+                       "ok":  true,
+                       "details":  "machine_output present"
+                   },
+                   {
+                       "name":  "catalog_action_pack_25_has_validity_rule",
+                       "ok":  true,
+                       "details":  "validity_rule present"
+                   },
+                   {
+                       "name":  "catalog_action_pack_25_has_includes",
+                       "ok":  true,
+                       "details":  "includes count=14"
+                   },
+                   {
+                       "name":  "catalog_opportunity_feed_monthly_has_machine_output",
+                       "ok":  true,
+                       "details":  "machine_output present"
+                   },
+                   {
+                       "name":  "catalog_opportunity_feed_monthly_has_validity_rule",
+                       "ok":  true,
+                       "details":  "validity_rule present"
+                   },
+                   {
+                       "name":  "catalog_opportunity_feed_monthly_has_includes",
+                       "ok":  true,
+                       "details":  "includes count=8"
+                   },
+                   {
+                       "name":  "catalog_api_starter_monthly_has_machine_output",
+                       "ok":  true,
+                       "details":  "machine_output present"
+                   },
+                   {
+                       "name":  "catalog_api_starter_monthly_has_validity_rule",
+                       "ok":  true,
+                       "details":  "validity_rule present"
+                   },
+                   {
+                       "name":  "catalog_api_starter_monthly_has_includes",
+                       "ok":  true,
+                       "details":  "includes count=7"
+                   },
+                   {
+                       "name":  "catalog_api_pro_monthly_has_machine_output",
+                       "ok":  true,
+                       "details":  "machine_output present"
+                   },
+                   {
+                       "name":  "catalog_api_pro_monthly_has_validity_rule",
+                       "ok":  true,
+                       "details":  "validity_rule present"
+                   },
+                   {
+                       "name":  "catalog_api_pro_monthly_has_includes",
+                       "ok":  true,
+                       "details":  "includes count=8"
+                   },
+                   {
+                       "name":  "catalog_custom_overage_has_machine_output",
+                       "ok":  true,
+                       "details":  "machine_output present"
+                   },
+                   {
+                       "name":  "catalog_custom_overage_has_validity_rule",
+                       "ok":  true,
+                       "details":  "validity_rule present"
+                   },
+                   {
+                       "name":  "catalog_custom_overage_has_includes",
+                       "ok":  true,
+                       "details":  "includes count=6"
+                   },
+                   {
+                       "name":  "catalog_deep_analysis_has_output_fields",
+                       "ok":  true,
+                       "details":  "deep_analysis output fields"
+                   },
+                   {
+                       "name":  "catalog_action_pack_has_output_fields",
+                       "ok":  true,
+                       "details":  "action_pack output fields"
+                   },
+                   {
+                       "name":  "evaluation_pack_flow_retrieves_orders",
+                       "ok":  true,
+                       "details":  "GET /v1/orders in evaluation flow"
+                   },
+                   {
+                       "name":  "evaluation_pack_proof_has_order_id",
+                       "ok":  true,
+                       "details":  "ord_e128da05"
+                   },
+                   {
+                       "name":  "evaluation_pack_proof_has_report_links",
+                       "ok":  true,
+                       "details":  "report and JSON present"
+                   },
+                   {
+                       "name":  "self_service_sale_passed",
+                       "ok":  true,
+                       "details":  "status=passed"
+                   },
+                   {
+                       "name":  "self_service_orders_passed",
+                       "ok":  true,
+                       "details":  "orders=3"
+                   },
+                   {
+                       "name":  "self_service_orders_have_core_products",
+                       "ok":  true,
+                       "details":  "action_pack, deep_analysis, target_discovery"
+                   },
+                   {
+                       "name":  "self_service_no_payment_no_outreach",
+                       "ok":  true,
+                       "details":  "safe beta"
+                   },
+                   {
+                       "name":  "bounded_live_delivery_passed",
+                       "ok":  true,
+                       "details":  "ok=True"
+                   },
+                   {
+                       "name":  "bounded_live_order_retrieved",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "bounded_live_order_id_present",
+                       "ok":  true,
+                       "details":  "ord_e128da05"
+                   },
+                   {
+                       "name":  "bounded_live_stored_delivery_persisted",
+                       "ok":  true,
+                       "details":  "stored delivery fields persisted"
+                   },
+                   {
+                       "name":  "bounded_live_credit_policy",
+                       "ok":  true,
+                       "details":  "deep=1; action=0"
+                   },
+                   {
+                       "name":  "bounded_live_no_payment_no_outreach",
+                       "ok":  true,
+                       "details":  "safe beta"
+                   },
+                   {
+                       "name":  "postman_has_list_orders",
+                       "ok":  true,
+                       "details":  "List beta orders"
+                   },
+                   {
+                       "name":  "postman_has_get_order_by_id",
+                       "ok":  true,
+                       "details":  "Get beta order by id"
+                   },
+                   {
+                       "name":  "postman_mentions_order_intent_variable",
+                       "ok":  true,
+                       "details":  "order_intent_id variable present"
+                   },
+                   {
+                       "name":  "postman_environment_has_order_intent_id",
+                       "ok":  true,
+                       "details":  "blank order_intent_id"
+                   },
+                   {
+                       "name":  "postman_environment_secret_values_blank",
+                       "ok":  true,
+                       "details":  "secret values blank"
+                   },
+                   {
+                       "name":  "postman_secret_scan_passed",
+                       "ok":  true,
+                       "details":  "secret_hits=0"
+                   },
+                   {
+                       "name":  "postman_secret_scan_count_updated",
+                       "ok":  true,
+                       "details":  "scan=24; collection=24"
+                   },
+                   {
+                       "name":  "llms_explains_order_retrieval",
+                       "ok":  true,
+                       "details":  "order retrieval instructions present"
+                   },
+                   {
+                       "name":  "llms_says_orders_are_not_invoices",
+                       "ok":  true,
+                       "details":  "invoice distinction present"
+                   },
+                   {
+                       "name":  "sitemap_valid_xml",
+                       "ok":  true,
+                       "details":  "urlset present"
+                   }
+               ],
+    "failed_checks":  [
+
+                      ],
+    "conclusion":  "PASS: a machine buyer can discover how to retrieve beta orders and deliveries, understand the delivery schema, find Postman retrieval requests, and verify prior delivery persistence proof without write calls, live credits, real payment or external outreach.",
+    "recommended_next_step":  "Use this proof before enabling a larger sandbox buyer run. If more operational proof is needed, run only a bounded write test after KV write budget approval."
+}

@@ -44,6 +44,7 @@
     "Simulate payment test success webhook",
     "Read payment test reconciliation",
     "List beta orders",
+    "Get beta order by id",
     "Fetch OpenAPI schema"
   ],
   "environment_template": {
@@ -51,6 +52,7 @@
     "machinesignal_api_key": "",
     "beta_customer_id": "",
     "payment_test_id": "",
+    "order_intent_id": "",
     "payment_test_success_signature": ""
   },
   "guardrails": {
@@ -62,7 +64,7 @@
   },
   "local_secret_scan": {
     "status": "passed",
-    "collection_item_count": 23,
+    "collection_item_count": 24,
     "sensitive_variables_blank": true,
     "secret_hits": 0,
     "live_credits_consumed": 0,
