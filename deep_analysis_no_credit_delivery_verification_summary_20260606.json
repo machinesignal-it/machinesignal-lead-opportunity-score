@@ -1,0 +1,103 @@
+{
+  "ok": true,
+  "run_id": "deep-analysis-no-credit-delivery-verification-20260606",
+  "generated_at": "2026-06-06T08:29:46.521Z",
+  "mode": "NoCreditDeliveryShapeVerification",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "live_credits_consumed": 0,
+  "live_payment_executed": false,
+  "live_external_contact_executed": false,
+  "local_simulation_only": true,
+  "live_checks": {
+    "product_catalog_status": 200,
+    "llms_status": 200,
+    "product_output_fields": [
+      {
+        "field": "commercial_evidence",
+        "present": true
+      },
+      {
+        "field": "machine_decision_matrix",
+        "present": true
+      },
+      {
+        "field": "action_pack_purchase_gate",
+        "present": true
+      },
+      {
+        "field": "crm_summary_payload",
+        "present": true
+      },
+      {
+        "field": "sector_specific_signals",
+        "present": true
+      },
+      {
+        "field": "evidence_limitations",
+        "present": true
+      }
+    ],
+    "llms_contract_checks": [
+      {
+        "check": "deep_analysis_delivery_contract_present",
+        "passed": true
+      },
+      {
+        "check": "deep_analysis_version_present",
+        "passed": true
+      },
+      {
+        "check": "action_pack_gate_documented",
+        "passed": true
+      }
+    ]
+  },
+  "local_delivery_checks": {
+    "response_status": 200,
+    "product_code": "deep_analysis",
+    "delivery_type": "deep_opportunity_analysis",
+    "deep_analysis_version": "domain_specific_commercial_evidence_v1",
+    "sector_code": "dentists_clinics",
+    "local_simulated_credit_event": 1,
+    "checks": [
+      {
+        "check": "delivery_type",
+        "passed": true
+      },
+      {
+        "check": "deep_analysis_version",
+        "passed": true
+      },
+      {
+        "check": "sector_context",
+        "passed": true
+      },
+      {
+        "check": "commercial_evidence",
+        "passed": true
+      },
+      {
+        "check": "machine_decision_matrix",
+        "passed": true
+      },
+      {
+        "check": "action_pack_purchase_gate",
+        "passed": true
+      },
+      {
+        "check": "crm_summary_payload",
+        "passed": true
+      },
+      {
+        "check": "stop_rules",
+        "passed": true
+      },
+      {
+        "check": "safety_flags",
+        "passed": true
+      }
+    ]
+  },
+  "conclusion": "The upgraded Deep Analysis delivery contract is visible in the live Worker documentation and produces the expected commercial evidence structure in local no-credit simulation.",
+  "recommended_next_step": "If live delivery persistence must be verified, run one bounded Deep Analysis purchase intent with a new idempotency key and stop after one credit."
+}

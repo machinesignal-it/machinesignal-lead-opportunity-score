@@ -126,10 +126,10 @@
     "Escalate to human supervision before high-volume Full tests or paid Cloudflare upgrade decisions."
   ],
   "next_recommended_test": {
-    "name": "deploy_and_no_credit_deep_analysis_retrieval_review",
-    "description": "Deploy the upgraded Deep Analysis delivery, then run a no-credit retrieval review before buying more Action Packs.",
+    "name": "bounded_live_deep_analysis_delivery_persistence_probe",
+    "description": "If live delivery persistence must be verified, run one bounded Deep Analysis purchase intent with a new idempotency key and stop after one credit.",
     "requires_human_approval": false,
-    "suggested_frequency": "once after deployment"
+    "suggested_frequency": "optional once, not daily"
   },
   "latest_bounded_write_budget_probe": {
     "finished_at": "2026-06-05T11:16:32",
@@ -327,5 +327,22 @@
     ],
     "summary_json": "https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json",
     "report": "https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md"
+  },
+  "latest_deep_analysis_no_credit_delivery_verification": {
+    "generated_at": "2026-06-06T08:29:46.521Z",
+    "status": "PASS",
+    "mode": "NoCreditDeliveryShapeVerification",
+    "live_credits_consumed": 0,
+    "live_payment_executed": false,
+    "live_external_contact_executed": false,
+    "product_catalog_status": 200,
+    "llms_status": 200,
+    "local_delivery_version": "domain_specific_commercial_evidence_v1",
+    "local_delivery_sector": "dentists_clinics",
+    "commercial_evidence_items": 4,
+    "stop_rules": 5,
+    "action_pack_gate": "conditional",
+    "summary_json": "https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json",
+    "report": "https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md"
   }
 }

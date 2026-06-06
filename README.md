@@ -59,6 +59,8 @@ Public discovery starts here:
 - Bounded Action Pack Contract Probe CSV: https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv
 - Deep Analysis Content Upgrade: https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md
 - Deep Analysis Content Upgrade JSON: https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json
+- Deep Analysis No-Credit Delivery Verification: https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md
+- Deep Analysis No-Credit Delivery Verification JSON: https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md

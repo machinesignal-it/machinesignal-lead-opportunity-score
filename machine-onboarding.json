@@ -67,6 +67,8 @@
     "bounded_action_pack_contract_probe_rows": "https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv",
     "deep_analysis_content_upgrade": "https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md",
     "deep_analysis_content_upgrade_json": "https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json",
+    "deep_analysis_no_credit_delivery_verification": "https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md",
+    "deep_analysis_no_credit_delivery_verification_json": "https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"
@@ -105,7 +107,10 @@
     "latest_bounded_action_pack_contract_probe_rule": "Contract validated for one strongest reviewed row; stop further Action Pack credit spend until Deep Analysis content is upgraded from synthetic beta output to domain-specific commercial evidence.",
     "latest_deep_analysis_content_upgrade_status": "PASS",
     "latest_deep_analysis_content_upgrade_json": "https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json",
-    "latest_deep_analysis_content_upgrade_rule": "Deep Analysis now returns commercial_evidence, machine_decision_matrix, action_pack_purchase_gate and crm_summary_payload. Next step is deploy and no-credit retrieval verification."
+    "latest_deep_analysis_content_upgrade_rule": "Deep Analysis now returns commercial_evidence, machine_decision_matrix, action_pack_purchase_gate and crm_summary_payload.",
+    "latest_deep_analysis_no_credit_delivery_verification_status": "PASS",
+    "latest_deep_analysis_no_credit_delivery_verification_json": "https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json",
+    "latest_deep_analysis_no_credit_delivery_verification_rule": "Live Worker documentation and local delivery shape passed without live credit consumption. Next optional step is one bounded live Deep Analysis purchase intent if delivery persistence must be verified."
   },
   "callable_flow": [
     {

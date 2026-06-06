@@ -59,7 +59,7 @@ The score ledger is intended to use Durable Object storage, not KV, after the le
 
 ## Recommended Next Test
 
-Deploy the upgraded Deep Analysis delivery and run a no-credit retrieval review first. Do not buy more Action Packs for now. The goal is to confirm that:
+If live delivery persistence must be verified, run one bounded Deep Analysis purchase intent with a new idempotency key and stop after one credit. Do not buy more Action Packs for now. The goal is to confirm that:
 
 - Deep Analysis gives a buyer machine concrete reasons to spend more;
 - sector-specific evidence is stronger than generic website commentary;
@@ -290,3 +290,25 @@ Status: `PASS`
 Machine-readable summary: https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json
 
 Report: https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md
+
+## Latest Deep Analysis No-Credit Delivery Verification
+
+Generated at: 2026-06-06T08:29:46.521Z
+
+Status: `PASS`
+
+- Mode: `NoCreditDeliveryShapeVerification`
+- Live credits consumed: `0`
+- Live payment executed: `false`
+- Live external contact executed: `false`
+- Product catalog status: `200`
+- llms.txt status: `200`
+- Local delivery version: `domain_specific_commercial_evidence_v1`
+- Local delivery sector: `dentists_clinics`
+- Commercial evidence items: `4`
+- Stop rules: `5`
+- Action Pack gate: `conditional`
+
+Machine-readable summary: https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json
+
+Report: https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md
