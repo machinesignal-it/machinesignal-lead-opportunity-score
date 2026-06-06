@@ -74,6 +74,11 @@ Public discovery starts here:
 - Marketplace Publication Execution Pack JSON: https://machinesignal.it/marketplace_publication_execution_pack_20260606.json
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
+- Postman Workspace Import Pack: https://machinesignal.it/postman_workspace_import_pack_20260606.md
+- Postman Workspace Import Pack JSON: https://machinesignal.it/postman_workspace_import_pack_20260606.json
+- Postman Public Environment Template: https://machinesignal.it/postman_public_environment_template.json
+- Postman Workspace Secret Scan: https://machinesignal.it/postman_workspace_secret_scan_20260606.md
+- Postman Workspace Secret Scan JSON: https://machinesignal.it/postman_workspace_secret_scan_20260606.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
 - Postman Public Collection Smoke JSON: https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json

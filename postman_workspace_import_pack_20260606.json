@@ -1,0 +1,91 @@
+{
+  "service": "MachineSignal",
+  "artifact": "postman_workspace_import_pack",
+  "generated_at": "2026-06-06",
+  "status": "ready_for_private_workspace_import",
+  "public_publication_gate": "owner_approval_after_final_postman_secret_scan",
+  "goal": "Prepare a Postman workspace for machine buyers, developers and workflow tools to test MachineSignal in sandbox mode.",
+  "primary_customer_interface": "machine",
+  "human_role": "login, approval and audit only",
+  "import_urls": {
+    "collection": "https://machinesignal.it/postman_public_collection.json",
+    "environment_template": "https://machinesignal.it/postman_public_environment_template.json",
+    "secret_scan": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+    "workspace_draft": "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
+    "publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
+    "direct_import_url": "https://machinesignal-it-2905764.postman.co/import?url=https%3A%2F%2Fmachinesignal.it%2Fpostman_public_collection.json"
+  },
+  "workspace_settings": {
+    "name": "MachineSignal Lead Opportunity Score API",
+    "visibility_before_final_approval": "private_or_team_workspace",
+    "visibility_after_final_approval": "public_workspace_only_if_no_secrets_are_present",
+    "description_source": "https://machinesignal.it/distribution/postman-public-workspace-draft.json"
+  },
+  "collection_expected_contents": [
+    "Fetch machine onboarding manifest",
+    "Fetch product catalog",
+    "Fetch distribution channel shortlist",
+    "Fetch Sandbox Buyer Kit listing",
+    "Fetch Marketplace API Directory Pack",
+    "Fetch Marketplace Publication Execution Pack",
+    "Fetch Machine Buyer Evaluation Pack",
+    "Fetch Deep Analysis Commercial Brief",
+    "Fetch Postman Workspace Import Pack",
+    "Fetch Postman Public Environment Template",
+    "Fetch Postman Workspace Secret Scan",
+    "Fetch MCP Wrapper Pack",
+    "Create limited sandbox customer",
+    "Read authenticated onboarding",
+    "Score business domain",
+    "Order target discovery when machine has no list",
+    "Order deep analysis after strong score",
+    "Order action pack after confirmed opportunity",
+    "Create payment test intent",
+    "Simulate payment test success webhook",
+    "Read payment test reconciliation",
+    "List beta orders",
+    "Fetch OpenAPI schema"
+  ],
+  "environment_template": {
+    "base_url": "https://machinesignal-api.beta-878.workers.dev",
+    "machinesignal_api_key": "",
+    "beta_customer_id": "",
+    "payment_test_id": "",
+    "payment_test_success_signature": ""
+  },
+  "guardrails": {
+    "real_api_keys_published": false,
+    "admin_keys_published": false,
+    "real_payment_claimed": false,
+    "external_outreach_claimed": false,
+    "workspace_should_remain_private_until_final_scan": true
+  },
+  "local_secret_scan": {
+    "status": "passed",
+    "collection_item_count": 23,
+    "sensitive_variables_blank": true,
+    "secret_hits": 0,
+    "live_credits_consumed": 0,
+    "report": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json"
+  },
+  "final_checklist_before_public_visibility": [
+    "Import the collection.",
+    "Import or recreate the environment with blank secrets.",
+    "Confirm machinesignal_api_key is blank or secret.",
+    "Confirm no real key appears in collection variables.",
+    "Confirm public docs say sandbox-only.",
+    "Confirm live payment is not claimed.",
+    "Confirm no request sends external outreach.",
+    "Confirm Postman Secret Scanner shows no unresolved secret.",
+    "Ask owner approval before making the workspace public."
+  ],
+  "current_blocker": {
+    "type": "postman_login_required",
+    "details": "The Codex browser reached the Postman sign-in page. External import into the Postman account requires an active user session. No password or login token was entered by Codex."
+  },
+  "next_safe_action": {
+    "name": "owner_signs_into_postman_then_import_collection",
+    "live_credits_to_consume": 0,
+    "external_irreversible_publication": false
+  }
+}

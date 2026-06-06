@@ -1,398 +1,745 @@
 {
-  "info": {
-    "name": "MachineSignal Lead Opportunity Score API - Public Machine Discovery",
-    "_postman_id": "machinesignal-lead-opportunity-score-public-machine-discovery",
-    "description": "Public machine-first Postman collection for MachineSignal.\n\nUse it to inspect public manifests, create a limited sandbox customer, call score endpoints with a sandbox or customer API key, create beta purchase intents and read order deliveries.\n\nNo real API keys are published. No real payment is executed in beta. No external outreach is executed by these requests.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Fetch machine onboarding manifest",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/machine-onboarding.json",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["machine-onboarding.json"]
-        },
-        "description": "Public machine-readable onboarding manifest for agents, CRMs and workflows."
-      },
-      "response": []
-    },
-    {
-      "name": "Fetch product catalog",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/product-catalog.json",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["product-catalog.json"]
-        },
-        "description": "Public machine-readable catalog with beta prices, product codes, deliverables and valid-output credit rules."
-      },
-      "response": []
-    },
-    {
-      "name": "Fetch distribution channel shortlist",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "https://machinesignal.it/distribution/channel-shortlist.json",
-          "protocol": "https",
-          "host": ["machinesignal", "it"],
-          "path": ["distribution", "channel-shortlist.json"]
-        },
-        "description": "Public machine-first distribution plan showing where the API should be listed and how automated systems can discover it."
-      },
-      "response": []
-    },
-    {
-      "name": "Fetch Sandbox Buyer Kit listing",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
-          "protocol": "https",
-          "host": ["machinesignal", "it"],
-          "path": ["distribution", "sandbox-buyer-kit-listing.json"]
-        },
-        "description": "Primary machine-readable listing artifact for API directories, agent registries and automated evaluators. It explains the sandbox buyer flow, limits, validation status and publication guardrails."
-      },
-      "response": []
-    },
-    {
-      "name": "Fetch MCP Wrapper Pack",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
-          "protocol": "https",
-          "host": ["machinesignal", "it"],
-          "path": ["mcp", "machinesignal-mcp-wrapper.json"]
-        },
-        "description": "Public MCP-style wrapper pack for CRMs, AI agents and automated workflows. It describes the local stdio adapter, expected tools, sandbox flow and safety guardrails."
-      },
-      "response": []
-    },
-    {
-      "name": "Create limited sandbox customer",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "Idempotency-Key",
-            "value": "postman-sandbox-evaluator-001"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"evaluator_type\": \"ai_agent\",\n  \"integration_target\": \"custom CRM workflow\",\n  \"expected_test_path\": \"full_flow\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/v1/sandbox/customers",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["v1", "sandbox", "customers"]
-        },
-        "description": "Public limited sandbox onboarding. Creates a low-credit API key for safe machine evaluation without manual sales contact. Store api_key immediately; it is returned only once."
-      },
-      "response": []
-    },
-    {
-      "name": "Read authenticated onboarding",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "X-API-Key",
-            "value": "{{machinesignal_api_key}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/v1/onboarding",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["v1", "onboarding"]
-        },
-        "description": "Returns customer-specific onboarding state, balances and next machine calls."
-      },
-      "response": []
-    },
-    {
-      "name": "Score business domain",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "X-API-Key",
-            "value": "{{machinesignal_api_key}}"
-          },
-          {
-            "key": "Idempotency-Key",
-            "value": "postman-demo-score-001"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"domain\": \"clinic3.it\",\n  \"sector_hint\": \"dentist\",\n  \"country_hint\": \"IT\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/v1/lead-opportunity-score",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["v1", "lead-opportunity-score"]
-        },
-        "description": "Returns a beta score, routing decision, next purchase recommendation and credit usage event. Requires X-API-Key and Idempotency-Key."
-      },
-      "response": []
-    },
-    {
-      "name": "Order target discovery when machine has no list",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "X-API-Key",
-            "value": "{{machinesignal_api_key}}"
-          },
-          {
-            "key": "Idempotency-Key",
-            "value": "postman-demo-target-discovery-001"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"product_code\": \"target_discovery\",\n  \"market\": \"medicina estetica\",\n  \"area\": \"Lombardia\",\n  \"commercial_objective\": \"find domains worth scoring for website improvement opportunities\",\n  \"reason\": \"Customer machine has no starting list\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/v1/purchase-intent",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["v1", "purchase-intent"]
-        },
-        "description": "Use this when the customer machine has no list. The delivery returns an output contract: 250 coherent target records or a no-go market coverage decision."
-      },
-      "response": []
-    },
-    {
-      "name": "Order deep analysis after strong score",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "X-API-Key",
-            "value": "{{machinesignal_api_key}}"
-          },
-          {
-            "key": "Idempotency-Key",
-            "value": "postman-demo-deep-analysis-001"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"product_code\": \"deep_analysis\",\n  \"domain\": \"quinta-essenza.com\",\n  \"source_score_request_id\": \"postman-demo-score-001\",\n  \"reason\": \"Score decision was buy_deep_analysis\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/v1/purchase-intent",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["v1", "purchase-intent"]
-        },
-        "description": "Use this after a strong score. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
-      },
-      "response": []
-    },
-    {
-      "name": "Order action pack after confirmed opportunity",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "X-API-Key",
-            "value": "{{machinesignal_api_key}}"
-          },
-          {
-            "key": "Idempotency-Key",
-            "value": "postman-demo-action-pack-001"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"product_code\": \"action_pack\",\n  \"domain\": \"quinta-essenza.com\",\n  \"source_score_request_id\": \"postman-demo-score-001\",\n  \"reason\": \"Deep Analysis confirmed an opportunity and the CRM needs a machine-readable next action\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/v1/purchase-intent",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["v1", "purchase-intent"]
-        },
-        "description": "Use this when the machine has a confirmed opportunity and wants a CRM or agent-readable action payload."
-      },
-      "response": []
-    },
-    {
-      "name": "Create payment test intent",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "X-API-Key",
-            "value": "{{machinesignal_api_key}}"
-          },
-          {
-            "key": "Idempotency-Key",
-            "value": "postman-public-payment-test-intent-001"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"product_code\": \"score_pack_1k\",\n  \"amount_eur\": 99,\n  \"provider\": \"stripe\",\n  \"provider_mode\": \"sandbox\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/v1/payment-test/intents",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["v1", "payment-test", "intents"]
-        },
-        "description": "Creates a simulated checkout object in sandbox mode only. No real payment is executed. Copy payment_test_id and success_signature into the variables before simulating the webhook."
-      },
-      "response": []
-    },
-    {
-      "name": "Simulate payment test success webhook",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "X-MachineSignal-Test-Webhook-Signature",
-            "value": "{{payment_test_success_signature}}"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"customer_id\": \"{{beta_customer_id}}\",\n  \"payment_test_id\": \"{{payment_test_id}}\",\n  \"event_type\": \"payment_intent.succeeded\",\n  \"event_id\": \"postman-public-evt-test-success-001\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/v1/payment-test/webhooks/stripe",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["v1", "payment-test", "webhooks", "stripe"]
-        },
-        "description": "Simulates a provider webhook using the deterministic test signature returned by the payment test intent. Credits activate once and no fiscal invoice is issued."
-      },
-      "response": []
-    },
-    {
-      "name": "Read payment test reconciliation",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "X-API-Key",
-            "value": "{{machinesignal_api_key}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/v1/payment-test/reconciliation/{{payment_test_id}}",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["v1", "payment-test", "reconciliation", "{{payment_test_id}}"]
-        },
-        "description": "Checks that the payment test stayed in test mode, activated credits once and did not issue a real fiscal invoice."
-      },
-      "response": []
-    },
-    {
-      "name": "List beta orders",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "X-API-Key",
-            "value": "{{machinesignal_api_key}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/v1/orders",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["v1", "orders"]
-        },
-        "description": "Lists beta order intents and deliveries created by the authenticated customer machine."
-      },
-      "response": []
-    },
-    {
-      "name": "Fetch OpenAPI schema",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/openapi.json",
-          "protocol": "https",
-          "host": ["machinesignal-api", "beta-878", "workers", "dev"],
-          "path": ["openapi.json"]
-        },
-        "description": "Machine-readable OpenAPI schema for the REST API."
-      },
-      "response": []
-    }
-  ],
-  "variable": [
-    {
-      "key": "base_url",
-      "value": "https://machinesignal-api.beta-878.workers.dev"
-    },
-    {
-      "key": "machinesignal_api_key",
-      "value": "paste_sandbox_or_customer_key_here"
-    },
-    {
-      "key": "beta_customer_id",
-      "value": "paste_customer_id_here"
-    },
-    {
-      "key": "payment_test_id",
-      "value": "paste_payment_test_id_here"
-    },
-    {
-      "key": "payment_test_success_signature",
-      "value": "paste_success_signature_here"
-    }
-  ]
+    "info":  {
+                 "name":  "MachineSignal Lead Opportunity Score API - Public Machine Discovery",
+                 "_postman_id":  "machinesignal-lead-opportunity-score-public-machine-discovery",
+                 "description":  "Public machine-first Postman collection for MachineSignal.\n\nUse it to inspect public manifests, create a limited sandbox customer, call score endpoints with a sandbox or customer API key, create beta purchase intents and read order deliveries.\n\nCurrent public preparation assets:\n- Marketplace API Directory Pack: https://machinesignal.it/marketplace_api_directory_pack_20260606.json\n- Marketplace Publication Execution Pack: https://machinesignal.it/marketplace_publication_execution_pack_20260606.json\n- Machine Buyer Evaluation Pack: https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json\n\nNo real API keys are published. No real payment is executed in beta. No external outreach is executed by these requests.",
+                 "schema":  "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+             },
+    "variable":  [
+                     {
+                         "key":  "base_url",
+                         "value":  "https://machinesignal-api.beta-878.workers.dev"
+                     },
+                     {
+                         "key":  "machinesignal_api_key",
+                         "value":  "",
+                         "type":  "secret"
+                     },
+                     {
+                         "key":  "beta_customer_id",
+                         "value":  "",
+                         "type":  "secret"
+                     },
+                     {
+                         "key":  "payment_test_id",
+                         "value":  "",
+                         "type":  "secret"
+                     },
+                     {
+                         "key":  "payment_test_success_signature",
+                         "value":  "",
+                         "type":  "secret"
+                     }
+                 ],
+    "item":  [
+                 {
+                     "name":  "Fetch machine onboarding manifest",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/machine-onboarding.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "machine-onboarding.json"
+                                                          ]
+                                             },
+                                     "description":  "Public machine-readable onboarding manifest for agents, CRMs and workflows."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch product catalog",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/product-catalog.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "product-catalog.json"
+                                                          ]
+                                             },
+                                     "description":  "Public machine-readable catalog with beta prices, product codes, deliverables and valid-output credit rules."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch distribution channel shortlist",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "https://machinesignal.it/distribution/channel-shortlist.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal",
+                                                              "it"
+                                                          ],
+                                                 "path":  [
+                                                              "distribution",
+                                                              "channel-shortlist.json"
+                                                          ]
+                                             },
+                                     "description":  "Public machine-first distribution plan showing where the API should be listed and how automated systems can discover it."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch Sandbox Buyer Kit listing",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal",
+                                                              "it"
+                                                          ],
+                                                 "path":  [
+                                                              "distribution",
+                                                              "sandbox-buyer-kit-listing.json"
+                                                          ]
+                                             },
+                                     "description":  "Primary machine-readable listing artifact for API directories, agent registries and automated evaluators. It explains the sandbox buyer flow, limits, validation status and publication guardrails."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch Marketplace API Directory Pack",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal",
+                                                              "it"
+                                                          ],
+                                                 "path":  [
+                                                              "marketplace_api_directory_pack_20260606.json"
+                                                          ]
+                                             },
+                                     "description":  [
+                                                         "Machine-readable listing copy, product table, endpoint showcase and guardrails for API marketplaces and technical directories.",
+                                                         "New-GetItem"
+                                                     ]
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch Marketplace Publication Execution Pack",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal",
+                                                              "it"
+                                                          ],
+                                                 "path":  [
+                                                              "marketplace_publication_execution_pack_20260606.json"
+                                                          ]
+                                             },
+                                     "description":  "Operational publication instructions for sandbox-only Postman, RapidAPI-style, generic API directory and MCP/tool registry listings."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch Machine Buyer Evaluation Pack",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal",
+                                                              "it"
+                                                          ],
+                                                 "path":  [
+                                                              "machine_buyer_evaluation_pack_20260606.json"
+                                                          ]
+                                             },
+                                     "description":  "Short machine-readable evaluation packet: what the machine buys, when it buys, what JSON is returned, which actions are blocked and how budget waste is avoided."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch Deep Analysis Commercial Brief",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal",
+                                                              "it"
+                                                          ],
+                                                 "path":  [
+                                                              "deep_analysis_commercial_partner_brief_20260606.json"
+                                                          ]
+                                             },
+                                     "description":  "Partner-facing machine-readable explanation of Deep Analysis as the spend-control layer between Score Pack and Action Pack."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch Postman Workspace Import Pack",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal",
+                                                              "it"
+                                                          ],
+                                                 "path":  [
+                                                              "postman_workspace_import_pack_20260606.json"
+                                                          ]
+                                             },
+                                     "description":  [
+                                                         "Postman workspace import instructions, direct import URL, guardrails and final publication gate.",
+                                                         "New-GetItem"
+                                                     ]
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch Postman Public Environment Template",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "https://machinesignal.it/postman_public_environment_template.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal",
+                                                              "it"
+                                                          ],
+                                                 "path":  [
+                                                              "postman_public_environment_template.json"
+                                                          ]
+                                             },
+                                     "description":  "Blank Postman environment template with public base_url and empty secret variables."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch Postman Workspace Secret Scan",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal",
+                                                              "it"
+                                                          ],
+                                                 "path":  [
+                                                              "postman_workspace_secret_scan_20260606.json"
+                                                          ]
+                                             },
+                                     "description":  "Local pre-import secret scan result for collection variables, blank secrets and token-like patterns."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch MCP Wrapper Pack",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal",
+                                                              "it"
+                                                          ],
+                                                 "path":  [
+                                                              "mcp",
+                                                              "machinesignal-mcp-wrapper.json"
+                                                          ]
+                                             },
+                                     "description":  "Public MCP-style wrapper pack for CRMs, AI agents and automated workflows. It describes the local stdio adapter, expected tools, sandbox flow and safety guardrails."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Create limited sandbox customer",
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    },
+                                                    {
+                                                        "key":  "Idempotency-Key",
+                                                        "value":  "postman-sandbox-evaluator-001"
+                                                    }
+                                                ],
+                                     "body":  {
+                                                  "mode":  "raw",
+                                                  "raw":  "{\n  \"evaluator_type\": \"ai_agent\",\n  \"integration_target\": \"custom CRM workflow\",\n  \"expected_test_path\": \"full_flow\"\n}"
+                                              },
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/v1/sandbox/customers",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "v1",
+                                                              "sandbox",
+                                                              "customers"
+                                                          ]
+                                             },
+                                     "description":  "Public limited sandbox onboarding. Creates a low-credit API key for safe machine evaluation without manual sales contact. Store api_key immediately; it is returned only once."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Read authenticated onboarding",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+                                                    {
+                                                        "key":  "X-API-Key",
+                                                        "value":  "{{machinesignal_api_key}}"
+                                                    }
+                                                ],
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/v1/onboarding",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "v1",
+                                                              "onboarding"
+                                                          ]
+                                             },
+                                     "description":  "Returns customer-specific onboarding state, balances and next machine calls."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Score business domain",
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    },
+                                                    {
+                                                        "key":  "X-API-Key",
+                                                        "value":  "{{machinesignal_api_key}}"
+                                                    },
+                                                    {
+                                                        "key":  "Idempotency-Key",
+                                                        "value":  "postman-demo-score-001"
+                                                    }
+                                                ],
+                                     "body":  {
+                                                  "mode":  "raw",
+                                                  "raw":  "{\n  \"domain\": \"clinic3.it\",\n  \"sector_hint\": \"dentist\",\n  \"country_hint\": \"IT\"\n}"
+                                              },
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/v1/lead-opportunity-score",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "v1",
+                                                              "lead-opportunity-score"
+                                                          ]
+                                             },
+                                     "description":  "Returns a beta score, routing decision, next purchase recommendation and credit usage event. Requires X-API-Key and Idempotency-Key."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Order target discovery when machine has no list",
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    },
+                                                    {
+                                                        "key":  "X-API-Key",
+                                                        "value":  "{{machinesignal_api_key}}"
+                                                    },
+                                                    {
+                                                        "key":  "Idempotency-Key",
+                                                        "value":  "postman-demo-target-discovery-001"
+                                                    }
+                                                ],
+                                     "body":  {
+                                                  "mode":  "raw",
+                                                  "raw":  "{\n  \"product_code\": \"target_discovery\",\n  \"market\": \"medicina estetica\",\n  \"area\": \"Lombardia\",\n  \"commercial_objective\": \"find domains worth scoring for website improvement opportunities\",\n  \"reason\": \"Customer machine has no starting list\"\n}"
+                                              },
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/v1/purchase-intent",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "v1",
+                                                              "purchase-intent"
+                                                          ]
+                                             },
+                                     "description":  "Use this when the customer machine has no list. The delivery returns an output contract: 250 coherent target records or a no-go market coverage decision."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Order deep analysis after strong score",
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    },
+                                                    {
+                                                        "key":  "X-API-Key",
+                                                        "value":  "{{machinesignal_api_key}}"
+                                                    },
+                                                    {
+                                                        "key":  "Idempotency-Key",
+                                                        "value":  "postman-demo-deep-analysis-001"
+                                                    }
+                                                ],
+                                     "body":  {
+                                                  "mode":  "raw",
+                                                  "raw":  "{\n  \"product_code\": \"deep_analysis\",\n  \"domain\": \"quinta-essenza.com\",\n  \"source_score_request_id\": \"postman-demo-score-001\",\n  \"reason\": \"Score decision was buy_deep_analysis\"\n}"
+                                              },
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/v1/purchase-intent",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "v1",
+                                                              "purchase-intent"
+                                                          ]
+                                             },
+                                     "description":  "Use this after a strong score. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Order action pack after confirmed opportunity",
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    },
+                                                    {
+                                                        "key":  "X-API-Key",
+                                                        "value":  "{{machinesignal_api_key}}"
+                                                    },
+                                                    {
+                                                        "key":  "Idempotency-Key",
+                                                        "value":  "postman-demo-action-pack-001"
+                                                    }
+                                                ],
+                                     "body":  {
+                                                  "mode":  "raw",
+                                                  "raw":  "{\n  \"product_code\": \"action_pack\",\n  \"domain\": \"quinta-essenza.com\",\n  \"source_score_request_id\": \"postman-demo-score-001\",\n  \"reason\": \"Deep Analysis confirmed an opportunity and the CRM needs a machine-readable next action\"\n}"
+                                              },
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/v1/purchase-intent",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "v1",
+                                                              "purchase-intent"
+                                                          ]
+                                             },
+                                     "description":  "Use this when the machine has a confirmed opportunity and wants a CRM or agent-readable action payload."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Create payment test intent",
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    },
+                                                    {
+                                                        "key":  "X-API-Key",
+                                                        "value":  "{{machinesignal_api_key}}"
+                                                    },
+                                                    {
+                                                        "key":  "Idempotency-Key",
+                                                        "value":  "postman-public-payment-test-intent-001"
+                                                    }
+                                                ],
+                                     "body":  {
+                                                  "mode":  "raw",
+                                                  "raw":  "{\n  \"product_code\": \"score_pack_1k\",\n  \"amount_eur\": 99,\n  \"provider\": \"stripe\",\n  \"provider_mode\": \"sandbox\"\n}"
+                                              },
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/v1/payment-test/intents",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "v1",
+                                                              "payment-test",
+                                                              "intents"
+                                                          ]
+                                             },
+                                     "description":  "Creates a simulated checkout object in sandbox mode only. No real payment is executed. Copy payment_test_id and success_signature into the variables before simulating the webhook."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Simulate payment test success webhook",
+                     "request":  {
+                                     "method":  "POST",
+                                     "header":  [
+                                                    {
+                                                        "key":  "Content-Type",
+                                                        "value":  "application/json"
+                                                    },
+                                                    {
+                                                        "key":  "X-MachineSignal-Test-Webhook-Signature",
+                                                        "value":  "{{payment_test_success_signature}}"
+                                                    }
+                                                ],
+                                     "body":  {
+                                                  "mode":  "raw",
+                                                  "raw":  "{\n  \"customer_id\": \"{{beta_customer_id}}\",\n  \"payment_test_id\": \"{{payment_test_id}}\",\n  \"event_type\": \"payment_intent.succeeded\",\n  \"event_id\": \"postman-public-evt-test-success-001\"\n}"
+                                              },
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/v1/payment-test/webhooks/stripe",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "v1",
+                                                              "payment-test",
+                                                              "webhooks",
+                                                              "stripe"
+                                                          ]
+                                             },
+                                     "description":  "Simulates a provider webhook using the deterministic test signature returned by the payment test intent. Credits activate once and no fiscal invoice is issued."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Read payment test reconciliation",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+                                                    {
+                                                        "key":  "X-API-Key",
+                                                        "value":  "{{machinesignal_api_key}}"
+                                                    }
+                                                ],
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/v1/payment-test/reconciliation/{{payment_test_id}}",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "v1",
+                                                              "payment-test",
+                                                              "reconciliation",
+                                                              "{{payment_test_id}}"
+                                                          ]
+                                             },
+                                     "description":  "Checks that the payment test stayed in test mode, activated credits once and did not issue a real fiscal invoice."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "List beta orders",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+                                                    {
+                                                        "key":  "X-API-Key",
+                                                        "value":  "{{machinesignal_api_key}}"
+                                                    }
+                                                ],
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/v1/orders",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "v1",
+                                                              "orders"
+                                                          ]
+                                             },
+                                     "description":  "Lists beta order intents and deliveries created by the authenticated customer machine."
+                                 },
+                     "response":  [
+
+                                  ]
+                 },
+                 {
+                     "name":  "Fetch OpenAPI schema",
+                     "request":  {
+                                     "method":  "GET",
+                                     "header":  [
+
+                                                ],
+                                     "url":  {
+                                                 "raw":  "{{base_url}}/openapi.json",
+                                                 "protocol":  "https",
+                                                 "host":  [
+                                                              "machinesignal-api",
+                                                              "beta-878",
+                                                              "workers",
+                                                              "dev"
+                                                          ],
+                                                 "path":  [
+                                                              "openapi.json"
+                                                          ]
+                                             },
+                                     "description":  "Machine-readable OpenAPI schema for the REST API."
+                                 },
+                     "response":  [
+
+                                  ]
+                 }
+             ]
 }

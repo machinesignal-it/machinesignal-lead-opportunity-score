@@ -26,6 +26,8 @@
     "marketplace_api_directory_pack_markdown": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
     "openapi": "https://machinesignal.it/openapi.json",
     "postman_collection": "https://machinesignal.it/postman_public_collection.json",
+    "postman_environment_template": "https://machinesignal.it/postman_public_environment_template.json",
+    "postman_workspace_import_pack": "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
     "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
     "product_catalog": "https://machinesignal.it/product-catalog.json",
     "llms": "https://machinesignal.it/llms.txt",

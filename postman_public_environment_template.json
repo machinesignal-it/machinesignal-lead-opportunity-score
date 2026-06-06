@@ -1,0 +1,39 @@
+{
+  "id": "machinesignal-public-sandbox-environment",
+  "name": "MachineSignal Public Sandbox Environment",
+  "values": [
+    {
+      "key": "base_url",
+      "value": "https://machinesignal-api.beta-878.workers.dev",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "machinesignal_api_key",
+      "value": "",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "beta_customer_id",
+      "value": "",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "payment_test_id",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "payment_test_success_signature",
+      "value": "",
+      "type": "secret",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2026-06-06T16:10:00+02:00",
+  "_postman_exported_using": "MachineSignal sandbox-only publication prep"
+}

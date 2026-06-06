@@ -35,6 +35,8 @@ The goal is not human cold email. The goal is to place MachineSignal where softw
 - Marketplace API Directory Pack Markdown: https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - OpenAPI: https://machinesignal.it/openapi.json
 - Postman collection: https://machinesignal.it/postman_public_collection.json
+- Postman environment template: https://machinesignal.it/postman_public_environment_template.json
+- Postman workspace import pack: https://machinesignal.it/postman_workspace_import_pack_20260606.json
 - Machine onboarding: https://machinesignal.it/machine-onboarding.json
 - Product catalog: https://machinesignal.it/product-catalog.json
 - llms.txt: https://machinesignal.it/llms.txt

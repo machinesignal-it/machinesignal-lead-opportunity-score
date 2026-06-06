@@ -220,6 +220,21 @@
     <loc>https://machinesignal.it/marketplace_publication_execution_pack_20260606.json</loc>
   </url>
   <url>
+    <loc>https://machinesignal.it/postman_workspace_import_pack_20260606.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/postman_workspace_import_pack_20260606.json</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/postman_public_environment_template.json</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/postman_workspace_secret_scan_20260606.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/postman_workspace_secret_scan_20260606.json</loc>
+  </url>
+  <url>
     <loc>https://machinesignal.it/readiness-dashboard/</loc>
   </url>
   <url>

@@ -12,6 +12,11 @@
   },
   "import_assets": {
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "postman_public_environment_template": "https://machinesignal.it/postman_public_environment_template.json",
+    "postman_workspace_import_pack": "https://machinesignal.it/postman_workspace_import_pack_20260606.md",
+    "postman_workspace_import_pack_json": "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
+    "postman_workspace_secret_scan": "https://machinesignal.it/postman_workspace_secret_scan_20260606.md",
+    "postman_workspace_secret_scan_json": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
     "postman_public_collection_smoke_report": "https://machinesignal.it/postman_public_collection_smoke_report_20260604.md",
     "postman_public_collection_smoke_json": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
     "mcp_wrapper": "https://machinesignal.it/mcp/",
@@ -56,6 +61,13 @@
     "Fetch product catalog",
     "Fetch distribution channel shortlist",
     "Fetch Sandbox Buyer Kit listing",
+    "Fetch Marketplace API Directory Pack",
+    "Fetch Marketplace Publication Execution Pack",
+    "Fetch Machine Buyer Evaluation Pack",
+    "Fetch Deep Analysis Commercial Brief",
+    "Fetch Postman Workspace Import Pack",
+    "Fetch Postman Public Environment Template",
+    "Fetch Postman Workspace Secret Scan",
     "Create limited sandbox customer",
     "Read authenticated onboarding",
     "Score business domain",
@@ -82,6 +94,14 @@
     "Payment-test sandbox intent and reconciliation work.",
     "Workspace text clearly says sandbox only and no real payments."
   ],
+  "current_import_readiness": {
+    "status": "ready_for_private_workspace_import",
+    "import_pack": "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
+    "environment_template": "https://machinesignal.it/postman_public_environment_template.json",
+    "local_secret_scan": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+    "blocker": "Postman login session required before Codex can import into the account.",
+    "public_visibility_blocked_until": "final in-Postman secret scan and owner approval"
+  },
   "human_approval_required_for": [
     "Making the workspace public if it exposes account-level settings.",
     "Adding real API keys.",
