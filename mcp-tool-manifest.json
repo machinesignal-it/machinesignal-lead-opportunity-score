@@ -9,6 +9,7 @@
   "llms": "https://machinesignal.it/llms.txt",
   "product_catalog": "https://machinesignal.it/product-catalog.json",
   "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+  "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
   "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
   "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
   "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
@@ -86,6 +87,19 @@
         "required": []
       },
       "output_summary": "Public onboarding contract for automated evaluators."
+    },
+    {
+      "name": "get_marketplace_api_directory_pack",
+      "purpose": "Read short marketplace, API directory, Postman, RapidAPI and MCP listing copy for machine-first discovery.",
+      "method": "GET",
+      "url": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable channel copy, product table, endpoint showcase and beta guardrails."
     },
     {
       "name": "get_machine_api_sandbox_test",

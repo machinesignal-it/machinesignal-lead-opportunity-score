@@ -16,6 +16,8 @@
     "llms": "https://machinesignal.it/llms.txt",
     "product_catalog": "https://machinesignal.it/product-catalog.json",
     "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+    "machine_buyer_evaluation_pack": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
     "installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score"
   },
@@ -63,6 +65,7 @@
   "mcp_tools_expected": [
     "get_product_catalog",
     "get_machine_onboarding",
+    "get_marketplace_api_directory_pack",
     "get_machine_api_sandbox_test",
     "get_dentists_beta_pack",
     "create_sandbox_customer",

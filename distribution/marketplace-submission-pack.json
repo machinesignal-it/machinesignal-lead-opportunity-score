@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "version": "2026-06-04",
+  "version": "2026-06-06",
   "artifact_type": "marketplace_submission_pack",
   "status": "ready_for_sandbox_publication_drafts",
   "primary_goal": "Make MachineSignal discoverable and testable by software, CRM systems, AI agents and API directories without relying on human cold email.",
@@ -64,6 +64,12 @@
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
+    "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
+    "marketplace_api_directory_pack_json": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+    "machine_buyer_evaluation_pack": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.md",
+    "machine_buyer_evaluation_pack_json": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
+    "deep_analysis_commercial_brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md",
+    "deep_analysis_commercial_brief_json": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
     "postman_public_collection_smoke_report": "https://machinesignal.it/postman_public_collection_smoke_report_20260604.md",
     "postman_public_collection_smoke_json": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
@@ -79,6 +85,7 @@
   "machine_submission_summary": {
     "api_name": "MachineSignal Lead Opportunity Score API",
     "short_description": "Machine-first lead opportunity scoring API for CRMs, AI agents and workflow automations.",
+    "directory_ready_description": "MachineSignal helps automated systems find targets, score domains, buy Deep Analysis when evidence is needed and buy Action Pack only after the Deep Analysis gate confirms that a CRM or workflow action is justified.",
     "categories": [
       "sales_intelligence",
       "crm_automation",
@@ -104,6 +111,8 @@
   },
   "test_path_for_external_machine": [
     "GET https://machinesignal.it/distribution/marketplace-submission-pack.json",
+    "GET https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+    "GET https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
     "GET https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
     "GET https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
     "GET https://machinesignal.it/distribution/postman-public-workspace-draft.json",
@@ -124,7 +133,7 @@
     "real_invoice_issued": false
   },
   "next_owner_decision": {
-    "question": "Approve creating or updating the public Postman workspace using this sandbox-only copy?",
-    "recommended_answer": "Yes, after verifying that no real API key is published."
+    "question": "Approve using the marketplace/API directory pack as the source copy for Postman, RapidAPI-style and API directory drafts?",
+    "recommended_answer": "Yes for sandbox-only drafts, after verifying that no real API key is published and no live payment is claimed."
   }
 }

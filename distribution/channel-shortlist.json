@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "version": "2026-06-01",
+  "version": "2026-06-06",
   "purpose": "Machine-first technical distribution shortlist for API directories, agent registries and developer discovery surfaces.",
   "primary_rule": "Do not rely on human cold email. Prioritize machine-readable assets, public API documentation and sandbox-callable flows.",
   "channels": [
@@ -23,6 +23,9 @@
         "https://machinesignal.it/machine-api-sandbox-test/",
         "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
         "https://machinesignal.it/distribution/marketplace-submission-pack.json",
+        "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
+        "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+        "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
         "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
         "https://machinesignal.it/distribution/api-directory-submission.json",
         "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
@@ -46,7 +49,7 @@
       "fit": "high",
       "why": "Strong API discovery surface; public workspaces help onboarding and search discovery.",
       "publish": ["public workspace", "collection", "documentation", "examples", "sandbox-only workspace draft"],
-      "next_action": "Use https://machinesignal.it/machine-api-sandbox-test/ as the fallback public entry point while OAuth blocks external workspace publication."
+      "next_action": "Use the Marketplace API Directory Pack and the public collection as the source copy. Keep workspace sandbox-only and publish no real API key."
     },
     {
       "priority": 4,
@@ -55,7 +58,7 @@
       "fit": "medium_high",
       "why": "API marketplace with provider dashboard, listing metadata, OpenAPI/docs and browser testing.",
       "publish": ["API listing", "OpenAPI", "docs", "base URL", "sandbox endpoint"],
-      "next_action": "Prepare provider listing and sandbox plan."
+      "next_action": "Use https://machinesignal.it/marketplace_api_directory_pack_20260606.json and https://machinesignal.it/distribution/rapidapi-listing.json as the listing source. Keep monetized publication blocked."
     },
     {
       "priority": 5,
@@ -64,7 +67,7 @@
       "fit": "medium",
       "why": "Potential API buyer traffic, but may be curated and less self-service.",
       "publish": ["submission profile", "documentation links"],
-      "next_action": "Check provider submission path."
+      "next_action": "Submit only sandbox-ready directory copy after owner approval, using the Marketplace API Directory Pack."
     },
     {
       "priority": 6,
@@ -73,7 +76,7 @@
       "fit": "high_after_mcp",
       "why": "Relevant for agent/tool discovery; current asset is a local stdio adapter plus wrapper pack, while a hosted MCP server is not live.",
       "publish": ["MCP wrapper pack", "tool manifest", "local adapter repo"],
-      "next_action": "Validate the wrapper pack, then decide whether a hosted MCP endpoint is needed for listing."
+      "next_action": "Use the MCP manifest plus Marketplace API Directory Pack. Decide later whether a hosted MCP endpoint is needed for listing."
     },
     {
       "priority": 7,
@@ -104,8 +107,8 @@
     }
   ],
   "recommended_next_steps": [
-    "Publish and polish Postman public workspace.",
-    "Prepare RapidAPI listing fields from API_DIRECTORY_SUBMISSION.md.",
+    "Publish and polish sandbox-only Postman public workspace copy.",
+    "Prepare RapidAPI and API directory listing fields from the Marketplace API Directory Pack.",
     "Keep GitHub and own domain as canonical source of truth.",
     "Validate the public MCP wrapper pack and prepare sandbox-only MCP directory drafts."
   ]
