@@ -72,6 +72,8 @@
     "bounded_live_deep_analysis_delivery_persistence_probe": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md",
     "bounded_live_deep_analysis_delivery_persistence_probe_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
     "bounded_live_deep_analysis_delivery_persistence_probe_rows": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv",
+    "deep_analysis_commercial_partner_brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md",
+    "deep_analysis_commercial_partner_brief_json": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"
@@ -116,7 +118,10 @@
     "latest_deep_analysis_no_credit_delivery_verification_rule": "Live Worker documentation and local delivery shape passed without live credit consumption.",
     "latest_bounded_live_deep_analysis_delivery_persistence_probe_status": "PASS",
     "latest_bounded_live_deep_analysis_delivery_persistence_probe_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
-    "latest_bounded_live_deep_analysis_delivery_persistence_probe_rule": "One live Deep Analysis order persisted the upgraded delivery fields. Deep Analysis credits 42 to 41; Action Pack credits unchanged at 17. Stop live credit-consuming probes for now."
+    "latest_bounded_live_deep_analysis_delivery_persistence_probe_rule": "One live Deep Analysis order persisted the upgraded delivery fields. Deep Analysis credits 42 to 41; Action Pack credits unchanged at 17. Stop live credit-consuming probes for now.",
+    "latest_deep_analysis_commercial_partner_brief_status": "PUBLISHED_CANDIDATE",
+    "latest_deep_analysis_commercial_partner_brief_json": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
+    "latest_deep_analysis_commercial_partner_brief_rule": "Deep Analysis is positioned as the spend-control layer between Score Pack and Action Pack, proving what the customer machine buys and why Action Pack is conditional."
   },
   "callable_flow": [
     {

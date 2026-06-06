@@ -1,0 +1,113 @@
+{
+  "service": "MachineSignal",
+  "artifact": "deep_analysis_commercial_partner_brief",
+  "generated_at": "2026-06-06",
+  "status": "published_brief_candidate",
+  "primary_customer_interface": "machine",
+  "human_role": "supervision, approval and audit only",
+  "machine_first_rule": "MachineSignal sells decisions and delivery payloads to CRM systems, AI agents, RevOps workflows and software platforms. Human email persuasion is not the primary sales channel.",
+  "commercial_ladder": [
+    {
+      "step": 1,
+      "product_code": "score_pack_1k",
+      "role": "Screen many domains cheaply and route records by opportunity score, confidence, commercial strength and next purchase."
+    },
+    {
+      "step": 2,
+      "product_code": "deep_analysis",
+      "role": "Buy a spend-control evidence pack only for records where the score justifies deeper review."
+    },
+    {
+      "step": 3,
+      "product_code": "action_pack",
+      "role": "Buy a CRM/workflow action payload only after Deep Analysis confirms the Action Pack gate."
+    }
+  ],
+  "deep_analysis_value": {
+    "plain_language": "Deep Analysis is not a generic report. It tells a customer machine whether buying Action Pack is justified, whether the lead should stay in watchlist or whether spending should stop.",
+    "machine_job": "Protect customer budget before downstream CRM or agent spend.",
+    "output_fields": [
+      "commercial_evidence",
+      "machine_decision_matrix",
+      "action_pack_purchase_gate",
+      "crm_summary_payload",
+      "sector_context",
+      "signals_to_validate",
+      "stop_rules",
+      "next_machine_call"
+    ],
+    "action_pack_rule": "Buy action_pack only when Deep Analysis confirms sector fit, digital friction, CRM/workflow destination, compliance gate and budget approval."
+  },
+  "machine_buying_scenarios": {
+    "customer_has_list": {
+      "question": "Which records are worth budget for my declared commercial objective?",
+      "first_call": "POST /v1/lead-opportunity-score",
+      "machine_flow": [
+        "discard weak records",
+        "watchlist or nurture uncertain records",
+        "buy deep_analysis only when recommended",
+        "buy action_pack only if Deep Analysis confirms the purchase gate"
+      ]
+    },
+    "customer_has_no_list": {
+      "question": "Find companies or domains useful for this commercial objective, sector and area.",
+      "first_product": "target_discovery",
+      "objective_rule": "The commercial objective is mandatory. A generic request such as interesting domains is not enough.",
+      "example_objective": "Find dentist and odontoiatric clinic domains in Lombardia worth scoring for website-led commercial opportunity and CRM-ready follow-up preparation.",
+      "machine_flow": [
+        "buy target_discovery",
+        "score delivered domains",
+        "buy deep_analysis only for recommended records",
+        "buy action_pack only after Deep Analysis confirms the gate"
+      ]
+    },
+    "customer_wants_action": {
+      "question": "Create a CRM/workflow payload for this confirmed opportunity.",
+      "first_product": "action_pack",
+      "preconditions": [
+        "score supports downstream spend",
+        "Deep Analysis confirms enough evidence",
+        "customer compliance gate exists"
+      ]
+    }
+  },
+  "latest_live_evidence": {
+    "source": "bounded_live_deep_analysis_delivery_persistence_probe",
+    "status": "PASS",
+    "order_intent_id": "ord_e128da05",
+    "product": "deep_analysis",
+    "delivery_version": "domain_specific_commercial_evidence_v1",
+    "checks_passed": 21,
+    "checks_total": 21,
+    "deep_analysis_credits_before": 42,
+    "deep_analysis_credits_after": 41,
+    "deep_analysis_credit_delta": 1,
+    "action_pack_credits_before": 17,
+    "action_pack_credits_after": 17,
+    "action_pack_credit_delta": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "report": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md",
+    "summary_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
+    "rows_csv": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv"
+  },
+  "recommended_machine_buying_policy": {
+    "weak": "discard or watchlist; do not buy paid add-ons",
+    "medium": "nurture, verify or buy Deep Analysis only when recommended",
+    "strong": "buy Deep Analysis before Action Pack",
+    "deep_confirms_all_gates": "buy Action Pack",
+    "deep_fails_any_gate": "stop or keep in watchlist"
+  },
+  "current_limits": [
+    "Beta purchase intents consume credits but do not execute real payments.",
+    "External outreach is blocked in beta.",
+    "Deep Analysis is a decision and evidence layer, not a guarantee that a target will buy.",
+    "Customer machines must apply their own compliance rules before external action."
+  ],
+  "next_recommended_work": {
+    "name": "partner_materials_and_pricing_update_from_deep_analysis_evidence",
+    "description": "Stop additional live credit-consuming probes and use the persisted Deep Analysis delivery to update partner materials, business plan, P&L, pricing assumptions and machine-facing product copy.",
+    "live_credits_to_consume": 0,
+    "requires_human_approval": false
+  }
+}

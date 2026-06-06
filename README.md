@@ -64,6 +64,8 @@ Public discovery starts here:
 - Bounded Live Deep Analysis Delivery Persistence Probe: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md
 - Bounded Live Deep Analysis Delivery Persistence Probe JSON: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json
 - Bounded Live Deep Analysis Delivery Persistence Probe CSV: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv
+- Deep Analysis Commercial Partner Brief: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md
+- Deep Analysis Commercial Partner Brief JSON: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
@@ -379,6 +381,11 @@ It returns:
 - `stop_rules`: conditions where the workflow must stop.
 
 The key rule: `deep_analysis` does not authorize outreach. It tells the customer machine whether buying an `action_pack` is justified.
+
+Latest commercial proof: one bounded live Deep Analysis order (`ord_e128da05`) persisted the upgraded delivery fields with `21 / 21` checks passed. Deep Analysis credits moved from `42` to `41`; Action Pack credits remained `17`, proving that Deep Analysis can act as an intermediate spend-control purchase before Action Pack. Partner-facing explanation:
+
+- https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md
+- https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
 
 ## Action Pack Contract
 

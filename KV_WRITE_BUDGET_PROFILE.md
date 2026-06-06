@@ -342,3 +342,22 @@ Machine-readable summary: https://machinesignal.it/bounded_live_deep_analysis_de
 Rows CSV: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv
 
 Report: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md
+
+## Latest Deep Analysis Commercial Partner Brief
+
+Generated at: 2026-06-06
+
+Status: `PUBLISHED_CANDIDATE`
+
+- Mode: `NoCreditCommercialMaterialUpdate`
+- Live credits consumed: `0`
+- Real payment executed: `false`
+- External contact executed: `false`
+- Commercial positioning: Deep Analysis is the spend-control layer between Score Pack and Action Pack.
+- Source live evidence: bounded live Deep Analysis persistence probe, order `ord_e128da05`
+- Deep Analysis credits in source evidence: `42 -> 41`
+- Action Pack credits in source evidence: `17 -> 17`
+
+Brief: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md
+
+Machine-readable summary: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json

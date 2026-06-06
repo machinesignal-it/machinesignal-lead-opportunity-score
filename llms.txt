@@ -77,6 +77,8 @@ Useful endpoints:
 - GET https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md
 - GET https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json
 - GET https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv
+- GET https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md
+- GET https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
 - GET https://machinesignal.it/readiness-dashboard/
 - GET https://machinesignal.it/readiness-dashboard/readiness.json
 - GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -206,6 +208,8 @@ Public demos for software, agents and partners:
 - Bounded Live Deep Analysis Delivery Persistence Probe: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md
 - Bounded Live Deep Analysis Delivery Persistence Probe JSON: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json
 - Bounded Live Deep Analysis Delivery Persistence Probe CSV: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv
+- Deep Analysis Commercial Partner Brief: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md
+- Deep Analysis Commercial Partner Brief JSON: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
 - Readiness dashboard: https://machinesignal.it/readiness-dashboard/
 - Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
 - Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md
@@ -277,6 +281,8 @@ Deep Analysis delivery contract:
 - deep_analysis_version is domain_specific_commercial_evidence_v1;
 - the customer machine should buy action_pack only if sector fit, digital friction, CRM/workflow destination, compliance gate and budget approval are present;
 - if those gates are not present, the customer machine should keep the lead in watchlist or stop spending.
+- latest commercial proof: one bounded live Deep Analysis order, ord_e128da05, persisted the upgraded delivery fields with 21 of 21 checks passed; Deep Analysis credits moved from 42 to 41, while Action Pack credits stayed at 17.
+- partner-facing brief: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md
 
 Action Pack delivery contract:
 - action_pack returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail;

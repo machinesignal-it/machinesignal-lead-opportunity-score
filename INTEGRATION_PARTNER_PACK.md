@@ -161,6 +161,41 @@ Per-target beta cap:
 - action pack: buy only after deep confirmation and compliance gate;
 - repeated calls must reuse the same `Idempotency-Key` to avoid duplicate consumption.
 
+## Deep Analysis As The Spend-Control Layer
+
+Deep Analysis is the commercial bridge between score and Action Pack.
+
+It is not a generic report for a human. It is a machine-readable decision pack
+that tells the customer machine whether a record deserves more budget.
+
+The delivery includes:
+
+- `commercial_evidence`;
+- `machine_decision_matrix`;
+- `action_pack_purchase_gate`;
+- `crm_summary_payload`;
+- `signals_to_validate`;
+- `stop_rules`;
+- `next_machine_call`.
+
+Commercial policy:
+
+- if the score is weak, do not buy Deep Analysis;
+- if the score is medium, buy Deep Analysis only when the score recommends it;
+- if the score is strong, buy Deep Analysis before Action Pack;
+- buy Action Pack only if Deep Analysis confirms sector fit, digital friction, CRM/workflow destination, compliance gate and budget approval;
+- if any gate fails, stop or keep the record in watchlist.
+
+Latest live evidence: order `ord_e128da05` persisted a Deep Analysis delivery
+with `21 / 21` checks passed. Deep Analysis credits moved from `42` to `41`.
+Action Pack credits stayed at `17`, which means the test bought only the
+intermediate evidence layer and did not automatically buy the next product.
+
+Partner-facing explanation:
+
+- `https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md`
+- `https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json`
+
 ## Required Headers
 
 Protected calls require:

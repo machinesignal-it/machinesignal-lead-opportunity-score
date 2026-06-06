@@ -126,8 +126,8 @@
     "Escalate to human supervision before high-volume Full tests or paid Cloudflare upgrade decisions."
   ],
   "next_recommended_test": {
-    "name": "commercial_materials_update_from_persisted_deep_analysis",
-    "description": "Stop live credit-consuming probes for now and use the persisted Deep Analysis delivery as evidence for commercial materials and partner-facing documentation.",
+    "name": "partner_materials_and_pricing_update_from_deep_analysis_evidence",
+    "description": "Stop live credit-consuming probes for now and use the persisted Deep Analysis delivery to update partner materials, business plan, P&L, pricing assumptions and machine-facing product copy.",
     "requires_human_approval": false,
     "suggested_frequency": "product/commercial work, no live credit spend"
   },
@@ -369,5 +369,18 @@
     "summary_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
     "rows_csv": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv",
     "report": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md"
+  },
+  "latest_deep_analysis_commercial_partner_brief": {
+    "generated_at": "2026-06-06",
+    "status": "PUBLISHED_CANDIDATE",
+    "mode": "NoCreditCommercialMaterialUpdate",
+    "live_credits_consumed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "commercial_positioning": "Deep Analysis is the spend-control layer between Score Pack and Action Pack.",
+    "source_live_evidence": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
+    "brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md",
+    "summary_json": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
+    "recommended_next_step": "Update business plan, P&L and pricing assumptions using the no-credit partner brief."
   }
 }

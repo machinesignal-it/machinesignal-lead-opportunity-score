@@ -20,6 +20,8 @@
     "pre_monetization_readiness_control_json": "https://machinesignal.it/pre_monetization_readiness_control_20260603.json",
     "payment_test_mode_plan": "https://machinesignal.it/payment_test_mode_plan_20260603.md",
     "payment_test_mode_plan_json": "https://machinesignal.it/payment_test_mode_plan_20260603.json",
+    "deep_analysis_commercial_partner_brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md",
+    "deep_analysis_commercial_partner_brief_json": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
     "mcp_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
     "openapi": "https://machinesignal.it/openapi.json",
@@ -163,6 +165,28 @@
       ]
     }
   ],
+  "deep_analysis_commercial_layer": {
+    "role": "Spend-control layer between score and Action Pack.",
+    "not_generic_report": true,
+    "machine_instruction": "Buy deep_analysis only when the score recommends it. Buy action_pack only if Deep Analysis confirms the purchase gate.",
+    "required_action_pack_gates": [
+      "sector_fit",
+      "digital_friction",
+      "crm_or_workflow_destination",
+      "customer_compliance_gate",
+      "budget_approval"
+    ],
+    "latest_live_evidence": {
+      "status": "PASS",
+      "order_intent_id": "ord_e128da05",
+      "checks_passed": 21,
+      "checks_total": 21,
+      "deep_analysis_credits": "42 -> 41",
+      "action_pack_credits": "17 -> 17",
+      "summary_json": "https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json",
+      "partner_brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json"
+    }
+  },
   "storage_recommendations": [
     "request_id",
     "domain",
