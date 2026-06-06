@@ -68,6 +68,8 @@ Public discovery starts here:
 - Deep Analysis Commercial Partner Brief JSON: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
 - Machine Buyer Evaluation Pack: https://machinesignal.it/machine_buyer_evaluation_pack_20260606.md
 - Machine Buyer Evaluation Pack JSON: https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json
+- Machine Buyer Product Evaluation Probe: https://machinesignal.it/machine_buyer_product_evaluation_probe_20260606_report.md
+- Machine Buyer Product Evaluation Probe JSON: https://machinesignal.it/machine_buyer_product_evaluation_probe_20260606_summary.json
 - Marketplace API Directory Pack: https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - Marketplace API Directory Pack JSON: https://machinesignal.it/marketplace_api_directory_pack_20260606.json
 - Marketplace Publication Execution Pack: https://machinesignal.it/marketplace_publication_execution_pack_20260606.md

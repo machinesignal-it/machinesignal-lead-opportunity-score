@@ -1,0 +1,461 @@
+{
+    "ok":  true,
+    "probe_name":  "machine_buyer_product_evaluation_probe",
+    "run_date":  "2026-06-06",
+    "public_site":  "https://machinesignal.it",
+    "machine_path":  [
+                         "https://machinesignal.it/llms.txt",
+                         "https://machinesignal.it/machine-onboarding.json",
+                         "https://machinesignal.it/product-catalog.json",
+                         "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
+                         "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
+                         "https://machinesignal.it/openapi.json"
+                     ],
+    "products_checked":  [
+                             {
+                                 "product_code":  "target_discovery",
+                                 "name":  "Target Discovery Pack",
+                                 "expected_price_eur":  149,
+                                 "actual_price_eur":  149,
+                                 "ok":  true
+                             },
+                             {
+                                 "product_code":  "score_pack_1k",
+                                 "name":  "Score Pack 1k",
+                                 "expected_price_eur":  99,
+                                 "actual_price_eur":  99,
+                                 "ok":  true
+                             },
+                             {
+                                 "product_code":  "domain_enrichment",
+                                 "name":  "Domain Enrichment Pack 100",
+                                 "expected_price_eur":  149,
+                                 "actual_price_eur":  149,
+                                 "ok":  true
+                             },
+                             {
+                                 "product_code":  "deep_analysis",
+                                 "name":  "Deep Analysis Pack 100",
+                                 "expected_price_eur":  299,
+                                 "actual_price_eur":  299,
+                                 "ok":  true
+                             },
+                             {
+                                 "product_code":  "action_pack",
+                                 "name":  "Action Pack 25",
+                                 "expected_price_eur":  399,
+                                 "actual_price_eur":  399,
+                                 "ok":  true
+                             },
+                             {
+                                 "product_code":  "opportunity_feed",
+                                 "name":  "Opportunity Feed",
+                                 "expected_price_eur":  249,
+                                 "actual_price_eur":  249,
+                                 "ok":  true
+                             },
+                             {
+                                 "product_code":  "api_starter",
+                                 "name":  "API Starter",
+                                 "expected_price_eur":  99,
+                                 "actual_price_eur":  99,
+                                 "ok":  true
+                             },
+                             {
+                                 "product_code":  "api_pro",
+                                 "name":  "API Pro",
+                                 "expected_price_eur":  499,
+                                 "actual_price_eur":  499,
+                                 "ok":  true
+                             }
+                         ],
+    "commercial_ladder":  [
+                              "score_pack_1k: screen existing lists and route spend",
+                              "deep_analysis: buy evidence and spend-control gate before action",
+                              "action_pack: buy CRM/workflow payload only after deep confirmation"
+                          ],
+    "live_credits_consumed":  0,
+    "real_payment_executed":  false,
+    "external_contact_executed":  false,
+    "checks":  [
+                   {
+                       "name":  "product_catalog_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "evaluation_pack_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "onboarding_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "sitemap_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "deep_analysis_brief_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "evaluation_pack_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "openapi_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "llms_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "product_catalog_valid_json",
+                       "ok":  true,
+                       "details":  "service=MachineSignal"
+                   },
+                   {
+                       "name":  "catalog_machine_first",
+                       "ok":  true,
+                       "details":  "primary_customer_interface=machine"
+                   },
+                   {
+                       "name":  "catalog_beta_no_real_payment",
+                       "ok":  true,
+                       "details":  "beta=purchase-intent only; real_payment=False"
+                   },
+                   {
+                       "name":  "catalog_valid_output_credit_rule",
+                       "ok":  true,
+                       "details":  "credits are consumed only when the system produces a valid usable output"
+                   },
+                   {
+                       "name":  "catalog_tracks_credit_consumption",
+                       "ok":  true,
+                       "details":  "Each consumption event is tracked with request_id, product_code, status, credits_consumed and credits_remaining."
+                   },
+                   {
+                       "name":  "catalog_product_target_discovery_present",
+                       "ok":  true,
+                       "details":  "Target Discovery Pack"
+                   },
+                   {
+                       "name":  "catalog_product_target_discovery_price_ok",
+                       "ok":  true,
+                       "details":  "expected=149; actual=149"
+                   },
+                   {
+                       "name":  "catalog_product_target_discovery_when_to_buy_present",
+                       "ok":  true,
+                       "details":  "When the customer machine does not already have a list and wants targets for a specific commercial objective, sector and area."
+                   },
+                   {
+                       "name":  "catalog_product_target_discovery_output_present",
+                       "ok":  true,
+                       "details":  "A target list built for a declared commercial objective, ready for scoring or CRM enrichment workflows."
+                   },
+                   {
+                       "name":  "catalog_product_target_discovery_required_terms_present",
+                       "ok":  true,
+                       "details":  "terms=commercial objective, 250, JSON"
+                   },
+                   {
+                       "name":  "catalog_product_score_pack_1k_present",
+                       "ok":  true,
+                       "details":  "Score Pack 1k"
+                   },
+                   {
+                       "name":  "catalog_product_score_pack_1k_price_ok",
+                       "ok":  true,
+                       "details":  "expected=99; actual=99"
+                   },
+                   {
+                       "name":  "catalog_product_score_pack_1k_when_to_buy_present",
+                       "ok":  true,
+                       "details":  "When the customer machine already has a list and needs to prioritize where to spend budget."
+                   },
+                   {
+                       "name":  "catalog_product_score_pack_1k_output_present",
+                       "ok":  true,
+                       "details":  "Score, confidence, commercial strength, spend policy, decision, reason, priority and recommended next product."
+                   },
+                   {
+                       "name":  "catalog_product_score_pack_1k_required_terms_present",
+                       "ok":  true,
+                       "details":  "terms=1000, spend_policy, next"
+                   },
+                   {
+                       "name":  "catalog_product_domain_enrichment_present",
+                       "ok":  true,
+                       "details":  "Domain Enrichment Pack 100"
+                   },
+                   {
+                       "name":  "catalog_product_domain_enrichment_price_ok",
+                       "ok":  true,
+                       "details":  "expected=149; actual=149"
+                   },
+                   {
+                       "name":  "catalog_product_domain_enrichment_when_to_buy_present",
+                       "ok":  true,
+                       "details":  "When the customer machine has target names but does not have reliable domains to score."
+                   },
+                   {
+                       "name":  "catalog_product_domain_enrichment_output_present",
+                       "ok":  true,
+                       "details":  "A domain-enrichment result list that tells the workflow which records can move to scoring and which records should stop or be widened."
+                   },
+                   {
+                       "name":  "catalog_product_domain_enrichment_required_terms_present",
+                       "ok":  true,
+                       "details":  "terms=domain, confidence, reason"
+                   },
+                   {
+                       "name":  "catalog_product_deep_analysis_present",
+                       "ok":  true,
+                       "details":  "Deep Analysis Pack 100"
+                   },
+                   {
+                       "name":  "catalog_product_deep_analysis_price_ok",
+                       "ok":  true,
+                       "details":  "expected=299; actual=299"
+                   },
+                   {
+                       "name":  "catalog_product_deep_analysis_when_to_buy_present",
+                       "ok":  true,
+                       "details":  "When a high score needs operational commercial evidence before the workflow buys Action Pack or spends more budget."
+                   },
+                   {
+                       "name":  "catalog_product_deep_analysis_output_present",
+                       "ok":  true,
+                       "details":  "A spend-control JSON decision pack that tells the workflow whether to buy Action Pack, keep the lead in watchlist or stop."
+                   },
+                   {
+                       "name":  "catalog_product_deep_analysis_required_terms_present",
+                       "ok":  true,
+                       "details":  "terms=commercial_evidence, machine_decision_matrix, action_pack_purchase_gate"
+                   },
+                   {
+                       "name":  "catalog_product_action_pack_present",
+                       "ok":  true,
+                       "details":  "Action Pack 25"
+                   },
+                   {
+                       "name":  "catalog_product_action_pack_price_ok",
+                       "ok":  true,
+                       "details":  "expected=399; actual=399"
+                   },
+                   {
+                       "name":  "catalog_product_action_pack_when_to_buy_present",
+                       "ok":  true,
+                       "details":  "When Deep Analysis confirms that a lead deserves a prepared commercial action."
+                   },
+                   {
+                       "name":  "catalog_product_action_pack_output_present",
+                       "ok":  true,
+                       "details":  "A CRM-ready JSON action payload for workflow automation, webhook forwarding or supervised agent execution."
+                   },
+                   {
+                       "name":  "catalog_product_action_pack_required_terms_present",
+                       "ok":  true,
+                       "details":  "terms=crm_record_patch, workflow_payload, approval_gate"
+                   },
+                   {
+                       "name":  "catalog_product_opportunity_feed_present",
+                       "ok":  true,
+                       "details":  "Opportunity Feed"
+                   },
+                   {
+                       "name":  "catalog_product_opportunity_feed_price_ok",
+                       "ok":  true,
+                       "details":  "expected=249; actual=249"
+                   },
+                   {
+                       "name":  "catalog_product_opportunity_feed_when_to_buy_present",
+                       "ok":  true,
+                       "details":  "When the customer machine wants recurring opportunities without launching one-off discovery requests."
+                   },
+                   {
+                       "name":  "catalog_product_opportunity_feed_output_present",
+                       "ok":  true,
+                       "details":  "A scheduled feed of targets, scores and signals for automated systems."
+                   },
+                   {
+                       "name":  "catalog_product_opportunity_feed_required_terms_present",
+                       "ok":  true,
+                       "details":  "terms=scheduled, targets, signals"
+                   },
+                   {
+                       "name":  "catalog_product_api_starter_present",
+                       "ok":  true,
+                       "details":  "API Starter"
+                   },
+                   {
+                       "name":  "catalog_product_api_starter_price_ok",
+                       "ok":  true,
+                       "details":  "expected=99; actual=99"
+                   },
+                   {
+                       "name":  "catalog_product_api_starter_when_to_buy_present",
+                       "ok":  true,
+                       "details":  "For light recurring use and continuous testing."
+                   },
+                   {
+                       "name":  "catalog_product_api_starter_output_present",
+                       "ok":  true,
+                       "details":  "Authenticated access to the score API with monthly usage visibility."
+                   },
+                   {
+                       "name":  "catalog_product_api_starter_required_terms_present",
+                       "ok":  true,
+                       "details":  "terms=API key, 500, usage"
+                   },
+                   {
+                       "name":  "catalog_product_api_pro_present",
+                       "ok":  true,
+                       "details":  "API Pro"
+                   },
+                   {
+                       "name":  "catalog_product_api_pro_price_ok",
+                       "ok":  true,
+                       "details":  "expected=499; actual=499"
+                   },
+                   {
+                       "name":  "catalog_product_api_pro_when_to_buy_present",
+                       "ok":  true,
+                       "details":  "For CRMs, agencies, platforms or automated workflows with recurring volume."
+                   },
+                   {
+                       "name":  "catalog_product_api_pro_output_present",
+                       "ok":  true,
+                       "details":  "Higher-volume API access with feed, webhook and usage reporting."
+                   },
+                   {
+                       "name":  "catalog_product_api_pro_required_terms_present",
+                       "ok":  true,
+                       "details":  "terms=3000, Deep Analysis, webhook"
+                   },
+                   {
+                       "name":  "evaluation_pack_has_three_step_ladder",
+                       "ok":  true,
+                       "details":  "steps=3"
+                   },
+                   {
+                       "name":  "evaluation_pack_score_step_ok",
+                       "ok":  true,
+                       "details":  "score_pack_1k step"
+                   },
+                   {
+                       "name":  "evaluation_pack_deep_step_ok",
+                       "ok":  true,
+                       "details":  "deep_analysis step"
+                   },
+                   {
+                       "name":  "evaluation_pack_action_step_ok",
+                       "ok":  true,
+                       "details":  "action_pack step"
+                   },
+                   {
+                       "name":  "evaluation_pack_answers_core_questions",
+                       "ok":  true,
+                       "details":  "evaluation questions present"
+                   },
+                   {
+                       "name":  "evaluation_pack_has_existing_list_flow",
+                       "ok":  true,
+                       "details":  "machine_has_domains flow present"
+                   },
+                   {
+                       "name":  "evaluation_pack_has_no_list_flow",
+                       "ok":  true,
+                       "details":  "machine_has_no_list flow present"
+                   },
+                   {
+                       "name":  "evaluation_pack_blocks_action_pack_without_deep",
+                       "ok":  true,
+                       "details":  "stop rule present"
+                   },
+                   {
+                       "name":  "evaluation_pack_blocks_real_payment_and_outreach",
+                       "ok":  true,
+                       "details":  "beta safety stop rules present"
+                   },
+                   {
+                       "name":  "deep_brief_has_weak_medium_strong_policy",
+                       "ok":  true,
+                       "details":  "weak/medium/strong policy present"
+                   },
+                   {
+                       "name":  "deep_brief_action_pack_conditional",
+                       "ok":  true,
+                       "details":  "deep confirmation gate present"
+                   },
+                   {
+                       "name":  "openapi_has_score_endpoint",
+                       "ok":  true,
+                       "details":  "score endpoint present"
+                   },
+                   {
+                       "name":  "openapi_has_purchase_intent_endpoint",
+                       "ok":  true,
+                       "details":  "purchase-intent endpoint present"
+                   },
+                   {
+                       "name":  "openapi_exposes_next_purchase_or_spend_policy",
+                       "ok":  true,
+                       "details":  "routing fields present"
+                   },
+                   {
+                       "name":  "llms_lists_product_catalog",
+                       "ok":  true,
+                       "details":  "product catalog linked"
+                   },
+                   {
+                       "name":  "llms_lists_evaluation_pack",
+                       "ok":  true,
+                       "details":  "evaluation pack linked"
+                   },
+                   {
+                       "name":  "llms_explains_core_prices",
+                       "ok":  true,
+                       "details":  "price ladder terms present"
+                   },
+                   {
+                       "name":  "llms_explains_deep_action_gate",
+                       "ok":  true,
+                       "details":  "deep/action gate terms present"
+                   },
+                   {
+                       "name":  "onboarding_lists_evaluation_pack",
+                       "ok":  true,
+                       "details":  "evaluation pack status present"
+                   },
+                   {
+                       "name":  "onboarding_embeds_catalog_products",
+                       "ok":  true,
+                       "details":  "catalog products embedded"
+                   },
+                   {
+                       "name":  "sitemap_valid_xml",
+                       "ok":  true,
+                       "details":  "urlset present"
+                   },
+                   {
+                       "name":  "sitemap_lists_evaluation_pack",
+                       "ok":  true,
+                       "details":  "evaluation pack in sitemap"
+                   }
+               ],
+    "failed_checks":  [
+
+                      ],
+    "conclusion":  "PASS: a machine buyer can understand what MachineSignal sells, when to buy each product, what JSON it receives, which actions are blocked and how budget waste is avoided."
+}
