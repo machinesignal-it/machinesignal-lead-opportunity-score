@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MachineSignal Postman Import Pack</title>
+    <meta
+      name="description"
+      content="MachineSignal Postman import resources for private workspace testing, machine-readable API evaluation and secret-safe collection setup."
+    />
+    <link rel="alternate" type="application/json" title="Postman Public Collection" href="/postman_public_collection.json" />
+    <link rel="alternate" type="application/json" title="Postman Environment Template" href="/postman_public_environment_template.json" />
+    <link rel="alternate" type="application/json" title="Postman Workspace Import Pack" href="/postman_workspace_import_pack_20260606.json" />
+    <link rel="alternate" type="application/json" title="Postman Workspace Secret Scan" href="/postman_workspace_secret_scan_20260606.json" />
+    <link rel="service-desc" type="application/vnd.oai.openapi+json" href="/openapi.json" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #142033;
+        --muted: #58677c;
+        --line: #d9e1ea;
+        --surface: #f6f8fb;
+        --green: #117865;
+        --blue: #245f9f;
+        --night: #121923;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--ink);
+        background: #ffffff;
+        line-height: 1.5;
+        letter-spacing: 0;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: var(--green);
+        overflow-wrap: anywhere;
+      }
+
+      header {
+        background: var(--night);
+        color: #ffffff;
+        padding: 34px 0 48px;
+      }
+
+      .wrap {
+        width: min(1080px, calc(100vw - 32px));
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        color: #9ce3c9;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 840px;
+        font-size: 44px;
+        line-height: 1.1;
+        overflow-wrap: anywhere;
+      }
+
+      .lead {
+        max-width: 790px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 18px;
+        overflow-wrap: anywhere;
+      }
+
+      section {
+        padding: 34px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 26px;
+        overflow-wrap: anywhere;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 18px;
+        min-width: 0;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        overflow-wrap: anywhere;
+      }
+
+      .sub { color: var(--muted); }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        border-radius: 8px;
+        border: 1px solid var(--green);
+        padding: 10px 14px;
+        background: var(--green);
+        color: #ffffff;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .button.secondary {
+        background: #ffffff;
+        color: var(--green);
+      }
+
+      code {
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 12px;
+        overflow-wrap: anywhere;
+        white-space: normal;
+      }
+
+      ul { padding-left: 20px; }
+
+      @media (max-width: 820px) {
+        .grid { grid-template-columns: 1fr; }
+        header { padding: 24px 0 34px; }
+        h1 { font-size: 28px; }
+        h2 { font-size: 24px; }
+        .lead { font-size: 16px; }
+      }
+
+      @media (max-width: 600px) {
+        .wrap {
+          width: min(100%, 390px);
+          margin-left: 0;
+          margin-right: auto;
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <div class="eyebrow">Postman import pack</div>
+        <h1>Secret-safe Postman resources for MachineSignal API evaluation.</h1>
+        <p class="lead">
+          This page exposes the public collection, environment template and import checklist for private
+          workspace testing by API tools, CRM workflows and AI agents.
+        </p>
+        <div class="button-row">
+          <a class="button" href="https://go.postman.co/import?url=https%3A%2F%2Fmachinesignal.it%2Fpostman_public_collection.json">Import public collection</a>
+          <a class="button secondary" href="/postman_public_collection.json">Open collection JSON</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="wrap">
+          <h2>Primary resources</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Public collection</h3>
+              <p class="sub">Postman collection with public discovery requests and blank secret variables.</p>
+              <a href="/postman_public_collection.json">Open JSON</a>
+            </div>
+            <div class="card">
+              <h3>Environment template</h3>
+              <p class="sub">Base URL and blank placeholders for private API keys, customer IDs and test IDs.</p>
+              <a href="/postman_public_environment_template.json">Open JSON</a>
+            </div>
+            <div class="card">
+              <h3>Secret scan</h3>
+              <p class="sub">Local scan result confirming no public secret values and no live credit consumption.</p>
+              <a href="/postman_workspace_secret_scan_20260606.json">Open JSON</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Machine import contract</h2>
+          <p class="sub">A machine buyer or API evaluator can fetch this URL and import the collection into a private workspace:</p>
+          <code>https://go.postman.co/import?url=https%3A%2F%2Fmachinesignal.it%2Fpostman_public_collection.json</code>
+          <ul>
+            <li>Keep the workspace private until owner approval.</li>
+            <li>Use the environment template for private values only.</li>
+            <li>Run the secret scan checklist before any public publication.</li>
+            <li>Do not execute live payment or external outreach flows during sandbox evaluation.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2>Supporting files</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Workspace import pack</h3>
+              <p class="sub">Operational checklist for importing, validating and keeping the workspace private.</p>
+              <a href="/postman_workspace_import_pack_20260606.md">Open Markdown</a>
+              <br />
+              <a href="/postman_workspace_import_pack_20260606.json">Open JSON</a>
+            </div>
+            <div class="card">
+              <h3>OpenAPI schema</h3>
+              <p class="sub">Canonical API contract for tools that prefer OpenAPI discovery.</p>
+              <a href="/openapi.json">Open JSON</a>
+            </div>
+            <div class="card">
+              <h3>Machine onboarding</h3>
+              <p class="sub">Machine-readable onboarding manifest for API buyers and agent workflows.</p>
+              <a href="/machine-onboarding.json">Open JSON</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

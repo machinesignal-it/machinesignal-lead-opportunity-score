@@ -73,6 +73,7 @@ Public discovery starts here:
 - Marketplace Publication Execution Pack: https://machinesignal.it/marketplace_publication_execution_pack_20260606.md
 - Marketplace Publication Execution Pack JSON: https://machinesignal.it/marketplace_publication_execution_pack_20260606.json
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
+- Postman Import Page: https://machinesignal.it/postman/
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
 - Postman Workspace Import Pack: https://machinesignal.it/postman_workspace_import_pack_20260606.md
 - Postman Workspace Import Pack JSON: https://machinesignal.it/postman_workspace_import_pack_20260606.json

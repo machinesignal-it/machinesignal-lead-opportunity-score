@@ -9,6 +9,7 @@
     "llms": "/llms.txt",
     "openapi": "/openapi.json",
     "postman": "/postman_collection.json",
+    "postman_import_page": "https://machinesignal.it/postman/",
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
     "product_catalog": "/product-catalog.json",
     "machine_onboarding": "/machine-onboarding.json",
@@ -147,7 +148,10 @@
     "latest_postman_workspace_import_pack_rule": "Postman import package prepared with public collection, blank environment template and final secret-scan checklist. Postman account login is required before external import.",
     "latest_postman_workspace_secret_scan_status": "PASS",
     "latest_postman_workspace_secret_scan_json": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
-    "latest_postman_workspace_secret_scan_rule": "Local secret scan passed: 20 collection items, new marketplace/publication/evaluation resources present, sensitive variables blank, no secret hits, no live credits consumed."
+    "latest_postman_import_page_status": "PUBLISHED_CANDIDATE",
+    "latest_postman_import_page": "https://machinesignal.it/postman/",
+    "latest_postman_import_page_rule": "Public Postman import page exposes the direct import URL, collection JSON, blank environment template, import checklist and secret scan for private workspace evaluation.",
+    "latest_postman_workspace_secret_scan_rule": "Local secret scan passed: 23 collection items, new marketplace/publication/evaluation resources present, sensitive variables blank, no secret hits, no live credits consumed."
   },
   "callable_flow": [
     {
