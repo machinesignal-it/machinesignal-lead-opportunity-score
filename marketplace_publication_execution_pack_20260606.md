@@ -2,7 +2,7 @@
 
 Generated: 2026-06-06
 
-Status: ready for sandbox-only publication preparation.
+Status: ready for sandbox-only publication preparation with full bounded beta evidence.
 
 ## Purpose
 
@@ -31,6 +31,10 @@ The goal is not human cold email. The goal is to place MachineSignal where softw
 
 ## Canonical MachineSignal assets
 
+- Machine Buyer Evidence Brief: https://machinesignal.it/machine_beta_evidence_brief_20260607.html
+- Machine Buyer Evidence Brief JSON: https://machinesignal.it/machine_beta_evidence_brief_20260607.json
+- Full Bounded Beta Runner Report: https://machinesignal.it/bounded_private_beta_runner_report_20260607.md
+- Full Bounded Beta Runner JSON: https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json
 - Marketplace API Directory Pack JSON: https://machinesignal.it/marketplace_api_directory_pack_20260606.json
 - Marketplace API Directory Pack Markdown: https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - OpenAPI: https://machinesignal.it/openapi.json
@@ -60,7 +64,7 @@ Prepare public workspace copy and documentation, but do not make public until th
 
 ### Workspace description
 
-MachineSignal is a machine-first lead opportunity scoring API for CRMs, AI agents, RevOps workflows and software platforms. A machine can create a limited sandbox key, read the product catalog, score domains, request Target Discovery, buy Deep Analysis when evidence is needed and buy Action Pack only after Deep Analysis confirms the action gate. This workspace is sandbox-only: no real payment, no fiscal invoice and no external target contact.
+MachineSignal is a machine-first lead opportunity scoring API for CRMs, AI agents, RevOps workflows and software platforms. A machine can create a limited sandbox key, read the product catalog, score domains, request Target Discovery, buy Deep Analysis when evidence is needed and buy Action Pack only after Deep Analysis confirms the action gate. The latest bounded beta evidence proves 5 score calls, 1 Deep Analysis and 1 gated Action Pack with no real payment, no fiscal invoice and no external target contact. This workspace is sandbox-only.
 
 ### Collection overview
 
@@ -106,6 +110,8 @@ Prepare provider listing fields, keep monetized publication blocked.
 MachineSignal helps automated systems decide when a business domain deserves more sales, CRM, enrichment or agent budget. The API is built for machine customers: CRM systems, RevOps workflows, enrichment pipelines, SaaS platforms and AI agents.
 
 A machine can create a limited sandbox key, score domains, buy Target Discovery when it has no list, buy Deep Analysis as a spend-control gate, and buy Action Pack only after Deep Analysis confirms the required gates. Action Pack returns CRM-ready JSON, workflow payloads, webhook policy, approval gates and stop rules. It does not send outreach by itself.
+
+Latest evidence: a bounded private beta run completed the full machine-buyer sequence with 5 valid scores, 1 Deep Analysis, 1 gated Action Pack, and a blocked Action Pack attempt without the required Deep Analysis source order. Real payment, fiscal invoice and external contact remained false.
 
 Beta mode is sandbox-only. Real payments, fiscal invoices and external target contact are blocked until production terms are approved.
 

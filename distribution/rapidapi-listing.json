@@ -1,184 +1,212 @@
 {
-  "service": "MachineSignal",
-  "version": "2026-06-06",
-  "submission_type": "rapidapi_provider_listing",
-  "status": "provider_ready_draft",
-  "publication_gate": "Prepare now; publish monetized listing after sandbox metrics, abuse limits and terms are confirmed.",
-  "api_name": "MachineSignal Lead Opportunity Score API",
-  "short_description": "Machine-first lead opportunity scoring API for CRM workflows, RevOps automations and AI agents.",
-  "category": [
-    "Business",
-    "Sales Intelligence",
-    "CRM",
-    "Data Enrichment",
-    "AI Agent Tools"
-  ],
-  "tags": [
-    "lead-scoring",
-    "dentist-leads",
-    "dentist-scoring",
-    "target-discovery",
-    "crm",
-    "revops",
-    "ai-agents",
-    "b2b",
-    "sales-automation",
-    "data-enrichment",
-    "lead-routing",
-    "openapi",
-    "machine-customer"
-  ],
-  "long_description": "MachineSignal helps automated systems decide when a business domain is worth additional budget. The API is built for machine customers: CRM systems, RevOps workflows, enrichment pipelines and AI agents. A machine can discover the API, create a limited sandbox key, score domains, buy Target Discovery when no list exists, buy Deep Analysis as a spend-control gate, buy Action Pack only after Deep Analysis confirms the gates, read usage, create beta purchase intents and retrieve structured JSON deliveries.",
-  "primary_customer_interface": "machine",
-  "human_role": "supervision, approval and audit only",
-  "base_url": "https://machinesignal-api.beta-878.workers.dev",
-  "authentication": {
-    "type": "apiKey",
-    "header": "X-API-Key",
-    "idempotency_header": "Idempotency-Key",
-    "sandbox_key_endpoint": "POST /v1/sandbox/customers"
-  },
-  "endpoints": [
-    "GET /health",
-    "GET /machine-onboarding.json",
-    "GET /product-catalog.json",
-    "GET /openapi.json",
-    "GET /postman_collection.json",
-    "POST /v1/sandbox/customers",
-    "GET /v1/onboarding",
-    "GET /v1/usage",
-    "POST /v1/lead-opportunity-score",
-    "POST /v1/purchase-intent",
-    "POST /v1/payment-test/intents",
-    "GET /v1/payment-test/reconciliation/{payment_test_id}",
-    "GET /v1/orders",
-    "GET /v1/orders/{order_intent_id}"
-  ],
-  "products": [
-    {
-      "product_code": "dentists_beta_machine_buyer_pack",
-      "name": "Dentists Beta Machine Buyer Pack",
-      "price_eur": 0,
-      "unit": "public machine-readable benchmark and vertical beta contract",
-      "when_bought_by_machine": "A machine wants to evaluate whether the dentist vertical beta funnel is worth testing before creating sandbox calls."
-    },
-    {
-      "product_code": "target_discovery",
-      "name": "Target Discovery Pack",
-      "price_eur": 149,
-      "unit": "250 coherent target records or no-go market coverage decision",
-      "when_bought_by_machine": "The customer machine has no starting list and needs coherent targets for a declared commercial objective."
-    },
-    {
-      "product_code": "domain_enrichment",
-      "name": "Domain Enrichment Pack 100",
-      "price_eur": 149,
-      "unit": "100 enrichment decisions",
-      "when_bought_by_machine": "The customer machine has company names or partial records but needs reliable domains before scoring."
-    },
-    {
-      "product_code": "score_pack_1k",
-      "name": "Score Pack 1k",
-      "price_eur": 99,
-      "unit": "1000 valid scores",
-      "when_bought_by_machine": "The customer machine has domains and wants score, confidence, decision and next budget action."
-    },
-    {
-      "product_code": "deep_analysis",
-      "name": "Deep Analysis Pack 100",
-      "price_eur": 299,
-      "unit": "100 valid deep analyses",
-      "when_bought_by_machine": "A scored domain is promising and the machine needs a deeper decision before buying an action pack."
-    },
-    {
-      "product_code": "action_pack",
-      "name": "Action Pack 25",
-      "price_eur": 399,
-      "unit": "25 valid action packs",
-      "when_bought_by_machine": "A confirmed opportunity needs CRM-ready payloads, workflow payload, webhook event, approval gate and stop rules."
-    },
-    {
-      "product_code": "opportunity_feed",
-      "name": "Opportunity Feed",
-      "price_eur": 249,
-      "unit": "4 scans and 4 deliveries per month",
-      "when_bought_by_machine": "The customer machine wants recurring discovery and delivery rather than one-off scoring."
-    }
-  ],
-  "sandbox_test_path": [
-    "GET /mcp/machinesignal-mcp-wrapper.json",
-    "GET /machine-api-sandbox-test/machine-api-sandbox-test.json",
-    "GET /machine-onboarding.json",
-    "GET /product-catalog.json",
-    "POST /v1/sandbox/customers",
-    "GET /v1/onboarding",
-    "POST /v1/lead-opportunity-score",
-    "POST /v1/purchase-intent with product_code deep_analysis when recommended",
-    "POST /v1/purchase-intent with product_code action_pack when useful",
-    "POST /v1/payment-test/intents with provider_mode sandbox",
-    "GET /v1/payment-test/reconciliation/{payment_test_id}",
-    "GET /v1/orders"
-  ],
-  "example_request": {
-    "domain": "clinic3.it",
-    "sector_hint": "dentist",
-    "country_hint": "IT"
-  },
-  "expected_response_fields": [
-    "domain",
-    "opportunity_score",
-    "confidence",
-    "priority",
-    "decision",
-    "reason",
-    "next_purchase",
-    "usage",
-    "beta"
-  ],
-  "safety": {
-    "real_payment_executed_in_beta": false,
-    "external_contact_executed_by_machinesignal": false,
-    "action_pack_sends_email": false,
-    "requires_customer_compliance_gate_before_external_action": true
-  },
-  "public_assets": {
-    "website": "https://machinesignal.it/",
-    "distribution_page": "https://machinesignal.it/distribution/",
-    "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
-    "marketplace_api_directory_pack_json": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
-    "marketplace_publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.md",
-    "marketplace_publication_execution_pack_json": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
-    "machine_buyer_evaluation_pack": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
-    "deep_analysis_commercial_brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
-    "rapidapi_listing_json": "https://machinesignal.it/distribution/rapidapi-listing.json",
-    "api_directory_json": "https://machinesignal.it/distribution/api-directory-submission.json",
-    "openapi": "https://machinesignal.it/openapi.json",
-    "llms": "https://machinesignal.it/llms.txt",
-    "mcp_wrapper": "https://machinesignal.it/mcp/",
-    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
-    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
-    "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
-    "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
-    "dentists_beta_machine_buyer_pack": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
-    "product_catalog": "https://machinesignal.it/product-catalog.json",
-    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
-    "sandbox_endpoint": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
-    "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
-    "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
-    "sandbox_buyer_kit_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
-    "self_service_sale_validation": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md",
-    "self_service_sale_validation_json": "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json",
-    "github": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score"
-  },
-  "latest_self_service_validation": {
-    "status": "passed",
-    "customer_type": "sandbox",
-    "buyer_interface": "machine",
-    "payment_mode": "sandbox",
-    "orders_created": 3,
-    "test_credits_activated": 1000,
-    "real_payment_executed": false,
-    "external_contact_executed": false,
-    "real_invoice_issued": false
-  }
+    "service":  "MachineSignal",
+    "version":  "2026-06-07",
+    "submission_type":  "rapidapi_provider_listing",
+    "status":  "provider_ready_draft_with_full_beta_evidence",
+    "publication_gate":  "Prepare now; publish monetized listing after sandbox metrics, abuse limits and terms are confirmed.",
+    "api_name":  "MachineSignal Lead Opportunity Score API",
+    "short_description":  "Machine-first lead opportunity scoring API for CRM workflows, RevOps automations and AI agents.",
+    "category":  [
+                     "Business",
+                     "Sales Intelligence",
+                     "CRM",
+                     "Data Enrichment",
+                     "AI Agent Tools"
+                 ],
+    "tags":  [
+                 "lead-scoring",
+                 "dentist-leads",
+                 "dentist-scoring",
+                 "target-discovery",
+                 "crm",
+                 "revops",
+                 "ai-agents",
+                 "b2b",
+                 "sales-automation",
+                 "data-enrichment",
+                 "lead-routing",
+                 "openapi",
+                 "machine-customer"
+             ],
+    "long_description":  "MachineSignal helps automated systems decide when a business domain is worth additional budget. The API is built for machine customers: CRM systems, RevOps workflows, enrichment pipelines and AI agents. A machine can discover the API, create a limited sandbox key, score domains, buy Target Discovery when no list exists, buy Deep Analysis as a spend-control gate, buy Action Pack only after Deep Analysis confirms the gates, read usage, create beta purchase intents and retrieve structured JSON deliveries. A full bounded private beta run has validated the machine-buyer flow: score, Deep Analysis and gated Action Pack under limited credits, with no real payment, fiscal invoice or external target contact.",
+    "primary_customer_interface":  "machine",
+    "human_role":  "supervision, approval and audit only",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "authentication":  {
+                           "type":  "apiKey",
+                           "header":  "X-API-Key",
+                           "idempotency_header":  "Idempotency-Key",
+                           "sandbox_key_endpoint":  "POST /v1/sandbox/customers"
+                       },
+    "endpoints":  [
+                      "GET /health",
+                      "GET /machine-onboarding.json",
+                      "GET /product-catalog.json",
+                      "GET /openapi.json",
+                      "GET /postman_collection.json",
+                      "POST /v1/sandbox/customers",
+                      "GET /v1/onboarding",
+                      "GET /v1/usage",
+                      "POST /v1/lead-opportunity-score",
+                      "POST /v1/purchase-intent",
+                      "POST /v1/payment-test/intents",
+                      "GET /v1/payment-test/reconciliation/{payment_test_id}",
+                      "GET /v1/orders",
+                      "GET /v1/orders/{order_intent_id}"
+                  ],
+    "products":  [
+                     {
+                         "product_code":  "dentists_beta_machine_buyer_pack",
+                         "name":  "Dentists Beta Machine Buyer Pack",
+                         "price_eur":  0,
+                         "unit":  "public machine-readable benchmark and vertical beta contract",
+                         "when_bought_by_machine":  "A machine wants to evaluate whether the dentist vertical beta funnel is worth testing before creating sandbox calls."
+                     },
+                     {
+                         "product_code":  "target_discovery",
+                         "name":  "Target Discovery Pack",
+                         "price_eur":  149,
+                         "unit":  "250 coherent target records or no-go market coverage decision",
+                         "when_bought_by_machine":  "The customer machine has no starting list and needs coherent targets for a declared commercial objective."
+                     },
+                     {
+                         "product_code":  "domain_enrichment",
+                         "name":  "Domain Enrichment Pack 100",
+                         "price_eur":  149,
+                         "unit":  "100 enrichment decisions",
+                         "when_bought_by_machine":  "The customer machine has company names or partial records but needs reliable domains before scoring."
+                     },
+                     {
+                         "product_code":  "score_pack_1k",
+                         "name":  "Score Pack 1k",
+                         "price_eur":  99,
+                         "unit":  "1000 valid scores",
+                         "when_bought_by_machine":  "The customer machine has domains and wants score, confidence, decision and next budget action."
+                     },
+                     {
+                         "product_code":  "deep_analysis",
+                         "name":  "Deep Analysis Pack 100",
+                         "price_eur":  299,
+                         "unit":  "100 valid deep analyses",
+                         "when_bought_by_machine":  "A scored domain is promising and the machine needs a deeper decision before buying an action pack."
+                     },
+                     {
+                         "product_code":  "action_pack",
+                         "name":  "Action Pack 25",
+                         "price_eur":  399,
+                         "unit":  "25 valid action packs",
+                         "when_bought_by_machine":  "A confirmed opportunity needs CRM-ready payloads, workflow payload, webhook event, approval gate and stop rules."
+                     },
+                     {
+                         "product_code":  "opportunity_feed",
+                         "name":  "Opportunity Feed",
+                         "price_eur":  249,
+                         "unit":  "4 scans and 4 deliveries per month",
+                         "when_bought_by_machine":  "The customer machine wants recurring discovery and delivery rather than one-off scoring."
+                     }
+                 ],
+    "sandbox_test_path":  [
+                              "GET /mcp/machinesignal-mcp-wrapper.json",
+                              "GET /machine-api-sandbox-test/machine-api-sandbox-test.json",
+                              "GET /machine-onboarding.json",
+                              "GET /product-catalog.json",
+                              "POST /v1/sandbox/customers",
+                              "GET /v1/onboarding",
+                              "POST /v1/lead-opportunity-score",
+                              "POST /v1/purchase-intent with product_code deep_analysis when recommended",
+                              "POST /v1/purchase-intent with product_code action_pack when useful",
+                              "POST /v1/payment-test/intents with provider_mode sandbox",
+                              "GET /v1/payment-test/reconciliation/{payment_test_id}",
+                              "GET /v1/orders",
+                              "GET /machine_beta_evidence_brief_20260607.json"
+                          ],
+    "example_request":  {
+                            "domain":  "clinic3.it",
+                            "sector_hint":  "dentist",
+                            "country_hint":  "IT"
+                        },
+    "expected_response_fields":  [
+                                     "domain",
+                                     "opportunity_score",
+                                     "confidence",
+                                     "priority",
+                                     "decision",
+                                     "reason",
+                                     "next_purchase",
+                                     "usage",
+                                     "beta"
+                                 ],
+    "safety":  {
+                   "real_payment_executed_in_beta":  false,
+                   "external_contact_executed_by_machinesignal":  false,
+                   "action_pack_sends_email":  false,
+                   "requires_customer_compliance_gate_before_external_action":  true
+               },
+    "public_assets":  {
+                          "website":  "https://machinesignal.it/",
+                          "distribution_page":  "https://machinesignal.it/distribution/",
+                          "marketplace_api_directory_pack":  "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
+                          "marketplace_api_directory_pack_json":  "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+                          "marketplace_publication_execution_pack":  "https://machinesignal.it/marketplace_publication_execution_pack_20260606.md",
+                          "marketplace_publication_execution_pack_json":  "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
+                          "machine_buyer_evaluation_pack":  "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
+                          "deep_analysis_commercial_brief":  "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
+                          "rapidapi_listing_json":  "https://machinesignal.it/distribution/rapidapi-listing.json",
+                          "api_directory_json":  "https://machinesignal.it/distribution/api-directory-submission.json",
+                          "openapi":  "https://machinesignal.it/openapi.json",
+                          "llms":  "https://machinesignal.it/llms.txt",
+                          "mcp_wrapper":  "https://machinesignal.it/mcp/",
+                          "mcp_wrapper_pack":  "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+                          "postman_public_collection":  "https://machinesignal.it/postman_public_collection.json",
+                          "machine_api_sandbox_test":  "https://machinesignal.it/machine-api-sandbox-test/",
+                          "machine_api_sandbox_test_json":  "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
+                          "dentists_beta_machine_buyer_pack":  "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
+                          "product_catalog":  "https://machinesignal.it/product-catalog.json",
+                          "machine_onboarding":  "https://machinesignal.it/machine-onboarding.json",
+                          "sandbox_endpoint":  "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+                          "sandbox_buyer_kit":  "https://machinesignal.it/sandbox-buyer-kit/",
+                          "sandbox_buyer_kit_json":  "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
+                          "sandbox_buyer_kit_listing":  "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
+                          "self_service_sale_validation":  "https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md",
+                          "self_service_sale_validation_json":  "https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json",
+                          "github":  "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+                          "machine_buyer_evidence_brief":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+                          "machine_buyer_evidence_brief_json":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+                          "full_bounded_beta_runner":  "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
+                          "full_bounded_beta_runner_json":  "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json"
+                      },
+    "latest_self_service_validation":  {
+                                           "status":  "passed",
+                                           "customer_type":  "sandbox",
+                                           "buyer_interface":  "machine",
+                                           "payment_mode":  "sandbox",
+                                           "orders_created":  3,
+                                           "test_credits_activated":  1000,
+                                           "real_payment_executed":  false,
+                                           "external_contact_executed":  false,
+                                           "real_invoice_issued":  false
+                                       },
+    "latest_machine_buyer_evidence":  {
+                                          "status":  "completed_full",
+                                          "ok":  true,
+                                          "evidence_date":  "2026-06-07",
+                                          "primary_customer_interface":  "machine",
+                                          "summary":  "Full bounded private beta run completed: 5 valid scores, 1 Deep Analysis, 1 gated Action Pack, Action Pack without Deep Analysis source order blocked with HTTP 400, no real payment, no fiscal invoice and no external contact.",
+                                          "evidence_brief_html":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+                                          "evidence_brief_markdown":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.md",
+                                          "evidence_brief_json":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+                                          "full_runner_report":  "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
+                                          "full_runner_json":  "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
+                                          "credit_deltas":  {
+                                                                "score_pack_1k":  5,
+                                                                "deep_analysis_pack_100":  1,
+                                                                "action_pack_25":  1
+                                                            },
+                                          "safety":  {
+                                                         "real_payment_executed":  false,
+                                                         "external_contact_executed":  false,
+                                                         "real_invoice_issued":  false,
+                                                         "action_pack_without_deep_analysis_blocked":  true
+                                                     }
+                                      }
 }
