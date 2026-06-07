@@ -82,6 +82,8 @@ Public demos for software, agents and partners:
 - CRM consumer demo: https://machinesignal.it/demo/crm-consumer/
 - CRM records JSON: https://machinesignal.it/demo/crm-consumer/crm_records.json
 - Webhook events JSON: https://machinesignal.it/demo/crm-consumer/webhook_events.json
+- Bounded Private Beta Runner: https://machinesignal.it/bounded_private_beta_runner_report_20260607.md
+- Bounded Private Beta Runner JSON: https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json
 
 Beta tester onboarding resources:
 - Beta tester onboarding packet: https://machinesignal.it/beta/onboarding-packet.html

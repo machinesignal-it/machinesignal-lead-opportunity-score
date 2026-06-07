@@ -76,6 +76,8 @@ Public discovery starts here:
 - Machine Buyer Delivery Retrieval Probe JSON: https://machinesignal.it/machine_buyer_delivery_retrieval_probe_20260606_summary.json
 - Agent Meeting Machine Buyer Readiness Review: https://machinesignal.it/agent_meeting_machine_buyer_readiness_review_20260606.md
 - Agent Meeting Machine Buyer Readiness Review JSON: https://machinesignal.it/agent_meeting_machine_buyer_readiness_review_20260606.json
+- Bounded Private Beta Runner: https://machinesignal.it/bounded_private_beta_runner_report_20260607.md
+- Bounded Private Beta Runner JSON: https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json
 - Marketplace API Directory Pack: https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - Marketplace API Directory Pack JSON: https://machinesignal.it/marketplace_api_directory_pack_20260606.json
 - Marketplace Publication Execution Pack: https://machinesignal.it/marketplace_publication_execution_pack_20260606.md

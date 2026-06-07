@@ -1,0 +1,83 @@
+{
+    "ok":  true,
+    "status":  "completed_nowrite",
+    "mode":  "NoWrite",
+    "generated_at":  "2026-06-07T08:41:06.8445253Z",
+    "run_stamp":  "20260607104106",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "public_site":  "https://machinesignal.it",
+    "readiness_url":  "https://machinesignal.it/readiness-dashboard/readiness.json",
+    "primary_customer_interface":  "machine",
+    "limits":  {
+                   "max_scores":  5,
+                   "max_deep_analysis":  1,
+                   "max_action_pack":  1,
+                   "max_real_payments":  0,
+                   "max_external_contacts":  0
+               },
+    "checks":  [
+                   {
+                       "name":  "worker_health_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "worker_llms_action_pack_gate",
+                       "ok":  true,
+                       "details":  "Worker llms.txt exposes Action Pack gate."
+                   },
+                   {
+                       "name":  "site_llms_dentists_pack",
+                       "ok":  true,
+                       "details":  "Public llms.txt exposes dentists beta pack."
+                   },
+                   {
+                       "name":  "site_llms_mcp_wrapper",
+                       "ok":  true,
+                       "details":  "Public llms.txt exposes MCP wrapper."
+                   },
+                   {
+                       "name":  "openapi_action_pack_gate_documented",
+                       "ok":  true,
+                       "details":  "OpenAPI documents source_order_intent_id and action_pack_gate."
+                   },
+                   {
+                       "name":  "postman_action_pack_gate_documented",
+                       "ok":  true,
+                       "details":  "Postman public collection includes gate instruction and variable."
+                   },
+                   {
+                       "name":  "readiness_gate",
+                       "ok":  true,
+                       "details":  "controlled_beta=ready_for_controlled_beta, real_payment=blocked_for_real_payments"
+                   },
+                   {
+                       "name":  "kv_nowrite_default",
+                       "ok":  true,
+                       "details":  "mode=NoWrite"
+                   }
+               ],
+    "write_calls_executed":  0,
+    "safety":  {
+                   "real_payment_executed":  false,
+                   "external_contact_executed":  false,
+                   "real_invoice_issued":  false
+               },
+    "full_run":  {
+                     "customer_id":  null,
+                     "score_results":  [
+
+                                       ],
+                     "deep_analysis_order":  null,
+                     "blocked_action_pack_without_deep":  null,
+                     "action_pack_order":  null,
+                     "usage_before":  null,
+                     "usage_after":  null,
+                     "credit_deltas":  {
+                                           "score_pack_1k":  0,
+                                           "deep_analysis_pack_100":  0,
+                                           "action_pack_25":  0
+                                       }
+                 },
+    "recommended_next_step":  "NoWrite preflight is ready. The next step is to request an explicit Full run when you want to spend a very small bounded amount of beta credits."
+}
