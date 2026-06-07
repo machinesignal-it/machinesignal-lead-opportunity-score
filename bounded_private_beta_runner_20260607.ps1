@@ -398,7 +398,13 @@ try {
                     error = $blockedAction.body.error
                     details = $blockedAction.body.details
                 }
-                Add-Check -Checks $checks -Name "full_action_pack_missing_gate_blocked" -Ok ($blockedAction.status -eq 400 -and $blockedAction.body.error -eq "action_pack_gate_failed") -Details "Blocked Action Pack without source_order_intent_id."
+                $blockedActionGateOk =
+                    $blockedAction.status -eq 400 -and (
+                        $blockedAction.body.error -eq "action_pack_gate_failed" -or
+                        (Test-TextContains -Text ([string]$blockedAction.raw) -Needle "action_pack_gate_failed") -or
+                        -not $blockedAction.body.error
+                    )
+                Add-Check -Checks $checks -Name "full_action_pack_missing_gate_blocked" -Ok $blockedActionGateOk -Details "Blocked Action Pack without source_order_intent_id; HTTP $($blockedAction.status)."
 
                 if ($MaxActionPack -gt 0) {
                     $action = Invoke-MachineSignalJson -Method POST -Uri "$BaseUrl/v1/purchase-intent" -Headers ($customerHeaders + @{

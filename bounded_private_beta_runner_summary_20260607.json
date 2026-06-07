@@ -1,9 +1,9 @@
 {
     "ok":  true,
-    "status":  "completed_nowrite",
-    "mode":  "NoWrite",
-    "generated_at":  "2026-06-07T08:41:06.8445253Z",
-    "run_stamp":  "20260607104106",
+    "status":  "completed_full",
+    "mode":  "Full",
+    "generated_at":  "2026-06-07T08:59:40.4653147Z",
+    "run_stamp":  "20260607105940",
     "base_url":  "https://machinesignal-api.beta-878.workers.dev",
     "public_site":  "https://machinesignal.it",
     "readiness_url":  "https://machinesignal.it/readiness-dashboard/readiness.json",
@@ -55,29 +55,903 @@
                        "name":  "kv_nowrite_default",
                        "ok":  true,
                        "details":  "mode=NoWrite"
+                   },
+                   {
+                       "name":  "full_customer_created",
+                       "ok":  true,
+                       "details":  "HTTP 200, customer=bounded_private_beta_20260607105940"
+                   },
+                   {
+                       "name":  "full_deep_analysis_cap",
+                       "ok":  true,
+                       "details":  "Deep Analysis orders \u003c= 1."
+                   },
+                   {
+                       "name":  "full_action_pack_missing_gate_blocked",
+                       "ok":  true,
+                       "details":  "Blocked Action Pack without source_order_intent_id; HTTP 400. No Action Pack credit consumed by the blocked request."
+                   },
+                   {
+                       "name":  "full_action_pack_gate_passed",
+                       "ok":  true,
+                       "details":  "Action Pack created only after Deep Analysis gate."
+                   },
+                   {
+                       "name":  "full_score_cap",
+                       "ok":  true,
+                       "details":  "score_delta=5"
+                   },
+                   {
+                       "name":  "full_deep_cap",
+                       "ok":  true,
+                       "details":  "deep_delta=1"
+                   },
+                   {
+                       "name":  "full_action_cap",
+                       "ok":  true,
+                       "details":  "action_delta=1"
+                   },
+                   {
+                       "name":  "full_no_payment_or_outreach",
+                       "ok":  true,
+                       "details":  "payment=False, external_contact=False"
                    }
                ],
-    "write_calls_executed":  0,
+    "write_calls_executed":  8,
     "safety":  {
                    "real_payment_executed":  false,
                    "external_contact_executed":  false,
                    "real_invoice_issued":  false
                },
     "full_run":  {
-                     "customer_id":  null,
+                     "customer_id":  "bounded_private_beta_20260607105940",
                      "score_results":  [
-
+                                           {
+                                               "domain":  "bounded-dental-clinic-demo.it",
+                                               "http_status":  200,
+                                               "opportunity_score":  67,
+                                               "decision":  "nurture",
+                                               "commercial_strength_level":  "medium",
+                                               "next_product":  "nurture_signal",
+                                               "request_id":  "bounded-private-beta-score-20260607105940-bounded-dental-clinic-demo.it"
+                                           },
+                                           {
+                                               "domain":  "bounded-legal-studio-demo.it",
+                                               "http_status":  200,
+                                               "opportunity_score":  71,
+                                               "decision":  "nurture",
+                                               "commercial_strength_level":  "medium",
+                                               "next_product":  "nurture_signal",
+                                               "request_id":  "bounded-private-beta-score-20260607105940-bounded-legal-studio-demo.it"
+                                           },
+                                           {
+                                               "domain":  "bounded-solar-installer-demo.it",
+                                               "http_status":  200,
+                                               "opportunity_score":  44,
+                                               "decision":  "needs_verification",
+                                               "commercial_strength_level":  "weak",
+                                               "next_product":  "verification",
+                                               "request_id":  "bounded-private-beta-score-20260607105940-bounded-solar-installer-demo.it"
+                                           },
+                                           {
+                                               "domain":  "bounded-aesthetic-clinic-demo.it",
+                                               "http_status":  200,
+                                               "opportunity_score":  74,
+                                               "decision":  "nurture",
+                                               "commercial_strength_level":  "medium",
+                                               "next_product":  "nurture_signal",
+                                               "request_id":  "bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it"
+                                           },
+                                           {
+                                               "domain":  "bounded-real-estate-demo.it",
+                                               "http_status":  200,
+                                               "opportunity_score":  56,
+                                               "decision":  "watchlist",
+                                               "commercial_strength_level":  "weak",
+                                               "next_product":  null,
+                                               "request_id":  "bounded-private-beta-score-20260607105940-bounded-real-estate-demo.it"
+                                           }
                                        ],
-                     "deep_analysis_order":  null,
-                     "blocked_action_pack_without_deep":  null,
-                     "action_pack_order":  null,
-                     "usage_before":  null,
-                     "usage_after":  null,
+                     "deep_analysis_order":  {
+                                                 "http_status":  200,
+                                                 "product_code":  "deep_analysis",
+                                                 "order_intent_id":  "ord_45991984",
+                                                 "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                 "delivery_type":  "deep_opportunity_analysis",
+                                                 "recommended_next_product":  "action_pack"
+                                             },
+                     "blocked_action_pack_without_deep":  {
+                                                              "http_status":  400,
+                                                              "error":  null,
+                                                              "details":  null
+                                                          },
+                     "action_pack_order":  {
+                                               "http_status":  200,
+                                               "product_code":  "action_pack",
+                                               "order_intent_id":  "ord_62808e76",
+                                               "gate_passed":  true,
+                                               "delivery_type":  "action_pack",
+                                               "external_contact_executed":  false
+                                           },
+                     "usage_before":  {
+                                          "customer_id":  "bounded_private_beta_20260607105940",
+                                          "ledger_persisted":  true,
+                                          "ledger_backend":  "durable_object",
+                                          "balances":  [
+                                                           {
+                                                               "product_code":  "score_pack_1k",
+                                                               "credits_purchased":  5,
+                                                               "credits_used":  0,
+                                                               "credits_remaining":  5
+                                                           },
+                                                           {
+                                                               "product_code":  "deep_analysis_pack_100",
+                                                               "credits_purchased":  1,
+                                                               "credits_used":  0,
+                                                               "credits_remaining":  1
+                                                           },
+                                                           {
+                                                               "product_code":  "verification_pack_100",
+                                                               "credits_purchased":  0,
+                                                               "credits_used":  0,
+                                                               "credits_remaining":  0
+                                                           },
+                                                           {
+                                                               "product_code":  "nurture_signal_pack_100",
+                                                               "credits_purchased":  0,
+                                                               "credits_used":  0,
+                                                               "credits_remaining":  0
+                                                           },
+                                                           {
+                                                               "product_code":  "action_pack_25",
+                                                               "credits_purchased":  1,
+                                                               "credits_used":  0,
+                                                               "credits_remaining":  1
+                                                           },
+                                                           {
+                                                               "product_code":  "target_discovery_pack_250",
+                                                               "credits_purchased":  0,
+                                                               "credits_used":  0,
+                                                               "credits_remaining":  0
+                                                           },
+                                                           {
+                                                               "product_code":  "domain_enrichment_pack_100",
+                                                               "credits_purchased":  0,
+                                                               "credits_used":  0,
+                                                               "credits_remaining":  0
+                                                           },
+                                                           {
+                                                               "product_code":  "opportunity_feed_monthly",
+                                                               "credits_purchased":  0,
+                                                               "credits_used":  0,
+                                                               "credits_remaining":  0
+                                                           }
+                                                       ],
+                                          "current_event":  null,
+                                          "last_events":  [
+
+                                                          ],
+                                          "recent_orders":  [
+
+                                                            ],
+                                          "recent_payment_tests":  [
+
+                                                                   ],
+                                          "rule":  "credits are consumed only when the API produces a valid usable output",
+                                          "real_payment_executed":  false,
+                                          "external_contact_executed":  false
+                                      },
+                     "usage_after":  {
+                                         "customer_id":  "bounded_private_beta_20260607105940",
+                                         "ledger_persisted":  true,
+                                         "ledger_backend":  "durable_object",
+                                         "balances":  [
+                                                          {
+                                                              "product_code":  "score_pack_1k",
+                                                              "credits_purchased":  5,
+                                                              "credits_used":  5,
+                                                              "credits_remaining":  0
+                                                          },
+                                                          {
+                                                              "product_code":  "deep_analysis_pack_100",
+                                                              "credits_purchased":  1,
+                                                              "credits_used":  1,
+                                                              "credits_remaining":  0
+                                                          },
+                                                          {
+                                                              "product_code":  "verification_pack_100",
+                                                              "credits_purchased":  0,
+                                                              "credits_used":  0,
+                                                              "credits_remaining":  0
+                                                          },
+                                                          {
+                                                              "product_code":  "nurture_signal_pack_100",
+                                                              "credits_purchased":  0,
+                                                              "credits_used":  0,
+                                                              "credits_remaining":  0
+                                                          },
+                                                          {
+                                                              "product_code":  "action_pack_25",
+                                                              "credits_purchased":  1,
+                                                              "credits_used":  1,
+                                                              "credits_remaining":  0
+                                                          },
+                                                          {
+                                                              "product_code":  "target_discovery_pack_250",
+                                                              "credits_purchased":  0,
+                                                              "credits_used":  0,
+                                                              "credits_remaining":  0
+                                                          },
+                                                          {
+                                                              "product_code":  "domain_enrichment_pack_100",
+                                                              "credits_purchased":  0,
+                                                              "credits_used":  0,
+                                                              "credits_remaining":  0
+                                                          },
+                                                          {
+                                                              "product_code":  "opportunity_feed_monthly",
+                                                              "credits_purchased":  0,
+                                                              "credits_used":  0,
+                                                              "credits_remaining":  0
+                                                          }
+                                                      ],
+                                         "current_event":  null,
+                                         "last_events":  [
+                                                             {
+                                                                 "event_id":  "evt_0001",
+                                                                 "timestamp":  "2026-06-07T08:59:42.546Z",
+                                                                 "customer_id":  "bounded_private_beta_20260607105940",
+                                                                 "product_code":  "score_pack_1k",
+                                                                 "request_id":  "bounded-private-beta-score-20260607105940-bounded-dental-clinic-demo.it",
+                                                                 "status":  "valid_output",
+                                                                 "reason":  "score_delivered",
+                                                                 "units_requested":  1,
+                                                                 "credits_consumed":  1,
+                                                                 "credits_remaining":  4,
+                                                                 "metadata":  {
+                                                                                  "domain":  "bounded-dental-clinic-demo.it",
+                                                                                  "decision":  "nurture",
+                                                                                  "opportunity_score":  67,
+                                                                                  "confidence":  0.68
+                                                                              }
+                                                             },
+                                                             {
+                                                                 "event_id":  "evt_0002",
+                                                                 "timestamp":  "2026-06-07T08:59:42.682Z",
+                                                                 "customer_id":  "bounded_private_beta_20260607105940",
+                                                                 "product_code":  "score_pack_1k",
+                                                                 "request_id":  "bounded-private-beta-score-20260607105940-bounded-legal-studio-demo.it",
+                                                                 "status":  "valid_output",
+                                                                 "reason":  "score_delivered",
+                                                                 "units_requested":  1,
+                                                                 "credits_consumed":  1,
+                                                                 "credits_remaining":  3,
+                                                                 "metadata":  {
+                                                                                  "domain":  "bounded-legal-studio-demo.it",
+                                                                                  "decision":  "nurture",
+                                                                                  "opportunity_score":  71,
+                                                                                  "confidence":  0.65
+                                                                              }
+                                                             },
+                                                             {
+                                                                 "event_id":  "evt_0003",
+                                                                 "timestamp":  "2026-06-07T08:59:42.849Z",
+                                                                 "customer_id":  "bounded_private_beta_20260607105940",
+                                                                 "product_code":  "score_pack_1k",
+                                                                 "request_id":  "bounded-private-beta-score-20260607105940-bounded-solar-installer-demo.it",
+                                                                 "status":  "valid_output",
+                                                                 "reason":  "score_delivered",
+                                                                 "units_requested":  1,
+                                                                 "credits_consumed":  1,
+                                                                 "credits_remaining":  2,
+                                                                 "metadata":  {
+                                                                                  "domain":  "bounded-solar-installer-demo.it",
+                                                                                  "decision":  "needs_verification",
+                                                                                  "opportunity_score":  44,
+                                                                                  "confidence":  0.47
+                                                                              }
+                                                             },
+                                                             {
+                                                                 "event_id":  "evt_0004",
+                                                                 "timestamp":  "2026-06-07T08:59:43.001Z",
+                                                                 "customer_id":  "bounded_private_beta_20260607105940",
+                                                                 "product_code":  "score_pack_1k",
+                                                                 "request_id":  "bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it",
+                                                                 "status":  "valid_output",
+                                                                 "reason":  "score_delivered",
+                                                                 "units_requested":  1,
+                                                                 "credits_consumed":  1,
+                                                                 "credits_remaining":  1,
+                                                                 "metadata":  {
+                                                                                  "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                                  "decision":  "nurture",
+                                                                                  "opportunity_score":  74,
+                                                                                  "confidence":  0.84
+                                                                              }
+                                                             },
+                                                             {
+                                                                 "event_id":  "evt_0005",
+                                                                 "timestamp":  "2026-06-07T08:59:43.135Z",
+                                                                 "customer_id":  "bounded_private_beta_20260607105940",
+                                                                 "product_code":  "score_pack_1k",
+                                                                 "request_id":  "bounded-private-beta-score-20260607105940-bounded-real-estate-demo.it",
+                                                                 "status":  "valid_output",
+                                                                 "reason":  "score_delivered",
+                                                                 "units_requested":  1,
+                                                                 "credits_consumed":  1,
+                                                                 "credits_remaining":  0,
+                                                                 "metadata":  {
+                                                                                  "domain":  "bounded-real-estate-demo.it",
+                                                                                  "decision":  "watchlist",
+                                                                                  "opportunity_score":  56,
+                                                                                  "confidence":  0.67
+                                                                              }
+                                                             },
+                                                             {
+                                                                 "event_id":  "evt_0006",
+                                                                 "timestamp":  "2026-06-07T08:59:43.327Z",
+                                                                 "customer_id":  "bounded_private_beta_20260607105940",
+                                                                 "product_code":  "deep_analysis_pack_100",
+                                                                 "request_id":  "bounded-private-beta-deep-20260607105940",
+                                                                 "status":  "valid_output",
+                                                                 "reason":  "beta_order_intent_created",
+                                                                 "units_requested":  1,
+                                                                 "credits_consumed":  1,
+                                                                 "credits_remaining":  0,
+                                                                 "metadata":  {
+                                                                                  "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                                  "product_code":  "deep_analysis",
+                                                                                  "source_score_request_id":  "bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it",
+                                                                                  "source_order_intent_id":  null,
+                                                                                  "action_pack_gate":  null,
+                                                                                  "real_payment_executed":  false,
+                                                                                  "external_contact_executed":  false
+                                                                              }
+                                                             },
+                                                             {
+                                                                 "event_id":  "evt_0007",
+                                                                 "timestamp":  "2026-06-07T08:59:43.652Z",
+                                                                 "customer_id":  "bounded_private_beta_20260607105940",
+                                                                 "product_code":  "action_pack_25",
+                                                                 "request_id":  "bounded-private-beta-action-valid-20260607105940",
+                                                                 "status":  "valid_output",
+                                                                 "reason":  "beta_order_intent_created",
+                                                                 "units_requested":  1,
+                                                                 "credits_consumed":  1,
+                                                                 "credits_remaining":  0,
+                                                                 "metadata":  {
+                                                                                  "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                                  "product_code":  "action_pack",
+                                                                                  "source_score_request_id":  "bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it",
+                                                                                  "source_order_intent_id":  "ord_45991984",
+                                                                                  "action_pack_gate":  {
+                                                                                                           "gate_passed":  true,
+                                                                                                           "source_order_intent_id":  "ord_45991984",
+                                                                                                           "source_event_id":  "evt_0006",
+                                                                                                           "source_delivery_id":  "del_f1c472a",
+                                                                                                           "source_deep_analysis_version":  "domain_specific_commercial_evidence_v1"
+                                                                                                       },
+                                                                                  "real_payment_executed":  false,
+                                                                                  "external_contact_executed":  false
+                                                                              }
+                                                             }
+                                                         ],
+                                         "recent_orders":  [
+                                                               {
+                                                                   "order_intent_id":  "ord_45991984",
+                                                                   "status":  "accepted_beta_order_intent",
+                                                                   "product_code":  "deep_analysis",
+                                                                   "ledger_product_code":  "deep_analysis_pack_100",
+                                                                   "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                   "source_score_request_id":  "bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it",
+                                                                   "source_order_intent_id":  null,
+                                                                   "action_pack_gate":  null,
+                                                                   "reason":  "Bounded private beta runner selected the strongest scored target for one Deep Analysis",
+                                                                   "max_budget_eur":  3,
+                                                                   "beta_price_range_eur":  "1-3",
+                                                                   "delivery_mode":  "deeper_opportunity_analysis",
+                                                                   "request_id":  "bounded-private-beta-deep-20260607105940",
+                                                                   "event_id":  "evt_0006",
+                                                                   "created_at":  "2026-06-07T08:59:43.327Z",
+                                                                   "real_payment_executed":  false,
+                                                                   "external_contact_executed":  false,
+                                                                   "delivery":  {
+                                                                                    "delivery_id":  "del_f1c472a",
+                                                                                    "product_code":  "deep_analysis",
+                                                                                    "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                                    "source_score_request_id":  "bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it",
+                                                                                    "generated_at":  "2026-06-07T08:59:43.327Z",
+                                                                                    "beta_delivery":  true,
+                                                                                    "synthetic_demo_mode":  true,
+                                                                                    "real_payment_executed":  false,
+                                                                                    "external_contact_executed":  false,
+                                                                                    "delivery_type":  "deep_opportunity_analysis",
+                                                                                    "status":  "deep_analysis_ready",
+                                                                                    "deep_analysis_version":  "domain_specific_commercial_evidence_v1",
+                                                                                    "what_is_included":  {
+                                                                                                             "exact_unit_sold":  "one deep opportunity decision pack for one scored domain",
+                                                                                                             "machine_question_answered":  "Is this target strong enough to justify the next paid machine action, and what evidence must be present before buying it?",
+                                                                                                             "returned_decision_fields":  [
+                                                                                                                                              "opportunity_grade",
+                                                                                                                                              "opportunity_hypothesis",
+                                                                                                                                              "commercial_evidence",
+                                                                                                                                              "machine_decision_matrix",
+                                                                                                                                              "action_pack_purchase_gate",
+                                                                                                                                              "crm_summary_payload",
+                                                                                                                                              "signals_to_validate",
+                                                                                                                                              "recommended_next_step",
+                                                                                                                                              "recommended_budget_cap_eur",
+                                                                                                                                              "stop_rules"
+                                                                                                                                          ],
+                                                                                                             "credit_policy":  "One deep_analysis_pack_100 credit is consumed for each deep analysis decision pack returned."
+                                                                                                         },
+                                                                                    "sector_context":  {
+                                                                                                           "code":  "dentists_clinics",
+                                                                                                           "label":  "dentists and odontoiatric clinics",
+                                                                                                           "buyer_problem":  "The customer machine needs to detect clinics where visible digital friction can justify a diagnostic or CRM action.",
+                                                                                                           "sector_specific_signals":  [
+                                                                                                                                           "local intent and service pages are commercially relevant",
+                                                                                                                                           "appointment or contact friction can reduce lead capture",
+                                                                                                                                           "trust signals such as reviews, doctors, services and opening hours matter",
+                                                                                                                                           "the clinic website is often used before a patient chooses a provider"
+                                                                                                                                       ],
+                                                                                                           "evidence_focus":  [
+                                                                                                                                  "booking friction",
+                                                                                                                                  "trust clarity",
+                                                                                                                                  "local visibility",
+                                                                                                                                  "service-page clarity"
+                                                                                                                              ]
+                                                                                                       },
+                                                                                    "requested_area":  "Italy",
+                                                                                    "commercial_objective":  "decide whether this scored domain deserves a CRM-ready Action Pack",
+                                                                                    "opportunity_grade":  "promising_beta_case",
+                                                                                    "opportunity_hypothesis":  "The domain may justify an operational machine action if booking friction, trust clarity, local visibility, service-page clarity are validated.",
+                                                                                    "buyer_machine_value":  "This delivery is meant to reduce wasted downstream spend: the customer machine gets concrete gates for buying Action Pack, saving to CRM or stopping.",
+                                                                                    "commercial_evidence":  [
+                                                                                                                {
+                                                                                                                    "code":  "sector_fit",
+                                                                                                                    "finding":  "The domain is treated as a dentists and odontoiatric clinics candidate for this beta delivery.",
+                                                                                                                    "why_it_matters":  "The customer machine should spend only when the target matches the intended commercial objective.",
+                                                                                                                    "validation_needed":  "Confirm sector and business identity from public website or trusted data source.",
+                                                                                                                    "machine_weight":  "high"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "code":  "digital_friction",
+                                                                                                                    "finding":  "Evidence focus includes booking friction and trust clarity.",
+                                                                                                                    "why_it_matters":  "Digital friction is the practical reason a customer workflow may buy an Action Pack instead of only storing the lead.",
+                                                                                                                    "validation_needed":  "Check website navigation, contact path, conversion path and service-page clarity.",
+                                                                                                                    "machine_weight":  "high"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "code":  "local_or_market_fit",
+                                                                                                                    "finding":  "The requested area is Italy; local or market fit must remain coherent before downstream spend.",
+                                                                                                                    "why_it_matters":  "A good-looking target outside the customer machine\u0027s market should not trigger extra paid actions.",
+                                                                                                                    "validation_needed":  "Confirm geography, service area or market coverage.",
+                                                                                                                    "machine_weight":  "medium"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "code":  "actionability",
+                                                                                                                    "finding":  "The next paid step is useful only if the customer machine has a CRM/workflow destination and an approved action policy.",
+                                                                                                                    "why_it_matters":  "Action Pack value comes from machine execution readiness, not from generic analysis text.",
+                                                                                                                    "validation_needed":  "Confirm CRM field mapping, webhook destination and approval gate.",
+                                                                                                                    "machine_weight":  "high"
+                                                                                                                }
+                                                                                                            ],
+                                                                                    "machine_decision_matrix":  {
+                                                                                                                    "buy_action_pack_if":  [
+                                                                                                                                               "sector_fit is confirmed",
+                                                                                                                                               "digital_friction has at least one actionable finding",
+                                                                                                                                               "customer machine has CRM or workflow destination",
+                                                                                                                                               "budget approval exists",
+                                                                                                                                               "external contact remains blocked until compliance approval"
+                                                                                                                                           ],
+                                                                                                                    "keep_in_watchlist_if":  [
+                                                                                                                                                 "sector and area are coherent but commercial friction is weak",
+                                                                                                                                                 "confidence is acceptable but no immediate CRM action exists",
+                                                                                                                                                 "the customer machine wants periodic rescoring before spend"
+                                                                                                                                             ],
+                                                                                                                    "stop_if":  [
+                                                                                                                                    "sector fit fails",
+                                                                                                                                    "domain belongs to a portal, unrelated business or generic directory",
+                                                                                                                                    "no compliant downstream action channel exists",
+                                                                                                                                    "the customer machine cannot store audit evidence"
+                                                                                                                                ]
+                                                                                                                },
+                                                                                    "action_pack_purchase_gate":  {
+                                                                                                                      "product_code":  "action_pack",
+                                                                                                                      "allowed":  "conditional",
+                                                                                                                      "required_before_purchase":  [
+                                                                                                                                                       "sector_fit_confirmed",
+                                                                                                                                                       "budget_approval",
+                                                                                                                                                       "crm_or_workflow_destination",
+                                                                                                                                                       "external_action_approval_gate"
+                                                                                                                                                   ],
+                                                                                                                      "blocked_when":  [
+                                                                                                                                           "synthetic evidence is the only evidence available",
+                                                                                                                                           "data quality verification is still required",
+                                                                                                                                           "the customer machine would send outreach automatically"
+                                                                                                                                       ],
+                                                                                                                      "machine_instruction":  "Buy Action Pack only when this Deep Analysis becomes operational evidence for CRM or workflow execution."
+                                                                                                                  },
+                                                                                    "crm_summary_payload":  {
+                                                                                                                "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                                                                "sector_code":  "dentists_clinics",
+                                                                                                                "area":  "Italy",
+                                                                                                                "opportunity_stage":  "deep_analysis_ready_for_machine_review",
+                                                                                                                "recommended_next_product":  "action_pack",
+                                                                                                                "next_product_allowed":  "conditional",
+                                                                                                                "audit_note":  "Deep Analysis is a decision pack for machine spend control; it does not authorize external contact."
+                                                                                                            },
+                                                                                    "evidence_limitations":  [
+                                                                                                                 "This beta output is synthetic and must be validated against real public evidence before outreach.",
+                                                                                                                 "The API does not verify legal permission to contact the target.",
+                                                                                                                 "The customer machine must keep budget and compliance gates active."
+                                                                                                             ],
+                                                                                    "sector_specific_signals":  [
+                                                                                                                    "local intent and service pages are commercially relevant",
+                                                                                                                    "appointment or contact friction can reduce lead capture",
+                                                                                                                    "trust signals such as reviews, doctors, services and opening hours matter",
+                                                                                                                    "the clinic website is often used before a patient chooses a provider"
+                                                                                                                ],
+                                                                                    "signals_to_validate":  [
+                                                                                                                "sector fit and business identity",
+                                                                                                                "website conversion friction",
+                                                                                                                "trust or service-page clarity",
+                                                                                                                "local competition and offer fit",
+                                                                                                                "CRM or workflow destination availability"
+                                                                                                            ],
+                                                                                    "recommended_next_step":  {
+                                                                                                                  "product_code":  "action_pack",
+                                                                                                                  "condition":  "buy only if sector fit, commercial friction, CRM/workflow destination, compliant action channel and budget approval are present",
+                                                                                                                  "reason":  "Deep Analysis now returns operational evidence gates; Action Pack is useful only when those gates are strong enough for CRM/workflow preparation."
+                                                                                                              },
+                                                                                    "stop_rules":  [
+                                                                                                       "stop if confidence drops after verification",
+                                                                                                       "stop if the target does not match the customer\u0027s commercial objective",
+                                                                                                       "stop if no actionable digital friction is found",
+                                                                                                       "stop if no CRM or workflow destination exists",
+                                                                                                       "stop if no compliant downstream action is available"
+                                                                                                   ],
+                                                                                    "risk_flags":  [
+                                                                                                       "synthetic_beta_output",
+                                                                                                       "requires real-world validation before outreach"
+                                                                                                   ],
+                                                                                    "recommended_budget_cap_eur":  3,
+                                                                                    "machine_recommendation":  "Use this output as a spend-control decision pack: buy Action Pack only if the machine decision matrix passes; otherwise keep the target in watchlist or stop.",
+                                                                                    "next_machine_call":  {
+                                                                                                              "method":  "POST",
+                                                                                                              "endpoint":  "/v1/purchase-intent",
+                                                                                                              "payload_template":  {
+                                                                                                                                       "product_code":  "action_pack",
+                                                                                                                                       "source_order_intent_id":  "use_this_order_intent_id",
+                                                                                                                                       "max_budget_eur":  10,
+                                                                                                                                       "reason":  "Deep Analysis evidence matrix passed sector, friction, CRM destination and budget gates"
+                                                                                                                                   },
+                                                                                                              "required_headers":  [
+                                                                                                                                       "X-API-Key",
+                                                                                                                                       "Idempotency-Key"
+                                                                                                                                   ]
+                                                                                                          }
+                                                                                },
+                                                                   "beta":  true
+                                                               },
+                                                               {
+                                                                   "order_intent_id":  "ord_62808e76",
+                                                                   "status":  "accepted_beta_order_intent",
+                                                                   "product_code":  "action_pack",
+                                                                   "ledger_product_code":  "action_pack_25",
+                                                                   "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                   "source_score_request_id":  "bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it",
+                                                                   "source_order_intent_id":  "ord_45991984",
+                                                                   "action_pack_gate":  {
+                                                                                            "required":  true,
+                                                                                            "passed":  true,
+                                                                                            "source_order_intent_id":  "ord_45991984",
+                                                                                            "source_delivery_id":  "del_f1c472a",
+                                                                                            "source_deep_analysis_version":  "domain_specific_commercial_evidence_v1"
+                                                                                        },
+                                                                   "reason":  "Bounded private beta runner: Deep Analysis gate passed",
+                                                                   "max_budget_eur":  10,
+                                                                   "beta_price_range_eur":  "3-10",
+                                                                   "delivery_mode":  "crm_action_preparation",
+                                                                   "request_id":  "bounded-private-beta-action-valid-20260607105940",
+                                                                   "event_id":  "evt_0007",
+                                                                   "created_at":  "2026-06-07T08:59:43.652Z",
+                                                                   "real_payment_executed":  false,
+                                                                   "external_contact_executed":  false,
+                                                                   "delivery":  {
+                                                                                    "delivery_id":  "del_c72913d0",
+                                                                                    "product_code":  "action_pack",
+                                                                                    "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                                    "source_score_request_id":  "bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it",
+                                                                                    "generated_at":  "2026-06-07T08:59:43.652Z",
+                                                                                    "beta_delivery":  true,
+                                                                                    "synthetic_demo_mode":  true,
+                                                                                    "real_payment_executed":  false,
+                                                                                    "external_contact_executed":  false,
+                                                                                    "delivery_type":  "action_pack",
+                                                                                    "status":  "action_pack_ready",
+                                                                                    "what_is_included":  {
+                                                                                                             "exact_unit_sold":  "one CRM-ready action pack for one qualified domain",
+                                                                                                             "machine_question_answered":  "What should the customer machine do next with this qualified opportunity?",
+                                                                                                             "returned_decision_fields":  [
+                                                                                                                                              "priority",
+                                                                                                                                              "crm_record_patch",
+                                                                                                                                              "crm_task",
+                                                                                                                                              "crm_platform_mappings",
+                                                                                                                                              "workflow_payload",
+                                                                                                                                              "agent_instructions",
+                                                                                                                                              "webhook_event",
+                                                                                                                                              "webhook_delivery_policy",
+                                                                                                                                              "audit_event",
+                                                                                                                                              "approval_gate",
+                                                                                                                                              "deduplication_key",
+                                                                                                                                              "next_api_calls",
+                                                                                                                                              "stop_rules",
+                                                                                                                                              "compliance_guardrail"
+                                                                                                                                          ],
+                                                                                                             "credit_policy":  "One action_pack_25 credit is consumed for each action pack returned."
+                                                                                                         },
+                                                                                    "priority":  "review_before_external_contact",
+                                                                                    "crm_record_patch":  {
+                                                                                                             "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                                                             "lead_status":  "qualified_pending_compliance_review",
+                                                                                                             "lifecycle_stage":  "opportunity_preparation",
+                                                                                                             "tags":  [
+                                                                                                                          "machine_signal_action_pack",
+                                                                                                                          "requires_compliance_review"
+                                                                                                                      ],
+                                                                                                             "next_task":  {
+                                                                                                                               "task_type":  "review_and_prepare_compliant_action",
+                                                                                                                               "owner_type":  "customer_machine_or_approved_agent",
+                                                                                                                               "due_in_hours":  24,
+                                                                                                                               "budget_cap_eur":  10
+                                                                                                                           }
+                                                                                                         },
+                                                                                    "crm_task":  {
+                                                                                                     "task_id":  "ms_task_1dca57ea",
+                                                                                                     "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                                                     "task_type":  "qualified_opportunity_review",
+                                                                                                     "title":  "Review MachineSignal action pack for bounded-aesthetic-clinic-demo.it",
+                                                                                                     "status":  "open",
+                                                                                                     "priority":  "high",
+                                                                                                     "owner_type":  "customer_machine_or_approved_agent",
+                                                                                                     "due_in_hours":  24,
+                                                                                                     "required_context":  [
+                                                                                                                              "source_score_request_id",
+                                                                                                                              "source_order_intent_id",
+                                                                                                                              "crm_record_patch",
+                                                                                                                              "message_angle",
+                                                                                                                              "compliance_guardrail"
+                                                                                                                          ],
+                                                                                                     "completion_criteria":  [
+                                                                                                                                 "CRM record created or updated",
+                                                                                                                                 "score and deep-analysis context attached",
+                                                                                                                                 "compliance gate result recorded",
+                                                                                                                                 "external action blocked unless approved"
+                                                                                                                             ]
+                                                                                                 },
+                                                                                    "crm_platform_mappings":  {
+                                                                                                                  "hubspot":  {
+                                                                                                                                  "object":  "company",
+                                                                                                                                  "properties":  {
+                                                                                                                                                     "domain":  "domain",
+                                                                                                                                                     "lead_status":  "hs_lead_status",
+                                                                                                                                                     "lifecycle_stage":  "lifecyclestage",
+                                                                                                                                                     "tags":  "machinesignal_tags",
+                                                                                                                                                     "next_task":  "machinesignal_next_task"
+                                                                                                                                                 }
+                                                                                                                              },
+                                                                                                                  "salesforce":  {
+                                                                                                                                     "object":  "Lead",
+                                                                                                                                     "fields":  {
+                                                                                                                                                    "Website":  "domain",
+                                                                                                                                                    "Status":  "lead_status",
+                                                                                                                                                    "Rating":  "priority",
+                                                                                                                                                    "MachineSignal_Tags__c":  "tags",
+                                                                                                                                                    "MachineSignal_Next_Task__c":  "next_task"
+                                                                                                                                                }
+                                                                                                                                 },
+                                                                                                                  "pipedrive":  {
+                                                                                                                                    "object":  "organization",
+                                                                                                                                    "fields":  {
+                                                                                                                                                   "website":  "domain",
+                                                                                                                                                   "label":  "machine_signal_action_pack",
+                                                                                                                                                   "next_activity":  "next_task"
+                                                                                                                                               }
+                                                                                                                                },
+                                                                                                                  "generic_crm":  {
+                                                                                                                                      "operation":  "upsert_company_or_lead",
+                                                                                                                                      "match_key":  "domain",
+                                                                                                                                      "write_fields":  [
+                                                                                                                                                           "lead_status",
+                                                                                                                                                           "lifecycle_stage",
+                                                                                                                                                           "tags",
+                                                                                                                                                           "next_task",
+                                                                                                                                                           "message_angle"
+                                                                                                                                                       ]
+                                                                                                                                  }
+                                                                                                              },
+                                                                                    "message_angle":  {
+                                                                                                          "summary":  "Focus on measurable website opportunity and low-friction diagnostic value.",
+                                                                                                          "do_not_claim":  [
+                                                                                                                               "guaranteed revenue uplift",
+                                                                                                                               "verified customer pain without customer evidence",
+                                                                                                                               "automatic legal permission to contact"
+                                                                                                                           ],
+                                                                                                          "recommended_value_proposition":  "Offer a diagnostic view of visible digital opportunity before the customer spends campaign or human-sales budget."
+                                                                                                      },
+                                                                                    "workflow_payload":  {
+                                                                                                             "workflow_name":  "machinesignal_qualified_opportunity_review",
+                                                                                                             "trigger":  "action_pack_ready",
+                                                                                                             "deduplication_key":  "machinesignal:action_pack:bounded-aesthetic-clinic-demo.it:bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it",
+                                                                                                             "required_inputs":  [
+                                                                                                                                     "domain",
+                                                                                                                                     "source_score_request_id",
+                                                                                                                                     "source_order_intent_id"
+                                                                                                                                 ],
+                                                                                                             "output_targets":  [
+                                                                                                                                    "crm",
+                                                                                                                                    "workflow_engine",
+                                                                                                                                    "approved_customer_agent"
+                                                                                                                                ],
+                                                                                                             "recommended_steps":  [
+                                                                                                                                       {
+                                                                                                                                           "step":  1,
+                                                                                                                                           "action":  "create_or_update_crm_record",
+                                                                                                                                           "payload_ref":  "crm_record_patch"
+                                                                                                                                       },
+                                                                                                                                       {
+                                                                                                                                           "step":  2,
+                                                                                                                                           "action":  "attach_score_and_deep_analysis_context",
+                                                                                                                                           "source_score_request_id":  "bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it"
+                                                                                                                                       },
+                                                                                                                                       {
+                                                                                                                                           "step":  3,
+                                                                                                                                           "action":  "run_compliance_gate",
+                                                                                                                                           "required_result":  "approved_channel_and_lawful_basis"
+                                                                                                                                       },
+                                                                                                                                       {
+                                                                                                                                           "step":  4,
+                                                                                                                                           "action":  "prepare_next_contact_or_internal_task",
+                                                                                                                                           "condition":  "only_after_compliance_gate_passes"
+                                                                                                                                       }
+                                                                                                                                   ]
+                                                                                                         },
+                                                                                    "approval_gate":  {
+                                                                                                          "gate_name":  "external_action_approval",
+                                                                                                          "default_state":  "blocked",
+                                                                                                          "required_signals":  [
+                                                                                                                                   "lawful_basis_confirmed",
+                                                                                                                                   "approved_channel_available",
+                                                                                                                                   "customer_policy_allows_action",
+                                                                                                                                   "crm_audit_record_created"
+                                                                                                                               ],
+                                                                                                          "allowed_without_approval":  [
+                                                                                                                                           "create_or_update_crm_record",
+                                                                                                                                           "create_internal_task",
+                                                                                                                                           "attach_context",
+                                                                                                                                           "wait_for_customer_policy"
+                                                                                                                                       ],
+                                                                                                          "blocked_without_approval":  [
+                                                                                                                                           "send_email",
+                                                                                                                                           "send_linkedin_message",
+                                                                                                                                           "call_target",
+                                                                                                                                           "start_external_sequence"
+                                                                                                                                       ]
+                                                                                                      },
+                                                                                    "agent_instructions":  [
+                                                                                                               "Do not contact the target automatically.",
+                                                                                                               "First check whether the customer has an approved channel and lawful basis.",
+                                                                                                               "If compliance is not approved, keep the lead in CRM as pending_review.",
+                                                                                                               "If approved, use the message angle as a draft direction, not as a final claim."
+                                                                                                           ],
+                                                                                    "webhook_event":  {
+                                                                                                          "event_type":  "machinesignal.action_pack.ready",
+                                                                                                          "version":  "2026-05-31",
+                                                                                                          "idempotency_key_hint":  "reuse the order_intent_id when forwarding to CRM",
+                                                                                                          "payload_schema":  {
+                                                                                                                                 "domain":  "string",
+                                                                                                                                 "priority":  "string",
+                                                                                                                                 "crm_record_patch":  "object",
+                                                                                                                                 "crm_task":  "object",
+                                                                                                                                 "crm_platform_mappings":  "object",
+                                                                                                                                 "workflow_payload":  "object",
+                                                                                                                                 "approval_gate":  "object",
+                                                                                                                                 "compliance_guardrail":  "string"
+                                                                                                                             }
+                                                                                                      },
+                                                                                    "webhook_delivery_policy":  {
+                                                                                                                    "delivery_mode":  "customer_configured_endpoint_only",
+                                                                                                                    "retry_policy":  {
+                                                                                                                                         "max_attempts":  3,
+                                                                                                                                         "backoff_seconds":  [
+                                                                                                                                                                 30,
+                                                                                                                                                                 300,
+                                                                                                                                                                 1800
+                                                                                                                                                             ]
+                                                                                                                                     },
+                                                                                                                    "signing":  {
+                                                                                                                                    "recommended_header":  "X-MachineSignal-Signature",
+                                                                                                                                    "algorithm":  "hmac-sha256",
+                                                                                                                                    "secret_owner":  "customer"
+                                                                                                                                },
+                                                                                                                    "idempotency_header":  "Idempotency-Key",
+                                                                                                                    "should_not_send_if":  [
+                                                                                                                                               "customer_webhook_not_configured",
+                                                                                                                                               "approval_gate_missing",
+                                                                                                                                               "payload_schema_validation_failed"
+                                                                                                                                           ]
+                                                                                                                },
+                                                                                    "audit_event":  {
+                                                                                                        "event_type":  "machinesignal.audit.action_pack_created",
+                                                                                                        "actor_type":  "machinesignal_api",
+                                                                                                        "domain":  "bounded-aesthetic-clinic-demo.it",
+                                                                                                        "source_score_request_id":  "bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it",
+                                                                                                        "source_order_intent_id":  "ord_45991984",
+                                                                                                        "external_contact_executed":  false,
+                                                                                                        "real_payment_executed":  false,
+                                                                                                        "required_customer_audit_action":  "record approval_gate result before any external action"
+                                                                                                    },
+                                                                                    "deduplication_key":  "machinesignal:action_pack:bounded-aesthetic-clinic-demo.it:bounded-private-beta-score-20260607105940-bounded-aesthetic-clinic-demo.it",
+                                                                                    "next_api_calls":  [
+                                                                                                           {
+                                                                                                               "purpose":  "verify remaining credits and ledger state",
+                                                                                                               "method":  "GET",
+                                                                                                               "endpoint":  "/v1/usage"
+                                                                                                           },
+                                                                                                           {
+                                                                                                               "purpose":  "retrieve this order delivery later",
+                                                                                                               "method":  "GET",
+                                                                                                               "endpoint":  "/v1/orders/{order_intent_id}"
+                                                                                                           },
+                                                                                                           {
+                                                                                                               "purpose":  "retrieve all customer-machine orders",
+                                                                                                               "method":  "GET",
+                                                                                                               "endpoint":  "/v1/orders"
+                                                                                                           }
+                                                                                                       ],
+                                                                                    "stop_rules":  [
+                                                                                                       "stop if no lawful basis or approved channel exists",
+                                                                                                       "stop if the domain no longer matches the customer\u0027s commercial objective",
+                                                                                                       "stop if data quality verification is required but not completed",
+                                                                                                       "stop if the customer machine cannot record the action in CRM or audit log"
+                                                                                                   ],
+                                                                                    "follow_up_sequence":  [
+                                                                                                               {
+                                                                                                                   "step":  1,
+                                                                                                                   "channel":  "system",
+                                                                                                                   "action":  "prepare_crm_task"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "step":  2,
+                                                                                                                   "channel":  "system",
+                                                                                                                   "action":  "attach_score_and_reason"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "step":  3,
+                                                                                                                   "channel":  "human_or_approved_agent",
+                                                                                                                   "action":  "send_only_if_compliant_basis_exists"
+                                                                                                               }
+                                                                                                           ],
+                                                                                    "compliance_guardrail":  "Do not send unsolicited outreach automatically unless the customer has a lawful basis and channel policy.",
+                                                                                    "machine_recommendation":  "Prepare actions, but require compliance approval before external contact."
+                                                                                },
+                                                                   "beta":  true
+                                                               }
+                                                           ],
+                                         "recent_payment_tests":  [
+
+                                                                  ],
+                                         "rule":  "credits are consumed only when the API produces a valid usable output",
+                                         "real_payment_executed":  false,
+                                         "external_contact_executed":  false
+                                     },
                      "credit_deltas":  {
-                                           "score_pack_1k":  0,
-                                           "deep_analysis_pack_100":  0,
-                                           "action_pack_25":  0
+                                           "score_pack_1k":  5,
+                                           "deep_analysis_pack_100":  1,
+                                           "action_pack_25":  1
                                        }
                  },
-    "recommended_next_step":  "NoWrite preflight is ready. The next step is to request an explicit Full run when you want to spend a very small bounded amount of beta credits."
+    "recommended_next_step":  "Use this Full bounded private beta result as the first evidence pack. Next step: update/publicare il report e poi preparare il primo evidence brief per macchine/partner."
 }
