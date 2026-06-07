@@ -37,6 +37,8 @@ The goal is not human cold email. The goal is to place MachineSignal where softw
 - Full Bounded Beta Runner JSON: https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
+- External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
+- External Sandbox Publication Drafts JSON: https://machinesignal.it/external_sandbox_publication_drafts_20260607.json
 - Marketplace API Directory Pack JSON: https://machinesignal.it/marketplace_api_directory_pack_20260606.json
 - Marketplace API Directory Pack Markdown: https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - OpenAPI: https://machinesignal.it/openapi.json

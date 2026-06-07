@@ -20,7 +20,8 @@
     "marketplace_publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
     "machine_buyer_evaluation_pack": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
     "installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
-    "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score"
+    "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+    "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
   },
   "mcp_status": {
     "hosted_public_mcp_server_live": false,
@@ -127,7 +128,13 @@
     }
   ],
   "next_publication_step": {
-    "recommended": "Submit the MCP wrapper pack to agent/MCP directories only after another no-credit validation and one sandbox buyer-machine run pass.",
-    "reason": "The wrapper is publicly discoverable now, but external registry publication should happen after the latest manifest and adapter changes are verified."
+    "recommended": "Prepare MCP/tool registry local-adapter draft from the external sandbox publication drafts. Do not claim hosted MCP is live.",
+    "reason": "Current asset is public and local-stdio capable, but hosted MCP or registry submission needs owner approval and a follow-up build decision."
+  },
+  "external_publication_policy": {
+    "mode": "local_stdio_adapter_listing_only",
+    "hosted_mcp_live": false,
+    "registry_submission_requiring_hosted_endpoint_blocked_until": "owner_approval",
+    "real_keys_publishable": false
   }
 }

@@ -1,0 +1,135 @@
+{
+  "artifact": "external_sandbox_publication_drafts",
+  "generated_at": "2026-06-07",
+  "status": "ready_for_sandbox_only_draft_preparation",
+  "public_irreversible_publication": "blocked_until_owner_approval",
+  "master_rule": "Use these drafts for machine discovery and sandbox evaluation only. Do not activate live payments, public paid plans, real API keys, invoices, legal commitments or human outbound outreach.",
+  "channels": [
+    {
+      "channel": "postman_workspace",
+      "draft_status": "prepare_as_private_or_team_workspace_first",
+      "public_visibility": "blocked_until_final_secret_scan_and_owner_approval",
+      "workspace_name": "MachineSignal Lead Opportunity Score API",
+      "workspace_summary": "Machine-first lead opportunity scoring API for CRMs, AI agents and workflow automations.",
+      "workspace_description": "MachineSignal lets automated systems create a limited sandbox key, score business domains, request beta deliverables, simulate sandbox checkout and reconcile test credits without a human sales conversation. The workspace is for sandbox evaluation only. It does not execute real payments, issue fiscal invoices or contact external targets. Latest bounded beta evidence completed 5 scores, 1 Deep Analysis and 1 gated Action Pack while payment, invoice and external contact stayed false.",
+      "import_assets": {
+        "collection": "https://machinesignal.it/postman_public_collection.json",
+        "environment_template": "https://machinesignal.it/postman_public_environment_template.json",
+        "import_pack": "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
+        "secret_scan": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+        "evidence_brief": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+        "sandbox_only_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json"
+      },
+      "blocked": [
+        "publish_real_api_key",
+        "make_workspace_public_before_owner_approval",
+        "claim_live_payment_available",
+        "include_credentials_in_environment_variables"
+      ]
+    },
+    {
+      "channel": "generic_api_directory",
+      "draft_status": "sandbox_listing_draft",
+      "listing_title": "MachineSignal Lead Opportunity Score API",
+      "short_description": "Machine-first lead opportunity scoring and spend-control API for CRMs, AI agents, RevOps workflows and software platforms.",
+      "long_description": "MachineSignal helps automated systems decide whether a business domain deserves more analysis, enrichment or CRM action. The API returns score, confidence, decision, spend policy and next machine action. If a machine has no list, it can request Target Discovery for a declared commercial objective. If a score is strong, it can request Deep Analysis as a spend-control gate. Only after Deep Analysis confirms the action gate should the machine request Action Pack, which returns CRM-ready JSON and workflow payloads. The current publication mode is sandbox-only. A machine can create a limited sandbox key and test the flow without a human sales conversation. Live payments, real invoices, external target contact and public paid plans are blocked until owner approval.",
+      "categories": [
+        "Sales Intelligence",
+        "CRM Automation",
+        "Lead Scoring",
+        "RevOps",
+        "AI Agent Tools",
+        "Workflow Automation",
+        "Data Enrichment"
+      ],
+      "core_links": {
+        "website": "https://machinesignal.it/",
+        "openapi": "https://machinesignal.it/openapi.json",
+        "product_catalog": "https://machinesignal.it/product-catalog.json",
+        "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+        "llms": "https://machinesignal.it/llms.txt",
+        "distribution_pack": "https://machinesignal.it/distribution/",
+        "evidence_brief": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html"
+      },
+      "blocked": [
+        "submit_as_paid_production_service",
+        "claim_customer_support_slas",
+        "claim_legal_or_fiscal_readiness",
+        "irreversible_directory_publication_without_owner_approval"
+      ]
+    },
+    {
+      "channel": "rapidapi_style_marketplace",
+      "draft_status": "provider_metadata_only",
+      "monetization": "disabled",
+      "api_name": "MachineSignal Lead Opportunity Score API",
+      "category": "Business / Sales Intelligence / CRM / Data Enrichment / AI Agent Tools",
+      "short_description": "Machine-first lead opportunity scoring API for CRM workflows, RevOps automations and AI agents.",
+      "pricing_state": "Sandbox-only. Public paid plans are not active. Prices remain part of the business model under test, not a live marketplace checkout.",
+      "endpoint_showcase": [
+        "GET /health",
+        "GET /machine-onboarding.json",
+        "GET /product-catalog.json",
+        "POST /v1/sandbox/customers",
+        "GET /v1/onboarding",
+        "POST /v1/lead-opportunity-score",
+        "POST /v1/purchase-intent",
+        "POST /v1/payment-test/intents",
+        "GET /v1/payment-test/reconciliation/{payment_test_id}",
+        "GET /v1/orders"
+      ],
+      "blocked": [
+        "activate_paid_plans",
+        "connect_live_checkout",
+        "publish_production_api_keys",
+        "list_as_generally_available_production_service"
+      ]
+    },
+    {
+      "channel": "mcp_agent_tool_registry",
+      "draft_status": "local_stdio_adapter_listing",
+      "hosted_mcp": "not_live",
+      "tool_name": "MachineSignal Lead Opportunity Score Tools",
+      "description": "MCP-style local adapter for CRMs, AI agents and workflow engines that want to expose MachineSignal lead scoring, product catalog, sandbox customer creation, purchase intents, order retrieval and payment-test reconciliation as callable tools.",
+      "current_transport": "local_stdio_json_rpc_adapter",
+      "public_assets": {
+        "mcp_page": "https://machinesignal.it/mcp/",
+        "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+        "tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+        "well_known_tool_manifest": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+        "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score"
+      },
+      "blocked": [
+        "claim_hosted_mcp_live",
+        "submit_to_registries_requiring_hosted_endpoint_without_owner_approval",
+        "expose_customer_keys"
+      ]
+    }
+  ],
+  "final_readiness_checklist": [
+    "distribution_readiness_monitor_ok",
+    "secret_scan_ok",
+    "openapi_postman_mcp_llms_product_catalog_and_onboarding_links_reachable",
+    "evidence_brief_linked",
+    "sandbox_only_publication_pack_linked",
+    "no_live_payment_invoice_external_contact_or_sla_claimed",
+    "owner_approval_recorded"
+  ],
+  "recommended_order": [
+    "postman_private_or_team_workspace_draft",
+    "generic_api_directory_sandbox_draft",
+    "rapidapi_style_provider_metadata_with_monetization_disabled",
+    "mcp_tool_registry_local_adapter_draft"
+  ],
+  "stop_before": [
+    "irreversible_public_publication",
+    "live_monetization",
+    "human_outreach"
+  ],
+  "public_links": {
+    "markdown": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
+    "json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
+    "sandbox_only_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
+    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
+  }
+}

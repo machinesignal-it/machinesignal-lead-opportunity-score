@@ -97,3 +97,7 @@ Proceed with sandbox-only external publication preparation.
 
 Do not proceed with live monetization, public paid plans or external human outreach yet.
 
+## Next Operational Drafts
+
+- External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
+- External Sandbox Publication Drafts JSON: https://machinesignal.it/external_sandbox_publication_drafts_20260607.json

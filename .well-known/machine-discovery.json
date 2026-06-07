@@ -81,7 +81,9 @@
     "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
     "distribution_readiness_monitor_json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
     "sandbox_only_external_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md",
-    "sandbox_only_external_publication_pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json"
+    "sandbox_only_external_publication_pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
+    "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
+    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
   },
   "local_mcp_adapter": {
     "status": "available_in_github_repo",

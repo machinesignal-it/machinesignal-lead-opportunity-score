@@ -95,7 +95,9 @@
     "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
     "distribution_readiness_monitor_json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
     "sandbox_only_external_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md",
-    "sandbox_only_external_publication_pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json"
+    "sandbox_only_external_publication_pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
+    "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
+    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
   },
   "machine_submission_summary": {
     "api_name": "MachineSignal Lead Opportunity Score API",
@@ -157,7 +159,8 @@
   "next_owner_decision": {
     "question": "Approve using the marketplace/API directory pack as the source copy for Postman, RapidAPI-style and API directory drafts?",
     "recommended_answer": "Yes for sandbox-only drafts, after verifying that no real API key is published and no live payment is claimed.",
-    "sandbox_only_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json"
+    "sandbox_only_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
+    "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
   },
   "latest_machine_buyer_evidence": {
     "status": "completed_full",

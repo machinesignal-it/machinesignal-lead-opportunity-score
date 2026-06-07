@@ -85,6 +85,8 @@ Public discovery starts here:
 - Distribution Readiness Monitor JSON: https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
+- External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
+- External Sandbox Publication Drafts JSON: https://machinesignal.it/external_sandbox_publication_drafts_20260607.json
 - Marketplace API Directory Pack: https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - Marketplace API Directory Pack JSON: https://machinesignal.it/marketplace_api_directory_pack_20260606.json
 - Marketplace Publication Execution Pack: https://machinesignal.it/marketplace_publication_execution_pack_20260606.md

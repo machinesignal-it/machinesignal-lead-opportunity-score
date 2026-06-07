@@ -73,7 +73,9 @@
     "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
     "distribution_readiness_monitor_json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
     "sandbox_only_external_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md",
-    "sandbox_only_external_publication_pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json"
+    "sandbox_only_external_publication_pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
+    "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
+    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
   },
   "products": [
     {
@@ -263,7 +265,7 @@
       "call_to_action": "Expose MachineSignal HTTP endpoints as local stdio tools for customer-controlled agents."
     }
   },
-  "next_recommended_step": "Prepare sandbox-only external publication drafts using the Sandbox-Only External Publication Pack. Do not activate live payments, real keys or public paid plans.",
+  "next_recommended_step": "Use the External Sandbox Publication Drafts bundle to prepare Postman, API directory, RapidAPI-style and MCP local-adapter drafts. Stop before public irreversible publication.",
   "latest_machine_buyer_evidence": {
     "status": "completed_full",
     "ok": true,

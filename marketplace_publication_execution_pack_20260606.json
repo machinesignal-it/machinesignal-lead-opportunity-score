@@ -40,7 +40,9 @@
     "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
     "distribution_readiness_monitor_json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
     "sandbox_only_external_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md",
-    "sandbox_only_external_publication_pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json"
+    "sandbox_only_external_publication_pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
+    "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
+    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
   },
   "channels": [
     {
@@ -169,7 +171,7 @@
     "Prefer discovery surfaces where machines and developer tools can import OpenAPI, Postman, MCP manifests or llms.txt.",
     "Record every external publication attempt, outcome and blocker."
   ],
-  "next_safe_action": "Use the sandbox-only external publication pack as the approval checklist before preparing external drafts. Keep Postman, API directory, RapidAPI-style and MCP registry work as draft/sandbox-only until owner approval.",
+  "next_safe_action": "Prepare channel-specific drafts from the External Sandbox Publication Drafts bundle. Keep them private/draft/sandbox-only and stop before public irreversible publication.",
   "latest_machine_buyer_evidence": {
     "status": "completed_full",
     "ok": true,

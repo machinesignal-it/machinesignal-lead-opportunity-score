@@ -42,6 +42,8 @@ Distribution-readiness-monitor: https://machinesignal.it/distribution_readiness_
 Distribution-readiness-monitor-json: https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json
 Sandbox-only-external-publication-pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 Sandbox-only-external-publication-pack-json: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
+External-sandbox-publication-drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
+External-sandbox-publication-drafts-json: https://machinesignal.it/external_sandbox_publication_drafts_20260607.json
 Machine-api-sandbox-test: https://machinesignal.it/machine-api-sandbox-test/
 Machine-api-sandbox-test-json: https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json
 Sandbox-buyer-kit: https://machinesignal.it/sandbox-buyer-kit/

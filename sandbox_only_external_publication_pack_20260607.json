@@ -148,7 +148,9 @@
     "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
     "marketplace_publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
-    "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json"
+    "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
+    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
   },
   "current_decision": {
     "proceed": "sandbox_only_external_publication_preparation",
@@ -156,6 +158,7 @@
       "live_monetization",
       "public_paid_plans",
       "external_human_outreach"
-    ]
+    ],
+    "next_operational_pack": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
   }
 }

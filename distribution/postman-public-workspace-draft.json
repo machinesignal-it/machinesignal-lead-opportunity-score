@@ -1,140 +1,151 @@
 {
-    "service":  "MachineSignal",
-    "version":  "2026-06-07",
-    "artifact_type":  "postman_public_workspace_draft",
-    "status":  "ready_for_public_workspace_setup_with_full_beta_evidence",
-    "recommended_channel_priority":  1,
-    "workspace":  {
-                      "suggested_name":  "MachineSignal Lead Opportunity Score API",
-                      "suggested_visibility":  "public",
-                      "suggested_summary":  "Machine-first lead opportunity scoring API for CRMs, AI agents and workflow automations.",
-                      "suggested_description":  "MachineSignal lets automated systems create a limited sandbox key, score business domains, request beta deliverables, simulate sandbox checkout and reconcile test credits without a human sales conversation. The public workspace is for sandbox evaluation only. It does not execute real payments, issue fiscal invoices or contact external targets. Latest evidence: Full bounded beta completed with 5 scores, 1 Deep Analysis and 1 gated Action Pack while payment, invoice and external contact stayed false."
-                  },
-    "import_assets":  {
-                          "postman_public_collection":  "https://machinesignal.it/postman_public_collection.json",
-                          "postman_public_environment_template":  "https://machinesignal.it/postman_public_environment_template.json",
-                          "postman_workspace_import_pack":  "https://machinesignal.it/postman_workspace_import_pack_20260606.md",
-                          "postman_workspace_import_pack_json":  "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
-                          "postman_workspace_secret_scan":  "https://machinesignal.it/postman_workspace_secret_scan_20260606.md",
-                          "postman_workspace_secret_scan_json":  "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
-                          "postman_public_collection_smoke_report":  "https://machinesignal.it/postman_public_collection_smoke_report_20260604.md",
-                          "postman_public_collection_smoke_json":  "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
-                          "mcp_wrapper":  "https://machinesignal.it/mcp/",
-                          "mcp_wrapper_pack":  "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
-                          "machine_api_sandbox_test":  "https://machinesignal.it/machine-api-sandbox-test/",
-                          "machine_api_sandbox_test_json":  "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
-                          "openapi":  "https://machinesignal.it/openapi.json",
-                          "sandbox_buyer_kit":  "https://machinesignal.it/sandbox-buyer-kit/",
-                          "sandbox_buyer_kit_json":  "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
-                          "sandbox_buyer_kit_listing":  "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
-                          "marketplace_api_directory_pack":  "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
-                          "marketplace_api_directory_pack_json":  "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
-                          "marketplace_publication_execution_pack":  "https://machinesignal.it/marketplace_publication_execution_pack_20260606.md",
-                          "marketplace_publication_execution_pack_json":  "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
-                          "machine_buyer_evaluation_pack":  "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
-                          "deep_analysis_commercial_brief":  "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
-                          "machine_onboarding":  "https://machinesignal.it/machine-onboarding.json",
-                          "product_catalog":  "https://machinesignal.it/product-catalog.json",
-                          "llms":  "https://machinesignal.it/llms.txt",
-                          "machine_buyer_evidence_brief":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
-                          "machine_buyer_evidence_brief_json":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
-                          "full_bounded_beta_runner":  "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
-                          "full_bounded_beta_runner_json":  "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json"
-                      },
-    "environment_variables":  [
-                                  {
-                                      "name":  "base_url",
-                                      "initial_value":  "https://machinesignal-api.beta-878.workers.dev",
-                                      "type":  "public"
-                                  },
-                                  {
-                                      "name":  "api_key",
-                                      "initial_value":  "",
-                                      "type":  "secret",
-                                      "note":  "Set after POST /v1/sandbox/customers. Never publish a real key."
-                                  },
-                                  {
-                                      "name":  "payment_test_id",
-                                      "initial_value":  "",
-                                      "type":  "temporary",
-                                      "note":  "Set after POST /v1/payment-test/intents."
-                                  }
-                              ],
-    "recommended_collection_order":  [
-                                         "Fetch machine onboarding manifest",
-                                         "Fetch product catalog",
-                                         "Fetch distribution channel shortlist",
-                                         "Fetch Sandbox Buyer Kit listing",
-                                         "Fetch Marketplace API Directory Pack",
-                                         "Fetch Marketplace Publication Execution Pack",
-                                         "Fetch Machine Buyer Evaluation Pack",
-                                         "Fetch Deep Analysis Commercial Brief",
-                                         "Fetch Postman Workspace Import Pack",
-                                         "Fetch Postman Public Environment Template",
-                                         "Fetch Postman Workspace Secret Scan",
-                                         "Create limited sandbox customer",
-                                         "Read authenticated onboarding",
-                                         "Score business domain",
-                                         "Order deep analysis after strong score",
-                                         "Order action pack after confirmed opportunity",
-                                         "Create payment test intent",
-                                         "Read payment test reconciliation",
-                                         "Fetch Machine Buyer Evidence Brief"
-                                     ],
-    "publication_copy":  {
-                             "headline":  "Lead opportunity scoring API built for machine buyers.",
-                             "one_liner":  "Create a sandbox key, score leads, buy beta deliverables and simulate checkout without talking to sales.",
-                             "short_pitch":  "MachineSignal is a sandbox-callable API for automated lead scoring, target discovery, Deep Analysis and CRM-ready Action Pack payloads. It is designed for CRMs, AI agents and workflow systems that need structured decisions before spending enrichment, campaign, CRM or agent budget.",
-                             "not_for":  [
-                                             "Human cold email campaigns",
-                                             "Real payment checkout during beta",
-                                             "External outreach without customer-side approval"
-                                         ]
-                         },
-    "acceptance_gates_before_public_visibility":  [
-                                                      "Postman collection imports without missing URLs.",
-                                                      "Postman public collection smoke test is passed.",
-                                                      "Sandbox customer creation returns a key.",
-                                                      "Score, purchase-intent and order retrieval work with the sandbox key.",
-                                                      "Payment-test sandbox intent and reconciliation work.",
-                                                      "Workspace text clearly says sandbox only and no real payments.",
-                                                      "Workspace includes Machine Buyer Evidence Brief and Full Beta Runner links."
-                                                  ],
-    "current_import_readiness":  {
-                                     "status":  "ready_for_private_workspace_import",
-                                     "import_pack":  "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
-                                     "environment_template":  "https://machinesignal.it/postman_public_environment_template.json",
-                                     "local_secret_scan":  "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
-                                     "blocker":  "Postman login session required before Codex can import into the account.",
-                                     "public_visibility_blocked_until":  "final in-Postman secret scan and owner approval"
-                                 },
-    "human_approval_required_for":  [
-                                        "Making the workspace public if it exposes account-level settings.",
-                                        "Adding real API keys.",
-                                        "Claiming live paid checkout availability.",
-                                        "Publishing terms, pricing or legal commitments outside sandbox."
-                                    ],
-    "latest_machine_buyer_evidence":  {
-                                          "status":  "completed_full",
-                                          "ok":  true,
-                                          "evidence_date":  "2026-06-07",
-                                          "primary_customer_interface":  "machine",
-                                          "summary":  "Full bounded private beta run completed: 5 valid scores, 1 Deep Analysis, 1 gated Action Pack, Action Pack without Deep Analysis source order blocked with HTTP 400, no real payment, no fiscal invoice and no external contact.",
-                                          "evidence_brief_html":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
-                                          "evidence_brief_markdown":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.md",
-                                          "evidence_brief_json":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
-                                          "full_runner_report":  "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
-                                          "full_runner_json":  "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
-                                          "credit_deltas":  {
-                                                                "score_pack_1k":  5,
-                                                                "deep_analysis_pack_100":  1,
-                                                                "action_pack_25":  1
-                                                            },
-                                          "safety":  {
-                                                         "real_payment_executed":  false,
-                                                         "external_contact_executed":  false,
-                                                         "real_invoice_issued":  false,
-                                                         "action_pack_without_deep_analysis_blocked":  true
-                                                     }
-                                      }
+  "service": "MachineSignal",
+  "version": "2026-06-07",
+  "artifact_type": "postman_public_workspace_draft",
+  "status": "ready_for_private_or_team_workspace_setup_public_visibility_blocked_until_owner_approval",
+  "recommended_channel_priority": 1,
+  "workspace": {
+    "suggested_name": "MachineSignal Lead Opportunity Score API",
+    "suggested_visibility": "private_or_team_before_owner_approval",
+    "suggested_summary": "Machine-first lead opportunity scoring API for CRMs, AI agents and workflow automations.",
+    "suggested_description": "MachineSignal lets automated systems create a limited sandbox key, score business domains, request beta deliverables, simulate sandbox checkout and reconcile test credits without a human sales conversation. The public workspace is for sandbox evaluation only. It does not execute real payments, issue fiscal invoices or contact external targets. Latest evidence: Full bounded beta completed with 5 scores, 1 Deep Analysis and 1 gated Action Pack while payment, invoice and external contact stayed false.",
+    "target_visibility_after_owner_approval": "public",
+    "public_visibility_gate": "final_in_postman_secret_scan_and_owner_approval"
+  },
+  "import_assets": {
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "postman_public_environment_template": "https://machinesignal.it/postman_public_environment_template.json",
+    "postman_workspace_import_pack": "https://machinesignal.it/postman_workspace_import_pack_20260606.md",
+    "postman_workspace_import_pack_json": "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
+    "postman_workspace_secret_scan": "https://machinesignal.it/postman_workspace_secret_scan_20260606.md",
+    "postman_workspace_secret_scan_json": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+    "postman_public_collection_smoke_report": "https://machinesignal.it/postman_public_collection_smoke_report_20260604.md",
+    "postman_public_collection_smoke_json": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
+    "mcp_wrapper": "https://machinesignal.it/mcp/",
+    "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+    "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
+    "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
+    "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
+    "sandbox_buyer_kit_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
+    "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
+    "marketplace_api_directory_pack_json": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+    "marketplace_publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.md",
+    "marketplace_publication_execution_pack_json": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
+    "machine_buyer_evaluation_pack": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
+    "deep_analysis_commercial_brief": "https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "machine_buyer_evidence_brief": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+    "machine_buyer_evidence_brief_json": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+    "full_bounded_beta_runner": "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
+    "full_bounded_beta_runner_json": "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
+    "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
+    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
+  },
+  "environment_variables": [
+    {
+      "name": "base_url",
+      "initial_value": "https://machinesignal-api.beta-878.workers.dev",
+      "type": "public"
+    },
+    {
+      "name": "api_key",
+      "initial_value": "",
+      "type": "secret",
+      "note": "Set after POST /v1/sandbox/customers. Never publish a real key."
+    },
+    {
+      "name": "payment_test_id",
+      "initial_value": "",
+      "type": "temporary",
+      "note": "Set after POST /v1/payment-test/intents."
+    }
+  ],
+  "recommended_collection_order": [
+    "Fetch machine onboarding manifest",
+    "Fetch product catalog",
+    "Fetch distribution channel shortlist",
+    "Fetch Sandbox Buyer Kit listing",
+    "Fetch Marketplace API Directory Pack",
+    "Fetch Marketplace Publication Execution Pack",
+    "Fetch Machine Buyer Evaluation Pack",
+    "Fetch Deep Analysis Commercial Brief",
+    "Fetch Postman Workspace Import Pack",
+    "Fetch Postman Public Environment Template",
+    "Fetch Postman Workspace Secret Scan",
+    "Create limited sandbox customer",
+    "Read authenticated onboarding",
+    "Score business domain",
+    "Order deep analysis after strong score",
+    "Order action pack after confirmed opportunity",
+    "Create payment test intent",
+    "Read payment test reconciliation",
+    "Fetch Machine Buyer Evidence Brief"
+  ],
+  "publication_copy": {
+    "headline": "Lead opportunity scoring API built for machine buyers.",
+    "one_liner": "Create a sandbox key, score leads, buy beta deliverables and simulate checkout without talking to sales.",
+    "short_pitch": "MachineSignal is a sandbox-callable API for automated lead scoring, target discovery, Deep Analysis and CRM-ready Action Pack payloads. It is designed for CRMs, AI agents and workflow systems that need structured decisions before spending enrichment, campaign, CRM or agent budget.",
+    "not_for": [
+      "Human cold email campaigns",
+      "Real payment checkout during beta",
+      "External outreach without customer-side approval"
+    ]
+  },
+  "acceptance_gates_before_public_visibility": [
+    "Postman collection imports without missing URLs.",
+    "Postman public collection smoke test is passed.",
+    "Sandbox customer creation returns a key.",
+    "Score, purchase-intent and order retrieval work with the sandbox key.",
+    "Payment-test sandbox intent and reconciliation work.",
+    "Workspace text clearly says sandbox only and no real payments.",
+    "Workspace includes Machine Buyer Evidence Brief and Full Beta Runner links."
+  ],
+  "current_import_readiness": {
+    "status": "ready_for_private_workspace_import",
+    "import_pack": "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
+    "environment_template": "https://machinesignal.it/postman_public_environment_template.json",
+    "local_secret_scan": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+    "blocker": "Postman login session required before Codex can import into the account.",
+    "public_visibility_blocked_until": "final in-Postman secret scan and owner approval"
+  },
+  "human_approval_required_for": [
+    "Making the workspace public if it exposes account-level settings.",
+    "Adding real API keys.",
+    "Claiming live paid checkout availability.",
+    "Publishing terms, pricing or legal commitments outside sandbox."
+  ],
+  "latest_machine_buyer_evidence": {
+    "status": "completed_full",
+    "ok": true,
+    "evidence_date": "2026-06-07",
+    "primary_customer_interface": "machine",
+    "summary": "Full bounded private beta run completed: 5 valid scores, 1 Deep Analysis, 1 gated Action Pack, Action Pack without Deep Analysis source order blocked with HTTP 400, no real payment, no fiscal invoice and no external contact.",
+    "evidence_brief_html": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+    "evidence_brief_markdown": "https://machinesignal.it/machine_beta_evidence_brief_20260607.md",
+    "evidence_brief_json": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+    "full_runner_report": "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
+    "full_runner_json": "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
+    "credit_deltas": {
+      "score_pack_1k": 5,
+      "deep_analysis_pack_100": 1,
+      "action_pack_25": 1
+    },
+    "safety": {
+      "real_payment_executed": false,
+      "external_contact_executed": false,
+      "real_invoice_issued": false,
+      "action_pack_without_deep_analysis_blocked": true
+    }
+  },
+  "publication_policy": {
+    "mode": "sandbox_only_draft",
+    "public_visibility_blocked_until": "owner_approval_after_final_secret_scan",
+    "live_payments_enabled": false,
+    "real_keys_publishable": false,
+    "human_outreach_allowed": false
+  }
 }
