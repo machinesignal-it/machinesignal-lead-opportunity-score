@@ -51,6 +51,8 @@ Evidence links:
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
 - External Sandbox Publication Drafts JSON: https://machinesignal.it/external_sandbox_publication_drafts_20260607.json
+- API Directory and RapidAPI Draft Checklist: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md
+- API Directory and RapidAPI Draft Checklist JSON: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json
 
 ## Marketplace-ready short description
 
@@ -98,6 +100,8 @@ lead-scoring, crm, revops, ai-agents, machine-customer, sales-intelligence, targ
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
 - External Sandbox Publication Drafts JSON: https://machinesignal.it/external_sandbox_publication_drafts_20260607.json
+- API Directory and RapidAPI Draft Checklist: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md
+- API Directory and RapidAPI Draft Checklist JSON: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json
 - Deep Analysis Commercial Brief: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
 - Postman collection: https://machinesignal.it/postman_public_collection.json
 - MCP manifest: https://machinesignal.it/mcp-tool-manifest.json

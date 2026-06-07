@@ -2,7 +2,7 @@
   "service": "MachineSignal",
   "version": "2026-06-06",
   "artifact_type": "rapidapi_provider_setup_checklist",
-  "recommended_mode": "draft_or_unpublished",
+  "recommended_mode": "draft_or_unpublished_monetization_disabled",
   "do_not_publish_monetized_until": [
     "7-day sandbox metrics reviewed",
     "abuse limits confirmed",
@@ -34,7 +34,9 @@
     "marketplace_publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
     "machine_buyer_evaluation_pack": "https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json",
     "listing_metadata_url": "https://machinesignal.it/distribution/rapidapi-listing.json",
-    "public_postman_collection": "https://machinesignal.it/postman_public_collection.json"
+    "public_postman_collection": "https://machinesignal.it/postman_public_collection.json",
+    "api_directory_rapidapi_draft_checklist": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md",
+    "api_directory_rapidapi_draft_checklist_json": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json"
   },
   "endpoint_groups": [
     {
@@ -152,5 +154,6 @@
     "external_contact_executed_by_machinesignal": false,
     "action_pack_sends_email": false,
     "requires_customer_compliance_gate_before_external_action": true
-  }
+  },
+  "current_draft_checklist": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json"
 }

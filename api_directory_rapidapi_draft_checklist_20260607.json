@@ -1,0 +1,129 @@
+{
+  "artifact": "api_directory_rapidapi_draft_checklist",
+  "generated_at": "2026-06-07",
+  "status": "ready_for_sandbox_only_draft_preparation",
+  "external_submission": "blocked_until_owner_approval",
+  "monetization": "disabled",
+  "objective": "Prepare listing fields for API directories and RapidAPI-style marketplaces so machines, API tools, CRMs and AI agents can discover MachineSignal and evaluate it in sandbox mode.",
+  "master_rules": [
+    "use_only_for_draft_or_sandbox_listing_preparation",
+    "keep_monetization_disabled",
+    "do_not_publish_paid_plans",
+    "do_not_publish_production_api_keys",
+    "do_not_claim_live_payments_available",
+    "do_not_submit_irreversibly_without_owner_approval",
+    "do_not_contact_human_prospects_or_target_companies"
+  ],
+  "generic_api_directory_fields": {
+    "listing_title": "MachineSignal Lead Opportunity Score API",
+    "short_description": "Machine-first lead opportunity scoring and spend-control API for CRMs, AI agents, RevOps workflows and software platforms.",
+    "categories": [
+      "Sales Intelligence",
+      "CRM Automation",
+      "Lead Scoring",
+      "RevOps",
+      "AI Agent Tools",
+      "Workflow Automation",
+      "Data Enrichment"
+    ],
+    "primary_customer_interface": "Machine-first: CRM systems, AI agents, workflows and API clients.",
+    "human_role": "Supervision, approval and audit only.",
+    "website": "https://machinesignal.it/",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "postman_collection": "https://machinesignal.it/postman_public_collection.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "evidence_brief": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+    "sandbox_only_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
+    "draft_source_json": "https://machinesignal.it/distribution/api-directory-submission.json",
+    "long_description": "MachineSignal helps automated systems decide whether a business domain deserves more analysis, enrichment or CRM action. The API returns score, confidence, decision, spend policy and next machine action. If a machine has no list, it can request Target Discovery for a declared commercial objective. If a score is strong, it can request Deep Analysis as a spend-control gate. Only after Deep Analysis confirms the action gate should the machine request Action Pack, which returns CRM-ready JSON and workflow payloads. Current publication mode is sandbox-only. A machine can create a limited sandbox key and test the flow without a human sales conversation. Live payments, real invoices, external target contact and public paid plans are blocked until owner approval."
+  },
+  "rapidapi_style_provider_fields": {
+    "api_name": "MachineSignal Lead Opportunity Score API",
+    "api_category": "Business / Sales Intelligence / CRM / Data Enrichment / AI Agent Tools",
+    "api_visibility": "private_draft_or_unpublished",
+    "monetization": "disabled",
+    "pricing_plans": "do_not_create_public_paid_plans_yet",
+    "base_url": "https://machinesignal-api.beta-878.workers.dev",
+    "authentication": "API key in X-API-Key; idempotency with Idempotency-Key",
+    "public_docs": "https://machinesignal.it/sandbox-buyer-kit/",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "provider_setup_json": "https://machinesignal.it/distribution/rapidapi-provider-setup.json",
+    "listing_json": "https://machinesignal.it/distribution/rapidapi-listing.json",
+    "short_description": "Machine-first lead opportunity scoring API for CRM workflows, RevOps automations and AI agents.",
+    "long_description": "MachineSignal helps automated systems decide when a business domain is worth additional budget. The API is built for machine customers: CRM systems, RevOps workflows, enrichment pipelines and AI agents. A machine can discover the API, create a limited sandbox key, score domains, request Target Discovery when no list exists, request Deep Analysis as a spend-control gate, request Action Pack only after Deep Analysis confirms the gates, read usage, create beta purchase intents and retrieve structured JSON deliveries. The current listing should remain draft-only with monetization disabled. The bounded beta evidence validates the machine-buyer flow under limited credits, with no real payment, no fiscal invoice and no external target contact."
+  },
+  "endpoint_groups": {
+    "public_discovery": [
+      "GET /health",
+      "GET /machine-onboarding.json",
+      "GET /product-catalog.json",
+      "GET /openapi.json",
+      "GET /postman_collection.json"
+    ],
+    "sandbox_onboarding": [
+      "POST /v1/sandbox/customers"
+    ],
+    "customer_api": [
+      "GET /v1/onboarding",
+      "GET /v1/usage",
+      "POST /v1/lead-opportunity-score",
+      "POST /v1/purchase-intent",
+      "GET /v1/orders",
+      "GET /v1/orders/{order_intent_id}",
+      "POST /v1/payment-test/intents",
+      "GET /v1/payment-test/reconciliation/{payment_test_id}"
+    ]
+  },
+  "tags": [
+    "lead-scoring",
+    "crm",
+    "revops",
+    "ai-agents",
+    "machine-customer",
+    "sales-intelligence",
+    "target-discovery",
+    "deep-analysis",
+    "action-pack",
+    "openapi",
+    "postman",
+    "mcp",
+    "llms-txt"
+  ],
+  "draft_pricing_treatment": {
+    "public_paid_plans_active": false,
+    "recommended_wording": "Pricing model under beta validation. Sandbox evaluation only. Public paid plans and live checkout are not enabled.",
+    "create_marketplace_pricing_tiers": false
+  },
+  "submission_gate": [
+    "distribution_readiness_monitor_ok",
+    "secret_scan_ok",
+    "public_docs_state_sandbox_only",
+    "no_production_key_present",
+    "monetization_remains_disabled",
+    "legal_fiscal_readiness_reviewed",
+    "owner_approval_recorded"
+  ],
+  "blocked_actions": [
+    "irreversible_public_listing_submission",
+    "enable_monetization",
+    "create_paid_marketplace_plans",
+    "connect_live_checkout",
+    "publish_production_keys",
+    "claim_production_availability",
+    "promise_slas_refunds_or_legal_terms",
+    "contact_human_prospects",
+    "contact_target_companies"
+  ],
+  "public_links": {
+    "markdown": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md",
+    "json": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json",
+    "api_directory_submission": "https://machinesignal.it/distribution/api-directory-submission.json",
+    "rapidapi_listing": "https://machinesignal.it/distribution/rapidapi-listing.json",
+    "rapidapi_provider_setup": "https://machinesignal.it/distribution/rapidapi-provider-setup.json",
+    "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
+    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
+  },
+  "current_recommendation": "Prepare fields as drafts only. Stop before final public submission or monetization."
+}

@@ -82,6 +82,7 @@ The current publication mode is sandbox-only. A machine can create a limited san
 - llms.txt: https://machinesignal.it/llms.txt
 - Distribution pack: https://machinesignal.it/distribution/
 - Evidence brief: https://machinesignal.it/machine_beta_evidence_brief_20260607.html
+- API Directory/RapidAPI checklist: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json
 
 ### Blocked
 
@@ -111,6 +112,10 @@ Machine-first lead opportunity scoring API for CRM workflows, RevOps automations
 ### Pricing State
 
 Sandbox-only. Public paid plans are not active. Prices remain part of the business model under test, not a live marketplace checkout.
+
+### Draft Checklist
+
+https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json
 
 ### Endpoint Showcase
 

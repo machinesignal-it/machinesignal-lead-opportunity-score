@@ -106,6 +106,8 @@ Public discovery starts here:
 - Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
 - Postman Public Collection Smoke JSON: https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
+- API Directory and RapidAPI Draft Checklist: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md
+- API Directory and RapidAPI Draft Checklist JSON: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json
 - Sandbox Buyer Kit: https://machinesignal.it/sandbox-buyer-kit/
 - Sandbox Buyer Kit JSON: https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
 - Sandbox Buyer Kit Distribution Listing: https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json

@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-07T10:45:28.9475425Z",
+    "generated_at":  "2026-06-07T11:45:53.2483393Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  29,
-    "checks_total":  112,
+    "resources_checked":  31,
+    "checks_total":  119,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -20,7 +20,7 @@
                    {
                        "name":  "distribution_index_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=12409"
+                       "details":  "HTTP 200, bytes=12882"
                    },
                    {
                        "name":  "distribution_index_contains_expected_marker",
@@ -120,7 +120,7 @@
                    {
                        "name":  "sandbox_only_external_publication_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=7407"
+                       "details":  "HTTP 200, bytes=7664"
                    },
                    {
                        "name":  "sandbox_only_external_publication_pack_json_json_valid",
@@ -140,7 +140,7 @@
                    {
                        "name":  "external_sandbox_publication_drafts_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=6862"
+                       "details":  "HTTP 200, bytes=7076"
                    },
                    {
                        "name":  "external_sandbox_publication_drafts_md_contains_expected_marker",
@@ -155,7 +155,7 @@
                    {
                        "name":  "external_sandbox_publication_drafts_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=8080"
+                       "details":  "HTTP 200, bytes=8549"
                    },
                    {
                        "name":  "external_sandbox_publication_drafts_json_json_valid",
@@ -173,9 +173,44 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "api_directory_rapidapi_draft_checklist_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=6325"
+                   },
+                   {
+                       "name":  "api_directory_rapidapi_draft_checklist_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Generic API Directory Fields"
+                   },
+                   {
+                       "name":  "api_directory_rapidapi_draft_checklist_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "api_directory_rapidapi_draft_checklist_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=7141"
+                   },
+                   {
+                       "name":  "api_directory_rapidapi_draft_checklist_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "api_directory_rapidapi_draft_checklist_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=draft_pricing_treatment"
+                   },
+                   {
+                       "name":  "api_directory_rapidapi_draft_checklist_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=9178"
+                       "details":  "HTTP 200, bytes=9680"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_md_contains_expected_marker",
@@ -190,7 +225,7 @@
                    {
                        "name":  "marketplace_api_directory_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14296"
+                       "details":  "HTTP 200, bytes=14553"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_json_json_valid",
@@ -210,7 +245,7 @@
                    {
                        "name":  "marketplace_publication_execution_pack_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=11171"
+                       "details":  "HTTP 200, bytes=11295"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_md_contains_expected_marker",
@@ -225,7 +260,7 @@
                    {
                        "name":  "marketplace_publication_execution_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=12722"
+                       "details":  "HTTP 200, bytes=12979"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_json_json_valid",
@@ -245,7 +280,7 @@
                    {
                        "name":  "api_directory_submission_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=8202"
+                       "details":  "HTTP 200, bytes=8667"
                    },
                    {
                        "name":  "api_directory_submission_json_valid",
@@ -265,7 +300,7 @@
                    {
                        "name":  "rapidapi_listing_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=10785"
+                       "details":  "HTTP 200, bytes=11250"
                    },
                    {
                        "name":  "rapidapi_listing_json_valid",
@@ -285,7 +320,7 @@
                    {
                        "name":  "marketplace_submission_pack_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14049"
+                       "details":  "HTTP 200, bytes=14306"
                    },
                    {
                        "name":  "marketplace_submission_pack_json_valid",
@@ -400,7 +435,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=13034"
+                       "details":  "HTTP 200, bytes=13291"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -420,12 +455,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14416"
+                       "details":  "HTTP 200, bytes=14667"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Postman Private Workspace Checklist JSON"
+                       "details":  "marker=API Directory and RapidAPI Draft Checklist JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -435,12 +470,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=6428"
+                       "details":  "HTTP 200, bytes=6667"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Postman-private-workspace-checklist-json"
+                       "details":  "marker=API-directory-RapidAPI-draft-checklist-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -450,12 +485,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14152"
+                       "details":  "HTTP 200, bytes=14370"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=postman_private_workspace_checklist_20260607.json"
+                       "details":  "marker=api_directory_rapidapi_draft_checklist_20260607.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",

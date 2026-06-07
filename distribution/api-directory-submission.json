@@ -60,7 +60,9 @@
     "full_bounded_beta_runner": "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
     "full_bounded_beta_runner_json": "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
     "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
-    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
+    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
+    "api_directory_rapidapi_draft_checklist": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md",
+    "api_directory_rapidapi_draft_checklist_json": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json"
   },
   "sandbox_test_path": [
     "GET /mcp/machinesignal-mcp-wrapper.json",
@@ -135,6 +137,8 @@
     "irreversible_submission_blocked_until": "owner_approval",
     "live_payments_enabled": false,
     "public_paid_plans_enabled": false,
-    "human_outreach_allowed": false
-  }
+    "human_outreach_allowed": false,
+    "checklist": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json"
+  },
+  "current_draft_checklist": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json"
 }
