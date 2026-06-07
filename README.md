@@ -108,6 +108,8 @@ Public discovery starts here:
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - API Directory and RapidAPI Draft Checklist: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md
 - API Directory and RapidAPI Draft Checklist JSON: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json
+- MCP Tool Registry Draft Checklist: https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md
+- MCP Tool Registry Draft Checklist JSON: https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json
 - Sandbox Buyer Kit: https://machinesignal.it/sandbox-buyer-kit/
 - Sandbox Buyer Kit JSON: https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
 - Sandbox Buyer Kit Distribution Listing: https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json

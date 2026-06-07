@@ -1,0 +1,118 @@
+{
+  "artifact": "mcp_tool_registry_draft_checklist",
+  "generated_at": "2026-06-07",
+  "status": "ready_for_sandbox_only_draft_preparation",
+  "external_submission": "blocked_until_owner_approval",
+  "hosted_mcp_live": false,
+  "monetization": "disabled",
+  "objective": "Prepare MachineSignal for MCP-style clients, AI agent tool registries and local tool catalogs where machines can discover, install and test the service as a tool.",
+  "master_rules": [
+    "publish_only_draft_sandbox_or_local_adapter_metadata",
+    "keep_public_hosted_mcp_marked_not_live",
+    "use_local_stdio_adapter_as_current_implementation",
+    "do_not_publish_production_api_keys",
+    "do_not_enable_payments_or_paid_plans",
+    "do_not_claim_sla_legal_fiscal_or_production_readiness",
+    "do_not_contact_human_prospects_or_target_companies",
+    "stop_before_irreversible_external_registry_publication_without_owner_approval"
+  ],
+  "registry_listing_fields": {
+    "tool_name": "MachineSignal Lead Opportunity Score",
+    "short_description": "Machine-first lead scoring, target discovery and spend-control tool for CRMs, AI agents and automated RevOps workflows.",
+    "primary_user": "Machine: CRM, AI agent, workflow, enrichment pipeline or software buyer.",
+    "human_role": "Owner supervision, approval and audit only.",
+    "website": "https://machinesignal.it/",
+    "tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "well_known_tool_manifest": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+    "wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+    "installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+    "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+    "local_adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
+    "client_config_example": "mcp_adapter/mcp_client_config.example.json",
+    "transport_now": "stdio_json_rpc",
+    "hosted_mcp_live": false,
+    "sandbox_endpoint": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "evidence_brief": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json"
+  },
+  "registry_long_description": "MachineSignal exposes lead opportunity scoring, Target Discovery, Deep Analysis, Action Pack, orders, usage and payment-test reconciliation as machine-readable tools. The current implementation is designed for machine customers: CRMs, AI agents, workflow automations and enrichment pipelines. A machine can read the manifest, create a limited sandbox customer, request target discovery when it has no list, score a domain, buy only the recommended add-on in beta mode and verify usage without a human sales conversation. The current MCP mode is local-adapter first. The customer machine runs the stdio adapter from the GitHub repository and the adapter calls the public HTTP API. Hosted public MCP is not live yet and must remain marked as a later decision.",
+  "tool_groups": {
+    "public_discovery_tools": [
+      "get_product_catalog",
+      "get_machine_onboarding",
+      "get_marketplace_api_directory_pack",
+      "get_marketplace_publication_execution_pack",
+      "get_machine_api_sandbox_test",
+      "get_machine_buyer_evidence_brief",
+      "get_mcp_tool_registry_draft_checklist"
+    ],
+    "sandbox_buyer_tools": [
+      "create_sandbox_customer",
+      "get_usage",
+      "score_lead_opportunity",
+      "create_purchase_intent",
+      "list_orders",
+      "get_order",
+      "create_payment_test_intent",
+      "reconcile_payment_test"
+    ]
+  },
+  "spend_control_rule": [
+    "read_catalog_and_onboarding",
+    "create_sandbox_customer",
+    "request_target_discovery_only_if_no_lead_list_exists",
+    "score_discovered_or_provided_target",
+    "request_deep_analysis_only_if_score_and_confidence_pass_gate",
+    "request_action_pack_only_after_deep_analysis_confirms_action_gate",
+    "read_usage_and_orders_after_each_paid_beta_intent"
+  ],
+  "registry_tags": [
+    "mcp",
+    "ai-agent-tool",
+    "tool-registry",
+    "lead-scoring",
+    "crm",
+    "revops",
+    "machine-customer",
+    "target-discovery",
+    "deep-analysis",
+    "action-pack",
+    "spend-control",
+    "openapi",
+    "llms-txt"
+  ],
+  "submission_gate": [
+    "distribution_readiness_monitor_ok",
+    "secret_scan_ok",
+    "manifest_and_well_known_manifest_reachable",
+    "local_adapter_installation_validation_reviewed",
+    "hosted_mcp_still_marked_not_live_unless_explicitly_approved",
+    "no_production_api_key_included",
+    "monetization_remains_disabled_in_registry_copy",
+    "legal_fiscal_readiness_reviewed",
+    "owner_approval_recorded"
+  ],
+  "blocked_actions": [
+    "publish_hosted_mcp_endpoint_as_live",
+    "submit_to_external_registry_irreversibly",
+    "publish_production_api_keys",
+    "enable_paid_plans_or_live_checkout",
+    "claim_enterprise_sla_support_sla_legal_readiness_or_fiscal_readiness",
+    "contact_human_prospects",
+    "contact_target_companies",
+    "send_external_emails_as_primary_distribution",
+    "make_real_payments_or_generate_fiscal_invoices"
+  ],
+  "public_links": {
+    "markdown": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md",
+    "json": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
+    "tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "well_known_tool_manifest": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+    "wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+    "installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
+  },
+  "current_recommendation": "Prepare MCP/tool-registry fields as draft metadata only. Keep the current implementation local-adapter first and stop before public hosted MCP or irreversible external publication."
+}

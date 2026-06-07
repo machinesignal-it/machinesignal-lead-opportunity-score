@@ -325,5 +325,10 @@
       "external_human_outreach",
       "legal_fiscal_or_contractual_commitments"
     ]
-  }
+  },
+  "public_links": {
+    "mcp_tool_registry_draft_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md",
+    "mcp_tool_registry_draft_checklist_json": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
+  },
+  "current_mcp_tool_registry_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
 }

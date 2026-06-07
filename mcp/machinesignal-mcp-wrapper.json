@@ -136,5 +136,10 @@
     "hosted_mcp_live": false,
     "registry_submission_requiring_hosted_endpoint_blocked_until": "owner_approval",
     "real_keys_publishable": false
-  }
+  },
+  "public_links": {
+    "mcp_tool_registry_draft_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md",
+    "mcp_tool_registry_draft_checklist_json": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
+  },
+  "current_mcp_tool_registry_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
 }

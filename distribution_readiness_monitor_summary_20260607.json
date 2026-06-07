@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-07T11:45:53.2483393Z",
+    "generated_at":  "2026-06-07T12:29:32.7371982Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  31,
-    "checks_total":  119,
+    "resources_checked":  33,
+    "checks_total":  126,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -20,7 +20,7 @@
                    {
                        "name":  "distribution_index_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=12882"
+                       "details":  "HTTP 200, bytes=13460"
                    },
                    {
                        "name":  "distribution_index_contains_expected_marker",
@@ -120,7 +120,7 @@
                    {
                        "name":  "sandbox_only_external_publication_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=7664"
+                       "details":  "HTTP 200, bytes=8018"
                    },
                    {
                        "name":  "sandbox_only_external_publication_pack_json_json_valid",
@@ -155,7 +155,7 @@
                    {
                        "name":  "external_sandbox_publication_drafts_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=8549"
+                       "details":  "HTTP 200, bytes=8903"
                    },
                    {
                        "name":  "external_sandbox_publication_drafts_json_json_valid",
@@ -208,9 +208,44 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "mcp_tool_registry_draft_checklist_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=5569"
+                   },
+                   {
+                       "name":  "mcp_tool_registry_draft_checklist_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Registry Listing Fields"
+                   },
+                   {
+                       "name":  "mcp_tool_registry_draft_checklist_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "mcp_tool_registry_draft_checklist_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=6202"
+                   },
+                   {
+                       "name":  "mcp_tool_registry_draft_checklist_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "mcp_tool_registry_draft_checklist_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=hosted_mcp_live"
+                   },
+                   {
+                       "name":  "mcp_tool_registry_draft_checklist_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=9680"
+                       "details":  "HTTP 200, bytes=10126"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_md_contains_expected_marker",
@@ -225,7 +260,7 @@
                    {
                        "name":  "marketplace_api_directory_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14553"
+                       "details":  "HTTP 200, bytes=14931"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_json_json_valid",
@@ -245,7 +280,7 @@
                    {
                        "name":  "marketplace_publication_execution_pack_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=11295"
+                       "details":  "HTTP 200, bytes=11499"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_md_contains_expected_marker",
@@ -260,7 +295,7 @@
                    {
                        "name":  "marketplace_publication_execution_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=12979"
+                       "details":  "HTTP 200, bytes=13357"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_json_json_valid",
@@ -320,7 +355,7 @@
                    {
                        "name":  "marketplace_submission_pack_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14306"
+                       "details":  "HTTP 200, bytes=14684"
                    },
                    {
                        "name":  "marketplace_submission_pack_json_valid",
@@ -395,7 +430,7 @@
                    {
                        "name":  "mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=40123"
+                       "details":  "HTTP 200, bytes=22357"
                    },
                    {
                        "name":  "mcp_tool_manifest_json_valid",
@@ -415,7 +450,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=40123"
+                       "details":  "HTTP 200, bytes=22357"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_json_valid",
@@ -435,7 +470,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=13291"
+                       "details":  "HTTP 200, bytes=13648"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -445,7 +480,7 @@
                    {
                        "name":  "well_known_machine_discovery_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=external_sandbox_publication_drafts_json"
+                       "details":  "marker=mcp_tool_registry_draft_checklist_json"
                    },
                    {
                        "name":  "well_known_machine_discovery_secret_scan",
@@ -455,12 +490,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14667"
+                       "details":  "HTTP 200, bytes=14890"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=API Directory and RapidAPI Draft Checklist JSON"
+                       "details":  "marker=MCP Tool Registry Draft Checklist JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -470,12 +505,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=6667"
+                       "details":  "HTTP 200, bytes=6886"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=API-directory-RapidAPI-draft-checklist-json"
+                       "details":  "marker=MCP-tool-registry-draft-checklist-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -485,12 +520,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14370"
+                       "details":  "HTTP 200, bytes=14578"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=api_directory_rapidapi_draft_checklist_20260607.json"
+                       "details":  "marker=mcp_tool_registry_draft_checklist_20260607.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",

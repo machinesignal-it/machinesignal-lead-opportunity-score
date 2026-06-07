@@ -87,7 +87,9 @@
     "postman_private_workspace_checklist": "https://machinesignal.it/postman_private_workspace_checklist_20260607.md",
     "postman_private_workspace_checklist_json": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json",
     "api_directory_rapidapi_draft_checklist": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md",
-    "api_directory_rapidapi_draft_checklist_json": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json"
+    "api_directory_rapidapi_draft_checklist_json": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json",
+    "mcp_tool_registry_draft_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md",
+    "mcp_tool_registry_draft_checklist_json": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
   },
   "local_mcp_adapter": {
     "status": "available_in_github_repo",
@@ -143,7 +145,7 @@
     "ok": true,
     "mode": "NoWrite",
     "evidence_date": "2026-06-07",
-    "checks_total": 91,
+    "checks_total": 119,
     "checks_failed": 0,
     "write_calls_executed": 0,
     "post_calls_executed": 0,
@@ -169,6 +171,7 @@
       "irreversible_external_publication",
       "external_human_outreach",
       "legal_fiscal_or_contractual_commitments"
-    ]
+    ],
+    "current_mcp_tool_registry_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
   }
 }

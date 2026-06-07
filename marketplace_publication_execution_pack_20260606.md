@@ -42,6 +42,7 @@ The goal is not human cold email. The goal is to place MachineSignal where softw
 - Marketplace API Directory Pack JSON: https://machinesignal.it/marketplace_api_directory_pack_20260606.json
 - Marketplace API Directory Pack Markdown: https://machinesignal.it/marketplace_api_directory_pack_20260606.md
 - API Directory and RapidAPI Draft Checklist: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json
+- MCP Tool Registry Draft Checklist: https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json
 - OpenAPI: https://machinesignal.it/openapi.json
 - Postman collection: https://machinesignal.it/postman_public_collection.json
 - Postman environment template: https://machinesignal.it/postman_public_environment_template.json
@@ -183,6 +184,7 @@ Use the local stdio adapter and public tool manifest now. Hosted public MCP endp
 - Tool name: `MachineSignal Lead Opportunity Score`
 - Manifest: `https://machinesignal.it/mcp-tool-manifest.json`
 - Wrapper pack: `https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json`
+- Draft checklist: `https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json`
 - Repository: `https://github.com/machinesignal-it/machinesignal-lead-opportunity-score`
 - Transport now: local stdio adapter.
 - Hosted MCP live: false.

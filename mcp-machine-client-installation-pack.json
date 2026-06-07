@@ -92,5 +92,10 @@
     "latest_smoke_test_report": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score/blob/main/mcp_adapter_smoke_test_readout_20260603.md",
     "latest_machine_buyer_agent_report": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score/blob/main/mcp_machine_buyer_agent_readout_20260603.md",
     "latest_installation_validation_report": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score/blob/main/mcp_client_installation_validation_readout_20260603.md"
-  }
+  },
+  "public_links": {
+    "mcp_tool_registry_draft_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md",
+    "mcp_tool_registry_draft_checklist_json": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
+  },
+  "current_mcp_tool_registry_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
 }
