@@ -13,6 +13,8 @@ Useful endpoints:
 - GET /machine-onboarding.json
 - GET /product-catalog.json
 - GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
+- GET https://machinesignal.it/dentists-beta-machine-buyer-pack.json
+- GET https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json
 - GET https://machinesignal.it/distribution/api-directory-submission.json
 - GET https://machinesignal.it/distribution/rapidapi-listing.json
 - GET https://machinesignal.it/distribution/rapidapi-provider-setup.json
@@ -64,6 +66,8 @@ Three machine buying flows:
 Public demos for software, agents and partners:
 - Machine Discovery Pack: https://machinesignal.it/machine-discovery/
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
+- Dentists Beta Machine Buyer Pack JSON: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
+- MCP Wrapper Pack JSON: https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json
 - Technical Distribution Pack: https://machinesignal.it/distribution/
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
 - RapidAPI Listing JSON: https://machinesignal.it/distribution/rapidapi-listing.json
