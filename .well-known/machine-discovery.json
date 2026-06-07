@@ -89,7 +89,9 @@
     "api_directory_rapidapi_draft_checklist": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md",
     "api_directory_rapidapi_draft_checklist_json": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json",
     "mcp_tool_registry_draft_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md",
-    "mcp_tool_registry_draft_checklist_json": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
+    "mcp_tool_registry_draft_checklist_json": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
+    "machine_discovery_full_simulation": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
+    "machine_discovery_full_simulation_json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json"
   },
   "local_mcp_adapter": {
     "status": "available_in_github_repo",
@@ -173,5 +175,21 @@
       "legal_fiscal_or_contractual_commitments"
     ],
     "current_mcp_tool_registry_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
+  },
+  "latest_machine_discovery_full_simulation": {
+    "status": "completed_full_machine_discovery",
+    "ok": true,
+    "evidence_date": "2026-06-07",
+    "machine_customer_mode": "machine_without_starting_list",
+    "write_calls_executed": 3,
+    "post_calls_executed": 3,
+    "first_product_selected": "target_discovery",
+    "recommended_next_product": "nurture_signal",
+    "score": 74,
+    "score_decision": "nurture",
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "report": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
+    "json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json"
   }
 }

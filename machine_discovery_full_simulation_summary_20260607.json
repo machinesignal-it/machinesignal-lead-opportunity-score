@@ -1,0 +1,184 @@
+{
+    "artifact":  "machine_discovery_full_simulation",
+    "generated_at":  "2026-06-07T14:00:58.9919185Z",
+    "public_site":  "https://machinesignal.it",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "status":  "completed_full_machine_discovery",
+    "ok":  true,
+    "machine_customer_mode":  "machine_without_starting_list",
+    "write_calls_executed":  3,
+    "post_calls_executed":  3,
+    "sandbox":  {
+                    "http_status":  200,
+                    "customer_id":  "sandbox_1989bb19_mq3uo2ng",
+                    "api_key_returned":  true,
+                    "api_key_published":  false
+                },
+    "discovery":  {
+                      "product_catalog":  "https://machinesignal.it/product-catalog.json",
+                      "machine_onboarding":  "https://machinesignal.it/machine-onboarding.json",
+                      "openapi":  "https://machinesignal.it/openapi.json",
+                      "postman_collection":  "https://machinesignal.it/postman_collection.json",
+                      "mcp_tool_registry_draft_checklist":  "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
+                  },
+    "target_discovery":  {
+                             "http_status":  200,
+                             "status":  "accepted_beta_order_intent",
+                             "product_code":  "target_discovery",
+                             "order_intent_id":  "ord_a7d3fc85",
+                             "delivery_type":  "target_discovery_precheck",
+                             "sample_target_found":  true,
+                             "real_payment_executed":  false,
+                             "external_contact_executed":  false
+                         },
+    "score":  {
+                  "http_status":  200,
+                  "domain":  "dentists-and-odontoiatric-clinics-lombardia-candidate-01.example",
+                  "request_id":  "machine-discovery-full-score-20260607160058",
+                  "opportunity_score":  74,
+                  "confidence":  0.66,
+                  "decision":  "nurture",
+                  "commercial_strength_level":  "medium",
+                  "next_product":  "nurture_signal"
+              },
+    "decision":  {
+                     "first_product_selected":  "target_discovery",
+                     "recommended_next_product":  "nurture_signal",
+                     "recommended_next_action":  null,
+                     "deep_analysis_purchased":  false
+                 },
+    "orders":  {
+                   "http_status":  200,
+                   "count":  1,
+                   "products":  [
+                                    "target_discovery"
+                                ]
+               },
+    "usage":  {
+                  "before_status":  200,
+                  "after_status":  200
+              },
+    "safety":  {
+                   "real_payment_executed":  false,
+                   "external_contact_executed":  false,
+                   "real_invoice_issued":  false
+               },
+    "checks":  [
+                   {
+                       "name":  "llms_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "llms_exposes_machine_discovery",
+                       "ok":  true,
+                       "details":  "llms contains well-known discovery link."
+                   },
+                   {
+                       "name":  "llms_exposes_mcp_registry_checklist",
+                       "ok":  true,
+                       "details":  "llms contains MCP/tool-registry checklist."
+                   },
+                   {
+                       "name":  "well_known_machine_discovery_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "well_known_machine_discovery_primary_machine",
+                       "ok":  true,
+                       "details":  "primary_customer_interface=machine"
+                   },
+                   {
+                       "name":  "discovery_link_product_catalog",
+                       "ok":  true,
+                       "details":  "product_catalog=https://machinesignal.it/product-catalog.json"
+                   },
+                   {
+                       "name":  "discovery_link_machine_onboarding",
+                       "ok":  true,
+                       "details":  "machine_onboarding=https://machinesignal.it/machine-onboarding.json"
+                   },
+                   {
+                       "name":  "discovery_link_openapi",
+                       "ok":  true,
+                       "details":  "openapi=https://machinesignal.it/openapi.json"
+                   },
+                   {
+                       "name":  "discovery_link_mcp_tool_registry_draft_checklist",
+                       "ok":  true,
+                       "details":  "mcp_tool_registry_draft_checklist=https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json"
+                   },
+                   {
+                       "name":  "product_catalog_valid",
+                       "ok":  true,
+                       "details":  "Target Discovery product_code=target_discovery"
+                   },
+                   {
+                       "name":  "onboarding_valid",
+                       "ok":  true,
+                       "details":  "onboarding HTTP 200"
+                   },
+                   {
+                       "name":  "openapi_valid",
+                       "ok":  true,
+                       "details":  "OpenAPI exposes sandbox customers."
+                   },
+                   {
+                       "name":  "postman_valid",
+                       "ok":  true,
+                       "details":  "Postman collection exposes score request."
+                   },
+                   {
+                       "name":  "mcp_checklist_valid",
+                       "ok":  true,
+                       "details":  "hosted_mcp_live=False"
+                   },
+                   {
+                       "name":  "machine_no_list_first_product",
+                       "ok":  true,
+                       "details":  "first_product=target_discovery"
+                   },
+                   {
+                       "name":  "sandbox_created",
+                       "ok":  true,
+                       "details":  "HTTP 200, key_returned=True"
+                   },
+                   {
+                       "name":  "target_discovery_beta_order_created",
+                       "ok":  true,
+                       "details":  "HTTP 200, order=ord_a7d3fc85"
+                   },
+                   {
+                       "name":  "target_discovery_sample_available",
+                       "ok":  true,
+                       "details":  "sample_target_found=True"
+                   },
+                   {
+                       "name":  "score_created",
+                       "ok":  true,
+                       "details":  "HTTP 200, score=74"
+                   },
+                   {
+                       "name":  "machine_selects_next_service",
+                       "ok":  true,
+                       "details":  "next_product=nurture_signal"
+                   },
+                   {
+                       "name":  "no_real_payment",
+                       "ok":  true,
+                       "details":  "real_payment_executed=False"
+                   },
+                   {
+                       "name":  "no_external_contact",
+                       "ok":  true,
+                       "details":  "external_contact_executed=False"
+                   },
+                   {
+                       "name":  "write_budget_respected",
+                       "ok":  true,
+                       "details":  "write_calls=3"
+                   }
+               ],
+    "blocked_reason":  null
+}

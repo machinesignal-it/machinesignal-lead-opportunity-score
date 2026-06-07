@@ -55,6 +55,8 @@ Evidence links:
 - API Directory and RapidAPI Draft Checklist JSON: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json
 - MCP Tool Registry Draft Checklist: https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md
 - MCP Tool Registry Draft Checklist JSON: https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json
+- Machine Discovery Full Simulation: https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md
+- Machine Discovery Full Simulation JSON: https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json
 
 ## Marketplace-ready short description
 
@@ -106,6 +108,8 @@ lead-scoring, crm, revops, ai-agents, machine-customer, sales-intelligence, targ
 - API Directory and RapidAPI Draft Checklist JSON: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json
 - MCP Tool Registry Draft Checklist: https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md
 - MCP Tool Registry Draft Checklist JSON: https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json
+- Machine Discovery Full Simulation: https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md
+- Machine Discovery Full Simulation JSON: https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json
 - Deep Analysis Commercial Brief: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
 - Postman collection: https://machinesignal.it/postman_public_collection.json
 - MCP manifest: https://machinesignal.it/mcp-tool-manifest.json

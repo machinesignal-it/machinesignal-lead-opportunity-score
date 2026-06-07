@@ -98,7 +98,9 @@
     "machine_buyer_postman_discovery_probe_json": "https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_summary.json",
     "sandbox_buyer_kit": "https://machinesignal.it/sandbox-buyer-kit/",
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
-    "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json"
+    "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
+    "machine_discovery_full_simulation": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
+    "machine_discovery_full_simulation_json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json"
   },
   "authentication": {
     "type": "apiKey",
@@ -110,7 +112,9 @@
   "quota_guardrails": {
     "daily_monitor_default_mode": "NoWrite",
     "daily_monitor_write_calls_executed": 0,
-    "safe_daily_methods": ["GET"],
+    "safe_daily_methods": [
+      "GET"
+    ],
     "kv_budget_profile": "https://machinesignal.it/kv-write-budget-profile.json",
     "full_mode_rule": "Run write endpoints only in bounded manual tests after KV and Durable Object write budget is approved.",
     "main_kv_risk": "Creating or updating sandbox and beta customer records.",
@@ -565,5 +569,21 @@
     "must_not_assume_real_payment": true,
     "can_create_payment_test_intents": true,
     "must_not_use_live_payment_mode": true
+  },
+  "latest_machine_discovery_full_simulation": {
+    "status": "completed_full_machine_discovery",
+    "ok": true,
+    "evidence_date": "2026-06-07",
+    "machine_customer_mode": "machine_without_starting_list",
+    "write_calls_executed": 3,
+    "post_calls_executed": 3,
+    "first_product_selected": "target_discovery",
+    "recommended_next_product": "nurture_signal",
+    "score": 74,
+    "score_decision": "nurture",
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "report": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
+    "json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json"
   }
 }

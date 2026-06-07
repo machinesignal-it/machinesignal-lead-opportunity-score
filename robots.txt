@@ -50,6 +50,8 @@ API-directory-RapidAPI-draft-checklist: https://machinesignal.it/api_directory_r
 API-directory-RapidAPI-draft-checklist-json: https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json
 MCP-tool-registry-draft-checklist: https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md
 MCP-tool-registry-draft-checklist-json: https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json
+Machine-discovery-full-simulation: https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md
+Machine-discovery-full-simulation-json: https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json
 Machine-api-sandbox-test: https://machinesignal.it/machine-api-sandbox-test/
 Machine-api-sandbox-test-json: https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json
 Sandbox-buyer-kit: https://machinesignal.it/sandbox-buyer-kit/
