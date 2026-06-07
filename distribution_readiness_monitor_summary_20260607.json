@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-07T09:40:39.3169669Z",
+    "generated_at":  "2026-06-07T09:59:11.2034197Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  23,
-    "checks_total":  91,
+    "resources_checked":  25,
+    "checks_total":  98,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -20,12 +20,12 @@
                    {
                        "name":  "distribution_index_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=10653"
+                       "details":  "HTTP 200, bytes=11467"
                    },
                    {
                        "name":  "distribution_index_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Machine Buyer Evidence Brief"
+                       "details":  "marker=Sandbox-Only Publication Pack"
                    },
                    {
                        "name":  "distribution_index_secret_scan",
@@ -103,14 +103,49 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "sandbox_only_external_publication_pack_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=5482"
+                   },
+                   {
+                       "name":  "sandbox_only_external_publication_pack_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=What Remains Blocked"
+                   },
+                   {
+                       "name":  "sandbox_only_external_publication_pack_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "sandbox_only_external_publication_pack_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=6810"
+                   },
+                   {
+                       "name":  "sandbox_only_external_publication_pack_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "sandbox_only_external_publication_pack_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=blocked_without_owner_approval"
+                   },
+                   {
+                       "name":  "sandbox_only_external_publication_pack_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=8230"
+                       "details":  "HTTP 200, bytes=8716"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_md_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Latest machine-buyer evidence"
+                       "details":  "marker=Sandbox-Only External Publication Pack"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_md_secret_scan",
@@ -120,7 +155,7 @@
                    {
                        "name":  "marketplace_api_directory_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=21004"
+                       "details":  "HTTP 200, bytes=13792"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_json_json_valid",
@@ -130,7 +165,7 @@
                    {
                        "name":  "marketplace_api_directory_pack_json_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=latest_machine_buyer_evidence"
+                       "details":  "marker=external_publication_policy"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_json_secret_scan",
@@ -140,12 +175,12 @@
                    {
                        "name":  "marketplace_publication_execution_pack_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=10583"
+                       "details":  "HTTP 200, bytes=10826"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_md_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Full Bounded Beta Runner JSON"
+                       "details":  "marker=Sandbox-Only External Publication Pack"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_md_secret_scan",
@@ -155,7 +190,7 @@
                    {
                        "name":  "marketplace_publication_execution_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=17087"
+                       "details":  "HTTP 200, bytes=12278"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_json_json_valid",
@@ -165,7 +200,7 @@
                    {
                        "name":  "marketplace_publication_execution_pack_json_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=latest_machine_buyer_evidence"
+                       "details":  "marker=external_publication_policy"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_json_secret_scan",
@@ -215,7 +250,7 @@
                    {
                        "name":  "marketplace_submission_pack_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=17677"
+                       "details":  "HTTP 200, bytes=13438"
                    },
                    {
                        "name":  "marketplace_submission_pack_json_valid",
@@ -225,7 +260,7 @@
                    {
                        "name":  "marketplace_submission_pack_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=machine_buyer_evidence_brief"
+                       "details":  "marker=external_publication_policy"
                    },
                    {
                        "name":  "marketplace_submission_pack_secret_scan",
@@ -295,7 +330,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=13594"
+                       "details":  "HTTP 200, bytes=12544"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -305,7 +340,7 @@
                    {
                        "name":  "well_known_machine_discovery_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=latest_machine_buyer_evidence"
+                       "details":  "marker=sandbox_only_external_publication_pack_json"
                    },
                    {
                        "name":  "well_known_machine_discovery_secret_scan",
@@ -315,12 +350,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=13485"
+                       "details":  "HTTP 200, bytes=13954"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Machine Buyer Evidence Brief JSON"
+                       "details":  "marker=Sandbox-Only External Publication Pack JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -330,12 +365,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=5513"
+                       "details":  "HTTP 200, bytes=5974"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Machine-buyer-evidence-brief-json"
+                       "details":  "marker=Sandbox-only-external-publication-pack-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -345,12 +380,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=13293"
+                       "details":  "HTTP 200, bytes=13728"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=machine_beta_evidence_brief_20260607.html"
+                       "details":  "marker=sandbox_only_external_publication_pack_20260607.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",

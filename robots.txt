@@ -40,6 +40,8 @@ Machine-buyer-evidence-brief-markdown: https://machinesignal.it/machine_beta_evi
 Machine-buyer-evidence-brief-json: https://machinesignal.it/machine_beta_evidence_brief_20260607.json
 Distribution-readiness-monitor: https://machinesignal.it/distribution_readiness_monitor_report_20260607.md
 Distribution-readiness-monitor-json: https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json
+Sandbox-only-external-publication-pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
+Sandbox-only-external-publication-pack-json: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 Machine-api-sandbox-test: https://machinesignal.it/machine-api-sandbox-test/
 Machine-api-sandbox-test-json: https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json
 Sandbox-buyer-kit: https://machinesignal.it/sandbox-buyer-kit/

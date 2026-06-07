@@ -1,211 +1,229 @@
 {
-    "service":  "MachineSignal",
-    "artifact":  "marketplace_publication_execution_pack",
-    "generated_at":  "2026-06-06",
-    "status":  "ready_for_sandbox_only_publication_preparation_with_full_beta_evidence",
-    "purpose":  "Operational instructions for agents preparing Postman, RapidAPI-style, generic API directory and MCP/tool registry listings.",
-    "primary_distribution_rule":  "Do not rely on human cold email. Place MachineSignal where software, CRMs, AI agents, API directories and workflow tools can discover, read, import and test it.",
-    "guardrails":  {
-                       "publish_real_api_keys":  false,
-                       "claim_live_payment_available":  false,
-                       "enable_live_monetized_checkout":  false,
-                       "send_external_outreach_to_targets":  false,
-                       "run_write_or_credit_tests_without_approval":  false,
-                       "human_role":  "approval, legal responsibility and audit"
-                   },
-    "official_source_references":  {
-                                       "postman_public_api_network":  "https://learning.postman.com/docs/postman-api-network/showcase/publish/public-apis",
-                                       "postman_public_documentation":  "https://learning.postman.com/docs/postman/api_documentation/publishing_public_docs/",
-                                       "rapidapi_add_api_project":  "https://docs.rapidapi.com/docs/add-api-getting-started",
-                                       "rapidapi_hub_listing_overview":  "https://docs.rapidapi.com/docs/hub-listing-overview",
-                                       "rapidapi_docs_tab":  "https://docs.rapidapi.com/docs/hub-listing-docs-tab",
-                                       "rapidapi_plans_pricing":  "https://docs.rapidapi.com/v1.0/docs/plans-pricing"
-                                   },
-    "canonical_assets":  {
-                             "marketplace_api_directory_pack_json":  "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
-                             "marketplace_api_directory_pack_markdown":  "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
-                             "openapi":  "https://machinesignal.it/openapi.json",
-                             "postman_collection":  "https://machinesignal.it/postman_public_collection.json",
-                             "postman_environment_template":  "https://machinesignal.it/postman_public_environment_template.json",
-                             "postman_workspace_import_pack":  "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
-                             "machine_onboarding":  "https://machinesignal.it/machine-onboarding.json",
-                             "product_catalog":  "https://machinesignal.it/product-catalog.json",
-                             "llms":  "https://machinesignal.it/llms.txt",
-                             "mcp_manifest":  "https://machinesignal.it/mcp-tool-manifest.json",
-                             "distribution_page":  "https://machinesignal.it/distribution/",
-                             "machine_buyer_evidence_brief":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
-                             "machine_buyer_evidence_brief_json":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
-                             "full_bounded_beta_runner":  "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
-                             "full_bounded_beta_runner_json":  "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
-                             "distribution_readiness_monitor":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
-                             "distribution_readiness_monitor_json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
-                         },
-    "channels":  [
-                     {
-                         "channel":  "Postman Public Workspace",
-                         "current_decision":  "prepare_private_or_team_workspace_now_publish_after_owner_approval",
-                         "workspace_name":  "MachineSignal Lead Opportunity Score API",
-                         "import_source":  "https://machinesignal.it/postman_public_collection.json",
-                         "environment_variables":  [
-                                                       {
-                                                           "name":  "base_url",
-                                                           "value":  "https://machinesignal-api.beta-878.workers.dev",
-                                                           "visibility":  "public"
-                                                       },
-                                                       {
-                                                           "name":  "api_key",
-                                                           "value":  "",
-                                                           "visibility":  "secret_blank"
-                                                       },
-                                                       {
-                                                           "name":  "payment_test_id",
-                                                           "value":  "",
-                                                           "visibility":  "temporary_blank"
-                                                       }
-                                                   ],
-                         "workspace_description":  "MachineSignal is a machine-first lead opportunity scoring API for CRMs, AI agents, RevOps workflows and software platforms. A machine can create a limited sandbox key, read the product catalog, score domains, request Target Discovery, buy Deep Analysis when evidence is needed and buy Action Pack only after Deep Analysis confirms the action gate. This workspace is sandbox-only: no real payment, no fiscal invoice and no external target contact. Latest evidence: Full bounded beta completed with 5 scores, 1 Deep Analysis and 1 gated Action Pack; real payment and external contact remained false.",
-                         "acceptance_checklist":  [
-                                                      "Collection imports without broken URLs.",
-                                                      "Public docs show no API key, token or password.",
-                                                      "base_url is visible and api_key is blank or secret.",
-                                                      "First expected 200 path is clearly documented.",
-                                                      "Workspace text says sandbox-only.",
-                                                      "No claim says MachineSignal sends external outreach.",
-                                                      "Workspace links to the Machine Buyer Evidence Brief."
-                                                  ]
-                     },
-                     {
-                         "channel":  "RapidAPI-style listing",
-                         "current_decision":  "prepare_provider_fields_keep_monetization_blocked",
-                         "general_fields":  {
-                                                "api_name":  "MachineSignal Lead Opportunity Score API",
-                                                "category":  "Business / Sales Intelligence / CRM / Data Enrichment / AI Agent Tools",
-                                                "short_description":  "Machine-first lead opportunity scoring API for CRM workflows, RevOps automations and AI agents.",
-                                                "website":  "https://machinesignal.it/",
-                                                "base_url":  "https://machinesignal-api.beta-878.workers.dev",
-                                                "visibility_before_approval":  "private_or_draft",
-                                                "terms_status":  "not_ready_for_live_monetized_publication"
-                                            },
-                         "security":  {
-                                          "auth_header":  "X-API-Key",
-                                          "idempotency_header":  "Idempotency-Key",
-                                          "openapi":  "https://machinesignal.it/openapi.json",
-                                          "publish_real_key":  false
-                                      },
-                         "pricing_state":  {
-                                               "mode":  "draft_only",
-                                               "enable_live_monetization":  false,
-                                               "prices":  {
-                                                              "score_pack_1k":  "EUR 99",
-                                                              "target_discovery_pack":  "EUR 149",
-                                                              "domain_enrichment_pack_100":  "EUR 149",
-                                                              "deep_analysis_pack_100":  "EUR 299",
-                                                              "action_pack_25":  "EUR 399",
-                                                              "opportunity_feed":  "EUR 249/month",
-                                                              "api_starter":  "EUR 99/month",
-                                                              "api_pro":  "EUR 499/month"
-                                                          }
-                                           },
-                         "latest_evidence_to_include":  "Full bounded beta completed with 5 scores, 1 Deep Analysis, 1 gated Action Pack, no real payment and no external contact."
-                     },
-                     {
-                         "channel":  "Generic API directories",
-                         "current_decision":  "prepare_submission_copy_submit_only_after_owner_approval",
-                         "fields":  {
-                                        "name":  "MachineSignal Lead Opportunity Score API",
-                                        "one_liner":  "Machine-readable lead opportunity scoring and spend-control API for CRMs, AI agents, RevOps workflows and software platforms.",
-                                        "primary_customer":  "machine",
-                                        "human_role":  "supervision, approval and audit",
-                                        "openapi":  "https://machinesignal.it/openapi.json",
-                                        "docs":  "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
-                                        "product_catalog":  "https://machinesignal.it/product-catalog.json",
-                                        "sandbox_onboarding":  "https://machinesignal.it/machine-onboarding.json",
-                                        "tags":  [
-                                                     "lead-scoring",
-                                                     "crm",
-                                                     "revops",
-                                                     "ai-agents",
-                                                     "machine-customer",
-                                                     "sales-intelligence",
-                                                     "target-discovery",
-                                                     "deep-analysis",
-                                                     "action-pack",
-                                                     "openapi",
-                                                     "postman",
-                                                     "mcp"
-                                                 ],
-                                        "evidence_brief":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.html"
-                                    }
-                     },
-                     {
-                         "channel":  "MCP / Tool Registries",
-                         "current_decision":  "use_local_stdio_adapter_now_hosted_mcp_later",
-                         "fields":  {
-                                        "tool_name":  "MachineSignal Lead Opportunity Score",
-                                        "manifest":  "https://machinesignal.it/mcp-tool-manifest.json",
-                                        "wrapper_pack":  "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
-                                        "repository":  "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
-                                        "transport_now":  "local stdio adapter",
-                                        "hosted_mcp_live":  false,
-                                        "evidence_brief_json":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json"
-                                    }
-                     }
-                 ],
-    "publication_order":  [
-                              "Own domain discovery assets: done and continuously updated.",
-                              "GitHub repository assets: done and continuously updated.",
-                              "Postman public workspace: prepare now; publish after final secret check and owner approval.",
-                              "RapidAPI-style draft: prepare now; keep monetization disabled.",
-                              "Generic API directory submissions: prepare from this pack; submit only after owner approval.",
-                              "MCP/tool registries: prepare local-adapter listing; hosted MCP decision later."
-                          ],
-    "agent_instructions":  [
-                               "Maintain public machine-readable assets.",
-                               "Validate every JSON and XML file before publication.",
-                               "Run daily monitor in NoWrite mode.",
-                               "Avoid cold email as primary distribution.",
-                               "Prefer discovery surfaces where machines and developer tools can import OpenAPI, Postman, MCP manifests or llms.txt.",
-                               "Record every external publication attempt, outcome and blocker."
-                           ],
-    "next_safe_action":  {
-                             "name":  "prepare_postman_public_workspace",
-                             "description":  "Prepare the Postman public workspace using the imported collection and this copy, but keep it private until final secret scan and owner approval.",
-                             "live_credits_to_consume":  0,
-                             "external_irreversible_publication":  false
-                         },
-    "latest_machine_buyer_evidence":  {
-                                          "status":  "completed_full",
-                                          "ok":  true,
-                                          "evidence_date":  "2026-06-07",
-                                          "primary_customer_interface":  "machine",
-                                          "summary":  "Full bounded private beta run completed: 5 valid scores, 1 Deep Analysis, 1 gated Action Pack, Action Pack without Deep Analysis source order blocked with HTTP 400, no real payment, no fiscal invoice and no external contact.",
-                                          "evidence_brief_html":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
-                                          "evidence_brief_markdown":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.md",
-                                          "evidence_brief_json":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
-                                          "full_runner_report":  "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
-                                          "full_runner_json":  "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
-                                          "credit_deltas":  {
-                                                                "score_pack_1k":  5,
-                                                                "deep_analysis_pack_100":  1,
-                                                                "action_pack_25":  1
-                                                            },
-                                          "safety":  {
-                                                         "real_payment_executed":  false,
-                                                         "external_contact_executed":  false,
-                                                         "real_invoice_issued":  false,
-                                                         "action_pack_without_deep_analysis_blocked":  true
-                                                     }
-                                      },
-    "latest_distribution_readiness_monitor":  {
-                                                  "status":  "ready_for_distribution_review",
-                                                  "ok":  true,
-                                                  "mode":  "NoWrite",
-                                                  "evidence_date":  "2026-06-07",
-                                                  "checks_total":  91,
-                                                  "checks_failed":  0,
-                                                  "write_calls_executed":  0,
-                                                  "post_calls_executed":  0,
-                                                  "report":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
-                                                  "json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
-                                              }
+  "service": "MachineSignal",
+  "artifact": "marketplace_publication_execution_pack",
+  "generated_at": "2026-06-06",
+  "status": "ready_for_sandbox_only_publication_preparation_with_full_beta_evidence",
+  "purpose": "Operational instructions for agents preparing Postman, RapidAPI-style, generic API directory and MCP/tool registry listings.",
+  "primary_distribution_rule": "Do not rely on human cold email. Place MachineSignal where software, CRMs, AI agents, API directories and workflow tools can discover, read, import and test it.",
+  "guardrails": {
+    "publish_real_api_keys": false,
+    "claim_live_payment_available": false,
+    "enable_live_monetized_checkout": false,
+    "send_external_outreach_to_targets": false,
+    "run_write_or_credit_tests_without_approval": false,
+    "human_role": "approval, legal responsibility and audit"
+  },
+  "official_source_references": {
+    "postman_public_api_network": "https://learning.postman.com/docs/postman-api-network/showcase/publish/public-apis",
+    "postman_public_documentation": "https://learning.postman.com/docs/postman/api_documentation/publishing_public_docs/",
+    "rapidapi_add_api_project": "https://docs.rapidapi.com/docs/add-api-getting-started",
+    "rapidapi_hub_listing_overview": "https://docs.rapidapi.com/docs/hub-listing-overview",
+    "rapidapi_docs_tab": "https://docs.rapidapi.com/docs/hub-listing-docs-tab",
+    "rapidapi_plans_pricing": "https://docs.rapidapi.com/v1.0/docs/plans-pricing"
+  },
+  "canonical_assets": {
+    "marketplace_api_directory_pack_json": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+    "marketplace_api_directory_pack_markdown": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "postman_collection": "https://machinesignal.it/postman_public_collection.json",
+    "postman_environment_template": "https://machinesignal.it/postman_public_environment_template.json",
+    "postman_workspace_import_pack": "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "mcp_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "distribution_page": "https://machinesignal.it/distribution/",
+    "machine_buyer_evidence_brief": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+    "machine_buyer_evidence_brief_json": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+    "full_bounded_beta_runner": "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
+    "full_bounded_beta_runner_json": "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
+    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+    "distribution_readiness_monitor_json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+    "sandbox_only_external_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md",
+    "sandbox_only_external_publication_pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json"
+  },
+  "channels": [
+    {
+      "channel": "Postman Public Workspace",
+      "current_decision": "prepare_private_or_team_workspace_now_publish_after_owner_approval",
+      "workspace_name": "MachineSignal Lead Opportunity Score API",
+      "import_source": "https://machinesignal.it/postman_public_collection.json",
+      "environment_variables": [
+        {
+          "name": "base_url",
+          "value": "https://machinesignal-api.beta-878.workers.dev",
+          "visibility": "public"
+        },
+        {
+          "name": "api_key",
+          "value": "",
+          "visibility": "secret_blank"
+        },
+        {
+          "name": "payment_test_id",
+          "value": "",
+          "visibility": "temporary_blank"
+        }
+      ],
+      "workspace_description": "MachineSignal is a machine-first lead opportunity scoring API for CRMs, AI agents, RevOps workflows and software platforms. A machine can create a limited sandbox key, read the product catalog, score domains, request Target Discovery, buy Deep Analysis when evidence is needed and buy Action Pack only after Deep Analysis confirms the action gate. This workspace is sandbox-only: no real payment, no fiscal invoice and no external target contact. Latest evidence: Full bounded beta completed with 5 scores, 1 Deep Analysis and 1 gated Action Pack; real payment and external contact remained false.",
+      "acceptance_checklist": [
+        "Collection imports without broken URLs.",
+        "Public docs show no API key, token or password.",
+        "base_url is visible and api_key is blank or secret.",
+        "First expected 200 path is clearly documented.",
+        "Workspace text says sandbox-only.",
+        "No claim says MachineSignal sends external outreach.",
+        "Workspace links to the Machine Buyer Evidence Brief."
+      ]
+    },
+    {
+      "channel": "RapidAPI-style listing",
+      "current_decision": "prepare_provider_fields_keep_monetization_blocked",
+      "general_fields": {
+        "api_name": "MachineSignal Lead Opportunity Score API",
+        "category": "Business / Sales Intelligence / CRM / Data Enrichment / AI Agent Tools",
+        "short_description": "Machine-first lead opportunity scoring API for CRM workflows, RevOps automations and AI agents.",
+        "website": "https://machinesignal.it/",
+        "base_url": "https://machinesignal-api.beta-878.workers.dev",
+        "visibility_before_approval": "private_or_draft",
+        "terms_status": "not_ready_for_live_monetized_publication"
+      },
+      "security": {
+        "auth_header": "X-API-Key",
+        "idempotency_header": "Idempotency-Key",
+        "openapi": "https://machinesignal.it/openapi.json",
+        "publish_real_key": false
+      },
+      "pricing_state": {
+        "mode": "draft_only",
+        "enable_live_monetization": false,
+        "prices": {
+          "score_pack_1k": "EUR 99",
+          "target_discovery_pack": "EUR 149",
+          "domain_enrichment_pack_100": "EUR 149",
+          "deep_analysis_pack_100": "EUR 299",
+          "action_pack_25": "EUR 399",
+          "opportunity_feed": "EUR 249/month",
+          "api_starter": "EUR 99/month",
+          "api_pro": "EUR 499/month"
+        }
+      },
+      "latest_evidence_to_include": "Full bounded beta completed with 5 scores, 1 Deep Analysis, 1 gated Action Pack, no real payment and no external contact."
+    },
+    {
+      "channel": "Generic API directories",
+      "current_decision": "prepare_submission_copy_submit_only_after_owner_approval",
+      "fields": {
+        "name": "MachineSignal Lead Opportunity Score API",
+        "one_liner": "Machine-readable lead opportunity scoring and spend-control API for CRMs, AI agents, RevOps workflows and software platforms.",
+        "primary_customer": "machine",
+        "human_role": "supervision, approval and audit",
+        "openapi": "https://machinesignal.it/openapi.json",
+        "docs": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
+        "product_catalog": "https://machinesignal.it/product-catalog.json",
+        "sandbox_onboarding": "https://machinesignal.it/machine-onboarding.json",
+        "tags": [
+          "lead-scoring",
+          "crm",
+          "revops",
+          "ai-agents",
+          "machine-customer",
+          "sales-intelligence",
+          "target-discovery",
+          "deep-analysis",
+          "action-pack",
+          "openapi",
+          "postman",
+          "mcp"
+        ],
+        "evidence_brief": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html"
+      }
+    },
+    {
+      "channel": "MCP / Tool Registries",
+      "current_decision": "use_local_stdio_adapter_now_hosted_mcp_later",
+      "fields": {
+        "tool_name": "MachineSignal Lead Opportunity Score",
+        "manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+        "wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+        "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+        "transport_now": "local stdio adapter",
+        "hosted_mcp_live": false,
+        "evidence_brief_json": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json"
+      }
+    }
+  ],
+  "publication_order": [
+    "Own domain discovery assets: done and continuously updated.",
+    "GitHub repository assets: done and continuously updated.",
+    "Postman public workspace: prepare now; publish after final secret check and owner approval.",
+    "RapidAPI-style draft: prepare now; keep monetization disabled.",
+    "Generic API directory submissions: prepare from this pack; submit only after owner approval.",
+    "MCP/tool registries: prepare local-adapter listing; hosted MCP decision later."
+  ],
+  "agent_instructions": [
+    "Maintain public machine-readable assets.",
+    "Validate every JSON and XML file before publication.",
+    "Run daily monitor in NoWrite mode.",
+    "Avoid cold email as primary distribution.",
+    "Prefer discovery surfaces where machines and developer tools can import OpenAPI, Postman, MCP manifests or llms.txt.",
+    "Record every external publication attempt, outcome and blocker."
+  ],
+  "next_safe_action": "Use the sandbox-only external publication pack as the approval checklist before preparing external drafts. Keep Postman, API directory, RapidAPI-style and MCP registry work as draft/sandbox-only until owner approval.",
+  "latest_machine_buyer_evidence": {
+    "status": "completed_full",
+    "ok": true,
+    "evidence_date": "2026-06-07",
+    "primary_customer_interface": "machine",
+    "summary": "Full bounded private beta run completed: 5 valid scores, 1 Deep Analysis, 1 gated Action Pack, Action Pack without Deep Analysis source order blocked with HTTP 400, no real payment, no fiscal invoice and no external contact.",
+    "evidence_brief_html": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+    "evidence_brief_markdown": "https://machinesignal.it/machine_beta_evidence_brief_20260607.md",
+    "evidence_brief_json": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+    "full_runner_report": "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
+    "full_runner_json": "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
+    "credit_deltas": {
+      "score_pack_1k": 5,
+      "deep_analysis_pack_100": 1,
+      "action_pack_25": 1
+    },
+    "safety": {
+      "real_payment_executed": false,
+      "external_contact_executed": false,
+      "real_invoice_issued": false,
+      "action_pack_without_deep_analysis_blocked": true
+    }
+  },
+  "latest_distribution_readiness_monitor": {
+    "status": "ready_for_distribution_review",
+    "ok": true,
+    "mode": "NoWrite",
+    "evidence_date": "2026-06-07",
+    "checks_total": 91,
+    "checks_failed": 0,
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "report": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+    "json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
+  },
+  "external_publication_policy": {
+    "status": "sandbox_only_external_publication_preparation_allowed",
+    "pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md",
+    "pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
+    "allowed_now": [
+      "own_domain_discovery_assets",
+      "github_public_docs",
+      "private_or_team_postman_draft",
+      "generic_api_directory_sandbox_draft",
+      "rapidapi_style_draft_with_monetization_disabled",
+      "local_mcp_tool_registry_draft"
+    ],
+    "blocked_without_owner_approval": [
+      "live_payments",
+      "real_api_keys",
+      "public_paid_checkout",
+      "irreversible_external_publication",
+      "external_human_outreach",
+      "legal_fiscal_or_contractual_commitments"
+    ]
+  }
 }

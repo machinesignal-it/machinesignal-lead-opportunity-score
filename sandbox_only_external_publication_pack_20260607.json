@@ -1,0 +1,161 @@
+{
+  "artifact": "sandbox_only_external_publication_pack",
+  "generated_at": "2026-06-07",
+  "status": "sandbox_only_publication_preparation_allowed",
+  "purpose": "Operational checklist for MachineSignal agents preparing external discovery and marketplace drafts without live monetization or human outreach.",
+  "business_positioning": {
+    "customer_interface": "machine_first",
+    "intended_evaluators": [
+      "CRM systems",
+      "AI agents",
+      "RevOps workflows",
+      "API directories",
+      "Postman workspaces",
+      "API marketplace scanners",
+      "MCP-style tool clients"
+    ],
+    "not_yet": [
+      "live commercial launch",
+      "human outbound sales campaign",
+      "paid public marketplace publication"
+    ]
+  },
+  "allowed_now": [
+    {
+      "area": "own_domain_discovery",
+      "allowed_action": "Keep llms.txt, robots.txt, sitemap, OpenAPI, product catalog, machine onboarding and distribution pages online.",
+      "publication_mode": "public_on_machinesignal_it",
+      "guardrail": "Content must say sandbox or beta where relevant and must not expose secrets."
+    },
+    {
+      "area": "github_repository",
+      "allowed_action": "Keep public documentation, examples, OpenAPI links, Postman links, MCP links and evidence briefs available.",
+      "publication_mode": "public_repository_docs",
+      "guardrail": "No real API keys, payment keys, FTP secrets or customer data."
+    },
+    {
+      "area": "postman",
+      "allowed_action": "Prepare or maintain a team/private workspace draft using the public collection and blank environment template.",
+      "publication_mode": "private_or_team_draft",
+      "guardrail": "Do not publish public workspace until owner approval and final secret scan."
+    },
+    {
+      "area": "api_directory",
+      "allowed_action": "Prepare a generic sandbox listing draft with description, endpoints, pricing model under test and evidence links.",
+      "publication_mode": "draft_or_sandbox_listing",
+      "guardrail": "Listing must state that live payments are not enabled."
+    },
+    {
+      "area": "rapidapi_style_marketplace",
+      "allowed_action": "Prepare provider-style metadata, endpoint summaries and sandbox documentation.",
+      "publication_mode": "draft_only_monetization_disabled",
+      "guardrail": "No paid plan, public checkout or production key exposure."
+    },
+    {
+      "area": "mcp_tool_registries",
+      "allowed_action": "Prepare a local stdio adapter listing and machine-readable manifest.",
+      "publication_mode": "local_or_sandbox_listing",
+      "guardrail": "Hosted MCP or public registry submission needs owner approval."
+    },
+    {
+      "area": "machine_buyer_evidence",
+      "allowed_action": "Link the bounded private beta runner, evidence brief and readiness monitor.",
+      "publication_mode": "public_evidence",
+      "guardrail": "Evidence must report limits honestly: no real payment and no external contact."
+    }
+  ],
+  "blocked_without_owner_approval": [
+    "activate_live_payments",
+    "publish_real_payment_checkout_links",
+    "create_paid_marketplace_plans",
+    "publish_real_api_keys_or_admin_keys",
+    "issue_invoices_receipts_or_fiscal_documents",
+    "promise_refunds_slas_or_unapproved_legal_terms",
+    "publish_irreversible_external_marketplace_listing",
+    "send_emails_or_outreach_to_human_prospects",
+    "contact_external_target_companies",
+    "sign_terms_contracts_or_partner_commitments",
+    "make_legal_tax_or_accounting_declarations"
+  ],
+  "required_checks_before_public_external_publication": [
+    "distribution_readiness_monitor_ok",
+    "secret_scan_ok",
+    "openapi_postman_mcp_llms_product_catalog_and_machine_onboarding_links_reachable",
+    "machine_buyer_evidence_brief_linked",
+    "bounded_private_beta_runner_evidence_linked",
+    "listing_says_sandbox_only_or_beta_where_relevant",
+    "no_live_payment_real_invoice_or_external_contact_claimed",
+    "no_real_customer_api_key_admin_key_ftp_credential_postman_token_or_cloudflare_token_present",
+    "owner_approval_recorded_before_public_external_publication"
+  ],
+  "recommended_sequence": [
+    {
+      "step": 1,
+      "channel": "own_domain_discovery_assets",
+      "status": "already_public_and_indexable"
+    },
+    {
+      "step": 2,
+      "channel": "github_repository_and_public_documentation",
+      "status": "already_public_and_usable_for_machine_discovery"
+    },
+    {
+      "step": 3,
+      "channel": "postman_workspace",
+      "status": "keep_private_or_team_draft_publish_publicly_only_after_owner_approval"
+    },
+    {
+      "step": 4,
+      "channel": "generic_api_directory_sandbox_listing",
+      "status": "prepare_draft_from_marketplace_api_directory_pack"
+    },
+    {
+      "step": 5,
+      "channel": "rapidapi_style_draft",
+      "status": "prepare_metadata_with_monetization_disabled"
+    },
+    {
+      "step": 6,
+      "channel": "mcp_tool_registry",
+      "status": "prepare_local_stdio_adapter_listing_and_manifest_hosted_registry_later"
+    }
+  ],
+  "user_role": [
+    "approve_irreversible_publication",
+    "check_legal_and_fiscal_implications",
+    "decide_whether_to_activate_live_payments",
+    "audit_final_copy_when_it_creates_public_commitments"
+  ],
+  "agent_role": [
+    "prepare_listings",
+    "keep_assets_sandbox_only",
+    "verify_links",
+    "run_nowrite_readiness_checks",
+    "maintain_evidence_links",
+    "update_documentation",
+    "avoid_secrets",
+    "avoid_real_payments",
+    "avoid_outbound_human_outreach",
+    "report_blockers"
+  ],
+  "public_links": {
+    "markdown": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md",
+    "json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
+    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+    "distribution_readiness_monitor_json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+    "machine_buyer_evidence_brief": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+    "bounded_private_beta_runner": "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
+    "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+    "marketplace_publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json"
+  },
+  "current_decision": {
+    "proceed": "sandbox_only_external_publication_preparation",
+    "do_not_proceed": [
+      "live_monetization",
+      "public_paid_plans",
+      "external_human_outreach"
+    ]
+  }
+}

@@ -89,6 +89,8 @@ Public demos for software, agents and partners:
 - Machine Buyer Evidence Brief JSON: https://machinesignal.it/machine_beta_evidence_brief_20260607.json
 - Distribution Readiness Monitor: https://machinesignal.it/distribution_readiness_monitor_report_20260607.md
 - Distribution Readiness Monitor JSON: https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json
+- Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
+- Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 
 Beta tester onboarding resources:
 - Beta tester onboarding packet: https://machinesignal.it/beta/onboarding-packet.html

@@ -47,6 +47,8 @@ Evidence links:
 - Evidence Brief JSON: https://machinesignal.it/machine_beta_evidence_brief_20260607.json
 - Full Beta Runner Report: https://machinesignal.it/bounded_private_beta_runner_report_20260607.md
 - Full Beta Runner JSON: https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json
+- Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
+- Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 
 ## Marketplace-ready short description
 
@@ -90,6 +92,8 @@ lead-scoring, crm, revops, ai-agents, machine-customer, sales-intelligence, targ
 - Machine Buyer Evidence Brief JSON: https://machinesignal.it/machine_beta_evidence_brief_20260607.json
 - Full Bounded Beta Runner: https://machinesignal.it/bounded_private_beta_runner_report_20260607.md
 - Full Bounded Beta Runner JSON: https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json
+- Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
+- Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - Deep Analysis Commercial Brief: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
 - Postman collection: https://machinesignal.it/postman_public_collection.json
 - MCP manifest: https://machinesignal.it/mcp-tool-manifest.json
