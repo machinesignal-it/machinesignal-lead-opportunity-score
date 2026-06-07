@@ -1230,6 +1230,12 @@ export const openApi = {
             description: "Optional request id of the score that produced the recommendation.",
             example: "crm-import-20260529-row-0007"
           },
+          source_order_intent_id: {
+            type: "string",
+            description:
+              "Required when product_code is action_pack. Must point to a valid accepted Deep Analysis order for the same domain in the customer's ledger.",
+            example: "ord_0001"
+          },
           reason: {
             type: "string",
             description: "Optional machine-readable reason for the purchase intent.",
@@ -1253,6 +1259,13 @@ export const openApi = {
           product_code: { type: "string", example: "verification" },
           ledger_product_code: { type: "string", example: "verification_pack_100" },
           domain: { type: "string", example: "studio-legale-demo.it" },
+          source_score_request_id: { type: "string", example: "crm-import-20260529-row-0007" },
+          source_order_intent_id: { type: "string", example: "ord_0001" },
+          action_pack_gate: {
+            type: "object",
+            description:
+              "Present for action_pack. Shows whether the API accepted the required Deep Analysis gate."
+          },
           real_payment_executed: { type: "boolean", example: false },
           external_contact_executed: { type: "boolean", example: false },
           delivery: { $ref: "#/components/schemas/BetaDelivery" },
@@ -1765,6 +1778,7 @@ Deep Analysis delivery contract:
 
 Action Pack delivery contract:
 - action_pack returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail;
+- action_pack requires source_order_intent_id from an accepted deep_analysis order for the same domain; otherwise POST /v1/purchase-intent returns action_pack_gate_failed and consumes no credit;
 - webhook_event.event_type is machinesignal.action_pack.ready;
 - the customer machine should create/update CRM records first, run a compliance gate, and only then prepare any external action.
 
@@ -2231,6 +2245,7 @@ const postmanCollection = {
               product_code: "action_pack",
               domain: "quinta-essenza.com",
               source_score_request_id: "postman-demo-score-strong-001",
+              source_order_intent_id: "{{order_intent_id}}",
               reason:
                 "Deep Analysis confirmed a low-risk opportunity and the CRM needs a machine-readable next action"
             },
@@ -2245,7 +2260,7 @@ const postmanCollection = {
           path: ["v1", "purchase-intent"]
         },
         description:
-          "Use this when the machine has a confirmed opportunity and wants a CRM/agent-readable action payload. The delivery returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail."
+          "Use this only after a valid Deep Analysis order for the same domain. source_order_intent_id is required; otherwise the API returns action_pack_gate_failed and consumes no credit. The delivery returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail."
       },
       response: []
     },
@@ -2485,6 +2500,7 @@ const postmanCollection = {
     { key: "machinesignal_api_key", value: "paste_customer_beta_key_here" },
     { key: "machinesignal_admin_api_key", value: "paste_admin_beta_key_here" },
     { key: "beta_customer_id", value: "beta_partner_001" },
+    { key: "order_intent_id", value: "paste_deep_analysis_order_intent_id_here" },
     { key: "payment_test_id", value: "paste_payment_test_id_here" },
     { key: "payment_test_success_signature", value: "paste_success_signature_here" }
   ]
@@ -2680,6 +2696,7 @@ async function durableLedgerRequest(key, env = {}, path = "/ledger", init = {}) 
   if (!response.ok) {
     const error = new Error(payload?.message || payload?.error || "Durable ledger request failed.");
     error.statusCode = response.status;
+    error.code = payload?.error || "ledger_error";
     error.payload = payload;
     throw error;
   }
@@ -2899,6 +2916,7 @@ async function createPurchaseIntentInLedger(ledger, env, input, requestId) {
   }
   const product = purchaseProductConfig(input?.product_code);
   const domain = normalizePurchaseSubject(input, product);
+  const gateContext = validatePurchaseIntentPreflight(ledger.state, input, product, domain);
   const event = consumeCredit(
     ledger.state,
     product.ledger_product_code,
@@ -2909,11 +2927,13 @@ async function createPurchaseIntentInLedger(ledger, env, input, requestId) {
       domain,
       product_code: product.product_code,
       source_score_request_id: input?.source_score_request_id || null,
+      source_order_intent_id: input?.source_order_intent_id || null,
+      action_pack_gate: gateContext,
       real_payment_executed: false,
       external_contact_executed: false
     }
   );
-  const intent = buildPurchaseIntent(input, requestId, event);
+  const intent = buildPurchaseIntent(input, requestId, event, gateContext);
   const order = saveOrderRecord(ledger.state, intent, event);
   return { intent, order, event };
 }
@@ -2980,6 +3000,7 @@ export class MachineSignalLedgerDurableObject {
         const product = purchaseProductConfig(input?.product_code);
         const domain = normalizePurchaseSubject(input, product);
         const state = await this.readState();
+        const gateContext = validatePurchaseIntentPreflight(state, input, product, domain);
         const event = consumeCredit(
           state,
           product.ledger_product_code,
@@ -2990,11 +3011,13 @@ export class MachineSignalLedgerDurableObject {
             domain,
             product_code: product.product_code,
             source_score_request_id: input?.source_score_request_id || null,
+            source_order_intent_id: input?.source_order_intent_id || null,
+            action_pack_gate: gateContext,
             real_payment_executed: false,
             external_contact_executed: false
           }
         );
-        const intent = buildPurchaseIntent(input, requestId, event);
+        const intent = buildPurchaseIntent(input, requestId, event, gateContext);
         const order = saveOrderRecord(state, intent, event);
         const saved = await this.writeState(state);
         return jsonResponse({
@@ -3010,7 +3033,11 @@ export class MachineSignalLedgerDurableObject {
       return jsonResponse({ error: "not_found", message: "Unknown ledger operation." }, 404);
     } catch (error) {
       return jsonResponse(
-        { error: "ledger_error", message: error.message || "Ledger operation failed." },
+        {
+          error: error.code || "ledger_error",
+          message: error.message || "Ledger operation failed.",
+          details: error.details || null
+        },
         error.statusCode || 400
       );
     }
@@ -3451,6 +3478,95 @@ function normalizePurchaseSubject(input = {}, product = {}) {
   return normalizeDomain(input?.domain);
 }
 
+function actionPackGateError(message, details = {}) {
+  const error = new Error(message);
+  error.statusCode = 400;
+  error.code = "action_pack_gate_failed";
+  error.details = details;
+  return error;
+}
+
+function validateActionPackPurchaseGate(state, input = {}, domain = "") {
+  const sourceOrderIntentId = String(input?.source_order_intent_id || "").trim();
+  if (!sourceOrderIntentId) {
+    throw actionPackGateError(
+      "Action Pack requires source_order_intent_id from a valid Deep Analysis order.",
+      { required_input: "source_order_intent_id" }
+    );
+  }
+
+  const sourceOrder = (state.orders || []).find(
+    (order) => String(order.order_intent_id || "") === sourceOrderIntentId
+  );
+  if (!sourceOrder) {
+    throw actionPackGateError(
+      "Action Pack source_order_intent_id was not found in this customer's order ledger.",
+      { source_order_intent_id: sourceOrderIntentId }
+    );
+  }
+
+  if (sourceOrder.product_code !== "deep_analysis") {
+    throw actionPackGateError(
+      "Action Pack source_order_intent_id must point to a Deep Analysis order.",
+      {
+        source_order_intent_id: sourceOrderIntentId,
+        source_product_code: sourceOrder.product_code || null
+      }
+    );
+  }
+
+  if (sourceOrder.status !== "accepted_beta_order_intent") {
+    throw actionPackGateError(
+      "Action Pack source Deep Analysis order is not accepted.",
+      {
+        source_order_intent_id: sourceOrderIntentId,
+        source_status: sourceOrder.status || null
+      }
+    );
+  }
+
+  const sourceDomain = normalizeDomain(sourceOrder.domain);
+  if (sourceDomain !== domain) {
+    throw actionPackGateError(
+      "Action Pack domain must match the source Deep Analysis order domain.",
+      {
+        source_order_intent_id: sourceOrderIntentId,
+        source_domain: sourceDomain,
+        requested_domain: domain
+      }
+    );
+  }
+
+  const sourceDelivery = sourceOrder.delivery || {};
+  if (
+    sourceDelivery.delivery_type !== "deep_opportunity_analysis" ||
+    sourceDelivery.status !== "deep_analysis_ready" ||
+    !sourceDelivery.action_pack_purchase_gate
+  ) {
+    throw actionPackGateError(
+      "Action Pack source Deep Analysis delivery is not ready for the Action Pack gate.",
+      {
+        source_order_intent_id: sourceOrderIntentId,
+        source_delivery_type: sourceDelivery.delivery_type || null,
+        source_delivery_status: sourceDelivery.status || null
+      }
+    );
+  }
+
+  return {
+    gate_passed: true,
+    source_order_intent_id: sourceOrderIntentId,
+    source_event_id: sourceOrder.event_id || null,
+    source_delivery_id: sourceDelivery.delivery_id || null,
+    source_deep_analysis_version: sourceDelivery.deep_analysis_version || null
+  };
+}
+
+function validatePurchaseIntentPreflight(state, input = {}, product = {}, domain = "") {
+  if (product.product_code !== "action_pack") return null;
+  return validateActionPackPurchaseGate(state, input, domain);
+}
+
 function inferCommercialSector(input = {}, domain = "") {
   const raw = [
     input?.sector_hint,
@@ -3628,13 +3744,14 @@ function buildDeepAnalysisCommercialEvidence(input = {}, domain = "") {
   };
 }
 
-export function buildPurchaseIntent(input, requestId, event) {
+export function buildPurchaseIntent(input, requestId, event, gateContext = null) {
   const product = purchaseProductConfig(input?.product_code);
   const domain = normalizePurchaseSubject(input, product);
   const status =
     event.status === "blocked_insufficient_credits"
       ? "blocked_insufficient_credits"
       : "accepted_beta_order_intent";
+  const sourceOrderIntentId = String(input?.source_order_intent_id || "").trim() || null;
   return {
     order_intent_id: `ord_${stableHash(`${requestId}|${product.product_code}|${domain}`).toString(16)}`,
     status,
@@ -3642,6 +3759,17 @@ export function buildPurchaseIntent(input, requestId, event) {
     ledger_product_code: product.ledger_product_code,
     domain,
     source_score_request_id: String(input?.source_score_request_id || "").trim() || null,
+    source_order_intent_id: sourceOrderIntentId,
+    action_pack_gate:
+      product.product_code === "action_pack"
+        ? {
+            required: true,
+            passed: Boolean(gateContext?.gate_passed),
+            source_order_intent_id: sourceOrderIntentId,
+            source_delivery_id: gateContext?.source_delivery_id || null,
+            source_deep_analysis_version: gateContext?.source_deep_analysis_version || null
+          }
+        : null,
     reason: String(input?.reason || "").trim() || null,
     max_budget_eur:
       input?.max_budget_eur === undefined || input?.max_budget_eur === null
@@ -3666,6 +3794,8 @@ function orderRecordFromIntent(intent, event) {
     ledger_product_code: intent.ledger_product_code,
     domain: intent.domain,
     source_score_request_id: intent.source_score_request_id,
+    source_order_intent_id: intent.source_order_intent_id || null,
+    action_pack_gate: intent.action_pack_gate || null,
     reason: intent.reason,
     max_budget_eur: intent.max_budget_eur,
     beta_price_range_eur: intent.beta_price_range_eur,
@@ -6028,8 +6158,12 @@ export async function handleRequest(request, env = {}) {
       });
     } catch (error) {
       return jsonResponse(
-        { error: "bad_request", message: error.message || "Invalid request." },
-        400
+        {
+          error: error.code || "bad_request",
+          message: error.message || "Invalid request.",
+          details: error.details || error.payload?.details || null
+        },
+        error.statusCode || 400
       );
     }
   }
@@ -6059,8 +6193,12 @@ export async function handleRequest(request, env = {}) {
       });
     } catch (error) {
       return jsonResponse(
-        { error: "bad_request", message: error.message || "Invalid request." },
-        400
+        {
+          error: error.code || "bad_request",
+          message: error.message || "Invalid request.",
+          details: error.details || error.payload?.details || null
+        },
+        error.statusCode || 400
       );
     }
   }

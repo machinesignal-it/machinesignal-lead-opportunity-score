@@ -35,20 +35,6 @@
         "description": "Public catalog for automated systems. Lists machine buying scenarios, product codes, exact beta prices, included deliverables, validity rules and credit consumption rules."
       }
     },
-    "/mcp/machinesignal-mcp-wrapper.json": {
-      "get": {
-        "operationId": "getMcpWrapperPack",
-        "summary": "Return public MCP wrapper pack",
-        "description": "Public MCP-style wrapper pack for CRMs, AI agents and automated workflows. Describes the local stdio adapter, expected tools, sandbox flow and safety guardrails."
-      }
-    },
-    "/machine-api-sandbox-test/machine-api-sandbox-test.json": {
-      "get": {
-        "operationId": "getMachineApiSandboxTest",
-        "summary": "Return direct machine API sandbox test contract",
-        "description": "Canonical public sandbox test contract for machines that need to evaluate MachineSignal without relying on Postman UI or human sales contact."
-      }
-    },
     "/v1/onboarding": {
       "get": {
         "operationId": "getAuthenticatedOnboarding",
@@ -1119,6 +1105,11 @@
             "description": "Optional request id of the score that produced the recommendation.",
             "example": "crm-import-20260529-row-0007"
           },
+          "source_order_intent_id": {
+            "type": "string",
+            "description": "Required when product_code is action_pack. Must point to a valid accepted Deep Analysis order for the same domain in the customer's ledger.",
+            "example": "ord_0001"
+          },
           "reason": {
             "type": "string",
             "description": "Optional machine-readable reason for the purchase intent.",
@@ -1153,6 +1144,18 @@
           "domain": {
             "type": "string",
             "example": "studio-legale-demo.it"
+          },
+          "source_score_request_id": {
+            "type": "string",
+            "example": "crm-import-20260529-row-0007"
+          },
+          "source_order_intent_id": {
+            "type": "string",
+            "example": "ord_0001"
+          },
+          "action_pack_gate": {
+            "type": "object",
+            "description": "Present for action_pack. Shows whether the API accepted the required Deep Analysis gate."
           },
           "real_payment_executed": {
             "type": "boolean",

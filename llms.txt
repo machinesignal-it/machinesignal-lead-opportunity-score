@@ -12,115 +12,12 @@ Useful endpoints:
 - GET /llms.txt
 - GET /machine-onboarding.json
 - GET /product-catalog.json
-- GET https://machinesignal.it/product-catalog.json
-- GET https://machinesignal.it/integration-ready/
-- GET https://machinesignal.it/mcp/
-- GET https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json
-- GET https://machinesignal.it/mcp-tool-manifest.json
-- GET https://machinesignal.it/.well-known/mcp-tool-manifest.json
 - GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
-- GET https://machinesignal.it/mcp-machine-client-installation-pack.json
-- GET https://machinesignal.it/integration-partner-pack.json
-- GET https://machinesignal.it/INTEGRATION_PARTNER_PACK.md
-- GET https://machinesignal.it/integration_ready_external_agent_readout_20260603.md
-- GET https://machinesignal.it/integration_ready_external_agent_summary_20260603.json
-- GET https://machinesignal.it/integration_ready_external_agent_ledger_audit_readout_20260603.md
-- GET https://machinesignal.it/integration_ready_external_agent_ledger_audit_summary_20260603.json
-- GET https://machinesignal.it/controlled_beta_operational_readiness_report_20260603.md
-- GET https://machinesignal.it/controlled_beta_operational_readiness_summary_20260603.json
-- GET https://machinesignal.it/pre_monetization_readiness_control_20260603.md
-- GET https://machinesignal.it/pre_monetization_readiness_control_20260603.json
-- GET https://machinesignal.it/payment_test_mode_plan_20260603.md
-- GET https://machinesignal.it/payment_test_mode_plan_20260603.json
-- GET https://machinesignal.it/payment_test_mode_implementation_report_20260604.md
-- GET https://machinesignal.it/payment_test_mode_implementation_summary_20260604.json
-- GET https://machinesignal.it/payment_test_mode_live_validation_20260604.md
-- GET https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json
-- GET https://machinesignal.it/machine_customer_e2e_live_test_report_20260604.md
-- GET https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json
-- GET https://machinesignal.it/controlled_beta_gate_runner_report_20260604.md
-- GET https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json
-- GET https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md
-- GET https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json
-- GET https://machinesignal.it/sandbox-buyer-kit/
-- GET https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
-- GET https://machinesignal.it/machine-api-sandbox-test/
-- GET https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json
-- GET https://machinesignal.it/KV_WRITE_BUDGET_PROFILE.md
-- GET https://machinesignal.it/kv-write-budget-profile.json
-- GET https://machinesignal.it/bounded_write_budget_probe_report_20260605.md
-- GET https://machinesignal.it/bounded_write_budget_probe_summary_20260605.json
-- GET https://machinesignal.it/bounded_score_volume_probe_report_20260605.md
-- GET https://machinesignal.it/bounded_score_volume_probe_summary_20260605.json
-- GET https://machinesignal.it/bounded_score_volume_probe_rows_20260605.csv
-- GET https://machinesignal.it/bounded_score_volume_25_probe_report_20260605.md
-- GET https://machinesignal.it/bounded_score_volume_25_probe_summary_20260605.json
-- GET https://machinesignal.it/bounded_score_volume_25_probe_rows_20260605.csv
-- GET https://machinesignal.it/score_volume_quality_review_report_20260605.md
-- GET https://machinesignal.it/score_volume_quality_review_summary_20260605.json
-- GET https://machinesignal.it/score_volume_quality_review_rows_20260605.csv
-- GET https://machinesignal.it/score_volume_25_quality_review_report_20260605.md
-- GET https://machinesignal.it/score_volume_25_quality_review_summary_20260605.json
-- GET https://machinesignal.it/score_volume_25_quality_review_rows_20260605.csv
-- GET https://machinesignal.it/bounded_deep_analysis_purchase_probe_report_20260605.md
-- GET https://machinesignal.it/bounded_deep_analysis_purchase_probe_summary_20260605.json
-- GET https://machinesignal.it/bounded_deep_analysis_purchase_probe_rows_20260605.csv
-- GET https://machinesignal.it/deep_analysis_delivery_quality_review_report_20260605.md
-- GET https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json
-- GET https://machinesignal.it/deep_analysis_delivery_quality_review_rows_20260605.csv
-- GET https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md
-- GET https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json
-- GET https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv
-- GET https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md
-- GET https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json
-- GET https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md
-- GET https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json
-- GET https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md
-- GET https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json
-- GET https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv
-- GET https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md
-- GET https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
-- GET https://machinesignal.it/machine_buyer_evaluation_pack_20260606.md
-- GET https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json
-- GET https://machinesignal.it/machine_buyer_product_evaluation_probe_20260606_report.md
-- GET https://machinesignal.it/machine_buyer_product_evaluation_probe_20260606_summary.json
-- GET https://machinesignal.it/machine_buyer_routing_decision_probe_20260606_report.md
-- GET https://machinesignal.it/machine_buyer_routing_decision_probe_20260606_summary.json
-- GET https://machinesignal.it/machine_buyer_delivery_retrieval_probe_20260606_report.md
-- GET https://machinesignal.it/machine_buyer_delivery_retrieval_probe_20260606_summary.json
-- GET https://machinesignal.it/agent_meeting_machine_buyer_readiness_review_20260606.md
-- GET https://machinesignal.it/agent_meeting_machine_buyer_readiness_review_20260606.json
-- GET https://machinesignal.it/marketplace_api_directory_pack_20260606.md
-- GET https://machinesignal.it/marketplace_api_directory_pack_20260606.json
-- GET https://machinesignal.it/marketplace_publication_execution_pack_20260606.md
-- GET https://machinesignal.it/marketplace_publication_execution_pack_20260606.json
-- GET https://machinesignal.it/readiness-dashboard/
-- GET https://machinesignal.it/readiness-dashboard/readiness.json
-- GET https://machinesignal.it/machine_readiness_dashboard_20260604.md
-- GET https://machinesignal.it/machine_readiness_dashboard_20260604.json
-- GET https://machinesignal.it/crm-agent-integration-simulator-readout.md
-- GET https://machinesignal.it/crm-agent-integration-simulated-ledger.json
-- GET https://machinesignal.it/examples/integration_existing_list_score_request.json
-- GET https://machinesignal.it/examples/integration_no_list_target_discovery_request.json
-- GET https://machinesignal.it/examples/integration_action_pack_crm_payload.json
-- GET https://machinesignal.it/distribution/marketplace-submission-pack.json
-- GET https://machinesignal.it/postman/
-- GET https://machinesignal.it/distribution/postman-public-workspace-draft.json
-- GET https://machinesignal.it/postman_workspace_import_pack_20260606.md
-- GET https://machinesignal.it/postman_workspace_import_pack_20260606.json
-- GET https://machinesignal.it/postman_public_environment_template.json
-- GET https://machinesignal.it/postman_workspace_secret_scan_20260606.md
-- GET https://machinesignal.it/postman_workspace_secret_scan_20260606.json
-- GET https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_report.md
-- GET https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_summary.json
-- GET https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json
 - GET https://machinesignal.it/distribution/api-directory-submission.json
-- GET https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json
 - GET https://machinesignal.it/distribution/rapidapi-listing.json
 - GET https://machinesignal.it/distribution/rapidapi-provider-setup.json
 - GET https://machinesignal.it/distribution/channel-shortlist.json
 - GET https://machinesignal.it/.well-known/machine-discovery.json
-- GET https://machinesignal.it/dentists-beta-machine-buyer-pack.json
 - POST /v1/sandbox/customers
 - GET /v1/onboarding
 - GET /v1/usage
@@ -154,7 +51,7 @@ How a machine should call the score endpoint:
 3. If no beta key is available, POST /v1/sandbox/customers to create a limited sandbox key for safe testing.
 4. Read the required X-API-Key and Idempotency-Key headers.
 5. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
-6. Read decision, web_architect_review, commercial_strength, spend_policy, machine_next_step and next_purchase.
+6. Read decision, commercial_strength, spend_policy, machine_next_step and next_purchase.
 7. Read /v1/usage to verify consumed and remaining credits.
 8. If next_purchase.next_product is not null and commercial_strength allows that spend, POST /v1/purchase-intent to create a beta order intent.
 9. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
@@ -162,114 +59,13 @@ How a machine should call the score endpoint:
 Three machine buying flows:
 1. Customer machine has a list: call POST /v1/lead-opportunity-score for each domain, then route each result by decision.
 2. Customer machine has no list: call POST /v1/purchase-intent with product_code target_discovery, market, area and commercial_objective. The objective must say what kind of opportunity the machine wants to find, for example "find real estate agency websites worth scoring for digital presence improvement opportunities".
-3. Customer machine wants an action: after a strong score, Web Architect evidence and Deep Analysis, call POST /v1/purchase-intent with product_code action_pack to receive CRM-ready JSON: crm_record_patch, workflow_payload, webhook_event, agent_instructions, message angle, stop rules and follow-up sequence.
+3. Customer machine wants an action: after a strong score and Deep Analysis, call POST /v1/purchase-intent with product_code action_pack to receive CRM-ready JSON: crm_record_patch, workflow_payload, webhook_event, agent_instructions, message angle, stop rules and follow-up sequence.
 
 Public demos for software, agents and partners:
-- MCP/tool-style manifest: https://machinesignal.it/mcp-tool-manifest.json
-- Well-known MCP/tool-style manifest: https://machinesignal.it/.well-known/mcp-tool-manifest.json
-- MCP Wrapper page: https://machinesignal.it/mcp/
-- MCP Wrapper Pack JSON: https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json
-- Integration Ready page: https://machinesignal.it/integration-ready/
 - Machine Discovery Pack: https://machinesignal.it/machine-discovery/
 - Machine Discovery Pack JSON: https://machinesignal.it/machine-discovery/machine-discovery-pack.json
-- MCP Machine Client Installation Pack JSON: https://machinesignal.it/mcp-machine-client-installation-pack.json
-- Integration Partner Pack JSON: https://machinesignal.it/integration-partner-pack.json
-- Integration Partner Pack Markdown: https://machinesignal.it/INTEGRATION_PARTNER_PACK.md
-- Integration Ready external-agent test readout: https://machinesignal.it/integration_ready_external_agent_readout_20260603.md
-- Integration Ready external-agent test summary JSON: https://machinesignal.it/integration_ready_external_agent_summary_20260603.json
-- Integration Ready external-agent ledger audit readout: https://machinesignal.it/integration_ready_external_agent_ledger_audit_readout_20260603.md
-- Integration Ready external-agent ledger audit summary JSON: https://machinesignal.it/integration_ready_external_agent_ledger_audit_summary_20260603.json
-- Controlled beta operational readiness report: https://machinesignal.it/controlled_beta_operational_readiness_report_20260603.md
-- Controlled beta operational readiness summary JSON: https://machinesignal.it/controlled_beta_operational_readiness_summary_20260603.json
-- Pre-monetization readiness control: https://machinesignal.it/pre_monetization_readiness_control_20260603.md
-- Pre-monetization readiness control JSON: https://machinesignal.it/pre_monetization_readiness_control_20260603.json
-- Payment test mode plan: https://machinesignal.it/payment_test_mode_plan_20260603.md
-- Payment test mode plan JSON: https://machinesignal.it/payment_test_mode_plan_20260603.json
-- Payment test mode implementation report: https://machinesignal.it/payment_test_mode_implementation_report_20260604.md
-- Payment test mode implementation summary JSON: https://machinesignal.it/payment_test_mode_implementation_summary_20260604.json
-- Payment test mode live validation: https://machinesignal.it/payment_test_mode_live_validation_20260604.md
-- Payment test mode live validation JSON: https://machinesignal.it/payment_test_mode_live_validation_summary_20260604.json
-- Machine customer E2E live test: https://machinesignal.it/machine_customer_e2e_live_test_report_20260604.md
-- Machine customer E2E live test JSON: https://machinesignal.it/machine_customer_e2e_live_test_summary_20260604.json
-- Controlled beta gate runner: https://machinesignal.it/controlled_beta_gate_runner_report_20260604.md
-- Controlled beta gate runner JSON: https://machinesignal.it/controlled_beta_gate_runner_summary_20260604.json
-- Self-service machine buyer sale simulation: https://machinesignal.it/self_service_machine_buyer_sale_simulation_report_20260604.md
-- Self-service machine buyer sale simulation JSON: https://machinesignal.it/self_service_machine_buyer_sale_simulation_summary_20260604.json
-- Sandbox buyer kit: https://machinesignal.it/sandbox-buyer-kit/
-- Sandbox buyer kit JSON: https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json
-- Machine API Sandbox Test: https://machinesignal.it/machine-api-sandbox-test/
-- Machine API Sandbox Test JSON: https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json
-- KV Write Budget Profile: https://machinesignal.it/KV_WRITE_BUDGET_PROFILE.md
-- KV Write Budget Profile JSON: https://machinesignal.it/kv-write-budget-profile.json
-- Bounded Write Budget Probe: https://machinesignal.it/bounded_write_budget_probe_report_20260605.md
-- Bounded Write Budget Probe JSON: https://machinesignal.it/bounded_write_budget_probe_summary_20260605.json
-- Bounded Score Volume Probe: https://machinesignal.it/bounded_score_volume_probe_report_20260605.md
-- Bounded Score Volume Probe JSON: https://machinesignal.it/bounded_score_volume_probe_summary_20260605.json
-- Bounded Score Volume Probe CSV: https://machinesignal.it/bounded_score_volume_probe_rows_20260605.csv
-- Bounded Score Volume 25 Probe: https://machinesignal.it/bounded_score_volume_25_probe_report_20260605.md
-- Bounded Score Volume 25 Probe JSON: https://machinesignal.it/bounded_score_volume_25_probe_summary_20260605.json
-- Bounded Score Volume 25 Probe CSV: https://machinesignal.it/bounded_score_volume_25_probe_rows_20260605.csv
-- Score Volume Quality Review: https://machinesignal.it/score_volume_quality_review_report_20260605.md
-- Score Volume Quality Review JSON: https://machinesignal.it/score_volume_quality_review_summary_20260605.json
-- Score Volume Quality Review CSV: https://machinesignal.it/score_volume_quality_review_rows_20260605.csv
-- Score Volume 25 Quality Review: https://machinesignal.it/score_volume_25_quality_review_report_20260605.md
-- Score Volume 25 Quality Review JSON: https://machinesignal.it/score_volume_25_quality_review_summary_20260605.json
-- Score Volume 25 Quality Review CSV: https://machinesignal.it/score_volume_25_quality_review_rows_20260605.csv
-- Bounded Deep Analysis Purchase Probe: https://machinesignal.it/bounded_deep_analysis_purchase_probe_report_20260605.md
-- Bounded Deep Analysis Purchase Probe JSON: https://machinesignal.it/bounded_deep_analysis_purchase_probe_summary_20260605.json
-- Bounded Deep Analysis Purchase Probe CSV: https://machinesignal.it/bounded_deep_analysis_purchase_probe_rows_20260605.csv
-- Deep Analysis Delivery Quality Review: https://machinesignal.it/deep_analysis_delivery_quality_review_report_20260605.md
-- Deep Analysis Delivery Quality Review JSON: https://machinesignal.it/deep_analysis_delivery_quality_review_summary_20260605.json
-- Deep Analysis Delivery Quality Review CSV: https://machinesignal.it/deep_analysis_delivery_quality_review_rows_20260605.csv
-- Bounded Action Pack Contract Probe: https://machinesignal.it/bounded_action_pack_contract_probe_report_20260605.md
-- Bounded Action Pack Contract Probe JSON: https://machinesignal.it/bounded_action_pack_contract_probe_summary_20260605.json
-- Bounded Action Pack Contract Probe CSV: https://machinesignal.it/bounded_action_pack_contract_probe_rows_20260605.csv
-- Deep Analysis Content Upgrade: https://machinesignal.it/deep_analysis_content_upgrade_readout_20260606.md
-- Deep Analysis Content Upgrade JSON: https://machinesignal.it/deep_analysis_content_upgrade_summary_20260606.json
-- Deep Analysis No-Credit Delivery Verification: https://machinesignal.it/deep_analysis_no_credit_delivery_verification_readout_20260606.md
-- Deep Analysis No-Credit Delivery Verification JSON: https://machinesignal.it/deep_analysis_no_credit_delivery_verification_summary_20260606.json
-- Bounded Live Deep Analysis Delivery Persistence Probe: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_report_20260606.md
-- Bounded Live Deep Analysis Delivery Persistence Probe JSON: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_summary_20260606.json
-- Bounded Live Deep Analysis Delivery Persistence Probe CSV: https://machinesignal.it/bounded_live_deep_analysis_delivery_persistence_probe_rows_20260606.csv
-- Deep Analysis Commercial Partner Brief: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md
-- Deep Analysis Commercial Partner Brief JSON: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.json
-- Machine Buyer Evaluation Pack: https://machinesignal.it/machine_buyer_evaluation_pack_20260606.md
-- Machine Buyer Evaluation Pack JSON: https://machinesignal.it/machine_buyer_evaluation_pack_20260606.json
-- Machine Buyer Product Evaluation Probe: https://machinesignal.it/machine_buyer_product_evaluation_probe_20260606_report.md
-- Machine Buyer Product Evaluation Probe JSON: https://machinesignal.it/machine_buyer_product_evaluation_probe_20260606_summary.json
-- Machine Buyer Routing Decision Probe: https://machinesignal.it/machine_buyer_routing_decision_probe_20260606_report.md
-- Machine Buyer Routing Decision Probe JSON: https://machinesignal.it/machine_buyer_routing_decision_probe_20260606_summary.json
-- Machine Buyer Delivery Retrieval Probe: https://machinesignal.it/machine_buyer_delivery_retrieval_probe_20260606_report.md
-- Machine Buyer Delivery Retrieval Probe JSON: https://machinesignal.it/machine_buyer_delivery_retrieval_probe_20260606_summary.json
-- Agent Meeting Machine Buyer Readiness Review: https://machinesignal.it/agent_meeting_machine_buyer_readiness_review_20260606.md
-- Agent Meeting Machine Buyer Readiness Review JSON: https://machinesignal.it/agent_meeting_machine_buyer_readiness_review_20260606.json
-- Marketplace API Directory Pack: https://machinesignal.it/marketplace_api_directory_pack_20260606.md
-- Marketplace API Directory Pack JSON: https://machinesignal.it/marketplace_api_directory_pack_20260606.json
-- Marketplace Publication Execution Pack: https://machinesignal.it/marketplace_publication_execution_pack_20260606.md
-- Marketplace Publication Execution Pack JSON: https://machinesignal.it/marketplace_publication_execution_pack_20260606.json
-- Readiness dashboard: https://machinesignal.it/readiness-dashboard/
-- Readiness dashboard JSON: https://machinesignal.it/readiness-dashboard/readiness.json
-- Readiness dashboard Markdown: https://machinesignal.it/machine_readiness_dashboard_20260604.md
-- Readiness dashboard root JSON: https://machinesignal.it/machine_readiness_dashboard_20260604.json
-- CRM/Agent Integration Simulator Readout: https://machinesignal.it/crm-agent-integration-simulator-readout.md
-- CRM/Agent Simulated Ledger JSON: https://machinesignal.it/crm-agent-integration-simulated-ledger.json
-- Dentists Beta Machine Buyer Pack JSON: https://machinesignal.it/dentists-beta-machine-buyer-pack.json
-- Dentists Beta Machine Buyer Pack Markdown: https://machinesignal.it/DENTISTS_BETA_MACHINE_BUYER_PACK.md
 - Technical Distribution Pack: https://machinesignal.it/distribution/
-- Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
-- Postman Import Page: https://machinesignal.it/postman/
-- Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
-- Postman Workspace Import Pack: https://machinesignal.it/postman_workspace_import_pack_20260606.md
-- Postman Workspace Import Pack JSON: https://machinesignal.it/postman_workspace_import_pack_20260606.json
-- Postman Public Environment Template: https://machinesignal.it/postman_public_environment_template.json
-- Postman Workspace Secret Scan: https://machinesignal.it/postman_workspace_secret_scan_20260606.md
-- Postman Workspace Secret Scan JSON: https://machinesignal.it/postman_workspace_secret_scan_20260606.json
-- Machine Buyer Postman Discovery Probe: https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_report.md
-- Machine Buyer Postman Discovery Probe JSON: https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_summary.json
-- Postman Public Collection Smoke Report: https://machinesignal.it/postman_public_collection_smoke_report_20260604.md
-- Postman Public Collection Smoke JSON: https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json
 - API Directory Submission JSON: https://machinesignal.it/distribution/api-directory-submission.json
-- Sandbox Buyer Kit Distribution Listing: https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json
 - RapidAPI Listing JSON: https://machinesignal.it/distribution/rapidapi-listing.json
 - RapidAPI Provider Setup JSON: https://machinesignal.it/distribution/rapidapi-provider-setup.json
 - Distribution Channel Shortlist JSON: https://machinesignal.it/distribution/channel-shortlist.json
@@ -291,7 +87,6 @@ Beta tester onboarding resources:
 - Machine beta test kit JSON: https://machinesignal.it/beta/machine-test-kit.json
 
 Commercial model under test:
-- Dentist beta benchmark: 250 Lombardia dentist / odontoiatric clinic domains generated EUR 552.95 simulated beta revenue, including EUR 403.95 downstream revenue after the EUR 149 Target Discovery order. No real payment and no external contact were executed.
 - Target Discovery Pack: EUR 149 for 250 coherent targets after market availability pre-check;
 - Domain Enrichment Pack 100: EUR 149 for 100 enrichment decisions when a machine has names but not reliable domains;
 - Score Pack 1k: EUR 99 for 1000 valid scores;
@@ -326,11 +121,10 @@ Deep Analysis delivery contract:
 - deep_analysis_version is domain_specific_commercial_evidence_v1;
 - the customer machine should buy action_pack only if sector fit, digital friction, CRM/workflow destination, compliance gate and budget approval are present;
 - if those gates are not present, the customer machine should keep the lead in watchlist or stop spending.
-- latest commercial proof: one bounded live Deep Analysis order, ord_e128da05, persisted the upgraded delivery fields with 21 of 21 checks passed; Deep Analysis credits moved from 42 to 41, while Action Pack credits stayed at 17.
-- partner-facing brief: https://machinesignal.it/deep_analysis_commercial_partner_brief_20260606.md
 
 Action Pack delivery contract:
 - action_pack returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail;
+- action_pack requires source_order_intent_id from an accepted deep_analysis order for the same domain; otherwise POST /v1/purchase-intent returns action_pack_gate_failed and consumes no credit;
 - webhook_event.event_type is machinesignal.action_pack.ready;
 - the customer machine should create/update CRM records first, run a compliance gate, and only then prepare any external action.
 
@@ -368,18 +162,9 @@ Ledger audit before real payments:
 - reconciliation_ok must be true before any customer is considered ready for paid checkout;
 - safety flags must remain real_payment_executed=false and external_contact_executed=false during beta.
 
-Payment test mode:
-- POST /v1/payment-test/intents creates a simulated provider-neutral checkout object in test/sandbox mode only;
-- provider_mode live, production or prod is blocked;
-- POST /v1/payment-test/webhooks/stripe accepts only deterministic test signatures returned by the payment test intent;
-- a succeeded test webhook activates test credits once and creates only an invoice placeholder, not a fiscal invoice;
-- duplicate webhook events do not activate duplicate credits;
-- GET /v1/payment-test/reconciliation/{payment_test_id} and GET /v1/admin/payment-test-report?customer_id=<customer_id> keep ready_for_real_payments=false and real_payment_executed=false.
-
 Machine-first rule:
 - MachineSignal does not require human email persuasion as the primary channel;
 - the public onboarding manifest explains the contract to software and agents;
-- the Machine Buyer Evaluation Pack explains what the machine buys, when it buys it, what JSON it receives, which actions are blocked and how budget waste is avoided;
 - authenticated onboarding tells a machine what it can do with its own key;
 - humans may supervise, approve or audit, but they are not the primary buyer interface.
 
@@ -389,6 +174,14 @@ Important operating rules:
 - credits are consumed only when the API produces a valid usable output;
 - the beta does not execute real payments;
 - the beta does not contact external targets.
+
+Payment test mode:
+- POST /v1/payment-test/intents creates a simulated provider-neutral checkout object in test/sandbox mode only;
+- provider_mode live, production or prod is blocked;
+- POST /v1/payment-test/webhooks/stripe accepts only deterministic test signatures returned by the payment test intent;
+- a succeeded test webhook activates test credits once and creates only an invoice placeholder, not a fiscal invoice;
+- duplicate webhook events do not activate duplicate credits;
+- GET /v1/payment-test/reconciliation/{payment_test_id} and GET /v1/admin/payment-test-report?customer_id=<customer_id> keep ready_for_real_payments=false and real_payment_executed=false.
 
 Contact: beta@machinesignal.it
 Website: https://machinesignal.it/

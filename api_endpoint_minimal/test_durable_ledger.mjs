@@ -84,6 +84,7 @@ const createCustomer = await requestJson(
       contact_email: "beta@machinesignal.it",
       score_credits: 40,
       deep_analysis_credits: 20,
+      action_pack_credits: 2,
       verification_credits: 20,
       nurture_signal_credits: 20
     })
@@ -97,6 +98,7 @@ const customerKey = createCustomer.payload.api_key;
 let scoreCount = 0;
 let purchaseCount = 0;
 const purchaseByProduct = {};
+let firstDeepAnalysisOrder = null;
 const domains = [
   ["quinta-essenza.com", "medicina estetica"],
   ["clinic3.it", "dentist"],
@@ -145,7 +147,58 @@ for (let index = 0; index < 24; index += 1) {
   assert.equal(purchase.payload.usage.ledger_backend, "durable_object");
   purchaseCount += 1;
   purchaseByProduct[nextProduct] = (purchaseByProduct[nextProduct] || 0) + 1;
+  if (nextProduct === "deep_analysis" && !firstDeepAnalysisOrder) {
+    firstDeepAnalysisOrder = {
+      domain,
+      order_intent_id: purchase.payload.order_intent_id,
+      source_score_request_id: score.payload.request_id
+    };
+  }
 }
+
+assert.ok(firstDeepAnalysisOrder);
+
+const blockedActionPack = await requestJson(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": customerKey,
+      "idempotency-key": "do-action-pack-missing-deep-source"
+    },
+    body: JSON.stringify({
+      product_code: "action_pack",
+      domain: firstDeepAnalysisOrder.domain,
+      source_score_request_id: firstDeepAnalysisOrder.source_score_request_id,
+      reason: "Durable Object test: invalid action pack without deep source"
+    })
+  })
+);
+assert.equal(blockedActionPack.status, 400);
+assert.equal(blockedActionPack.payload.error, "action_pack_gate_failed");
+
+const validActionPack = await requestJson(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": customerKey,
+      "idempotency-key": "do-action-pack-valid-after-deep"
+    },
+    body: JSON.stringify({
+      product_code: "action_pack",
+      domain: firstDeepAnalysisOrder.domain,
+      source_score_request_id: firstDeepAnalysisOrder.source_score_request_id,
+      source_order_intent_id: firstDeepAnalysisOrder.order_intent_id,
+      reason: "Durable Object test: valid action pack after deep analysis"
+    })
+  })
+);
+assert.equal(validActionPack.status, 200);
+assert.equal(validActionPack.payload.product_code, "action_pack");
+assert.equal(validActionPack.payload.action_pack_gate.passed, true);
+purchaseCount += 1;
+purchaseByProduct.action_pack = (purchaseByProduct.action_pack || 0) + 1;
 
 const duplicateScore = await requestJson(
   new Request("http://localhost/v1/lead-opportunity-score", {

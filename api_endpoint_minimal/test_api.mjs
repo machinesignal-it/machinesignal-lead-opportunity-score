@@ -606,6 +606,96 @@ assert.equal(deepAnalysisPayload.delivery.recommended_next_step.product_code, "a
 assert.ok(deepAnalysisPayload.delivery.recommended_next_step.condition.includes("sector fit"));
 assert.equal(deepAnalysisPayload.delivery.next_machine_call.endpoint, "/v1/purchase-intent");
 
+const actionPackWithoutDeepSourceResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "action_pack",
+      domain: "strong-clinic.it",
+      source_score_request_id: "test-score-strong-001",
+      reason: "Invalid Action Pack without Deep Analysis source"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key",
+      "idempotency-key": "test-action-pack-missing-deep-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(actionPackWithoutDeepSourceResponse.status, 400);
+const actionPackWithoutDeepSourcePayload = await actionPackWithoutDeepSourceResponse.json();
+assert.equal(actionPackWithoutDeepSourcePayload.error, "action_pack_gate_failed");
+assert.equal(actionPackWithoutDeepSourcePayload.details.required_input, "source_order_intent_id");
+
+const actionPackWithMissingDeepSourceResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "action_pack",
+      domain: "strong-clinic.it",
+      source_score_request_id: "test-score-strong-001",
+      source_order_intent_id: "ord_not_found",
+      reason: "Invalid Action Pack with unknown source order"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key",
+      "idempotency-key": "test-action-pack-missing-deep-002"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(actionPackWithMissingDeepSourceResponse.status, 400);
+assert.equal((await actionPackWithMissingDeepSourceResponse.json()).error, "action_pack_gate_failed");
+
+const actionPackWithWrongSourceProductResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "action_pack",
+      domain: "strong-clinic.it",
+      source_score_request_id: "test-score-strong-001",
+      source_order_intent_id: purchaseIntentPayload.order_intent_id,
+      reason: "Invalid Action Pack using a verification order as source"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key",
+      "idempotency-key": "test-action-pack-wrong-source-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(actionPackWithWrongSourceProductResponse.status, 400);
+const actionPackWithWrongSourceProductPayload = await actionPackWithWrongSourceProductResponse.json();
+assert.equal(actionPackWithWrongSourceProductPayload.error, "action_pack_gate_failed");
+assert.equal(actionPackWithWrongSourceProductPayload.details.source_product_code, "verification");
+
+const actionPackWithDomainMismatchResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "action_pack",
+      domain: "different-clinic.it",
+      source_score_request_id: "test-score-strong-001",
+      source_order_intent_id: deepAnalysisPayload.order_intent_id,
+      reason: "Invalid Action Pack with mismatched domain"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key",
+      "idempotency-key": "test-action-pack-domain-mismatch-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(actionPackWithDomainMismatchResponse.status, 400);
+const actionPackWithDomainMismatchPayload = await actionPackWithDomainMismatchResponse.json();
+assert.equal(actionPackWithDomainMismatchPayload.error, "action_pack_gate_failed");
+assert.equal(actionPackWithDomainMismatchPayload.details.source_domain, "strong-clinic.it");
+assert.equal(actionPackWithDomainMismatchPayload.details.requested_domain, "different-clinic.it");
+
 const actionPackResponse = await handleRequest(
   new Request("http://localhost/v1/purchase-intent", {
     method: "POST",
@@ -628,6 +718,10 @@ const actionPackResponse = await handleRequest(
 assert.equal(actionPackResponse.status, 200);
 const actionPackPayload = await actionPackResponse.json();
 assert.equal(actionPackPayload.product_code, "action_pack");
+assert.equal(actionPackPayload.source_order_intent_id, deepAnalysisPayload.order_intent_id);
+assert.equal(actionPackPayload.action_pack_gate.required, true);
+assert.equal(actionPackPayload.action_pack_gate.passed, true);
+assert.equal(actionPackPayload.action_pack_gate.source_order_intent_id, deepAnalysisPayload.order_intent_id);
 assert.equal(actionPackPayload.delivery.delivery_type, "action_pack");
 assert.equal(actionPackPayload.delivery.what_is_included.exact_unit_sold, "one CRM-ready action pack for one qualified domain");
 assert.equal(actionPackPayload.delivery.crm_record_patch.lead_status, "qualified_pending_compliance_review");

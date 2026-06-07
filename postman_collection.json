@@ -524,7 +524,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"product_code\": \"action_pack\",\n  \"domain\": \"quinta-essenza.com\",\n  \"source_score_request_id\": \"postman-demo-score-strong-001\",\n  \"reason\": \"Deep Analysis confirmed a low-risk opportunity and the CRM needs a machine-readable next action\"\n}"
+          "raw": "{\n  \"product_code\": \"action_pack\",\n  \"domain\": \"quinta-essenza.com\",\n  \"source_score_request_id\": \"postman-demo-score-strong-001\",\n  \"source_order_intent_id\": \"{{order_intent_id}}\",\n  \"reason\": \"Deep Analysis confirmed a low-risk opportunity and the CRM needs a machine-readable next action\"\n}"
         },
         "url": {
           "raw": "{{base_url}}/v1/purchase-intent",
@@ -540,7 +540,7 @@
             "purchase-intent"
           ]
         },
-        "description": "Use this when the machine has a confirmed opportunity and wants a CRM/agent-readable action payload. The delivery returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail."
+        "description": "Use this only after a valid Deep Analysis order for the same domain. source_order_intent_id is required; otherwise the API returns action_pack_gate_failed and consumes no credit. The delivery returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail."
       },
       "response": []
     },
@@ -569,35 +569,6 @@
           ]
         },
         "description": "Lists beta order intents and deliveries created by the authenticated customer machine."
-      },
-      "response": []
-    },
-    {
-      "name": "Get beta order by id",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "X-API-Key",
-            "value": "{{machinesignal_api_key}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/v1/orders/{{order_intent_id}}",
-          "protocol": "https",
-          "host": [
-            "machinesignal-api",
-            "beta-878",
-            "workers",
-            "dev"
-          ],
-          "path": [
-            "v1",
-            "orders",
-            "{{order_intent_id}}"
-          ]
-        },
-        "description": "Retrieves one beta order and its machine-readable delivery by order_intent_id. Use an id returned by purchase-intent or by the List beta orders request."
       },
       "response": []
     },
@@ -938,12 +909,12 @@
       "value": "beta_partner_001"
     },
     {
-      "key": "payment_test_id",
-      "value": "paste_payment_test_id_here"
+      "key": "order_intent_id",
+      "value": "paste_deep_analysis_order_intent_id_here"
     },
     {
-      "key": "order_intent_id",
-      "value": "paste_order_intent_id_here"
+      "key": "payment_test_id",
+      "value": "paste_payment_test_id_here"
     },
     {
       "key": "payment_test_success_signature",
