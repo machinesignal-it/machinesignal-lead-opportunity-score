@@ -1,0 +1,270 @@
+param(
+    [string]$PublicSite = "https://machinesignal.it",
+    [string]$OutputJson = "distribution_readiness_monitor_summary_20260607.json",
+    [string]$OutputMarkdown = "distribution_readiness_monitor_report_20260607.md"
+)
+
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
+
+function Write-Utf8NoBom {
+    param([string]$Path, [string]$Text)
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText((Join-Path (Get-Location) $Path), $Text, $utf8NoBom)
+}
+
+function Add-Check {
+    param(
+        [System.Collections.ArrayList]$Checks,
+        [string]$Name,
+        [bool]$Ok,
+        [string]$Details
+    )
+    [void]$Checks.Add([ordered]@{
+        name = $Name
+        ok = $Ok
+        details = $Details
+    })
+}
+
+function Get-PublicResource {
+    param(
+        [string]$Name,
+        [string]$Url,
+        [bool]$ExpectJson = $false
+    )
+
+    try {
+        $response = Invoke-WebRequest -Uri $Url -UseBasicParsing -TimeoutSec 30 -Headers @{
+            "User-Agent" = "MachineSignalDistributionReadinessMonitor/2026-06-07"
+            "Accept" = "application/json,text/plain,text/html,application/xml,*/*"
+        }
+        $content = if ($response.Content -is [byte[]]) {
+            [System.Text.Encoding]::UTF8.GetString($response.Content)
+        } else {
+            [string]($response.Content -join "`n")
+        }
+        $json = $null
+        $jsonOk = $false
+        if ($ExpectJson) {
+            try {
+                $json = $content | ConvertFrom-Json
+                $jsonOk = $true
+            } catch {
+                $jsonOk = $false
+            }
+        }
+        return [ordered]@{
+            name = $Name
+            url = $Url
+            status = [int]$response.StatusCode
+            ok = ([int]$response.StatusCode -eq 200)
+            content = $content
+            json = $json
+            json_ok = $jsonOk
+            length = $content.Length
+            error = $null
+        }
+    } catch {
+        return [ordered]@{
+            name = $Name
+            url = $Url
+            status = 0
+            ok = $false
+            content = ""
+            json = $null
+            json_ok = $false
+            length = 0
+            error = $_.Exception.Message
+        }
+    }
+}
+
+function Test-Contains {
+    param([string]$Text, [string]$Needle)
+    return $Text.IndexOf($Needle, [StringComparison]::OrdinalIgnoreCase) -ge 0
+}
+
+function Test-NoSecretLikeText {
+    param([string]$Text)
+    $patterns = @(
+        "sk_live_[A-Za-z0-9]+",
+        "sk_test_[A-Za-z0-9]+",
+        "ghp_[A-Za-z0-9_]+",
+        "github_pat_[A-Za-z0-9_]+",
+        "Bearer\s+[A-Za-z0-9._-]{20,}",
+        ("CF_" + "API_TOKEN"),
+        ("Cloudflare " + "API Token"),
+        "ms_cust_[A-Za-z0-9_-]+"
+    )
+    foreach ($pattern in $patterns) {
+        $matches = [regex]::Matches($Text, $pattern)
+        foreach ($match in $matches) {
+            if ($match.Value -eq "ms_cust_abc123") {
+                continue
+            }
+            return $false
+        }
+    }
+    return $true
+}
+
+$resources = @(
+    @{ name = "distribution_index"; url = "$PublicSite/distribution/"; json = $false; must = "Machine Buyer Evidence Brief" },
+    @{ name = "evidence_brief_html"; url = "$PublicSite/machine_beta_evidence_brief_20260607.html"; json = $false; must = "Machine-buyer beta flow proven" },
+    @{ name = "evidence_brief_md"; url = "$PublicSite/machine_beta_evidence_brief_20260607.md"; json = $false; must = "MachineSignal Machine Buyer Evidence Brief" },
+    @{ name = "evidence_brief_json"; url = "$PublicSite/machine_beta_evidence_brief_20260607.json"; json = $true; must = "completed_full" },
+    @{ name = "bounded_beta_runner_json"; url = "$PublicSite/bounded_private_beta_runner_summary_20260607.json"; json = $true; must = "completed_full" },
+    @{ name = "marketplace_api_directory_pack_md"; url = "$PublicSite/marketplace_api_directory_pack_20260606.md"; json = $false; must = "Latest machine-buyer evidence" },
+    @{ name = "marketplace_api_directory_pack_json"; url = "$PublicSite/marketplace_api_directory_pack_20260606.json"; json = $true; must = "latest_machine_buyer_evidence" },
+    @{ name = "marketplace_publication_execution_pack_md"; url = "$PublicSite/marketplace_publication_execution_pack_20260606.md"; json = $false; must = "Full Bounded Beta Runner JSON" },
+    @{ name = "marketplace_publication_execution_pack_json"; url = "$PublicSite/marketplace_publication_execution_pack_20260606.json"; json = $true; must = "latest_machine_buyer_evidence" },
+    @{ name = "api_directory_submission"; url = "$PublicSite/distribution/api-directory-submission.json"; json = $true; must = "latest_machine_buyer_evidence" },
+    @{ name = "rapidapi_listing"; url = "$PublicSite/distribution/rapidapi-listing.json"; json = $true; must = "provider_ready_draft_with_full_beta_evidence" },
+    @{ name = "marketplace_submission_pack"; url = "$PublicSite/distribution/marketplace-submission-pack.json"; json = $true; must = "machine_buyer_evidence_brief" },
+    @{ name = "postman_workspace_draft"; url = "$PublicSite/distribution/postman-public-workspace-draft.json"; json = $true; must = "ready_for_public_workspace_setup_with_full_beta_evidence" },
+    @{ name = "mcp_tool_manifest"; url = "$PublicSite/mcp-tool-manifest.json"; json = $true; must = "get_machine_buyer_evidence_brief" },
+    @{ name = "well_known_mcp_tool_manifest"; url = "$PublicSite/.well-known/mcp-tool-manifest.json"; json = $true; must = "get_machine_buyer_evidence_brief" },
+    @{ name = "well_known_machine_discovery"; url = "$PublicSite/.well-known/machine-discovery.json"; json = $true; must = "latest_machine_buyer_evidence" },
+    @{ name = "llms"; url = "$PublicSite/llms.txt"; json = $false; must = "Machine Buyer Evidence Brief JSON" },
+    @{ name = "robots"; url = "$PublicSite/robots.txt"; json = $false; must = "Machine-buyer-evidence-brief-json" },
+    @{ name = "sitemap"; url = "$PublicSite/sitemap.xml"; json = $false; must = "machine_beta_evidence_brief_20260607.html" },
+    @{ name = "openapi"; url = "$PublicSite/openapi.json"; json = $true; must = "action_pack_gate" },
+    @{ name = "postman_public_collection"; url = "$PublicSite/postman_public_collection.json"; json = $true; must = "action_pack_gate_failed" },
+    @{ name = "product_catalog"; url = "$PublicSite/product-catalog.json"; json = $true; must = "action_pack" },
+    @{ name = "machine_onboarding"; url = "$PublicSite/machine-onboarding.json"; json = $true; must = "NoWrite" }
+)
+
+$checks = New-Object System.Collections.ArrayList
+$fetched = @{}
+
+foreach ($resource in $resources) {
+    $result = Get-PublicResource -Name $resource.name -Url $resource.url -ExpectJson ([bool]$resource.json)
+    $fetched[$resource.name] = $result
+    Add-Check -Checks $checks -Name "$($resource.name)_reachable" -Ok ($result.ok) -Details "HTTP $($result.status), bytes=$($result.length)"
+    if ($resource.json) {
+        Add-Check -Checks $checks -Name "$($resource.name)_json_valid" -Ok ($result.json_ok) -Details "json_valid=$($result.json_ok)"
+    }
+    Add-Check -Checks $checks -Name "$($resource.name)_contains_expected_marker" -Ok (Test-Contains -Text $result.content -Needle $resource.must) -Details "marker=$($resource.must)"
+    Add-Check -Checks $checks -Name "$($resource.name)_secret_scan" -Ok (Test-NoSecretLikeText -Text $result.content) -Details "public content has no secret-like token patterns"
+}
+
+$evidence = $fetched["evidence_brief_json"].json
+if ($evidence) {
+    Add-Check -Checks $checks -Name "evidence_status_completed_full" -Ok ($evidence.status -eq "completed_full" -and $evidence.ok -eq $true) -Details "status=$($evidence.status), ok=$($evidence.ok)"
+    Add-Check -Checks $checks -Name "evidence_machine_customer_interface" -Ok ($evidence.primary_customer_interface -eq "machine") -Details "primary_customer_interface=$($evidence.primary_customer_interface)"
+    Add-Check -Checks $checks -Name "evidence_no_payment_or_contact" -Ok ($evidence.safety.real_payment_executed -eq $false -and $evidence.safety.external_contact_executed -eq $false -and $evidence.safety.real_invoice_issued -eq $false) -Details "payment=$($evidence.safety.real_payment_executed), contact=$($evidence.safety.external_contact_executed), invoice=$($evidence.safety.real_invoice_issued)"
+}
+
+$runner = $fetched["bounded_beta_runner_json"].json
+if ($runner) {
+    Add-Check -Checks $checks -Name "runner_full_beta_ok" -Ok ($runner.ok -eq $true -and $runner.status -eq "completed_full") -Details "status=$($runner.status), ok=$($runner.ok)"
+    Add-Check -Checks $checks -Name "runner_credit_caps_respected" -Ok ([int]$runner.full_run.credit_deltas.score_pack_1k -eq 5 -and [int]$runner.full_run.credit_deltas.deep_analysis_pack_100 -eq 1 -and [int]$runner.full_run.credit_deltas.action_pack_25 -eq 1) -Details "score=$($runner.full_run.credit_deltas.score_pack_1k), deep=$($runner.full_run.credit_deltas.deep_analysis_pack_100), action=$($runner.full_run.credit_deltas.action_pack_25)"
+    Add-Check -Checks $checks -Name "runner_safety_flags_false" -Ok ($runner.safety.real_payment_executed -eq $false -and $runner.safety.external_contact_executed -eq $false -and $runner.safety.real_invoice_issued -eq $false) -Details "payment=$($runner.safety.real_payment_executed), contact=$($runner.safety.external_contact_executed), invoice=$($runner.safety.real_invoice_issued)"
+}
+
+$sitemapText = [string]$fetched["sitemap"].content
+if ($sitemapText) {
+    try {
+        [xml]$null = $sitemapText
+        Add-Check -Checks $checks -Name "sitemap_xml_valid" -Ok $true -Details "valid XML"
+    } catch {
+        Add-Check -Checks $checks -Name "sitemap_xml_valid" -Ok $false -Details $_.Exception.Message
+    }
+}
+
+$failed = @($checks | Where-Object { $_.ok -eq $false })
+$summary = [ordered]@{
+    monitor_name = "machinesignal_distribution_readiness_monitor"
+    mode = "NoWrite"
+    generated_at = (Get-Date).ToUniversalTime().ToString("o")
+    public_site = $PublicSite
+    ok = ($failed.Count -eq 0)
+    status = if ($failed.Count -eq 0) { "ready_for_distribution_review" } else { "distribution_readiness_failed" }
+    alert_level = if ($failed.Count -eq 0) { "OK" } else { "ALERT" }
+    write_calls_executed = 0
+    post_calls_executed = 0
+    real_payment_executed = $false
+    external_contact_executed = $false
+    resources_checked = $resources.Count
+    checks_total = $checks.Count
+    checks_failed = $failed.Count
+    failed_checks = @($failed | ForEach-Object { $_.name })
+    checks = @($checks)
+    recommended_next_step = if ($failed.Count -eq 0) {
+        "Distribution assets are ready for owner review and sandbox-only external publication preparation. Do not enable live payments or publish real keys."
+    } else {
+        "Fix failed public discovery checks before external publication."
+    }
+}
+
+Write-Utf8NoBom -Path $OutputJson -Text ($summary | ConvertTo-Json -Depth 80)
+
+$checkRows = @()
+foreach ($check in $summary.checks) {
+    $status = if ($check.ok) { "OK" } else { "FAIL" }
+    $checkRows += "| $($check.name) | $status | $($check.details) |"
+}
+
+$resourceRows = @()
+foreach ($resource in $resources) {
+    $r = $fetched[$resource.name]
+    $jsonStatus = if ($resource.json) { $r.json_ok } else { "n/a" }
+    $resourceRows += "| $($resource.name) | $($r.status) | $jsonStatus | $($r.length) |"
+}
+
+$md = @"
+# MachineSignal Distribution Readiness Monitor - 2026-06-07
+
+Mode: NoWrite
+
+Status: $($summary.status)
+
+Overall OK: $($summary.ok)
+
+Alert level: $($summary.alert_level)
+
+Write calls executed: 0
+
+POST calls executed: 0
+
+## What This Monitor Checks
+
+This monitor verifies that MachineSignal's machine-readable distribution layer is online before external publication preparation:
+
+- marketplace and API directory packs;
+- Postman workspace draft;
+- MCP manifests and well-known discovery;
+- evidence brief and full beta runner evidence;
+- llms.txt, robots.txt, sitemap.xml, OpenAPI and Postman collection;
+- public files contain no secret-like token patterns.
+
+It performs only public GET requests. It does not create customers, consume credits, execute payments, issue invoices or contact external targets.
+
+## Resources
+
+| Resource | HTTP | JSON valid | Bytes |
+|---|---:|---|---:|
+$($resourceRows -join "`n")
+
+## Checks
+
+| Check | Status | Details |
+|---|---|---|
+$($checkRows -join "`n")
+
+## Safety
+
+- Real payment executed: false
+- External contact executed: false
+- Real invoice issued: false
+- Credit-consuming calls executed: false
+
+## Recommended Next Step
+
+$($summary.recommended_next_step)
+"@
+
+Write-Utf8NoBom -Path $OutputMarkdown -Text $md
+
+$summary | ConvertTo-Json -Depth 80

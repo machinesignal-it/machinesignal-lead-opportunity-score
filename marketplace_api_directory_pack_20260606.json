@@ -69,7 +69,9 @@
                              "machine_buyer_evidence_brief":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
                              "machine_buyer_evidence_brief_json":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
                              "full_bounded_beta_runner":  "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
-                             "full_bounded_beta_runner_json":  "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json"
+                             "full_bounded_beta_runner_json":  "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
+                             "distribution_readiness_monitor":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+                             "distribution_readiness_monitor_json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
                          },
     "products":  [
                      {
@@ -287,5 +289,17 @@
                                                          "real_invoice_issued":  false,
                                                          "action_pack_without_deep_analysis_blocked":  true
                                                      }
-                                      }
+                                      },
+    "latest_distribution_readiness_monitor":  {
+                                                  "status":  "ready_for_distribution_review",
+                                                  "ok":  true,
+                                                  "mode":  "NoWrite",
+                                                  "evidence_date":  "2026-06-07",
+                                                  "checks_total":  91,
+                                                  "checks_failed":  0,
+                                                  "write_calls_executed":  0,
+                                                  "post_calls_executed":  0,
+                                                  "report":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+                                                  "json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
+                                              }
 }

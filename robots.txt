@@ -38,6 +38,8 @@ Postman-public-collection-smoke-json: https://machinesignal.it/postman_public_co
 Machine-buyer-evidence-brief: https://machinesignal.it/machine_beta_evidence_brief_20260607.html
 Machine-buyer-evidence-brief-markdown: https://machinesignal.it/machine_beta_evidence_brief_20260607.md
 Machine-buyer-evidence-brief-json: https://machinesignal.it/machine_beta_evidence_brief_20260607.json
+Distribution-readiness-monitor: https://machinesignal.it/distribution_readiness_monitor_report_20260607.md
+Distribution-readiness-monitor-json: https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json
 Machine-api-sandbox-test: https://machinesignal.it/machine-api-sandbox-test/
 Machine-api-sandbox-test-json: https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json
 Sandbox-buyer-kit: https://machinesignal.it/sandbox-buyer-kit/

@@ -1,0 +1,477 @@
+{
+    "monitor_name":  "machinesignal_distribution_readiness_monitor",
+    "mode":  "NoWrite",
+    "generated_at":  "2026-06-07T09:40:39.3169669Z",
+    "public_site":  "https://machinesignal.it",
+    "ok":  true,
+    "status":  "ready_for_distribution_review",
+    "alert_level":  "OK",
+    "write_calls_executed":  0,
+    "post_calls_executed":  0,
+    "real_payment_executed":  false,
+    "external_contact_executed":  false,
+    "resources_checked":  23,
+    "checks_total":  91,
+    "checks_failed":  0,
+    "failed_checks":  [
+
+                      ],
+    "checks":  [
+                   {
+                       "name":  "distribution_index_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=10653"
+                   },
+                   {
+                       "name":  "distribution_index_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Machine Buyer Evidence Brief"
+                   },
+                   {
+                       "name":  "distribution_index_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "evidence_brief_html_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=8526"
+                   },
+                   {
+                       "name":  "evidence_brief_html_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Machine-buyer beta flow proven"
+                   },
+                   {
+                       "name":  "evidence_brief_html_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "evidence_brief_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=4942"
+                   },
+                   {
+                       "name":  "evidence_brief_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=MachineSignal Machine Buyer Evidence Brief"
+                   },
+                   {
+                       "name":  "evidence_brief_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "evidence_brief_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=4415"
+                   },
+                   {
+                       "name":  "evidence_brief_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "evidence_brief_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_full"
+                   },
+                   {
+                       "name":  "evidence_brief_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "bounded_beta_runner_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=109267"
+                   },
+                   {
+                       "name":  "bounded_beta_runner_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "bounded_beta_runner_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_full"
+                   },
+                   {
+                       "name":  "bounded_beta_runner_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "marketplace_api_directory_pack_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=8230"
+                   },
+                   {
+                       "name":  "marketplace_api_directory_pack_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Latest machine-buyer evidence"
+                   },
+                   {
+                       "name":  "marketplace_api_directory_pack_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "marketplace_api_directory_pack_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=21004"
+                   },
+                   {
+                       "name":  "marketplace_api_directory_pack_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "marketplace_api_directory_pack_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=latest_machine_buyer_evidence"
+                   },
+                   {
+                       "name":  "marketplace_api_directory_pack_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "marketplace_publication_execution_pack_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=10583"
+                   },
+                   {
+                       "name":  "marketplace_publication_execution_pack_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Full Bounded Beta Runner JSON"
+                   },
+                   {
+                       "name":  "marketplace_publication_execution_pack_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "marketplace_publication_execution_pack_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=17087"
+                   },
+                   {
+                       "name":  "marketplace_publication_execution_pack_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "marketplace_publication_execution_pack_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=latest_machine_buyer_evidence"
+                   },
+                   {
+                       "name":  "marketplace_publication_execution_pack_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "api_directory_submission_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=10397"
+                   },
+                   {
+                       "name":  "api_directory_submission_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "api_directory_submission_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=latest_machine_buyer_evidence"
+                   },
+                   {
+                       "name":  "api_directory_submission_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "rapidapi_listing_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=15205"
+                   },
+                   {
+                       "name":  "rapidapi_listing_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "rapidapi_listing_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=provider_ready_draft_with_full_beta_evidence"
+                   },
+                   {
+                       "name":  "rapidapi_listing_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "marketplace_submission_pack_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=17677"
+                   },
+                   {
+                       "name":  "marketplace_submission_pack_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "marketplace_submission_pack_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=machine_buyer_evidence_brief"
+                   },
+                   {
+                       "name":  "marketplace_submission_pack_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "postman_workspace_draft_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=12854"
+                   },
+                   {
+                       "name":  "postman_workspace_draft_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "postman_workspace_draft_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=ready_for_public_workspace_setup_with_full_beta_evidence"
+                   },
+                   {
+                       "name":  "postman_workspace_draft_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "mcp_tool_manifest_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=40123"
+                   },
+                   {
+                       "name":  "mcp_tool_manifest_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "mcp_tool_manifest_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=get_machine_buyer_evidence_brief"
+                   },
+                   {
+                       "name":  "mcp_tool_manifest_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "well_known_mcp_tool_manifest_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=40123"
+                   },
+                   {
+                       "name":  "well_known_mcp_tool_manifest_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "well_known_mcp_tool_manifest_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=get_machine_buyer_evidence_brief"
+                   },
+                   {
+                       "name":  "well_known_mcp_tool_manifest_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "well_known_machine_discovery_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=13594"
+                   },
+                   {
+                       "name":  "well_known_machine_discovery_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "well_known_machine_discovery_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=latest_machine_buyer_evidence"
+                   },
+                   {
+                       "name":  "well_known_machine_discovery_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "llms_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=13485"
+                   },
+                   {
+                       "name":  "llms_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Machine Buyer Evidence Brief JSON"
+                   },
+                   {
+                       "name":  "llms_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "robots_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=5513"
+                   },
+                   {
+                       "name":  "robots_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Machine-buyer-evidence-brief-json"
+                   },
+                   {
+                       "name":  "robots_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "sitemap_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=13293"
+                   },
+                   {
+                       "name":  "sitemap_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=machine_beta_evidence_brief_20260607.html"
+                   },
+                   {
+                       "name":  "sitemap_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "openapi_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=58945"
+                   },
+                   {
+                       "name":  "openapi_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "openapi_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=action_pack_gate"
+                   },
+                   {
+                       "name":  "openapi_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "postman_public_collection_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=27401"
+                   },
+                   {
+                       "name":  "postman_public_collection_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "postman_public_collection_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=action_pack_gate_failed"
+                   },
+                   {
+                       "name":  "postman_public_collection_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "product_catalog_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=12370"
+                   },
+                   {
+                       "name":  "product_catalog_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "product_catalog_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=action_pack"
+                   },
+                   {
+                       "name":  "product_catalog_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "machine_onboarding_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=35339"
+                   },
+                   {
+                       "name":  "machine_onboarding_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "machine_onboarding_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=NoWrite"
+                   },
+                   {
+                       "name":  "machine_onboarding_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "evidence_status_completed_full",
+                       "ok":  true,
+                       "details":  "status=completed_full, ok=True"
+                   },
+                   {
+                       "name":  "evidence_machine_customer_interface",
+                       "ok":  true,
+                       "details":  "primary_customer_interface=machine"
+                   },
+                   {
+                       "name":  "evidence_no_payment_or_contact",
+                       "ok":  true,
+                       "details":  "payment=False, contact=False, invoice=False"
+                   },
+                   {
+                       "name":  "runner_full_beta_ok",
+                       "ok":  true,
+                       "details":  "status=completed_full, ok=True"
+                   },
+                   {
+                       "name":  "runner_credit_caps_respected",
+                       "ok":  true,
+                       "details":  "score=5, deep=1, action=1"
+                   },
+                   {
+                       "name":  "runner_safety_flags_false",
+                       "ok":  true,
+                       "details":  "payment=False, contact=False, invoice=False"
+                   },
+                   {
+                       "name":  "sitemap_xml_valid",
+                       "ok":  true,
+                       "details":  "valid XML"
+                   }
+               ],
+    "recommended_next_step":  "Distribution assets are ready for owner review and sandbox-only external publication preparation. Do not enable live payments or publish real keys."
+}
