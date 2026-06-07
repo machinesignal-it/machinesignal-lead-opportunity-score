@@ -44,6 +44,8 @@ Sandbox-only-external-publication-pack: https://machinesignal.it/sandbox_only_ex
 Sandbox-only-external-publication-pack-json: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 External-sandbox-publication-drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
 External-sandbox-publication-drafts-json: https://machinesignal.it/external_sandbox_publication_drafts_20260607.json
+Postman-private-workspace-checklist: https://machinesignal.it/postman_private_workspace_checklist_20260607.md
+Postman-private-workspace-checklist-json: https://machinesignal.it/postman_private_workspace_checklist_20260607.json
 Machine-api-sandbox-test: https://machinesignal.it/machine-api-sandbox-test/
 Machine-api-sandbox-test-json: https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json
 Sandbox-buyer-kit: https://machinesignal.it/sandbox-buyer-kit/

@@ -43,7 +43,9 @@
     "full_bounded_beta_runner": "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
     "full_bounded_beta_runner_json": "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
     "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
-    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
+    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
+    "postman_private_workspace_checklist": "https://machinesignal.it/postman_private_workspace_checklist_20260607.md",
+    "postman_private_workspace_checklist_json": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json"
   },
   "environment_variables": [
     {
@@ -147,5 +149,6 @@
     "live_payments_enabled": false,
     "real_keys_publishable": false,
     "human_outreach_allowed": false
-  }
+  },
+  "current_private_setup_checklist": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json"
 }

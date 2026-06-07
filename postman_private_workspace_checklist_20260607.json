@@ -1,0 +1,128 @@
+{
+  "artifact": "postman_private_workspace_checklist",
+  "generated_at": "2026-06-07",
+  "status": "ready_for_private_or_team_workspace_setup",
+  "public_postman_publication": "blocked_until_owner_approval",
+  "objective": "Prepare a Postman workspace for machine, developer, CRM and AI-agent sandbox evaluation without exposing secrets, activating live payments or contacting external targets.",
+  "workspace_settings": {
+    "workspace_name": "MachineSignal Lead Opportunity Score API",
+    "initial_visibility": "private_or_team_only",
+    "public_visibility": "blocked_until_owner_approval",
+    "primary_import_source": "https://machinesignal.it/postman_public_collection.json",
+    "environment_source": "https://machinesignal.it/postman_public_environment_template.json",
+    "description_source": "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
+    "evidence_source": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html"
+  },
+  "folder_structure": [
+    "00 Public Discovery",
+    "01 Sandbox Customer",
+    "02 Authenticated Onboarding",
+    "03 Lead Scoring",
+    "04 Purchase Intent",
+    "05 Payment Test",
+    "06 Orders And Deliveries",
+    "07 Evidence And Readiness"
+  ],
+  "environment_variables": [
+    {
+      "name": "base_url",
+      "type": "default",
+      "initial_value": "https://machinesignal-api.beta-878.workers.dev",
+      "rule": "Public value allowed."
+    },
+    {
+      "name": "machinesignal_api_key",
+      "type": "secret",
+      "initial_value": "",
+      "rule": "Never publish a real key."
+    },
+    {
+      "name": "beta_customer_id",
+      "type": "secret",
+      "initial_value": "",
+      "rule": "Never publish a real customer ID if tied to a private test."
+    },
+    {
+      "name": "payment_test_id",
+      "type": "default",
+      "initial_value": "",
+      "rule": "Sandbox/test only."
+    },
+    {
+      "name": "order_intent_id",
+      "type": "default",
+      "initial_value": "",
+      "rule": "Sandbox/test only."
+    },
+    {
+      "name": "payment_test_success_signature",
+      "type": "secret",
+      "initial_value": "",
+      "rule": "Never publish real signature values."
+    }
+  ],
+  "import_steps": [
+    "Create or open the MachineSignal Postman workspace.",
+    "Keep visibility private or team.",
+    "Import the collection from https://machinesignal.it/postman_public_collection.json.",
+    "Import or recreate the environment from https://machinesignal.it/postman_public_environment_template.json.",
+    "Confirm all secret variables are blank.",
+    "Set base_url to the public Worker URL only.",
+    "Add the workspace description from distribution/postman-public-workspace-draft.json.",
+    "Add evidence links in the workspace description or documentation.",
+    "Do not make the workspace public."
+  ],
+  "nowrite_setup_checks": [
+    "collection_imported",
+    "environment_exists",
+    "base_url_present",
+    "secret_variables_blank",
+    "documentation_says_sandbox_only",
+    "evidence_brief_linked",
+    "sandbox_only_publication_pack_linked",
+    "no_real_api_key_visible",
+    "no_live_payment_claimed"
+  ],
+  "optional_sandbox_smoke_test_requires_approval": [
+    "GET /health",
+    "GET /machine-onboarding.json",
+    "GET /product-catalog.json",
+    "POST /v1/sandbox/customers",
+    "Store returned sandbox key in machinesignal_api_key as secret.",
+    "Run one score call.",
+    "Read usage."
+  ],
+  "blocked_actions": [
+    "make_workspace_public",
+    "publish_real_api_keys",
+    "publish_admin_keys",
+    "publish_ftp_cloudflare_github_or_postman_tokens",
+    "activate_live_payments",
+    "claim_paid_plans_are_live",
+    "run_external_outreach",
+    "contact_target_companies",
+    "issue_invoices_or_fiscal_documents",
+    "create_legal_or_sla_commitments"
+  ],
+  "public_visibility_gate": [
+    "postman_secret_scan_has_no_unresolved_issue",
+    "machinesignal_public_secret_scan_passed",
+    "environment_secrets_blank_or_marked_secret",
+    "collection_variables_contain_no_real_key",
+    "workspace_text_says_sandbox_only",
+    "live_payment_not_claimed",
+    "evidence_brief_and_readiness_monitor_linked",
+    "owner_approval_recorded"
+  ],
+  "public_links": {
+    "markdown": "https://machinesignal.it/postman_private_workspace_checklist_20260607.md",
+    "json": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json",
+    "postman_import_page": "https://machinesignal.it/postman/",
+    "postman_collection": "https://machinesignal.it/postman_public_collection.json",
+    "environment_template": "https://machinesignal.it/postman_public_environment_template.json",
+    "workspace_draft": "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
+    "secret_scan": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+    "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
+  },
+  "current_recommendation": "Prepare the workspace privately. Use it as an internal machine-buyer evaluation surface. Do not make it public yet."
+}

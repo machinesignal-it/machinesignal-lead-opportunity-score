@@ -29,29 +29,31 @@ It performs only public GET requests. It does not create customers, consume cred
 
 | Resource | HTTP | JSON valid | Bytes |
 |---|---:|---|---:|
-| distribution_index | 200 | n/a | 11945 |
+| distribution_index | 200 | n/a | 12409 |
 | evidence_brief_html | 200 | n/a | 8526 |
 | evidence_brief_md | 200 | n/a | 4942 |
 | evidence_brief_json | 200 | True | 4415 |
 | bounded_beta_runner_json | 200 | True | 109267 |
 | sandbox_only_external_publication_pack_md | 200 | n/a | 5741 |
-| sandbox_only_external_publication_pack_json | 200 | True | 7162 |
-| external_sandbox_publication_drafts_md | 200 | n/a | 6757 |
-| external_sandbox_publication_drafts_json | 200 | True | 7720 |
+| sandbox_only_external_publication_pack_json | 200 | True | 7407 |
+| external_sandbox_publication_drafts_md | 200 | n/a | 6862 |
+| external_sandbox_publication_drafts_json | 200 | True | 8080 |
 | marketplace_api_directory_pack_md | 200 | n/a | 9178 |
-| marketplace_api_directory_pack_json | 200 | True | 14051 |
-| marketplace_publication_execution_pack_md | 200 | n/a | 11057 |
-| marketplace_publication_execution_pack_json | 200 | True | 12477 |
+| marketplace_api_directory_pack_json | 200 | True | 14296 |
+| marketplace_publication_execution_pack_md | 200 | n/a | 11171 |
+| marketplace_publication_execution_pack_json | 200 | True | 12722 |
 | api_directory_submission | 200 | True | 8202 |
 | rapidapi_listing | 200 | True | 10785 |
-| marketplace_submission_pack | 200 | True | 13804 |
-| postman_workspace_draft | 200 | True | 9199 |
+| marketplace_submission_pack | 200 | True | 14049 |
+| postman_workspace_draft | 200 | True | 9559 |
+| postman_private_workspace_checklist_md | 200 | n/a | 4368 |
+| postman_private_workspace_checklist_json | 200 | True | 5098 |
 | mcp_tool_manifest | 200 | True | 40123 |
 | well_known_mcp_tool_manifest | 200 | True | 40123 |
-| well_known_machine_discovery | 200 | True | 12789 |
-| llms | 200 | n/a | 14185 |
-| robots | 200 | n/a | 6201 |
-| sitemap | 200 | n/a | 13940 |
+| well_known_machine_discovery | 200 | True | 13034 |
+| llms | 200 | n/a | 14416 |
+| robots | 200 | n/a | 6428 |
+| sitemap | 200 | n/a | 14152 |
 | openapi | 200 | True | 58945 |
 | postman_public_collection | 200 | True | 27401 |
 | product_catalog | 200 | True | 12370 |
@@ -61,7 +63,7 @@ It performs only public GET requests. It does not create customers, consume cred
 
 | Check | Status | Details |
 |---|---|---|
-| distribution_index_reachable | OK | HTTP 200, bytes=11945 |
+| distribution_index_reachable | OK | HTTP 200, bytes=12409 |
 | distribution_index_contains_expected_marker | OK | marker=Sandbox-Only Publication Pack |
 | distribution_index_secret_scan | OK | public content has no secret-like token patterns |
 | evidence_brief_html_reachable | OK | HTTP 200, bytes=8526 |
@@ -81,28 +83,28 @@ It performs only public GET requests. It does not create customers, consume cred
 | sandbox_only_external_publication_pack_md_reachable | OK | HTTP 200, bytes=5741 |
 | sandbox_only_external_publication_pack_md_contains_expected_marker | OK | marker=What Remains Blocked |
 | sandbox_only_external_publication_pack_md_secret_scan | OK | public content has no secret-like token patterns |
-| sandbox_only_external_publication_pack_json_reachable | OK | HTTP 200, bytes=7162 |
+| sandbox_only_external_publication_pack_json_reachable | OK | HTTP 200, bytes=7407 |
 | sandbox_only_external_publication_pack_json_json_valid | OK | json_valid=True |
 | sandbox_only_external_publication_pack_json_contains_expected_marker | OK | marker=blocked_without_owner_approval |
 | sandbox_only_external_publication_pack_json_secret_scan | OK | public content has no secret-like token patterns |
-| external_sandbox_publication_drafts_md_reachable | OK | HTTP 200, bytes=6757 |
+| external_sandbox_publication_drafts_md_reachable | OK | HTTP 200, bytes=6862 |
 | external_sandbox_publication_drafts_md_contains_expected_marker | OK | marker=Channel 1: Postman Workspace Draft |
 | external_sandbox_publication_drafts_md_secret_scan | OK | public content has no secret-like token patterns |
-| external_sandbox_publication_drafts_json_reachable | OK | HTTP 200, bytes=7720 |
+| external_sandbox_publication_drafts_json_reachable | OK | HTTP 200, bytes=8080 |
 | external_sandbox_publication_drafts_json_json_valid | OK | json_valid=True |
 | external_sandbox_publication_drafts_json_contains_expected_marker | OK | marker=rapidapi_style_marketplace |
 | external_sandbox_publication_drafts_json_secret_scan | OK | public content has no secret-like token patterns |
 | marketplace_api_directory_pack_md_reachable | OK | HTTP 200, bytes=9178 |
 | marketplace_api_directory_pack_md_contains_expected_marker | OK | marker=Sandbox-Only External Publication Pack |
 | marketplace_api_directory_pack_md_secret_scan | OK | public content has no secret-like token patterns |
-| marketplace_api_directory_pack_json_reachable | OK | HTTP 200, bytes=14051 |
+| marketplace_api_directory_pack_json_reachable | OK | HTTP 200, bytes=14296 |
 | marketplace_api_directory_pack_json_json_valid | OK | json_valid=True |
 | marketplace_api_directory_pack_json_contains_expected_marker | OK | marker=external_publication_policy |
 | marketplace_api_directory_pack_json_secret_scan | OK | public content has no secret-like token patterns |
-| marketplace_publication_execution_pack_md_reachable | OK | HTTP 200, bytes=11057 |
+| marketplace_publication_execution_pack_md_reachable | OK | HTTP 200, bytes=11171 |
 | marketplace_publication_execution_pack_md_contains_expected_marker | OK | marker=Sandbox-Only External Publication Pack |
 | marketplace_publication_execution_pack_md_secret_scan | OK | public content has no secret-like token patterns |
-| marketplace_publication_execution_pack_json_reachable | OK | HTTP 200, bytes=12477 |
+| marketplace_publication_execution_pack_json_reachable | OK | HTTP 200, bytes=12722 |
 | marketplace_publication_execution_pack_json_json_valid | OK | json_valid=True |
 | marketplace_publication_execution_pack_json_contains_expected_marker | OK | marker=external_publication_policy |
 | marketplace_publication_execution_pack_json_secret_scan | OK | public content has no secret-like token patterns |
@@ -114,14 +116,21 @@ It performs only public GET requests. It does not create customers, consume cred
 | rapidapi_listing_json_valid | OK | json_valid=True |
 | rapidapi_listing_contains_expected_marker | OK | marker=rapidapi_style_provider_metadata_ready_monetization_disabled |
 | rapidapi_listing_secret_scan | OK | public content has no secret-like token patterns |
-| marketplace_submission_pack_reachable | OK | HTTP 200, bytes=13804 |
+| marketplace_submission_pack_reachable | OK | HTTP 200, bytes=14049 |
 | marketplace_submission_pack_json_valid | OK | json_valid=True |
 | marketplace_submission_pack_contains_expected_marker | OK | marker=external_publication_policy |
 | marketplace_submission_pack_secret_scan | OK | public content has no secret-like token patterns |
-| postman_workspace_draft_reachable | OK | HTTP 200, bytes=9199 |
+| postman_workspace_draft_reachable | OK | HTTP 200, bytes=9559 |
 | postman_workspace_draft_json_valid | OK | json_valid=True |
 | postman_workspace_draft_contains_expected_marker | OK | marker=ready_for_private_or_team_workspace_setup_public_visibility_blocked_until_owner_approval |
 | postman_workspace_draft_secret_scan | OK | public content has no secret-like token patterns |
+| postman_private_workspace_checklist_md_reachable | OK | HTTP 200, bytes=4368 |
+| postman_private_workspace_checklist_md_contains_expected_marker | OK | marker=Workspace Folder Structure |
+| postman_private_workspace_checklist_md_secret_scan | OK | public content has no secret-like token patterns |
+| postman_private_workspace_checklist_json_reachable | OK | HTTP 200, bytes=5098 |
+| postman_private_workspace_checklist_json_json_valid | OK | json_valid=True |
+| postman_private_workspace_checklist_json_contains_expected_marker | OK | marker=blocked_actions |
+| postman_private_workspace_checklist_json_secret_scan | OK | public content has no secret-like token patterns |
 | mcp_tool_manifest_reachable | OK | HTTP 200, bytes=40123 |
 | mcp_tool_manifest_json_valid | OK | json_valid=True |
 | mcp_tool_manifest_contains_expected_marker | OK | marker=get_machine_buyer_evidence_brief |
@@ -130,18 +139,18 @@ It performs only public GET requests. It does not create customers, consume cred
 | well_known_mcp_tool_manifest_json_valid | OK | json_valid=True |
 | well_known_mcp_tool_manifest_contains_expected_marker | OK | marker=get_machine_buyer_evidence_brief |
 | well_known_mcp_tool_manifest_secret_scan | OK | public content has no secret-like token patterns |
-| well_known_machine_discovery_reachable | OK | HTTP 200, bytes=12789 |
+| well_known_machine_discovery_reachable | OK | HTTP 200, bytes=13034 |
 | well_known_machine_discovery_json_valid | OK | json_valid=True |
 | well_known_machine_discovery_contains_expected_marker | OK | marker=external_sandbox_publication_drafts_json |
 | well_known_machine_discovery_secret_scan | OK | public content has no secret-like token patterns |
-| llms_reachable | OK | HTTP 200, bytes=14185 |
-| llms_contains_expected_marker | OK | marker=External Sandbox Publication Drafts JSON |
+| llms_reachable | OK | HTTP 200, bytes=14416 |
+| llms_contains_expected_marker | OK | marker=Postman Private Workspace Checklist JSON |
 | llms_secret_scan | OK | public content has no secret-like token patterns |
-| robots_reachable | OK | HTTP 200, bytes=6201 |
-| robots_contains_expected_marker | OK | marker=External-sandbox-publication-drafts-json |
+| robots_reachable | OK | HTTP 200, bytes=6428 |
+| robots_contains_expected_marker | OK | marker=Postman-private-workspace-checklist-json |
 | robots_secret_scan | OK | public content has no secret-like token patterns |
-| sitemap_reachable | OK | HTTP 200, bytes=13940 |
-| sitemap_contains_expected_marker | OK | marker=external_sandbox_publication_drafts_20260607.json |
+| sitemap_reachable | OK | HTTP 200, bytes=14152 |
+| sitemap_contains_expected_marker | OK | marker=postman_private_workspace_checklist_20260607.json |
 | sitemap_secret_scan | OK | public content has no secret-like token patterns |
 | openapi_reachable | OK | HTTP 200, bytes=58945 |
 | openapi_json_valid | OK | json_valid=True |

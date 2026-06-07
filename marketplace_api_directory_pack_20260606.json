@@ -75,7 +75,9 @@
     "sandbox_only_external_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md",
     "sandbox_only_external_publication_pack_json": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
     "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
-    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
+    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
+    "postman_private_workspace_checklist": "https://machinesignal.it/postman_private_workspace_checklist_20260607.md",
+    "postman_private_workspace_checklist_json": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json"
   },
   "products": [
     {

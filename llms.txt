@@ -93,6 +93,8 @@ Public demos for software, agents and partners:
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
 - External Sandbox Publication Drafts JSON: https://machinesignal.it/external_sandbox_publication_drafts_20260607.json
+- Postman Private Workspace Checklist: https://machinesignal.it/postman_private_workspace_checklist_20260607.md
+- Postman Private Workspace Checklist JSON: https://machinesignal.it/postman_private_workspace_checklist_20260607.json
 
 Beta tester onboarding resources:
 - Beta tester onboarding packet: https://machinesignal.it/beta/onboarding-packet.html

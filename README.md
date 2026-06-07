@@ -94,6 +94,8 @@ Public discovery starts here:
 - Marketplace Submission Pack: https://machinesignal.it/distribution/marketplace-submission-pack.json
 - Postman Import Page: https://machinesignal.it/postman/
 - Postman Workspace Draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
+- Postman Private Workspace Checklist: https://machinesignal.it/postman_private_workspace_checklist_20260607.md
+- Postman Private Workspace Checklist JSON: https://machinesignal.it/postman_private_workspace_checklist_20260607.json
 - Postman Workspace Import Pack: https://machinesignal.it/postman_workspace_import_pack_20260606.md
 - Postman Workspace Import Pack JSON: https://machinesignal.it/postman_workspace_import_pack_20260606.json
 - Postman Public Environment Template: https://machinesignal.it/postman_public_environment_template.json

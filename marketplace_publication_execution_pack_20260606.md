@@ -45,6 +45,7 @@ The goal is not human cold email. The goal is to place MachineSignal where softw
 - Postman collection: https://machinesignal.it/postman_public_collection.json
 - Postman environment template: https://machinesignal.it/postman_public_environment_template.json
 - Postman workspace import pack: https://machinesignal.it/postman_workspace_import_pack_20260606.json
+- Postman private workspace checklist: https://machinesignal.it/postman_private_workspace_checklist_20260607.json
 - Machine onboarding: https://machinesignal.it/machine-onboarding.json
 - Product catalog: https://machinesignal.it/product-catalog.json
 - llms.txt: https://machinesignal.it/llms.txt

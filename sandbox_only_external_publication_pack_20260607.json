@@ -150,7 +150,9 @@
     "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
     "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
     "external_sandbox_publication_drafts": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
-    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json"
+    "external_sandbox_publication_drafts_json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
+    "postman_private_workspace_checklist": "https://machinesignal.it/postman_private_workspace_checklist_20260607.md",
+    "postman_private_workspace_checklist_json": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json"
   },
   "current_decision": {
     "proceed": "sandbox_only_external_publication_preparation",

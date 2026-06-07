@@ -25,7 +25,8 @@
         "make_workspace_public_before_owner_approval",
         "claim_live_payment_available",
         "include_credentials_in_environment_variables"
-      ]
+      ],
+      "private_workspace_checklist": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json"
     },
     {
       "channel": "generic_api_directory",
@@ -130,6 +131,8 @@
     "markdown": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
     "json": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
     "sandbox_only_publication_pack": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
-    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
+    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+    "postman_private_workspace_checklist": "https://machinesignal.it/postman_private_workspace_checklist_20260607.md",
+    "postman_private_workspace_checklist_json": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json"
   }
 }

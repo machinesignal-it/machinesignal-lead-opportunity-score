@@ -16,6 +16,8 @@ This is not a human cold-email workflow. It is an API discovery and testing surf
 - Environment template: https://machinesignal.it/postman_public_environment_template.json
 - Secret scan: https://machinesignal.it/postman_workspace_secret_scan_20260606.json
 - Workspace draft: https://machinesignal.it/distribution/postman-public-workspace-draft.json
+- Private workspace checklist: https://machinesignal.it/postman_private_workspace_checklist_20260607.md
+- Private workspace checklist JSON: https://machinesignal.it/postman_private_workspace_checklist_20260607.json
 - Publication execution pack: https://machinesignal.it/marketplace_publication_execution_pack_20260606.json
 
 Direct import URL:

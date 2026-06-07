@@ -34,6 +34,7 @@ The workspace is for sandbox evaluation only. It does not execute real payments,
 - Environment template: https://machinesignal.it/postman_public_environment_template.json
 - Import pack: https://machinesignal.it/postman_workspace_import_pack_20260606.json
 - Secret scan: https://machinesignal.it/postman_workspace_secret_scan_20260606.json
+- Private workspace checklist: https://machinesignal.it/postman_private_workspace_checklist_20260607.json
 - Evidence brief: https://machinesignal.it/machine_beta_evidence_brief_20260607.html
 - Sandbox-only publication pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 
@@ -185,4 +186,3 @@ Proceed with draft preparation in this order:
 4. MCP/tool registry local-adapter draft.
 
 Stop before irreversible public publication.
-

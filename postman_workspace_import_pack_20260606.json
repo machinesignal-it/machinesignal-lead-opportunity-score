@@ -85,9 +85,9 @@
     "type": "postman_login_required",
     "details": "The Codex browser reached the Postman sign-in page. External import into the Postman account requires an active user session. No password or login token was entered by Codex."
   },
-  "next_safe_action": {
-    "name": "owner_signs_into_postman_then_import_collection",
-    "live_credits_to_consume": 0,
-    "external_irreversible_publication": false
+  "next_safe_action": "Use the private workspace checklist, keep workspace private/team only, and do not publish publicly until owner approval.",
+  "import_assets": {
+    "postman_private_workspace_checklist": "https://machinesignal.it/postman_private_workspace_checklist_20260607.md",
+    "postman_private_workspace_checklist_json": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json"
   }
 }
