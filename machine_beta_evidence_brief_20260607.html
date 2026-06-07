@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MachineSignal Machine Buyer Evidence Brief</title>
+  <meta name="description" content="MachineSignal bounded private beta evidence brief for machine buyers, CRM workflows and AI agents.">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #162033;
+      --muted: #5d6b82;
+      --line: #d9e1ea;
+      --surface: #f6f8fb;
+      --teal: #168577;
+      --blue: #235783;
+      --gold: #bd7b17;
+      --navy: #131a2c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.5;
+    }
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 42px 24px;
+    }
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 24px 56px;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; }
+    .kicker {
+      margin: 0 0 10px;
+      color: #8ed8c9;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: 42px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 36px 0 12px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 24px 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+    p { margin: 0 0 14px; }
+    .lead {
+      margin-top: 18px;
+      max-width: 850px;
+      color: #d7e1ef;
+      font-size: 18px;
+    }
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      padding: 16px;
+      min-height: 98px;
+    }
+    .metric strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .metric span { color: var(--muted); font-size: 14px; }
+    .band {
+      border-left: 5px solid var(--teal);
+      background: #eef8f6;
+      padding: 18px 20px;
+      margin: 26px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 24px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--surface);
+      font-weight: 700;
+    }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.95em;
+      background: #eef2f6;
+      padding: 2px 4px;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0 26px;
+    }
+    .step {
+      border: 1px solid var(--line);
+      padding: 15px;
+      background: #fff;
+    }
+    .step b { display: block; margin-bottom: 5px; color: var(--blue); }
+    .links a {
+      display: block;
+      color: var(--blue);
+      margin: 7px 0;
+      word-break: break-word;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      padding-top: 20px;
+      margin-top: 34px;
+    }
+    @media (max-width: 820px) {
+      h1 { font-size: 32px; }
+      .status-grid, .flow { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="kicker">MachineSignal evidence brief</p>
+      <h1>Machine-buyer beta flow proven under bounded credits and safety gates</h1>
+      <p class="lead">A customer machine can score domains, buy one Deep Analysis and buy one Action Pack only after the Deep Analysis gate passes. No real payment, invoice or external outreach was executed.</p>
+    </div>
+  </header>
+  <main>
+    <section class="status-grid" aria-label="Run metrics">
+      <div class="metric"><strong>OK</strong><span>Full beta runner result</span></div>
+      <div class="metric"><strong>5</strong><span>valid score outputs</span></div>
+      <div class="metric"><strong>1 + 1</strong><span>Deep Analysis and Action Pack</span></div>
+      <div class="metric"><strong>0</strong><span>payments, invoices, external contacts</span></div>
+    </section>
+
+    <section class="band">
+      <p><strong>What this proves:</strong> MachineSignal is usable by software, CRM workflows and AI agents as the primary buyer interface. The machine can discover the API, call it, consume bounded credits, receive decisions, buy deeper output and retrieve JSON deliveries.</p>
+    </section>
+
+    <section>
+      <h2>Validated Flow</h2>
+      <div class="flow">
+        <div class="step"><b>1. Discover</b>Public manifest, OpenAPI, Postman collection and product catalog are available.</div>
+        <div class="step"><b>2. Score</b>The beta customer ledger consumed 5 score credits for 5 valid opportunity outputs.</div>
+        <div class="step"><b>3. Buy Deep Analysis</b>The machine bought one deeper evidence package for the strongest scored target.</div>
+        <div class="step"><b>4. Block unsafe Action Pack</b>An Action Pack request without a valid Deep Analysis source order was blocked with HTTP 400.</div>
+        <div class="step"><b>5. Buy valid Action Pack</b>The Action Pack was accepted only after a valid <code>source_order_intent_id</code>.</div>
+        <div class="step"><b>6. Audit</b>The ledger confirms bounded credit use and no real-world external action.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Credit and Safety Results</h2>
+      <table>
+        <thead><tr><th>Evidence point</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Score credits consumed</td><td>5</td></tr>
+          <tr><td>Deep Analysis credits consumed</td><td>1</td></tr>
+          <tr><td>Action Pack credits consumed</td><td>1</td></tr>
+          <tr><td>Action Pack without Deep Analysis</td><td>Blocked, HTTP 400, no valid source order</td></tr>
+          <tr><td>Real payment executed</td><td>false</td></tr>
+          <tr><td>External contact executed</td><td>false</td></tr>
+          <tr><td>Real invoice issued</td><td>false</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Scored Targets</h2>
+      <table>
+        <thead><tr><th>Domain</th><th>Score</th><th>Decision</th><th>Strength</th><th>Next product</th></tr></thead>
+        <tbody>
+          <tr><td><code>bounded-dental-clinic-demo.it</code></td><td>67</td><td>nurture</td><td>medium</td><td>nurture_signal</td></tr>
+          <tr><td><code>bounded-legal-studio-demo.it</code></td><td>71</td><td>nurture</td><td>medium</td><td>nurture_signal</td></tr>
+          <tr><td><code>bounded-solar-installer-demo.it</code></td><td>44</td><td>needs_verification</td><td>weak</td><td>verification</td></tr>
+          <tr><td><code>bounded-aesthetic-clinic-demo.it</code></td><td>74</td><td>nurture</td><td>medium</td><td>nurture_signal</td></tr>
+          <tr><td><code>bounded-real-estate-demo.it</code></td><td>56</td><td>watchlist</td><td>weak</td><td>none</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Commercial Meaning</h2>
+      <p>The beta supports three machine-side commercial events: score consumption, Deep Analysis purchase and gated Action Pack purchase. The Action Pack is not sold as a generic extra. It is available only when a previous Deep Analysis order exists for the same domain.</p>
+      <p>This protects the buyer machine from unnecessary downstream spend and makes the product more credible for CRM, RevOps and AI-agent workflows.</p>
+    </section>
+
+    <section class="links">
+      <h2>Evidence Links</h2>
+      <a href="https://machinesignal.it/machine_beta_evidence_brief_20260607.json">Machine-readable evidence JSON</a>
+      <a href="https://machinesignal.it/machine_beta_evidence_brief_20260607.md">Markdown evidence brief</a>
+      <a href="https://machinesignal.it/bounded_private_beta_runner_report_20260607.md">Full beta runner report</a>
+      <a href="https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json">Full beta runner JSON</a>
+      <a href="https://machinesignal.it/openapi.json">OpenAPI schema</a>
+      <a href="https://machinesignal.it/llms.txt">LLM discovery file</a>
+    </section>
+
+    <footer>
+      MachineSignal private technical beta. Humans supervise, approve and audit; the primary customer interface is a machine.
+    </footer>
+  </main>
+</body>
+</html>

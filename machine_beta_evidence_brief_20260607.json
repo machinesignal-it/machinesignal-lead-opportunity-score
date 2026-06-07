@@ -1,0 +1,128 @@
+{
+  "name": "MachineSignal Machine Buyer Evidence Brief",
+  "version": "2026-06-07",
+  "status": "completed_full",
+  "ok": true,
+  "primary_customer_interface": "machine",
+  "purpose": "Provide machine-readable proof that MachineSignal can be discovered, called and used by software, CRM workflows and AI agents under bounded beta guardrails.",
+  "api_base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "evidence_links": {
+    "html": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+    "markdown": "https://machinesignal.it/machine_beta_evidence_brief_20260607.md",
+    "json": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+    "full_runner_report": "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
+    "full_runner_json": "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json"
+  },
+  "bounded_limits": {
+    "score_calls": 5,
+    "deep_analysis_orders": 1,
+    "action_pack_orders": 1,
+    "real_payments": 0,
+    "external_contacts": 0
+  },
+  "credit_deltas": {
+    "score_pack_1k": 5,
+    "deep_analysis_pack_100": 1,
+    "action_pack_25": 1
+  },
+  "safety": {
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "action_pack_requires_deep_analysis_source_order": true,
+    "blocked_action_pack_without_source_order_http_status": 400
+  },
+  "validated_machine_flow": [
+    {
+      "step": 1,
+      "name": "Discover machine contract",
+      "result": "public llms.txt, OpenAPI, Postman and product catalog are available"
+    },
+    {
+      "step": 2,
+      "name": "Create bounded beta customer ledger",
+      "result": "customer ledger created with limited credits"
+    },
+    {
+      "step": 3,
+      "name": "Score target domains",
+      "result": "5 valid score outputs consumed 5 score credits"
+    },
+    {
+      "step": 4,
+      "name": "Buy Deep Analysis",
+      "result": "1 Deep Analysis order created for the strongest target"
+    },
+    {
+      "step": 5,
+      "name": "Block Action Pack without Deep Analysis",
+      "result": "negative Action Pack request blocked with HTTP 400"
+    },
+    {
+      "step": 6,
+      "name": "Buy Action Pack after gate",
+      "result": "1 Action Pack order created only after valid Deep Analysis source_order_intent_id"
+    }
+  ],
+  "score_results": [
+    {
+      "domain": "bounded-dental-clinic-demo.it",
+      "opportunity_score": 67,
+      "decision": "nurture",
+      "commercial_strength": "medium",
+      "next_product": "nurture_signal"
+    },
+    {
+      "domain": "bounded-legal-studio-demo.it",
+      "opportunity_score": 71,
+      "decision": "nurture",
+      "commercial_strength": "medium",
+      "next_product": "nurture_signal"
+    },
+    {
+      "domain": "bounded-solar-installer-demo.it",
+      "opportunity_score": 44,
+      "decision": "needs_verification",
+      "commercial_strength": "weak",
+      "next_product": "verification"
+    },
+    {
+      "domain": "bounded-aesthetic-clinic-demo.it",
+      "opportunity_score": 74,
+      "decision": "nurture",
+      "commercial_strength": "medium",
+      "next_product": "nurture_signal"
+    },
+    {
+      "domain": "bounded-real-estate-demo.it",
+      "opportunity_score": 56,
+      "decision": "watchlist",
+      "commercial_strength": "weak",
+      "next_product": null
+    }
+  ],
+  "orders": {
+    "deep_analysis": {
+      "order_intent_id": "ord_45991984",
+      "domain": "bounded-aesthetic-clinic-demo.it",
+      "delivery_type": "deep_opportunity_analysis"
+    },
+    "blocked_action_pack_without_deep_analysis": {
+      "http_status": 400,
+      "credit_consumed": false
+    },
+    "action_pack": {
+      "order_intent_id": "ord_62808e76",
+      "domain": "bounded-aesthetic-clinic-demo.it",
+      "gate_passed": true,
+      "delivery_type": "action_pack",
+      "external_contact_executed": false
+    }
+  },
+  "machine_buyer_interpretation": {
+    "what_is_proven": "A customer machine can score domains, buy deeper evidence and buy CRM/workflow-ready action output while respecting credit caps and safety gates.",
+    "what_is_not_proven_yet": "This does not prove paid market demand yet; it proves technical and commercial flow readiness for controlled machine-oriented beta distribution.",
+    "recommended_next_step": "Use this evidence in API marketplace, Postman, MCP and integration partner material."
+  }
+}
+

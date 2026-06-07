@@ -84,6 +84,9 @@ Public demos for software, agents and partners:
 - Webhook events JSON: https://machinesignal.it/demo/crm-consumer/webhook_events.json
 - Bounded Private Beta Runner: https://machinesignal.it/bounded_private_beta_runner_report_20260607.md
 - Bounded Private Beta Runner JSON: https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json
+- Machine Buyer Evidence Brief: https://machinesignal.it/machine_beta_evidence_brief_20260607.html
+- Machine Buyer Evidence Brief Markdown: https://machinesignal.it/machine_beta_evidence_brief_20260607.md
+- Machine Buyer Evidence Brief JSON: https://machinesignal.it/machine_beta_evidence_brief_20260607.json
 
 Beta tester onboarding resources:
 - Beta tester onboarding packet: https://machinesignal.it/beta/onboarding-packet.html
