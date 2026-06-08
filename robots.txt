@@ -89,3 +89,7 @@ Api-directory-private-draft-pack: https://machinesignal.it/api_directory_private
 Api-directory-private-draft-pack-json: https://machinesignal.it/api_directory_private_draft_pack_20260608.json
 Api-directory-private-draft-review: https://machinesignal.it/api_directory_private_draft_review_report_20260608.md
 Api-directory-private-draft-review-json: https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json
+Rapidapi-unpublished-provider-draft-pack: https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.md
+Rapidapi-unpublished-provider-draft-pack-json: https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json
+Rapidapi-unpublished-provider-draft-review: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_report_20260608.md
+Rapidapi-unpublished-provider-draft-review-json: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json

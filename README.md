@@ -95,6 +95,10 @@ Public discovery starts here:
 - API Directory Private Draft Pack JSON: https://machinesignal.it/api_directory_private_draft_pack_20260608.json
 - API Directory Private Draft Review: https://machinesignal.it/api_directory_private_draft_review_report_20260608.md
 - API Directory Private Draft Review JSON: https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json
+- RapidAPI Unpublished Provider Draft Pack: https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.md
+- RapidAPI Unpublished Provider Draft Pack JSON: https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json
+- RapidAPI Unpublished Provider Draft Review: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_report_20260608.md
+- RapidAPI Unpublished Provider Draft Review JSON: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -583,3 +587,13 @@ A generic API directory draft pack now contains exact listing fields, endpoint g
 - Review: https://machinesignal.it/api_directory_private_draft_review_report_20260608.md
 - Review JSON: https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json
 - Safety: write_calls_executed=0, post_calls_executed=0, external_publication_executed=false, live_monetization_enabled=false, production_api_key_published=false, external_contact_executed=false.
+
+## RapidAPI-Style Unpublished Provider Draft Pack - 2026-06-08
+
+A RapidAPI-style unpublished provider draft pack now contains exact provider listing fields, endpoint groups, pricing treatment, source assets and stop-before-public-submit blockers. A NoWrite review confirms the pack is ready for owner-supervised private or unpublished provider draft preparation only.
+
+- Pack: https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.md
+- Pack JSON: https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json
+- Review: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_report_20260608.md
+- Review JSON: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json
+- Safety: write_calls_executed=0, post_calls_executed=0, external_publication_executed=false, live_monetization_enabled=false, public_paid_plans_enabled=false, create_marketplace_pricing_tiers=false, production_api_key_published=false, external_contact_executed=false.

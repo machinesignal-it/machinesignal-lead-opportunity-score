@@ -1,11 +1,11 @@
 {
   "artifact": "external_submission_pack_no_write_review",
-  "generated_at": "2026-06-08T14:27:32.582Z",
+  "generated_at": "2026-06-08T15:07:23.576Z",
   "status": "completed_external_submission_pack_no_write_review",
   "ok": true,
   "mode": "NoWriteExternalSubmissionReview",
   "public_site": "https://machinesignal.it",
-  "resources_checked": 23,
+  "resources_checked": 27,
   "write_calls_executed": 0,
   "post_calls_executed": 0,
   "external_publication_executed": false,
@@ -51,7 +51,7 @@
     {
       "name": "distribution_monitor_ok",
       "ok": true,
-      "details": "ok=true, resources=47, checks=175, failed=0, writes=0, posts=0"
+      "details": "ok=true, resources=51, checks=189, failed=0, writes=0, posts=0"
     }
   ],
   "resources": [
@@ -340,7 +340,7 @@
       "url": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 19894,
+      "bytes": 20679,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -452,7 +452,7 @@
       "url": "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 15252,
+      "bytes": 15814,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -840,6 +840,230 @@
       "hard_fails": []
     },
     {
+      "name": "rapidapi_unpublished_provider_draft_pack_md",
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 4123,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "RapidAPI-Style Unpublished Provider Draft Pack",
+          "ok": true
+        },
+        {
+          "marker": "monetization disabled",
+          "ok": true
+        },
+        {
+          "marker": "external_publication_executed=false",
+          "ok": true
+        },
+        {
+          "marker": "Decision: prepare_rapidapi_unpublished_provider_draft_only",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
+      "name": "rapidapi_unpublished_provider_draft_pack_json",
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 7853,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready_for_rapidapi_unpublished_provider_draft_only",
+          "ok": true
+        },
+        {
+          "marker": "rapidapi_style_unpublished_provider_draft",
+          "ok": true
+        },
+        {
+          "marker": "prepare_rapidapi_unpublished_provider_draft_only",
+          "ok": true
+        },
+        {
+          "marker": "do_not_create_public_paid_plans_yet",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
+      "name": "rapidapi_unpublished_provider_draft_review_md",
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_report_20260608.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 2783,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "RapidAPI-Style Unpublished Provider Draft Review",
+          "ok": true
+        },
+        {
+          "marker": "External publication executed: false",
+          "ok": true
+        },
+        {
+          "marker": "Live monetization enabled: false",
+          "ok": true
+        },
+        {
+          "marker": "Decision: rapidapi_unpublished_provider_draft_ready",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
+      "name": "rapidapi_unpublished_provider_draft_review_json",
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 10630,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "completed_rapidapi_unpublished_provider_draft_review",
+          "ok": true
+        },
+        {
+          "marker": "NoWriteRapidApiUnpublishedProviderDraftReview",
+          "ok": true
+        },
+        {
+          "marker": "rapidapi_unpublished_provider_draft_ready",
+          "ok": true
+        },
+        {
+          "marker": "required_fields_checked",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
       "name": "marketplace_api_directory_pack_md",
       "url": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
       "ok": true,
@@ -900,7 +1124,7 @@
       "url": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 27389,
+      "bytes": 27671,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -1012,7 +1236,7 @@
       "url": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 24506,
+      "bytes": 24788,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -1068,7 +1292,7 @@
       "url": "https://machinesignal.it/distribution/marketplace-submission-pack.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 27142,
+      "bytes": 27424,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -1124,7 +1348,7 @@
       "url": "https://machinesignal.it/mcp-tool-manifest.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 39602,
+      "bytes": 39884,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -1180,7 +1404,7 @@
       "url": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 39602,
+      "bytes": 39884,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -1292,7 +1516,7 @@
       "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 41990,
+      "bytes": 45415,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [

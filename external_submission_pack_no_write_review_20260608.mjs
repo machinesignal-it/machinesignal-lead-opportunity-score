@@ -160,6 +160,50 @@ const resources = [
     ]
   },
   {
+    name: "rapidapi_unpublished_provider_draft_pack_md",
+    url: `${publicSite}/rapidapi_unpublished_provider_draft_pack_20260608.md`,
+    json: false,
+    must: [
+      "RapidAPI-Style Unpublished Provider Draft Pack",
+      "monetization disabled",
+      "external_publication_executed=false",
+      "Decision: prepare_rapidapi_unpublished_provider_draft_only"
+    ]
+  },
+  {
+    name: "rapidapi_unpublished_provider_draft_pack_json",
+    url: `${publicSite}/rapidapi_unpublished_provider_draft_pack_20260608.json`,
+    json: true,
+    must: [
+      "ready_for_rapidapi_unpublished_provider_draft_only",
+      "rapidapi_style_unpublished_provider_draft",
+      "prepare_rapidapi_unpublished_provider_draft_only",
+      "do_not_create_public_paid_plans_yet"
+    ]
+  },
+  {
+    name: "rapidapi_unpublished_provider_draft_review_md",
+    url: `${publicSite}/rapidapi_unpublished_provider_draft_review_report_20260608.md`,
+    json: false,
+    must: [
+      "RapidAPI-Style Unpublished Provider Draft Review",
+      "External publication executed: false",
+      "Live monetization enabled: false",
+      "Decision: rapidapi_unpublished_provider_draft_ready"
+    ]
+  },
+  {
+    name: "rapidapi_unpublished_provider_draft_review_json",
+    url: `${publicSite}/rapidapi_unpublished_provider_draft_review_summary_20260608.json`,
+    json: true,
+    must: [
+      "completed_rapidapi_unpublished_provider_draft_review",
+      "NoWriteRapidApiUnpublishedProviderDraftReview",
+      "rapidapi_unpublished_provider_draft_ready",
+      "required_fields_checked"
+    ]
+  },
+  {
     name: "marketplace_api_directory_pack_md",
     url: `${publicSite}/marketplace_api_directory_pack_20260606.md`,
     json: false,

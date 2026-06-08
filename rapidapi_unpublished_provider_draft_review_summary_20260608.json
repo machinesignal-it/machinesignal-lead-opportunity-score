@@ -1,0 +1,362 @@
+{
+  "artifact": "rapidapi_unpublished_provider_draft_review",
+  "generated_at": "2026-06-08T14:54:29.492Z",
+  "status": "completed_rapidapi_unpublished_provider_draft_review",
+  "ok": true,
+  "mode": "NoWriteRapidApiUnpublishedProviderDraftReview",
+  "public_site": "https://machinesignal.it",
+  "primary_customer_interface": "machine",
+  "safety_copy": {
+    "machine_customer_language": "machine-first customer interface for AI agents, CRM systems and workflow software",
+    "sandbox_or_draft_language": "sandbox unpublished provider draft only; not a live public marketplace listing",
+    "owner_approval_gate": "irreversible external publication remains blocked until owner approval",
+    "monetization_disabled": "monetization disabled; public paid plans not active; live checkout disabled; marketplace pricing tiers not created",
+    "human_outreach_blocked": "external target contact false; human outbound outreach blocked; do not contact human prospects or target companies"
+  },
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "external_publication_executed": false,
+  "irreversible_submission_executed": false,
+  "live_monetization_enabled": false,
+  "public_paid_plans_enabled": false,
+  "create_marketplace_pricing_tiers": false,
+  "hosted_mcp_live": false,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "production_api_key_published": false,
+  "resources_checked": 9,
+  "required_fields_checked": 13,
+  "pack_field_checks": [
+    {
+      "path": "rapidapi_style_listing_fields.api_name",
+      "ok": true
+    },
+    {
+      "path": "rapidapi_style_listing_fields.visibility",
+      "ok": true
+    },
+    {
+      "path": "rapidapi_style_listing_fields.monetization",
+      "ok": true
+    },
+    {
+      "path": "rapidapi_style_listing_fields.base_url",
+      "ok": true
+    },
+    {
+      "path": "rapidapi_style_listing_fields.auth_header",
+      "ok": true
+    },
+    {
+      "path": "rapidapi_style_listing_fields.openapi_url",
+      "ok": true
+    },
+    {
+      "path": "source_assets.rapidapi_listing_json",
+      "ok": true
+    },
+    {
+      "path": "source_assets.rapidapi_provider_setup_json",
+      "ok": true
+    },
+    {
+      "path": "endpoint_groups_for_provider_draft",
+      "ok": true
+    },
+    {
+      "path": "draft_pricing_treatment.public_paid_plans_active",
+      "ok": true
+    },
+    {
+      "path": "draft_pricing_treatment.create_marketplace_pricing_tiers",
+      "ok": true
+    },
+    {
+      "path": "blocked_before_public_submit",
+      "ok": true
+    },
+    {
+      "path": "machine_decision.decision",
+      "ok": true
+    }
+  ],
+  "safety_checks": [
+    {
+      "name": "pack_status_unpublished_provider_draft_only",
+      "ok": true,
+      "details": "status=ready_for_rapidapi_unpublished_provider_draft_only"
+    },
+    {
+      "name": "machine_customer_interface",
+      "ok": true,
+      "details": "primary_customer_interface=machine"
+    },
+    {
+      "name": "rapidapi_listing_metadata_ready_monetization_disabled",
+      "ok": true,
+      "details": "status=rapidapi_style_provider_metadata_ready_monetization_disabled, paid=false, checkout=false"
+    },
+    {
+      "name": "provider_setup_unpublished_mode",
+      "ok": true,
+      "details": "recommended_mode=draft_or_unpublished_monetization_disabled"
+    },
+    {
+      "name": "checklist_blocks_public_paid_plans",
+      "ok": true,
+      "details": "submission=blocked_until_owner_approval, monetization=disabled"
+    },
+    {
+      "name": "draft_safety_state_blocks_go_live",
+      "ok": true,
+      "details": "{\"write_calls_executed\":0,\"post_calls_executed\":0,\"external_publication_executed\":false,\"irreversible_submission_executed\":false,\"live_monetization_enabled\":false,\"public_paid_plans_enabled\":false,\"create_marketplace_pricing_tiers\":false,\"hosted_mcp_live\":false,\"real_payment_executed\":false,\"real_invoice_issued\":false,\"external_contact_executed\":false,\"production_api_key_published\":false,\"human_outreach_allowed\":false}"
+    },
+    {
+      "name": "private_draft_rehearsal_ok",
+      "ok": true,
+      "details": "ok=true, external_publication=false, monetization=false"
+    },
+    {
+      "name": "external_submission_nowrite_ok",
+      "ok": true,
+      "details": "ok=true, writes=0, posts=0"
+    },
+    {
+      "name": "distribution_monitor_ok",
+      "ok": true,
+      "details": "ok=true, failed=0, writes=0, posts=0"
+    }
+  ],
+  "resources": [
+    {
+      "name": "rapidapi_unpublished_provider_draft_pack_json",
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 7853,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready_for_rapidapi_unpublished_provider_draft_only",
+          "ok": true
+        },
+        {
+          "marker": "rapidapi_style_unpublished_provider_draft",
+          "ok": true
+        },
+        {
+          "marker": "prepare_rapidapi_unpublished_provider_draft_only",
+          "ok": true
+        },
+        {
+          "marker": "do_not_create_public_paid_plans_yet",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "rapidapi_unpublished_provider_draft_pack_md",
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 4123,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "RapidAPI-Style Unpublished Provider Draft Pack",
+          "ok": true
+        },
+        {
+          "marker": "monetization disabled",
+          "ok": true
+        },
+        {
+          "marker": "external_publication_executed=false",
+          "ok": true
+        },
+        {
+          "marker": "Decision: prepare_rapidapi_unpublished_provider_draft_only",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "rapidapi_listing_json",
+      "url": "https://machinesignal.it/distribution/rapidapi-listing.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 11250,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "rapidapi_style_provider_metadata_ready_monetization_disabled",
+          "ok": true
+        },
+        {
+          "marker": "machine",
+          "ok": true
+        },
+        {
+          "marker": "public_paid_plans_enabled",
+          "ok": true
+        },
+        {
+          "marker": "external_contact_executed_by_machinesignal",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "rapidapi_provider_setup_json",
+      "url": "https://machinesignal.it/distribution/rapidapi-provider-setup.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 5880,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "draft_or_unpublished_monetization_disabled",
+          "ok": true
+        },
+        {
+          "marker": "do_not_publish_monetized_until",
+          "ok": true
+        },
+        {
+          "marker": "current_draft_checklist",
+          "ok": true
+        },
+        {
+          "marker": "external_contact_executed_by_machinesignal",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "api_directory_rapidapi_checklist_json",
+      "url": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 7141,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "blocked_until_owner_approval",
+          "ok": true
+        },
+        {
+          "marker": "do_not_contact_human_prospects_or_target_companies",
+          "ok": true
+        },
+        {
+          "marker": "create_marketplace_pricing_tiers",
+          "ok": true
+        },
+        {
+          "marker": "disabled",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "private_draft_submission_rehearsal",
+      "url": "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 14202,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "completed_private_draft_submission_rehearsal",
+          "ok": true
+        },
+        {
+          "marker": "rapidapi_style_unpublished_provider_draft",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "external_submission_nowrite_review",
+      "url": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 39980,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "completed_external_submission_pack_no_write_review",
+          "ok": true
+        },
+        {
+          "marker": "resources_checked",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "distribution_readiness_monitor",
+      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 45415,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready_for_distribution_review",
+          "ok": true
+        },
+        {
+          "marker": "checks_failed",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "openapi",
+      "url": "https://machinesignal.it/openapi.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 58945,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "lead-opportunity-score",
+          "ok": true
+        },
+        {
+          "marker": "purchase-intent",
+          "ok": true
+        },
+        {
+          "marker": "payment-test",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    }
+  ],
+  "hard_fails": [],
+  "machine_decision": {
+    "decision": "rapidapi_unpublished_provider_draft_ready",
+    "recommended_next_step": "Use the pack to prepare an owner-supervised private or unpublished RapidAPI-style provider draft. Stop before public submit, paid plan creation, live checkout, production key distribution or external outreach."
+  }
+}

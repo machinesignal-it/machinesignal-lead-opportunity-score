@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-08T14:32:10.1136329Z",
+    "generated_at":  "2026-06-08T15:11:21.2774809Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  51,
-    "checks_total":  189,
+    "resources_checked":  55,
+    "checks_total":  203,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -20,7 +20,7 @@
                    {
                        "name":  "distribution_index_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=17230"
+                       "details":  "HTTP 200, bytes=18523"
                    },
                    {
                        "name":  "distribution_index_contains_expected_marker",
@@ -120,7 +120,7 @@
                    {
                        "name":  "sandbox_only_external_publication_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=19187"
+                       "details":  "HTTP 200, bytes=21714"
                    },
                    {
                        "name":  "sandbox_only_external_publication_pack_json_json_valid",
@@ -155,7 +155,7 @@
                    {
                        "name":  "external_sandbox_publication_drafts_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=19712"
+                       "details":  "HTTP 200, bytes=23217"
                    },
                    {
                        "name":  "external_sandbox_publication_drafts_json_json_valid",
@@ -385,7 +385,7 @@
                    {
                        "name":  "external_submission_pack_nowrite_review_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=4231"
+                       "details":  "HTTP 200, bytes=4552"
                    },
                    {
                        "name":  "external_submission_pack_nowrite_review_md_contains_expected_marker",
@@ -400,7 +400,7 @@
                    {
                        "name":  "external_submission_pack_nowrite_review_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=39980"
+                       "details":  "HTTP 200, bytes=46838"
                    },
                    {
                        "name":  "external_submission_pack_nowrite_review_json_json_valid",
@@ -435,7 +435,7 @@
                    {
                        "name":  "external_draft_submission_bundle_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=15350"
+                       "details":  "HTTP 200, bytes=17495"
                    },
                    {
                        "name":  "external_draft_submission_bundle_json_json_valid",
@@ -558,9 +558,79 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "rapidapi_unpublished_provider_draft_pack_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=4123"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_pack_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=RapidAPI-Style Unpublished Provider Draft Pack"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_pack_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_pack_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=7853"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_pack_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_pack_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=ready_for_rapidapi_unpublished_provider_draft_only"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_pack_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_review_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=2783"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_review_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=RapidAPI-Style Unpublished Provider Draft Review"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_review_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_review_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=10630"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_review_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_review_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_rapidapi_unpublished_provider_draft_review"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_draft_review_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14180"
+                       "details":  "HTTP 200, bytes=14870"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_md_contains_expected_marker",
@@ -575,7 +645,7 @@
                    {
                        "name":  "marketplace_api_directory_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=27207"
+                       "details":  "HTTP 200, bytes=29352"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_json_json_valid",
@@ -610,7 +680,7 @@
                    {
                        "name":  "marketplace_publication_execution_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=24324"
+                       "details":  "HTTP 200, bytes=26469"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_json_json_valid",
@@ -630,7 +700,7 @@
                    {
                        "name":  "api_directory_submission_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=10456"
+                       "details":  "HTTP 200, bytes=14412"
                    },
                    {
                        "name":  "api_directory_submission_json_valid",
@@ -650,7 +720,7 @@
                    {
                        "name":  "rapidapi_listing_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=11250"
+                       "details":  "HTTP 200, bytes=14400"
                    },
                    {
                        "name":  "rapidapi_listing_json_valid",
@@ -670,7 +740,7 @@
                    {
                        "name":  "marketplace_submission_pack_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=26960"
+                       "details":  "HTTP 200, bytes=29105"
                    },
                    {
                        "name":  "marketplace_submission_pack_json_valid",
@@ -745,7 +815,7 @@
                    {
                        "name":  "mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=39420"
+                       "details":  "HTTP 200, bytes=43084"
                    },
                    {
                        "name":  "mcp_tool_manifest_json_valid",
@@ -755,7 +825,7 @@
                    {
                        "name":  "mcp_tool_manifest_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=get_api_directory_private_draft_review"
+                       "details":  "marker=get_rapidapi_unpublished_provider_draft_review"
                    },
                    {
                        "name":  "mcp_tool_manifest_secret_scan",
@@ -765,7 +835,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=39420"
+                       "details":  "HTTP 200, bytes=43084"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_json_valid",
@@ -775,7 +845,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=get_api_directory_private_draft_review"
+                       "details":  "marker=get_rapidapi_unpublished_provider_draft_review"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_secret_scan",
@@ -785,7 +855,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=24918"
+                       "details":  "HTTP 200, bytes=27616"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -795,7 +865,7 @@
                    {
                        "name":  "well_known_machine_discovery_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=api_directory_private_draft_review_json"
+                       "details":  "marker=rapidapi_unpublished_provider_draft_review_json"
                    },
                    {
                        "name":  "well_known_machine_discovery_secret_scan",
@@ -805,12 +875,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=20404"
+                       "details":  "HTTP 200, bytes=21842"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=API Directory Private Draft Review JSON"
+                       "details":  "marker=RapidAPI Unpublished Provider Draft Review JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -820,12 +890,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=9026"
+                       "details":  "HTTP 200, bytes=9543"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Api-directory-private-draft-review-json"
+                       "details":  "marker=Rapidapi-unpublished-provider-draft-review-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -835,12 +905,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=16589"
+                       "details":  "HTTP 200, bytes=17052"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=api_directory_private_draft_review_summary_20260608.json"
+                       "details":  "marker=rapidapi_unpublished_provider_draft_review_summary_20260608.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",
@@ -910,7 +980,7 @@
                    {
                        "name":  "machine_onboarding_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=47549"
+                       "details":  "HTTP 200, bytes=50247"
                    },
                    {
                        "name":  "machine_onboarding_json_valid",
