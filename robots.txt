@@ -83,3 +83,5 @@ External-submission-pack-nowrite-review: https://machinesignal.it/external_submi
 External-submission-pack-nowrite-review-json: https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json
 External-draft-submission-bundle: https://machinesignal.it/external_draft_submission_bundle_20260608.md
 External-draft-submission-bundle-json: https://machinesignal.it/external_draft_submission_bundle_20260608.json
+Private-draft-submission-rehearsal: https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md
+Private-draft-submission-rehearsal-json: https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json

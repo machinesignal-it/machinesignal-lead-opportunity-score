@@ -8,7 +8,7 @@ OK: true
 
 Mode: NoWriteExternalSubmissionReview
 
-Resources checked: 17
+Resources checked: 19
 
 Write calls executed: 0
 
@@ -40,18 +40,20 @@ This review checks whether the API directory, RapidAPI-style and MCP/tool-regist
 | mcp_tool_registry_checklist_md | OK | 200 | 5569 | - | - | - |
 | mcp_tool_registry_checklist_json | OK | 200 | 6202 | - | human_outreach_blocked | - |
 | external_sandbox_publication_drafts_md | OK | 200 | 7076 | - | - | - |
-| external_sandbox_publication_drafts_json | OK | 200 | 16611 | - | - | - |
+| external_sandbox_publication_drafts_json | OK | 200 | 18158 | - | - | - |
 | external_draft_submission_bundle_md | OK | 200 | 5818 | - | - | - |
-| external_draft_submission_bundle_json | OK | 200 | 10203 | - | - | - |
-| marketplace_api_directory_pack_md | OK | 200 | 13013 | - | monetization_disabled | - |
-| marketplace_api_directory_pack_json | OK | 200 | 24106 | - | human_outreach_blocked | - |
-| marketplace_publication_execution_pack_md | OK | 200 | 13772 | - | - | - |
-| marketplace_publication_execution_pack_json | OK | 200 | 21223 | - | human_outreach_blocked | - |
-| marketplace_submission_pack_json | OK | 200 | 23859 | - | human_outreach_blocked | - |
-| mcp_tool_manifest | OK | 200 | 33673 | - | human_outreach_blocked | - |
-| well_known_mcp_tool_manifest | OK | 200 | 33673 | - | human_outreach_blocked | - |
+| external_draft_submission_bundle_json | OK | 200 | 12396 | - | - | - |
+| private_draft_submission_rehearsal_md | OK | 200 | 3067 | - | - | - |
+| private_draft_submission_rehearsal_json | OK | 200 | 14202 | - | human_outreach_blocked | - |
+| marketplace_api_directory_pack_md | OK | 200 | 13583 | - | monetization_disabled | - |
+| marketplace_api_directory_pack_json | OK | 200 | 25653 | - | human_outreach_blocked | - |
+| marketplace_publication_execution_pack_md | OK | 200 | 14318 | - | - | - |
+| marketplace_publication_execution_pack_json | OK | 200 | 22770 | - | human_outreach_blocked | - |
+| marketplace_submission_pack_json | OK | 200 | 25406 | - | human_outreach_blocked | - |
+| mcp_tool_manifest | OK | 200 | 36537 | - | human_outreach_blocked | - |
+| well_known_mcp_tool_manifest | OK | 200 | 36537 | - | human_outreach_blocked | - |
 | public_sandbox_claims_nowrite_review_json | OK | 200 | 15906 | - | machine_customer_language, monetization_disabled, human_outreach_blocked | - |
-| distribution_readiness_monitor_json | OK | 200 | 38612 | - | machine_customer_language, human_outreach_blocked | - |
+| distribution_readiness_monitor_json | OK | 200 | 41990 | - | machine_customer_language, human_outreach_blocked | - |
 
 ## Specific Gate Checks
 
@@ -63,7 +65,7 @@ This review checks whether the API directory, RapidAPI-style and MCP/tool-regist
 | mcp_registry_external_submission_blocked | OK | external_submission=blocked_until_owner_approval |
 | mcp_registry_monetization_disabled | OK | monetization=disabled |
 | public_claims_review_ok | OK | ok=true, writes=0, posts=0, payment=false, contact=false |
-| distribution_monitor_ok | OK | ok=true, resources=43, checks=161, failed=0, writes=0, posts=0 |
+| distribution_monitor_ok | OK | ok=true, resources=47, checks=175, failed=0, writes=0, posts=0 |
 
 ## Hard Fail Details
 

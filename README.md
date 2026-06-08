@@ -89,6 +89,8 @@ Public discovery starts here:
 - External Submission Pack NoWrite Review JSON: https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json
 - External Draft Submission Bundle: https://machinesignal.it/external_draft_submission_bundle_20260608.md
 - External Draft Submission Bundle JSON: https://machinesignal.it/external_draft_submission_bundle_20260608.json
+- Private Draft Submission Rehearsal: https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md
+- Private Draft Submission Rehearsal JSON: https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -559,3 +561,11 @@ A single draft bundle now organizes API directory, RapidAPI-style, MCP/tool-regi
 - Report: https://machinesignal.it/external_draft_submission_bundle_20260608.md
 - JSON: https://machinesignal.it/external_draft_submission_bundle_20260608.json
 - Safety: ready_for_private_draft_only, irreversible_submission_allowed=false, live_monetization_enabled=false, hosted_mcp_live=false, production_api_key_published=false.
+
+## Private Draft Submission Rehearsal - 2026-06-08
+
+A NoWrite machine rehearsal checked whether MachineSignal can prepare private draft metadata for generic API directory, RapidAPI-style, MCP/tool-registry and Postman private/team workspace channels. All four channels are ready for private draft preparation only.
+
+- Report: https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md
+- JSON: https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json
+- Safety: write_calls_executed=0, post_calls_executed=0, external_publication_executed=false, live_monetization_enabled=false, hosted_mcp_live=false, external_contact_executed=false.

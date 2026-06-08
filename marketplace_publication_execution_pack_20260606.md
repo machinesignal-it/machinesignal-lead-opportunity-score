@@ -257,3 +257,11 @@ Latest draft bundle: https://machinesignal.it/external_draft_submission_bundle_2
 Machine-readable JSON: https://machinesignal.it/external_draft_submission_bundle_20260608.json
 
 Use this as the single bundle for private API directory, RapidAPI-style, MCP/tool-registry and Postman draft rehearsal. It is not a go-live authorization.
+
+## Private Draft Submission Rehearsal
+
+Latest rehearsal: https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md
+
+Machine-readable JSON: https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json
+
+Use this as proof that a machine can prepare private draft metadata across generic API directory, RapidAPI-style, MCP/tool-registry and Postman private/team workspace channels. It remains NoWrite: no external publication, no live monetization, no hosted MCP, no production key and no external contact.

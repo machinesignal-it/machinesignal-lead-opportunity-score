@@ -94,6 +94,28 @@ const resources = [
     ]
   },
   {
+    name: "private_draft_submission_rehearsal_md",
+    url: `${publicSite}/private_draft_submission_rehearsal_report_20260608.md`,
+    json: false,
+    must: [
+      "Private Draft Submission Rehearsal",
+      "NoWrite machine rehearsal",
+      "External publication executed: false",
+      "Hosted MCP live: false"
+    ]
+  },
+  {
+    name: "private_draft_submission_rehearsal_json",
+    url: `${publicSite}/private_draft_submission_rehearsal_summary_20260608.json`,
+    json: true,
+    must: [
+      "completed_private_draft_submission_rehearsal",
+      "NoWritePrivateDraftSubmissionRehearsal",
+      "prepare_private_draft_only",
+      "post_calls_executed"
+    ]
+  },
+  {
     name: "marketplace_api_directory_pack_md",
     url: `${publicSite}/marketplace_api_directory_pack_20260606.md`,
     json: false,

@@ -1,11 +1,11 @@
 {
   "artifact": "external_submission_pack_no_write_review",
-  "generated_at": "2026-06-08T13:11:37.335Z",
+  "generated_at": "2026-06-08T13:49:49.813Z",
   "status": "completed_external_submission_pack_no_write_review",
   "ok": true,
   "mode": "NoWriteExternalSubmissionReview",
   "public_site": "https://machinesignal.it",
-  "resources_checked": 17,
+  "resources_checked": 19,
   "write_calls_executed": 0,
   "post_calls_executed": 0,
   "external_publication_executed": false,
@@ -51,7 +51,7 @@
     {
       "name": "distribution_monitor_ok",
       "ok": true,
-      "details": "ok=true, resources=43, checks=161, failed=0, writes=0, posts=0"
+      "details": "ok=true, resources=47, checks=175, failed=0, writes=0, posts=0"
     }
   ],
   "resources": [
@@ -340,7 +340,7 @@
       "url": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 16611,
+      "bytes": 18158,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -452,7 +452,7 @@
       "url": "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 10203,
+      "bytes": 12396,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -504,11 +504,123 @@
       "hard_fails": []
     },
     {
+      "name": "private_draft_submission_rehearsal_md",
+      "url": "https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 3067,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "Private Draft Submission Rehearsal",
+          "ok": true
+        },
+        {
+          "marker": "NoWrite machine rehearsal",
+          "ok": true
+        },
+        {
+          "marker": "External publication executed: false",
+          "ok": true
+        },
+        {
+          "marker": "Hosted MCP live: false",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
+      "name": "private_draft_submission_rehearsal_json",
+      "url": "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 14202,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "completed_private_draft_submission_rehearsal",
+          "ok": true
+        },
+        {
+          "marker": "NoWritePrivateDraftSubmissionRehearsal",
+          "ok": true
+        },
+        {
+          "marker": "prepare_private_draft_only",
+          "ok": true
+        },
+        {
+          "marker": "post_calls_executed",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": false
+        }
+      ],
+      "positive_ok_count": 4,
+      "hard_fails": []
+    },
+    {
       "name": "marketplace_api_directory_pack_md",
       "url": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
       "ok": true,
       "http_status": 200,
-      "bytes": 13013,
+      "bytes": 13583,
       "json_valid": null,
       "json_error": null,
       "marker_checks": [
@@ -564,7 +676,7 @@
       "url": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 24106,
+      "bytes": 25653,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -620,7 +732,7 @@
       "url": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.md",
       "ok": true,
       "http_status": 200,
-      "bytes": 13772,
+      "bytes": 14318,
       "json_valid": null,
       "json_error": null,
       "marker_checks": [
@@ -676,7 +788,7 @@
       "url": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 21223,
+      "bytes": 22770,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -732,7 +844,7 @@
       "url": "https://machinesignal.it/distribution/marketplace-submission-pack.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 23859,
+      "bytes": 25406,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -788,7 +900,7 @@
       "url": "https://machinesignal.it/mcp-tool-manifest.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 33673,
+      "bytes": 36537,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -844,7 +956,7 @@
       "url": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 33673,
+      "bytes": 36537,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
@@ -956,7 +1068,7 @@
       "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
       "ok": true,
       "http_status": 200,
-      "bytes": 38612,
+      "bytes": 41990,
       "json_valid": true,
       "json_error": null,
       "marker_checks": [
