@@ -238,3 +238,15 @@ Latest rehearsal: https://machinesignal.it/private_draft_submission_rehearsal_re
 Machine-readable JSON: https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json
 
 Use this as API-directory evidence that private draft metadata can be prepared by a machine across generic API directory, RapidAPI-style, MCP/tool-registry and Postman private/team workspace channels. It remains NoWrite: no external publication, no live monetization, no hosted MCP, no production key and no external contact.
+
+## API Directory Private Draft Pack
+
+Latest pack: https://machinesignal.it/api_directory_private_draft_pack_20260608.md
+
+Machine-readable pack: https://machinesignal.it/api_directory_private_draft_pack_20260608.json
+
+Latest review: https://machinesignal.it/api_directory_private_draft_review_report_20260608.md
+
+Machine-readable review: https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json
+
+Use this as the exact generic API directory draft source. It contains listing copy, endpoint groups, products, safety policy, evidence links and blockers before public submit.

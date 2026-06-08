@@ -91,6 +91,10 @@ Public discovery starts here:
 - External Draft Submission Bundle JSON: https://machinesignal.it/external_draft_submission_bundle_20260608.json
 - Private Draft Submission Rehearsal: https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md
 - Private Draft Submission Rehearsal JSON: https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json
+- API Directory Private Draft Pack: https://machinesignal.it/api_directory_private_draft_pack_20260608.md
+- API Directory Private Draft Pack JSON: https://machinesignal.it/api_directory_private_draft_pack_20260608.json
+- API Directory Private Draft Review: https://machinesignal.it/api_directory_private_draft_review_report_20260608.md
+- API Directory Private Draft Review JSON: https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -569,3 +573,13 @@ A NoWrite machine rehearsal checked whether MachineSignal can prepare private dr
 - Report: https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md
 - JSON: https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json
 - Safety: write_calls_executed=0, post_calls_executed=0, external_publication_executed=false, live_monetization_enabled=false, hosted_mcp_live=false, external_contact_executed=false.
+
+## API Directory Private Draft Pack - 2026-06-08
+
+A generic API directory draft pack now contains exact listing fields, endpoint groups, products, safety policy, evidence links and stop-before-public-submit blockers. A NoWrite review confirms the pack is ready for owner-supervised private or unsubmitted API directory draft preparation.
+
+- Pack: https://machinesignal.it/api_directory_private_draft_pack_20260608.md
+- Pack JSON: https://machinesignal.it/api_directory_private_draft_pack_20260608.json
+- Review: https://machinesignal.it/api_directory_private_draft_review_report_20260608.md
+- Review JSON: https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json
+- Safety: write_calls_executed=0, post_calls_executed=0, external_publication_executed=false, live_monetization_enabled=false, production_api_key_published=false, external_contact_executed=false.

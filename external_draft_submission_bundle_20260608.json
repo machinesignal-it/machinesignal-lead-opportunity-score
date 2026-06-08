@@ -202,7 +202,15 @@
   "recommended_next_step": "Use this bundle to prepare a private draft submission rehearsal for a generic API directory first. Stop before irreversible publication or monetization.",
   "public_links": {
     "private_draft_submission_rehearsal": "https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md",
-    "private_draft_submission_rehearsal_json": "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json"
+    "private_draft_submission_rehearsal_json": "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
+    "api_directory_private_draft_pack": "https://machinesignal.it/api_directory_private_draft_pack_20260608.md",
+    "api_directory_private_draft_pack_json": "https://machinesignal.it/api_directory_private_draft_pack_20260608.json",
+    "api_directory_private_draft_review": "https://machinesignal.it/api_directory_private_draft_review_report_20260608.md",
+    "api_directory_private_draft_review_json": "https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json",
+    "external_submission_pack_no_write_review": "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
+    "external_submission_pack_no_write_review_json": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+    "distribution_readiness_monitor_json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
   },
   "latest_private_draft_submission_rehearsal": {
     "status": "completed_private_draft_submission_rehearsal",
@@ -230,25 +238,27 @@
   "latest_distribution_readiness_monitor": {
     "status": "ready_for_distribution_review",
     "ok": true,
-    "mode": "NoWrite",
     "evidence_date": "2026-06-08",
-    "generated_at": "2026-06-08T13:52:18.3987868Z",
-    "resources_checked": 47,
-    "checks_total": 175,
+    "mode": "NoWrite",
+    "generated_at": "2026-06-08T14:32:10.1136329Z",
+    "resources_checked": 51,
+    "checks_total": 189,
     "checks_failed": 0,
+    "alert_level": "OK",
     "write_calls_executed": 0,
     "post_calls_executed": 0,
     "real_payment_executed": false,
     "external_contact_executed": false,
     "report": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
-    "json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
+    "json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+    "interpretation": "Distribution assets are reachable, JSON/XML assets are valid, expected markers are present, public secret scan passed, and no write/POST/payment/contact action was executed."
   },
   "latest_external_submission_pack_no_write_review": {
     "status": "completed_external_submission_pack_no_write_review",
     "ok": true,
     "evidence_date": "2026-06-08",
     "mode": "NoWriteExternalSubmissionReview",
-    "resources_checked": 19,
+    "resources_checked": 23,
     "write_calls_executed": 0,
     "post_calls_executed": 0,
     "external_publication_executed": false,
@@ -259,8 +269,32 @@
     "external_contact_executed": false,
     "real_invoice_issued": false,
     "production_api_key_published": false,
+    "hard_fails": 0,
     "report": "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
     "json": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
-    "interpretation": "API directory, RapidAPI-style, MCP/tool-registry and private draft rehearsal materials are safe for private/draft sandbox preparation only. The review does not authorize irreversible external publication, hosted MCP launch, live checkout, paid plans, production keys or human outreach."
+    "interpretation": "API directory, RapidAPI-style, MCP/tool-registry, private rehearsal and API directory private draft materials are safe for private/draft sandbox preparation only. The review does not authorize irreversible external publication, hosted MCP launch, live checkout, paid plans, production keys or human outreach."
+  },
+  "latest_api_directory_private_draft_review": {
+    "status": "completed_api_directory_private_draft_review",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "mode": "NoWriteApiDirectoryPrivateDraftReview",
+    "resources_checked": 8,
+    "required_fields_checked": 13,
+    "primary_customer_interface": "machine",
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "external_publication_executed": false,
+    "irreversible_submission_executed": false,
+    "live_monetization_enabled": false,
+    "public_paid_plans_enabled": false,
+    "hosted_mcp_live": false,
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "production_api_key_published": false,
+    "machine_decision": "api_directory_private_draft_ready",
+    "report": "https://machinesignal.it/api_directory_private_draft_review_report_20260608.md",
+    "json": "https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json"
   }
 }

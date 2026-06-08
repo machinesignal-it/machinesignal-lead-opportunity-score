@@ -116,6 +116,50 @@ const resources = [
     ]
   },
   {
+    name: "api_directory_private_draft_pack_md",
+    url: `${publicSite}/api_directory_private_draft_pack_20260608.md`,
+    json: false,
+    must: [
+      "API Directory Private Draft Pack",
+      "external_publication_executed=false",
+      "production_api_key_published=false",
+      "Decision: prepare_api_directory_private_draft_only"
+    ]
+  },
+  {
+    name: "api_directory_private_draft_pack_json",
+    url: `${publicSite}/api_directory_private_draft_pack_20260608.json`,
+    json: true,
+    must: [
+      "ready_for_api_directory_private_draft_only",
+      "MachineSignal Lead Opportunity Score API",
+      "blocked_before_public_submit",
+      "prepare_api_directory_private_draft_only"
+    ]
+  },
+  {
+    name: "api_directory_private_draft_review_md",
+    url: `${publicSite}/api_directory_private_draft_review_report_20260608.md`,
+    json: false,
+    must: [
+      "API Directory Private Draft Review",
+      "External publication executed: false",
+      "Hosted MCP live: false",
+      "Decision: api_directory_private_draft_ready"
+    ]
+  },
+  {
+    name: "api_directory_private_draft_review_json",
+    url: `${publicSite}/api_directory_private_draft_review_summary_20260608.json`,
+    json: true,
+    must: [
+      "completed_api_directory_private_draft_review",
+      "NoWriteApiDirectoryPrivateDraftReview",
+      "api_directory_private_draft_ready",
+      "required_fields_checked"
+    ]
+  },
+  {
     name: "marketplace_api_directory_pack_md",
     url: `${publicSite}/marketplace_api_directory_pack_20260606.md`,
     json: false,

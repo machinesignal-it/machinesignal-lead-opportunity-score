@@ -1,0 +1,290 @@
+{
+  "artifact": "api_directory_private_draft_review",
+  "generated_at": "2026-06-08T14:25:26.443Z",
+  "status": "completed_api_directory_private_draft_review",
+  "ok": true,
+  "mode": "NoWriteApiDirectoryPrivateDraftReview",
+  "public_site": "https://machinesignal.it",
+  "primary_customer_interface": "machine",
+  "safety_copy": {
+    "machine_customer_language": "machine-first customer interface for AI agents, CRM systems and workflow software",
+    "sandbox_or_draft_language": "sandbox private draft only; not a live public listing",
+    "owner_approval_gate": "irreversible external publication remains blocked until owner approval",
+    "monetization_disabled": "monetization disabled; public paid plans not active; live checkout disabled",
+    "human_outreach_blocked": "external target contact false; human outbound outreach blocked; do not contact human prospects or target companies"
+  },
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "external_publication_executed": false,
+  "irreversible_submission_executed": false,
+  "live_monetization_enabled": false,
+  "public_paid_plans_enabled": false,
+  "hosted_mcp_live": false,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "production_api_key_published": false,
+  "resources_checked": 8,
+  "required_fields_checked": 13,
+  "pack_field_checks": [
+    {
+      "path": "directory_listing_fields.api_name",
+      "ok": true
+    },
+    {
+      "path": "directory_listing_fields.short_description",
+      "ok": true
+    },
+    {
+      "path": "directory_listing_fields.long_description",
+      "ok": true
+    },
+    {
+      "path": "directory_listing_fields.base_url",
+      "ok": true
+    },
+    {
+      "path": "directory_listing_fields.documentation_url",
+      "ok": true
+    },
+    {
+      "path": "directory_listing_fields.openapi_url",
+      "ok": true
+    },
+    {
+      "path": "directory_listing_fields.well_known_discovery_url",
+      "ok": true
+    },
+    {
+      "path": "directory_listing_fields.auth_type",
+      "ok": true
+    },
+    {
+      "path": "directory_listing_fields.auth_header",
+      "ok": true
+    },
+    {
+      "path": "endpoint_groups_for_directory",
+      "ok": true
+    },
+    {
+      "path": "products_to_describe",
+      "ok": true
+    },
+    {
+      "path": "blocked_before_public_submit",
+      "ok": true
+    },
+    {
+      "path": "machine_decision.decision",
+      "ok": true
+    }
+  ],
+  "safety_checks": [
+    {
+      "name": "pack_status_private_draft_only",
+      "ok": true,
+      "details": "status=ready_for_api_directory_private_draft_only"
+    },
+    {
+      "name": "machine_customer_interface",
+      "ok": true,
+      "details": "primary_customer_interface=machine"
+    },
+    {
+      "name": "draft_safety_state_blocks_go_live",
+      "ok": true,
+      "details": "{\"write_calls_executed\":0,\"post_calls_executed\":0,\"external_publication_executed\":false,\"irreversible_submission_executed\":false,\"live_monetization_enabled\":false,\"public_paid_plans_enabled\":false,\"hosted_mcp_live\":false,\"real_payment_executed\":false,\"real_invoice_issued\":false,\"external_contact_executed\":false,\"production_api_key_published\":false,\"human_outreach_allowed\":false}"
+    },
+    {
+      "name": "private_draft_rehearsal_ok",
+      "ok": true,
+      "details": "ok=true, external_publication=false, monetization=false"
+    },
+    {
+      "name": "external_submission_nowrite_ok",
+      "ok": true,
+      "details": "ok=true, writes=0, posts=0"
+    },
+    {
+      "name": "distribution_monitor_ok",
+      "ok": true,
+      "details": "ok=true, failed=0, writes=0, posts=0"
+    }
+  ],
+  "resources": [
+    {
+      "name": "api_directory_private_draft_pack_json",
+      "url": "https://machinesignal.it/api_directory_private_draft_pack_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 9808,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready_for_api_directory_private_draft_only",
+          "ok": true
+        },
+        {
+          "marker": "prepare_api_directory_private_draft_only",
+          "ok": true
+        },
+        {
+          "marker": "MachineSignal Lead Opportunity Score API",
+          "ok": true
+        },
+        {
+          "marker": "blocked_before_public_submit",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "api_directory_private_draft_pack_md",
+      "url": "https://machinesignal.it/api_directory_private_draft_pack_20260608.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 3555,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "API Directory Private Draft Pack",
+          "ok": true
+        },
+        {
+          "marker": "external_publication_executed=false",
+          "ok": true
+        },
+        {
+          "marker": "production_api_key_published=false",
+          "ok": true
+        },
+        {
+          "marker": "Decision: prepare_api_directory_private_draft_only",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "api_directory_submission_json",
+      "url": "https://machinesignal.it/distribution/api-directory-submission.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 10402,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "sandbox_only_api_directory_draft_ready_owner_approval_required_for_external_submission",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "openapi",
+      "url": "https://machinesignal.it/openapi.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 58945,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "lead-opportunity-score",
+          "ok": true
+        },
+        {
+          "marker": "purchase-intent",
+          "ok": true
+        },
+        {
+          "marker": "orders",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "machine_onboarding",
+      "url": "https://machinesignal.it/machine-onboarding.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 47451,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "NoWrite",
+          "ok": true
+        },
+        {
+          "marker": "sandbox",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "private_draft_submission_rehearsal",
+      "url": "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 14202,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "completed_private_draft_submission_rehearsal",
+          "ok": true
+        },
+        {
+          "marker": "prepare_private_draft_only",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "external_submission_nowrite_review",
+      "url": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 33276,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "completed_external_submission_pack_no_write_review",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "distribution_readiness_monitor",
+      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 41990,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready_for_distribution_review",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    }
+  ],
+  "hard_fails": [],
+  "machine_decision": {
+    "decision": "api_directory_private_draft_ready",
+    "recommended_next_step": "Use the pack to prepare an owner-supervised private or unsubmitted API directory draft. Stop before public submit, paid plan creation, production key distribution or external outreach."
+  }
+}

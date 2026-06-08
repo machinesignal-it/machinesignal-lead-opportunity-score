@@ -8,7 +8,7 @@ OK: true
 
 Mode: NoWriteExternalSubmissionReview
 
-Resources checked: 19
+Resources checked: 23
 
 Write calls executed: 0
 
@@ -40,18 +40,22 @@ This review checks whether the API directory, RapidAPI-style and MCP/tool-regist
 | mcp_tool_registry_checklist_md | OK | 200 | 5569 | - | - | - |
 | mcp_tool_registry_checklist_json | OK | 200 | 6202 | - | human_outreach_blocked | - |
 | external_sandbox_publication_drafts_md | OK | 200 | 7076 | - | - | - |
-| external_sandbox_publication_drafts_json | OK | 200 | 18158 | - | - | - |
+| external_sandbox_publication_drafts_json | OK | 200 | 19894 | - | - | - |
 | external_draft_submission_bundle_md | OK | 200 | 5818 | - | - | - |
-| external_draft_submission_bundle_json | OK | 200 | 12396 | - | - | - |
+| external_draft_submission_bundle_json | OK | 200 | 15252 | - | - | - |
 | private_draft_submission_rehearsal_md | OK | 200 | 3067 | - | - | - |
 | private_draft_submission_rehearsal_json | OK | 200 | 14202 | - | human_outreach_blocked | - |
-| marketplace_api_directory_pack_md | OK | 200 | 13583 | - | monetization_disabled | - |
-| marketplace_api_directory_pack_json | OK | 200 | 25653 | - | human_outreach_blocked | - |
+| api_directory_private_draft_pack_md | OK | 200 | 3555 | - | - | - |
+| api_directory_private_draft_pack_json | OK | 200 | 9808 | - | - | - |
+| api_directory_private_draft_review_md | OK | 200 | 2510 | - | - | - |
+| api_directory_private_draft_review_json | OK | 200 | 8322 | - | - | - |
+| marketplace_api_directory_pack_md | OK | 200 | 14180 | - | monetization_disabled | - |
+| marketplace_api_directory_pack_json | OK | 200 | 27389 | - | human_outreach_blocked | - |
 | marketplace_publication_execution_pack_md | OK | 200 | 14318 | - | - | - |
-| marketplace_publication_execution_pack_json | OK | 200 | 22770 | - | human_outreach_blocked | - |
-| marketplace_submission_pack_json | OK | 200 | 25406 | - | human_outreach_blocked | - |
-| mcp_tool_manifest | OK | 200 | 36537 | - | human_outreach_blocked | - |
-| well_known_mcp_tool_manifest | OK | 200 | 36537 | - | human_outreach_blocked | - |
+| marketplace_publication_execution_pack_json | OK | 200 | 24506 | - | human_outreach_blocked | - |
+| marketplace_submission_pack_json | OK | 200 | 27142 | - | human_outreach_blocked | - |
+| mcp_tool_manifest | OK | 200 | 39602 | - | human_outreach_blocked | - |
+| well_known_mcp_tool_manifest | OK | 200 | 39602 | - | human_outreach_blocked | - |
 | public_sandbox_claims_nowrite_review_json | OK | 200 | 15906 | - | machine_customer_language, monetization_disabled, human_outreach_blocked | - |
 | distribution_readiness_monitor_json | OK | 200 | 41990 | - | machine_customer_language, human_outreach_blocked | - |
 
