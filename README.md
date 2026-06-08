@@ -99,6 +99,10 @@ Public discovery starts here:
 - RapidAPI Unpublished Provider Draft Pack JSON: https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json
 - RapidAPI Unpublished Provider Draft Review: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_report_20260608.md
 - RapidAPI Unpublished Provider Draft Review JSON: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json
+- MCP Tool Registry Private Draft Pack: https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md
+- MCP Tool Registry Private Draft Pack JSON: https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json
+- MCP Tool Registry Private Draft Review: https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md
+- MCP Tool Registry Private Draft Review JSON: https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -597,3 +601,13 @@ A RapidAPI-style unpublished provider draft pack now contains exact provider lis
 - Review: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_report_20260608.md
 - Review JSON: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json
 - Safety: write_calls_executed=0, post_calls_executed=0, external_publication_executed=false, live_monetization_enabled=false, public_paid_plans_enabled=false, create_marketplace_pricing_tiers=false, production_api_key_published=false, external_contact_executed=false.
+
+## MCP Tool Registry Private Draft Pack - 2026-06-08
+
+An MCP/tool-registry private draft pack now contains exact local-adapter listing fields, installation flow, tool list, spend-control rules and stop-before-registry-submit blockers. A NoWrite review confirms the pack is ready for owner-supervised private or unsubmitted MCP/tool-registry metadata only.
+
+- Pack: https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md
+- Pack JSON: https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json
+- Review: https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md
+- Review JSON: https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json
+- Safety: write_calls_executed=0, post_calls_executed=0, external_publication_executed=false, hosted_mcp_live=false, live_monetization_enabled=false, production_api_key_published=false, external_contact_executed=false.

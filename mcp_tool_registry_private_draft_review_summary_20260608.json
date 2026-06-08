@@ -1,0 +1,394 @@
+{
+  "artifact": "mcp_tool_registry_private_draft_review",
+  "generated_at": "2026-06-08T15:50:40.668Z",
+  "status": "completed_mcp_tool_registry_private_draft_review",
+  "ok": true,
+  "mode": "NoWriteMcpToolRegistryPrivateDraftReview",
+  "public_site": "https://machinesignal.it",
+  "primary_customer_interface": "machine",
+  "safety_copy": {
+    "machine_customer_language": "machine-first customer interface for AI agents, CRM systems and workflow software",
+    "local_adapter_language": "local stdio adapter first; hosted public MCP is not live",
+    "owner_approval_gate": "irreversible external registry publication remains blocked until owner approval",
+    "monetization_disabled": "monetization disabled; public paid plans not active; live checkout disabled",
+    "human_outreach_blocked": "external target contact false; human outbound outreach blocked; do not contact human prospects or target companies"
+  },
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "external_publication_executed": false,
+  "irreversible_submission_executed": false,
+  "live_monetization_enabled": false,
+  "public_paid_plans_enabled": false,
+  "hosted_mcp_live": false,
+  "hosted_mcp_endpoint_published": false,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "production_api_key_published": false,
+  "resources_checked": 10,
+  "required_fields_checked": 15,
+  "pack_field_checks": [
+    {
+      "path": "tool_registry_listing_fields.tool_name",
+      "ok": true
+    },
+    {
+      "path": "tool_registry_listing_fields.visibility",
+      "ok": true
+    },
+    {
+      "path": "tool_registry_listing_fields.transport_now",
+      "ok": true
+    },
+    {
+      "path": "tool_registry_listing_fields.hosted_mcp_live",
+      "ok": true
+    },
+    {
+      "path": "tool_registry_listing_fields.monetization",
+      "ok": true
+    },
+    {
+      "path": "tool_registry_listing_fields.tool_manifest",
+      "ok": true
+    },
+    {
+      "path": "tool_registry_listing_fields.well_known_tool_manifest",
+      "ok": true
+    },
+    {
+      "path": "tool_registry_listing_fields.wrapper_pack",
+      "ok": true
+    },
+    {
+      "path": "tool_registry_listing_fields.installation_pack",
+      "ok": true
+    },
+    {
+      "path": "tool_registry_listing_fields.repository",
+      "ok": true
+    },
+    {
+      "path": "tool_registry_listing_fields.local_adapter_path",
+      "ok": true
+    },
+    {
+      "path": "local_adapter_installation_flow",
+      "ok": true
+    },
+    {
+      "path": "tools_to_expose_in_private_registry_draft",
+      "ok": true
+    },
+    {
+      "path": "blocked_before_registry_submit",
+      "ok": true
+    },
+    {
+      "path": "machine_decision.decision",
+      "ok": true
+    }
+  ],
+  "safety_checks": [
+    {
+      "name": "pack_status_private_draft_only",
+      "ok": true,
+      "details": "status=ready_for_mcp_tool_registry_private_draft_only"
+    },
+    {
+      "name": "machine_customer_interface",
+      "ok": true,
+      "details": "primary_customer_interface=machine"
+    },
+    {
+      "name": "mcp_public_server_not_live_in_manifest",
+      "ok": true,
+      "details": "public_mcp_server_live=false, local_adapter_status=available_in_github_repo"
+    },
+    {
+      "name": "mcp_wrapper_local_adapter_mode",
+      "ok": true,
+      "details": "status=local_stdio_adapter_live_public_hosted_mcp_not_live, hosted=false"
+    },
+    {
+      "name": "checklist_blocks_hosted_mcp_and_submission",
+      "ok": true,
+      "details": "submission=blocked_until_owner_approval, hosted=false, monetization=disabled"
+    },
+    {
+      "name": "draft_safety_state_blocks_go_live",
+      "ok": true,
+      "details": "{\"write_calls_executed\":0,\"post_calls_executed\":0,\"external_publication_executed\":false,\"irreversible_submission_executed\":false,\"live_monetization_enabled\":false,\"public_paid_plans_enabled\":false,\"hosted_mcp_live\":false,\"hosted_mcp_endpoint_published\":false,\"real_payment_executed\":false,\"real_invoice_issued\":false,\"external_contact_executed\":false,\"production_api_key_published\":false,\"human_outreach_allowed\":false}"
+    },
+    {
+      "name": "private_draft_rehearsal_ok",
+      "ok": true,
+      "details": "ok=true, external_publication=false, hosted=false, monetization=false"
+    },
+    {
+      "name": "external_submission_nowrite_ok",
+      "ok": true,
+      "details": "ok=true, writes=0, posts=0, hosted=false"
+    },
+    {
+      "name": "distribution_monitor_ok",
+      "ok": true,
+      "details": "ok=true, failed=0, writes=0, posts=0"
+    }
+  ],
+  "resources": [
+    {
+      "name": "mcp_tool_registry_private_draft_pack_json",
+      "url": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 7155,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready_for_mcp_tool_registry_private_draft_only",
+          "ok": true
+        },
+        {
+          "marker": "mcp_tool_registry_local_adapter_private_draft",
+          "ok": true
+        },
+        {
+          "marker": "prepare_mcp_tool_registry_private_draft_only",
+          "ok": true
+        },
+        {
+          "marker": "stdio_json_rpc_local_adapter",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "mcp_tool_registry_private_draft_pack_md",
+      "url": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 4822,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "MCP Tool Registry Private Draft Pack",
+          "ok": true
+        },
+        {
+          "marker": "Hosted MCP live: false",
+          "ok": true
+        },
+        {
+          "marker": "external_publication_executed=false",
+          "ok": true
+        },
+        {
+          "marker": "Decision: prepare_mcp_tool_registry_private_draft_only",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "mcp_tool_registry_checklist_json",
+      "url": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 6202,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "blocked_until_owner_approval",
+          "ok": true
+        },
+        {
+          "marker": "hosted_mcp_live",
+          "ok": true
+        },
+        {
+          "marker": "publish_hosted_mcp_endpoint_as_live",
+          "ok": true
+        },
+        {
+          "marker": "do_not_contact_human_prospects_or_target_companies",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "mcp_tool_manifest",
+      "url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 43141,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "mcp_compatibility",
+          "ok": true
+        },
+        {
+          "marker": "public_mcp_server_live",
+          "ok": true
+        },
+        {
+          "marker": "local_adapter",
+          "ok": true
+        },
+        {
+          "marker": "get_mcp_tool_registry_draft_checklist",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "well_known_mcp_tool_manifest",
+      "url": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 43141,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "mcp_compatibility",
+          "ok": true
+        },
+        {
+          "marker": "public_mcp_server_live",
+          "ok": true
+        },
+        {
+          "marker": "local_adapter",
+          "ok": true
+        },
+        {
+          "marker": "get_mcp_tool_registry_draft_checklist",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "mcp_wrapper_pack",
+      "url": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 23001,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "local_stdio_adapter_live_public_hosted_mcp_not_live",
+          "ok": true
+        },
+        {
+          "marker": "mcp_tools_expected",
+          "ok": true
+        },
+        {
+          "marker": "external_publication_policy",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "mcp_installation_pack",
+      "url": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 20476,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "mcp",
+          "ok": true
+        },
+        {
+          "marker": "machinesignal_mcp_server.py",
+          "ok": true
+        },
+        {
+          "marker": "stdio",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "private_draft_submission_rehearsal",
+      "url": "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 14202,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "completed_private_draft_submission_rehearsal",
+          "ok": true
+        },
+        {
+          "marker": "mcp_tool_registry_local_adapter_draft",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "external_submission_nowrite_review",
+      "url": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 46838,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "completed_external_submission_pack_no_write_review",
+          "ok": true
+        },
+        {
+          "marker": "hosted_mcp_live",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    },
+    {
+      "name": "distribution_readiness_monitor",
+      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 49044,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready_for_distribution_review",
+          "ok": true
+        },
+        {
+          "marker": "checks_failed",
+          "ok": true
+        }
+      ],
+      "hard_fails": []
+    }
+  ],
+  "hard_fails": [],
+  "machine_decision": {
+    "decision": "mcp_tool_registry_private_draft_ready",
+    "recommended_next_step": "Use the pack to prepare owner-supervised private or unsubmitted MCP/tool-registry metadata. Stop before hosted MCP launch, irreversible registry submission, paid plan creation, live checkout, production key distribution or outreach."
+  }
+}

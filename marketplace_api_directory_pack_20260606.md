@@ -262,3 +262,15 @@ Latest review: https://machinesignal.it/rapidapi_unpublished_provider_draft_revi
 Machine-readable review: https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json
 
 Use this as the exact RapidAPI-style unpublished provider draft source. It contains provider listing copy, endpoint groups, pricing treatment, source assets, safety policy and blockers before public submit or monetization.
+
+## MCP Tool Registry Private Draft Pack
+
+Latest pack: https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md
+
+Machine-readable pack: https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json
+
+Latest review: https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md
+
+Machine-readable review: https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json
+
+Use this as the exact MCP/tool-registry private draft source. It contains local-adapter listing copy, installation flow, tool list, spend-control rules, safety policy and blockers before hosted MCP launch or irreversible registry submission.
