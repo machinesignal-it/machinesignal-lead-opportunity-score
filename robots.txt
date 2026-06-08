@@ -73,3 +73,5 @@ Well-known-machine-discovery: https://machinesignal.it/.well-known/machine-disco
 Machine-onboarding: https://machinesignal.it/machine-onboarding.json
 Product-catalog: https://machinesignal.it/product-catalog.json
 OpenAPI: https://machinesignal.it/openapi.json
+Machine-deep-analysis-single-purchase: https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md
+Machine-deep-analysis-single-purchase-json: https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json

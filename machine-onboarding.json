@@ -100,7 +100,9 @@
     "sandbox_buyer_kit_json": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json",
     "sandbox_buyer_kit_distribution_listing": "https://machinesignal.it/distribution/sandbox-buyer-kit-listing.json",
     "machine_discovery_full_simulation": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
-    "machine_discovery_full_simulation_json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json"
+    "machine_discovery_full_simulation_json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json",
+    "machine_deep_analysis_single_purchase": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
+    "machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json"
   },
   "authentication": {
     "type": "apiKey",
@@ -180,7 +182,10 @@
     "latest_machine_buyer_postman_discovery_probe_status": "PASS",
     "latest_machine_buyer_postman_discovery_probe_json": "https://machinesignal.it/machine_buyer_postman_discovery_probe_20260606_summary.json",
     "latest_machine_buyer_postman_discovery_probe_rule": "A machine buyer can discover /postman/ from llms.txt, validate the 23-request collection, read the blank environment template and verify the secret scan without human email outreach, real payment or live credit consumption.",
-    "latest_postman_workspace_secret_scan_rule": "Local secret scan passed: 23 collection items, new marketplace/publication/evaluation resources present, sensitive variables blank, no secret hits, no live credits consumed."
+    "latest_postman_workspace_secret_scan_rule": "Local secret scan passed: 23 collection items, new marketplace/publication/evaluation resources present, sensitive variables blank, no secret hits, no live credits consumed.",
+    "latest_machine_deep_analysis_single_purchase_status": "PASS",
+    "latest_machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
+    "latest_machine_deep_analysis_single_purchase_rule": "One sandbox machine created a score-triggered Deep Analysis purchase-intent, consumed one Deep Analysis credit and stopped before Action Pack."
   },
   "callable_flow": [
     {
@@ -585,5 +590,33 @@
     "external_contact_executed": false,
     "report": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
     "json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json"
+  },
+  "version": "2026-06-08",
+  "latest_machine_deep_analysis_single_purchase": {
+    "status": "completed_deep_analysis_single_purchase",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "machine_customer_mode": "machine_with_scored_target_and_spend_gate",
+    "write_calls_executed": 3,
+    "post_calls_executed": 3,
+    "demo_domain": "premium-dental-conversion-gap.it",
+    "score": 78,
+    "confidence": 0.88,
+    "score_decision": "buy_deep_analysis",
+    "score_recommended_next_product": "deep_analysis",
+    "deep_analysis_order_created": true,
+    "deep_analysis_order_status": "accepted_beta_order_intent",
+    "deep_analysis_delivery_type": "deep_opportunity_analysis",
+    "deep_analysis_delivery_status": "deep_analysis_ready",
+    "deep_analysis_recommended_next_product": "action_pack",
+    "action_pack_gate_evaluated": true,
+    "action_pack_purchased": false,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "api_key_published": false,
+    "report": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
+    "json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
+    "interpretation": "A machine can create a sandbox, score one synthetic high-signal target and buy exactly one Deep Analysis as a spend-control layer before Action Pack."
   }
 }

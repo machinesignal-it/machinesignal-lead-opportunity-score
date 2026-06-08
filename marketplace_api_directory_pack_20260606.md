@@ -188,3 +188,11 @@ lead-scoring, crm, revops, ai-agents, machine-customer, sales-intelligence, targ
 ## Publication status
 
 This pack is ready for sandbox-only API directory, Postman, RapidAPI-style and MCP/tool-directory copy. The latest bounded beta evidence can be used in listing copy because it proves the machine-buyer flow without claiming live monetized production. Irreversible external publication, live checkout and paid production terms require owner approval.
+
+## Machine Deep Analysis Single Purchase Proof
+
+Latest sandbox proof: https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md
+
+Machine-readable JSON: https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json
+
+Use this in directory copy as evidence that the product ladder has a controlled score-to-Deep-Analysis spend gate.

@@ -1,0 +1,201 @@
+{
+    "artifact":  "machine_deep_analysis_single_purchase",
+    "generated_at":  "2026-06-08T11:18:16.2667694Z",
+    "run_id":  "machine-deep-analysis-single-purchase-20260608-20260608131816",
+    "public_site":  "https://machinesignal.it",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "status":  "completed_deep_analysis_single_purchase",
+    "ok":  true,
+    "machine_customer_mode":  "machine_with_scored_target_and_spend_gate",
+    "write_calls_executed":  3,
+    "post_calls_executed":  3,
+    "discovery":  {
+                      "product_catalog":  "https://machinesignal.it/product-catalog.json",
+                      "openapi":  "https://machinesignal.it/openapi.json",
+                      "machine_onboarding":  "https://machinesignal.it/machine-onboarding.json"
+                  },
+    "sandbox":  {
+                    "customer_created":  true,
+                    "customer_id":  "sandbox_deep_analysis_20260608",
+                    "api_key_returned":  true,
+                    "api_key_published":  false
+                },
+    "score":  {
+                  "domain":  "premium-dental-conversion-gap.it",
+                  "opportunity_score":  78,
+                  "confidence":  0.88,
+                  "decision":  "buy_deep_analysis",
+                  "request_id":  "machine-deep-analysis-score-20260608",
+                  "recommended_next_product":  "deep_analysis"
+              },
+    "deep_analysis":  {
+                          "order_created":  true,
+                          "order_intent_id":  "ord_c354a9af",
+                          "status":  "accepted_beta_order_intent",
+                          "delivery_type":  "deep_opportunity_analysis",
+                          "delivery_status":  "deep_analysis_ready",
+                          "recommended_next_product":  "action_pack",
+                          "credits_consumed":  1,
+                          "delivery_fields_present":  {
+                                                          "what_is_included":  true,
+                                                          "sector_context":  true,
+                                                          "commercial_objective":  true,
+                                                          "commercial_evidence":  true,
+                                                          "machine_decision_matrix":  true,
+                                                          "action_pack_purchase_gate":  true,
+                                                          "crm_summary_payload":  true,
+                                                          "recommended_next_step":  true,
+                                                          "stop_rules":  true,
+                                                          "next_machine_call":  true
+                                                      }
+                      },
+    "orders":  {
+                   "retrieval_status":  200,
+                   "listed_count":  1,
+                   "order_retrieved":  true
+               },
+    "usage":  {
+                  "status_after":  200,
+                  "ledger_backend":  "durable_object"
+              },
+    "decision":  {
+                     "deep_analysis_purchased":  true,
+                     "action_pack_gate_evaluated":  true,
+                     "action_pack_purchased":  false
+                 },
+    "safety":  {
+                   "real_payment_executed":  false,
+                   "external_contact_executed":  false,
+                   "real_invoice_issued":  false,
+                   "payment_test_created":  false,
+                   "real_target_used":  false
+               },
+    "checks":  [
+                   {
+                       "name":  "llms_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "llms_exposes_machine_discovery",
+                       "ok":  true,
+                       "details":  "llms contains well-known machine discovery link."
+                   },
+                   {
+                       "name":  "well_known_machine_discovery_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "machine_discovery_customer_interface",
+                       "ok":  true,
+                       "details":  "primary_customer_interface=machine"
+                   },
+                   {
+                       "name":  "product_catalog_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "openapi_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "machine_onboarding_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "deep_analysis_in_catalog",
+                       "ok":  true,
+                       "details":  "Catalog includes deep_analysis."
+                   },
+                   {
+                       "name":  "purchase_intent_in_openapi",
+                       "ok":  true,
+                       "details":  "OpenAPI exposes purchase-intent endpoint."
+                   },
+                   {
+                       "name":  "sandbox_customer_created",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "score_created",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "score_recommends_deep_analysis",
+                       "ok":  true,
+                       "details":  "decision=buy_deep_analysis, next=deep_analysis"
+                   },
+                   {
+                       "name":  "deep_analysis_purchase_intent_created",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "deep_analysis_delivery_type_valid",
+                       "ok":  true,
+                       "details":  "delivery_type=deep_opportunity_analysis"
+                   },
+                   {
+                       "name":  "deep_analysis_delivery_ready",
+                       "ok":  true,
+                       "details":  "status=deep_analysis_ready"
+                   },
+                   {
+                       "name":  "deep_analysis_consumed_one_credit",
+                       "ok":  true,
+                       "details":  "credits_consumed=1"
+                   },
+                   {
+                       "name":  "action_pack_gate_present_but_not_purchased",
+                       "ok":  true,
+                       "details":  "gate_present=True, purchased=false"
+                   },
+                   {
+                       "name":  "deep_analysis_has_crm_payload",
+                       "ok":  true,
+                       "details":  "CRM summary payload present."
+                   },
+                   {
+                       "name":  "deep_analysis_has_machine_decision_matrix",
+                       "ok":  true,
+                       "details":  "Machine decision matrix present."
+                   },
+                   {
+                       "name":  "deep_analysis_order_retrieved",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "orders_list_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, count=1"
+                   },
+                   {
+                       "name":  "usage_reachable_after_deep_analysis",
+                       "ok":  true,
+                       "details":  "HTTP 200, backend=durable_object"
+                   },
+                   {
+                       "name":  "no_real_payment",
+                       "ok":  true,
+                       "details":  "No endpoint reported real_payment_executed=true."
+                   },
+                   {
+                       "name":  "no_external_contact",
+                       "ok":  true,
+                       "details":  "No endpoint reported external_contact_executed=true."
+                   },
+                   {
+                       "name":  "api_key_not_published",
+                       "ok":  true,
+                       "details":  "API key used only in memory."
+                   }
+               ],
+    "blocked_reason":  null
+}

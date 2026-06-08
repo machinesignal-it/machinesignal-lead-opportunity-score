@@ -217,3 +217,11 @@ Agents should:
 ## Next safe action
 
 Prepare the Postman public workspace using the imported collection and this copy, but keep it private until the final secret scan and owner approval.
+
+## Machine Deep Analysis Single Purchase Proof
+
+Latest sandbox proof: https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md
+
+Machine-readable JSON: https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json
+
+This proof confirms that a machine can buy exactly one Deep Analysis after a score-triggered recommendation and stop before Action Pack.

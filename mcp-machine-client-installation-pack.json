@@ -18,7 +18,9 @@
     "installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
     "openapi": "https://machinesignal.it/openapi.json",
     "product_catalog": "https://machinesignal.it/product-catalog.json",
-    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json"
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "machine_deep_analysis_single_purchase": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
+    "machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json"
   },
   "local_adapter": {
     "transport": "stdio_json_rpc",
@@ -97,7 +99,9 @@
     "mcp_tool_registry_draft_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md",
     "mcp_tool_registry_draft_checklist_json": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
     "machine_discovery_full_simulation": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
-    "machine_discovery_full_simulation_json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json"
+    "machine_discovery_full_simulation_json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json",
+    "machine_deep_analysis_single_purchase": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
+    "machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json"
   },
   "current_mcp_tool_registry_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
   "latest_machine_discovery_full_simulation": {
@@ -115,5 +119,32 @@
     "external_contact_executed": false,
     "report": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
     "json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json"
+  },
+  "latest_machine_deep_analysis_single_purchase": {
+    "status": "completed_deep_analysis_single_purchase",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "machine_customer_mode": "machine_with_scored_target_and_spend_gate",
+    "write_calls_executed": 3,
+    "post_calls_executed": 3,
+    "demo_domain": "premium-dental-conversion-gap.it",
+    "score": 78,
+    "confidence": 0.88,
+    "score_decision": "buy_deep_analysis",
+    "score_recommended_next_product": "deep_analysis",
+    "deep_analysis_order_created": true,
+    "deep_analysis_order_status": "accepted_beta_order_intent",
+    "deep_analysis_delivery_type": "deep_opportunity_analysis",
+    "deep_analysis_delivery_status": "deep_analysis_ready",
+    "deep_analysis_recommended_next_product": "action_pack",
+    "action_pack_gate_evaluated": true,
+    "action_pack_purchased": false,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "api_key_published": false,
+    "report": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
+    "json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
+    "interpretation": "A machine can create a sandbox, score one synthetic high-signal target and buy exactly one Deep Analysis as a spend-control layer before Action Pack."
   }
 }

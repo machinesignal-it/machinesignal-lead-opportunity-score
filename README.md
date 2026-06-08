@@ -513,3 +513,11 @@ beta@machinesignal.it
 ```
 
 This email is for onboarding coordination only. The product itself is designed to be consumed by machines through API calls.
+
+## Machine Deep Analysis Single Purchase - 2026-06-08
+
+A sandbox machine created one limited key, scored the synthetic demo domain `premium-dental-conversion-gap.it`, received `buy_deep_analysis`, bought exactly one `deep_analysis` beta purchase-intent and stopped before `action_pack`.
+
+- Report: https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md
+- JSON: https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json
+- Safety: real_payment_executed=false, external_contact_executed=false, real_invoice_issued=false, api_key_published=false.
