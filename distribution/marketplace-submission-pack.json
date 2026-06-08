@@ -107,7 +107,9 @@
     "machine_action_pack_single_purchase": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
     "machine_action_pack_single_purchase_json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
     "public_sandbox_claims_no_write_review": "https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md",
-    "public_sandbox_claims_no_write_review_json": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json"
+    "public_sandbox_claims_no_write_review_json": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
+    "external_submission_pack_no_write_review": "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
+    "external_submission_pack_no_write_review_json": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json"
   },
   "machine_submission_summary": {
     "api_name": "MachineSignal Lead Opportunity Score API",
@@ -200,9 +202,9 @@
     "ok": true,
     "mode": "NoWrite",
     "evidence_date": "2026-06-08",
-    "generated_at": "2026-06-08T12:26:38.1639337Z",
-    "resources_checked": 41,
-    "checks_total": 154,
+    "generated_at": "2026-06-08T12:49:50.6627675Z",
+    "resources_checked": 43,
+    "checks_total": 161,
     "checks_failed": 0,
     "write_calls_executed": 0,
     "post_calls_executed": 0,
@@ -242,7 +244,9 @@
     "machine_action_pack_single_purchase": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
     "machine_action_pack_single_purchase_json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
     "public_sandbox_claims_no_write_review": "https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md",
-    "public_sandbox_claims_no_write_review_json": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json"
+    "public_sandbox_claims_no_write_review_json": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
+    "external_submission_pack_no_write_review": "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
+    "external_submission_pack_no_write_review_json": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json"
   },
   "current_mcp_tool_registry_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
   "latest_machine_discovery_full_simulation": {
@@ -327,5 +331,25 @@
     "report": "https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md",
     "json": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
     "interpretation": "Public MachineSignal copy and machine-readable manifests preserve sandbox-only positioning: no live payments, no external contact, no invoices and Action Pack is CRM/workflow preparation, not automatic outreach."
+  },
+  "latest_external_submission_pack_no_write_review": {
+    "status": "completed_external_submission_pack_no_write_review",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "mode": "NoWriteExternalSubmissionReview",
+    "resources_checked": 15,
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "external_publication_executed": false,
+    "irreversible_submission_executed": false,
+    "live_monetization_enabled": false,
+    "hosted_mcp_live": false,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "production_api_key_published": false,
+    "report": "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
+    "json": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+    "interpretation": "API directory, RapidAPI-style and MCP/tool-registry materials are safe for private/draft sandbox preparation only. The review does not authorize irreversible external publication, hosted MCP launch, live checkout, paid plans, production keys or human outreach."
   }
 }

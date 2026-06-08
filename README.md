@@ -85,6 +85,8 @@ Public discovery starts here:
 - Distribution Readiness Monitor JSON: https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json
 - Public Sandbox Claims NoWrite Review: https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md
 - Public Sandbox Claims NoWrite Review JSON: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json
+- External Submission Pack NoWrite Review: https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md
+- External Submission Pack NoWrite Review JSON: https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -539,3 +541,11 @@ A public NoWrite review checked the machine-readable discovery files, marketplac
 - Report: https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md
 - JSON: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json
 - Safety: write_calls_executed=0, post_calls_executed=0, real_payment_executed=false, external_contact_executed=false, real_invoice_issued=false.
+
+## External Submission Pack NoWrite Review - 2026-06-08
+
+A NoWrite review checked API directory, RapidAPI-style and MCP/tool-registry draft material. It confirms the package is safe for private/draft sandbox preparation only and does not authorize irreversible publication, hosted MCP launch, live checkout, paid plans, production keys or human outreach.
+
+- Report: https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md
+- JSON: https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json
+- Safety: write_calls_executed=0, post_calls_executed=0, external_publication_executed=false, live_monetization_enabled=false, hosted_mcp_live=false.

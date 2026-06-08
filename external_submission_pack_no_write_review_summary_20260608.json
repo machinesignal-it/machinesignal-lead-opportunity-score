@@ -1,0 +1,900 @@
+{
+  "artifact": "external_submission_pack_no_write_review",
+  "generated_at": "2026-06-08T12:48:32.402Z",
+  "status": "completed_external_submission_pack_no_write_review",
+  "ok": true,
+  "mode": "NoWriteExternalSubmissionReview",
+  "public_site": "https://machinesignal.it",
+  "resources_checked": 15,
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "external_publication_executed": false,
+  "irreversible_submission_executed": false,
+  "live_monetization_enabled": false,
+  "hosted_mcp_live": false,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "real_invoice_issued": false,
+  "production_api_key_published": false,
+  "hard_fails": [],
+  "specific_checks": [
+    {
+      "name": "api_directory_external_submission_blocked",
+      "ok": true,
+      "details": "external_submission=blocked_until_owner_approval"
+    },
+    {
+      "name": "api_directory_monetization_disabled",
+      "ok": true,
+      "details": "monetization=disabled, public_paid_plans_active=false, create_marketplace_pricing_tiers=false"
+    },
+    {
+      "name": "mcp_registry_hosted_mcp_not_live",
+      "ok": true,
+      "details": "hosted_mcp_live=false"
+    },
+    {
+      "name": "mcp_registry_external_submission_blocked",
+      "ok": true,
+      "details": "external_submission=blocked_until_owner_approval"
+    },
+    {
+      "name": "mcp_registry_monetization_disabled",
+      "ok": true,
+      "details": "monetization=disabled"
+    },
+    {
+      "name": "public_claims_review_ok",
+      "ok": true,
+      "details": "ok=true, writes=0, posts=0, payment=false, contact=false"
+    },
+    {
+      "name": "distribution_monitor_ok",
+      "ok": true,
+      "details": "ok=true, resources=41, checks=154, failed=0, writes=0, posts=0"
+    }
+  ],
+  "resources": [
+    {
+      "name": "api_directory_checklist_md",
+      "url": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 6325,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready for sandbox-only draft preparation",
+          "ok": true
+        },
+        {
+          "marker": "monetization disabled",
+          "ok": true
+        },
+        {
+          "marker": "Do not submit irreversibly without owner approval",
+          "ok": true
+        },
+        {
+          "marker": "Do not contact human prospects or target companies",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
+      "name": "api_directory_checklist_json",
+      "url": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 7141,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "blocked_until_owner_approval",
+          "ok": true
+        },
+        {
+          "marker": "monetization",
+          "ok": true
+        },
+        {
+          "marker": "disabled",
+          "ok": true
+        },
+        {
+          "marker": "do_not_contact_human_prospects_or_target_companies",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
+      "name": "mcp_tool_registry_checklist_md",
+      "url": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 5569,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready for sandbox-only draft preparation",
+          "ok": true
+        },
+        {
+          "marker": "Hosted public MCP publication",
+          "ok": true
+        },
+        {
+          "marker": "Keep the public hosted MCP server marked as not live",
+          "ok": true
+        },
+        {
+          "marker": "Stop before irreversible external registry publication",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
+      "name": "mcp_tool_registry_checklist_json",
+      "url": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 6202,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "blocked_until_owner_approval",
+          "ok": true
+        },
+        {
+          "marker": "hosted_mcp_live",
+          "ok": true
+        },
+        {
+          "marker": "false",
+          "ok": true
+        },
+        {
+          "marker": "publish_hosted_mcp_endpoint_as_live",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": false
+        }
+      ],
+      "positive_ok_count": 4,
+      "hard_fails": []
+    },
+    {
+      "name": "external_sandbox_publication_drafts_md",
+      "url": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 7076,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready for sandbox-only draft preparation",
+          "ok": true
+        },
+        {
+          "marker": "Public irreversible publication remains blocked",
+          "ok": true
+        },
+        {
+          "marker": "API Directory",
+          "ok": true
+        },
+        {
+          "marker": "MCP / Agent Tool Registry Draft",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
+      "name": "external_sandbox_publication_drafts_json",
+      "url": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 15535,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "blocked_until_owner_approval",
+          "ok": true
+        },
+        {
+          "marker": "generic_api_directory",
+          "ok": true
+        },
+        {
+          "marker": "rapidapi_style_marketplace",
+          "ok": true
+        },
+        {
+          "marker": "mcp_tool_registry",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
+      "name": "marketplace_api_directory_pack_md",
+      "url": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 12574,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "sandbox-only publication candidate",
+          "ok": true
+        },
+        {
+          "marker": "Machine-first",
+          "ok": true
+        },
+        {
+          "marker": "not a live paid checkout",
+          "ok": true
+        },
+        {
+          "marker": "not an automatic outreach product",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": false
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 4,
+      "hard_fails": []
+    },
+    {
+      "name": "marketplace_api_directory_pack_json",
+      "url": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 22797,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "sandbox-only",
+          "ok": true
+        },
+        {
+          "marker": "external_publication_policy",
+          "ok": true
+        },
+        {
+          "marker": "latest_public_sandbox_claims_no_write_review",
+          "ok": true
+        },
+        {
+          "marker": "public_sandbox_claims_no_write_review_json",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": false
+        }
+      ],
+      "positive_ok_count": 4,
+      "hard_fails": []
+    },
+    {
+      "name": "marketplace_publication_execution_pack_md",
+      "url": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 13391,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "Sandbox-Only External Publication Pack",
+          "ok": true
+        },
+        {
+          "marker": "Public Sandbox Claims NoWrite Review",
+          "ok": true
+        },
+        {
+          "marker": "no live payment",
+          "ok": true
+        },
+        {
+          "marker": "no automatic external outreach",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 5,
+      "hard_fails": []
+    },
+    {
+      "name": "marketplace_publication_execution_pack_json",
+      "url": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 20147,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "external_publication_policy",
+          "ok": true
+        },
+        {
+          "marker": "latest_public_sandbox_claims_no_write_review",
+          "ok": true
+        },
+        {
+          "marker": "blocked_without_owner_approval",
+          "ok": true
+        },
+        {
+          "marker": "sandbox",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": false
+        }
+      ],
+      "positive_ok_count": 4,
+      "hard_fails": []
+    },
+    {
+      "name": "marketplace_submission_pack_json",
+      "url": "https://machinesignal.it/distribution/marketplace-submission-pack.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 22550,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "external_publication_policy",
+          "ok": true
+        },
+        {
+          "marker": "latest_public_sandbox_claims_no_write_review",
+          "ok": true
+        },
+        {
+          "marker": "sandbox",
+          "ok": true
+        },
+        {
+          "marker": "owner",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": false
+        }
+      ],
+      "positive_ok_count": 4,
+      "hard_fails": []
+    },
+    {
+      "name": "mcp_tool_manifest",
+      "url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 31926,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "get_public_sandbox_claims_no_write_review",
+          "ok": true
+        },
+        {
+          "marker": "get_mcp_tool_registry_draft_checklist",
+          "ok": true
+        },
+        {
+          "marker": "latest_public_sandbox_claims_no_write_review",
+          "ok": true
+        },
+        {
+          "marker": "sandbox",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": false
+        }
+      ],
+      "positive_ok_count": 4,
+      "hard_fails": []
+    },
+    {
+      "name": "well_known_mcp_tool_manifest",
+      "url": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 31926,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "get_public_sandbox_claims_no_write_review",
+          "ok": true
+        },
+        {
+          "marker": "get_mcp_tool_registry_draft_checklist",
+          "ok": true
+        },
+        {
+          "marker": "latest_public_sandbox_claims_no_write_review",
+          "ok": true
+        },
+        {
+          "marker": "sandbox",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": true
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": false
+        }
+      ],
+      "positive_ok_count": 4,
+      "hard_fails": []
+    },
+    {
+      "name": "public_sandbox_claims_nowrite_review_json",
+      "url": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 15906,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "completed_public_sandbox_claims_no_write_review",
+          "ok": true
+        },
+        {
+          "marker": "NoWritePublicClaimsReview",
+          "ok": true
+        },
+        {
+          "marker": "real_payment_executed",
+          "ok": true
+        },
+        {
+          "marker": "external_contact_executed",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": false
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": false
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": false
+        }
+      ],
+      "positive_ok_count": 2,
+      "hard_fails": []
+    },
+    {
+      "name": "distribution_readiness_monitor_json",
+      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 36826,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "ready_for_distribution_review",
+          "ok": true
+        },
+        {
+          "marker": "checks_failed",
+          "ok": true
+        },
+        {
+          "marker": "write_calls_executed",
+          "ok": true
+        },
+        {
+          "marker": "post_calls_executed",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "machine_customer_language",
+          "description": "Resource states the customer interface is machine-first.",
+          "ok": false
+        },
+        {
+          "name": "sandbox_or_draft_language",
+          "description": "Resource states sandbox, beta or draft-only context.",
+          "ok": true
+        },
+        {
+          "name": "owner_approval_gate",
+          "description": "Resource blocks irreversible publication until owner approval.",
+          "ok": true
+        },
+        {
+          "name": "monetization_disabled",
+          "description": "Resource keeps monetization, paid plans or live checkout disabled.",
+          "ok": true
+        },
+        {
+          "name": "human_outreach_blocked",
+          "description": "Resource blocks human outreach or external target contact.",
+          "ok": false
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    }
+  ],
+  "recommended_next_step": "Prepare private/draft API directory and MCP registry submission bundles only. Stop before irreversible publication, hosted MCP launch, live checkout, public paid plans, production keys or human outreach."
+}

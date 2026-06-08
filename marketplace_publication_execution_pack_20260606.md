@@ -241,3 +241,11 @@ Latest public review: https://machinesignal.it/public_sandbox_claims_no_write_re
 Machine-readable JSON: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json
 
 Use this before directory or marketplace submission to verify that public copy remains sandbox-only, with no live payment, no real invoice and no automatic external outreach.
+
+## External Submission Pack NoWrite Review
+
+Latest external-submission review: https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md
+
+Machine-readable JSON: https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json
+
+Use this before preparing API directory, RapidAPI-style or MCP registry drafts. It confirms the package is draft/sandbox-only and does not authorize irreversible external publication, live monetization, hosted MCP launch, production keys or human outreach.
