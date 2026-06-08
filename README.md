@@ -521,3 +521,11 @@ A sandbox machine created one limited key, scored the synthetic demo domain `pre
 - Report: https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md
 - JSON: https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json
 - Safety: real_payment_executed=false, external_contact_executed=false, real_invoice_issued=false, api_key_published=false.
+
+## Machine Action Pack Single Purchase - 2026-06-08
+
+A sandbox machine created one limited key, scored the synthetic demo domain `premium-dental-conversion-gap.it`, bought one `deep_analysis`, then bought exactly one `action_pack` through the Deep Analysis source-order gate. The Action Pack delivery returned CRM/workflow payloads while the approval gate remained `blocked` for external contact.
+
+- Report: https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md
+- JSON: https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json
+- Safety: real_payment_executed=false, external_contact_executed=false, real_invoice_issued=false, api_key_published=false.

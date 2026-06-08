@@ -103,7 +103,9 @@
     "api_directory_rapidapi_draft_checklist": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md",
     "api_directory_rapidapi_draft_checklist_json": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json",
     "machine_deep_analysis_single_purchase": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
-    "machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json"
+    "machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
+    "machine_action_pack_single_purchase": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
+    "machine_action_pack_single_purchase_json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json"
   },
   "machine_submission_summary": {
     "api_name": "MachineSignal Lead Opportunity Score API",
@@ -230,7 +232,9 @@
     "machine_discovery_full_simulation": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
     "machine_discovery_full_simulation_json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json",
     "machine_deep_analysis_single_purchase": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
-    "machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json"
+    "machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
+    "machine_action_pack_single_purchase": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
+    "machine_action_pack_single_purchase_json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json"
   },
   "current_mcp_tool_registry_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
   "latest_machine_discovery_full_simulation": {
@@ -275,5 +279,30 @@
     "report": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
     "json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
     "interpretation": "A machine can create a sandbox, score one synthetic high-signal target and buy exactly one Deep Analysis as a spend-control layer before Action Pack."
+  },
+  "latest_machine_action_pack_single_purchase": {
+    "status": "completed_action_pack_single_purchase",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "machine_customer_mode": "machine_with_deep_analysis_gate_to_action_pack",
+    "write_calls_executed": 4,
+    "post_calls_executed": 4,
+    "demo_domain": "premium-dental-conversion-gap.it",
+    "score": 78,
+    "confidence": 0.88,
+    "score_decision": "buy_deep_analysis",
+    "deep_analysis_order_created": true,
+    "deep_analysis_delivery_status": "deep_analysis_ready",
+    "action_pack_order_created": true,
+    "action_pack_delivery_status": "action_pack_ready",
+    "action_pack_approval_gate_default_state": "blocked",
+    "email_blocked_without_approval": true,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "api_key_published": false,
+    "report": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
+    "json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
+    "interpretation": "A machine can pass the score-to-Deep-Analysis gate and buy exactly one Action Pack that prepares CRM/workflow payloads while external contact stays blocked by default."
   }
 }

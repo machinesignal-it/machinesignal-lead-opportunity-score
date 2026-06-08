@@ -1,0 +1,233 @@
+{
+    "artifact":  "machine_action_pack_single_purchase",
+    "generated_at":  "2026-06-08T11:50:50.6833390Z",
+    "run_id":  "machine-action-pack-single-purchase-20260608-20260608135050",
+    "public_site":  "https://machinesignal.it",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "status":  "completed_action_pack_single_purchase",
+    "ok":  true,
+    "machine_customer_mode":  "machine_with_deep_analysis_gate_to_action_pack",
+    "write_calls_executed":  4,
+    "post_calls_executed":  4,
+    "discovery":  {
+                      "product_catalog":  "https://machinesignal.it/product-catalog.json",
+                      "openapi":  "https://machinesignal.it/openapi.json",
+                      "machine_onboarding":  "https://machinesignal.it/machine-onboarding.json"
+                  },
+    "sandbox":  {
+                    "customer_created":  true,
+                    "customer_id":  "sandbox_action_pack_20260608",
+                    "api_key_returned":  true,
+                    "api_key_published":  false
+                },
+    "score":  {
+                  "domain":  "premium-dental-conversion-gap.it",
+                  "opportunity_score":  78,
+                  "confidence":  0.88,
+                  "decision":  "buy_deep_analysis",
+                  "request_id":  "machine-action-pack-score-20260608",
+                  "recommended_next_product":  "deep_analysis"
+              },
+    "deep_analysis":  {
+                          "order_created":  true,
+                          "order_intent_id":  "ord_d216b7d2",
+                          "delivery_type":  "deep_opportunity_analysis",
+                          "delivery_status":  "deep_analysis_ready",
+                          "action_pack_gate_present":  true
+                      },
+    "action_pack":  {
+                        "order_created":  true,
+                        "order_intent_id":  "ord_7c14bcc3",
+                        "status":  "accepted_beta_order_intent",
+                        "delivery_type":  "action_pack",
+                        "delivery_status":  "action_pack_ready",
+                        "credits_consumed":  1,
+                        "approval_gate_default_state":  "blocked",
+                        "email_blocked_without_approval":  true,
+                        "delivery_fields_present":  {
+                                                        "what_is_included":  true,
+                                                        "crm_record_patch":  true,
+                                                        "crm_task":  true,
+                                                        "crm_platform_mappings":  true,
+                                                        "workflow_payload":  true,
+                                                        "webhook_event":  true,
+                                                        "webhook_delivery_policy":  true,
+                                                        "audit_event":  true,
+                                                        "approval_gate":  true,
+                                                        "agent_instructions":  true,
+                                                        "stop_rules":  true,
+                                                        "compliance_guardrail":  true,
+                                                        "next_api_calls":  true
+                                                    }
+                    },
+    "orders":  {
+                   "retrieval_status":  200,
+                   "listed_count":  2,
+                   "action_pack_order_retrieved":  true
+               },
+    "usage":  {
+                  "status_after":  200,
+                  "ledger_backend":  "durable_object"
+              },
+    "safety":  {
+                   "real_payment_executed":  false,
+                   "external_contact_executed":  false,
+                   "real_invoice_issued":  false,
+                   "payment_test_created":  false,
+                   "real_target_used":  false,
+                   "api_key_published":  false
+               },
+    "checks":  [
+                   {
+                       "name":  "llms_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "llms_exposes_machine_discovery",
+                       "ok":  true,
+                       "details":  "llms contains well-known machine discovery link."
+                   },
+                   {
+                       "name":  "well_known_machine_discovery_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "machine_discovery_customer_interface",
+                       "ok":  true,
+                       "details":  "primary_customer_interface=machine"
+                   },
+                   {
+                       "name":  "product_catalog_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "openapi_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "machine_onboarding_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "action_pack_in_catalog",
+                       "ok":  true,
+                       "details":  "Catalog includes action_pack."
+                   },
+                   {
+                       "name":  "purchase_intent_in_openapi",
+                       "ok":  true,
+                       "details":  "OpenAPI exposes purchase-intent endpoint."
+                   },
+                   {
+                       "name":  "sandbox_customer_created",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "score_created",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "score_recommends_deep_analysis",
+                       "ok":  true,
+                       "details":  "decision=buy_deep_analysis, next=deep_analysis"
+                   },
+                   {
+                       "name":  "deep_analysis_created",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "deep_analysis_gate_ready",
+                       "ok":  true,
+                       "details":  "gate_present=True, status=deep_analysis_ready"
+                   },
+                   {
+                       "name":  "action_pack_created",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "action_pack_delivery_type_valid",
+                       "ok":  true,
+                       "details":  "delivery_type=action_pack"
+                   },
+                   {
+                       "name":  "action_pack_delivery_ready",
+                       "ok":  true,
+                       "details":  "status=action_pack_ready"
+                   },
+                   {
+                       "name":  "action_pack_consumed_one_credit",
+                       "ok":  true,
+                       "details":  "credits_consumed=1"
+                   },
+                   {
+                       "name":  "action_pack_approval_gate_blocks_external_contact",
+                       "ok":  true,
+                       "details":  "default=blocked, email_blocked=True"
+                   },
+                   {
+                       "name":  "action_pack_has_crm_payload",
+                       "ok":  true,
+                       "details":  "CRM record and task present."
+                   },
+                   {
+                       "name":  "action_pack_has_workflow_payload",
+                       "ok":  true,
+                       "details":  "Workflow payload present."
+                   },
+                   {
+                       "name":  "action_pack_has_webhook_contract",
+                       "ok":  true,
+                       "details":  "Webhook event and delivery policy present."
+                   },
+                   {
+                       "name":  "action_pack_agent_instructions_block_auto_contact",
+                       "ok":  true,
+                       "details":  "Agent instruction blocks automatic target contact."
+                   },
+                   {
+                       "name":  "action_pack_audit_no_external_contact",
+                       "ok":  true,
+                       "details":  "audit external_contact_executed=False"
+                   },
+                   {
+                       "name":  "action_pack_order_retrieved",
+                       "ok":  true,
+                       "details":  "HTTP 200"
+                   },
+                   {
+                       "name":  "orders_list_contains_deep_and_action",
+                       "ok":  true,
+                       "details":  "HTTP 200, count=2"
+                   },
+                   {
+                       "name":  "usage_reachable_after_action_pack",
+                       "ok":  true,
+                       "details":  "HTTP 200, backend=durable_object"
+                   },
+                   {
+                       "name":  "no_real_payment",
+                       "ok":  true,
+                       "details":  "No endpoint reported real_payment_executed=true."
+                   },
+                   {
+                       "name":  "no_external_contact",
+                       "ok":  true,
+                       "details":  "No endpoint reported external_contact_executed=true."
+                   },
+                   {
+                       "name":  "api_key_not_published",
+                       "ok":  true,
+                       "details":  "API key used only in memory."
+                   }
+               ],
+    "blocked_reason":  null
+}

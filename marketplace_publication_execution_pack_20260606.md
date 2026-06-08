@@ -225,3 +225,11 @@ Latest sandbox proof: https://machinesignal.it/machine_deep_analysis_single_purc
 Machine-readable JSON: https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json
 
 This proof confirms that a machine can buy exactly one Deep Analysis after a score-triggered recommendation and stop before Action Pack.
+
+## Machine Action Pack Single Purchase Proof
+
+Latest sandbox proof: https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md
+
+Machine-readable JSON: https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json
+
+This proof confirms that Action Pack is a machine-readable CRM/workflow preparation product gated by Deep Analysis, not an automatic outreach product.

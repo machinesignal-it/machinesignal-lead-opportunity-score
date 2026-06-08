@@ -196,3 +196,11 @@ Latest sandbox proof: https://machinesignal.it/machine_deep_analysis_single_purc
 Machine-readable JSON: https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json
 
 Use this in directory copy as evidence that the product ladder has a controlled score-to-Deep-Analysis spend gate.
+
+## Machine Action Pack Single Purchase Proof
+
+Latest sandbox proof: https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md
+
+Machine-readable JSON: https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json
+
+Use this in directory copy as evidence that the product ladder reaches CRM/workflow payloads while blocking external contact by default.
