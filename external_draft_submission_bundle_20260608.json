@@ -1,0 +1,203 @@
+{
+  "artifact": "external_draft_submission_bundle",
+  "generated_at": "2026-06-08",
+  "status": "ready_for_private_draft_only",
+  "primary_customer_interface": "machine",
+  "purpose": "Provide one machine-readable bundle for preparing API directory, RapidAPI-style and MCP/tool-registry draft submissions without executing irreversible publication or go-live actions.",
+  "plain_language_summary": "This bundle tells a machine or API directory what MachineSignal is, how to test it in sandbox, what evidence exists, and what must remain blocked before commercial go-live.",
+  "current_business_state": {
+    "phase": "sandbox_beta_testing",
+    "external_publication_executed": false,
+    "irreversible_submission_allowed": false,
+    "live_monetization_enabled": false,
+    "public_paid_plans_enabled": false,
+    "hosted_mcp_live": false,
+    "production_api_key_published": false,
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "human_outreach_allowed": false
+  },
+  "owner_gate": {
+    "owner_approval_required_before": [
+      "public irreversible API directory submission",
+      "public RapidAPI-style marketplace submission",
+      "hosted MCP launch",
+      "live checkout activation",
+      "public paid plan activation",
+      "production API key distribution",
+      "legal or fiscal commitment",
+      "external human outreach"
+    ],
+    "current_allowed_actions": [
+      "prepare private draft listing fields",
+      "prepare unpublished provider metadata",
+      "prepare local MCP/tool-registry metadata",
+      "publish own-domain sandbox evidence",
+      "run NoWrite reviews",
+      "run sandbox-only machine discovery tests"
+    ]
+  },
+  "recommended_submission_order": [
+    {
+      "step": 1,
+      "channel": "generic_api_directory_private_draft",
+      "reason": "Lowest-risk way to make the API understandable to machines without enabling marketplace monetization.",
+      "action_now": "Prepare draft metadata only.",
+      "stop_before": "Final public submit button or irreversible publication."
+    },
+    {
+      "step": 2,
+      "channel": "rapidapi_style_unpublished_provider_draft",
+      "reason": "Useful for marketplace-style API buyers, but monetization must remain disabled.",
+      "action_now": "Prepare provider fields and endpoint groups only.",
+      "stop_before": "Creating public paid plans, public checkout or production credentials."
+    },
+    {
+      "step": 3,
+      "channel": "mcp_tool_registry_local_adapter_draft",
+      "reason": "Best match for machine customers and AI agents because it exposes MachineSignal as callable tools.",
+      "action_now": "Prepare registry copy for the local stdio adapter and public manifests.",
+      "stop_before": "Claiming hosted MCP is live or publishing to a registry that requires a hosted endpoint."
+    },
+    {
+      "step": 4,
+      "channel": "postman_private_or_team_workspace",
+      "reason": "Useful as a controlled external machine-testing surface, but public visibility remains blocked.",
+      "action_now": "Keep as private/team workspace draft.",
+      "stop_before": "Public workspace publication unless final secret scan and owner approval are recorded."
+    }
+  ],
+  "common_listing_fields": {
+    "product_name": "MachineSignal Lead Opportunity Score API",
+    "short_description": "Machine-first lead opportunity scoring, target discovery and spend-control API for CRMs, AI agents and automated workflows.",
+    "long_description": "MachineSignal helps automated systems decide which business domains deserve more sales, CRM or enrichment budget. The API returns score, confidence, decision, spend policy and next machine action. A machine can start with a list of domains, or request Target Discovery when it has no list. If a score passes the gate, it can request Deep Analysis as a controlled spend layer. Only after Deep Analysis confirms the action gate can it request Action Pack, which returns CRM-ready JSON, workflow payloads, webhook policy, approval gates and stop rules. MachineSignal is currently sandbox-only: no live payment, no fiscal invoice, no external target contact and no automatic outreach.",
+    "primary_user": "Machine: CRM, AI agent, RevOps workflow, enrichment pipeline or software buyer.",
+    "human_role": "Owner supervision, budget approval, legal responsibility and audit.",
+    "categories": [
+      "Sales Intelligence",
+      "CRM Automation",
+      "Lead Scoring",
+      "RevOps",
+      "AI Agent Tools",
+      "Workflow Automation",
+      "Data Enrichment"
+    ],
+    "tags": [
+      "lead-scoring",
+      "machine-customer",
+      "crm",
+      "revops",
+      "ai-agents",
+      "target-discovery",
+      "deep-analysis",
+      "action-pack",
+      "spend-control",
+      "openapi",
+      "mcp",
+      "llms-txt"
+    ]
+  },
+  "channel_drafts": {
+    "generic_api_directory_private_draft": {
+      "status": "draft_only",
+      "submission_type": "api_directory_listing",
+      "visibility_now": "private_or_unsubmitted",
+      "monetization": "disabled",
+      "base_url": "https://machinesignal-api.beta-878.workers.dev",
+      "docs": "https://machinesignal.it/machine-onboarding.json",
+      "openapi": "https://machinesignal.it/openapi.json",
+      "public_source": "https://machinesignal.it/distribution/api-directory-submission.json",
+      "blocked_actions": [
+        "irreversible_public_submission",
+        "production_key_publication",
+        "live_payment_claim",
+        "human_outreach"
+      ]
+    },
+    "rapidapi_style_unpublished_provider_draft": {
+      "status": "metadata_ready_monetization_disabled",
+      "submission_type": "rapidapi_style_provider_listing",
+      "visibility_now": "private_draft_or_unpublished",
+      "monetization": "disabled",
+      "pricing_plans_public": false,
+      "provider_setup_json": "https://machinesignal.it/distribution/rapidapi-provider-setup.json",
+      "listing_json": "https://machinesignal.it/distribution/rapidapi-listing.json",
+      "blocked_actions": [
+        "create_public_paid_plans",
+        "connect_live_checkout",
+        "claim_production_availability",
+        "publish_production_credentials"
+      ]
+    },
+    "mcp_tool_registry_local_adapter_draft": {
+      "status": "local_adapter_draft_only",
+      "submission_type": "mcp_or_agent_tool_registry_listing",
+      "hosted_mcp_live": false,
+      "current_transport": "stdio_json_rpc",
+      "tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+      "well_known_tool_manifest": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+      "wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+      "installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+      "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+      "blocked_actions": [
+        "claim_hosted_mcp_live",
+        "submit_to_registry_requiring_hosted_endpoint_without_build",
+        "publish_customer_or_production_keys",
+        "enable_paid_plans"
+      ]
+    },
+    "postman_private_or_team_workspace": {
+      "status": "private_or_team_draft_only",
+      "public_visibility_allowed": false,
+      "collection": "https://machinesignal.it/postman_public_collection.json",
+      "private_workspace_checklist": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json",
+      "blocked_actions": [
+        "public_workspace_publication_without_secret_scan",
+        "production_environment_publication",
+        "real_customer_key_publication"
+      ]
+    }
+  },
+  "machine_test_path": [
+    "GET https://machinesignal.it/.well-known/machine-discovery.json",
+    "GET https://machinesignal.it/machine-onboarding.json",
+    "GET https://machinesignal.it/product-catalog.json",
+    "GET https://machinesignal.it/openapi.json",
+    "POST https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+    "GET /v1/onboarding with sandbox key",
+    "POST /v1/lead-opportunity-score with sandbox key",
+    "POST /v1/purchase-intent only when the score recommends the product and budget rules allow it",
+    "GET /v1/orders to retrieve structured deliverables",
+    "GET https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json"
+  ],
+  "evidence": {
+    "machine_buyer_evidence_brief": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+    "bounded_private_beta_runner": "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
+    "machine_discovery_full_simulation": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json",
+    "deep_analysis_single_purchase": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
+    "action_pack_single_purchase": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
+    "public_sandbox_claims_no_write_review": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
+    "external_submission_pack_no_write_review": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
+  },
+  "go_live_gap": {
+    "technical_sandbox_testing_status": "mostly_complete",
+    "remaining_before_public_non_monetized_go_live": [
+      "owner-approved private draft submission rehearsal",
+      "external machine discovery test from a third-party surface",
+      "final secret scan after any external platform import"
+    ],
+    "remaining_before_paid_commercial_go_live": [
+      "legal and fiscal setup",
+      "terms of service and privacy/commercial terms",
+      "live payment processor setup",
+      "invoice/accounting workflow",
+      "production key policy",
+      "rate limits and abuse controls",
+      "customer support and refund policy",
+      "owner approval"
+    ]
+  },
+  "recommended_next_step": "Use this bundle to prepare a private draft submission rehearsal for a generic API directory first. Stop before irreversible publication or monetization."
+}

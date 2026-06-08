@@ -249,3 +249,11 @@ Latest external-submission review: https://machinesignal.it/external_submission_
 Machine-readable JSON: https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json
 
 Use this before preparing API directory, RapidAPI-style or MCP registry drafts. It confirms the package is draft/sandbox-only and does not authorize irreversible external publication, live monetization, hosted MCP launch, production keys or human outreach.
+
+## External Draft Submission Bundle
+
+Latest draft bundle: https://machinesignal.it/external_draft_submission_bundle_20260608.md
+
+Machine-readable JSON: https://machinesignal.it/external_draft_submission_bundle_20260608.json
+
+Use this as the single bundle for private API directory, RapidAPI-style, MCP/tool-registry and Postman draft rehearsal. It is not a go-live authorization.

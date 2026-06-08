@@ -72,6 +72,28 @@ const resources = [
     ]
   },
   {
+    name: "external_draft_submission_bundle_md",
+    url: `${publicSite}/external_draft_submission_bundle_20260608.md`,
+    json: false,
+    must: [
+      "External Draft Submission Bundle",
+      "ready_for_private_draft_only",
+      "Hosted MCP live | false",
+      "Machine Test Path"
+    ]
+  },
+  {
+    name: "external_draft_submission_bundle_json",
+    url: `${publicSite}/external_draft_submission_bundle_20260608.json`,
+    json: true,
+    must: [
+      "ready_for_private_draft_only",
+      "generic_api_directory_private_draft",
+      "rapidapi_style_unpublished_provider_draft",
+      "mcp_tool_registry_local_adapter_draft"
+    ]
+  },
+  {
     name: "marketplace_api_directory_pack_md",
     url: `${publicSite}/marketplace_api_directory_pack_20260606.md`,
     json: false,

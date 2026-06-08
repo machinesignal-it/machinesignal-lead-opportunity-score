@@ -93,6 +93,8 @@ Public demos for software, agents and partners:
 - Public Sandbox Claims NoWrite Review JSON: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json
 - External Submission Pack NoWrite Review: https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md
 - External Submission Pack NoWrite Review JSON: https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json
+- External Draft Submission Bundle: https://machinesignal.it/external_draft_submission_bundle_20260608.md
+- External Draft Submission Bundle JSON: https://machinesignal.it/external_draft_submission_bundle_20260608.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -228,3 +230,7 @@ Public Sandbox Claims NoWrite Review Summary: public copy and machine-readable m
 External Submission Pack NoWrite Review Report: https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md
 External Submission Pack NoWrite Review JSON: https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json
 External Submission Pack NoWrite Review Summary: API directory, RapidAPI-style and MCP/tool-registry material is safe for private/draft sandbox preparation only; external_publication_executed=false; live_monetization_enabled=false; hosted_mcp_live=false.
+
+External Draft Submission Bundle Report: https://machinesignal.it/external_draft_submission_bundle_20260608.md
+External Draft Submission Bundle JSON: https://machinesignal.it/external_draft_submission_bundle_20260608.json
+External Draft Submission Bundle Summary: one machine-readable bundle for private API directory, RapidAPI-style and MCP/tool-registry draft rehearsal; irreversible_submission_allowed=false; live_monetization_enabled=false; hosted_mcp_live=false.
