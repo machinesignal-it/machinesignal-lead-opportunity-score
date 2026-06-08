@@ -77,3 +77,5 @@ Machine-deep-analysis-single-purchase: https://machinesignal.it/machine_deep_ana
 Machine-deep-analysis-single-purchase-json: https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json
 Machine-action-pack-single-purchase: https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md
 Machine-action-pack-single-purchase-json: https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json
+Public-sandbox-claims-nowrite-review: https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md
+Public-sandbox-claims-nowrite-review-json: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json

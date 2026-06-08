@@ -233,3 +233,11 @@ Latest sandbox proof: https://machinesignal.it/machine_action_pack_single_purcha
 Machine-readable JSON: https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json
 
 This proof confirms that Action Pack is a machine-readable CRM/workflow preparation product gated by Deep Analysis, not an automatic outreach product.
+
+## Public Sandbox Claims NoWrite Review
+
+Latest public review: https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md
+
+Machine-readable JSON: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json
+
+Use this before directory or marketplace submission to verify that public copy remains sandbox-only, with no live payment, no real invoice and no automatic external outreach.

@@ -83,6 +83,8 @@ Public discovery starts here:
 - Machine Buyer Evidence Brief JSON: https://machinesignal.it/machine_beta_evidence_brief_20260607.json
 - Distribution Readiness Monitor: https://machinesignal.it/distribution_readiness_monitor_report_20260607.md
 - Distribution Readiness Monitor JSON: https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json
+- Public Sandbox Claims NoWrite Review: https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md
+- Public Sandbox Claims NoWrite Review JSON: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -529,3 +531,11 @@ A sandbox machine created one limited key, scored the synthetic demo domain `pre
 - Report: https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md
 - JSON: https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json
 - Safety: real_payment_executed=false, external_contact_executed=false, real_invoice_issued=false, api_key_published=false.
+
+## Public Sandbox Claims NoWrite Review - 2026-06-08
+
+A public NoWrite review checked the machine-readable discovery files, marketplace packs and Action Pack proof. It confirms that public copy remains sandbox-only: no real payment, no real invoice, no external target contact and no automatic outreach.
+
+- Report: https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md
+- JSON: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json
+- Safety: write_calls_executed=0, post_calls_executed=0, real_payment_executed=false, external_contact_executed=false, real_invoice_issued=false.

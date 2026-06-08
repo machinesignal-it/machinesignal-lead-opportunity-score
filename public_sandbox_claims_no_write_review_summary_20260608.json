@@ -1,0 +1,567 @@
+{
+  "artifact": "public_sandbox_claims_no_write_review",
+  "generated_at": "2026-06-08T12:25:28.532Z",
+  "status": "completed_public_sandbox_claims_no_write_review",
+  "ok": true,
+  "mode": "NoWritePublicClaimsReview",
+  "public_site": "https://machinesignal.it",
+  "resources_checked": 12,
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "real_invoice_issued": false,
+  "hard_fails": [],
+  "specific_checks": [
+    {
+      "name": "latest_action_pack_gate_blocked",
+      "ok": true,
+      "details": "approval_gate=blocked"
+    },
+    {
+      "name": "latest_action_pack_email_blocked",
+      "ok": true,
+      "details": "email_blocked=true"
+    },
+    {
+      "name": "latest_action_pack_no_payment_or_contact",
+      "ok": true,
+      "details": "payment=false, contact=false, invoice=false"
+    }
+  ],
+  "resources": [
+    {
+      "name": "well_known_machine_discovery",
+      "url": "https://machinesignal.it/.well-known/machine-discovery.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 18880,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "primary_customer_interface",
+          "ok": true
+        },
+        {
+          "marker": "machine",
+          "ok": true
+        },
+        {
+          "marker": "real_payment_executed",
+          "ok": true
+        },
+        {
+          "marker": "external_contact_executed",
+          "ok": true
+        },
+        {
+          "marker": "machine_action_pack_single_purchase_json",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    },
+    {
+      "name": "machine_onboarding",
+      "url": "https://machinesignal.it/machine-onboarding.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 41046,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "machine_first_rule",
+          "ok": true
+        },
+        {
+          "marker": "sandbox",
+          "ok": true
+        },
+        {
+          "marker": "real_payment",
+          "ok": true
+        },
+        {
+          "marker": "external_contact",
+          "ok": true
+        },
+        {
+          "marker": "NoWrite",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    },
+    {
+      "name": "product_catalog",
+      "url": "https://machinesignal.it/product-catalog.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 12370,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "purchase-intent only",
+          "ok": true
+        },
+        {
+          "marker": "real_payment_executed",
+          "ok": true
+        },
+        {
+          "marker": "external_contact_executed",
+          "ok": true
+        },
+        {
+          "marker": "action_pack",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    },
+    {
+      "name": "openapi",
+      "url": "https://machinesignal.it/openapi.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 58945,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "/v1/purchase-intent",
+          "ok": true
+        },
+        {
+          "marker": "action_pack_gate",
+          "ok": true
+        },
+        {
+          "marker": "real_payment_executed",
+          "ok": true
+        },
+        {
+          "marker": "external_contact_executed",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": false
+        }
+      ],
+      "positive_ok_count": 2,
+      "hard_fails": []
+    },
+    {
+      "name": "mcp_tool_manifest",
+      "url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 29795,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "get_machine_action_pack_single_purchase_proof",
+          "ok": true
+        },
+        {
+          "marker": "real_payment_executed",
+          "ok": true
+        },
+        {
+          "marker": "external_contact_executed",
+          "ok": true
+        },
+        {
+          "marker": "action_pack",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    },
+    {
+      "name": "llms",
+      "url": "https://machinesignal.it/llms.txt",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 16882,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "Machine Action Pack Single Purchase JSON",
+          "ok": true
+        },
+        {
+          "marker": "real_payment_executed=false",
+          "ok": true
+        },
+        {
+          "marker": "external_contact_executed=false",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    },
+    {
+      "name": "marketplace_api_directory_pack",
+      "url": "https://machinesignal.it/marketplace_api_directory_pack_20260606.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 12020,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "Sandbox-Only External Publication Pack",
+          "ok": true
+        },
+        {
+          "marker": "Machine Action Pack Single Purchase Proof",
+          "ok": true
+        },
+        {
+          "marker": "not an automatic outreach product",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    },
+    {
+      "name": "marketplace_publication_execution_pack",
+      "url": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 12856,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "Sandbox-Only External Publication Pack",
+          "ok": true
+        },
+        {
+          "marker": "Machine Action Pack Single Purchase Proof",
+          "ok": true
+        },
+        {
+          "marker": "not an automatic outreach product",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    },
+    {
+      "name": "external_sandbox_publication_drafts",
+      "url": "https://machinesignal.it/external_sandbox_publication_drafts_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 14135,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "blocked_until_owner_approval",
+          "ok": true
+        },
+        {
+          "marker": "Live payments",
+          "ok": true
+        },
+        {
+          "marker": "external target contact",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    },
+    {
+      "name": "sandbox_only_external_publication_pack",
+      "url": "https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 13610,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "blocked_without_owner_approval",
+          "ok": true
+        },
+        {
+          "marker": "real_payments",
+          "ok": true
+        },
+        {
+          "marker": "external_outreach",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    },
+    {
+      "name": "action_pack_single_purchase_report",
+      "url": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 4175,
+      "json_valid": null,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "Machine Action Pack Single Purchase",
+          "ok": true
+        },
+        {
+          "marker": "Approval gate default state: blocked",
+          "ok": true
+        },
+        {
+          "marker": "External contact executed: False",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    },
+    {
+      "name": "action_pack_single_purchase_json",
+      "url": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 10640,
+      "json_valid": true,
+      "json_error": null,
+      "marker_checks": [
+        {
+          "marker": "completed_action_pack_single_purchase",
+          "ok": true
+        },
+        {
+          "marker": "email_blocked_without_approval",
+          "ok": true
+        },
+        {
+          "marker": "external_contact_executed",
+          "ok": true
+        }
+      ],
+      "positive_checks": [
+        {
+          "name": "sandbox_or_beta_language",
+          "description": "Resource states sandbox or beta context.",
+          "ok": true
+        },
+        {
+          "name": "payment_safety_language",
+          "description": "Resource states payment is disabled, false, test-mode or blocked.",
+          "ok": true
+        },
+        {
+          "name": "external_contact_safety_language",
+          "description": "Resource states external contact/outreach is disabled, false or blocked.",
+          "ok": true
+        }
+      ],
+      "positive_ok_count": 3,
+      "hard_fails": []
+    }
+  ],
+  "recommended_next_step": "Proceed with no-write packaging review for API-directory and MCP/tool-registry submission wording. Keep sandbox-only, no live payments and no automatic outreach."
+}

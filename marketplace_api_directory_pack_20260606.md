@@ -204,3 +204,13 @@ Latest sandbox proof: https://machinesignal.it/machine_action_pack_single_purcha
 Machine-readable JSON: https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json
 
 Use this in directory copy as evidence that the product ladder reaches CRM/workflow payloads while blocking external contact by default.
+
+Action Pack is not an automatic outreach product. It prepares CRM/workflow payloads, audit context and approval gates; external contact remains blocked unless the customer's own compliance and approval process allows it.
+
+## Public Sandbox Claims NoWrite Review
+
+Latest public review: https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md
+
+Machine-readable JSON: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json
+
+Use this as directory evidence that MachineSignal is currently a sandbox-only machine-readable product, not a live paid checkout and not an automatic outreach product.

@@ -89,6 +89,8 @@ Public demos for software, agents and partners:
 - Machine Buyer Evidence Brief JSON: https://machinesignal.it/machine_beta_evidence_brief_20260607.json
 - Distribution Readiness Monitor: https://machinesignal.it/distribution_readiness_monitor_report_20260607.md
 - Distribution Readiness Monitor JSON: https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json
+- Public Sandbox Claims NoWrite Review: https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md
+- Public Sandbox Claims NoWrite Review JSON: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -216,3 +218,7 @@ Machine Deep Analysis Single Purchase Summary: machine can score one synthetic h
 Machine Action Pack Single Purchase Report: https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md
 Machine Action Pack Single Purchase JSON: https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json
 Machine Action Pack Single Purchase Summary: machine can score one synthetic high-signal target, buy deep_analysis, buy exactly one action_pack through the source-order gate, and keep external contact blocked; real_payment_executed=false; external_contact_executed=false.
+
+Public Sandbox Claims NoWrite Review Report: https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md
+Public Sandbox Claims NoWrite Review JSON: https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json
+Public Sandbox Claims NoWrite Review Summary: public copy and machine-readable manifests remain sandbox-only; write_calls_executed=0; post_calls_executed=0; real_payment_executed=false; external_contact_executed=false; real_invoice_issued=false.

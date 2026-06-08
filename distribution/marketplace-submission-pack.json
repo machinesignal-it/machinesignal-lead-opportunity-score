@@ -105,7 +105,9 @@
     "machine_deep_analysis_single_purchase": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
     "machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
     "machine_action_pack_single_purchase": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
-    "machine_action_pack_single_purchase_json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json"
+    "machine_action_pack_single_purchase_json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
+    "public_sandbox_claims_no_write_review": "https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md",
+    "public_sandbox_claims_no_write_review_json": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json"
   },
   "machine_submission_summary": {
     "api_name": "MachineSignal Lead Opportunity Score API",
@@ -197,11 +199,15 @@
     "status": "ready_for_distribution_review",
     "ok": true,
     "mode": "NoWrite",
-    "evidence_date": "2026-06-07",
-    "checks_total": 91,
+    "evidence_date": "2026-06-08",
+    "generated_at": "2026-06-08T12:26:38.1639337Z",
+    "resources_checked": 41,
+    "checks_total": 154,
     "checks_failed": 0,
     "write_calls_executed": 0,
     "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
     "report": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
     "json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
   },
@@ -234,7 +240,9 @@
     "machine_deep_analysis_single_purchase": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
     "machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
     "machine_action_pack_single_purchase": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
-    "machine_action_pack_single_purchase_json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json"
+    "machine_action_pack_single_purchase_json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
+    "public_sandbox_claims_no_write_review": "https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md",
+    "public_sandbox_claims_no_write_review_json": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json"
   },
   "current_mcp_tool_registry_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
   "latest_machine_discovery_full_simulation": {
@@ -304,5 +312,20 @@
     "report": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
     "json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
     "interpretation": "A machine can pass the score-to-Deep-Analysis gate and buy exactly one Action Pack that prepares CRM/workflow payloads while external contact stays blocked by default."
+  },
+  "latest_public_sandbox_claims_no_write_review": {
+    "status": "completed_public_sandbox_claims_no_write_review",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "mode": "NoWritePublicClaimsReview",
+    "resources_checked": 12,
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "report": "https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md",
+    "json": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
+    "interpretation": "Public MachineSignal copy and machine-readable manifests preserve sandbox-only positioning: no live payments, no external contact, no invoices and Action Pack is CRM/workflow preparation, not automatic outreach."
   }
 }

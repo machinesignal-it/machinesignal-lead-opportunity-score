@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-08T11:55:34.7549011Z",
+    "generated_at":  "2026-06-08T12:26:38.1639337Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  39,
-    "checks_total":  147,
+    "resources_checked":  41,
+    "checks_total":  154,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -20,7 +20,7 @@
                    {
                        "name":  "distribution_index_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14935"
+                       "details":  "HTTP 200, bytes=15371"
                    },
                    {
                        "name":  "distribution_index_contains_expected_marker",
@@ -120,7 +120,7 @@
                    {
                        "name":  "sandbox_only_external_publication_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=12133"
+                       "details":  "HTTP 200, bytes=13610"
                    },
                    {
                        "name":  "sandbox_only_external_publication_pack_json_json_valid",
@@ -155,7 +155,7 @@
                    {
                        "name":  "external_sandbox_publication_drafts_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=13018"
+                       "details":  "HTTP 200, bytes=14135"
                    },
                    {
                        "name":  "external_sandbox_publication_drafts_json_json_valid",
@@ -348,9 +348,44 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "public_sandbox_claims_nowrite_review_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=2133"
+                   },
+                   {
+                       "name":  "public_sandbox_claims_nowrite_review_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Public Sandbox Claims NoWrite Review"
+                   },
+                   {
+                       "name":  "public_sandbox_claims_nowrite_review_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "public_sandbox_claims_nowrite_review_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=15906"
+                   },
+                   {
+                       "name":  "public_sandbox_claims_nowrite_review_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "public_sandbox_claims_nowrite_review_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_public_sandbox_claims_no_write_review"
+                   },
+                   {
+                       "name":  "public_sandbox_claims_nowrite_review_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=11374"
+                       "details":  "HTTP 200, bytes=12020"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_md_contains_expected_marker",
@@ -365,7 +400,7 @@
                    {
                        "name":  "marketplace_api_directory_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=19574"
+                       "details":  "HTTP 200, bytes=20959"
                    },
                    {
                        "name":  "marketplace_api_directory_pack_json_json_valid",
@@ -385,7 +420,7 @@
                    {
                        "name":  "marketplace_publication_execution_pack_md_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=12425"
+                       "details":  "HTTP 200, bytes=12856"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_md_contains_expected_marker",
@@ -400,7 +435,7 @@
                    {
                        "name":  "marketplace_publication_execution_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=17472"
+                       "details":  "HTTP 200, bytes=18589"
                    },
                    {
                        "name":  "marketplace_publication_execution_pack_json_json_valid",
@@ -460,7 +495,7 @@
                    {
                        "name":  "marketplace_submission_pack_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=19327"
+                       "details":  "HTTP 200, bytes=20712"
                    },
                    {
                        "name":  "marketplace_submission_pack_json_valid",
@@ -535,7 +570,7 @@
                    {
                        "name":  "mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=27986"
+                       "details":  "HTTP 200, bytes=29795"
                    },
                    {
                        "name":  "mcp_tool_manifest_json_valid",
@@ -545,7 +580,7 @@
                    {
                        "name":  "mcp_tool_manifest_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=get_machine_action_pack_single_purchase_proof"
+                       "details":  "marker=get_public_sandbox_claims_no_write_review"
                    },
                    {
                        "name":  "mcp_tool_manifest_secret_scan",
@@ -555,7 +590,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=27986"
+                       "details":  "HTTP 200, bytes=29795"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_json_valid",
@@ -565,7 +600,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=get_machine_action_pack_single_purchase_proof"
+                       "details":  "marker=get_public_sandbox_claims_no_write_review"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_secret_scan",
@@ -575,7 +610,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=17763"
+                       "details":  "HTTP 200, bytes=18880"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -585,7 +620,7 @@
                    {
                        "name":  "well_known_machine_discovery_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=machine_action_pack_single_purchase_json"
+                       "details":  "marker=public_sandbox_claims_no_write_review_json"
                    },
                    {
                        "name":  "well_known_machine_discovery_secret_scan",
@@ -595,12 +630,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=16128"
+                       "details":  "HTTP 200, bytes=16882"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Machine Action Pack Single Purchase JSON"
+                       "details":  "marker=Public Sandbox Claims NoWrite Review JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -610,12 +645,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=7612"
+                       "details":  "HTTP 200, bytes=7860"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Machine-action-pack-single-purchase-json"
+                       "details":  "marker=Public-sandbox-claims-nowrite-review-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -625,12 +660,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=15259"
+                       "details":  "HTTP 200, bytes=15490"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=machine_action_pack_single_purchase_summary_20260608.json"
+                       "details":  "marker=public_sandbox_claims_no_write_review_summary_20260608.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",
@@ -700,7 +735,7 @@
                    {
                        "name":  "machine_onboarding_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=39929"
+                       "details":  "HTTP 200, bytes=41046"
                    },
                    {
                        "name":  "machine_onboarding_json_valid",
