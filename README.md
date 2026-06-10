@@ -109,6 +109,8 @@ Public discovery starts here:
 - MCP Local Adapter NoWrite Validation JSON: https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json
 - MCP Write-Capped Sandbox Probe: https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md
 - MCP Write-Capped Sandbox Probe JSON: https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json
+- MCP Purchase Decision Probe: https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md
+- MCP Purchase Decision Probe JSON: https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -641,3 +643,12 @@ A write-capped MCP sandbox probe now proves that a machine client can use the lo
 - Report: https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md
 - Summary JSON: https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json
 - Safety: post_calls_executed=2, write_calls_executed=2, purchase_intent_created=false, payment_test_intent_created=false, real_payment_executed=false, external_contact_executed=false.
+
+## MCP Purchase Decision Probe - 2026-06-10
+
+A write-capped MCP purchase decision probe now proves that a buyer machine can use the local stdio adapter to read the product, create one sandbox customer, score one synthetic target, follow the score recommendation, create one sandbox purchase intent and retrieve the machine-readable delivery.
+
+- Report: https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md
+- Summary JSON: https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json
+- Result: score=81, decision=needs_verification, recommended_product=verification, delivery_type=data_quality_verification, delivery_status=verification_ready.
+- Safety: post_calls_executed=3, write_calls_executed=3, real_payment_executed=false, external_contact_executed=false, payment_test_created=false, external_publication_executed=false.

@@ -528,4 +528,10 @@
   <url>
     <loc>https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json</loc>
   </url>
+  <url>
+    <loc>https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json</loc>
+  </url>
 </urlset>

@@ -103,3 +103,5 @@ Mcp-local-adapter-nowrite-validation: https://machinesignal.it/mcp_local_adapter
 Mcp-local-adapter-nowrite-validation-json: https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json
 Mcp-write-capped-sandbox-probe: https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md
 Mcp-write-capped-sandbox-probe-json: https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json
+Mcp-purchase-decision-probe: https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md
+Mcp-purchase-decision-probe-json: https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json

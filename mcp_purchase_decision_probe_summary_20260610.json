@@ -1,0 +1,258 @@
+{
+  "artifact": "mcp_purchase_decision_probe",
+  "generated_at": "2026-06-10T12:14:27.821990+00:00",
+  "status": "completed_mcp_purchase_decision_probe",
+  "ok": true,
+  "mode": "McpPurchaseDecisionProbeWriteCapped",
+  "primary_customer_interface": "machine",
+  "max_post_calls_allowed": 3,
+  "post_calls_executed": 3,
+  "write_calls_executed": 3,
+  "machine_decisions": [
+    {
+      "decision": "start_sandbox",
+      "reason": "The machine can evaluate the product through API/MCP without human sales contact.",
+      "action": "create_sandbox_customer"
+    },
+    {
+      "decision": "score_target_before_purchase",
+      "reason": "The machine buys only after receiving a score, confidence and recommended next product.",
+      "action": "score_lead_opportunity"
+    },
+    {
+      "decision": "buy_recommended_sandbox_product",
+      "reason": "The score response recommends verification; the machine follows only the API recommendation.",
+      "action": "create_purchase_intent verification"
+    }
+  ],
+  "actions": [
+    {
+      "tool": "get_product_catalog",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_machine_onboarding",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "create_sandbox_customer",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "score_lead_opportunity",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "list_orders",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_order",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    }
+  ],
+  "score_summary": {
+    "domain": "premium-dental-conversion-gap.it",
+    "opportunity_score": 81,
+    "confidence": 0.44,
+    "decision": "needs_verification",
+    "recommended_product": "verification"
+  },
+  "purchase_summary": {
+    "product_code": "verification",
+    "http_status": 200,
+    "order_intent_id": "ord_5b0823b2",
+    "created": true
+  },
+  "delivery_summary": {
+    "delivery_present": true,
+    "delivery_type": "data_quality_verification",
+    "delivery_status": "verification_ready",
+    "fields_present": [
+      "beta_delivery",
+      "checks",
+      "data_quality_risk",
+      "delivery_id",
+      "delivery_type",
+      "domain",
+      "external_contact_executed",
+      "generated_at",
+      "machine_recommendation",
+      "next_allowed_actions",
+      "next_machine_call",
+      "product_code",
+      "real_payment_executed",
+      "source_score_request_id",
+      "status",
+      "stop_rules",
+      "synthetic_demo_mode",
+      "verification_verdict",
+      "what_is_included"
+    ],
+    "has_crm_payload": false,
+    "has_machine_decision_matrix": false,
+    "has_next_machine_call": true,
+    "has_stop_rules": true
+  },
+  "orders_summary": {
+    "http_status": 200,
+    "count": 1,
+    "order_retrieved": true
+  },
+  "usage_summary": {
+    "http_status": 200,
+    "ledger_backend": "durable_object",
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  },
+  "safety": {
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "payment_test_created": false,
+    "external_publication_executed": false,
+    "human_outreach_executed": false,
+    "production_api_key_published": false
+  },
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "checks": [
+    {
+      "name": "mcp_initialize",
+      "ok": true,
+      "details": "{'name': 'machinesignal-local-mcp-adapter', 'version': '2026-06-04'}"
+    },
+    {
+      "name": "required_tools_present",
+      "ok": true,
+      "details": "tools=31; missing=[]"
+    },
+    {
+      "name": "catalog_read",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "machine_onboarding_read",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "sandbox_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "sandbox_key_not_returned_full_to_client",
+      "ok": true,
+      "details": "adapter_state={'customer_api_key_stored_in_memory': True, 'full_api_key_returned_to_client': False}"
+    },
+    {
+      "name": "score_created",
+      "ok": true,
+      "details": "HTTP 200; score=81"
+    },
+    {
+      "name": "score_has_machine_decision",
+      "ok": true,
+      "details": "decision=needs_verification"
+    },
+    {
+      "name": "score_recommends_product",
+      "ok": true,
+      "details": "next_product=verification"
+    },
+    {
+      "name": "purchase_intent_created",
+      "ok": true,
+      "details": "HTTP 200; product=verification"
+    },
+    {
+      "name": "purchase_returns_order_id",
+      "ok": true,
+      "details": "order_id=ord_5b0823b2"
+    },
+    {
+      "name": "orders_list_read",
+      "ok": true,
+      "details": "HTTP 200; orders=1"
+    },
+    {
+      "name": "order_retrieved",
+      "ok": true,
+      "details": "HTTP 200; order_id=ord_5b0823b2"
+    },
+    {
+      "name": "delivery_present",
+      "ok": true,
+      "details": "{'delivery_present': True, 'delivery_type': 'data_quality_verification', 'delivery_status': 'verification_ready', 'fields_present': ['beta_delivery', 'checks', 'data_quality_risk', 'delivery_id', 'delivery_type', 'domain', 'external_contact_executed', 'generated_at', 'machine_recommendation', 'next_allowed_actions', 'next_machine_call', 'product_code', 'real_payment_executed', 'source_score_request_id', 'status', 'stop_rules', 'synthetic_demo_mode', 'verification_verdict', 'what_is_included'], 'has_crm_payload': False, 'has_machine_decision_matrix': False, 'has_next_machine_call': True, 'has_stop_rules': True}"
+    },
+    {
+      "name": "delivery_machine_usable",
+      "ok": true,
+      "details": "{'delivery_present': True, 'delivery_type': 'data_quality_verification', 'delivery_status': 'verification_ready', 'fields_present': ['beta_delivery', 'checks', 'data_quality_risk', 'delivery_id', 'delivery_type', 'domain', 'external_contact_executed', 'generated_at', 'machine_recommendation', 'next_allowed_actions', 'next_machine_call', 'product_code', 'real_payment_executed', 'source_score_request_id', 'status', 'stop_rules', 'synthetic_demo_mode', 'verification_verdict', 'what_is_included'], 'has_crm_payload': False, 'has_machine_decision_matrix': False, 'has_next_machine_call': True, 'has_stop_rules': True}"
+    },
+    {
+      "name": "usage_read",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "post_budget_respected",
+      "ok": true,
+      "details": "post_calls=3; max=3"
+    },
+    {
+      "name": "no_real_payment_or_external_contact",
+      "ok": true,
+      "details": "payment=False; contact=False"
+    },
+    {
+      "name": "no_payment_test_intent_created",
+      "ok": true,
+      "details": "payment test tool not called"
+    },
+    {
+      "name": "no_external_publication",
+      "ok": true,
+      "details": "external publication not called"
+    }
+  ],
+  "learning_loop": {
+    "competitive_learning_experiment": "MCP purchase decision probe",
+    "lesson_learned": "A machine can move from score recommendation to one bounded sandbox purchase and delivery retrieval through MCP without human outreach.",
+    "recommended_next_step": "Run QA review and then decide whether to expose this as public machine-buyer evidence."
+  }
+}
