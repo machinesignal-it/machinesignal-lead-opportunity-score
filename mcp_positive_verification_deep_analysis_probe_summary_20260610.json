@@ -1,0 +1,178 @@
+{
+  "artifact": "mcp_positive_verification_deep_analysis_probe",
+  "status": "completed_mcp_positive_verification_deep_analysis_probe",
+  "ok": true,
+  "evidence_date": "2026-06-10",
+  "mode": "McpPositiveVerificationDeepAnalysisProbeWriteCapped",
+  "primary_customer_interface": "machine",
+  "max_post_calls_allowed": 5,
+  "post_calls_executed": 4,
+  "write_calls_executed": 4,
+  "domain": "verified-deep-analysis-ready.test",
+  "verification_order_intent_id": "ord_351eecf6",
+  "verification_verdict_status": "verified_for_deep_analysis",
+  "deep_analysis_order_intent_id": "ord_191f7f6f",
+  "deep_analysis_gate_passed": true,
+  "deep_analysis_credits_used_before": 0,
+  "deep_analysis_credits_used_after": 1,
+  "verification_credits_used_after": 1,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "real_invoice_issued": false,
+  "payment_test_created": false,
+  "external_publication_executed": false,
+  "human_outreach_executed": false,
+  "production_api_key_published": false,
+  "machine_decision": "positive_verification_allows_deep_analysis",
+  "interpretation": "A machine can buy Deep Analysis after a positive sandbox Verification source; the live API records a passed gate and consumes exactly one Deep Analysis credit.",
+  "recommended_next_step": "Keep both negative and positive gate probes in the monitor; next test should cover Action Pack only after accepted Deep Analysis.",
+  "actions": [
+    {
+      "tool": "create_sandbox_customer",
+      "kind": "POST/write",
+      "http_status": 429,
+      "ok": false,
+      "auth": "none"
+    },
+    {
+      "tool": "direct_create_sandbox_customer fallback",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "create_purchase_intent positive verification",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_order verification",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage before",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent deep_analysis allowed",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage after",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    }
+  ],
+  "checks": [
+    {
+      "name": "mcp_initialize",
+      "ok": true,
+      "details": "{'name': 'machinesignal-local-mcp-adapter', 'version': '2026-06-04'}"
+    },
+    {
+      "name": "required_tools_present",
+      "ok": true,
+      "details": "tools=31; missing=[]"
+    },
+    {
+      "name": "sandbox_mcp_create_rate_limited",
+      "ok": true,
+      "details": "MCP adapter fingerprint reached the daily sandbox creation limit; using direct machine fallback for sandbox creation only."
+    },
+    {
+      "name": "mcp_reinitialized_with_precreated_sandbox_key",
+      "ok": true,
+      "details": "fallback sandbox key stored in adapter memory through environment"
+    },
+    {
+      "name": "sandbox_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "positive_verification_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "verification_order_retrieved",
+      "ok": true,
+      "details": "HTTP 200; order_id=ord_351eecf6"
+    },
+    {
+      "name": "verification_verdict_positive",
+      "ok": true,
+      "details": "verdict=verified_for_deep_analysis"
+    },
+    {
+      "name": "verification_points_to_purchase_intent",
+      "ok": true,
+      "details": "{'method': 'POST', 'endpoint': '/v1/purchase-intent', 'when': 'if budget rules allow Deep Analysis after this positive Verification', 'required_headers': ['X-API-Key', 'Idempotency-Key'], 'body': {'product_code': 'deep_analysis', 'domain': 'verified-deep-analysis-ready.test', 'source_verification_order_intent_id': 'use_this_verification_order_intent_id'}}"
+    },
+    {
+      "name": "usage_before_read",
+      "ok": true,
+      "details": "HTTP 200; deep_used=0"
+    },
+    {
+      "name": "deep_analysis_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "deep_analysis_gate_passed",
+      "ok": true,
+      "details": "{'required': True, 'passed': True, 'source_verification_order_intent_id': 'ord_351eecf6', 'source_delivery_id': 'del_c5df9552', 'source_verification_verdict_status': 'verified_for_deep_analysis'}"
+    },
+    {
+      "name": "deep_analysis_delivery_ready",
+      "ok": true,
+      "details": "deep_opportunity_analysis"
+    },
+    {
+      "name": "usage_after_read",
+      "ok": true,
+      "details": "HTTP 200; deep_used=1"
+    },
+    {
+      "name": "one_deep_analysis_credit_consumed",
+      "ok": true,
+      "details": "before=0; after=1"
+    },
+    {
+      "name": "verification_credit_consumed_once",
+      "ok": true,
+      "details": "verification_used=1"
+    },
+    {
+      "name": "post_budget_respected",
+      "ok": true,
+      "details": "post_calls=4; max=5"
+    },
+    {
+      "name": "no_real_payment_or_external_contact",
+      "ok": true,
+      "details": "payment=False; contact=False"
+    }
+  ],
+  "usage_summary": {
+    "http_status": 200,
+    "ledger_backend": "durable_object",
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  }
+}

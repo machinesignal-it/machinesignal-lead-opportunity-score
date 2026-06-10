@@ -109,3 +109,5 @@ Mcp-verification-gate-probe: https://machinesignal.it/mcp_verification_gate_prob
 Mcp-verification-gate-probe-json: https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json
 Mcp-deep-analysis-verification-gate-probe: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md
 Mcp-deep-analysis-verification-gate-probe-json: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json
+Mcp-positive-verification-deep-analysis-probe: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_report_20260610.md
+Mcp-positive-verification-deep-analysis-probe-json: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json

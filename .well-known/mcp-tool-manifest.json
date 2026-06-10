@@ -1,1227 +1,1187 @@
 {
-    "service":  "MachineSignal",
-    "version":  "2026-06-07",
-    "manifest_type":  "tool_style_manifest",
-    "primary_customer_interface":  "machine",
-    "website":  "https://machinesignal.it/",
-    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
-    "openapi":  "https://machinesignal.it/openapi.json",
-    "llms":  "https://machinesignal.it/llms.txt",
-    "product_catalog":  "https://machinesignal.it/product-catalog.json",
-    "machine_onboarding":  "https://machinesignal.it/machine-onboarding.json",
-    "marketplace_api_directory_pack":  "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
-    "marketplace_publication_execution_pack":  "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
-    "machine_api_sandbox_test":  "https://machinesignal.it/machine-api-sandbox-test/",
-    "machine_api_sandbox_test_json":  "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
-    "mcp_wrapper_pack":  "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
-    "mcp_machine_client_installation_pack":  "https://machinesignal.it/mcp-machine-client-installation-pack.json",
-    "integration_partner_pack":  "https://machinesignal.it/integration-partner-pack.json",
-    "mcp_compatibility":  {
-                              "public_mcp_server_live":  false,
-                              "adapter_required":  true,
-                              "adapter_guidance":  "Expose the HTTP endpoints below as MCP tools. Use the tool names, input schemas, auth rules and safety guardrails in this manifest.",
-                              "recommended_wrapper_transport":  "stdio or HTTP wrapper controlled by the customer machine",
-                              "source_of_truth":  "https://machinesignal.it/openapi.json",
-                              "local_adapter":  {
-                                                    "status":  "available_in_github_repo",
-                                                    "transport":  "stdio_json_rpc",
-                                                    "repository":  "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
-                                                    "adapter_path":  "mcp_adapter/machinesignal_mcp_server.py",
-                                                    "readme_path":  "mcp_adapter/README.md",
-                                                    "installation_guide_path":  "MCP_MACHINE_CLIENT_INSTALLATION.md",
-                                                    "installation_pack_url":  "https://machinesignal.it/mcp-machine-client-installation-pack.json",
-                                                    "integration_guide_path":  "INTEGRATION_PARTNER_PACK.md",
-                                                    "integration_pack_url":  "https://machinesignal.it/integration-partner-pack.json",
-                                                    "client_config_example_path":  "mcp_adapter/mcp_client_config.example.json",
-                                                    "no_credit_installation_validator_path":  "mcp_adapter/validate_machine_client_installation_20260603.py",
-                                                    "smoke_test_path":  "mcp_adapter/mcp_adapter_smoke_test_20260603.py",
-                                                    "machine_buyer_agent_runner_path":  "mcp_adapter/machine_buyer_agent_runner_20260603.py",
-                                                    "latest_smoke_test_report":  "mcp_adapter_smoke_test_readout_20260603.md",
-                                                    "latest_machine_buyer_agent_report":  "mcp_machine_buyer_agent_readout_20260603.md",
-                                                    "latest_installation_validation_report":  "mcp_client_installation_validation_readout_20260603.md",
-                                                    "start_command":  "python mcp_adapter/machinesignal_mcp_server.py",
-                                                    "no_credit_validation_command":  "python mcp_adapter/validate_machine_client_installation_20260603.py",
-                                                    "client_test_command":  "python mcp_adapter/machine_buyer_agent_runner_20260603.py",
-                                                    "tested_flow":  "initialize, tools/list, read public sandbox test contract, create sandbox customer, buy target discovery, score lead opportunity, buy recommended add-on, create payment-test intent, reconcile payment test, list orders and usage",
-                                                    "buyer_agent_flow":  "buyer machine reads catalog, sandbox test contract and onboarding, creates sandbox, buys target discovery when no list is available, scores one target, buys only the recommended add-on and verifies sandbox payment-test guardrails",
-                                                    "full_api_keys_returned_to_client":  false,
-                                                    "real_payment_executed_in_beta":  false,
-                                                    "external_contact_executed_in_beta":  false
-                                                },
-                              "tool_registry_draft_checklist":  "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
-                              "deep_analysis_single_purchase_proof":  "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
-                              "action_pack_single_purchase_proof":  "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
-                              "tool_registry_private_draft_pack":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
-                              "tool_registry_private_draft_review":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
-                              "latest_local_adapter_nowrite_validation":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
-                              "latest_write_capped_sandbox_probe":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json"
-                          },
-    "authentication":  {
-                           "public_tools":  [
-                                                "get_product_catalog",
-                                                "get_machine_onboarding",
-                                                "get_machine_api_sandbox_test",
-                                                "get_dentists_beta_pack",
-                                                "create_sandbox_customer"
-                                            ],
-                           "customer_auth_header":  "X-API-Key",
-                           "admin_auth_header":  "X-API-Key",
-                           "idempotency_header":  "Idempotency-Key",
-                           "customer_key_source":  "POST /v1/sandbox/customers for sandbox tests, or private beta onboarding for larger tests."
-                       },
-    "tools":  [
-                  {
-                      "name":  "get_product_catalog",
-                      "purpose":  "Read products, exact beta prices, deliverables, credit rules and allowed next purchases.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/product-catalog.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable product catalog and price list."
-                  },
-                  {
-                      "name":  "get_machine_onboarding",
-                      "purpose":  "Read the machine buyer flow, allowed calls, guardrails and public onboarding resources.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/machine-onboarding.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Public onboarding contract for automated evaluators."
-                  },
-                  {
-                      "name":  "get_marketplace_api_directory_pack",
-                      "purpose":  "Read short marketplace, API directory, Postman, RapidAPI and MCP listing copy for machine-first discovery.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable channel copy, product table, endpoint showcase and beta guardrails."
-                  },
-                  {
-                      "name":  "get_marketplace_publication_execution_pack",
-                      "purpose":  "Read operational publication instructions for sandbox-only Postman, RapidAPI-style, generic API directory and MCP/tool registry listings.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Agent runbook for channel-specific publication preparation with guardrails."
-                  },
-                  {
-                      "name":  "get_machine_api_sandbox_test",
-                      "purpose":  "Read the canonical direct sandbox test path for CRMs, AI agents and automated workflows when Postman UI or human contact is unavailable.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable sandbox test contract with import assets, callable flow, safety limits and expected outcomes."
-                  },
-                  {
-                      "name":  "get_dentists_beta_pack",
-                      "purpose":  "Read the current dentist vertical benchmark, product flow and commercial evidence before testing.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Dentist beta pack with 250-target benchmark and routing results."
-                  },
-                  {
-                      "name":  "create_sandbox_customer",
-                      "purpose":  "Create a low-credit sandbox API key so a machine can test the beta flow without human sales contact.",
-                      "method":  "POST",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-                                                              "evaluator_id":  {
-                                                                                   "type":  "string",
-                                                                                   "description":  "Optional stable identifier for the evaluator machine."
-                                                                               },
-                                                              "use_case":  {
-                                                                               "type":  "string",
-                                                                               "description":  "Optional plain-language description of the automated test."
-                                                                           }
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Sandbox customer id, API key, expiry and small credit balances.",
-                      "limits":  {
-                                     "score_credits":  5,
-                                     "target_discovery_credits":  1,
-                                     "deep_analysis_credits":  1,
-                                     "action_pack_credits":  1,
-                                     "expires_after_days_default":  7
-                                 }
-                  },
-                  {
-                      "name":  "get_customer_onboarding",
-                      "purpose":  "Read authenticated onboarding, balances, allowed products and next machine calls for one customer key.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/onboarding",
-                      "auth":  "customer_api_key",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Customer-specific onboarding, credits and safe next calls."
-                  },
-                  {
-                      "name":  "score_lead_opportunity",
-                      "purpose":  "Score one business domain and decide whether the machine should discard, watchlist, nurture, buy deep analysis or request verification.",
-                      "method":  "POST",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
-                      "auth":  "customer_api_key",
-                      "requires_idempotency_key":  true,
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-                                                              "domain":  {
-                                                                             "type":  "string",
-                                                                             "description":  "Business domain without protocol, for example clinic3.it."
-                                                                         },
-                                                              "sector_hint":  {
-                                                                                  "type":  "string",
-                                                                                  "description":  "Optional sector hint such as dentist, real_estate, aesthetic_medicine."
-                                                                              },
-                                                              "country_hint":  {
-                                                                                   "type":  "string",
-                                                                                   "description":  "Optional country hint such as IT."
-                                                                               }
-                                                          },
-                                           "required":  [
-                                                            "domain"
-                                                        ]
-                                       },
-                      "output_summary":  "opportunity_score, confidence, decision, web_architect_review, commercial_strength, spend_policy, next_purchase and usage.",
-                      "credit_rule":  "Consumes one score credit only when the API produces a valid usable output."
-                  },
-                  {
-                      "name":  "create_purchase_intent",
-                      "purpose":  "Create a beta order intent for a machine-readable paid output such as target discovery, deep analysis, nurture signal or action pack.",
-                      "method":  "POST",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
-                      "auth":  "customer_api_key",
-                      "requires_idempotency_key":  true,
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-                                                              "product_code":  {
-                                                                                   "type":  "string",
-                                                                                   "enum":  [
-                                                                                                "target_discovery",
-                                                                                                "domain_enrichment",
-                                                                                                "verification",
-                                                                                                "nurture_signal",
-                                                                                                "deep_analysis",
-                                                                                                "action_pack",
-                                                                                                "opportunity_feed"
-                                                                                            ]
-                                                                               },
-                                                              "domain":  {
-                                                                             "type":  "string",
-                                                                             "description":  "Domain to analyze when buying domain-level outputs."
-                                                                         },
-                                                              "market":  {
-                                                                             "type":  "string",
-                                                                             "description":  "Market or niche for target discovery."
-                                                                         },
-                                                              "area":  {
-                                                                           "type":  "string",
-                                                                           "description":  "Geographic area for target discovery."
-                                                                       },
-                                                              "commercial_objective":  {
-                                                                                           "type":  "string",
-                                                                                           "description":  "What opportunity the machine wants to find, not a generic sector label."
-                                                                                       },
-                                                              "batch_id":  {
-                                                                               "type":  "string",
-                                                                               "description":  "Optional external batch identifier."
-                                                                           }
-                                                          },
-                                           "required":  [
-                                                            "product_code"
-                                                        ]
-                                       },
-                      "output_summary":  "Tracked beta order intent, delivery contract, immediate machine-readable output and remaining credits.",
-                      "credit_rule":  "Consumes the corresponding product credit only when the beta order intent is valid."
-                  },
-                  {
-                      "name":  "list_orders",
-                      "purpose":  "Retrieve previous beta orders and machine-readable deliveries for the authenticated customer.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/orders",
-                      "auth":  "customer_api_key",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-                                                              "product_code":  {
-                                                                                   "type":  "string"
-                                                                               },
-                                                              "domain":  {
-                                                                             "type":  "string"
-                                                                         },
-                                                              "status":  {
-                                                                             "type":  "string"
-                                                                         }
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Recent beta order intents and deliveries."
-                  },
-                  {
-                      "name":  "get_order",
-                      "purpose":  "Retrieve one beta order and its delivery by order_intent_id.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/orders/{order_intent_id}",
-                      "auth":  "customer_api_key",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-                                                              "order_intent_id":  {
-                                                                                      "type":  "string"
-                                                                                  }
-                                                          },
-                                           "required":  [
-                                                            "order_intent_id"
-                                                        ]
-                                       },
-                      "output_summary":  "One beta order intent and delivery."
-                  },
-                  {
-                      "name":  "get_usage",
-                      "purpose":  "Read current credit balances and usage for the authenticated customer machine.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/usage",
-                      "auth":  "customer_api_key",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Consumed credits, remaining credits and beta usage state."
-                  },
-                  {
-                      "name":  "create_payment_test_intent",
-                      "purpose":  "Create a simulated test-mode checkout object for a product or beta order without executing a real payment.",
-                      "method":  "POST",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/payment-test/intents",
-                      "auth":  "customer_api_key",
-                      "requires_idempotency_key":  true,
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-                                                              "product_code":  {
-                                                                                   "type":  "string",
-                                                                                   "description":  "Product being tested, for example score_pack_1k, target_discovery or deep_analysis."
-                                                                               },
-                                                              "amount_eur":  {
-                                                                                 "type":  "number",
-                                                                                 "description":  "Expected test amount in EUR."
-                                                                             },
-                                                              "provider":  {
-                                                                               "type":  "string",
-                                                                               "enum":  [
-                                                                                            "stripe",
-                                                                                            "paypal",
-                                                                                            "provider_neutral"
-                                                                                        ]
-                                                                           },
-                                                              "provider_mode":  {
-                                                                                    "type":  "string",
-                                                                                    "enum":  [
-                                                                                                 "test",
-                                                                                                 "sandbox"
-                                                                                             ],
-                                                                                    "description":  "Live, production and prod are blocked."
-                                                                                },
-                                                              "order_intent_id":  {
-                                                                                      "type":  "string",
-                                                                                      "description":  "Optional beta order id to associate with this simulated payment."
-                                                                                  },
-                                                              "metadata":  {
-                                                                               "type":  "object",
-                                                                               "additionalProperties":  true
-                                                                           }
-                                                          },
-                                           "required":  [
-                                                            "product_code",
-                                                            "amount_eur",
-                                                            "provider_mode"
-                                                        ]
-                                       },
-                      "output_summary":  "Payment-test id, simulated status, test webhook instructions, guardrails and usage state.",
-                      "credit_rule":  "Does not execute real payment and does not issue a fiscal invoice."
-                  },
-                  {
-                      "name":  "get_payment_test_intent",
-                      "purpose":  "Read one simulated payment-test intent and its current reconciliation state.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/payment-test/intents/{payment_test_id}",
-                      "auth":  "customer_api_key",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-                                                              "payment_test_id":  {
-                                                                                      "type":  "string"
-                                                                                  }
-                                                          },
-                                           "required":  [
-                                                            "payment_test_id"
-                                                        ]
-                                       },
-                      "output_summary":  "One simulated payment-test object with no live payment."
-                  },
-                  {
-                      "name":  "get_payment_test_reconciliation",
-                      "purpose":  "Reconcile one simulated payment test and verify that no live payment, duplicate credit activation or fiscal invoice occurred.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/payment-test/reconciliation/{payment_test_id}",
-                      "auth":  "customer_api_key",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-                                                              "payment_test_id":  {
-                                                                                      "type":  "string"
-                                                                                  }
-                                                          },
-                                           "required":  [
-                                                            "payment_test_id"
-                                                        ]
-                                       },
-                      "output_summary":  "Reconciliation result, safety checks and blockers before real payments."
-                  },
-                  {
-                      "name":  "get_admin_sandbox_metrics",
-                      "purpose":  "Admin-only monitor for 7-day sandbox test metrics, conversion signals and safety flags.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal-api.beta-878.workers.dev/v1/admin/sandbox-metrics",
-                      "auth":  "admin_api_key",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Sandbox keys, score usage, deep analysis orders, action pack orders, conversion rates and safety flags."
-                  },
-                  {
-                      "name":  "get_machine_buyer_evidence_brief",
-                      "purpose":  "Read the latest full bounded beta evidence proving the machine-buyer flow, credit caps, Action Pack gate and safety results.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable evidence brief with score, Deep Analysis, gated Action Pack, credit deltas and safety guardrails."
-                  },
-                  {
-                      "name":  "get_mcp_tool_registry_draft_checklist",
-                      "purpose":  "Read sandbox-only MCP/tool-registry listing fields, guardrails and submission gates for machine-first tool discovery.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable MCP/tool registry draft checklist with blocked actions and owner-approval gates."
-                  },
-                  {
-                      "name":  "get_machine_deep_analysis_single_purchase_proof",
-                      "purpose":  "Read the latest sandbox proof that a machine can score a target and buy exactly one Deep Analysis before Action Pack.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable Deep Analysis single-purchase proof with score, order, safety flags and Action Pack gate status."
-                  },
-                  {
-                      "name":  "get_machine_action_pack_single_purchase_proof",
-                      "purpose":  "Read the latest sandbox proof that a machine can buy exactly one Action Pack after a Deep Analysis gate and keep external contact blocked.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable Action Pack single-purchase proof with CRM/workflow fields, approval gate and safety flags."
-                  },
-                  {
-                      "name":  "get_public_sandbox_claims_no_write_review",
-                      "purpose":  "Read the latest public NoWrite review proving that MachineSignal public copy remains sandbox-only, with no live payments, no real invoices and no automatic external outreach.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable public-claims review with sandbox-only, no-payment, no-invoice, no-external-contact and Action Pack approval-gate safety flags."
-                  },
-                  {
-                      "name":  "get_external_submission_pack_no_write_review",
-                      "purpose":  "Read the latest NoWrite review proving that API directory, RapidAPI-style and MCP/tool-registry material is draft/sandbox-only and blocks monetization, hosted MCP, production keys and external outreach.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable external-submission readiness review with owner-approval, monetization, hosted-MCP, payment, invoice, key and outreach safety flags."
-                  },
-                  {
-                      "name":  "get_external_draft_submission_bundle",
-                      "purpose":  "Read the external draft submission bundle for API directory, RapidAPI-style and MCP/tool-registry preparation. This is draft/sandbox-only and does not authorize go-live actions.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable private draft submission bundle with listing copy, channel order, machine test path, evidence links and go-live blockers."
-                  },
-                  {
-                      "name":  "get_private_draft_submission_rehearsal",
-                      "purpose":  "Read the latest NoWrite private draft submission rehearsal proving that a machine can prepare draft metadata across API directory, RapidAPI-style, MCP/tool-registry and Postman channels without go-live actions.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "Machine-readable rehearsal result with channel readiness, safety gates, no-write/no-post status and go-live blockers."
-                  },
-                  {
-                      "name":  "get_api_directory_private_draft_pack",
-                      "purpose":  "Read exact machine-readable fields for preparing a private or unsubmitted generic API directory draft. This is draft-only and does not authorize public submit or monetization.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/api_directory_private_draft_pack_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "API directory private draft fields: listing copy, endpoint groups, products, safety policy, evidence links and stop-before-public-submit blockers."
-                  },
-                  {
-                      "name":  "get_api_directory_private_draft_review",
-                      "purpose":  "Read the NoWrite review proving the API directory private draft pack has required fields and keeps publication, monetization, production keys and external contact blocked.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "NoWrite API directory private draft review with field checks, resource checks, safety gates and machine decision."
-                  },
-                  {
-                      "name":  "get_rapidapi_unpublished_provider_draft_pack",
-                      "purpose":  "Read exact machine-readable fields for preparing a private or unpublished RapidAPI-style provider draft. This is draft-only and does not authorize public submit or monetization.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "RapidAPI-style unpublished provider draft fields: listing copy, endpoint groups, pricing treatment, source assets, safety policy and stop-before-public-submit blockers."
-                  },
-                  {
-                      "name":  "get_rapidapi_unpublished_provider_draft_review",
-                      "purpose":  "Read the NoWrite review proving the RapidAPI-style unpublished provider draft pack has required fields and keeps publication, monetization, production keys and external contact blocked.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "NoWrite RapidAPI-style unpublished provider draft review with field checks, resource checks, safety gates and machine decision."
-                  },
-                  {
-                      "name":  "get_mcp_tool_registry_private_draft_pack",
-                      "purpose":  "Read exact machine-readable fields for preparing private or unsubmitted MCP/tool-registry metadata around the local stdio adapter. This is draft-only and does not authorize hosted MCP launch or registry submission.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "MCP/tool-registry private draft fields: local adapter listing copy, installation flow, tool list, spend-control rules, safety policy and stop-before-registry-submit blockers."
-                  },
-                  {
-                      "name":  "get_mcp_tool_registry_private_draft_review",
-                      "purpose":  "Read the NoWrite review proving the MCP/tool-registry private draft pack has required fields and keeps hosted MCP, publication, monetization, production keys and external contact blocked.",
-                      "method":  "GET",
-                      "url":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
-                      "auth":  "none",
-                      "input_schema":  {
-                                           "type":  "object",
-                                           "properties":  {
-
-                                                          },
-                                           "required":  [
-
-                                                        ]
-                                       },
-                      "output_summary":  "NoWrite MCP/tool-registry private draft review with field checks, resource checks, safety gates and machine decision."
-                  }
-              ],
-    "recommended_machine_flow":  [
-                                     "GET https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
-                                     "GET https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
-                                     "GET https://machinesignal.it/mcp-tool-manifest.json",
-                                     "GET https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
-                                     "GET https://machinesignal.it/product-catalog.json",
-                                     "POST /v1/sandbox/customers",
-                                     "GET /v1/onboarding with X-API-Key",
-                                     "POST /v1/lead-opportunity-score with X-API-Key and Idempotency-Key",
-                                     "POST /v1/purchase-intent when next_purchase recommends a valid product",
-                                     "POST /v1/payment-test/intents with provider_mode sandbox or test",
-                                     "GET /v1/payment-test/reconciliation/{payment_test_id}",
-                                     "GET /v1/orders to retrieve deliveries",
-                                     "GET /v1/usage to reconcile credits",
-                                     "get_rapidapi_unpublished_provider_draft_pack",
-                                     "get_rapidapi_unpublished_provider_draft_review",
-                                     "get_mcp_tool_registry_private_draft_pack",
-                                     "get_mcp_tool_registry_private_draft_review"
-                                 ],
-    "decision_values":  {
-                            "discard":  "Do not spend more budget now.",
-                            "watchlist":  "Save and rescore later.",
-                            "nurture":  "Save in nurturing and consider low-cost enrichment.",
-                            "buy_deep_analysis":  "Buy a deeper machine-readable explanation before larger spend.",
-                            "needs_verification":  "Verify data quality before spending more budget."
-                        },
-    "commercial_strength_rules":  {
-                                      "strong":  "Controlled spend is allowed; buy Deep Analysis and consider Action Pack only after deep confirmation.",
-                                      "medium":  "Buy only low or mid-cost next steps such as Nurture Signal or Deep Analysis.",
-                                      "weak":  "Keep in watchlist and do not buy paid add-ons now."
-                                  },
-    "safety":  {
-                   "real_payment_executed_in_beta":  false,
-                   "external_contact_executed_by_machinesignal":  false,
-                   "action_pack_sends_email":  false,
-                   "requires_customer_compliance_gate_before_external_action":  true,
-                   "human_role":  "supervision, approval and audit only"
-               },
-    "latest_machine_buyer_evidence":  {
-                                          "status":  "completed_full",
-                                          "ok":  true,
-                                          "evidence_date":  "2026-06-07",
-                                          "primary_customer_interface":  "machine",
-                                          "summary":  "Full bounded private beta run completed: 5 valid scores, 1 Deep Analysis, 1 gated Action Pack, Action Pack without Deep Analysis source order blocked with HTTP 400, no real payment, no fiscal invoice and no external contact.",
-                                          "evidence_brief_html":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
-                                          "evidence_brief_markdown":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.md",
-                                          "evidence_brief_json":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
-                                          "full_runner_report":  "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
-                                          "full_runner_json":  "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
-                                          "credit_deltas":  {
-                                                                "score_pack_1k":  5,
-                                                                "deep_analysis_pack_100":  1,
-                                                                "action_pack_25":  1
-                                                            },
-                                          "safety":  {
-                                                         "real_payment_executed":  false,
-                                                         "external_contact_executed":  false,
-                                                         "real_invoice_issued":  false,
-                                                         "action_pack_without_deep_analysis_blocked":  true
-                                                     }
-                                      },
-    "machine_buyer_evidence_brief":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
-    "machine_buyer_evidence_brief_json":  "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
-    "mcp_tool_registry_draft_checklist":  "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
-    "mcp_tool_registry_draft_checklist_markdown":  "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md",
-    "publication_policy":  {
-                               "hosted_mcp_live":  false,
-                               "external_registry_submission":  "blocked_until_owner_approval",
-                               "monetization":  "disabled",
-                               "checklist":  "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
-                               "private_draft_pack":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
-                               "private_draft_review":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json"
-                           },
-    "public_links":  {
-                         "machine_discovery_full_simulation":  "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
-                         "machine_discovery_full_simulation_json":  "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json",
-                         "machine_deep_analysis_single_purchase":  "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
-                         "machine_deep_analysis_single_purchase_json":  "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
-                         "machine_action_pack_single_purchase":  "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
-                         "machine_action_pack_single_purchase_json":  "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
-                         "public_sandbox_claims_no_write_review":  "https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md",
-                         "public_sandbox_claims_no_write_review_json":  "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
-                         "external_submission_pack_no_write_review":  "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
-                         "external_submission_pack_no_write_review_json":  "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
-                         "external_draft_submission_bundle":  "https://machinesignal.it/external_draft_submission_bundle_20260608.md",
-                         "external_draft_submission_bundle_json":  "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
-                         "private_draft_submission_rehearsal":  "https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md",
-                         "private_draft_submission_rehearsal_json":  "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
-                         "api_directory_private_draft_pack":  "https://machinesignal.it/api_directory_private_draft_pack_20260608.md",
-                         "api_directory_private_draft_pack_json":  "https://machinesignal.it/api_directory_private_draft_pack_20260608.json",
-                         "api_directory_private_draft_review":  "https://machinesignal.it/api_directory_private_draft_review_report_20260608.md",
-                         "api_directory_private_draft_review_json":  "https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json",
-                         "distribution_readiness_monitor":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
-                         "distribution_readiness_monitor_json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
-                         "rapidapi_unpublished_provider_draft_pack":  "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.md",
-                         "rapidapi_unpublished_provider_draft_pack_json":  "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json",
-                         "rapidapi_unpublished_provider_draft_review":  "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_report_20260608.md",
-                         "rapidapi_unpublished_provider_draft_review_json":  "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json",
-                         "mcp_tool_registry_private_draft_pack":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md",
-                         "mcp_tool_registry_private_draft_pack_json":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
-                         "mcp_tool_registry_private_draft_review":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
-                         "mcp_tool_registry_private_draft_review_json":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
-                         "mcp_purchase_decision_probe":  "https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md",
-                         "mcp_purchase_decision_probe_json":  "https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json",
-                         "mcp_verification_gate_probe":  "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
-                         "mcp_verification_gate_probe_json":  "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
-                             "mcp_deep_analysis_verification_gate_probe":  "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md",
-                             "mcp_deep_analysis_verification_gate_probe_json":  "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json"
-                     },
-    "latest_machine_discovery_full_simulation":  {
-                                                     "status":  "completed_full_machine_discovery",
-                                                     "ok":  true,
-                                                     "evidence_date":  "2026-06-07",
-                                                     "machine_customer_mode":  "machine_without_starting_list",
-                                                     "write_calls_executed":  3,
-                                                     "post_calls_executed":  3,
-                                                     "first_product_selected":  "target_discovery",
-                                                     "recommended_next_product":  "nurture_signal",
-                                                     "score":  74,
-                                                     "score_decision":  "nurture",
-                                                     "real_payment_executed":  false,
-                                                     "external_contact_executed":  false,
-                                                     "report":  "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
-                                                     "json":  "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json"
-                                                 },
-    "latest_machine_deep_analysis_single_purchase":  {
-                                                         "status":  "completed_deep_analysis_single_purchase",
-                                                         "ok":  true,
-                                                         "evidence_date":  "2026-06-08",
-                                                         "machine_customer_mode":  "machine_with_scored_target_and_spend_gate",
-                                                         "write_calls_executed":  3,
-                                                         "post_calls_executed":  3,
-                                                         "demo_domain":  "premium-dental-conversion-gap.it",
-                                                         "score":  78,
-                                                         "confidence":  0.88,
-                                                         "score_decision":  "buy_deep_analysis",
-                                                         "score_recommended_next_product":  "deep_analysis",
-                                                         "deep_analysis_order_created":  true,
-                                                         "deep_analysis_order_status":  "accepted_beta_order_intent",
-                                                         "deep_analysis_delivery_type":  "deep_opportunity_analysis",
-                                                         "deep_analysis_delivery_status":  "deep_analysis_ready",
-                                                         "deep_analysis_recommended_next_product":  "action_pack",
-                                                         "action_pack_gate_evaluated":  true,
-                                                         "action_pack_purchased":  false,
-                                                         "real_payment_executed":  false,
-                                                         "external_contact_executed":  false,
-                                                         "real_invoice_issued":  false,
-                                                         "api_key_published":  false,
-                                                         "report":  "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
-                                                         "json":  "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
-                                                         "interpretation":  "A machine can create a sandbox, score one synthetic high-signal target and buy exactly one Deep Analysis as a spend-control layer before Action Pack."
-                                                     },
-    "latest_machine_action_pack_single_purchase":  {
-                                                       "status":  "completed_action_pack_single_purchase",
-                                                       "ok":  true,
-                                                       "evidence_date":  "2026-06-08",
-                                                       "machine_customer_mode":  "machine_with_deep_analysis_gate_to_action_pack",
-                                                       "write_calls_executed":  4,
-                                                       "post_calls_executed":  4,
-                                                       "demo_domain":  "premium-dental-conversion-gap.it",
-                                                       "score":  78,
-                                                       "confidence":  0.88,
-                                                       "score_decision":  "buy_deep_analysis",
-                                                       "deep_analysis_order_created":  true,
-                                                       "deep_analysis_delivery_status":  "deep_analysis_ready",
-                                                       "action_pack_order_created":  true,
-                                                       "action_pack_delivery_status":  "action_pack_ready",
-                                                       "action_pack_approval_gate_default_state":  "blocked",
-                                                       "email_blocked_without_approval":  true,
-                                                       "real_payment_executed":  false,
-                                                       "external_contact_executed":  false,
-                                                       "real_invoice_issued":  false,
-                                                       "api_key_published":  false,
-                                                       "report":  "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
-                                                       "json":  "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
-                                                       "interpretation":  "A machine can pass the score-to-Deep-Analysis gate and buy exactly one Action Pack that prepares CRM/workflow payloads while external contact stays blocked by default."
-                                                   },
-    "latest_public_sandbox_claims_no_write_review":  {
-                                                         "status":  "completed_public_sandbox_claims_no_write_review",
-                                                         "ok":  true,
-                                                         "evidence_date":  "2026-06-08",
-                                                         "mode":  "NoWritePublicClaimsReview",
-                                                         "resources_checked":  12,
-                                                         "write_calls_executed":  0,
-                                                         "post_calls_executed":  0,
-                                                         "real_payment_executed":  false,
-                                                         "external_contact_executed":  false,
-                                                         "real_invoice_issued":  false,
-                                                         "report":  "https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md",
-                                                         "json":  "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
-                                                         "interpretation":  "Public MachineSignal copy and machine-readable manifests preserve sandbox-only positioning: no live payments, no external contact, no invoices and Action Pack is CRM/workflow preparation, not automatic outreach."
-                                                     },
-    "latest_external_submission_pack_no_write_review":  {
-                                                            "status":  "completed_external_submission_pack_no_write_review",
-                                                            "ok":  true,
-                                                            "evidence_date":  "2026-06-08",
-                                                            "mode":  "NoWriteExternalSubmissionReview",
-                                                            "resources_checked":  31,
-                                                            "write_calls_executed":  0,
-                                                            "post_calls_executed":  0,
-                                                            "external_publication_executed":  false,
-                                                            "irreversible_submission_executed":  false,
-                                                            "live_monetization_enabled":  false,
-                                                            "hosted_mcp_live":  false,
-                                                            "real_payment_executed":  false,
-                                                            "external_contact_executed":  false,
-                                                            "real_invoice_issued":  false,
-                                                            "production_api_key_published":  false,
-                                                            "hard_fails":  0,
-                                                            "report":  "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
-                                                            "json":  "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
-                                                            "interpretation":  "API directory, RapidAPI-style, MCP/tool-registry, private rehearsal, API directory private draft, RapidAPI unpublished provider draft and MCP tool-registry private draft materials are safe for private/draft sandbox preparation only. The review does not authorize irreversible external publication, hosted MCP launch, live checkout, paid plans, production keys or human outreach."
-                                                        },
-    "latest_external_draft_submission_bundle":  {
-                                                    "status":  "ready_for_private_draft_only",
-                                                    "ok":  true,
-                                                    "evidence_date":  "2026-06-08",
-                                                    "primary_customer_interface":  "machine",
-                                                    "external_publication_executed":  false,
-                                                    "irreversible_submission_allowed":  false,
-                                                    "live_monetization_enabled":  false,
-                                                    "hosted_mcp_live":  false,
-                                                    "production_api_key_published":  false,
-                                                    "report":  "https://machinesignal.it/external_draft_submission_bundle_20260608.md",
-                                                    "json":  "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
-                                                    "interpretation":  "Single machine-readable draft bundle for API directory, RapidAPI-style and MCP/tool-registry preparation. It is draft/sandbox-only and does not authorize irreversible publication, monetization, hosted MCP launch, production keys or human outreach."
-                                                },
-    "latest_private_draft_submission_rehearsal":  {
-                                                      "status":  "completed_private_draft_submission_rehearsal",
-                                                      "ok":  true,
-                                                      "evidence_date":  "2026-06-08",
-                                                      "mode":  "NoWritePrivateDraftSubmissionRehearsal",
-                                                      "primary_customer_interface":  "machine",
-                                                      "resources_checked":  12,
-                                                      "channels_checked":  4,
-                                                      "write_calls_executed":  0,
-                                                      "post_calls_executed":  0,
-                                                      "external_publication_executed":  false,
-                                                      "irreversible_submission_executed":  false,
-                                                      "live_monetization_enabled":  false,
-                                                      "hosted_mcp_live":  false,
-                                                      "real_payment_executed":  false,
-                                                      "external_contact_executed":  false,
-                                                      "real_invoice_issued":  false,
-                                                      "production_api_key_published":  false,
-                                                      "machine_decision":  "prepare_private_draft_only",
-                                                      "report":  "https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md",
-                                                      "json":  "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
-                                                      "interpretation":  "A machine can read MachineSignal public discovery files and prepare private draft metadata for generic API directory, RapidAPI-style, MCP/tool registry and Postman private/team workspace channels. No irreversible publication, live monetization, hosted MCP, production key, payment, invoice or external contact is executed."
-                                                  },
-    "latest_api_directory_private_draft_review":  {
-                                                      "status":  "completed_api_directory_private_draft_review",
-                                                      "ok":  true,
-                                                      "evidence_date":  "2026-06-08",
-                                                      "mode":  "NoWriteApiDirectoryPrivateDraftReview",
-                                                      "resources_checked":  8,
-                                                      "required_fields_checked":  13,
-                                                      "primary_customer_interface":  "machine",
-                                                      "write_calls_executed":  0,
-                                                      "post_calls_executed":  0,
-                                                      "external_publication_executed":  false,
-                                                      "irreversible_submission_executed":  false,
-                                                      "live_monetization_enabled":  false,
-                                                      "public_paid_plans_enabled":  false,
-                                                      "hosted_mcp_live":  false,
-                                                      "real_payment_executed":  false,
-                                                      "real_invoice_issued":  false,
-                                                      "external_contact_executed":  false,
-                                                      "production_api_key_published":  false,
-                                                      "machine_decision":  "api_directory_private_draft_ready",
-                                                      "report":  "https://machinesignal.it/api_directory_private_draft_review_report_20260608.md",
-                                                      "json":  "https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json"
-                                                  },
-    "latest_rapidapi_unpublished_provider_draft_review":  {
-                                                              "status":  "completed_rapidapi_unpublished_provider_draft_review",
-                                                              "ok":  true,
-                                                              "evidence_date":  "2026-06-08",
-                                                              "mode":  "NoWriteRapidApiUnpublishedProviderDraftReview",
-                                                              "resources_checked":  9,
-                                                              "required_fields_checked":  13,
-                                                              "primary_customer_interface":  "machine",
-                                                              "write_calls_executed":  0,
-                                                              "post_calls_executed":  0,
-                                                              "external_publication_executed":  false,
-                                                              "irreversible_submission_executed":  false,
-                                                              "live_monetization_enabled":  false,
-                                                              "public_paid_plans_enabled":  false,
-                                                              "create_marketplace_pricing_tiers":  false,
-                                                              "hosted_mcp_live":  false,
-                                                              "real_payment_executed":  false,
-                                                              "real_invoice_issued":  false,
-                                                              "external_contact_executed":  false,
-                                                              "production_api_key_published":  false,
-                                                              "machine_decision":  "rapidapi_unpublished_provider_draft_ready",
-                                                              "report":  "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_report_20260608.md",
-                                                              "json":  "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json"
-                                                          },
-    "latest_mcp_tool_registry_private_draft_review":  {
-                                                          "status":  "completed_mcp_tool_registry_private_draft_review",
-                                                          "ok":  true,
-                                                          "evidence_date":  "2026-06-08",
-                                                          "mode":  "NoWriteMcpToolRegistryPrivateDraftReview",
-                                                          "resources_checked":  10,
-                                                          "required_fields_checked":  15,
-                                                          "primary_customer_interface":  "machine",
-                                                          "write_calls_executed":  0,
-                                                          "post_calls_executed":  0,
-                                                          "external_publication_executed":  false,
-                                                          "irreversible_submission_executed":  false,
-                                                          "live_monetization_enabled":  false,
-                                                          "public_paid_plans_enabled":  false,
-                                                          "hosted_mcp_live":  false,
-                                                          "hosted_mcp_endpoint_published":  false,
-                                                          "real_payment_executed":  false,
-                                                          "real_invoice_issued":  false,
-                                                          "external_contact_executed":  false,
-                                                          "production_api_key_published":  false,
-                                                          "machine_decision":  "mcp_tool_registry_private_draft_ready",
-                                                          "report":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
-                                                          "json":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
-                                                          "interpretation":  "MCP/tool-registry private draft material is ready for owner-supervised private or unsubmitted local-adapter metadata only. Hosted MCP launch, irreversible registry submission, live monetization, production keys, payments and outreach remain blocked."
-                                                      },
-    "current_mcp_tool_registry_private_draft_pack":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
-    "current_mcp_tool_registry_private_draft_review":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
-    "latest_machine_public_discovery_nowrite_simulation":  {
-                                                               "status":  "completed_machine_public_discovery_nowrite",
-                                                               "ok":  true,
-                                                               "evidence_date":  "2026-06-10",
-                                                               "mode":  "NoWriteMachineDiscoverySimulation",
-                                                               "write_calls_executed":  0,
-                                                               "post_calls_executed":  0,
-                                                               "real_payment_executed":  false,
-                                                               "external_contact_executed":  false,
-                                                               "hosted_mcp_live":  false,
-                                                               "resources_checked":  14,
-                                                               "manifest_tools":  31,
-                                                               "public_get_tools":  20,
-                                                               "report":  "https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md",
-                                                               "json":  "https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json",
-                                                               "interpretation":  "A machine can discover MachineSignal through public surfaces, read MCP/local-adapter metadata and stop safely before writes, payments, publication or outreach."
-                                                           },
-    "current_machine_public_discovery_nowrite_simulation":  "https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json",
-    "latest_mcp_local_adapter_nowrite_validation":  {
-                                                        "status":  "completed_mcp_local_adapter_nowrite_validation",
-                                                        "ok":  true,
-                                                        "evidence_date":  "2026-06-10",
-                                                        "mode":  "NoWriteMcpLocalAdapterValidation",
-                                                        "tools_listed_count":  31,
-                                                        "public_tools_called_count":  15,
-                                                        "write_calls_executed":  0,
-                                                        "post_calls_executed":  0,
-                                                        "sandbox_customer_created":  false,
-                                                        "credit_consuming_calls_executed":  false,
-                                                        "real_payment_executed":  false,
-                                                        "external_contact_executed":  false,
-                                                        "external_publication_executed":  false,
-                                                        "production_api_key_published":  false,
-                                                        "machine_decision":  "local_mcp_adapter_nowrite_ready",
-                                                        "report":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md",
-                                                        "json":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
-                                                        "interpretation":  "A machine client can start the local stdio MCP adapter, list MachineSignal tools and read public no-auth resources without sandbox creation, scoring, purchase intents, payments, external publication or outreach."
-                                                    },
-    "current_mcp_local_adapter_nowrite_validation":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
-    "latest_distribution_readiness_monitor":  {
-                                                  "status":  "ready_for_distribution_review",
-                                                  "ok":  true,
-                                                  "alert_level":  "OK",
-                                                  "evidence_date":  "2026-06-10",
-                                                  "generated_at":  "2026-06-10T12:52:28.5031016Z",
-                                                  "mode":  "NoWrite",
-                                                  "resources_checked":  69,
-                                                  "checks_total":  252,
-                                                  "checks_failed":  0,
-                                                  "write_calls_executed":  0,
-                                                  "post_calls_executed":  0,
-                                                  "real_payment_executed":  false,
-                                                  "external_contact_executed":  false,
-                                                  "included_latest_probe":  "mcp_verification_gate_probe",
-                                                  "latest_probe_report":  "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
-                                                  "latest_probe_json":  "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
-                                                  "interpretation":  "Public machine-readable distribution assets now include the MCP verification gate probe and pass the NoWrite distribution readiness monitor with zero failed checks.",
-                                                  "report":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
-                                                  "json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
-                                              },
-    "latest_mcp_write_capped_sandbox_probe":  {
-                                                  "status":  "completed_mcp_write_capped_sandbox_probe",
-                                                  "ok":  true,
-                                                  "evidence_date":  "2026-06-10",
-                                                  "mode":  "WriteCappedMcpSandboxProbe",
-                                                  "max_post_calls_allowed":  2,
-                                                  "post_calls_executed":  2,
-                                                  "write_calls_executed":  2,
-                                                  "sandbox_customer_created":  true,
-                                                  "score_call_executed":  true,
-                                                  "purchase_intent_created":  false,
-                                                  "payment_test_intent_created":  false,
-                                                  "real_payment_executed":  false,
-                                                  "external_contact_executed":  false,
-                                                  "external_publication_executed":  false,
-                                                  "production_api_key_published":  false,
-                                                  "score":  74,
-                                                  "score_decision":  "nurture",
-                                                  "recommended_next_product":  "nurture_signal",
-                                                  "machine_decision":  "mcp_write_capped_sandbox_probe_ready",
-                                                  "report":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md",
-                                                  "json":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json",
-                                                  "interpretation":  "A machine client can use the local stdio MCP adapter to create one sandbox customer and score one provided synthetic target under a strict 2-POST budget, without purchases, payment-test intents, external contact or publication."
-                                              },
-    "current_mcp_write_capped_sandbox_probe":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json",
-    "public_resources":  {
-                             "mcp_purchase_decision_probe":  "https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md",
-                             "mcp_purchase_decision_probe_json":  "https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json",
-                             "distribution_readiness_monitor":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
-                             "distribution_readiness_monitor_json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
-                             "mcp_verification_gate_probe":  "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
-                             "mcp_verification_gate_probe_json":  "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json"
-                         },
-    "latest_mcp_purchase_decision_probe":  {
-                                               "status":  "completed_mcp_purchase_decision_probe",
-                                               "ok":  true,
-                                               "evidence_date":  "2026-06-10",
-                                               "mode":  "McpPurchaseDecisionProbeWriteCapped",
-                                               "primary_customer_interface":  "machine",
-                                               "max_post_calls_allowed":  3,
-                                               "post_calls_executed":  3,
-                                               "write_calls_executed":  3,
-                                               "score_domain":  "premium-dental-conversion-gap.it",
-                                               "opportunity_score":  81,
-                                               "confidence":  0.44,
-                                               "score_decision":  "needs_verification",
-                                               "recommended_product":  "verification",
-                                               "purchased_sandbox_product":  "verification",
-                                               "purchase_order_intent_id":  "ord_5b0823b2",
-                                               "delivery_present":  true,
-                                               "delivery_type":  "data_quality_verification",
-                                               "delivery_status":  "verification_ready",
-                                               "has_next_machine_call":  true,
-                                               "has_stop_rules":  true,
-                                               "real_payment_executed":  false,
-                                               "external_contact_executed":  false,
-                                               "real_invoice_issued":  false,
-                                               "payment_test_created":  false,
-                                               "external_publication_executed":  false,
-                                               "human_outreach_executed":  false,
-                                               "production_api_key_published":  false,
-                                               "machine_decision":  "mcp_purchase_decision_probe_ready",
-                                               "interpretation":  "A machine can move from product discovery to score-based sandbox purchase intent and delivery retrieval through MCP without human outreach, real payment or external contact.",
-                                               "recommended_next_step":  "Run QA review, then test deep_analysis only after a verification gate returns a positive machine recommendation.",
-                                               "report":  "https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md",
-                                               "json":  "https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json"
-                                           },
-    "current_mcp_purchase_decision_probe":  "https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json",
-    "latest_mcp_verification_gate_probe":  {
-                                               "status":  "completed_mcp_verification_gate_probe",
-                                               "ok":  true,
-                                               "evidence_date":  "2026-06-10",
-                                               "mode":  "McpVerificationGateProbeWriteCapped",
-                                               "primary_customer_interface":  "machine",
-                                               "max_post_calls_allowed":  3,
-                                               "post_calls_executed":  3,
-                                               "write_calls_executed":  3,
-                                               "score_domain":  "premium-dental-conversion-gap.it",
-                                               "opportunity_score":  81,
-                                               "confidence":  0.44,
-                                               "score_decision":  "needs_verification",
-                                               "recommended_product":  "verification",
-                                               "purchased_sandbox_product":  "verification",
-                                               "purchase_order_intent_id":  "ord_d70b90a6",
-                                               "verification_verdict_status":  "keep_with_caution",
-                                               "next_machine_call_endpoint":  "/v1/lead-opportunity-score",
-                                               "gate_allows_deep_analysis_now":  false,
-                                               "deep_analysis_purchase_executed":  false,
-                                               "machine_policy_decision":  "stop_before_deep_analysis",
-                                               "real_payment_executed":  false,
-                                               "external_contact_executed":  false,
-                                               "real_invoice_issued":  false,
-                                               "payment_test_created":  false,
-                                               "external_publication_executed":  false,
-                                               "human_outreach_executed":  false,
-                                               "production_api_key_published":  false,
-                                               "machine_decision":  "mcp_verification_gate_probe_ready",
-                                               "interpretation":  "A machine can stop before Deep Analysis when verification returns keep_with_caution and does not provide an immediate positive purchase gate.",
-                                               "recommended_next_step":  "Add and test an optional server-side source_verification_order_intent_id gate for Deep Analysis.",
-                                               "report":  "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
-                                               "json":  "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json"
-                                           },
-    "current_mcp_verification_gate_probe":  "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
-    "latest_mcp_deep_analysis_verification_gate_probe":  {
-        "status": "completed_mcp_deep_analysis_verification_gate_probe",
-        "ok": true,
-        "evidence_date": "2026-06-10",
-        "mode": "McpDeepAnalysisVerificationGateProbeWriteCapped",
-        "primary_customer_interface": "machine",
-        "max_post_calls_allowed": 5,
-        "post_calls_executed": 5,
-        "write_calls_executed": 5,
-        "verification_order_intent_id": "ord_c601ecb5",
-        "verification_verdict_status": "keep_with_caution",
-        "blocked_deep_analysis_http_status": 400,
-        "blocked_deep_analysis_error_code": "deep_analysis_verification_gate_failed",
-        "deep_analysis_credits_used_before": 0,
-        "deep_analysis_credits_used_after": 0,
-        "verification_credits_used_after": 1,
-        "real_payment_executed": false,
-        "external_contact_executed": false,
-        "real_invoice_issued": false,
-        "payment_test_created": false,
-        "external_publication_executed": false,
-        "human_outreach_executed": false,
-        "production_api_key_published": false,
-        "machine_decision": "server_side_gate_blocks_invalid_deep_analysis",
-        "interpretation": "A machine cannot buy Deep Analysis from a cautious Verification source; the live API returns deep_analysis_verification_gate_failed and consumes no Deep Analysis credit.",
-        "recommended_next_step": "Publish this evidence in public manifests and monitor, then test the positive verification path when a positive verdict fixture exists.",
-        "report": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md",
-        "json": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json"
+  "service": "MachineSignal",
+  "version": "2026-06-07",
+  "manifest_type": "tool_style_manifest",
+  "primary_customer_interface": "machine",
+  "website": "https://machinesignal.it/",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "openapi": "https://machinesignal.it/openapi.json",
+  "llms": "https://machinesignal.it/llms.txt",
+  "product_catalog": "https://machinesignal.it/product-catalog.json",
+  "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+  "marketplace_api_directory_pack": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+  "marketplace_publication_execution_pack": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
+  "machine_api_sandbox_test": "https://machinesignal.it/machine-api-sandbox-test/",
+  "machine_api_sandbox_test_json": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
+  "mcp_wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+  "mcp_machine_client_installation_pack": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+  "integration_partner_pack": "https://machinesignal.it/integration-partner-pack.json",
+  "mcp_compatibility": {
+    "public_mcp_server_live": false,
+    "adapter_required": true,
+    "adapter_guidance": "Expose the HTTP endpoints below as MCP tools. Use the tool names, input schemas, auth rules and safety guardrails in this manifest.",
+    "recommended_wrapper_transport": "stdio or HTTP wrapper controlled by the customer machine",
+    "source_of_truth": "https://machinesignal.it/openapi.json",
+    "local_adapter": {
+      "status": "available_in_github_repo",
+      "transport": "stdio_json_rpc",
+      "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+      "adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
+      "readme_path": "mcp_adapter/README.md",
+      "installation_guide_path": "MCP_MACHINE_CLIENT_INSTALLATION.md",
+      "installation_pack_url": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+      "integration_guide_path": "INTEGRATION_PARTNER_PACK.md",
+      "integration_pack_url": "https://machinesignal.it/integration-partner-pack.json",
+      "client_config_example_path": "mcp_adapter/mcp_client_config.example.json",
+      "no_credit_installation_validator_path": "mcp_adapter/validate_machine_client_installation_20260603.py",
+      "smoke_test_path": "mcp_adapter/mcp_adapter_smoke_test_20260603.py",
+      "machine_buyer_agent_runner_path": "mcp_adapter/machine_buyer_agent_runner_20260603.py",
+      "latest_smoke_test_report": "mcp_adapter_smoke_test_readout_20260603.md",
+      "latest_machine_buyer_agent_report": "mcp_machine_buyer_agent_readout_20260603.md",
+      "latest_installation_validation_report": "mcp_client_installation_validation_readout_20260603.md",
+      "start_command": "python mcp_adapter/machinesignal_mcp_server.py",
+      "no_credit_validation_command": "python mcp_adapter/validate_machine_client_installation_20260603.py",
+      "client_test_command": "python mcp_adapter/machine_buyer_agent_runner_20260603.py",
+      "tested_flow": "initialize, tools/list, read public sandbox test contract, create sandbox customer, buy target discovery, score lead opportunity, buy recommended add-on, create payment-test intent, reconcile payment test, list orders and usage",
+      "buyer_agent_flow": "buyer machine reads catalog, sandbox test contract and onboarding, creates sandbox, buys target discovery when no list is available, scores one target, buys only the recommended add-on and verifies sandbox payment-test guardrails",
+      "full_api_keys_returned_to_client": false,
+      "real_payment_executed_in_beta": false,
+      "external_contact_executed_in_beta": false
     },
-    "current_mcp_deep_analysis_verification_gate_probe":  "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json"
+    "tool_registry_draft_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
+    "deep_analysis_single_purchase_proof": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
+    "action_pack_single_purchase_proof": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
+    "tool_registry_private_draft_pack": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+    "tool_registry_private_draft_review": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
+    "latest_local_adapter_nowrite_validation": "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
+    "latest_write_capped_sandbox_probe": "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json"
+  },
+  "authentication": {
+    "public_tools": [
+      "get_product_catalog",
+      "get_machine_onboarding",
+      "get_machine_api_sandbox_test",
+      "get_dentists_beta_pack",
+      "create_sandbox_customer"
+    ],
+    "customer_auth_header": "X-API-Key",
+    "admin_auth_header": "X-API-Key",
+    "idempotency_header": "Idempotency-Key",
+    "customer_key_source": "POST /v1/sandbox/customers for sandbox tests, or private beta onboarding for larger tests."
+  },
+  "tools": [
+    {
+      "name": "get_product_catalog",
+      "purpose": "Read products, exact beta prices, deliverables, credit rules and allowed next purchases.",
+      "method": "GET",
+      "url": "https://machinesignal.it/product-catalog.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable product catalog and price list."
+    },
+    {
+      "name": "get_machine_onboarding",
+      "purpose": "Read the machine buyer flow, allowed calls, guardrails and public onboarding resources.",
+      "method": "GET",
+      "url": "https://machinesignal.it/machine-onboarding.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Public onboarding contract for automated evaluators."
+    },
+    {
+      "name": "get_marketplace_api_directory_pack",
+      "purpose": "Read short marketplace, API directory, Postman, RapidAPI and MCP listing copy for machine-first discovery.",
+      "method": "GET",
+      "url": "https://machinesignal.it/marketplace_api_directory_pack_20260606.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable channel copy, product table, endpoint showcase and beta guardrails."
+    },
+    {
+      "name": "get_marketplace_publication_execution_pack",
+      "purpose": "Read operational publication instructions for sandbox-only Postman, RapidAPI-style, generic API directory and MCP/tool registry listings.",
+      "method": "GET",
+      "url": "https://machinesignal.it/marketplace_publication_execution_pack_20260606.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Agent runbook for channel-specific publication preparation with guardrails."
+    },
+    {
+      "name": "get_machine_api_sandbox_test",
+      "purpose": "Read the canonical direct sandbox test path for CRMs, AI agents and automated workflows when Postman UI or human contact is unavailable.",
+      "method": "GET",
+      "url": "https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable sandbox test contract with import assets, callable flow, safety limits and expected outcomes."
+    },
+    {
+      "name": "get_dentists_beta_pack",
+      "purpose": "Read the current dentist vertical benchmark, product flow and commercial evidence before testing.",
+      "method": "GET",
+      "url": "https://machinesignal.it/dentists-beta-machine-buyer-pack.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Dentist beta pack with 250-target benchmark and routing results."
+    },
+    {
+      "name": "create_sandbox_customer",
+      "purpose": "Create a low-credit sandbox API key so a machine can test the beta flow without human sales contact.",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "evaluator_id": {
+            "type": "string",
+            "description": "Optional stable identifier for the evaluator machine."
+          },
+          "use_case": {
+            "type": "string",
+            "description": "Optional plain-language description of the automated test."
+          }
+        },
+        "required": []
+      },
+      "output_summary": "Sandbox customer id, API key, expiry and small credit balances.",
+      "limits": {
+        "score_credits": 5,
+        "target_discovery_credits": 1,
+        "deep_analysis_credits": 1,
+        "action_pack_credits": 1,
+        "expires_after_days_default": 7
+      }
+    },
+    {
+      "name": "get_customer_onboarding",
+      "purpose": "Read authenticated onboarding, balances, allowed products and next machine calls for one customer key.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/onboarding",
+      "auth": "customer_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Customer-specific onboarding, credits and safe next calls."
+    },
+    {
+      "name": "score_lead_opportunity",
+      "purpose": "Score one business domain and decide whether the machine should discard, watchlist, nurture, buy deep analysis or request verification.",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
+      "auth": "customer_api_key",
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "Business domain without protocol, for example clinic3.it."
+          },
+          "sector_hint": {
+            "type": "string",
+            "description": "Optional sector hint such as dentist, real_estate, aesthetic_medicine."
+          },
+          "country_hint": {
+            "type": "string",
+            "description": "Optional country hint such as IT."
+          }
+        },
+        "required": [
+          "domain"
+        ]
+      },
+      "output_summary": "opportunity_score, confidence, decision, web_architect_review, commercial_strength, spend_policy, next_purchase and usage.",
+      "credit_rule": "Consumes one score credit only when the API produces a valid usable output."
+    },
+    {
+      "name": "create_purchase_intent",
+      "purpose": "Create a beta order intent for a machine-readable paid output such as target discovery, deep analysis, nurture signal or action pack.",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
+      "auth": "customer_api_key",
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "product_code": {
+            "type": "string",
+            "enum": [
+              "target_discovery",
+              "domain_enrichment",
+              "verification",
+              "nurture_signal",
+              "deep_analysis",
+              "action_pack",
+              "opportunity_feed"
+            ]
+          },
+          "domain": {
+            "type": "string",
+            "description": "Domain to analyze when buying domain-level outputs."
+          },
+          "market": {
+            "type": "string",
+            "description": "Market or niche for target discovery."
+          },
+          "area": {
+            "type": "string",
+            "description": "Geographic area for target discovery."
+          },
+          "commercial_objective": {
+            "type": "string",
+            "description": "What opportunity the machine wants to find, not a generic sector label."
+          },
+          "batch_id": {
+            "type": "string",
+            "description": "Optional external batch identifier."
+          },
+          "source_score_request_id": {
+            "type": "string",
+            "description": "Optional id of the score request that produced the purchase recommendation."
+          },
+          "source_order_intent_id": {
+            "type": "string",
+            "description": "Required for action_pack. Must reference an accepted Deep Analysis order for the same domain."
+          },
+          "source_verification_order_intent_id": {
+            "type": "string",
+            "description": "Optional for deep_analysis. When present, it must reference an accepted same-domain Verification order with a positive verdict."
+          },
+          "verification_fixture": {
+            "type": "string",
+            "enum": [
+              "positive_for_deep_analysis"
+            ],
+            "description": "Sandbox-only for product_code=verification on .test domains. Produces verified_for_deep_analysis for positive gate validation."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Machine-readable reason for the purchase intent."
+          }
+        },
+        "required": [
+          "product_code"
+        ]
+      },
+      "output_summary": "Tracked beta order intent, delivery contract, immediate machine-readable output and remaining credits.",
+      "credit_rule": "Consumes the corresponding product credit only when the beta order intent is valid."
+    },
+    {
+      "name": "list_orders",
+      "purpose": "Retrieve previous beta orders and machine-readable deliveries for the authenticated customer.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/orders",
+      "auth": "customer_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "product_code": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "output_summary": "Recent beta order intents and deliveries."
+    },
+    {
+      "name": "get_order",
+      "purpose": "Retrieve one beta order and its delivery by order_intent_id.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/orders/{order_intent_id}",
+      "auth": "customer_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "order_intent_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_intent_id"
+        ]
+      },
+      "output_summary": "One beta order intent and delivery."
+    },
+    {
+      "name": "get_usage",
+      "purpose": "Read current credit balances and usage for the authenticated customer machine.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/usage",
+      "auth": "customer_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Consumed credits, remaining credits and beta usage state."
+    },
+    {
+      "name": "create_payment_test_intent",
+      "purpose": "Create a simulated test-mode checkout object for a product or beta order without executing a real payment.",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/payment-test/intents",
+      "auth": "customer_api_key",
+      "requires_idempotency_key": true,
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "product_code": {
+            "type": "string",
+            "description": "Product being tested, for example score_pack_1k, target_discovery or deep_analysis."
+          },
+          "amount_eur": {
+            "type": "number",
+            "description": "Expected test amount in EUR."
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "stripe",
+              "paypal",
+              "provider_neutral"
+            ]
+          },
+          "provider_mode": {
+            "type": "string",
+            "enum": [
+              "test",
+              "sandbox"
+            ],
+            "description": "Live, production and prod are blocked."
+          },
+          "order_intent_id": {
+            "type": "string",
+            "description": "Optional beta order id to associate with this simulated payment."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "product_code",
+          "amount_eur",
+          "provider_mode"
+        ]
+      },
+      "output_summary": "Payment-test id, simulated status, test webhook instructions, guardrails and usage state.",
+      "credit_rule": "Does not execute real payment and does not issue a fiscal invoice."
+    },
+    {
+      "name": "get_payment_test_intent",
+      "purpose": "Read one simulated payment-test intent and its current reconciliation state.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/payment-test/intents/{payment_test_id}",
+      "auth": "customer_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "payment_test_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "payment_test_id"
+        ]
+      },
+      "output_summary": "One simulated payment-test object with no live payment."
+    },
+    {
+      "name": "get_payment_test_reconciliation",
+      "purpose": "Reconcile one simulated payment test and verify that no live payment, duplicate credit activation or fiscal invoice occurred.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/payment-test/reconciliation/{payment_test_id}",
+      "auth": "customer_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "payment_test_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "payment_test_id"
+        ]
+      },
+      "output_summary": "Reconciliation result, safety checks and blockers before real payments."
+    },
+    {
+      "name": "get_admin_sandbox_metrics",
+      "purpose": "Admin-only monitor for 7-day sandbox test metrics, conversion signals and safety flags.",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/admin/sandbox-metrics",
+      "auth": "admin_api_key",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Sandbox keys, score usage, deep analysis orders, action pack orders, conversion rates and safety flags."
+    },
+    {
+      "name": "get_machine_buyer_evidence_brief",
+      "purpose": "Read the latest full bounded beta evidence proving the machine-buyer flow, credit caps, Action Pack gate and safety results.",
+      "method": "GET",
+      "url": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable evidence brief with score, Deep Analysis, gated Action Pack, credit deltas and safety guardrails."
+    },
+    {
+      "name": "get_mcp_tool_registry_draft_checklist",
+      "purpose": "Read sandbox-only MCP/tool-registry listing fields, guardrails and submission gates for machine-first tool discovery.",
+      "method": "GET",
+      "url": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable MCP/tool registry draft checklist with blocked actions and owner-approval gates."
+    },
+    {
+      "name": "get_machine_deep_analysis_single_purchase_proof",
+      "purpose": "Read the latest sandbox proof that a machine can score a target and buy exactly one Deep Analysis before Action Pack.",
+      "method": "GET",
+      "url": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable Deep Analysis single-purchase proof with score, order, safety flags and Action Pack gate status."
+    },
+    {
+      "name": "get_machine_action_pack_single_purchase_proof",
+      "purpose": "Read the latest sandbox proof that a machine can buy exactly one Action Pack after a Deep Analysis gate and keep external contact blocked.",
+      "method": "GET",
+      "url": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable Action Pack single-purchase proof with CRM/workflow fields, approval gate and safety flags."
+    },
+    {
+      "name": "get_public_sandbox_claims_no_write_review",
+      "purpose": "Read the latest public NoWrite review proving that MachineSignal public copy remains sandbox-only, with no live payments, no real invoices and no automatic external outreach.",
+      "method": "GET",
+      "url": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable public-claims review with sandbox-only, no-payment, no-invoice, no-external-contact and Action Pack approval-gate safety flags."
+    },
+    {
+      "name": "get_external_submission_pack_no_write_review",
+      "purpose": "Read the latest NoWrite review proving that API directory, RapidAPI-style and MCP/tool-registry material is draft/sandbox-only and blocks monetization, hosted MCP, production keys and external outreach.",
+      "method": "GET",
+      "url": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable external-submission readiness review with owner-approval, monetization, hosted-MCP, payment, invoice, key and outreach safety flags."
+    },
+    {
+      "name": "get_external_draft_submission_bundle",
+      "purpose": "Read the external draft submission bundle for API directory, RapidAPI-style and MCP/tool-registry preparation. This is draft/sandbox-only and does not authorize go-live actions.",
+      "method": "GET",
+      "url": "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable private draft submission bundle with listing copy, channel order, machine test path, evidence links and go-live blockers."
+    },
+    {
+      "name": "get_private_draft_submission_rehearsal",
+      "purpose": "Read the latest NoWrite private draft submission rehearsal proving that a machine can prepare draft metadata across API directory, RapidAPI-style, MCP/tool-registry and Postman channels without go-live actions.",
+      "method": "GET",
+      "url": "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "Machine-readable rehearsal result with channel readiness, safety gates, no-write/no-post status and go-live blockers."
+    },
+    {
+      "name": "get_api_directory_private_draft_pack",
+      "purpose": "Read exact machine-readable fields for preparing a private or unsubmitted generic API directory draft. This is draft-only and does not authorize public submit or monetization.",
+      "method": "GET",
+      "url": "https://machinesignal.it/api_directory_private_draft_pack_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "API directory private draft fields: listing copy, endpoint groups, products, safety policy, evidence links and stop-before-public-submit blockers."
+    },
+    {
+      "name": "get_api_directory_private_draft_review",
+      "purpose": "Read the NoWrite review proving the API directory private draft pack has required fields and keeps publication, monetization, production keys and external contact blocked.",
+      "method": "GET",
+      "url": "https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "NoWrite API directory private draft review with field checks, resource checks, safety gates and machine decision."
+    },
+    {
+      "name": "get_rapidapi_unpublished_provider_draft_pack",
+      "purpose": "Read exact machine-readable fields for preparing a private or unpublished RapidAPI-style provider draft. This is draft-only and does not authorize public submit or monetization.",
+      "method": "GET",
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "RapidAPI-style unpublished provider draft fields: listing copy, endpoint groups, pricing treatment, source assets, safety policy and stop-before-public-submit blockers."
+    },
+    {
+      "name": "get_rapidapi_unpublished_provider_draft_review",
+      "purpose": "Read the NoWrite review proving the RapidAPI-style unpublished provider draft pack has required fields and keeps publication, monetization, production keys and external contact blocked.",
+      "method": "GET",
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "NoWrite RapidAPI-style unpublished provider draft review with field checks, resource checks, safety gates and machine decision."
+    },
+    {
+      "name": "get_mcp_tool_registry_private_draft_pack",
+      "purpose": "Read exact machine-readable fields for preparing private or unsubmitted MCP/tool-registry metadata around the local stdio adapter. This is draft-only and does not authorize hosted MCP launch or registry submission.",
+      "method": "GET",
+      "url": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "MCP/tool-registry private draft fields: local adapter listing copy, installation flow, tool list, spend-control rules, safety policy and stop-before-registry-submit blockers."
+    },
+    {
+      "name": "get_mcp_tool_registry_private_draft_review",
+      "purpose": "Read the NoWrite review proving the MCP/tool-registry private draft pack has required fields and keeps hosted MCP, publication, monetization, production keys and external contact blocked.",
+      "method": "GET",
+      "url": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
+      "auth": "none",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "output_summary": "NoWrite MCP/tool-registry private draft review with field checks, resource checks, safety gates and machine decision."
+    }
+  ],
+  "recommended_machine_flow": [
+    "GET https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+    "GET https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+    "GET https://machinesignal.it/mcp-tool-manifest.json",
+    "GET https://machinesignal.it/machine-api-sandbox-test/machine-api-sandbox-test.json",
+    "GET https://machinesignal.it/product-catalog.json",
+    "POST /v1/sandbox/customers",
+    "GET /v1/onboarding with X-API-Key",
+    "POST /v1/lead-opportunity-score with X-API-Key and Idempotency-Key",
+    "POST /v1/purchase-intent when next_purchase recommends a valid product",
+    "POST /v1/payment-test/intents with provider_mode sandbox or test",
+    "GET /v1/payment-test/reconciliation/{payment_test_id}",
+    "GET /v1/orders to retrieve deliveries",
+    "GET /v1/usage to reconcile credits",
+    "get_rapidapi_unpublished_provider_draft_pack",
+    "get_rapidapi_unpublished_provider_draft_review",
+    "get_mcp_tool_registry_private_draft_pack",
+    "get_mcp_tool_registry_private_draft_review"
+  ],
+  "decision_values": {
+    "discard": "Do not spend more budget now.",
+    "watchlist": "Save and rescore later.",
+    "nurture": "Save in nurturing and consider low-cost enrichment.",
+    "buy_deep_analysis": "Buy a deeper machine-readable explanation before larger spend.",
+    "needs_verification": "Verify data quality before spending more budget."
+  },
+  "commercial_strength_rules": {
+    "strong": "Controlled spend is allowed; buy Deep Analysis and consider Action Pack only after deep confirmation.",
+    "medium": "Buy only low or mid-cost next steps such as Nurture Signal or Deep Analysis.",
+    "weak": "Keep in watchlist and do not buy paid add-ons now."
+  },
+  "safety": {
+    "real_payment_executed_in_beta": false,
+    "external_contact_executed_by_machinesignal": false,
+    "action_pack_sends_email": false,
+    "requires_customer_compliance_gate_before_external_action": true,
+    "human_role": "supervision, approval and audit only"
+  },
+  "latest_machine_buyer_evidence": {
+    "status": "completed_full",
+    "ok": true,
+    "evidence_date": "2026-06-07",
+    "primary_customer_interface": "machine",
+    "summary": "Full bounded private beta run completed: 5 valid scores, 1 Deep Analysis, 1 gated Action Pack, Action Pack without Deep Analysis source order blocked with HTTP 400, no real payment, no fiscal invoice and no external contact.",
+    "evidence_brief_html": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+    "evidence_brief_markdown": "https://machinesignal.it/machine_beta_evidence_brief_20260607.md",
+    "evidence_brief_json": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+    "full_runner_report": "https://machinesignal.it/bounded_private_beta_runner_report_20260607.md",
+    "full_runner_json": "https://machinesignal.it/bounded_private_beta_runner_summary_20260607.json",
+    "credit_deltas": {
+      "score_pack_1k": 5,
+      "deep_analysis_pack_100": 1,
+      "action_pack_25": 1
+    },
+    "safety": {
+      "real_payment_executed": false,
+      "external_contact_executed": false,
+      "real_invoice_issued": false,
+      "action_pack_without_deep_analysis_blocked": true
+    }
+  },
+  "machine_buyer_evidence_brief": "https://machinesignal.it/machine_beta_evidence_brief_20260607.html",
+  "machine_buyer_evidence_brief_json": "https://machinesignal.it/machine_beta_evidence_brief_20260607.json",
+  "mcp_tool_registry_draft_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
+  "mcp_tool_registry_draft_checklist_markdown": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.md",
+  "publication_policy": {
+    "hosted_mcp_live": false,
+    "external_registry_submission": "blocked_until_owner_approval",
+    "monetization": "disabled",
+    "checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
+    "private_draft_pack": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+    "private_draft_review": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json"
+  },
+  "public_links": {
+    "machine_discovery_full_simulation": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
+    "machine_discovery_full_simulation_json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json",
+    "machine_deep_analysis_single_purchase": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
+    "machine_deep_analysis_single_purchase_json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
+    "machine_action_pack_single_purchase": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
+    "machine_action_pack_single_purchase_json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
+    "public_sandbox_claims_no_write_review": "https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md",
+    "public_sandbox_claims_no_write_review_json": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
+    "external_submission_pack_no_write_review": "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
+    "external_submission_pack_no_write_review_json": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+    "external_draft_submission_bundle": "https://machinesignal.it/external_draft_submission_bundle_20260608.md",
+    "external_draft_submission_bundle_json": "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
+    "private_draft_submission_rehearsal": "https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md",
+    "private_draft_submission_rehearsal_json": "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
+    "api_directory_private_draft_pack": "https://machinesignal.it/api_directory_private_draft_pack_20260608.md",
+    "api_directory_private_draft_pack_json": "https://machinesignal.it/api_directory_private_draft_pack_20260608.json",
+    "api_directory_private_draft_review": "https://machinesignal.it/api_directory_private_draft_review_report_20260608.md",
+    "api_directory_private_draft_review_json": "https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json",
+    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+    "distribution_readiness_monitor_json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+    "rapidapi_unpublished_provider_draft_pack": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.md",
+    "rapidapi_unpublished_provider_draft_pack_json": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json",
+    "rapidapi_unpublished_provider_draft_review": "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_report_20260608.md",
+    "rapidapi_unpublished_provider_draft_review_json": "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json",
+    "mcp_tool_registry_private_draft_pack": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md",
+    "mcp_tool_registry_private_draft_pack_json": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+    "mcp_tool_registry_private_draft_review": "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
+    "mcp_tool_registry_private_draft_review_json": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
+    "mcp_purchase_decision_probe": "https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md",
+    "mcp_purchase_decision_probe_json": "https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json",
+    "mcp_verification_gate_probe": "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
+    "mcp_verification_gate_probe_json": "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
+    "mcp_deep_analysis_verification_gate_probe": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md",
+    "mcp_deep_analysis_verification_gate_probe_json": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json"
+  },
+  "latest_machine_discovery_full_simulation": {
+    "status": "completed_full_machine_discovery",
+    "ok": true,
+    "evidence_date": "2026-06-07",
+    "machine_customer_mode": "machine_without_starting_list",
+    "write_calls_executed": 3,
+    "post_calls_executed": 3,
+    "first_product_selected": "target_discovery",
+    "recommended_next_product": "nurture_signal",
+    "score": 74,
+    "score_decision": "nurture",
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "report": "https://machinesignal.it/machine_discovery_full_simulation_report_20260607.md",
+    "json": "https://machinesignal.it/machine_discovery_full_simulation_summary_20260607.json"
+  },
+  "latest_machine_deep_analysis_single_purchase": {
+    "status": "completed_deep_analysis_single_purchase",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "machine_customer_mode": "machine_with_scored_target_and_spend_gate",
+    "write_calls_executed": 3,
+    "post_calls_executed": 3,
+    "demo_domain": "premium-dental-conversion-gap.it",
+    "score": 78,
+    "confidence": 0.88,
+    "score_decision": "buy_deep_analysis",
+    "score_recommended_next_product": "deep_analysis",
+    "deep_analysis_order_created": true,
+    "deep_analysis_order_status": "accepted_beta_order_intent",
+    "deep_analysis_delivery_type": "deep_opportunity_analysis",
+    "deep_analysis_delivery_status": "deep_analysis_ready",
+    "deep_analysis_recommended_next_product": "action_pack",
+    "action_pack_gate_evaluated": true,
+    "action_pack_purchased": false,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "api_key_published": false,
+    "report": "https://machinesignal.it/machine_deep_analysis_single_purchase_report_20260608.md",
+    "json": "https://machinesignal.it/machine_deep_analysis_single_purchase_summary_20260608.json",
+    "interpretation": "A machine can create a sandbox, score one synthetic high-signal target and buy exactly one Deep Analysis as a spend-control layer before Action Pack."
+  },
+  "latest_machine_action_pack_single_purchase": {
+    "status": "completed_action_pack_single_purchase",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "machine_customer_mode": "machine_with_deep_analysis_gate_to_action_pack",
+    "write_calls_executed": 4,
+    "post_calls_executed": 4,
+    "demo_domain": "premium-dental-conversion-gap.it",
+    "score": 78,
+    "confidence": 0.88,
+    "score_decision": "buy_deep_analysis",
+    "deep_analysis_order_created": true,
+    "deep_analysis_delivery_status": "deep_analysis_ready",
+    "action_pack_order_created": true,
+    "action_pack_delivery_status": "action_pack_ready",
+    "action_pack_approval_gate_default_state": "blocked",
+    "email_blocked_without_approval": true,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "api_key_published": false,
+    "report": "https://machinesignal.it/machine_action_pack_single_purchase_report_20260608.md",
+    "json": "https://machinesignal.it/machine_action_pack_single_purchase_summary_20260608.json",
+    "interpretation": "A machine can pass the score-to-Deep-Analysis gate and buy exactly one Action Pack that prepares CRM/workflow payloads while external contact stays blocked by default."
+  },
+  "latest_public_sandbox_claims_no_write_review": {
+    "status": "completed_public_sandbox_claims_no_write_review",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "mode": "NoWritePublicClaimsReview",
+    "resources_checked": 12,
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "report": "https://machinesignal.it/public_sandbox_claims_no_write_review_report_20260608.md",
+    "json": "https://machinesignal.it/public_sandbox_claims_no_write_review_summary_20260608.json",
+    "interpretation": "Public MachineSignal copy and machine-readable manifests preserve sandbox-only positioning: no live payments, no external contact, no invoices and Action Pack is CRM/workflow preparation, not automatic outreach."
+  },
+  "latest_external_submission_pack_no_write_review": {
+    "status": "completed_external_submission_pack_no_write_review",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "mode": "NoWriteExternalSubmissionReview",
+    "resources_checked": 31,
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "external_publication_executed": false,
+    "irreversible_submission_executed": false,
+    "live_monetization_enabled": false,
+    "hosted_mcp_live": false,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "production_api_key_published": false,
+    "hard_fails": 0,
+    "report": "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
+    "json": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+    "interpretation": "API directory, RapidAPI-style, MCP/tool-registry, private rehearsal, API directory private draft, RapidAPI unpublished provider draft and MCP tool-registry private draft materials are safe for private/draft sandbox preparation only. The review does not authorize irreversible external publication, hosted MCP launch, live checkout, paid plans, production keys or human outreach."
+  },
+  "latest_external_draft_submission_bundle": {
+    "status": "ready_for_private_draft_only",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "primary_customer_interface": "machine",
+    "external_publication_executed": false,
+    "irreversible_submission_allowed": false,
+    "live_monetization_enabled": false,
+    "hosted_mcp_live": false,
+    "production_api_key_published": false,
+    "report": "https://machinesignal.it/external_draft_submission_bundle_20260608.md",
+    "json": "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
+    "interpretation": "Single machine-readable draft bundle for API directory, RapidAPI-style and MCP/tool-registry preparation. It is draft/sandbox-only and does not authorize irreversible publication, monetization, hosted MCP launch, production keys or human outreach."
+  },
+  "latest_private_draft_submission_rehearsal": {
+    "status": "completed_private_draft_submission_rehearsal",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "mode": "NoWritePrivateDraftSubmissionRehearsal",
+    "primary_customer_interface": "machine",
+    "resources_checked": 12,
+    "channels_checked": 4,
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "external_publication_executed": false,
+    "irreversible_submission_executed": false,
+    "live_monetization_enabled": false,
+    "hosted_mcp_live": false,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "production_api_key_published": false,
+    "machine_decision": "prepare_private_draft_only",
+    "report": "https://machinesignal.it/private_draft_submission_rehearsal_report_20260608.md",
+    "json": "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
+    "interpretation": "A machine can read MachineSignal public discovery files and prepare private draft metadata for generic API directory, RapidAPI-style, MCP/tool registry and Postman private/team workspace channels. No irreversible publication, live monetization, hosted MCP, production key, payment, invoice or external contact is executed."
+  },
+  "latest_api_directory_private_draft_review": {
+    "status": "completed_api_directory_private_draft_review",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "mode": "NoWriteApiDirectoryPrivateDraftReview",
+    "resources_checked": 8,
+    "required_fields_checked": 13,
+    "primary_customer_interface": "machine",
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "external_publication_executed": false,
+    "irreversible_submission_executed": false,
+    "live_monetization_enabled": false,
+    "public_paid_plans_enabled": false,
+    "hosted_mcp_live": false,
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "production_api_key_published": false,
+    "machine_decision": "api_directory_private_draft_ready",
+    "report": "https://machinesignal.it/api_directory_private_draft_review_report_20260608.md",
+    "json": "https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json"
+  },
+  "latest_rapidapi_unpublished_provider_draft_review": {
+    "status": "completed_rapidapi_unpublished_provider_draft_review",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "mode": "NoWriteRapidApiUnpublishedProviderDraftReview",
+    "resources_checked": 9,
+    "required_fields_checked": 13,
+    "primary_customer_interface": "machine",
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "external_publication_executed": false,
+    "irreversible_submission_executed": false,
+    "live_monetization_enabled": false,
+    "public_paid_plans_enabled": false,
+    "create_marketplace_pricing_tiers": false,
+    "hosted_mcp_live": false,
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "production_api_key_published": false,
+    "machine_decision": "rapidapi_unpublished_provider_draft_ready",
+    "report": "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_report_20260608.md",
+    "json": "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json"
+  },
+  "latest_mcp_tool_registry_private_draft_review": {
+    "status": "completed_mcp_tool_registry_private_draft_review",
+    "ok": true,
+    "evidence_date": "2026-06-08",
+    "mode": "NoWriteMcpToolRegistryPrivateDraftReview",
+    "resources_checked": 10,
+    "required_fields_checked": 15,
+    "primary_customer_interface": "machine",
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "external_publication_executed": false,
+    "irreversible_submission_executed": false,
+    "live_monetization_enabled": false,
+    "public_paid_plans_enabled": false,
+    "hosted_mcp_live": false,
+    "hosted_mcp_endpoint_published": false,
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "production_api_key_published": false,
+    "machine_decision": "mcp_tool_registry_private_draft_ready",
+    "report": "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
+    "json": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
+    "interpretation": "MCP/tool-registry private draft material is ready for owner-supervised private or unsubmitted local-adapter metadata only. Hosted MCP launch, irreversible registry submission, live monetization, production keys, payments and outreach remain blocked."
+  },
+  "current_mcp_tool_registry_private_draft_pack": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+  "current_mcp_tool_registry_private_draft_review": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
+  "latest_machine_public_discovery_nowrite_simulation": {
+    "status": "completed_machine_public_discovery_nowrite",
+    "ok": true,
+    "evidence_date": "2026-06-10",
+    "mode": "NoWriteMachineDiscoverySimulation",
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "hosted_mcp_live": false,
+    "resources_checked": 14,
+    "manifest_tools": 31,
+    "public_get_tools": 20,
+    "report": "https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md",
+    "json": "https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json",
+    "interpretation": "A machine can discover MachineSignal through public surfaces, read MCP/local-adapter metadata and stop safely before writes, payments, publication or outreach."
+  },
+  "current_machine_public_discovery_nowrite_simulation": "https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json",
+  "latest_mcp_local_adapter_nowrite_validation": {
+    "status": "completed_mcp_local_adapter_nowrite_validation",
+    "ok": true,
+    "evidence_date": "2026-06-10",
+    "mode": "NoWriteMcpLocalAdapterValidation",
+    "tools_listed_count": 31,
+    "public_tools_called_count": 15,
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "sandbox_customer_created": false,
+    "credit_consuming_calls_executed": false,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "external_publication_executed": false,
+    "production_api_key_published": false,
+    "machine_decision": "local_mcp_adapter_nowrite_ready",
+    "report": "https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md",
+    "json": "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
+    "interpretation": "A machine client can start the local stdio MCP adapter, list MachineSignal tools and read public no-auth resources without sandbox creation, scoring, purchase intents, payments, external publication or outreach."
+  },
+  "current_mcp_local_adapter_nowrite_validation": "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
+  "latest_distribution_readiness_monitor": {
+    "status": "ready_for_distribution_review",
+    "ok": true,
+    "alert_level": "OK",
+    "evidence_date": "2026-06-10",
+    "generated_at": "2026-06-10T12:52:28.5031016Z",
+    "mode": "NoWrite",
+    "resources_checked": 69,
+    "checks_total": 252,
+    "checks_failed": 0,
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "included_latest_probe": "mcp_verification_gate_probe",
+    "latest_probe_report": "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
+    "latest_probe_json": "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
+    "interpretation": "Public machine-readable distribution assets now include the MCP verification gate probe and pass the NoWrite distribution readiness monitor with zero failed checks.",
+    "report": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+    "json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
+  },
+  "latest_mcp_write_capped_sandbox_probe": {
+    "status": "completed_mcp_write_capped_sandbox_probe",
+    "ok": true,
+    "evidence_date": "2026-06-10",
+    "mode": "WriteCappedMcpSandboxProbe",
+    "max_post_calls_allowed": 2,
+    "post_calls_executed": 2,
+    "write_calls_executed": 2,
+    "sandbox_customer_created": true,
+    "score_call_executed": true,
+    "purchase_intent_created": false,
+    "payment_test_intent_created": false,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "external_publication_executed": false,
+    "production_api_key_published": false,
+    "score": 74,
+    "score_decision": "nurture",
+    "recommended_next_product": "nurture_signal",
+    "machine_decision": "mcp_write_capped_sandbox_probe_ready",
+    "report": "https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md",
+    "json": "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json",
+    "interpretation": "A machine client can use the local stdio MCP adapter to create one sandbox customer and score one provided synthetic target under a strict 2-POST budget, without purchases, payment-test intents, external contact or publication."
+  },
+  "current_mcp_write_capped_sandbox_probe": "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json",
+  "public_resources": {
+    "mcp_purchase_decision_probe": "https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md",
+    "mcp_purchase_decision_probe_json": "https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json",
+    "distribution_readiness_monitor": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+    "distribution_readiness_monitor_json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+    "mcp_verification_gate_probe": "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
+    "mcp_verification_gate_probe_json": "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
+    "mcp_positive_verification_deep_analysis_probe": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_report_20260610.md",
+    "mcp_positive_verification_deep_analysis_probe_json": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json"
+  },
+  "latest_mcp_purchase_decision_probe": {
+    "status": "completed_mcp_purchase_decision_probe",
+    "ok": true,
+    "evidence_date": "2026-06-10",
+    "mode": "McpPurchaseDecisionProbeWriteCapped",
+    "primary_customer_interface": "machine",
+    "max_post_calls_allowed": 3,
+    "post_calls_executed": 3,
+    "write_calls_executed": 3,
+    "score_domain": "premium-dental-conversion-gap.it",
+    "opportunity_score": 81,
+    "confidence": 0.44,
+    "score_decision": "needs_verification",
+    "recommended_product": "verification",
+    "purchased_sandbox_product": "verification",
+    "purchase_order_intent_id": "ord_5b0823b2",
+    "delivery_present": true,
+    "delivery_type": "data_quality_verification",
+    "delivery_status": "verification_ready",
+    "has_next_machine_call": true,
+    "has_stop_rules": true,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "payment_test_created": false,
+    "external_publication_executed": false,
+    "human_outreach_executed": false,
+    "production_api_key_published": false,
+    "machine_decision": "mcp_purchase_decision_probe_ready",
+    "interpretation": "A machine can move from product discovery to score-based sandbox purchase intent and delivery retrieval through MCP without human outreach, real payment or external contact.",
+    "recommended_next_step": "Run QA review, then test deep_analysis only after a verification gate returns a positive machine recommendation.",
+    "report": "https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md",
+    "json": "https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json"
+  },
+  "current_mcp_purchase_decision_probe": "https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json",
+  "latest_mcp_verification_gate_probe": {
+    "status": "completed_mcp_verification_gate_probe",
+    "ok": true,
+    "evidence_date": "2026-06-10",
+    "mode": "McpVerificationGateProbeWriteCapped",
+    "primary_customer_interface": "machine",
+    "max_post_calls_allowed": 3,
+    "post_calls_executed": 3,
+    "write_calls_executed": 3,
+    "score_domain": "premium-dental-conversion-gap.it",
+    "opportunity_score": 81,
+    "confidence": 0.44,
+    "score_decision": "needs_verification",
+    "recommended_product": "verification",
+    "purchased_sandbox_product": "verification",
+    "purchase_order_intent_id": "ord_d70b90a6",
+    "verification_verdict_status": "keep_with_caution",
+    "next_machine_call_endpoint": "/v1/lead-opportunity-score",
+    "gate_allows_deep_analysis_now": false,
+    "deep_analysis_purchase_executed": false,
+    "machine_policy_decision": "stop_before_deep_analysis",
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "payment_test_created": false,
+    "external_publication_executed": false,
+    "human_outreach_executed": false,
+    "production_api_key_published": false,
+    "machine_decision": "mcp_verification_gate_probe_ready",
+    "interpretation": "A machine can stop before Deep Analysis when verification returns keep_with_caution and does not provide an immediate positive purchase gate.",
+    "recommended_next_step": "Add and test an optional server-side source_verification_order_intent_id gate for Deep Analysis.",
+    "report": "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
+    "json": "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json"
+  },
+  "current_mcp_verification_gate_probe": "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
+  "latest_mcp_deep_analysis_verification_gate_probe": {
+    "status": "completed_mcp_deep_analysis_verification_gate_probe",
+    "ok": true,
+    "evidence_date": "2026-06-10",
+    "mode": "McpDeepAnalysisVerificationGateProbeWriteCapped",
+    "primary_customer_interface": "machine",
+    "max_post_calls_allowed": 5,
+    "post_calls_executed": 5,
+    "write_calls_executed": 5,
+    "verification_order_intent_id": "ord_c601ecb5",
+    "verification_verdict_status": "keep_with_caution",
+    "blocked_deep_analysis_http_status": 400,
+    "blocked_deep_analysis_error_code": "deep_analysis_verification_gate_failed",
+    "deep_analysis_credits_used_before": 0,
+    "deep_analysis_credits_used_after": 0,
+    "verification_credits_used_after": 1,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "payment_test_created": false,
+    "external_publication_executed": false,
+    "human_outreach_executed": false,
+    "production_api_key_published": false,
+    "machine_decision": "server_side_gate_blocks_invalid_deep_analysis",
+    "interpretation": "A machine cannot buy Deep Analysis from a cautious Verification source; the live API returns deep_analysis_verification_gate_failed and consumes no Deep Analysis credit.",
+    "recommended_next_step": "Publish this evidence in public manifests and monitor, then test the positive verification path when a positive verdict fixture exists.",
+    "report": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md",
+    "json": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json"
+  },
+  "current_mcp_deep_analysis_verification_gate_probe": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json",
+  "latest_mcp_positive_verification_deep_analysis_probe": {
+    "status": "completed_mcp_positive_verification_deep_analysis_probe",
+    "ok": true,
+    "evidence_date": "2026-06-10",
+    "mode": "McpPositiveVerificationDeepAnalysisProbeWriteCapped",
+    "primary_customer_interface": "machine",
+    "max_post_calls_allowed": 5,
+    "post_calls_executed": 4,
+    "write_calls_executed": 4,
+    "domain": "verified-deep-analysis-ready.test",
+    "verification_order_intent_id": "ord_351eecf6",
+    "verification_verdict_status": "verified_for_deep_analysis",
+    "deep_analysis_order_intent_id": "ord_191f7f6f",
+    "deep_analysis_gate_passed": true,
+    "deep_analysis_credits_used_before": 0,
+    "deep_analysis_credits_used_after": 1,
+    "verification_credits_used_after": 1,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "payment_test_created": false,
+    "external_publication_executed": false,
+    "human_outreach_executed": false,
+    "production_api_key_published": false,
+    "machine_decision": "positive_verification_allows_deep_analysis",
+    "interpretation": "A machine can buy Deep Analysis after a positive sandbox Verification source; the live API records a passed gate and consumes exactly one Deep Analysis credit.",
+    "recommended_next_step": "Keep both negative and positive gate probes in the monitor; next test should cover Action Pack only after accepted Deep Analysis.",
+    "report": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_report_20260610.md",
+    "json": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json"
+  },
+  "current_mcp_positive_verification_deep_analysis_probe": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json"
 }

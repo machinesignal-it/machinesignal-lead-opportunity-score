@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-10T15:01:31.7954648Z",
+    "generated_at":  "2026-06-10T16:01:53.1774799Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  71,
-    "checks_total":  259,
+    "resources_checked":  73,
+    "checks_total":  266,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -908,6 +908,41 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "mcp_positive_verification_deep_analysis_probe_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=3392"
+                   },
+                   {
+                       "name":  "mcp_positive_verification_deep_analysis_probe_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=MCP Positive Verification Deep Analysis Probe"
+                   },
+                   {
+                       "name":  "mcp_positive_verification_deep_analysis_probe_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "mcp_positive_verification_deep_analysis_probe_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=5714"
+                   },
+                   {
+                       "name":  "mcp_positive_verification_deep_analysis_probe_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "mcp_positive_verification_deep_analysis_probe_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_mcp_positive_verification_deep_analysis_probe"
+                   },
+                   {
+                       "name":  "mcp_positive_verification_deep_analysis_probe_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
                        "details":  "HTTP 200, bytes=15553"
@@ -1095,7 +1130,7 @@
                    {
                        "name":  "mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=102476"
+                       "details":  "HTTP 200, bytes=61476"
                    },
                    {
                        "name":  "mcp_tool_manifest_json_valid",
@@ -1115,7 +1150,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=102476"
+                       "details":  "HTTP 200, bytes=61476"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_json_valid",
@@ -1135,7 +1170,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=66556"
+                       "details":  "HTTP 200, bytes=44727"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -1145,7 +1180,7 @@
                    {
                        "name":  "well_known_machine_discovery_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=mcp_deep_analysis_verification_gate_probe_json"
+                       "details":  "marker=mcp_positive_verification_deep_analysis_probe_json"
                    },
                    {
                        "name":  "well_known_machine_discovery_secret_scan",
@@ -1155,12 +1190,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=26294"
+                       "details":  "HTTP 200, bytes=27477"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=MCP Deep Analysis Verification Gate Probe JSON"
+                       "details":  "marker=MCP Positive Verification Deep Analysis Probe JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -1170,12 +1205,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=11456"
+                       "details":  "HTTP 200, bytes=11738"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Mcp-deep-analysis-verification-gate-probe-json"
+                       "details":  "marker=Mcp-positive-verification-deep-analysis-probe-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -1185,12 +1220,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=18849"
+                       "details":  "HTTP 200, bytes=19096"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=mcp_deep_analysis_verification_gate_probe_summary_20260610.json"
+                       "details":  "marker=mcp_positive_verification_deep_analysis_probe_summary_20260610.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",
@@ -1200,7 +1235,7 @@
                    {
                        "name":  "openapi_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=59984"
+                       "details":  "HTTP 200, bytes=60353"
                    },
                    {
                        "name":  "openapi_json_valid",
@@ -1260,7 +1295,7 @@
                    {
                        "name":  "machine_onboarding_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=107926"
+                       "details":  "HTTP 200, bytes=67980"
                    },
                    {
                        "name":  "machine_onboarding_json_valid",

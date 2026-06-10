@@ -115,6 +115,8 @@ Public discovery starts here:
 - MCP Verification Gate Probe JSON: https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json
 - MCP Deep Analysis Verification Gate Probe: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md
 - MCP Deep Analysis Verification Gate Probe JSON: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json
+- MCP Positive Verification Deep Analysis Probe: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_report_20260610.md
+- MCP Positive Verification Deep Analysis Probe JSON: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -674,3 +676,12 @@ A write-capped MCP probe now proves the server-side gate: a buyer machine cannot
 - Summary JSON: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json
 - Result: blocked_deep_analysis_http_status=400, blocked_deep_analysis_error_code=deep_analysis_verification_gate_failed, deep_analysis_credits_used_before=0, deep_analysis_credits_used_after=0.
 - Safety: post_calls_executed=5, write_calls_executed=5, real_payment_executed=false, external_contact_executed=false, external_publication_executed=false.
+
+## MCP Positive Verification Deep Analysis Probe - 2026-06-10
+
+A write-capped MCP probe now proves the allowed path: a buyer machine can buy Deep Analysis after a positive sandbox Verification source. The live API records the passed gate and consumes exactly one Deep Analysis credit.
+
+- Report: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_report_20260610.md
+- Summary JSON: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json
+- Result: verification_verdict_status=verified_for_deep_analysis, deep_analysis_gate_passed=true, deep_analysis_credits_used_before=0, deep_analysis_credits_used_after=1.
+- Safety: post_calls_executed=4, write_calls_executed=4, real_payment_executed=false, external_contact_executed=false, external_publication_executed=false.

@@ -294,3 +294,7 @@ MCP Verification Gate Probe Summary: a machine can create one sandbox, score one
 MCP Deep Analysis Verification Gate Probe: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md
 MCP Deep Analysis Verification Gate Probe JSON: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json
 MCP Deep Analysis Verification Gate Probe Summary: a machine attempted Deep Analysis with source_verification_order_intent_id from a cautious Verification; live API returned deep_analysis_verification_gate_failed; deep_analysis_credits_used_before=0; deep_analysis_credits_used_after=0; real_payment_executed=false; external_contact_executed=false.
+
+MCP Positive Verification Deep Analysis Probe: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_report_20260610.md
+MCP Positive Verification Deep Analysis Probe JSON: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json
+MCP Positive Verification Deep Analysis Probe Summary: a machine bought Deep Analysis after a positive sandbox Verification source; verification_verdict_status=verified_for_deep_analysis; deep_analysis_gate_passed=true; deep_analysis_credits_used_before=0; deep_analysis_credits_used_after=1; real_payment_executed=false; external_contact_executed=false.
