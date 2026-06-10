@@ -103,6 +103,8 @@ Public discovery starts here:
 - MCP Tool Registry Private Draft Pack JSON: https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json
 - MCP Tool Registry Private Draft Review: https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md
 - MCP Tool Registry Private Draft Review JSON: https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json
+- Machine Public Discovery NoWrite Simulation: https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md
+- Machine Public Discovery NoWrite Simulation JSON: https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -611,3 +613,11 @@ An MCP/tool-registry private draft pack now contains exact local-adapter listing
 - Review: https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md
 - Review JSON: https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json
 - Safety: write_calls_executed=0, post_calls_executed=0, external_publication_executed=false, hosted_mcp_live=false, live_monetization_enabled=false, production_api_key_published=false, external_contact_executed=false.
+
+## Machine Public Discovery NoWrite Simulation - 2026-06-10
+
+A machine-facing public discovery simulation now proves that a software client can start from public resources, read the machine discovery file, MCP tool manifest, local-adapter pack and MCP private-draft review without creating sandbox records, purchases, payments, external publication or outreach.
+
+- Report: https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md
+- Summary JSON: https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json
+- Safety: write_calls_executed=0, post_calls_executed=0, real_payment_executed=false, external_contact_executed=false, hosted_mcp_live=false.

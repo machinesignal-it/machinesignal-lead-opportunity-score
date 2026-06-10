@@ -97,3 +97,5 @@ Mcp-tool-registry-private-draft-pack: https://machinesignal.it/mcp_tool_registry
 Mcp-tool-registry-private-draft-pack-json: https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json
 Mcp-tool-registry-private-draft-review: https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md
 Mcp-tool-registry-private-draft-review-json: https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json
+Machine-public-discovery-nowrite-simulation: https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md
+Machine-public-discovery-nowrite-simulation-json: https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json

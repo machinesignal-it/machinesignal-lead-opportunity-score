@@ -1,237 +1,255 @@
 {
-  "artifact": "rapidapi_unpublished_provider_draft_pack",
-  "generated_at": "2026-06-08",
-  "status": "ready_for_rapidapi_unpublished_provider_draft_only",
-  "primary_customer_interface": "machine",
-  "channel": "rapidapi_style_unpublished_provider_draft",
-  "purpose": "Prepare exact marketplace-style provider metadata for a RapidAPI-style unpublished draft without executing external submission, monetization, live checkout, outreach or production key publication.",
-  "plain_language_summary": "This pack tells a machine or owner-supervised operator what to enter in a RapidAPI-style provider draft. It reuses the existing listing and provider setup JSON, keeps the listing unpublished, and blocks all live commercial actions.",
-  "draft_safety_state": {
-    "write_calls_executed": 0,
-    "post_calls_executed": 0,
-    "external_publication_executed": false,
-    "irreversible_submission_executed": false,
-    "live_monetization_enabled": false,
-    "public_paid_plans_enabled": false,
-    "create_marketplace_pricing_tiers": false,
-    "hosted_mcp_live": false,
-    "real_payment_executed": false,
-    "real_invoice_issued": false,
-    "external_contact_executed": false,
-    "production_api_key_published": false,
-    "human_outreach_allowed": false
-  },
-  "rapidapi_style_listing_fields": {
-    "api_name": "MachineSignal Lead Opportunity Score API",
-    "provider_name": "MachineSignal",
-    "visibility": "private_draft_or_unpublished",
-    "monetization": "disabled",
-    "pricing_plans": "do_not_create_public_paid_plans_yet",
-    "short_description": "Machine-first lead opportunity scoring API for CRM workflows, RevOps automations and AI agents.",
-    "long_description": "MachineSignal helps automated systems decide when a business domain is worth additional budget. The API is built for machine customers: CRM systems, RevOps workflows, enrichment pipelines and AI agents. A machine can discover the API, create a limited sandbox key, score domains, request Target Discovery when no list exists, request Deep Analysis as a spend-control gate, request Action Pack only after Deep Analysis confirms the gates, read usage, create beta purchase intents and retrieve structured JSON deliveries. Current state is sandbox and draft-only: no live payment, no fiscal invoice, no external target contact, no human outreach and no public paid plans.",
-    "category": "Business / Sales Intelligence / CRM / Data Enrichment / AI Agent Tools",
-    "tags": [
-      "lead-scoring",
-      "crm",
-      "revops",
-      "ai-agents",
-      "machine-customer",
-      "sales-intelligence",
-      "target-discovery",
-      "deep-analysis",
-      "action-pack",
-      "openapi",
-      "postman",
-      "mcp",
-      "llms-txt"
-    ],
-    "base_url": "https://machinesignal-api.beta-878.workers.dev",
-    "auth_type": "API key",
-    "auth_header": "X-API-Key",
-    "idempotency_header": "Idempotency-Key",
-    "public_documentation_url": "https://machinesignal.it/machine-onboarding.json",
-    "openapi_url": "https://machinesignal.it/openapi.json",
-    "postman_collection_url": "https://machinesignal.it/postman_public_collection.json",
-    "llms_txt_url": "https://machinesignal.it/llms.txt",
-    "machine_discovery_url": "https://machinesignal.it/.well-known/machine-discovery.json",
-    "support_contact": "beta@machinesignal.it"
-  },
-  "source_assets": {
-    "rapidapi_listing_json": "https://machinesignal.it/distribution/rapidapi-listing.json",
-    "rapidapi_provider_setup_json": "https://machinesignal.it/distribution/rapidapi-provider-setup.json",
-    "api_directory_rapidapi_draft_checklist": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md",
-    "api_directory_rapidapi_draft_checklist_json": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json",
-    "external_draft_submission_bundle_json": "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
-    "private_draft_submission_rehearsal_json": "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
-    "external_submission_pack_no_write_review_json": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
-    "distribution_monitor_json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
-    "mcp_tool_registry_private_draft_pack": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md",
-    "mcp_tool_registry_private_draft_pack_json": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
-    "mcp_tool_registry_private_draft_review": "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
-    "mcp_tool_registry_private_draft_review_json": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json"
-  },
-  "endpoint_groups_for_provider_draft": [
-    {
-      "group": "Public discovery",
-      "auth_required": false,
-      "purpose": "Let a marketplace-style API buyer or AI agent understand the service before creating a sandbox key.",
-      "endpoints": [
-        "GET /health",
-        "GET /machine-onboarding.json",
-        "GET /product-catalog.json",
-        "GET /openapi.json",
-        "GET /postman_collection.json"
-      ]
-    },
-    {
-      "group": "Sandbox onboarding",
-      "auth_required": false,
-      "purpose": "Create a limited sandbox customer for machine evaluation without human sales contact.",
-      "endpoints": [
-        "POST /v1/sandbox/customers"
-      ]
-    },
-    {
-      "group": "Customer API",
-      "auth_required": true,
-      "headers": [
-        "X-API-Key",
-        "Idempotency-Key"
-      ],
-      "purpose": "Score domains, request controlled purchase intents and retrieve JSON deliveries.",
-      "endpoints": [
-        "GET /v1/onboarding",
-        "GET /v1/usage",
-        "POST /v1/lead-opportunity-score",
-        "POST /v1/purchase-intent",
-        "GET /v1/orders",
-        "GET /v1/orders/{order_intent_id}"
-      ]
-    },
-    {
-      "group": "Payment test mode",
-      "auth_required": true,
-      "purpose": "Simulate checkout and reconciliation in sandbox mode only.",
-      "endpoints": [
-        "POST /v1/payment-test/intents",
-        "GET /v1/payment-test/reconciliation/{payment_test_id}"
-      ],
-      "real_payment_executed": false
-    }
-  ],
-  "draft_pricing_treatment": {
-    "public_paid_plans_active": false,
-    "create_marketplace_pricing_tiers": false,
-    "wording": "Pricing model under beta validation. Sandbox evaluation only. Public paid plans and live checkout are not enabled.",
-    "internal_price_reference_only": {
-      "score_pack_1k": "EUR 99",
-      "target_discovery_pack_250": "EUR 149",
-      "domain_enrichment_pack_100": "EUR 149",
-      "deep_analysis_pack_100": "EUR 299",
-      "action_pack_25": "EUR 399",
-      "opportunity_feed_monthly": "EUR 249/month",
-      "api_starter_monthly": "EUR 99/month",
-      "api_pro_monthly": "EUR 499/month"
-    }
-  },
-  "machine_test_flow_for_provider_reviewer": [
-    "Read rapidapi_unpublished_provider_draft_pack_20260608.json",
-    "Read distribution/rapidapi-listing.json",
-    "Read distribution/rapidapi-provider-setup.json",
-    "Read openapi.json",
-    "Create sandbox customer only if sandbox testing is needed",
-    "Call lead-opportunity-score with sandbox key",
-    "Call purchase-intent only when the score recommends the product and budget rules allow it",
-    "Retrieve orders and structured delivery JSON",
-    "Stop before public publish, paid plan creation, live checkout, production key distribution or human outreach"
-  ],
-  "blocked_before_public_submit": [
-    "final public submit button",
-    "irreversible external publication",
-    "public paid plan creation",
-    "marketplace pricing tier creation",
-    "live checkout activation",
-    "production key distribution",
-    "claiming production availability",
-    "claiming hosted MCP live",
-    "legal or fiscal commitment",
-    "external human outreach",
-    "external target company contact"
-  ],
-  "machine_decision": {
-    "decision": "prepare_rapidapi_unpublished_provider_draft_only",
-    "recommended_next_step": "Use this pack to prepare a private or unpublished RapidAPI-style provider draft. Stop before public submit, marketplace monetization, live checkout, production credentials, hosted MCP or outreach."
-  },
-  "public_links": {
-    "mcp_tool_registry_private_draft_pack": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md",
-    "mcp_tool_registry_private_draft_pack_json": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
-    "mcp_tool_registry_private_draft_review": "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
-    "mcp_tool_registry_private_draft_review_json": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json"
-  },
-  "latest_mcp_tool_registry_private_draft_review": {
-    "status": "completed_mcp_tool_registry_private_draft_review",
-    "ok": true,
-    "evidence_date": "2026-06-08",
-    "mode": "NoWriteMcpToolRegistryPrivateDraftReview",
-    "resources_checked": 10,
-    "required_fields_checked": 15,
-    "primary_customer_interface": "machine",
-    "write_calls_executed": 0,
-    "post_calls_executed": 0,
-    "external_publication_executed": false,
-    "irreversible_submission_executed": false,
-    "live_monetization_enabled": false,
-    "public_paid_plans_enabled": false,
-    "hosted_mcp_live": false,
-    "hosted_mcp_endpoint_published": false,
-    "real_payment_executed": false,
-    "real_invoice_issued": false,
-    "external_contact_executed": false,
-    "production_api_key_published": false,
-    "machine_decision": "mcp_tool_registry_private_draft_ready",
-    "report": "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
-    "json": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
-    "interpretation": "MCP/tool-registry private draft material is ready for owner-supervised private or unsubmitted local-adapter metadata only. Hosted MCP launch, irreversible registry submission, live monetization, production keys, payments and outreach remain blocked."
-  },
-  "current_mcp_tool_registry_private_draft_pack": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
-  "current_mcp_tool_registry_private_draft_review": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
-  "latest_distribution_readiness_monitor": {
-    "status": "ready_for_distribution_review",
-    "ok": true,
-    "evidence_date": "2026-06-08",
-    "mode": "NoWrite",
-    "generated_at": "2026-06-08T16:03:13.4344388Z",
-    "resources_checked": 59,
-    "checks_total": 217,
-    "checks_failed": 0,
-    "alert_level": "OK",
-    "write_calls_executed": 0,
-    "post_calls_executed": 0,
-    "real_payment_executed": false,
-    "external_contact_executed": false,
-    "report": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
-    "json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
-    "interpretation": "Distribution assets are reachable, JSON/XML assets are valid, expected markers are present, public secret scan passed, and no write/POST/payment/contact action was executed. MCP tool-registry private draft assets are included."
-  },
-  "latest_external_submission_pack_no_write_review": {
-    "status": "completed_external_submission_pack_no_write_review",
-    "ok": true,
-    "evidence_date": "2026-06-08",
-    "mode": "NoWriteExternalSubmissionReview",
-    "resources_checked": 31,
-    "write_calls_executed": 0,
-    "post_calls_executed": 0,
-    "external_publication_executed": false,
-    "irreversible_submission_executed": false,
-    "live_monetization_enabled": false,
-    "hosted_mcp_live": false,
-    "real_payment_executed": false,
-    "external_contact_executed": false,
-    "real_invoice_issued": false,
-    "production_api_key_published": false,
-    "hard_fails": 0,
-    "report": "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
-    "json": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
-    "interpretation": "API directory, RapidAPI-style, MCP/tool-registry, private rehearsal, API directory private draft, RapidAPI unpublished provider draft and MCP tool-registry private draft materials are safe for private/draft sandbox preparation only. The review does not authorize irreversible external publication, hosted MCP launch, live checkout, paid plans, production keys or human outreach."
-  }
+    "artifact":  "rapidapi_unpublished_provider_draft_pack",
+    "generated_at":  "2026-06-08",
+    "status":  "ready_for_rapidapi_unpublished_provider_draft_only",
+    "primary_customer_interface":  "machine",
+    "channel":  "rapidapi_style_unpublished_provider_draft",
+    "purpose":  "Prepare exact marketplace-style provider metadata for a RapidAPI-style unpublished draft without executing external submission, monetization, live checkout, outreach or production key publication.",
+    "plain_language_summary":  "This pack tells a machine or owner-supervised operator what to enter in a RapidAPI-style provider draft. It reuses the existing listing and provider setup JSON, keeps the listing unpublished, and blocks all live commercial actions.",
+    "draft_safety_state":  {
+                               "write_calls_executed":  0,
+                               "post_calls_executed":  0,
+                               "external_publication_executed":  false,
+                               "irreversible_submission_executed":  false,
+                               "live_monetization_enabled":  false,
+                               "public_paid_plans_enabled":  false,
+                               "create_marketplace_pricing_tiers":  false,
+                               "hosted_mcp_live":  false,
+                               "real_payment_executed":  false,
+                               "real_invoice_issued":  false,
+                               "external_contact_executed":  false,
+                               "production_api_key_published":  false,
+                               "human_outreach_allowed":  false
+                           },
+    "rapidapi_style_listing_fields":  {
+                                          "api_name":  "MachineSignal Lead Opportunity Score API",
+                                          "provider_name":  "MachineSignal",
+                                          "visibility":  "private_draft_or_unpublished",
+                                          "monetization":  "disabled",
+                                          "pricing_plans":  "do_not_create_public_paid_plans_yet",
+                                          "short_description":  "Machine-first lead opportunity scoring API for CRM workflows, RevOps automations and AI agents.",
+                                          "long_description":  "MachineSignal helps automated systems decide when a business domain is worth additional budget. The API is built for machine customers: CRM systems, RevOps workflows, enrichment pipelines and AI agents. A machine can discover the API, create a limited sandbox key, score domains, request Target Discovery when no list exists, request Deep Analysis as a spend-control gate, request Action Pack only after Deep Analysis confirms the gates, read usage, create beta purchase intents and retrieve structured JSON deliveries. Current state is sandbox and draft-only: no live payment, no fiscal invoice, no external target contact, no human outreach and no public paid plans.",
+                                          "category":  "Business / Sales Intelligence / CRM / Data Enrichment / AI Agent Tools",
+                                          "tags":  [
+                                                       "lead-scoring",
+                                                       "crm",
+                                                       "revops",
+                                                       "ai-agents",
+                                                       "machine-customer",
+                                                       "sales-intelligence",
+                                                       "target-discovery",
+                                                       "deep-analysis",
+                                                       "action-pack",
+                                                       "openapi",
+                                                       "postman",
+                                                       "mcp",
+                                                       "llms-txt"
+                                                   ],
+                                          "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+                                          "auth_type":  "API key",
+                                          "auth_header":  "X-API-Key",
+                                          "idempotency_header":  "Idempotency-Key",
+                                          "public_documentation_url":  "https://machinesignal.it/machine-onboarding.json",
+                                          "openapi_url":  "https://machinesignal.it/openapi.json",
+                                          "postman_collection_url":  "https://machinesignal.it/postman_public_collection.json",
+                                          "llms_txt_url":  "https://machinesignal.it/llms.txt",
+                                          "machine_discovery_url":  "https://machinesignal.it/.well-known/machine-discovery.json",
+                                          "support_contact":  "beta@machinesignal.it"
+                                      },
+    "source_assets":  {
+                          "rapidapi_listing_json":  "https://machinesignal.it/distribution/rapidapi-listing.json",
+                          "rapidapi_provider_setup_json":  "https://machinesignal.it/distribution/rapidapi-provider-setup.json",
+                          "api_directory_rapidapi_draft_checklist":  "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.md",
+                          "api_directory_rapidapi_draft_checklist_json":  "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json",
+                          "external_draft_submission_bundle_json":  "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
+                          "private_draft_submission_rehearsal_json":  "https://machinesignal.it/private_draft_submission_rehearsal_summary_20260608.json",
+                          "external_submission_pack_no_write_review_json":  "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+                          "distribution_monitor_json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+                          "mcp_tool_registry_private_draft_pack":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md",
+                          "mcp_tool_registry_private_draft_pack_json":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+                          "mcp_tool_registry_private_draft_review":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
+                          "mcp_tool_registry_private_draft_review_json":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json"
+                      },
+    "endpoint_groups_for_provider_draft":  [
+                                               {
+                                                   "group":  "Public discovery",
+                                                   "auth_required":  false,
+                                                   "purpose":  "Let a marketplace-style API buyer or AI agent understand the service before creating a sandbox key.",
+                                                   "endpoints":  [
+                                                                     "GET /health",
+                                                                     "GET /machine-onboarding.json",
+                                                                     "GET /product-catalog.json",
+                                                                     "GET /openapi.json",
+                                                                     "GET /postman_collection.json"
+                                                                 ]
+                                               },
+                                               {
+                                                   "group":  "Sandbox onboarding",
+                                                   "auth_required":  false,
+                                                   "purpose":  "Create a limited sandbox customer for machine evaluation without human sales contact.",
+                                                   "endpoints":  [
+                                                                     "POST /v1/sandbox/customers"
+                                                                 ]
+                                               },
+                                               {
+                                                   "group":  "Customer API",
+                                                   "auth_required":  true,
+                                                   "headers":  [
+                                                                   "X-API-Key",
+                                                                   "Idempotency-Key"
+                                                               ],
+                                                   "purpose":  "Score domains, request controlled purchase intents and retrieve JSON deliveries.",
+                                                   "endpoints":  [
+                                                                     "GET /v1/onboarding",
+                                                                     "GET /v1/usage",
+                                                                     "POST /v1/lead-opportunity-score",
+                                                                     "POST /v1/purchase-intent",
+                                                                     "GET /v1/orders",
+                                                                     "GET /v1/orders/{order_intent_id}"
+                                                                 ]
+                                               },
+                                               {
+                                                   "group":  "Payment test mode",
+                                                   "auth_required":  true,
+                                                   "purpose":  "Simulate checkout and reconciliation in sandbox mode only.",
+                                                   "endpoints":  [
+                                                                     "POST /v1/payment-test/intents",
+                                                                     "GET /v1/payment-test/reconciliation/{payment_test_id}"
+                                                                 ],
+                                                   "real_payment_executed":  false
+                                               }
+                                           ],
+    "draft_pricing_treatment":  {
+                                    "public_paid_plans_active":  false,
+                                    "create_marketplace_pricing_tiers":  false,
+                                    "wording":  "Pricing model under beta validation. Sandbox evaluation only. Public paid plans and live checkout are not enabled.",
+                                    "internal_price_reference_only":  {
+                                                                          "score_pack_1k":  "EUR 99",
+                                                                          "target_discovery_pack_250":  "EUR 149",
+                                                                          "domain_enrichment_pack_100":  "EUR 149",
+                                                                          "deep_analysis_pack_100":  "EUR 299",
+                                                                          "action_pack_25":  "EUR 399",
+                                                                          "opportunity_feed_monthly":  "EUR 249/month",
+                                                                          "api_starter_monthly":  "EUR 99/month",
+                                                                          "api_pro_monthly":  "EUR 499/month"
+                                                                      }
+                                },
+    "machine_test_flow_for_provider_reviewer":  [
+                                                    "Read rapidapi_unpublished_provider_draft_pack_20260608.json",
+                                                    "Read distribution/rapidapi-listing.json",
+                                                    "Read distribution/rapidapi-provider-setup.json",
+                                                    "Read openapi.json",
+                                                    "Create sandbox customer only if sandbox testing is needed",
+                                                    "Call lead-opportunity-score with sandbox key",
+                                                    "Call purchase-intent only when the score recommends the product and budget rules allow it",
+                                                    "Retrieve orders and structured delivery JSON",
+                                                    "Stop before public publish, paid plan creation, live checkout, production key distribution or human outreach"
+                                                ],
+    "blocked_before_public_submit":  [
+                                         "final public submit button",
+                                         "irreversible external publication",
+                                         "public paid plan creation",
+                                         "marketplace pricing tier creation",
+                                         "live checkout activation",
+                                         "production key distribution",
+                                         "claiming production availability",
+                                         "claiming hosted MCP live",
+                                         "legal or fiscal commitment",
+                                         "external human outreach",
+                                         "external target company contact"
+                                     ],
+    "machine_decision":  {
+                             "decision":  "prepare_rapidapi_unpublished_provider_draft_only",
+                             "recommended_next_step":  "Use this pack to prepare a private or unpublished RapidAPI-style provider draft. Stop before public submit, marketplace monetization, live checkout, production credentials, hosted MCP or outreach."
+                         },
+    "public_links":  {
+                         "mcp_tool_registry_private_draft_pack":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md",
+                         "mcp_tool_registry_private_draft_pack_json":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+                         "mcp_tool_registry_private_draft_review":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
+                         "mcp_tool_registry_private_draft_review_json":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json"
+                     },
+    "latest_mcp_tool_registry_private_draft_review":  {
+                                                          "status":  "completed_mcp_tool_registry_private_draft_review",
+                                                          "ok":  true,
+                                                          "evidence_date":  "2026-06-08",
+                                                          "mode":  "NoWriteMcpToolRegistryPrivateDraftReview",
+                                                          "resources_checked":  10,
+                                                          "required_fields_checked":  15,
+                                                          "primary_customer_interface":  "machine",
+                                                          "write_calls_executed":  0,
+                                                          "post_calls_executed":  0,
+                                                          "external_publication_executed":  false,
+                                                          "irreversible_submission_executed":  false,
+                                                          "live_monetization_enabled":  false,
+                                                          "public_paid_plans_enabled":  false,
+                                                          "hosted_mcp_live":  false,
+                                                          "hosted_mcp_endpoint_published":  false,
+                                                          "real_payment_executed":  false,
+                                                          "real_invoice_issued":  false,
+                                                          "external_contact_executed":  false,
+                                                          "production_api_key_published":  false,
+                                                          "machine_decision":  "mcp_tool_registry_private_draft_ready",
+                                                          "report":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
+                                                          "json":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
+                                                          "interpretation":  "MCP/tool-registry private draft material is ready for owner-supervised private or unsubmitted local-adapter metadata only. Hosted MCP launch, irreversible registry submission, live monetization, production keys, payments and outreach remain blocked."
+                                                      },
+    "current_mcp_tool_registry_private_draft_pack":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+    "current_mcp_tool_registry_private_draft_review":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
+    "latest_external_submission_pack_no_write_review":  {
+                                                            "status":  "completed_external_submission_pack_no_write_review",
+                                                            "ok":  true,
+                                                            "evidence_date":  "2026-06-08",
+                                                            "mode":  "NoWriteExternalSubmissionReview",
+                                                            "resources_checked":  31,
+                                                            "write_calls_executed":  0,
+                                                            "post_calls_executed":  0,
+                                                            "external_publication_executed":  false,
+                                                            "irreversible_submission_executed":  false,
+                                                            "live_monetization_enabled":  false,
+                                                            "hosted_mcp_live":  false,
+                                                            "real_payment_executed":  false,
+                                                            "external_contact_executed":  false,
+                                                            "real_invoice_issued":  false,
+                                                            "production_api_key_published":  false,
+                                                            "hard_fails":  0,
+                                                            "report":  "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
+                                                            "json":  "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+                                                            "interpretation":  "API directory, RapidAPI-style, MCP/tool-registry, private rehearsal, API directory private draft, RapidAPI unpublished provider draft and MCP tool-registry private draft materials are safe for private/draft sandbox preparation only. The review does not authorize irreversible external publication, hosted MCP launch, live checkout, paid plans, production keys or human outreach."
+                                                        },
+    "latest_machine_public_discovery_nowrite_simulation":  {
+                                                               "status":  "completed_machine_public_discovery_nowrite",
+                                                               "ok":  true,
+                                                               "evidence_date":  "2026-06-10",
+                                                               "mode":  "NoWriteMachineDiscoverySimulation",
+                                                               "write_calls_executed":  0,
+                                                               "post_calls_executed":  0,
+                                                               "real_payment_executed":  false,
+                                                               "external_contact_executed":  false,
+                                                               "hosted_mcp_live":  false,
+                                                               "resources_checked":  14,
+                                                               "manifest_tools":  31,
+                                                               "public_get_tools":  20,
+                                                               "report":  "https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md",
+                                                               "json":  "https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json",
+                                                               "interpretation":  "A machine can discover MachineSignal through public surfaces, read MCP/local-adapter metadata and stop safely before writes, payments, publication or outreach."
+                                                           },
+    "current_machine_public_discovery_nowrite_simulation":  "https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json",
+    "latest_distribution_readiness_monitor":  {
+                                                  "status":  "ready_for_distribution_review",
+                                                  "ok":  true,
+                                                  "evidence_date":  "2026-06-10",
+                                                  "mode":  "NoWrite",
+                                                  "generated_at":  "2026-06-10T09:22:36.2278754Z",
+                                                  "resources_checked":  61,
+                                                  "checks_total":  224,
+                                                  "checks_failed":  0,
+                                                  "alert_level":  "OK",
+                                                  "write_calls_executed":  0,
+                                                  "post_calls_executed":  0,
+                                                  "real_payment_executed":  false,
+                                                  "external_contact_executed":  false,
+                                                  "report":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+                                                  "json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+                                                  "interpretation":  "Distribution assets are reachable, JSON/XML assets are valid, expected markers are present, public secret scan passed, public machine discovery NoWrite simulation is included, and no write/POST/payment/contact action was executed."
+                                              }
 }

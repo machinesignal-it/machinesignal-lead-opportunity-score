@@ -510,4 +510,10 @@
   <url>
     <loc>https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json</loc>
   </url>
+  <url>
+    <loc>https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json</loc>
+  </url>
 </urlset>

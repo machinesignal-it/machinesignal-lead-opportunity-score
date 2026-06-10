@@ -1,0 +1,518 @@
+{
+  "artifact": "machine_public_discovery_nowrite_simulation",
+  "generated_at": "2026-06-10T09:11:12.530Z",
+  "public_site": "https://machinesignal.it",
+  "status": "completed_machine_public_discovery_nowrite",
+  "ok": true,
+  "mode": "NoWriteMachineDiscoverySimulation",
+  "primary_customer_interface": "machine",
+  "machine_customer_mode": "machine_discovers_public_surfaces_without_write_calls",
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "hosted_mcp_live": false,
+  "safety": {
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "hosted_mcp_live": false,
+    "external_publication_executed": false,
+    "production_api_key_published": false,
+    "human_outreach_executed": false
+  },
+  "discovery_links_used": {
+    "machine_discovery": "https://machinesignal.it/.well-known/machine-discovery.json",
+    "llms": "https://machinesignal.it/llms.txt",
+    "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "mcp_private_draft_pack": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+    "mcp_private_draft_review": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json"
+  },
+  "tool_discovery": {
+    "total": 31,
+    "no_auth_read_tools": [
+      "get_product_catalog",
+      "get_machine_onboarding",
+      "get_marketplace_api_directory_pack",
+      "get_marketplace_publication_execution_pack",
+      "get_machine_api_sandbox_test",
+      "get_dentists_beta_pack",
+      "get_machine_buyer_evidence_brief",
+      "get_mcp_tool_registry_draft_checklist",
+      "get_machine_deep_analysis_single_purchase_proof",
+      "get_machine_action_pack_single_purchase_proof",
+      "get_public_sandbox_claims_no_write_review",
+      "get_external_submission_pack_no_write_review",
+      "get_external_draft_submission_bundle",
+      "get_private_draft_submission_rehearsal",
+      "get_api_directory_private_draft_pack",
+      "get_api_directory_private_draft_review",
+      "get_rapidapi_unpublished_provider_draft_pack",
+      "get_rapidapi_unpublished_provider_draft_review",
+      "get_mcp_tool_registry_private_draft_pack",
+      "get_mcp_tool_registry_private_draft_review"
+    ],
+    "post_tools": [
+      {
+        "name": "create_sandbox_customer",
+        "auth": "none",
+        "url": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers"
+      },
+      {
+        "name": "score_lead_opportunity",
+        "auth": "customer_api_key",
+        "url": "https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score"
+      },
+      {
+        "name": "create_purchase_intent",
+        "auth": "customer_api_key",
+        "url": "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent"
+      },
+      {
+        "name": "create_payment_test_intent",
+        "auth": "customer_api_key",
+        "url": "https://machinesignal-api.beta-878.workers.dev/v1/payment-test/intents"
+      }
+    ],
+    "required_present": [
+      "get_product_catalog",
+      "get_machine_onboarding",
+      "get_machine_api_sandbox_test",
+      "get_mcp_tool_registry_private_draft_pack",
+      "get_mcp_tool_registry_private_draft_review"
+    ]
+  },
+  "machine_decision": {
+    "decision": "public_machine_discovery_ready_for_nowrite_review",
+    "recommended_next_step": "Use this as evidence that machine-facing discovery works without writes. Next bounded step is a local MCP adapter NoWrite install validation."
+  },
+  "resources": [
+    {
+      "name": "llms_txt",
+      "url": "https://machinesignal.it/llms.txt",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 22658,
+      "json_valid": null,
+      "elapsed_ms": 658,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "machine_discovery",
+      "url": "https://machinesignal.it/.well-known/machine-discovery.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 47656,
+      "json_valid": true,
+      "elapsed_ms": 55,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "product_catalog",
+      "url": "https://machinesignal.it/product-catalog.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 12370,
+      "json_valid": true,
+      "elapsed_ms": 54,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "machine_onboarding",
+      "url": "https://machinesignal.it/machine-onboarding.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 52703,
+      "json_valid": true,
+      "elapsed_ms": 57,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "openapi",
+      "url": "https://machinesignal.it/openapi.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 58945,
+      "json_valid": true,
+      "elapsed_ms": 44,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "postman_collection",
+      "url": "https://machinesignal.it/postman_collection.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 27401,
+      "json_valid": true,
+      "elapsed_ms": 51,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "mcp_tool_manifest",
+      "url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 47302,
+      "json_valid": true,
+      "elapsed_ms": 65,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "well_known_mcp_tool_manifest",
+      "url": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 47302,
+      "json_valid": true,
+      "elapsed_ms": 63,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "mcp_wrapper_pack",
+      "url": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 26037,
+      "json_valid": true,
+      "elapsed_ms": 47,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "mcp_installation_pack",
+      "url": "https://machinesignal.it/mcp-machine-client-installation-pack.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 22635,
+      "json_valid": true,
+      "elapsed_ms": 54,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "mcp_private_draft_pack",
+      "url": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 7155,
+      "json_valid": true,
+      "elapsed_ms": 50,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "mcp_private_draft_review",
+      "url": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 11232,
+      "json_valid": true,
+      "elapsed_ms": 46,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "external_submission_nowrite_review",
+      "url": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 53607,
+      "json_valid": true,
+      "elapsed_ms": 64,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "distribution_readiness_monitor",
+      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 52520,
+      "json_valid": true,
+      "elapsed_ms": 59,
+      "markers_ok": true,
+      "secret_hits": []
+    }
+  ],
+  "checks": [
+    {
+      "name": "llms_txt_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=22658; json=null; secrets=0"
+    },
+    {
+      "name": "machine_discovery_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=47656; json=true; secrets=0"
+    },
+    {
+      "name": "machine_discovery_primary_customer_interface",
+      "ok": true,
+      "details": "primary_customer_interface=machine"
+    },
+    {
+      "name": "machine_discovery_base_url_present",
+      "ok": true,
+      "details": "base_url=https://machinesignal-api.beta-878.workers.dev"
+    },
+    {
+      "name": "discovery_link_product_catalog",
+      "ok": true,
+      "details": "https://machinesignal.it/product-catalog.json"
+    },
+    {
+      "name": "product_catalog_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=12370; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_machine_onboarding",
+      "ok": true,
+      "details": "https://machinesignal.it/machine-onboarding.json"
+    },
+    {
+      "name": "machine_onboarding_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=52703; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_openapi",
+      "ok": true,
+      "details": "https://machinesignal.it/openapi.json"
+    },
+    {
+      "name": "openapi_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=58945; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_postman_collection",
+      "ok": true,
+      "details": "https://machinesignal.it/postman_collection.json"
+    },
+    {
+      "name": "postman_collection_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=27401; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_mcp_tool_manifest",
+      "ok": true,
+      "details": "https://machinesignal.it/mcp-tool-manifest.json"
+    },
+    {
+      "name": "mcp_tool_manifest_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=47302; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_well_known_mcp_tool_manifest",
+      "ok": true,
+      "details": "https://machinesignal.it/.well-known/mcp-tool-manifest.json"
+    },
+    {
+      "name": "well_known_mcp_tool_manifest_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=47302; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_mcp_wrapper_pack",
+      "ok": true,
+      "details": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json"
+    },
+    {
+      "name": "mcp_wrapper_pack_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=26037; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_mcp_installation_pack",
+      "ok": true,
+      "details": "https://machinesignal.it/mcp-machine-client-installation-pack.json"
+    },
+    {
+      "name": "mcp_installation_pack_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=22635; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_mcp_private_draft_pack",
+      "ok": true,
+      "details": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json"
+    },
+    {
+      "name": "mcp_private_draft_pack_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=7155; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_mcp_private_draft_review",
+      "ok": true,
+      "details": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json"
+    },
+    {
+      "name": "mcp_private_draft_review_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=11232; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_external_submission_nowrite_review",
+      "ok": true,
+      "details": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json"
+    },
+    {
+      "name": "external_submission_nowrite_review_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=53607; json=true; secrets=0"
+    },
+    {
+      "name": "discovery_link_distribution_readiness_monitor",
+      "ok": true,
+      "details": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json"
+    },
+    {
+      "name": "distribution_readiness_monitor_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=52520; json=true; secrets=0"
+    },
+    {
+      "name": "manifest_exposes_get_product_catalog",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "manifest_exposes_get_machine_onboarding",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "manifest_exposes_get_machine_api_sandbox_test",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "manifest_exposes_get_mcp_tool_registry_private_draft_pack",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "manifest_exposes_get_mcp_tool_registry_private_draft_review",
+      "ok": true,
+      "details": "present"
+    },
+    {
+      "name": "manifest_has_readable_public_tools",
+      "ok": true,
+      "details": "20 public GET tools"
+    },
+    {
+      "name": "manifest_post_tools_classified",
+      "ok": true,
+      "details": "4 POST tools classified"
+    },
+    {
+      "name": "mcp_public_server_not_live",
+      "ok": true,
+      "details": "public_mcp_server_live=false"
+    },
+    {
+      "name": "mcp_wrapper_local_adapter_available",
+      "ok": true,
+      "details": "wrapper mentions local stdio adapter"
+    },
+    {
+      "name": "private_draft_status_valid",
+      "ok": true,
+      "details": "status=ready_for_mcp_tool_registry_private_draft_only"
+    },
+    {
+      "name": "private_draft_review_ok",
+      "ok": true,
+      "details": "ok=true; writes=0; posts=0"
+    },
+    {
+      "name": "external_nowrite_review_ok",
+      "ok": true,
+      "details": "ok=true; writes=0; posts=0"
+    },
+    {
+      "name": "distribution_monitor_ok",
+      "ok": true,
+      "details": "ok=true; failed=0"
+    },
+    {
+      "name": "draft_safety_external_publication_executed",
+      "ok": true,
+      "details": "external_publication_executed=false"
+    },
+    {
+      "name": "draft_safety_irreversible_submission_executed",
+      "ok": true,
+      "details": "irreversible_submission_executed=false"
+    },
+    {
+      "name": "draft_safety_live_monetization_enabled",
+      "ok": true,
+      "details": "live_monetization_enabled=false"
+    },
+    {
+      "name": "draft_safety_public_paid_plans_enabled",
+      "ok": true,
+      "details": "public_paid_plans_enabled=false"
+    },
+    {
+      "name": "draft_safety_hosted_mcp_live",
+      "ok": true,
+      "details": "hosted_mcp_live=false"
+    },
+    {
+      "name": "draft_safety_hosted_mcp_endpoint_published",
+      "ok": true,
+      "details": "hosted_mcp_endpoint_published=false"
+    },
+    {
+      "name": "draft_safety_real_payment_executed",
+      "ok": true,
+      "details": "real_payment_executed=false"
+    },
+    {
+      "name": "draft_safety_real_invoice_issued",
+      "ok": true,
+      "details": "real_invoice_issued=false"
+    },
+    {
+      "name": "draft_safety_external_contact_executed",
+      "ok": true,
+      "details": "external_contact_executed=false"
+    },
+    {
+      "name": "draft_safety_production_api_key_published",
+      "ok": true,
+      "details": "production_api_key_published=false"
+    },
+    {
+      "name": "draft_safety_human_outreach_allowed",
+      "ok": true,
+      "details": "human_outreach_allowed=false"
+    },
+    {
+      "name": "draft_safety_writes_zero",
+      "ok": true,
+      "details": "write_calls=0"
+    },
+    {
+      "name": "draft_safety_posts_zero",
+      "ok": true,
+      "details": "post_calls=0"
+    }
+  ],
+  "source_note": "No POST, write, payment, publication, production key or outreach action was executed."
+}

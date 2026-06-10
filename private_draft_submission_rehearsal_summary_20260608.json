@@ -1,610 +1,654 @@
 {
-  "artifact": "private_draft_submission_rehearsal",
-  "generated_at": "2026-06-08T13:48:28.581Z",
-  "status": "completed_private_draft_submission_rehearsal",
-  "ok": true,
-  "mode": "NoWritePrivateDraftSubmissionRehearsal",
-  "public_site": "https://machinesignal.it",
-  "primary_customer_interface": "machine",
-  "write_calls_executed": 0,
-  "post_calls_executed": 0,
-  "external_publication_executed": false,
-  "irreversible_submission_executed": false,
-  "live_monetization_enabled": false,
-  "public_paid_plans_enabled": false,
-  "hosted_mcp_live": false,
-  "real_payment_executed": false,
-  "real_invoice_issued": false,
-  "external_contact_executed": false,
-  "production_api_key_published": false,
-  "resources_checked": 12,
-  "channels_checked": 4,
-  "safety_checks": [
-    {
-      "name": "bundle_status_private_draft_only",
-      "ok": true,
-      "details": "status=ready_for_private_draft_only"
-    },
-    {
-      "name": "machine_customer_interface",
-      "ok": true,
-      "details": "primary_customer_interface=machine"
-    },
-    {
-      "name": "current_business_state_blocks_go_live",
-      "ok": true,
-      "details": "{\"phase\":\"sandbox_beta_testing\",\"external_publication_executed\":false,\"irreversible_submission_allowed\":false,\"live_monetization_enabled\":false,\"public_paid_plans_enabled\":false,\"hosted_mcp_live\":false,\"production_api_key_published\":false,\"real_payment_executed\":false,\"real_invoice_issued\":false,\"external_contact_executed\":false,\"human_outreach_allowed\":false}"
-    },
-    {
-      "name": "nowrite_review_ok",
-      "ok": true,
-      "details": "ok=true, writes=0, posts=0"
-    },
-    {
-      "name": "distribution_monitor_ok",
-      "ok": true,
-      "details": "ok=true, failed=0, writes=0, posts=0"
-    }
-  ],
-  "channel_rehearsals": [
-    {
-      "channel": "generic_api_directory_private_draft",
-      "simulated_action": "prepare_private_draft_metadata_only",
-      "ready_for_private_draft": true,
-      "irreversible_submit_executed": false,
-      "write_calls_executed": 0,
-      "post_calls_executed": 0,
-      "public_visibility_enabled": false,
-      "monetization_enabled": false,
-      "field_checks": [
-        {
-          "field": "product_name",
-          "ok": true
-        },
-        {
-          "field": "short_description",
-          "ok": true
-        },
-        {
-          "field": "long_description",
-          "ok": true
-        },
-        {
-          "field": "primary_user",
-          "ok": true
-        },
-        {
-          "field": "categories",
-          "ok": true
-        },
-        {
-          "field": "tags",
-          "ok": true
-        }
-      ],
-      "resource_checks": [
-        {
-          "name": "api_directory_submission",
-          "ok": true
-        },
-        {
-          "name": "openapi",
-          "ok": true
-        },
-        {
-          "name": "machine_onboarding",
-          "ok": true
-        }
-      ],
-      "draft_status": "draft_only",
-      "stop_before": [
-        "irreversible_public_submission",
-        "production_key_publication",
-        "live_payment_claim",
-        "human_outreach"
-      ],
-      "blocked_actions": [
-        "irreversible_public_submission",
-        "production_key_publication",
-        "live_payment_claim",
-        "human_outreach"
-      ]
-    },
-    {
-      "channel": "rapidapi_style_unpublished_provider_draft",
-      "simulated_action": "prepare_private_draft_metadata_only",
-      "ready_for_private_draft": true,
-      "irreversible_submit_executed": false,
-      "write_calls_executed": 0,
-      "post_calls_executed": 0,
-      "public_visibility_enabled": false,
-      "monetization_enabled": false,
-      "field_checks": [
-        {
-          "field": "product_name",
-          "ok": true
-        },
-        {
-          "field": "short_description",
-          "ok": true
-        },
-        {
-          "field": "long_description",
-          "ok": true
-        },
-        {
-          "field": "primary_user",
-          "ok": true
-        },
-        {
-          "field": "categories",
-          "ok": true
-        },
-        {
-          "field": "tags",
-          "ok": true
-        }
-      ],
-      "resource_checks": [
-        {
-          "name": "rapidapi_listing",
-          "ok": true
-        },
-        {
-          "name": "openapi",
-          "ok": true
-        }
-      ],
-      "draft_status": "metadata_ready_monetization_disabled",
-      "stop_before": [
-        "create_public_paid_plans",
-        "connect_live_checkout",
-        "claim_production_availability",
-        "publish_production_credentials"
-      ],
-      "blocked_actions": [
-        "create_public_paid_plans",
-        "connect_live_checkout",
-        "claim_production_availability",
-        "publish_production_credentials"
-      ]
-    },
-    {
-      "channel": "mcp_tool_registry_local_adapter_draft",
-      "simulated_action": "prepare_private_draft_metadata_only",
-      "ready_for_private_draft": true,
-      "irreversible_submit_executed": false,
-      "write_calls_executed": 0,
-      "post_calls_executed": 0,
-      "public_visibility_enabled": false,
-      "monetization_enabled": false,
-      "field_checks": [
-        {
-          "field": "product_name",
-          "ok": true
-        },
-        {
-          "field": "short_description",
-          "ok": true
-        },
-        {
-          "field": "long_description",
-          "ok": true
-        },
-        {
-          "field": "primary_user",
-          "ok": true
-        },
-        {
-          "field": "categories",
-          "ok": true
-        },
-        {
-          "field": "tags",
-          "ok": true
-        }
-      ],
-      "resource_checks": [
-        {
-          "name": "mcp_tool_manifest",
-          "ok": true
-        },
-        {
-          "name": "mcp_wrapper",
-          "ok": true
-        }
-      ],
-      "draft_status": "local_adapter_draft_only",
-      "stop_before": [
-        "claim_hosted_mcp_live",
-        "submit_to_registry_requiring_hosted_endpoint_without_build",
-        "publish_customer_or_production_keys",
-        "enable_paid_plans"
-      ],
-      "blocked_actions": [
-        "claim_hosted_mcp_live",
-        "submit_to_registry_requiring_hosted_endpoint_without_build",
-        "publish_customer_or_production_keys",
-        "enable_paid_plans"
-      ]
-    },
-    {
-      "channel": "postman_private_or_team_workspace",
-      "simulated_action": "prepare_private_draft_metadata_only",
-      "ready_for_private_draft": true,
-      "irreversible_submit_executed": false,
-      "write_calls_executed": 0,
-      "post_calls_executed": 0,
-      "public_visibility_enabled": false,
-      "monetization_enabled": false,
-      "field_checks": [
-        {
-          "field": "product_name",
-          "ok": true
-        },
-        {
-          "field": "short_description",
-          "ok": true
-        },
-        {
-          "field": "long_description",
-          "ok": true
-        },
-        {
-          "field": "primary_user",
-          "ok": true
-        },
-        {
-          "field": "categories",
-          "ok": true
-        },
-        {
-          "field": "tags",
-          "ok": true
-        }
-      ],
-      "resource_checks": [
-        {
-          "name": "postman_workspace_draft",
-          "ok": true
-        },
-        {
-          "name": "postman_private_workspace_checklist",
-          "ok": true
-        }
-      ],
-      "draft_status": "private_or_team_draft_only",
-      "stop_before": [
-        "public_workspace_publication_without_secret_scan",
-        "production_environment_publication",
-        "real_customer_key_publication"
-      ],
-      "blocked_actions": [
-        "public_workspace_publication_without_secret_scan",
-        "production_environment_publication",
-        "real_customer_key_publication"
-      ]
-    }
-  ],
-  "resources": [
-    {
-      "name": "machine_discovery",
-      "url": "https://machinesignal.it/.well-known/machine-discovery.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 23084,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "external_draft_submission_bundle_json",
-          "ok": true
-        },
-        {
-          "marker": "primary_customer_interface",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "external_draft_submission_bundle",
-      "url": "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 12396,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "ready_for_private_draft_only",
-          "ok": true
-        },
-        {
-          "marker": "generic_api_directory_private_draft",
-          "ok": true
-        },
-        {
-          "marker": "rapidapi_style_unpublished_provider_draft",
-          "ok": true
-        },
-        {
-          "marker": "mcp_tool_registry_local_adapter_draft",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "api_directory_submission",
-      "url": "https://machinesignal.it/distribution/api-directory-submission.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 8667,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "latest_machine_buyer_evidence",
-          "ok": true
-        },
-        {
-          "marker": "machine",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "rapidapi_listing",
-      "url": "https://machinesignal.it/distribution/rapidapi-listing.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 11250,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "rapidapi_style_provider_metadata_ready_monetization_disabled",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "mcp_tool_manifest",
-      "url": "https://machinesignal.it/mcp-tool-manifest.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 36537,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "get_external_draft_submission_bundle",
-          "ok": true
-        },
-        {
-          "marker": "machine",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "mcp_wrapper",
-      "url": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 18560,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "mcp_tools_expected",
-          "ok": true
-        },
-        {
-          "marker": "get_external_draft_submission_bundle",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "postman_workspace_draft",
-      "url": "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 9559,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "ready_for_private_or_team_workspace_setup_public_visibility_blocked_until_owner_approval",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "postman_private_workspace_checklist",
-      "url": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 5098,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "blocked_actions",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "openapi",
-      "url": "https://machinesignal.it/openapi.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 58945,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "lead-opportunity-score",
-          "ok": true
-        },
-        {
-          "marker": "purchase-intent",
-          "ok": true
-        },
-        {
-          "marker": "orders",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "machine_onboarding",
-      "url": "https://machinesignal.it/machine-onboarding.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 45715,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "NoWrite",
-          "ok": true
-        },
-        {
-          "marker": "sandbox",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "external_submission_nowrite_review",
-      "url": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 29953,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "completed_external_submission_pack_no_write_review",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    },
-    {
-      "name": "distribution_readiness_monitor",
-      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
-      "ok": true,
-      "http_status": 200,
-      "bytes": 41990,
-      "json_valid": true,
-      "json_error": null,
-      "marker_checks": [
-        {
-          "marker": "ready_for_distribution_review",
-          "ok": true
-        }
-      ],
-      "hard_fails": []
-    }
-  ],
-  "hard_fails": [],
-  "machine_decision": {
-    "decision": "prepare_private_draft_only",
-    "recommended_next_step": "Use the bundle to prepare an owner-supervised private API-directory draft rehearsal. Stop before final submit, paid plan creation, hosted MCP launch or external outreach."
-  },
-  "go_live_blockers": [
-    "legal and fiscal setup",
-    "terms of service and privacy/commercial terms",
-    "live payment processor setup",
-    "invoice/accounting workflow",
-    "production key policy",
-    "rate limits and abuse controls",
-    "customer support and refund policy",
-    "owner approval"
-  ],
-  "public_links": {
-    "mcp_tool_registry_private_draft_pack": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md",
-    "mcp_tool_registry_private_draft_pack_json": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
-    "mcp_tool_registry_private_draft_review": "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
-    "mcp_tool_registry_private_draft_review_json": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json"
-  },
-  "latest_mcp_tool_registry_private_draft_review": {
-    "status": "completed_mcp_tool_registry_private_draft_review",
-    "ok": true,
-    "evidence_date": "2026-06-08",
-    "mode": "NoWriteMcpToolRegistryPrivateDraftReview",
-    "resources_checked": 10,
-    "required_fields_checked": 15,
-    "primary_customer_interface": "machine",
-    "write_calls_executed": 0,
-    "post_calls_executed": 0,
-    "external_publication_executed": false,
-    "irreversible_submission_executed": false,
-    "live_monetization_enabled": false,
-    "public_paid_plans_enabled": false,
-    "hosted_mcp_live": false,
-    "hosted_mcp_endpoint_published": false,
-    "real_payment_executed": false,
-    "real_invoice_issued": false,
-    "external_contact_executed": false,
-    "production_api_key_published": false,
-    "machine_decision": "mcp_tool_registry_private_draft_ready",
-    "report": "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
-    "json": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
-    "interpretation": "MCP/tool-registry private draft material is ready for owner-supervised private or unsubmitted local-adapter metadata only. Hosted MCP launch, irreversible registry submission, live monetization, production keys, payments and outreach remain blocked."
-  },
-  "current_mcp_tool_registry_private_draft_pack": "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
-  "current_mcp_tool_registry_private_draft_review": "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
-  "latest_distribution_readiness_monitor": {
-    "status": "ready_for_distribution_review",
-    "ok": true,
-    "evidence_date": "2026-06-08",
-    "mode": "NoWrite",
-    "generated_at": "2026-06-08T16:03:13.4344388Z",
-    "resources_checked": 59,
-    "checks_total": 217,
-    "checks_failed": 0,
-    "alert_level": "OK",
-    "write_calls_executed": 0,
-    "post_calls_executed": 0,
-    "real_payment_executed": false,
-    "external_contact_executed": false,
-    "report": "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
-    "json": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
-    "interpretation": "Distribution assets are reachable, JSON/XML assets are valid, expected markers are present, public secret scan passed, and no write/POST/payment/contact action was executed. MCP tool-registry private draft assets are included."
-  },
-  "latest_external_submission_pack_no_write_review": {
-    "status": "completed_external_submission_pack_no_write_review",
-    "ok": true,
-    "evidence_date": "2026-06-08",
-    "mode": "NoWriteExternalSubmissionReview",
-    "resources_checked": 31,
-    "write_calls_executed": 0,
-    "post_calls_executed": 0,
-    "external_publication_executed": false,
-    "irreversible_submission_executed": false,
-    "live_monetization_enabled": false,
-    "hosted_mcp_live": false,
-    "real_payment_executed": false,
-    "external_contact_executed": false,
-    "real_invoice_issued": false,
-    "production_api_key_published": false,
-    "hard_fails": 0,
-    "report": "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
-    "json": "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
-    "interpretation": "API directory, RapidAPI-style, MCP/tool-registry, private rehearsal, API directory private draft, RapidAPI unpublished provider draft and MCP tool-registry private draft materials are safe for private/draft sandbox preparation only. The review does not authorize irreversible external publication, hosted MCP launch, live checkout, paid plans, production keys or human outreach."
-  }
+    "artifact":  "private_draft_submission_rehearsal",
+    "generated_at":  "2026-06-08T13:48:28.581Z",
+    "status":  "completed_private_draft_submission_rehearsal",
+    "ok":  true,
+    "mode":  "NoWritePrivateDraftSubmissionRehearsal",
+    "public_site":  "https://machinesignal.it",
+    "primary_customer_interface":  "machine",
+    "write_calls_executed":  0,
+    "post_calls_executed":  0,
+    "external_publication_executed":  false,
+    "irreversible_submission_executed":  false,
+    "live_monetization_enabled":  false,
+    "public_paid_plans_enabled":  false,
+    "hosted_mcp_live":  false,
+    "real_payment_executed":  false,
+    "real_invoice_issued":  false,
+    "external_contact_executed":  false,
+    "production_api_key_published":  false,
+    "resources_checked":  12,
+    "channels_checked":  4,
+    "safety_checks":  [
+                          {
+                              "name":  "bundle_status_private_draft_only",
+                              "ok":  true,
+                              "details":  "status=ready_for_private_draft_only"
+                          },
+                          {
+                              "name":  "machine_customer_interface",
+                              "ok":  true,
+                              "details":  "primary_customer_interface=machine"
+                          },
+                          {
+                              "name":  "current_business_state_blocks_go_live",
+                              "ok":  true,
+                              "details":  "{\"phase\":\"sandbox_beta_testing\",\"external_publication_executed\":false,\"irreversible_submission_allowed\":false,\"live_monetization_enabled\":false,\"public_paid_plans_enabled\":false,\"hosted_mcp_live\":false,\"production_api_key_published\":false,\"real_payment_executed\":false,\"real_invoice_issued\":false,\"external_contact_executed\":false,\"human_outreach_allowed\":false}"
+                          },
+                          {
+                              "name":  "nowrite_review_ok",
+                              "ok":  true,
+                              "details":  "ok=true, writes=0, posts=0"
+                          },
+                          {
+                              "name":  "distribution_monitor_ok",
+                              "ok":  true,
+                              "details":  "ok=true, failed=0, writes=0, posts=0"
+                          }
+                      ],
+    "channel_rehearsals":  [
+                               {
+                                   "channel":  "generic_api_directory_private_draft",
+                                   "simulated_action":  "prepare_private_draft_metadata_only",
+                                   "ready_for_private_draft":  true,
+                                   "irreversible_submit_executed":  false,
+                                   "write_calls_executed":  0,
+                                   "post_calls_executed":  0,
+                                   "public_visibility_enabled":  false,
+                                   "monetization_enabled":  false,
+                                   "field_checks":  [
+                                                        {
+                                                            "field":  "product_name",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "short_description",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "long_description",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "primary_user",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "categories",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "tags",
+                                                            "ok":  true
+                                                        }
+                                                    ],
+                                   "resource_checks":  [
+                                                           {
+                                                               "name":  "api_directory_submission",
+                                                               "ok":  true
+                                                           },
+                                                           {
+                                                               "name":  "openapi",
+                                                               "ok":  true
+                                                           },
+                                                           {
+                                                               "name":  "machine_onboarding",
+                                                               "ok":  true
+                                                           }
+                                                       ],
+                                   "draft_status":  "draft_only",
+                                   "stop_before":  [
+                                                       "irreversible_public_submission",
+                                                       "production_key_publication",
+                                                       "live_payment_claim",
+                                                       "human_outreach"
+                                                   ],
+                                   "blocked_actions":  [
+                                                           "irreversible_public_submission",
+                                                           "production_key_publication",
+                                                           "live_payment_claim",
+                                                           "human_outreach"
+                                                       ]
+                               },
+                               {
+                                   "channel":  "rapidapi_style_unpublished_provider_draft",
+                                   "simulated_action":  "prepare_private_draft_metadata_only",
+                                   "ready_for_private_draft":  true,
+                                   "irreversible_submit_executed":  false,
+                                   "write_calls_executed":  0,
+                                   "post_calls_executed":  0,
+                                   "public_visibility_enabled":  false,
+                                   "monetization_enabled":  false,
+                                   "field_checks":  [
+                                                        {
+                                                            "field":  "product_name",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "short_description",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "long_description",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "primary_user",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "categories",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "tags",
+                                                            "ok":  true
+                                                        }
+                                                    ],
+                                   "resource_checks":  [
+                                                           {
+                                                               "name":  "rapidapi_listing",
+                                                               "ok":  true
+                                                           },
+                                                           {
+                                                               "name":  "openapi",
+                                                               "ok":  true
+                                                           }
+                                                       ],
+                                   "draft_status":  "metadata_ready_monetization_disabled",
+                                   "stop_before":  [
+                                                       "create_public_paid_plans",
+                                                       "connect_live_checkout",
+                                                       "claim_production_availability",
+                                                       "publish_production_credentials"
+                                                   ],
+                                   "blocked_actions":  [
+                                                           "create_public_paid_plans",
+                                                           "connect_live_checkout",
+                                                           "claim_production_availability",
+                                                           "publish_production_credentials"
+                                                       ]
+                               },
+                               {
+                                   "channel":  "mcp_tool_registry_local_adapter_draft",
+                                   "simulated_action":  "prepare_private_draft_metadata_only",
+                                   "ready_for_private_draft":  true,
+                                   "irreversible_submit_executed":  false,
+                                   "write_calls_executed":  0,
+                                   "post_calls_executed":  0,
+                                   "public_visibility_enabled":  false,
+                                   "monetization_enabled":  false,
+                                   "field_checks":  [
+                                                        {
+                                                            "field":  "product_name",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "short_description",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "long_description",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "primary_user",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "categories",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "tags",
+                                                            "ok":  true
+                                                        }
+                                                    ],
+                                   "resource_checks":  [
+                                                           {
+                                                               "name":  "mcp_tool_manifest",
+                                                               "ok":  true
+                                                           },
+                                                           {
+                                                               "name":  "mcp_wrapper",
+                                                               "ok":  true
+                                                           }
+                                                       ],
+                                   "draft_status":  "local_adapter_draft_only",
+                                   "stop_before":  [
+                                                       "claim_hosted_mcp_live",
+                                                       "submit_to_registry_requiring_hosted_endpoint_without_build",
+                                                       "publish_customer_or_production_keys",
+                                                       "enable_paid_plans"
+                                                   ],
+                                   "blocked_actions":  [
+                                                           "claim_hosted_mcp_live",
+                                                           "submit_to_registry_requiring_hosted_endpoint_without_build",
+                                                           "publish_customer_or_production_keys",
+                                                           "enable_paid_plans"
+                                                       ]
+                               },
+                               {
+                                   "channel":  "postman_private_or_team_workspace",
+                                   "simulated_action":  "prepare_private_draft_metadata_only",
+                                   "ready_for_private_draft":  true,
+                                   "irreversible_submit_executed":  false,
+                                   "write_calls_executed":  0,
+                                   "post_calls_executed":  0,
+                                   "public_visibility_enabled":  false,
+                                   "monetization_enabled":  false,
+                                   "field_checks":  [
+                                                        {
+                                                            "field":  "product_name",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "short_description",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "long_description",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "primary_user",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "categories",
+                                                            "ok":  true
+                                                        },
+                                                        {
+                                                            "field":  "tags",
+                                                            "ok":  true
+                                                        }
+                                                    ],
+                                   "resource_checks":  [
+                                                           {
+                                                               "name":  "postman_workspace_draft",
+                                                               "ok":  true
+                                                           },
+                                                           {
+                                                               "name":  "postman_private_workspace_checklist",
+                                                               "ok":  true
+                                                           }
+                                                       ],
+                                   "draft_status":  "private_or_team_draft_only",
+                                   "stop_before":  [
+                                                       "public_workspace_publication_without_secret_scan",
+                                                       "production_environment_publication",
+                                                       "real_customer_key_publication"
+                                                   ],
+                                   "blocked_actions":  [
+                                                           "public_workspace_publication_without_secret_scan",
+                                                           "production_environment_publication",
+                                                           "real_customer_key_publication"
+                                                       ]
+                               }
+                           ],
+    "resources":  [
+                      {
+                          "name":  "machine_discovery",
+                          "url":  "https://machinesignal.it/.well-known/machine-discovery.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  23084,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "external_draft_submission_bundle_json",
+                                                    "ok":  true
+                                                },
+                                                {
+                                                    "marker":  "primary_customer_interface",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "external_draft_submission_bundle",
+                          "url":  "https://machinesignal.it/external_draft_submission_bundle_20260608.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  12396,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "ready_for_private_draft_only",
+                                                    "ok":  true
+                                                },
+                                                {
+                                                    "marker":  "generic_api_directory_private_draft",
+                                                    "ok":  true
+                                                },
+                                                {
+                                                    "marker":  "rapidapi_style_unpublished_provider_draft",
+                                                    "ok":  true
+                                                },
+                                                {
+                                                    "marker":  "mcp_tool_registry_local_adapter_draft",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "api_directory_submission",
+                          "url":  "https://machinesignal.it/distribution/api-directory-submission.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  8667,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "latest_machine_buyer_evidence",
+                                                    "ok":  true
+                                                },
+                                                {
+                                                    "marker":  "machine",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "rapidapi_listing",
+                          "url":  "https://machinesignal.it/distribution/rapidapi-listing.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  11250,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "rapidapi_style_provider_metadata_ready_monetization_disabled",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "mcp_tool_manifest",
+                          "url":  "https://machinesignal.it/mcp-tool-manifest.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  36537,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "get_external_draft_submission_bundle",
+                                                    "ok":  true
+                                                },
+                                                {
+                                                    "marker":  "machine",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "mcp_wrapper",
+                          "url":  "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  18560,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "mcp_tools_expected",
+                                                    "ok":  true
+                                                },
+                                                {
+                                                    "marker":  "get_external_draft_submission_bundle",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "postman_workspace_draft",
+                          "url":  "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  9559,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "ready_for_private_or_team_workspace_setup_public_visibility_blocked_until_owner_approval",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "postman_private_workspace_checklist",
+                          "url":  "https://machinesignal.it/postman_private_workspace_checklist_20260607.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  5098,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "blocked_actions",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "openapi",
+                          "url":  "https://machinesignal.it/openapi.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  58945,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "lead-opportunity-score",
+                                                    "ok":  true
+                                                },
+                                                {
+                                                    "marker":  "purchase-intent",
+                                                    "ok":  true
+                                                },
+                                                {
+                                                    "marker":  "orders",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "machine_onboarding",
+                          "url":  "https://machinesignal.it/machine-onboarding.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  45715,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "NoWrite",
+                                                    "ok":  true
+                                                },
+                                                {
+                                                    "marker":  "sandbox",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "external_submission_nowrite_review",
+                          "url":  "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  29953,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "completed_external_submission_pack_no_write_review",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      },
+                      {
+                          "name":  "distribution_readiness_monitor",
+                          "url":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+                          "ok":  true,
+                          "http_status":  200,
+                          "bytes":  41990,
+                          "json_valid":  true,
+                          "json_error":  null,
+                          "marker_checks":  [
+                                                {
+                                                    "marker":  "ready_for_distribution_review",
+                                                    "ok":  true
+                                                }
+                                            ],
+                          "hard_fails":  [
+
+                                         ]
+                      }
+                  ],
+    "hard_fails":  [
+
+                   ],
+    "machine_decision":  {
+                             "decision":  "prepare_private_draft_only",
+                             "recommended_next_step":  "Use the bundle to prepare an owner-supervised private API-directory draft rehearsal. Stop before final submit, paid plan creation, hosted MCP launch or external outreach."
+                         },
+    "go_live_blockers":  [
+                             "legal and fiscal setup",
+                             "terms of service and privacy/commercial terms",
+                             "live payment processor setup",
+                             "invoice/accounting workflow",
+                             "production key policy",
+                             "rate limits and abuse controls",
+                             "customer support and refund policy",
+                             "owner approval"
+                         ],
+    "public_links":  {
+                         "mcp_tool_registry_private_draft_pack":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.md",
+                         "mcp_tool_registry_private_draft_pack_json":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+                         "mcp_tool_registry_private_draft_review":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
+                         "mcp_tool_registry_private_draft_review_json":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json"
+                     },
+    "latest_mcp_tool_registry_private_draft_review":  {
+                                                          "status":  "completed_mcp_tool_registry_private_draft_review",
+                                                          "ok":  true,
+                                                          "evidence_date":  "2026-06-08",
+                                                          "mode":  "NoWriteMcpToolRegistryPrivateDraftReview",
+                                                          "resources_checked":  10,
+                                                          "required_fields_checked":  15,
+                                                          "primary_customer_interface":  "machine",
+                                                          "write_calls_executed":  0,
+                                                          "post_calls_executed":  0,
+                                                          "external_publication_executed":  false,
+                                                          "irreversible_submission_executed":  false,
+                                                          "live_monetization_enabled":  false,
+                                                          "public_paid_plans_enabled":  false,
+                                                          "hosted_mcp_live":  false,
+                                                          "hosted_mcp_endpoint_published":  false,
+                                                          "real_payment_executed":  false,
+                                                          "real_invoice_issued":  false,
+                                                          "external_contact_executed":  false,
+                                                          "production_api_key_published":  false,
+                                                          "machine_decision":  "mcp_tool_registry_private_draft_ready",
+                                                          "report":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
+                                                          "json":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
+                                                          "interpretation":  "MCP/tool-registry private draft material is ready for owner-supervised private or unsubmitted local-adapter metadata only. Hosted MCP launch, irreversible registry submission, live monetization, production keys, payments and outreach remain blocked."
+                                                      },
+    "current_mcp_tool_registry_private_draft_pack":  "https://machinesignal.it/mcp_tool_registry_private_draft_pack_20260608.json",
+    "current_mcp_tool_registry_private_draft_review":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
+    "latest_external_submission_pack_no_write_review":  {
+                                                            "status":  "completed_external_submission_pack_no_write_review",
+                                                            "ok":  true,
+                                                            "evidence_date":  "2026-06-08",
+                                                            "mode":  "NoWriteExternalSubmissionReview",
+                                                            "resources_checked":  31,
+                                                            "write_calls_executed":  0,
+                                                            "post_calls_executed":  0,
+                                                            "external_publication_executed":  false,
+                                                            "irreversible_submission_executed":  false,
+                                                            "live_monetization_enabled":  false,
+                                                            "hosted_mcp_live":  false,
+                                                            "real_payment_executed":  false,
+                                                            "external_contact_executed":  false,
+                                                            "real_invoice_issued":  false,
+                                                            "production_api_key_published":  false,
+                                                            "hard_fails":  0,
+                                                            "report":  "https://machinesignal.it/external_submission_pack_no_write_review_report_20260608.md",
+                                                            "json":  "https://machinesignal.it/external_submission_pack_no_write_review_summary_20260608.json",
+                                                            "interpretation":  "API directory, RapidAPI-style, MCP/tool-registry, private rehearsal, API directory private draft, RapidAPI unpublished provider draft and MCP tool-registry private draft materials are safe for private/draft sandbox preparation only. The review does not authorize irreversible external publication, hosted MCP launch, live checkout, paid plans, production keys or human outreach."
+                                                        },
+    "latest_machine_public_discovery_nowrite_simulation":  {
+                                                               "status":  "completed_machine_public_discovery_nowrite",
+                                                               "ok":  true,
+                                                               "evidence_date":  "2026-06-10",
+                                                               "mode":  "NoWriteMachineDiscoverySimulation",
+                                                               "write_calls_executed":  0,
+                                                               "post_calls_executed":  0,
+                                                               "real_payment_executed":  false,
+                                                               "external_contact_executed":  false,
+                                                               "hosted_mcp_live":  false,
+                                                               "resources_checked":  14,
+                                                               "manifest_tools":  31,
+                                                               "public_get_tools":  20,
+                                                               "report":  "https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md",
+                                                               "json":  "https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json",
+                                                               "interpretation":  "A machine can discover MachineSignal through public surfaces, read MCP/local-adapter metadata and stop safely before writes, payments, publication or outreach."
+                                                           },
+    "current_machine_public_discovery_nowrite_simulation":  "https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json",
+    "latest_distribution_readiness_monitor":  {
+                                                  "status":  "ready_for_distribution_review",
+                                                  "ok":  true,
+                                                  "evidence_date":  "2026-06-10",
+                                                  "mode":  "NoWrite",
+                                                  "generated_at":  "2026-06-10T09:22:36.2278754Z",
+                                                  "resources_checked":  61,
+                                                  "checks_total":  224,
+                                                  "checks_failed":  0,
+                                                  "alert_level":  "OK",
+                                                  "write_calls_executed":  0,
+                                                  "post_calls_executed":  0,
+                                                  "real_payment_executed":  false,
+                                                  "external_contact_executed":  false,
+                                                  "report":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
+                                                  "json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+                                                  "interpretation":  "Distribution assets are reachable, JSON/XML assets are valid, expected markers are present, public secret scan passed, public machine discovery NoWrite simulation is included, and no write/POST/payment/contact action was executed."
+                                              }
 }
