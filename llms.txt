@@ -281,3 +281,6 @@ MCP Write-Capped Sandbox Probe Summary: a machine can create one sandbox and sco
 MCP Purchase Decision Probe: https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md
 MCP Purchase Decision Probe JSON: https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json
 MCP Purchase Decision Probe Summary: a machine can create one sandbox, score one synthetic target, follow the score recommendation, create one sandbox purchase intent for verification and retrieve a machine-usable delivery through the local MCP adapter under a strict 3-POST budget; real_payment_executed=false; external_contact_executed=false.
+MCP Verification Gate Probe: https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md
+MCP Verification Gate Probe JSON: https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json
+MCP Verification Gate Probe Summary: a machine can create one sandbox, score one synthetic target, buy exactly one verification intent, read a keep_with_caution verification delivery and stop before Deep Analysis under a strict 3-POST budget; deep_analysis_purchase_executed=false; real_payment_executed=false; external_contact_executed=false.

@@ -111,6 +111,8 @@ Public discovery starts here:
 - MCP Write-Capped Sandbox Probe JSON: https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json
 - MCP Purchase Decision Probe: https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md
 - MCP Purchase Decision Probe JSON: https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json
+- MCP Verification Gate Probe: https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md
+- MCP Verification Gate Probe JSON: https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -652,3 +654,12 @@ A write-capped MCP purchase decision probe now proves that a buyer machine can u
 - Summary JSON: https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json
 - Result: score=81, decision=needs_verification, recommended_product=verification, delivery_type=data_quality_verification, delivery_status=verification_ready.
 - Safety: post_calls_executed=3, write_calls_executed=3, real_payment_executed=false, external_contact_executed=false, payment_test_created=false, external_publication_executed=false.
+
+## MCP Verification Gate Probe - 2026-06-10
+
+A write-capped MCP verification gate probe now proves that a buyer machine stops before Deep Analysis when verification returns `keep_with_caution` and points the machine back to scoring after new or corrected evidence.
+
+- Report: https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md
+- Summary JSON: https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json
+- Result: score decision=needs_verification, purchased sandbox product=verification, verification verdict=keep_with_caution, deep_analysis_purchase_executed=false.
+- Safety: post_calls_executed=3, write_calls_executed=3, real_payment_executed=false, external_contact_executed=false, external_publication_executed=false.

@@ -1,0 +1,195 @@
+{
+  "artifact": "mcp_verification_gate_probe",
+  "generated_at": "2026-06-10T12:48:06.369048+00:00",
+  "status": "completed_mcp_verification_gate_probe",
+  "ok": true,
+  "mode": "McpVerificationGateProbeWriteCapped",
+  "primary_customer_interface": "machine",
+  "max_post_calls_allowed": 3,
+  "post_calls_executed": 3,
+  "write_calls_executed": 3,
+  "deep_analysis_purchase_executed": false,
+  "machine_decisions": [
+    {
+      "decision": "start_sandbox",
+      "reason": "The buyer machine needs a temporary environment before evaluating paid add-ons.",
+      "action": "create_sandbox_customer"
+    },
+    {
+      "decision": "score_target",
+      "reason": "The machine must receive a score and routing recommendation before buying any add-on.",
+      "action": "score_lead_opportunity"
+    },
+    {
+      "decision": "buy_verification_only",
+      "reason": "The score requires verification, so the machine buys exactly one verification and no higher-cost product.",
+      "action": "create_purchase_intent verification"
+    },
+    {
+      "decision": "stop_before_deep_analysis",
+      "reason": "Verification returned keep_with_caution and points the machine back to scoring after new/corrected evidence, not to immediate purchase-intent.",
+      "action": "no deep_analysis purchase"
+    }
+  ],
+  "actions": [
+    {
+      "tool": "create_sandbox_customer",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "score_lead_opportunity",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_order",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    }
+  ],
+  "score_summary": {
+    "domain": "premium-dental-conversion-gap.it",
+    "opportunity_score": 81,
+    "confidence": 0.44,
+    "decision": "needs_verification",
+    "recommended_product": "verification"
+  },
+  "purchase_summary": {
+    "product_code": "verification",
+    "http_status": 200,
+    "order_intent_id": "ord_d70b90a6",
+    "created": true
+  },
+  "verification_gate": {
+    "delivery_present": true,
+    "delivery_type": "data_quality_verification",
+    "delivery_status": "verification_ready",
+    "verification_verdict_status": "keep_with_caution",
+    "verification_verdict_meaning": "The lead can stay in the workflow, but the machine should not spend paid outreach or campaign budget until quality is confirmed.",
+    "next_allowed_actions": [
+      "rescore",
+      "save_to_crm",
+      "request_deep_analysis_after_verification"
+    ],
+    "next_machine_call_endpoint": "/v1/lead-opportunity-score",
+    "stop_rules_count": 3,
+    "has_request_deep_analysis_after_verification_hint": true,
+    "gate_allows_deep_analysis_now": false,
+    "machine_policy_decision": "stop_before_deep_analysis"
+  },
+  "usage_summary": {
+    "http_status": 200,
+    "ledger_backend": "durable_object",
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  },
+  "safety": {
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "payment_test_created": false,
+    "external_publication_executed": false,
+    "human_outreach_executed": false,
+    "production_api_key_published": false
+  },
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "checks": [
+    {
+      "name": "mcp_initialize",
+      "ok": true,
+      "details": "{'name': 'machinesignal-local-mcp-adapter', 'version': '2026-06-04'}"
+    },
+    {
+      "name": "required_tools_present",
+      "ok": true,
+      "details": "tools=31; missing=[]"
+    },
+    {
+      "name": "sandbox_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "score_created",
+      "ok": true,
+      "details": "HTTP 200; decision=needs_verification"
+    },
+    {
+      "name": "score_requires_verification",
+      "ok": true,
+      "details": "decision=needs_verification; next=verification"
+    },
+    {
+      "name": "verification_purchase_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "verification_order_retrieved",
+      "ok": true,
+      "details": "HTTP 200; order_id=ord_d70b90a6"
+    },
+    {
+      "name": "verification_delivery_present",
+      "ok": true,
+      "details": "{'delivery_present': True, 'delivery_type': 'data_quality_verification', 'delivery_status': 'verification_ready', 'verification_verdict_status': 'keep_with_caution', 'verification_verdict_meaning': 'The lead can stay in the workflow, but the machine should not spend paid outreach or campaign budget until quality is confirmed.', 'next_allowed_actions': ['rescore', 'save_to_crm', 'request_deep_analysis_after_verification'], 'next_machine_call_endpoint': '/v1/lead-opportunity-score', 'stop_rules_count': 3, 'has_request_deep_analysis_after_verification_hint': True, 'gate_allows_deep_analysis_now': False, 'machine_policy_decision': 'stop_before_deep_analysis'}"
+    },
+    {
+      "name": "verification_verdict_cautious",
+      "ok": true,
+      "details": "verdict=keep_with_caution"
+    },
+    {
+      "name": "verification_gate_does_not_allow_deep_analysis_now",
+      "ok": true,
+      "details": "{'delivery_present': True, 'delivery_type': 'data_quality_verification', 'delivery_status': 'verification_ready', 'verification_verdict_status': 'keep_with_caution', 'verification_verdict_meaning': 'The lead can stay in the workflow, but the machine should not spend paid outreach or campaign budget until quality is confirmed.', 'next_allowed_actions': ['rescore', 'save_to_crm', 'request_deep_analysis_after_verification'], 'next_machine_call_endpoint': '/v1/lead-opportunity-score', 'stop_rules_count': 3, 'has_request_deep_analysis_after_verification_hint': True, 'gate_allows_deep_analysis_now': False, 'machine_policy_decision': 'stop_before_deep_analysis'}"
+    },
+    {
+      "name": "machine_stops_before_deep_analysis",
+      "ok": true,
+      "details": "No deep_analysis tool call executed."
+    },
+    {
+      "name": "usage_read",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "post_budget_respected",
+      "ok": true,
+      "details": "post_calls=3; max=3"
+    },
+    {
+      "name": "no_real_payment_or_external_contact",
+      "ok": true,
+      "details": "payment=False; contact=False"
+    }
+  ],
+  "learning_loop": {
+    "competitive_learning_experiment": "MCP verification gate probe",
+    "lesson_learned": "The buyer machine correctly stops before Deep Analysis when verification returns keep_with_caution. The next product improvement is a server-side optional Deep Analysis gate tied to a positive verification order.",
+    "recommended_next_step": "Add and test an optional server-side source_verification_order_intent_id gate for Deep Analysis."
+  }
+}
