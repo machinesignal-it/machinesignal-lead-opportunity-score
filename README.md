@@ -113,6 +113,8 @@ Public discovery starts here:
 - MCP Purchase Decision Probe JSON: https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json
 - MCP Verification Gate Probe: https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md
 - MCP Verification Gate Probe JSON: https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json
+- MCP Deep Analysis Verification Gate Probe: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md
+- MCP Deep Analysis Verification Gate Probe JSON: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -663,3 +665,12 @@ A write-capped MCP verification gate probe now proves that a buyer machine stops
 - Summary JSON: https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json
 - Result: score decision=needs_verification, purchased sandbox product=verification, verification verdict=keep_with_caution, deep_analysis_purchase_executed=false.
 - Safety: post_calls_executed=3, write_calls_executed=3, real_payment_executed=false, external_contact_executed=false, external_publication_executed=false.
+
+## MCP Deep Analysis Verification Gate Probe - 2026-06-10
+
+A write-capped MCP probe now proves the server-side gate: a buyer machine cannot spend a Deep Analysis credit by referencing a Verification order whose verdict is `keep_with_caution`. The live API returns `deep_analysis_verification_gate_failed` and the Deep Analysis credit usage remains unchanged.
+
+- Report: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md
+- Summary JSON: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json
+- Result: blocked_deep_analysis_http_status=400, blocked_deep_analysis_error_code=deep_analysis_verification_gate_failed, deep_analysis_credits_used_before=0, deep_analysis_credits_used_after=0.
+- Safety: post_calls_executed=5, write_calls_executed=5, real_payment_executed=false, external_contact_executed=false, external_publication_executed=false.

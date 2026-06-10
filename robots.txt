@@ -107,3 +107,5 @@ Mcp-purchase-decision-probe: https://machinesignal.it/mcp_purchase_decision_prob
 Mcp-purchase-decision-probe-json: https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json
 Mcp-verification-gate-probe: https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md
 Mcp-verification-gate-probe-json: https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json
+Mcp-deep-analysis-verification-gate-probe: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md
+Mcp-deep-analysis-verification-gate-probe-json: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json

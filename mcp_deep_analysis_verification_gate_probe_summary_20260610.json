@@ -1,0 +1,222 @@
+{
+  "artifact": "mcp_deep_analysis_verification_gate_probe",
+  "status": "completed_mcp_deep_analysis_verification_gate_probe",
+  "ok": true,
+  "evidence_date": "2026-06-10",
+  "mode": "McpDeepAnalysisVerificationGateProbeWriteCapped",
+  "primary_customer_interface": "machine",
+  "max_post_calls_allowed": 5,
+  "post_calls_executed": 5,
+  "write_calls_executed": 5,
+  "verification_order_intent_id": "ord_c601ecb5",
+  "verification_verdict_status": "keep_with_caution",
+  "blocked_deep_analysis_http_status": 400,
+  "blocked_deep_analysis_error_code": "deep_analysis_verification_gate_failed",
+  "blocked_deep_analysis_error_details": {
+    "source_verification_order_intent_id": "ord_c601ecb5",
+    "source_verification_verdict_status": "keep_with_caution",
+    "accepted_positive_verdict_statuses": [
+      "verified",
+      "verified_for_deep_analysis",
+      "safe_to_deepen"
+    ]
+  },
+  "deep_analysis_credits_used_before": 0,
+  "deep_analysis_credits_used_after": 0,
+  "verification_credits_used_after": 1,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "real_invoice_issued": false,
+  "payment_test_created": false,
+  "external_publication_executed": false,
+  "human_outreach_executed": false,
+  "production_api_key_published": false,
+  "machine_decision": "server_side_gate_blocks_invalid_deep_analysis",
+  "interpretation": "A machine cannot buy Deep Analysis from a cautious Verification source; the live API returns deep_analysis_verification_gate_failed and consumes no Deep Analysis credit.",
+  "recommended_next_step": "Publish this evidence in public manifests and monitor, then test the positive verification path when a positive verdict fixture exists.",
+  "actions": [
+    {
+      "tool": "create_sandbox_customer",
+      "kind": "POST/write",
+      "http_status": 429,
+      "ok": false,
+      "auth": "none"
+    },
+    {
+      "tool": "direct_create_sandbox_customer fallback",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "score_lead_opportunity",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent verification",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_order verification",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage before",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent deep_analysis blocked",
+      "kind": "POST/write-blocked",
+      "http_status": 400,
+      "ok": false,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage after",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    }
+  ],
+  "checks": [
+    {
+      "name": "mcp_initialize",
+      "ok": true,
+      "details": "{'name': 'machinesignal-local-mcp-adapter', 'version': '2026-06-04'}"
+    },
+    {
+      "name": "required_tools_present",
+      "ok": true,
+      "details": "tools=31; missing=[]"
+    },
+    {
+      "name": "sandbox_mcp_create_rate_limited",
+      "ok": true,
+      "details": "MCP adapter fingerprint reached the daily sandbox creation limit; using direct machine fallback for sandbox creation only."
+    },
+    {
+      "name": "mcp_reinitialized_with_precreated_sandbox_key",
+      "ok": true,
+      "details": "fallback sandbox key stored in adapter memory through environment"
+    },
+    {
+      "name": "sandbox_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "score_created",
+      "ok": true,
+      "details": "HTTP 200; decision=needs_verification"
+    },
+    {
+      "name": "score_requires_verification",
+      "ok": true,
+      "details": "decision=needs_verification; next=verification"
+    },
+    {
+      "name": "verification_purchase_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "verification_order_retrieved",
+      "ok": true,
+      "details": "HTTP 200; order_id=ord_c601ecb5"
+    },
+    {
+      "name": "verification_delivery_present",
+      "ok": true,
+      "details": "fields=['beta_delivery', 'checks', 'data_quality_risk', 'delivery_id', 'delivery_type', 'domain', 'external_contact_executed', 'generated_at', 'machine_recommendation', 'next_allowed_actions', 'next_machine_call', 'product_code', 'real_payment_executed', 'source_score_request_id', 'status', 'stop_rules', 'synthetic_demo_mode', 'verification_verdict', 'what_is_included']"
+    },
+    {
+      "name": "verification_verdict_cautious",
+      "ok": true,
+      "details": "verdict=keep_with_caution"
+    },
+    {
+      "name": "usage_before_read",
+      "ok": true,
+      "details": "HTTP 200; deep_used=0"
+    },
+    {
+      "name": "deep_analysis_blocked_http_400",
+      "ok": true,
+      "details": "HTTP 400"
+    },
+    {
+      "name": "deep_analysis_blocked_with_gate_error",
+      "ok": true,
+      "details": "error=deep_analysis_verification_gate_failed; details={'source_verification_order_intent_id': 'ord_c601ecb5', 'source_verification_verdict_status': 'keep_with_caution', 'accepted_positive_verdict_statuses': ['verified', 'verified_for_deep_analysis', 'safe_to_deepen']}"
+    },
+    {
+      "name": "blocked_error_references_cautious_verdict",
+      "ok": true,
+      "details": "{'source_verification_order_intent_id': 'ord_c601ecb5', 'source_verification_verdict_status': 'keep_with_caution', 'accepted_positive_verdict_statuses': ['verified', 'verified_for_deep_analysis', 'safe_to_deepen']}"
+    },
+    {
+      "name": "usage_after_read",
+      "ok": true,
+      "details": "HTTP 200; deep_used=0"
+    },
+    {
+      "name": "no_deep_analysis_credit_consumed_on_block",
+      "ok": true,
+      "details": "before=0; after=0"
+    },
+    {
+      "name": "verification_credit_consumed_once",
+      "ok": true,
+      "details": "verification_used=1"
+    },
+    {
+      "name": "post_budget_respected",
+      "ok": true,
+      "details": "post_calls=5; max=5"
+    },
+    {
+      "name": "no_real_payment_or_external_contact",
+      "ok": true,
+      "details": "payment=False; contact=False"
+    }
+  ],
+  "blocked_deep_analysis_payload": {
+    "tool": "create_purchase_intent",
+    "http_status": 400,
+    "ok": false,
+    "auth": "customer_api_key",
+    "payload": {
+      "error": "deep_analysis_verification_gate_failed",
+      "message": "Deep Analysis is blocked because the source Verification verdict is not positive.",
+      "details": {
+        "source_verification_order_intent_id": "ord_c601ecb5",
+        "source_verification_verdict_status": "keep_with_caution",
+        "accepted_positive_verdict_statuses": [
+          "verified",
+          "verified_for_deep_analysis",
+          "safe_to_deepen"
+        ]
+      }
+    }
+  },
+  "usage_summary": {
+    "http_status": 200,
+    "ledger_backend": "durable_object",
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  }
+}

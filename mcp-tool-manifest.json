@@ -812,7 +812,9 @@
                          "mcp_purchase_decision_probe":  "https://machinesignal.it/mcp_purchase_decision_probe_report_20260610.md",
                          "mcp_purchase_decision_probe_json":  "https://machinesignal.it/mcp_purchase_decision_probe_summary_20260610.json",
                          "mcp_verification_gate_probe":  "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
-                         "mcp_verification_gate_probe_json":  "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json"
+                         "mcp_verification_gate_probe_json":  "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
+                             "mcp_deep_analysis_verification_gate_probe":  "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md",
+                             "mcp_deep_analysis_verification_gate_probe_json":  "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json"
                      },
     "latest_machine_discovery_full_simulation":  {
                                                      "status":  "completed_full_machine_discovery",
@@ -1191,5 +1193,35 @@
                                                "report":  "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
                                                "json":  "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json"
                                            },
-    "current_mcp_verification_gate_probe":  "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json"
+    "current_mcp_verification_gate_probe":  "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
+    "latest_mcp_deep_analysis_verification_gate_probe":  {
+        "status": "completed_mcp_deep_analysis_verification_gate_probe",
+        "ok": true,
+        "evidence_date": "2026-06-10",
+        "mode": "McpDeepAnalysisVerificationGateProbeWriteCapped",
+        "primary_customer_interface": "machine",
+        "max_post_calls_allowed": 5,
+        "post_calls_executed": 5,
+        "write_calls_executed": 5,
+        "verification_order_intent_id": "ord_c601ecb5",
+        "verification_verdict_status": "keep_with_caution",
+        "blocked_deep_analysis_http_status": 400,
+        "blocked_deep_analysis_error_code": "deep_analysis_verification_gate_failed",
+        "deep_analysis_credits_used_before": 0,
+        "deep_analysis_credits_used_after": 0,
+        "verification_credits_used_after": 1,
+        "real_payment_executed": false,
+        "external_contact_executed": false,
+        "real_invoice_issued": false,
+        "payment_test_created": false,
+        "external_publication_executed": false,
+        "human_outreach_executed": false,
+        "production_api_key_published": false,
+        "machine_decision": "server_side_gate_blocks_invalid_deep_analysis",
+        "interpretation": "A machine cannot buy Deep Analysis from a cautious Verification source; the live API returns deep_analysis_verification_gate_failed and consumes no Deep Analysis credit.",
+        "recommended_next_step": "Publish this evidence in public manifests and monitor, then test the positive verification path when a positive verdict fixture exists.",
+        "report": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md",
+        "json": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json"
+    },
+    "current_mcp_deep_analysis_verification_gate_probe":  "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json"
 }

@@ -285,3 +285,7 @@ MCP Purchase Decision Probe Summary: a machine can create one sandbox, score one
 MCP Verification Gate Probe: https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md
 MCP Verification Gate Probe JSON: https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json
 MCP Verification Gate Probe Summary: a machine can create one sandbox, score one synthetic target, buy exactly one verification intent, read a keep_with_caution verification delivery and stop before Deep Analysis under a strict 3-POST budget; deep_analysis_purchase_executed=false; real_payment_executed=false; external_contact_executed=false.
+
+MCP Deep Analysis Verification Gate Probe: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md
+MCP Deep Analysis Verification Gate Probe JSON: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json
+MCP Deep Analysis Verification Gate Probe Summary: a machine attempted Deep Analysis with source_verification_order_intent_id from a cautious Verification; live API returned deep_analysis_verification_gate_failed; deep_analysis_credits_used_before=0; deep_analysis_credits_used_after=0; real_payment_executed=false; external_contact_executed=false.
