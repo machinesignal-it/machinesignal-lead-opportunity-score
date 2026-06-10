@@ -155,6 +155,11 @@ How a machine should create a beta order intent:
 - the response includes delivery, an immediate machine-readable beta output with what_is_included, output_contract, next_machine_call and stop_rules when relevant;
 - no real payment is executed in beta.
 
+Verification delivery contract:
+- verification returns verification_verdict, data_quality_risk, checks, next_allowed_actions, stop_rules and next_machine_call;
+- default Verification verdict is keep_with_caution, which blocks Deep Analysis when used as source_verification_order_intent_id;
+- sandbox-only positive gate testing is available only on .test domains by sending verification_fixture=positive_for_deep_analysis in a verification purchase intent; that returns verified_for_deep_analysis and allows a follow-up Deep Analysis gate test.
+
 Deep Analysis delivery contract:
 - deep_analysis returns what_is_included, deep_analysis_version, sector_context, commercial_objective, commercial_evidence, machine_decision_matrix, action_pack_purchase_gate, crm_summary_payload, sector_specific_signals, signals_to_validate, recommended_next_step, recommended_budget_cap_eur, stop_rules, evidence_limitations and next_machine_call;
 - deep_analysis_version is domain_specific_commercial_evidence_v1;

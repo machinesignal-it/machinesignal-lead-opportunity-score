@@ -1242,6 +1242,12 @@ export const openApi = {
               "Optional when product_code is deep_analysis. If provided, it must point to a valid accepted Verification order for the same domain with a positive verification verdict; cautious verdicts block Deep Analysis and consume no credit.",
             example: "ord_verification_0001"
           },
+          verification_fixture: {
+            type: "string",
+            description:
+              "Sandbox-only test fixture for product_code=verification on .test domains. Use positive_for_deep_analysis to receive a synthetic positive Verification verdict for gate validation; do not use for real domains.",
+            example: "positive_for_deep_analysis"
+          },
           reason: {
             type: "string",
             description: "Optional machine-readable reason for the purchase intent.",
@@ -1784,6 +1790,11 @@ How a machine should create a beta order intent:
 - the beta order intent consumes one corresponding pack credit;
 - the response includes delivery, an immediate machine-readable beta output with what_is_included, output_contract, next_machine_call and stop_rules when relevant;
 - no real payment is executed in beta.
+
+Verification delivery contract:
+- verification returns verification_verdict, data_quality_risk, checks, next_allowed_actions, stop_rules and next_machine_call;
+- default Verification verdict is keep_with_caution, which blocks Deep Analysis when used as source_verification_order_intent_id;
+- sandbox-only positive gate testing is available only on .test domains by sending verification_fixture=positive_for_deep_analysis in a verification purchase intent; that returns verified_for_deep_analysis and allows a follow-up Deep Analysis gate test.
 
 Deep Analysis delivery contract:
 - deep_analysis returns what_is_included, deep_analysis_version, sector_context, commercial_objective, commercial_evidence, machine_decision_matrix, action_pack_purchase_gate, crm_summary_payload, sector_specific_signals, signals_to_validate, recommended_next_step, recommended_budget_cap_eur, stop_rules, evidence_limitations and next_machine_call;
@@ -5365,6 +5376,93 @@ function buildAuthenticatedOnboarding(auth, ledger) {
   };
 }
 
+function buildVerificationDeliveryProfile(input = {}, domain = "") {
+  const fixture = String(
+    input?.verification_fixture || input?.verification_evidence_status || ""
+  )
+    .trim()
+    .toLowerCase();
+  const isPositiveSandboxFixture =
+    domain.endsWith(".test") &&
+    ["positive_for_deep_analysis", "verified_for_deep_analysis", "safe_to_deepen"].includes(
+      fixture
+    );
+
+  if (isPositiveSandboxFixture) {
+    return {
+      data_quality_risk: "low",
+      verification_verdict: {
+        status: "verified_for_deep_analysis",
+        meaning:
+          "Sandbox fixture: the target passed the verification gate and the machine may buy Deep Analysis if budget rules allow it."
+      },
+      checks: [
+        {
+          code: "domain_format",
+          status: "passed",
+          meaning: "The synthetic .test domain is normalized and usable for sandbox gate validation."
+        },
+        {
+          code: "commercial_action_safety",
+          status: "passed",
+          meaning: "Sandbox-only flow; no real outreach or external contact is executed."
+        },
+        {
+          code: "confidence_gate",
+          status: "passed",
+          meaning: "The verification fixture explicitly allows Deep Analysis in sandbox mode."
+        }
+      ],
+      stop_rules: [
+        "stop if this is not a sandbox or test-domain verification fixture",
+        "stop if budget approval is missing",
+        "stop if the source Verification order does not match the requested domain"
+      ],
+      machine_recommendation:
+        "Verification passed in sandbox mode; buy Deep Analysis only if the customer machine has budget and needs domain-specific commercial evidence.",
+      next_allowed_actions: ["request_deep_analysis_after_verification", "save_to_crm"],
+      next_machine_call: {
+        method: "POST",
+        endpoint: "/v1/purchase-intent",
+        when: "if budget rules allow Deep Analysis after this positive Verification",
+        required_headers: ["X-API-Key", "Idempotency-Key"],
+        body: {
+          product_code: "deep_analysis",
+          domain,
+          source_verification_order_intent_id: "use_this_verification_order_intent_id"
+        }
+      }
+    };
+  }
+
+  return {
+    data_quality_risk: "medium",
+    verification_verdict: {
+      status: "keep_with_caution",
+      meaning:
+        "The lead can stay in the workflow, but the machine should not spend paid outreach or campaign budget until quality is confirmed."
+    },
+    checks: [
+      { code: "domain_format", status: "passed", meaning: "The domain is normalized and usable." },
+      { code: "commercial_action_safety", status: "review", meaning: "Use only compliant follow-up channels." },
+      { code: "confidence_gate", status: "review", meaning: "The lead should be verified before paid outreach." }
+    ],
+    stop_rules: [
+      "stop if the domain is not attributable to the intended business",
+      "stop if sector or geography evidence conflicts with the requested market",
+      "stop if no compliant action channel exists"
+    ],
+    machine_recommendation: "Keep the lead, but do not start paid outreach until data quality is confirmed.",
+    next_allowed_actions: ["rescore", "save_to_crm", "request_deep_analysis_after_verification"],
+    next_machine_call: {
+      method: "POST",
+      endpoint: "/v1/lead-opportunity-score",
+      when: "after new or corrected evidence is available",
+      required_headers: ["X-API-Key", "Idempotency-Key"]
+    }
+  };
+}
+
 function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
   const sourceScoreRequestId = String(input?.source_score_request_id || "").trim() || null;
   const sourceOrderIntentId = String(input?.source_order_intent_id || "").trim() || null;
@@ -5552,11 +5650,12 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
   }
 
   if (productCode === "verification") {
+    const verificationProfile = buildVerificationDeliveryProfile(input, domain);
     return {
       ...common,
       delivery_type: "data_quality_verification",
       status: "verification_ready",
-      data_quality_risk: "medium",
+      data_quality_risk: verificationProfile.data_quality_risk,
       what_is_included: {
         exact_unit_sold: "one verification decision for one target/domain",
         machine_question_answered:
@@ -5571,29 +5670,12 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
         credit_policy:
           "One verification_pack_100 credit is consumed for each verification decision returned."
       },
-      verification_verdict: {
-        status: "keep_with_caution",
-        meaning:
-          "The lead can stay in the workflow, but the machine should not spend paid outreach or campaign budget until quality is confirmed."
-      },
-      checks: [
-        { code: "domain_format", status: "passed", meaning: "The domain is normalized and usable." },
-        { code: "commercial_action_safety", status: "review", meaning: "Use only compliant follow-up channels." },
-        { code: "confidence_gate", status: "review", meaning: "The lead should be verified before paid outreach." }
-      ],
-      stop_rules: [
-        "stop if the domain is not attributable to the intended business",
-        "stop if sector or geography evidence conflicts with the requested market",
-        "stop if no compliant action channel exists"
-      ],
-      machine_recommendation: "Keep the lead, but do not start paid outreach until data quality is confirmed.",
-      next_allowed_actions: ["rescore", "save_to_crm", "request_deep_analysis_after_verification"],
-      next_machine_call: {
-        method: "POST",
-        endpoint: "/v1/lead-opportunity-score",
-        when: "after new or corrected evidence is available",
-        required_headers: ["X-API-Key", "Idempotency-Key"]
-      }
+      verification_verdict: verificationProfile.verification_verdict,
+      checks: verificationProfile.checks,
+      stop_rules: verificationProfile.stop_rules,
+      machine_recommendation: verificationProfile.machine_recommendation,
+      next_allowed_actions: verificationProfile.next_allowed_actions,
+      next_machine_call: verificationProfile.next_machine_call
     };
   }
 

@@ -1115,6 +1115,11 @@
             "description": "Optional when product_code is deep_analysis. If provided, it must point to a valid accepted Verification order for the same domain with a positive verification verdict; cautious verdicts block Deep Analysis and consume no credit.",
             "example": "ord_verification_0001"
           },
+          "verification_fixture": {
+            "type": "string",
+            "description": "Sandbox-only test fixture for product_code=verification on .test domains. Use positive_for_deep_analysis to receive a synthetic positive Verification verdict for gate validation; do not use for real domains.",
+            "example": "positive_for_deep_analysis"
+          },
           "reason": {
             "type": "string",
             "description": "Optional machine-readable reason for the purchase intent.",

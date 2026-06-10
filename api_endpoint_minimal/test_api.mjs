@@ -575,6 +575,93 @@ assert.equal(
   0
 );
 
+const positiveGateApiKey = "test-positive-gate-key";
+const positiveGateEnv = { MACHINESIGNAL_API_KEY: positiveGateApiKey };
+
+const positiveVerificationResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "verification",
+      domain: "verified-deep-analysis-ready.test",
+      verification_fixture: "positive_for_deep_analysis",
+      source_score_request_id: "test-score-positive-verification-001",
+      reason: "Sandbox positive verification fixture for Deep Analysis gate"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": positiveGateApiKey,
+      "idempotency-key": "test-positive-verification-001"
+    }
+  }),
+  positiveGateEnv
+);
+assert.equal(positiveVerificationResponse.status, 200);
+const positiveVerificationPayload = await positiveVerificationResponse.json();
+assert.equal(positiveVerificationPayload.delivery.delivery_type, "data_quality_verification");
+assert.equal(positiveVerificationPayload.delivery.data_quality_risk, "low");
+assert.equal(
+  positiveVerificationPayload.delivery.verification_verdict.status,
+  "verified_for_deep_analysis"
+);
+assert.equal(positiveVerificationPayload.delivery.next_machine_call.endpoint, "/v1/purchase-intent");
+assert.equal(
+  positiveVerificationPayload.delivery.next_machine_call.body.product_code,
+  "deep_analysis"
+);
+
+const deepAnalysisAfterPositiveVerificationResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "deep_analysis",
+      domain: "verified-deep-analysis-ready.test",
+      sector_hint: "dentist",
+      source_score_request_id: "test-score-positive-verification-001",
+      source_verification_order_intent_id: positiveVerificationPayload.order_intent_id,
+      reason: "Valid Deep Analysis after positive sandbox Verification"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": positiveGateApiKey,
+      "idempotency-key": "test-deep-analysis-after-positive-verification-001"
+    }
+  }),
+  positiveGateEnv
+);
+assert.equal(deepAnalysisAfterPositiveVerificationResponse.status, 200);
+const deepAnalysisAfterPositiveVerificationPayload =
+  await deepAnalysisAfterPositiveVerificationResponse.json();
+assert.equal(deepAnalysisAfterPositiveVerificationPayload.product_code, "deep_analysis");
+assert.equal(
+  deepAnalysisAfterPositiveVerificationPayload.source_verification_order_intent_id,
+  positiveVerificationPayload.order_intent_id
+);
+assert.equal(
+  deepAnalysisAfterPositiveVerificationPayload.deep_analysis_verification_gate.passed,
+  true
+);
+assert.equal(
+  deepAnalysisAfterPositiveVerificationPayload.deep_analysis_verification_gate.source_verification_verdict_status,
+  "verified_for_deep_analysis"
+);
+assert.equal(
+  deepAnalysisAfterPositiveVerificationPayload.delivery.delivery_type,
+  "deep_opportunity_analysis"
+);
+
+const usageAfterPositiveDeepAnalysisResponse = await handleRequest(
+  new Request("http://localhost/v1/usage", {
+    headers: { "x-api-key": positiveGateApiKey }
+  }),
+  positiveGateEnv
+);
+const usageAfterPositiveDeepAnalysisPayload = await usageAfterPositiveDeepAnalysisResponse.json();
+assert.equal(
+  usageAfterPositiveDeepAnalysisPayload.balances.find((item) => item.product_code === "deep_analysis_pack_100").credits_used,
+  1
+);
+
 const targetDiscoveryResponse = await handleRequest(
   new Request("http://localhost/v1/purchase-intent", {
     method: "POST",
