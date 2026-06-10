@@ -101,3 +101,5 @@ Machine-public-discovery-nowrite-simulation: https://machinesignal.it/machine_pu
 Machine-public-discovery-nowrite-simulation-json: https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json
 Mcp-local-adapter-nowrite-validation: https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md
 Mcp-local-adapter-nowrite-validation-json: https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json
+Mcp-write-capped-sandbox-probe: https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md
+Mcp-write-capped-sandbox-probe-json: https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json

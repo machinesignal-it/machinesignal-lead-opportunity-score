@@ -113,7 +113,9 @@
                       "mcp_tool_registry_private_draft_review":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_report_20260608.md",
                       "mcp_tool_registry_private_draft_review_json":  "https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json",
                       "mcp_local_adapter_nowrite_validation":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md",
-                      "mcp_local_adapter_nowrite_validation_json":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json"
+                      "mcp_local_adapter_nowrite_validation_json":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
+                      "mcp_write_capped_sandbox_probe":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md",
+                      "mcp_write_capped_sandbox_probe_json":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json"
                   },
     "local_mcp_adapter":  {
                               "status":  "available_in_github_repo",
@@ -138,7 +140,9 @@
                               "real_payment_executed_in_beta":  false,
                               "external_contact_executed_in_beta":  false,
                               "latest_nowrite_validation_report":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md",
-                              "latest_nowrite_validation_json":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json"
+                              "latest_nowrite_validation_json":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
+                              "latest_write_capped_sandbox_probe_report":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md",
+                              "latest_write_capped_sandbox_probe_json":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json"
                           },
     "sandbox":  {
                     "endpoint":  "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
@@ -469,9 +473,9 @@
                                                   "ok":  true,
                                                   "evidence_date":  "2026-06-10",
                                                   "mode":  "NoWrite",
-                                                  "generated_at":  "2026-06-10T10:06:39.1428389Z",
-                                                  "resources_checked":  63,
-                                                  "checks_total":  231,
+                                                  "generated_at":  "2026-06-10T10:54:08.7064438Z",
+                                                  "resources_checked":  65,
+                                                  "checks_total":  238,
                                                   "checks_failed":  0,
                                                   "alert_level":  "OK",
                                                   "write_calls_executed":  0,
@@ -480,6 +484,31 @@
                                                   "external_contact_executed":  false,
                                                   "report":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
                                                   "json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
-                                                  "interpretation":  "Distribution assets are reachable, JSON/XML assets are valid, expected markers are present, public secret scan passed, public machine discovery NoWrite simulation and MCP local adapter NoWrite validation are included, and no write/POST/payment/contact action was executed."
-                                              }
+                                                  "interpretation":  "Distribution assets are reachable, JSON/XML assets are valid, expected markers are present, public secret scan passed, public machine discovery NoWrite simulation, MCP local adapter NoWrite validation, and MCP write-capped sandbox probe are included. The latest monitor executed no write/POST/payment/contact action."
+                                              },
+    "latest_mcp_write_capped_sandbox_probe":  {
+                                                  "status":  "completed_mcp_write_capped_sandbox_probe",
+                                                  "ok":  true,
+                                                  "evidence_date":  "2026-06-10",
+                                                  "mode":  "WriteCappedMcpSandboxProbe",
+                                                  "max_post_calls_allowed":  2,
+                                                  "post_calls_executed":  2,
+                                                  "write_calls_executed":  2,
+                                                  "sandbox_customer_created":  true,
+                                                  "score_call_executed":  true,
+                                                  "purchase_intent_created":  false,
+                                                  "payment_test_intent_created":  false,
+                                                  "real_payment_executed":  false,
+                                                  "external_contact_executed":  false,
+                                                  "external_publication_executed":  false,
+                                                  "production_api_key_published":  false,
+                                                  "score":  74,
+                                                  "score_decision":  "nurture",
+                                                  "recommended_next_product":  "nurture_signal",
+                                                  "machine_decision":  "mcp_write_capped_sandbox_probe_ready",
+                                                  "report":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md",
+                                                  "json":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json",
+                                                  "interpretation":  "A machine client can use the local stdio MCP adapter to create one sandbox customer and score one provided synthetic target under a strict 2-POST budget, without purchases, payment-test intents, external contact or publication."
+                                              },
+    "current_mcp_write_capped_sandbox_probe":  "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json"
 }

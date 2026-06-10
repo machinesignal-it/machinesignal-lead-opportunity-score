@@ -107,6 +107,8 @@ Public discovery starts here:
 - Machine Public Discovery NoWrite Simulation JSON: https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json
 - MCP Local Adapter NoWrite Validation: https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md
 - MCP Local Adapter NoWrite Validation JSON: https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json
+- MCP Write-Capped Sandbox Probe: https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md
+- MCP Write-Capped Sandbox Probe JSON: https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -631,3 +633,11 @@ A local MCP adapter validation now proves that a machine client can start the st
 - Report: https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md
 - Summary JSON: https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json
 - Safety: tools_listed_count=31, public_tools_called_count=15, write_calls_executed=0, post_calls_executed=0, sandbox_customer_created=false, real_payment_executed=false, external_contact_executed=false.
+
+## MCP Write-Capped Sandbox Probe - 2026-06-10
+
+A write-capped MCP sandbox probe now proves that a machine client can use the local stdio adapter for the first real sandbox path: create one sandbox customer, score one provided synthetic target and read usage/orders, while staying under a strict 2-POST budget.
+
+- Report: https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md
+- Summary JSON: https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json
+- Safety: post_calls_executed=2, write_calls_executed=2, purchase_intent_created=false, payment_test_intent_created=false, real_payment_executed=false, external_contact_executed=false.

@@ -1,0 +1,139 @@
+{
+  "artifact": "mcp_write_capped_sandbox_probe",
+  "generated_at": "2026-06-10T10:22:20.521356+00:00",
+  "status": "completed_mcp_write_capped_sandbox_probe",
+  "ok": true,
+  "mode": "WriteCappedMcpSandboxProbe",
+  "primary_customer_interface": "machine",
+  "max_post_calls_allowed": 2,
+  "post_calls_executed": 2,
+  "write_calls_executed": 2,
+  "sandbox_customer_created": true,
+  "score_call_executed": true,
+  "purchase_intent_created": false,
+  "payment_test_intent_created": false,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "external_publication_executed": false,
+  "production_api_key_published": false,
+  "human_outreach_executed": false,
+  "actions": [
+    {
+      "tool": "create_sandbox_customer",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "score_lead_opportunity",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "list_orders",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    }
+  ],
+  "score_summary": {
+    "domain": "mcp-write-capped-demo-dentist.example",
+    "opportunity_score": 74,
+    "confidence": 0.62,
+    "decision": "nurture",
+    "next_product": "nurture_signal"
+  },
+  "usage_summary": {
+    "http_status": 200,
+    "ledger_backend": "durable_object",
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  },
+  "orders_summary": {
+    "http_status": 200,
+    "count": 0
+  },
+  "checks": [
+    {
+      "name": "mcp_initialize",
+      "ok": true,
+      "details": "{'name': 'machinesignal-local-mcp-adapter', 'version': '2026-06-04'}"
+    },
+    {
+      "name": "required_tools_present",
+      "ok": true,
+      "details": "tools=31; missing=[]"
+    },
+    {
+      "name": "sandbox_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "sandbox_key_not_returned_full_to_client",
+      "ok": true,
+      "details": "adapter_state={'customer_api_key_stored_in_memory': True, 'full_api_key_returned_to_client': False}"
+    },
+    {
+      "name": "score_created",
+      "ok": true,
+      "details": "HTTP 200; score=74"
+    },
+    {
+      "name": "score_has_machine_decision",
+      "ok": true,
+      "details": "decision=nurture"
+    },
+    {
+      "name": "usage_read",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "orders_read",
+      "ok": true,
+      "details": "HTTP 200; products=[]"
+    },
+    {
+      "name": "no_purchase_orders_created",
+      "ok": true,
+      "details": "products=[]"
+    },
+    {
+      "name": "post_budget_respected",
+      "ok": true,
+      "details": "post_calls=2; max=2"
+    },
+    {
+      "name": "no_purchase_intent_created",
+      "ok": true,
+      "details": "create_purchase_intent not called"
+    },
+    {
+      "name": "no_payment_test_intent_created",
+      "ok": true,
+      "details": "create_payment_test_intent not called"
+    },
+    {
+      "name": "no_payment_or_external_contact",
+      "ok": true,
+      "details": "payment=False; contact=False"
+    }
+  ],
+  "machine_decision": {
+    "decision": "mcp_write_capped_sandbox_probe_ready",
+    "recommended_next_step": "Use this as bounded evidence that a machine can execute the first sandbox+score path through the MCP adapter. Next step is a capped purchase probe only if more downstream product evidence is needed."
+  }
+}

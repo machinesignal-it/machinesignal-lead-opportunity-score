@@ -274,3 +274,7 @@ Machine Public Discovery NoWrite Summary: a machine can read public discovery, M
 MCP Local Adapter NoWrite Validation: https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md
 MCP Local Adapter NoWrite Validation JSON: https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json
 MCP Local Adapter NoWrite Summary: a machine can mount the local stdio adapter, initialize it, list 31 tools and read 15 public no-auth tools without sandbox creation, scoring, purchase intents or payment calls; write_calls_executed=0; post_calls_executed=0; real_payment_executed=false; external_contact_executed=false.
+
+MCP Write-Capped Sandbox Probe: https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md
+MCP Write-Capped Sandbox Probe JSON: https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json
+MCP Write-Capped Sandbox Probe Summary: a machine can create one sandbox and score one provided synthetic target through the local MCP adapter under a strict 2-POST budget; purchase_intent_created=false; payment_test_intent_created=false; real_payment_executed=false; external_contact_executed=false.

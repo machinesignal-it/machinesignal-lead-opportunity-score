@@ -522,4 +522,10 @@
   <url>
     <loc>https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json</loc>
   </url>
+  <url>
+    <loc>https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json</loc>
+  </url>
 </urlset>
