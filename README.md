@@ -105,6 +105,8 @@ Public discovery starts here:
 - MCP Tool Registry Private Draft Review JSON: https://machinesignal.it/mcp_tool_registry_private_draft_review_summary_20260608.json
 - Machine Public Discovery NoWrite Simulation: https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md
 - Machine Public Discovery NoWrite Simulation JSON: https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json
+- MCP Local Adapter NoWrite Validation: https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md
+- MCP Local Adapter NoWrite Validation JSON: https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -621,3 +623,11 @@ A machine-facing public discovery simulation now proves that a software client c
 - Report: https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md
 - Summary JSON: https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json
 - Safety: write_calls_executed=0, post_calls_executed=0, real_payment_executed=false, external_contact_executed=false, hosted_mcp_live=false.
+
+## MCP Local Adapter NoWrite Validation - 2026-06-10
+
+A local MCP adapter validation now proves that a machine client can start the stdio adapter, initialize it, list MachineSignal tools and read public/no-auth resources through the adapter without creating sandbox records, scoring domains, creating purchase intents, enabling payments, publishing externally or contacting humans.
+
+- Report: https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md
+- Summary JSON: https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json
+- Safety: tools_listed_count=31, public_tools_called_count=15, write_calls_executed=0, post_calls_executed=0, sandbox_customer_created=false, real_payment_executed=false, external_contact_executed=false.

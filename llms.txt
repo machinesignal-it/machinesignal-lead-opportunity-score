@@ -270,3 +270,7 @@ MCP Tool Registry Private Draft Summary: exact MCP/tool-registry local-adapter f
 Machine Public Discovery NoWrite Simulation: https://machinesignal.it/machine_public_discovery_nowrite_simulation_report_20260610.md
 Machine Public Discovery NoWrite Simulation JSON: https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json
 Machine Public Discovery NoWrite Summary: a machine can read public discovery, MCP manifest, MCP private-draft pack and reviews without POST/write calls; write_calls_executed=0; post_calls_executed=0; real_payment_executed=false; external_contact_executed=false; hosted_mcp_live=false.
+
+MCP Local Adapter NoWrite Validation: https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md
+MCP Local Adapter NoWrite Validation JSON: https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json
+MCP Local Adapter NoWrite Summary: a machine can mount the local stdio adapter, initialize it, list 31 tools and read 15 public no-auth tools without sandbox creation, scoring, purchase intents or payment calls; write_calls_executed=0; post_calls_executed=0; real_payment_executed=false; external_contact_executed=false.

@@ -1,0 +1,256 @@
+{
+  "artifact": "mcp_local_adapter_nowrite_validation",
+  "generated_at": "2026-06-10T10:01:42.764136+00:00",
+  "status": "completed_mcp_local_adapter_nowrite_validation",
+  "ok": true,
+  "mode": "NoWriteMcpLocalAdapterValidation",
+  "primary_customer_interface": "machine",
+  "adapter_path": "C:\\Users\\natal\\AppData\\Local\\Temp\\MachineSignal\\github_repo_sync_20260530\\mcp_adapter\\machinesignal_mcp_server.py",
+  "client_config_path": "C:\\Users\\natal\\AppData\\Local\\Temp\\MachineSignal\\github_repo_sync_20260530\\mcp_adapter\\mcp_client_config.example.json",
+  "tools_listed_count": 31,
+  "public_tools_called_count": 15,
+  "public_tool_calls": [
+    {
+      "tool": "get_product_catalog",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_machine_onboarding",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_marketplace_api_directory_pack",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_machine_api_sandbox_test",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_machine_buyer_evidence_brief",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_mcp_tool_registry_draft_checklist",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_external_submission_pack_no_write_review",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_external_draft_submission_bundle",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_private_draft_submission_rehearsal",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_api_directory_private_draft_pack",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_api_directory_private_draft_review",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_rapidapi_unpublished_provider_draft_pack",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_rapidapi_unpublished_provider_draft_review",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_mcp_tool_registry_private_draft_pack",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_mcp_tool_registry_private_draft_review",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    }
+  ],
+  "blocked_write_tools_not_called": [
+    "create_payment_test_intent",
+    "create_purchase_intent",
+    "create_sandbox_customer",
+    "score_lead_opportunity"
+  ],
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "sandbox_customer_created": false,
+  "credit_consuming_calls_executed": false,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "external_publication_executed": false,
+  "production_api_key_published": false,
+  "human_outreach_executed": false,
+  "checks": [
+    {
+      "name": "adapter_file_exists",
+      "ok": true,
+      "details": "C:\\Users\\natal\\AppData\\Local\\Temp\\MachineSignal\\github_repo_sync_20260530\\mcp_adapter\\machinesignal_mcp_server.py"
+    },
+    {
+      "name": "client_config_exists",
+      "ok": true,
+      "details": "C:\\Users\\natal\\AppData\\Local\\Temp\\MachineSignal\\github_repo_sync_20260530\\mcp_adapter\\mcp_client_config.example.json"
+    },
+    {
+      "name": "client_config_has_machinesignal_server",
+      "ok": true,
+      "details": "mcpServers.machinesignal"
+    },
+    {
+      "name": "mcp_initialize",
+      "ok": true,
+      "details": "{'name': 'machinesignal-local-mcp-adapter', 'version': '2026-06-04'}"
+    },
+    {
+      "name": "mcp_tools_list",
+      "ok": true,
+      "details": "31 tools listed"
+    },
+    {
+      "name": "public_nowrite_tools_present",
+      "ok": true,
+      "details": "missing=[]"
+    },
+    {
+      "name": "write_tools_present_but_not_called",
+      "ok": true,
+      "details": "listed_only=['create_payment_test_intent', 'create_purchase_intent', 'create_sandbox_customer', 'score_lead_opportunity']"
+    },
+    {
+      "name": "get_product_catalog_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_machine_onboarding_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_marketplace_api_directory_pack_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_machine_api_sandbox_test_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_machine_buyer_evidence_brief_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_mcp_tool_registry_draft_checklist_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_external_submission_pack_no_write_review_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "external_submission_nowrite_review_ok",
+      "ok": true,
+      "details": "ok=True; writes=0; posts=0"
+    },
+    {
+      "name": "get_external_draft_submission_bundle_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_private_draft_submission_rehearsal_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_api_directory_private_draft_pack_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_api_directory_private_draft_review_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_rapidapi_unpublished_provider_draft_pack_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_rapidapi_unpublished_provider_draft_review_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "get_mcp_tool_registry_private_draft_pack_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "mcp_private_draft_pack_status",
+      "ok": true,
+      "details": "status=ready_for_mcp_tool_registry_private_draft_only"
+    },
+    {
+      "name": "mcp_private_draft_pack_hosted_mcp_false",
+      "ok": true,
+      "details": "hosted_mcp_live=False"
+    },
+    {
+      "name": "get_mcp_tool_registry_private_draft_review_read",
+      "ok": true,
+      "details": "HTTP 200; auth=none"
+    },
+    {
+      "name": "mcp_private_draft_review_nowrite_ok",
+      "ok": true,
+      "details": "ok=True; writes=0; posts=0"
+    }
+  ],
+  "machine_decision": {
+    "decision": "local_mcp_adapter_nowrite_ready",
+    "recommended_next_step": "Use this as evidence that the local MCP adapter can be mounted and queried by a machine without write calls. Next bounded step is a write-capped sandbox adapter run only if needed."
+  }
+}

@@ -234,14 +234,35 @@
                                                                "interpretation":  "A machine can discover MachineSignal through public surfaces, read MCP/local-adapter metadata and stop safely before writes, payments, publication or outreach."
                                                            },
     "current_machine_public_discovery_nowrite_simulation":  "https://machinesignal.it/machine_public_discovery_nowrite_simulation_summary_20260610.json",
+    "latest_mcp_local_adapter_nowrite_validation":  {
+                                                        "status":  "completed_mcp_local_adapter_nowrite_validation",
+                                                        "ok":  true,
+                                                        "evidence_date":  "2026-06-10",
+                                                        "mode":  "NoWriteMcpLocalAdapterValidation",
+                                                        "tools_listed_count":  31,
+                                                        "public_tools_called_count":  15,
+                                                        "write_calls_executed":  0,
+                                                        "post_calls_executed":  0,
+                                                        "sandbox_customer_created":  false,
+                                                        "credit_consuming_calls_executed":  false,
+                                                        "real_payment_executed":  false,
+                                                        "external_contact_executed":  false,
+                                                        "external_publication_executed":  false,
+                                                        "production_api_key_published":  false,
+                                                        "machine_decision":  "local_mcp_adapter_nowrite_ready",
+                                                        "report":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md",
+                                                        "json":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
+                                                        "interpretation":  "A machine client can start the local stdio MCP adapter, list MachineSignal tools and read public no-auth resources without sandbox creation, scoring, purchase intents, payments, external publication or outreach."
+                                                    },
+    "current_mcp_local_adapter_nowrite_validation":  "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
     "latest_distribution_readiness_monitor":  {
                                                   "status":  "ready_for_distribution_review",
                                                   "ok":  true,
                                                   "evidence_date":  "2026-06-10",
                                                   "mode":  "NoWrite",
-                                                  "generated_at":  "2026-06-10T09:22:36.2278754Z",
-                                                  "resources_checked":  61,
-                                                  "checks_total":  224,
+                                                  "generated_at":  "2026-06-10T10:06:39.1428389Z",
+                                                  "resources_checked":  63,
+                                                  "checks_total":  231,
                                                   "checks_failed":  0,
                                                   "alert_level":  "OK",
                                                   "write_calls_executed":  0,
@@ -250,6 +271,6 @@
                                                   "external_contact_executed":  false,
                                                   "report":  "https://machinesignal.it/distribution_readiness_monitor_report_20260607.md",
                                                   "json":  "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
-                                                  "interpretation":  "Distribution assets are reachable, JSON/XML assets are valid, expected markers are present, public secret scan passed, public machine discovery NoWrite simulation is included, and no write/POST/payment/contact action was executed."
+                                                  "interpretation":  "Distribution assets are reachable, JSON/XML assets are valid, expected markers are present, public secret scan passed, public machine discovery NoWrite simulation and MCP local adapter NoWrite validation are included, and no write/POST/payment/contact action was executed."
                                               }
 }
