@@ -1,0 +1,192 @@
+{
+  "artifact": "mcp_action_pack_deep_analysis_gate_probe",
+  "status": "completed_mcp_action_pack_deep_analysis_gate_probe",
+  "ok": true,
+  "evidence_date": "2026-06-10",
+  "mode": "McpActionPackDeepAnalysisGateProbeWriteCapped",
+  "primary_customer_interface": "machine",
+  "max_post_calls_allowed": 5,
+  "post_calls_executed": 5,
+  "write_calls_executed": 5,
+  "domain": "action-pack-deep-analysis-ready.test",
+  "blocked_action_pack_error": "action_pack_gate_failed",
+  "deep_analysis_order_intent_id": "ord_afca5bd4",
+  "action_pack_order_intent_id": "ord_a8312125",
+  "action_pack_gate_passed": true,
+  "action_pack_credits_used_before": 0,
+  "action_pack_credits_used_after_blocked_attempt": 0,
+  "action_pack_credits_used_after_valid_purchase": 1,
+  "deep_analysis_credits_used_before": 0,
+  "deep_analysis_credits_used_after": 1,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "real_invoice_issued": false,
+  "payment_test_created": false,
+  "external_publication_executed": false,
+  "human_outreach_executed": false,
+  "production_api_key_published": false,
+  "machine_decision": "accepted_deep_analysis_allows_action_pack",
+  "interpretation": "A machine cannot buy Action Pack without a valid Deep Analysis source; after accepted same-domain Deep Analysis, the live API records a passed gate and consumes exactly one Action Pack credit.",
+  "recommended_next_step": "Keep this gate probe in the monitor; next test should cover ledger durability and replay/idempotency across the full machine purchase ladder.",
+  "actions": [
+    {
+      "tool": "create_sandbox_customer",
+      "kind": "POST/write",
+      "http_status": 429,
+      "ok": false,
+      "auth": "none"
+    },
+    {
+      "tool": "direct_create_sandbox_customer fallback",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_usage before",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent action_pack without source",
+      "kind": "POST/write",
+      "http_status": 400,
+      "ok": false,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage after blocked action_pack",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent deep_analysis source",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent action_pack with deep_analysis source",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage after valid action_pack",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    }
+  ],
+  "checks": [
+    {
+      "name": "mcp_initialize",
+      "ok": true,
+      "details": "{'name': 'machinesignal-local-mcp-adapter', 'version': '2026-06-04'}"
+    },
+    {
+      "name": "required_tools_present",
+      "ok": true,
+      "details": "tools=31; missing=[]"
+    },
+    {
+      "name": "sandbox_mcp_create_rate_limited",
+      "ok": true,
+      "details": "MCP adapter fingerprint reached the daily sandbox creation limit; using direct machine fallback for sandbox creation only."
+    },
+    {
+      "name": "mcp_reinitialized_with_precreated_sandbox_key",
+      "ok": true,
+      "details": "fallback sandbox key stored in adapter memory through environment"
+    },
+    {
+      "name": "sandbox_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "usage_before_read",
+      "ok": true,
+      "details": "HTTP 200; action_used=0; deep_used=0"
+    },
+    {
+      "name": "action_pack_without_deep_analysis_blocked",
+      "ok": true,
+      "details": "HTTP 400; error=action_pack_gate_failed"
+    },
+    {
+      "name": "blocked_action_pack_consumes_no_credit",
+      "ok": true,
+      "details": "before=0; after_blocked=0"
+    },
+    {
+      "name": "deep_analysis_source_created",
+      "ok": true,
+      "details": "HTTP 200; order_id=ord_afca5bd4"
+    },
+    {
+      "name": "deep_analysis_ready_for_action_pack",
+      "ok": true,
+      "details": "type=deep_opportunity_analysis; status=deep_analysis_ready; gate_present=True"
+    },
+    {
+      "name": "action_pack_created_after_deep_analysis",
+      "ok": true,
+      "details": "HTTP 200; order_id=ord_a8312125"
+    },
+    {
+      "name": "action_pack_gate_passed",
+      "ok": true,
+      "details": "{'required': True, 'passed': True, 'source_order_intent_id': 'ord_afca5bd4', 'source_delivery_id': 'del_4b6fd188', 'source_deep_analysis_version': 'domain_specific_commercial_evidence_v1'}"
+    },
+    {
+      "name": "action_pack_delivery_ready",
+      "ok": true,
+      "details": "type=action_pack; status=action_pack_ready"
+    },
+    {
+      "name": "action_pack_blocks_external_contact_by_default",
+      "ok": true,
+      "details": "default=blocked; contact=False"
+    },
+    {
+      "name": "usage_after_read",
+      "ok": true,
+      "details": "HTTP 200; action_used=1; deep_used=1"
+    },
+    {
+      "name": "one_deep_analysis_credit_consumed",
+      "ok": true,
+      "details": "before=0; after=1"
+    },
+    {
+      "name": "one_action_pack_credit_consumed",
+      "ok": true,
+      "details": "before=0; after=1"
+    },
+    {
+      "name": "post_budget_respected",
+      "ok": true,
+      "details": "post_calls=5; max=5"
+    },
+    {
+      "name": "no_real_payment_or_external_contact",
+      "ok": true,
+      "details": "payment=False; contact=False"
+    }
+  ],
+  "usage_summary": {
+    "http_status": 200,
+    "ledger_backend": "durable_object",
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  }
+}

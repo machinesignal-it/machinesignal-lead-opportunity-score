@@ -117,6 +117,8 @@ Public discovery starts here:
 - MCP Deep Analysis Verification Gate Probe JSON: https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json
 - MCP Positive Verification Deep Analysis Probe: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_report_20260610.md
 - MCP Positive Verification Deep Analysis Probe JSON: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json
+- MCP Action Pack Deep Analysis Gate Probe: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_report_20260610.md
+- MCP Action Pack Deep Analysis Gate Probe JSON: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -685,3 +687,12 @@ A write-capped MCP probe now proves the allowed path: a buyer machine can buy De
 - Summary JSON: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json
 - Result: verification_verdict_status=verified_for_deep_analysis, deep_analysis_gate_passed=true, deep_analysis_credits_used_before=0, deep_analysis_credits_used_after=1.
 - Safety: post_calls_executed=4, write_calls_executed=4, real_payment_executed=false, external_contact_executed=false, external_publication_executed=false.
+
+## MCP Action Pack Deep Analysis Gate Probe - 2026-06-10
+
+A write-capped MCP probe now proves the next spend gate: a buyer machine cannot buy Action Pack without a valid Deep Analysis source, and can buy it after a same-domain accepted Deep Analysis order. The blocked attempt consumes no Action Pack credit; the valid purchase consumes exactly one Action Pack credit.
+
+- Report: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_report_20260610.md
+- Summary JSON: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json
+- Result: blocked_action_pack_error=action_pack_gate_failed, action_pack_gate_passed=true, action_pack_credits_used_before=0, action_pack_credits_used_after_blocked_attempt=0, action_pack_credits_used_after_valid_purchase=1.
+- Safety: post_calls_executed=5, write_calls_executed=5, real_payment_executed=false, external_contact_executed=false, external_publication_executed=false.

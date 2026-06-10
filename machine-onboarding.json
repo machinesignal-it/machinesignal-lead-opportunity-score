@@ -960,7 +960,9 @@
     "mcp_verification_gate_probe": "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
     "mcp_verification_gate_probe_json": "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
     "mcp_positive_verification_deep_analysis_probe": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_report_20260610.md",
-    "mcp_positive_verification_deep_analysis_probe_json": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json"
+    "mcp_positive_verification_deep_analysis_probe_json": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json",
+    "mcp_action_pack_deep_analysis_gate_probe": "https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_report_20260610.md",
+    "mcp_action_pack_deep_analysis_gate_probe_json": "https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json"
   },
   "latest_mcp_purchase_decision_probe": {
     "status": "completed_mcp_purchase_decision_probe",
@@ -1092,5 +1094,38 @@
     "report": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_report_20260610.md",
     "json": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json"
   },
-  "current_mcp_positive_verification_deep_analysis_probe": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json"
+  "current_mcp_positive_verification_deep_analysis_probe": "https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json",
+  "latest_mcp_action_pack_deep_analysis_gate_probe": {
+    "status": "completed_mcp_action_pack_deep_analysis_gate_probe",
+    "ok": true,
+    "evidence_date": "2026-06-10",
+    "mode": "McpActionPackDeepAnalysisGateProbeWriteCapped",
+    "primary_customer_interface": "machine",
+    "max_post_calls_allowed": 5,
+    "post_calls_executed": 5,
+    "write_calls_executed": 5,
+    "domain": "action-pack-deep-analysis-ready.test",
+    "blocked_action_pack_error": "action_pack_gate_failed",
+    "deep_analysis_order_intent_id": "ord_afca5bd4",
+    "action_pack_order_intent_id": "ord_a8312125",
+    "action_pack_gate_passed": true,
+    "action_pack_credits_used_before": 0,
+    "action_pack_credits_used_after_blocked_attempt": 0,
+    "action_pack_credits_used_after_valid_purchase": 1,
+    "deep_analysis_credits_used_before": 0,
+    "deep_analysis_credits_used_after": 1,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "real_invoice_issued": false,
+    "payment_test_created": false,
+    "external_publication_executed": false,
+    "human_outreach_executed": false,
+    "production_api_key_published": false,
+    "machine_decision": "accepted_deep_analysis_allows_action_pack",
+    "interpretation": "A machine cannot buy Action Pack without a valid Deep Analysis source; after accepted same-domain Deep Analysis, the live API records a passed gate and consumes exactly one Action Pack credit.",
+    "recommended_next_step": "Keep this gate probe in the monitor; next test should cover ledger durability and replay/idempotency across the full machine purchase ladder.",
+    "report": "https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_report_20260610.md",
+    "json": "https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json"
+  },
+  "current_mcp_action_pack_deep_analysis_gate_probe": "https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json"
 }
