@@ -620,7 +620,7 @@ export const openApi = {
         operationId: "createPurchaseIntent",
         summary: "Create a beta order intent for a recommended next product",
         description:
-          "Creates a tracked beta order intent for target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment.",
+          "Creates a tracked beta order intent for target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment. If deep_analysis is requested with source_verification_order_intent_id, the source Verification order must be accepted, same-domain and positive; otherwise the API returns deep_analysis_verification_gate_failed and consumes no credit.",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
           {
@@ -1236,6 +1236,12 @@ export const openApi = {
               "Required when product_code is action_pack. Must point to a valid accepted Deep Analysis order for the same domain in the customer's ledger.",
             example: "ord_0001"
           },
+          source_verification_order_intent_id: {
+            type: "string",
+            description:
+              "Optional when product_code is deep_analysis. If provided, it must point to a valid accepted Verification order for the same domain with a positive verification verdict; cautious verdicts block Deep Analysis and consume no credit.",
+            example: "ord_verification_0001"
+          },
           reason: {
             type: "string",
             description: "Optional machine-readable reason for the purchase intent.",
@@ -1261,10 +1267,19 @@ export const openApi = {
           domain: { type: "string", example: "studio-legale-demo.it" },
           source_score_request_id: { type: "string", example: "crm-import-20260529-row-0007" },
           source_order_intent_id: { type: "string", example: "ord_0001" },
+          source_verification_order_intent_id: {
+            type: "string",
+            example: "ord_verification_0001"
+          },
           action_pack_gate: {
             type: "object",
             description:
               "Present for action_pack. Shows whether the API accepted the required Deep Analysis gate."
+          },
+          deep_analysis_verification_gate: {
+            type: "object",
+            description:
+              "Present for deep_analysis when source_verification_order_intent_id is supplied. Shows whether the API accepted the required Verification gate."
           },
           real_payment_executed: { type: "boolean", example: false },
           external_contact_executed: { type: "boolean", example: false },
@@ -1773,6 +1788,7 @@ How a machine should create a beta order intent:
 Deep Analysis delivery contract:
 - deep_analysis returns what_is_included, deep_analysis_version, sector_context, commercial_objective, commercial_evidence, machine_decision_matrix, action_pack_purchase_gate, crm_summary_payload, sector_specific_signals, signals_to_validate, recommended_next_step, recommended_budget_cap_eur, stop_rules, evidence_limitations and next_machine_call;
 - deep_analysis_version is domain_specific_commercial_evidence_v1;
+- deep_analysis may include source_verification_order_intent_id; if supplied, the source Verification order must be accepted, same-domain and positive, otherwise POST /v1/purchase-intent returns deep_analysis_verification_gate_failed and consumes no credit;
 - the customer machine should buy action_pack only if sector fit, digital friction, CRM/workflow destination, compliance gate and budget approval are present;
 - if those gates are not present, the customer machine should keep the lead in watchlist or stop spending.
 
@@ -2225,7 +2241,7 @@ const postmanCollection = {
           path: ["v1", "purchase-intent"]
         },
         description:
-          "Use this after a strong score. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
+          "Use this after a strong score. If the machine is trying to move from Verification to Deep Analysis, include source_verification_order_intent_id; cautious or non-positive Verification verdicts return deep_analysis_verification_gate_failed and consume no credit. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
       },
       response: []
     },
@@ -2928,7 +2944,10 @@ async function createPurchaseIntentInLedger(ledger, env, input, requestId) {
       product_code: product.product_code,
       source_score_request_id: input?.source_score_request_id || null,
       source_order_intent_id: input?.source_order_intent_id || null,
+      source_verification_order_intent_id: input?.source_verification_order_intent_id || null,
       action_pack_gate: gateContext,
+      deep_analysis_verification_gate:
+        product.product_code === "deep_analysis" ? gateContext : null,
       real_payment_executed: false,
       external_contact_executed: false
     }
@@ -3012,7 +3031,11 @@ export class MachineSignalLedgerDurableObject {
             product_code: product.product_code,
             source_score_request_id: input?.source_score_request_id || null,
             source_order_intent_id: input?.source_order_intent_id || null,
+            source_verification_order_intent_id:
+              input?.source_verification_order_intent_id || null,
             action_pack_gate: gateContext,
+            deep_analysis_verification_gate:
+              product.product_code === "deep_analysis" ? gateContext : null,
             real_payment_executed: false,
             external_contact_executed: false
           }
@@ -3486,6 +3509,103 @@ function actionPackGateError(message, details = {}) {
   return error;
 }
 
+function deepAnalysisVerificationGateError(message, details = {}) {
+  const error = new Error(message);
+  error.statusCode = 400;
+  error.code = "deep_analysis_verification_gate_failed";
+  error.details = details;
+  return error;
+}
+
+function validateDeepAnalysisVerificationGate(state, input = {}, domain = "") {
+  const sourceVerificationOrderIntentId = String(
+    input?.source_verification_order_intent_id || ""
+  ).trim();
+  if (!sourceVerificationOrderIntentId) return null;
+
+  const sourceOrder = (state.orders || []).find(
+    (order) => String(order.order_intent_id || "") === sourceVerificationOrderIntentId
+  );
+  if (!sourceOrder) {
+    throw deepAnalysisVerificationGateError(
+      "Deep Analysis source_verification_order_intent_id was not found in this customer's order ledger.",
+      { source_verification_order_intent_id: sourceVerificationOrderIntentId }
+    );
+  }
+
+  if (sourceOrder.product_code !== "verification") {
+    throw deepAnalysisVerificationGateError(
+      "Deep Analysis source_verification_order_intent_id must point to a Verification order.",
+      {
+        source_verification_order_intent_id: sourceVerificationOrderIntentId,
+        source_product_code: sourceOrder.product_code || null
+      }
+    );
+  }
+
+  if (sourceOrder.status !== "accepted_beta_order_intent") {
+    throw deepAnalysisVerificationGateError(
+      "Deep Analysis source Verification order is not accepted.",
+      {
+        source_verification_order_intent_id: sourceVerificationOrderIntentId,
+        source_status: sourceOrder.status || null
+      }
+    );
+  }
+
+  const sourceDomain = normalizeDomain(sourceOrder.domain);
+  if (sourceDomain !== domain) {
+    throw deepAnalysisVerificationGateError(
+      "Deep Analysis domain must match the source Verification order domain.",
+      {
+        source_verification_order_intent_id: sourceVerificationOrderIntentId,
+        source_domain: sourceDomain,
+        requested_domain: domain
+      }
+    );
+  }
+
+  const sourceDelivery = sourceOrder.delivery || {};
+  if (
+    sourceDelivery.delivery_type !== "data_quality_verification" ||
+    sourceDelivery.status !== "verification_ready"
+  ) {
+    throw deepAnalysisVerificationGateError(
+      "Deep Analysis source Verification delivery is not ready.",
+      {
+        source_verification_order_intent_id: sourceVerificationOrderIntentId,
+        source_delivery_type: sourceDelivery.delivery_type || null,
+        source_delivery_status: sourceDelivery.status || null
+      }
+    );
+  }
+
+  const verdictStatus = String(sourceDelivery.verification_verdict?.status || "").trim();
+  const positiveStatuses = new Set([
+    "verified",
+    "verified_for_deep_analysis",
+    "safe_to_deepen"
+  ]);
+  if (!positiveStatuses.has(verdictStatus)) {
+    throw deepAnalysisVerificationGateError(
+      "Deep Analysis is blocked because the source Verification verdict is not positive.",
+      {
+        source_verification_order_intent_id: sourceVerificationOrderIntentId,
+        source_verification_verdict_status: verdictStatus || null,
+        accepted_positive_verdict_statuses: Array.from(positiveStatuses)
+      }
+    );
+  }
+
+  return {
+    gate_passed: true,
+    source_verification_order_intent_id: sourceVerificationOrderIntentId,
+    source_event_id: sourceOrder.event_id || null,
+    source_delivery_id: sourceDelivery.delivery_id || null,
+    source_verification_verdict_status: verdictStatus
+  };
+}
+
 function validateActionPackPurchaseGate(state, input = {}, domain = "") {
   const sourceOrderIntentId = String(input?.source_order_intent_id || "").trim();
   if (!sourceOrderIntentId) {
@@ -3563,6 +3683,9 @@ function validateActionPackPurchaseGate(state, input = {}, domain = "") {
 }
 
 function validatePurchaseIntentPreflight(state, input = {}, product = {}, domain = "") {
+  if (product.product_code === "deep_analysis") {
+    return validateDeepAnalysisVerificationGate(state, input, domain);
+  }
   if (product.product_code !== "action_pack") return null;
   return validateActionPackPurchaseGate(state, input, domain);
 }
@@ -3752,6 +3875,8 @@ export function buildPurchaseIntent(input, requestId, event, gateContext = null)
       ? "blocked_insufficient_credits"
       : "accepted_beta_order_intent";
   const sourceOrderIntentId = String(input?.source_order_intent_id || "").trim() || null;
+  const sourceVerificationOrderIntentId =
+    String(input?.source_verification_order_intent_id || "").trim() || null;
   return {
     order_intent_id: `ord_${stableHash(`${requestId}|${product.product_code}|${domain}`).toString(16)}`,
     status,
@@ -3760,6 +3885,7 @@ export function buildPurchaseIntent(input, requestId, event, gateContext = null)
     domain,
     source_score_request_id: String(input?.source_score_request_id || "").trim() || null,
     source_order_intent_id: sourceOrderIntentId,
+    source_verification_order_intent_id: sourceVerificationOrderIntentId,
     action_pack_gate:
       product.product_code === "action_pack"
         ? {
@@ -3768,6 +3894,17 @@ export function buildPurchaseIntent(input, requestId, event, gateContext = null)
             source_order_intent_id: sourceOrderIntentId,
             source_delivery_id: gateContext?.source_delivery_id || null,
             source_deep_analysis_version: gateContext?.source_deep_analysis_version || null
+          }
+        : null,
+    deep_analysis_verification_gate:
+      product.product_code === "deep_analysis" && sourceVerificationOrderIntentId
+        ? {
+            required: true,
+            passed: Boolean(gateContext?.gate_passed),
+            source_verification_order_intent_id: sourceVerificationOrderIntentId,
+            source_delivery_id: gateContext?.source_delivery_id || null,
+            source_verification_verdict_status:
+              gateContext?.source_verification_verdict_status || null
           }
         : null,
     reason: String(input?.reason || "").trim() || null,
@@ -3795,7 +3932,9 @@ function orderRecordFromIntent(intent, event) {
     domain: intent.domain,
     source_score_request_id: intent.source_score_request_id,
     source_order_intent_id: intent.source_order_intent_id || null,
+    source_verification_order_intent_id: intent.source_verification_order_intent_id || null,
     action_pack_gate: intent.action_pack_gate || null,
+    deep_analysis_verification_gate: intent.deep_analysis_verification_gate || null,
     reason: intent.reason,
     max_budget_eur: intent.max_budget_eur,
     beta_price_range_eur: intent.beta_price_range_eur,

@@ -98,7 +98,7 @@
         "exclusion of invalid or non-analyzable records",
         "opportunity_score",
         "confidence",
-        "web_architect_review and commercial_strength level",
+        "commercial_strength level",
         "spend_policy",
         "allowed next products",
         "operational decision",

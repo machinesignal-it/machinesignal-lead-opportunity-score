@@ -158,6 +158,7 @@ How a machine should create a beta order intent:
 Deep Analysis delivery contract:
 - deep_analysis returns what_is_included, deep_analysis_version, sector_context, commercial_objective, commercial_evidence, machine_decision_matrix, action_pack_purchase_gate, crm_summary_payload, sector_specific_signals, signals_to_validate, recommended_next_step, recommended_budget_cap_eur, stop_rules, evidence_limitations and next_machine_call;
 - deep_analysis_version is domain_specific_commercial_evidence_v1;
+- deep_analysis may include source_verification_order_intent_id; if supplied, the source Verification order must be accepted, same-domain and positive, otherwise POST /v1/purchase-intent returns deep_analysis_verification_gate_failed and consumes no credit;
 - the customer machine should buy action_pack only if sector fit, digital friction, CRM/workflow destination, compliance gate and budget approval are present;
 - if those gates are not present, the customer machine should keep the lead in watchlist or stop spending.
 

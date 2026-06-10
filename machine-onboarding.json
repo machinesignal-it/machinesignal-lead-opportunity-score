@@ -597,12 +597,35 @@
                                      "can_call_scores":  true,
                                      "can_create_beta_orders":  true,
                                      "can_read_usage_and_orders":  true,
-                                     "must_not_execute_external_outreach":  true,
-                                     "must_not_assume_real_payment":  true,
-                                     "can_create_payment_test_intents":  true,
-                                     "must_not_use_live_payment_mode":  true
-                                 },
-    "latest_machine_discovery_full_simulation":  {
+                                       "must_not_execute_external_outreach":  true,
+                                       "must_not_assume_real_payment":  true,
+                                       "can_create_payment_test_intents":  true,
+                                       "must_not_use_live_payment_mode":  true,
+                                       "must_respect_deep_analysis_verification_gate":  true,
+                                       "must_not_buy_deep_analysis_after_cautious_verification":  true,
+                                       "no_write_marker":  "NoWrite"
+                                   },
+    "operational_mode":  {
+                             "write_safety_marker":  "NoWrite",
+                             "public_discovery_mode":  "sandbox_only",
+                             "real_payment_executed":  false,
+                             "external_contact_executed":  false
+                         },
+    "deep_analysis_verification_gate":  {
+                                           "status":  "active_in_contract",
+                                           "field":  "source_verification_order_intent_id",
+                                           "applies_when":  "A customer machine tries to buy deep_analysis by referencing a previous verification order.",
+                                           "source_order_required":  "accepted Verification order for the same normalized domain",
+                                           "positive_verdict_statuses":  [
+                                                                            "verified",
+                                                                            "verified_for_deep_analysis",
+                                                                            "safe_to_deepen"
+                                                                        ],
+                                           "blocked_error_code":  "deep_analysis_verification_gate_failed",
+                                           "no_credit_consumed_on_block":  true,
+                                           "machine_interpretation":  "If Verification says keep_with_caution or another non-positive verdict, do not buy Deep Analysis from that source; keep the target in watchlist, request a different verification, or stop spending."
+                                       },
+     "latest_machine_discovery_full_simulation":  {
                                                      "status":  "completed_full_machine_discovery",
                                                      "ok":  true,
                                                      "evidence_date":  "2026-06-07",

@@ -301,7 +301,7 @@
       "post": {
         "operationId": "createPurchaseIntent",
         "summary": "Create a beta order intent for a recommended next product",
-        "description": "Creates a tracked beta order intent for target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment.",
+        "description": "Creates a tracked beta order intent for target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment. If deep_analysis is requested with source_verification_order_intent_id, the source Verification order must be accepted, same-domain and positive; otherwise the API returns deep_analysis_verification_gate_failed and consumes no credit.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -1110,6 +1110,11 @@
             "description": "Required when product_code is action_pack. Must point to a valid accepted Deep Analysis order for the same domain in the customer's ledger.",
             "example": "ord_0001"
           },
+          "source_verification_order_intent_id": {
+            "type": "string",
+            "description": "Optional when product_code is deep_analysis. If provided, it must point to a valid accepted Verification order for the same domain with a positive verification verdict; cautious verdicts block Deep Analysis and consume no credit.",
+            "example": "ord_verification_0001"
+          },
           "reason": {
             "type": "string",
             "description": "Optional machine-readable reason for the purchase intent.",
@@ -1153,9 +1158,17 @@
             "type": "string",
             "example": "ord_0001"
           },
+          "source_verification_order_intent_id": {
+            "type": "string",
+            "example": "ord_verification_0001"
+          },
           "action_pack_gate": {
             "type": "object",
             "description": "Present for action_pack. Shows whether the API accepted the required Deep Analysis gate."
+          },
+          "deep_analysis_verification_gate": {
+            "type": "object",
+            "description": "Present for deep_analysis when source_verification_order_intent_id is supplied. Shows whether the API accepted the required Verification gate."
           },
           "real_payment_executed": {
             "type": "boolean",

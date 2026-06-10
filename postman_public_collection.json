@@ -500,7 +500,7 @@
             "purchase-intent"
           ]
         },
-        "description": "Use this after a strong score. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
+        "description": "Use this after a strong score. If the machine is trying to move from Verification to Deep Analysis, include source_verification_order_intent_id; cautious or non-positive Verification verdicts return deep_analysis_verification_gate_failed and consume no credit. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
       },
       "response": []
     },

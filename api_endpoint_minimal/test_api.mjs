@@ -532,6 +532,49 @@ assert.equal(
   1
 );
 
+const blockedDeepAnalysisAfterCautiousVerificationResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "deep_analysis",
+      domain: "clinic3.it",
+      sector_hint: "dentist",
+      source_score_request_id: "test-score-001",
+      source_verification_order_intent_id: purchaseIntentPayload.order_intent_id,
+      reason: "Invalid Deep Analysis after cautious verification"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key",
+      "idempotency-key": "test-deep-analysis-after-cautious-verification-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(blockedDeepAnalysisAfterCautiousVerificationResponse.status, 400);
+const blockedDeepAnalysisAfterCautiousVerificationPayload =
+  await blockedDeepAnalysisAfterCautiousVerificationResponse.json();
+assert.equal(
+  blockedDeepAnalysisAfterCautiousVerificationPayload.error,
+  "deep_analysis_verification_gate_failed"
+);
+assert.equal(
+  blockedDeepAnalysisAfterCautiousVerificationPayload.details.source_verification_verdict_status,
+  "keep_with_caution"
+);
+
+const usageAfterBlockedDeepAnalysisResponse = await handleRequest(
+  new Request("http://localhost/v1/usage", {
+    headers: { "x-api-key": "test-key" }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+const usageAfterBlockedDeepAnalysisPayload = await usageAfterBlockedDeepAnalysisResponse.json();
+assert.equal(
+  usageAfterBlockedDeepAnalysisPayload.balances.find((item) => item.product_code === "deep_analysis_pack_100").credits_used,
+  0
+);
+
 const targetDiscoveryResponse = await handleRequest(
   new Request("http://localhost/v1/purchase-intent", {
     method: "POST",
