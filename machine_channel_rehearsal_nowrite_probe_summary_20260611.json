@@ -1,0 +1,559 @@
+{
+  "artifact": "machine_channel_rehearsal_nowrite_probe",
+  "generated_at": "2026-06-11T09:05:22.494Z",
+  "public_site": "https://machinesignal.it",
+  "status": "completed_machine_channel_rehearsal_nowrite_probe",
+  "ok": true,
+  "mode": "NoWriteChannelPublicationRehearsal",
+  "primary_customer_interface": "machine",
+  "machine_customer_mode": "machine_evaluates_channel_publication_drafts_without_third_party_write_actions",
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "human_outreach_executed": false,
+  "external_publication_executed": false,
+  "live_monetization_enabled": false,
+  "safety": {
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "external_publication_executed": false,
+    "production_api_key_published": false,
+    "live_monetization_enabled": false,
+    "third_party_login_used": false
+  },
+  "channel_decisions": [
+    {
+      "channel": "Postman Public API Network",
+      "fit": "high",
+      "decision": "ready_for_owner_supervised_private_workspace_rehearsal",
+      "next_step": "Keep workspace private/team, import the public collection, run final in-Postman secret scan, then ask owner before public visibility.",
+      "blocked_actions": [
+        "publish public workspace",
+        "publish real API key",
+        "claim live paid checkout"
+      ],
+      "checks_passed": 10,
+      "checks_total": 10
+    },
+    {
+      "channel": "RapidAPI style marketplace draft",
+      "fit": "medium_high",
+      "decision": "ready_for_unpublished_provider_draft_rehearsal_monetization_blocked",
+      "next_step": "Prepare provider/listing metadata only; keep paid plans, live checkout and production key distribution disabled.",
+      "blocked_actions": [
+        "public paid plan",
+        "live checkout",
+        "production key publication"
+      ],
+      "checks_passed": 8,
+      "checks_total": 8
+    },
+    {
+      "channel": "Generic API directories",
+      "fit": "medium",
+      "decision": "ready_for_private_or_unsubmitted_directory_draft",
+      "next_step": "Use the directory draft copy as metadata source only; public submission remains blocked until owner approval.",
+      "blocked_actions": [
+        "irreversible external submission",
+        "live payment claim",
+        "human outreach"
+      ],
+      "checks_passed": 8,
+      "checks_total": 8
+    },
+    {
+      "channel": "MCP and agent registries",
+      "fit": "high_after_mcp",
+      "decision": "ready_for_local_adapter_registry_draft_hosted_mcp_blocked",
+      "next_step": "Prepare local-adapter registry metadata; decide separately if a hosted MCP endpoint is worth building before public registry submission.",
+      "blocked_actions": [
+        "claim hosted MCP live",
+        "submit irreversible registry listing",
+        "publish production keys"
+      ],
+      "checks_passed": 8,
+      "checks_total": 8
+    }
+  ],
+  "marketplace_pack_summary": {
+    "recommended_sequence": [
+      {
+        "rank": 1,
+        "channel": "Postman Public API Network",
+        "status": "ready_to_setup_public_workspace_draft",
+        "main_import_asset": "https://machinesignal.it/postman_public_collection.json"
+      },
+      {
+        "rank": 2,
+        "channel": "Own-domain API and agent discovery surfaces",
+        "status": "published_keep_current",
+        "main_import_asset": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json"
+      },
+      {
+        "rank": 3,
+        "channel": "RapidAPI style marketplace draft",
+        "status": "provider_ready_draft_do_not_monetize_yet",
+        "main_import_asset": "https://machinesignal.it/openapi.json"
+      },
+      {
+        "rank": 4,
+        "channel": "Generic API directories",
+        "status": "ready_to_submit_as_sandbox_listing",
+        "main_import_asset": "https://machinesignal.it/openapi.json"
+      },
+      {
+        "rank": 5,
+        "channel": "MCP and agent registries",
+        "status": "ready_for_sandbox_validation_after_wrapper_publication",
+        "main_import_asset": "https://machinesignal.it/mcp-tool-manifest.json"
+      }
+    ],
+    "checks_passed": 7,
+    "checks_total": 7
+  },
+  "machine_decision": {
+    "decision": "channels_ready_for_owner_supervised_nowrite_rehearsal",
+    "recommended_next_step": "Run a private Postman workspace rehearsal first, then prepare unpublished RapidAPI/API-directory/MCP registry drafts; keep monetization and public submission blocked."
+  },
+  "resources": [
+    {
+      "name": "channel_shortlist",
+      "url": "https://machinesignal.it/distribution/channel-shortlist.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 6100,
+      "json_valid": true,
+      "elapsed_ms": 358,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "postman_workspace_draft",
+      "url": "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 9559,
+      "json_valid": true,
+      "elapsed_ms": 44,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "rapidapi_listing",
+      "url": "https://machinesignal.it/distribution/rapidapi-listing.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 43020,
+      "json_valid": true,
+      "elapsed_ms": 52,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "api_directory_submission",
+      "url": "https://machinesignal.it/distribution/api-directory-submission.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 41335,
+      "json_valid": true,
+      "elapsed_ms": 65,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "marketplace_submission_pack",
+      "url": "https://machinesignal.it/distribution/marketplace-submission-pack.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 67665,
+      "json_valid": true,
+      "elapsed_ms": 57,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "mcp_tool_manifest",
+      "url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 69059,
+      "json_valid": true,
+      "elapsed_ms": 55,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "mcp_wrapper_pack",
+      "url": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 46438,
+      "json_valid": true,
+      "elapsed_ms": 43,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "openapi",
+      "url": "https://machinesignal.it/openapi.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 61595,
+      "json_valid": true,
+      "elapsed_ms": 53,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "postman_public_collection",
+      "url": "https://machinesignal.it/postman_public_collection.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 27631,
+      "json_valid": true,
+      "elapsed_ms": 58,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "postman_smoke",
+      "url": "https://machinesignal.it/postman_public_collection_smoke_summary_20260604.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 6946,
+      "json_valid": true,
+      "elapsed_ms": 49,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "postman_secret_scan",
+      "url": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 4329,
+      "json_valid": true,
+      "elapsed_ms": 48,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "distribution_readiness_probe",
+      "url": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 17633,
+      "json_valid": true,
+      "elapsed_ms": 42,
+      "markers_ok": true,
+      "secret_hits": []
+    },
+    {
+      "name": "distribution_monitor",
+      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 69993,
+      "json_valid": true,
+      "elapsed_ms": 48,
+      "markers_ok": true,
+      "secret_hits": []
+    }
+  ],
+  "checks": [
+    {
+      "name": "channel_shortlist_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=6100; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "postman_workspace_draft_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=9559; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "rapidapi_listing_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=43020; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "api_directory_submission_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=41335; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "marketplace_submission_pack_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=67665; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "mcp_tool_manifest_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=69059; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "mcp_wrapper_pack_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=46438; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "openapi_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=61595; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "postman_public_collection_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=27631; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "postman_smoke_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=6946; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "postman_secret_scan_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=4329; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "distribution_readiness_probe_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=17633; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "distribution_monitor_reachable",
+      "ok": true,
+      "details": "HTTP 200; bytes=69993; json=true; markers=1/1; secrets=0"
+    },
+    {
+      "name": "postman_status_ready_private_or_team",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "postman_collection_import_asset_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "postman_openapi_import_asset_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "postman_api_key_blank_before_publish",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "postman_owner_approval_gate_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "postman_collection_has_core_flow",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "postman_smoke_test_ok_or_available",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "postman_secret_scan_available",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "postman_public_visibility_still_blocked",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "postman_acceptance_gates_actionable",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "rapidapi_metadata_ready",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "rapidapi_base_url_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "rapidapi_auth_headers_documented",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "rapidapi_core_endpoints_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "rapidapi_products_cover_purchase_ladder",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "rapidapi_monetization_disabled",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "rapidapi_safety_no_external_contact",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "rapidapi_openapi_gate_errors_documented",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "api_directory_status_draft_ready",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "api_directory_short_description_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "api_directory_categories_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "api_directory_keywords_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "api_directory_canonical_urls_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "api_directory_products_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "api_directory_publication_blocked",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "api_directory_safety_no_external_contact",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "mcp_registry_tool_manifest_has_many_tools",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "mcp_registry_core_tools_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "mcp_registry_public_read_tools_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "mcp_registry_hosted_mcp_not_claimed_live",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "mcp_registry_local_stdio_adapter_available",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "mcp_registry_registry_submission_blocked",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "mcp_registry_wrapper_installation_flow_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "mcp_registry_no_real_keys_publishable",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "marketplace_pack_sequence_has_postman_first",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "marketplace_pack_sequence_has_rapidapi",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "marketplace_pack_sequence_has_mcp",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "marketplace_pack_policy_blocks_external_submission",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "marketplace_pack_policy_blocks_real_payments",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "marketplace_pack_canonical_assets_present",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "marketplace_pack_all_channel_decisions_ready_or_blocked_safely",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "channel_shortlist_machine_first_rule",
+      "ok": true,
+      "details": "Do not rely on human cold email. Prioritize machine-readable assets, public API documentation and sandbox-callable flows."
+    },
+    {
+      "name": "distribution_readiness_probe_current_ok",
+      "ok": true,
+      "details": "ok=true; post=0; write=0"
+    },
+    {
+      "name": "distribution_monitor_current_ok",
+      "ok": true,
+      "details": "ok=true; failed=0"
+    },
+    {
+      "name": "no_write_policy_respected",
+      "ok": true,
+      "details": "probe executed only GET requests"
+    }
+  ],
+  "source_note": "No POST, write, third-party login, publication, payment, production key or outreach action was executed."
+}

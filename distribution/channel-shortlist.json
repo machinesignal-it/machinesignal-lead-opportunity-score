@@ -41,7 +41,13 @@
       "status": "active",
       "fit": "very_high",
       "why": "Developers, crawlers and agents can inspect versioned docs and JSON assets.",
-      "publish": ["README", "OpenAPI", "Postman collection", "discovery JSON", "distribution JSON"],
+      "publish": [
+        "README",
+        "OpenAPI",
+        "Postman collection",
+        "discovery JSON",
+        "distribution JSON"
+      ],
       "next_action": "Add release notes and topics when useful."
     },
     {
@@ -50,7 +56,13 @@
       "status": "ready_next",
       "fit": "high",
       "why": "Strong API discovery surface; public workspaces help onboarding and search discovery.",
-      "publish": ["public workspace", "collection", "documentation", "examples", "sandbox-only workspace draft"],
+      "publish": [
+        "public workspace",
+        "collection",
+        "documentation",
+        "examples",
+        "sandbox-only workspace draft"
+      ],
       "next_action": "Use the Marketplace Publication Execution Pack and the public collection as the source copy. Keep workspace sandbox-only and publish no real API key."
     },
     {
@@ -59,7 +71,13 @@
       "status": "good_beta_test",
       "fit": "medium_high",
       "why": "API marketplace with provider dashboard, listing metadata, OpenAPI/docs and browser testing.",
-      "publish": ["API listing", "OpenAPI", "docs", "base URL", "sandbox endpoint"],
+      "publish": [
+        "API listing",
+        "OpenAPI",
+        "docs",
+        "base URL",
+        "sandbox endpoint"
+      ],
       "next_action": "Use https://machinesignal.it/marketplace_publication_execution_pack_20260606.json, https://machinesignal.it/marketplace_api_directory_pack_20260606.json and https://machinesignal.it/distribution/rapidapi-listing.json as the listing source. Keep monetized publication blocked."
     },
     {
@@ -68,7 +86,10 @@
       "status": "evaluate",
       "fit": "medium",
       "why": "Potential API buyer traffic, but may be curated and less self-service.",
-      "publish": ["submission profile", "documentation links"],
+      "publish": [
+        "submission profile",
+        "documentation links"
+      ],
       "next_action": "Submit only sandbox-ready directory copy after owner approval, using the Marketplace Publication Execution Pack."
     },
     {
@@ -77,7 +98,11 @@
       "status": "metadata_ready_hosted_server_not_live",
       "fit": "high_after_mcp",
       "why": "Relevant for agent/tool discovery; current asset is a local stdio adapter plus wrapper pack, while a hosted MCP server is not live.",
-      "publish": ["MCP wrapper pack", "tool manifest", "local adapter repo"],
+      "publish": [
+        "MCP wrapper pack",
+        "tool manifest",
+        "local adapter repo"
+      ],
       "next_action": "Use the MCP manifest plus Marketplace Publication Execution Pack. Decide later whether a hosted MCP endpoint is needed for listing."
     },
     {
@@ -86,7 +111,11 @@
       "status": "metadata_ready_hosted_server_not_live",
       "fit": "high_after_mcp",
       "why": "Large MCP registry/discovery surface.",
-      "publish": ["MCP wrapper pack", "tool manifest", "local adapter repo"],
+      "publish": [
+        "MCP wrapper pack",
+        "tool manifest",
+        "local adapter repo"
+      ],
       "next_action": "Validate whether local stdio adapter listings are accepted or whether hosted MCP is required."
     },
     {
@@ -95,7 +124,9 @@
       "status": "later_after_mcp_or_a2a",
       "fit": "medium_high_after_mcp",
       "why": "Agentic registry focused on MCP, A2A and x402-enabled services.",
-      "publish": ["MCP/A2A/x402 service metadata"],
+      "publish": [
+        "MCP/A2A/x402 service metadata"
+      ],
       "next_action": "Build MCP/A2A or x402-compatible surface first."
     },
     {
@@ -104,7 +135,11 @@
       "status": "metadata_ready_hosted_server_not_live",
       "fit": "medium_after_mcp",
       "why": "MCP directory, useful after tool wrapper exists.",
-      "publish": ["MCP wrapper pack", "tool manifest", "local adapter repo"],
+      "publish": [
+        "MCP wrapper pack",
+        "tool manifest",
+        "local adapter repo"
+      ],
       "next_action": "Prepare sandbox-only listing draft after validation."
     }
   ],
@@ -113,5 +148,112 @@
     "Prepare RapidAPI and API directory listing fields from the Marketplace Publication Execution Pack.",
     "Keep GitHub and own domain as canonical source of truth.",
     "Validate the public MCP wrapper pack and prepare sandbox-only MCP directory drafts."
-  ]
+  ],
+  "latest_machine_channel_rehearsal_nowrite_probe": {
+    "status": "completed_machine_channel_rehearsal_nowrite_probe",
+    "ok": true,
+    "evidence_date": "2026-06-11",
+    "mode": "NoWriteChannelPublicationRehearsal",
+    "primary_customer_interface": "machine",
+    "machine_customer_mode": "machine_evaluates_channel_publication_drafts_without_third_party_write_actions",
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "external_publication_executed": false,
+    "live_monetization_enabled": false,
+    "channel_decisions": [
+      {
+        "channel": "Postman Public API Network",
+        "fit": "high",
+        "decision": "ready_for_owner_supervised_private_workspace_rehearsal",
+        "checks_passed": 10,
+        "checks_total": 10,
+        "next_step": "Keep workspace private/team, import the public collection, run final in-Postman secret scan, then ask owner before public visibility.",
+        "blocked_actions": [
+          "publish public workspace",
+          "publish real API key",
+          "claim live paid checkout"
+        ]
+      },
+      {
+        "channel": "RapidAPI style marketplace draft",
+        "fit": "medium_high",
+        "decision": "ready_for_unpublished_provider_draft_rehearsal_monetization_blocked",
+        "checks_passed": 8,
+        "checks_total": 8,
+        "next_step": "Prepare provider/listing metadata only; keep paid plans, live checkout and production key distribution disabled.",
+        "blocked_actions": [
+          "public paid plan",
+          "live checkout",
+          "production key publication"
+        ]
+      },
+      {
+        "channel": "Generic API directories",
+        "fit": "medium",
+        "decision": "ready_for_private_or_unsubmitted_directory_draft",
+        "checks_passed": 8,
+        "checks_total": 8,
+        "next_step": "Use the directory draft copy as metadata source only; public submission remains blocked until owner approval.",
+        "blocked_actions": [
+          "irreversible external submission",
+          "live payment claim",
+          "human outreach"
+        ]
+      },
+      {
+        "channel": "MCP and agent registries",
+        "fit": "high_after_mcp",
+        "decision": "ready_for_local_adapter_registry_draft_hosted_mcp_blocked",
+        "checks_passed": 8,
+        "checks_total": 8,
+        "next_step": "Prepare local-adapter registry metadata; decide separately if a hosted MCP endpoint is worth building before public registry submission.",
+        "blocked_actions": [
+          "claim hosted MCP live",
+          "submit irreversible registry listing",
+          "publish production keys"
+        ]
+      }
+    ],
+    "recommended_sequence": [
+      {
+        "rank": 1,
+        "channel": "Postman Public API Network",
+        "status": "ready_to_setup_public_workspace_draft",
+        "main_import_asset": "https://machinesignal.it/postman_public_collection.json"
+      },
+      {
+        "rank": 2,
+        "channel": "Own-domain API and agent discovery surfaces",
+        "status": "published_keep_current",
+        "main_import_asset": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json"
+      },
+      {
+        "rank": 3,
+        "channel": "RapidAPI style marketplace draft",
+        "status": "provider_ready_draft_do_not_monetize_yet",
+        "main_import_asset": "https://machinesignal.it/openapi.json"
+      },
+      {
+        "rank": 4,
+        "channel": "Generic API directories",
+        "status": "ready_to_submit_as_sandbox_listing",
+        "main_import_asset": "https://machinesignal.it/openapi.json"
+      },
+      {
+        "rank": 5,
+        "channel": "MCP and agent registries",
+        "status": "ready_for_sandbox_validation_after_wrapper_publication",
+        "main_import_asset": "https://machinesignal.it/mcp-tool-manifest.json"
+      }
+    ],
+    "machine_decision": "channels_ready_for_owner_supervised_nowrite_rehearsal",
+    "recommended_next_step": "Run a private Postman workspace rehearsal first, then prepare unpublished RapidAPI/API-directory/MCP registry drafts; keep monetization and public submission blocked.",
+    "interpretation": "A machine can evaluate Postman, RapidAPI-style, generic API directory and MCP/agent registry drafts from public metadata. All channels are ready for owner-supervised NoWrite rehearsal; public submission, monetization, production keys, hosted MCP claims and human outreach remain blocked.",
+    "report": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md",
+    "json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
+  },
+  "current_machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
 }

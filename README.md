@@ -123,6 +123,8 @@ Public discovery starts here:
 - MCP Full Chain Idempotency Probe JSON: https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json
 - Machine Distribution Readiness NoWrite Probe: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md
 - Machine Distribution Readiness NoWrite Probe JSON: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json
+- Machine Channel Rehearsal NoWrite Probe: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md
+- Machine Channel Rehearsal NoWrite Probe JSON: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -717,4 +719,13 @@ A NoWrite machine-discovery probe now proves that a buyer machine can find Machi
 - Report: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md
 - Summary JSON: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json
 - Result: ok=true, primary_customer_interface=machine, total_channels=9, high_fit_channels=7, OpenAPI paths present, Postman examples present, MCP tools present.
+- Safety: post_calls_executed=0, write_calls_executed=0, real_payment_executed=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false.
+
+## Machine Channel Rehearsal NoWrite Probe - 2026-06-11
+
+A NoWrite channel rehearsal now proves that a machine can evaluate Postman, RapidAPI-style, generic API directory and MCP/agent registry drafts from public metadata. The rehearsal keeps public submission, monetization, production keys, hosted MCP claims and human outreach blocked.
+
+- Report: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md
+- Summary JSON: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json
+- Result: ok=true, Postman 10/10, RapidAPI-style 8/8, API directory 8/8, MCP/agent registry 8/8.
 - Safety: post_calls_executed=0, write_calls_executed=0, real_payment_executed=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false.

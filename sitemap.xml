@@ -570,4 +570,10 @@
   <url>
     <loc>https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json</loc>
   </url>
+  <url>
+    <loc>https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json</loc>
+  </url>
 </urlset>

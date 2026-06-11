@@ -117,7 +117,9 @@
     "mcp_write_capped_sandbox_probe": "https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md",
     "mcp_write_capped_sandbox_probe_json": "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json",
     "machine_distribution_readiness_nowrite_probe": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md",
-    "machine_distribution_readiness_nowrite_probe_json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json"
+    "machine_distribution_readiness_nowrite_probe_json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json",
+    "machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md",
+    "machine_channel_rehearsal_nowrite_probe_json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
   },
   "local_mcp_adapter": {
     "status": "available_in_github_repo",
@@ -340,7 +342,9 @@
     "mcp_deep_analysis_verification_gate_probe": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md",
     "mcp_deep_analysis_verification_gate_probe_json": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json",
     "machine_distribution_readiness_nowrite_probe": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md",
-    "machine_distribution_readiness_nowrite_probe_json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json"
+    "machine_distribution_readiness_nowrite_probe_json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json",
+    "machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md",
+    "machine_channel_rehearsal_nowrite_probe_json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
   },
   "latest_private_draft_submission_rehearsal": {
     "status": "completed_private_draft_submission_rehearsal",
@@ -538,7 +542,9 @@
     "mcp_full_chain_idempotency_probe": "https://machinesignal.it/mcp_full_chain_idempotency_probe_report_20260611.md",
     "mcp_full_chain_idempotency_probe_json": "https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json",
     "machine_distribution_readiness_nowrite_probe": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md",
-    "machine_distribution_readiness_nowrite_probe_json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json"
+    "machine_distribution_readiness_nowrite_probe_json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json",
+    "machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md",
+    "machine_channel_rehearsal_nowrite_probe_json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
   },
   "latest_mcp_purchase_decision_probe": {
     "status": "completed_mcp_purchase_decision_probe",
@@ -794,5 +800,112 @@
     "report": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md",
     "json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json"
   },
-  "current_machine_distribution_readiness_nowrite_probe": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json"
+  "current_machine_distribution_readiness_nowrite_probe": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json",
+  "latest_machine_channel_rehearsal_nowrite_probe": {
+    "status": "completed_machine_channel_rehearsal_nowrite_probe",
+    "ok": true,
+    "evidence_date": "2026-06-11",
+    "mode": "NoWriteChannelPublicationRehearsal",
+    "primary_customer_interface": "machine",
+    "machine_customer_mode": "machine_evaluates_channel_publication_drafts_without_third_party_write_actions",
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "external_publication_executed": false,
+    "live_monetization_enabled": false,
+    "channel_decisions": [
+      {
+        "channel": "Postman Public API Network",
+        "fit": "high",
+        "decision": "ready_for_owner_supervised_private_workspace_rehearsal",
+        "checks_passed": 10,
+        "checks_total": 10,
+        "next_step": "Keep workspace private/team, import the public collection, run final in-Postman secret scan, then ask owner before public visibility.",
+        "blocked_actions": [
+          "publish public workspace",
+          "publish real API key",
+          "claim live paid checkout"
+        ]
+      },
+      {
+        "channel": "RapidAPI style marketplace draft",
+        "fit": "medium_high",
+        "decision": "ready_for_unpublished_provider_draft_rehearsal_monetization_blocked",
+        "checks_passed": 8,
+        "checks_total": 8,
+        "next_step": "Prepare provider/listing metadata only; keep paid plans, live checkout and production key distribution disabled.",
+        "blocked_actions": [
+          "public paid plan",
+          "live checkout",
+          "production key publication"
+        ]
+      },
+      {
+        "channel": "Generic API directories",
+        "fit": "medium",
+        "decision": "ready_for_private_or_unsubmitted_directory_draft",
+        "checks_passed": 8,
+        "checks_total": 8,
+        "next_step": "Use the directory draft copy as metadata source only; public submission remains blocked until owner approval.",
+        "blocked_actions": [
+          "irreversible external submission",
+          "live payment claim",
+          "human outreach"
+        ]
+      },
+      {
+        "channel": "MCP and agent registries",
+        "fit": "high_after_mcp",
+        "decision": "ready_for_local_adapter_registry_draft_hosted_mcp_blocked",
+        "checks_passed": 8,
+        "checks_total": 8,
+        "next_step": "Prepare local-adapter registry metadata; decide separately if a hosted MCP endpoint is worth building before public registry submission.",
+        "blocked_actions": [
+          "claim hosted MCP live",
+          "submit irreversible registry listing",
+          "publish production keys"
+        ]
+      }
+    ],
+    "recommended_sequence": [
+      {
+        "rank": 1,
+        "channel": "Postman Public API Network",
+        "status": "ready_to_setup_public_workspace_draft",
+        "main_import_asset": "https://machinesignal.it/postman_public_collection.json"
+      },
+      {
+        "rank": 2,
+        "channel": "Own-domain API and agent discovery surfaces",
+        "status": "published_keep_current",
+        "main_import_asset": "https://machinesignal.it/sandbox-buyer-kit/sandbox-buyer-kit.json"
+      },
+      {
+        "rank": 3,
+        "channel": "RapidAPI style marketplace draft",
+        "status": "provider_ready_draft_do_not_monetize_yet",
+        "main_import_asset": "https://machinesignal.it/openapi.json"
+      },
+      {
+        "rank": 4,
+        "channel": "Generic API directories",
+        "status": "ready_to_submit_as_sandbox_listing",
+        "main_import_asset": "https://machinesignal.it/openapi.json"
+      },
+      {
+        "rank": 5,
+        "channel": "MCP and agent registries",
+        "status": "ready_for_sandbox_validation_after_wrapper_publication",
+        "main_import_asset": "https://machinesignal.it/mcp-tool-manifest.json"
+      }
+    ],
+    "machine_decision": "channels_ready_for_owner_supervised_nowrite_rehearsal",
+    "recommended_next_step": "Run a private Postman workspace rehearsal first, then prepare unpublished RapidAPI/API-directory/MCP registry drafts; keep monetization and public submission blocked.",
+    "interpretation": "A machine can evaluate Postman, RapidAPI-style, generic API directory and MCP/agent registry drafts from public metadata. All channels are ready for owner-supervised NoWrite rehearsal; public submission, monetization, production keys, hosted MCP claims and human outreach remain blocked.",
+    "report": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md",
+    "json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
+  },
+  "current_machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
 }

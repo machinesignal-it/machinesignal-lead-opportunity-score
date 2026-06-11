@@ -310,3 +310,7 @@ MCP Full Chain Idempotency Probe Summary: a machine repeated Score, Deep Analysi
 Machine Distribution Readiness NoWrite Probe: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md
 Machine Distribution Readiness NoWrite Probe JSON: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json
 Machine Distribution Readiness NoWrite Probe Summary: a machine discovered MachineSignal through robots.txt, llms.txt, sitemap, well-known discovery, OpenAPI, Postman, MCP manifests, channel metadata and current evidence; ok=true; post_calls_executed=0; write_calls_executed=0; real_payment_executed=false; external_contact_executed=false; human_outreach_executed=false.
+
+Machine Channel Rehearsal NoWrite Probe: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md
+Machine Channel Rehearsal NoWrite Probe JSON: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json
+Machine Channel Rehearsal NoWrite Probe Summary: a machine evaluated Postman, RapidAPI-style, generic API directory and MCP/agent registry drafts from public metadata; ok=true; Postman=10/10; RapidAPI-style=8/8; API directory=8/8; MCP/agent registry=8/8; post_calls_executed=0; write_calls_executed=0; external_publication_executed=false; live_monetization_enabled=false.

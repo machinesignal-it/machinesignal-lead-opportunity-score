@@ -88,26 +88,28 @@ It performs only public GET requests. It does not create customers, consume cred
 | mcp_full_chain_idempotency_probe_json | 200 | True | 8745 |
 | machine_distribution_readiness_nowrite_probe_md | 200 | n/a | 9194 |
 | machine_distribution_readiness_nowrite_probe_json | 200 | True | 17633 |
+| machine_channel_rehearsal_nowrite_probe_md | 200 | n/a | 7701 |
+| machine_channel_rehearsal_nowrite_probe_json | 200 | True | 15559 |
 | marketplace_api_directory_pack_md | 200 | n/a | 15553 |
 | marketplace_api_directory_pack_json | 200 | True | 63247 |
 | marketplace_publication_execution_pack_md | 200 | n/a | 14318 |
 | marketplace_publication_execution_pack_json | 200 | True | 57816 |
-| api_directory_submission | 200 | True | 41335 |
-| rapidapi_listing | 200 | True | 43020 |
-| marketplace_submission_pack | 200 | True | 67665 |
-| postman_workspace_draft | 200 | True | 9559 |
+| api_directory_submission | 200 | True | 31152 |
+| rapidapi_listing | 200 | True | 31752 |
+| marketplace_submission_pack | 200 | True | 46103 |
+| postman_workspace_draft | 200 | True | 14722 |
 | postman_private_workspace_checklist_md | 200 | n/a | 4368 |
 | postman_private_workspace_checklist_json | 200 | True | 5098 |
-| mcp_tool_manifest | 200 | True | 69059 |
-| well_known_mcp_tool_manifest | 200 | True | 69059 |
-| well_known_machine_discovery | 200 | True | 52606 |
-| llms | 200 | n/a | 29384 |
-| robots | 200 | n/a | 12508 |
-| sitemap | 200 | n/a | 19799 |
+| mcp_tool_manifest | 200 | True | 74498 |
+| well_known_mcp_tool_manifest | 200 | True | 74498 |
+| well_known_machine_discovery | 200 | True | 58321 |
+| llms | 200 | n/a | 30015 |
+| robots | 200 | n/a | 12766 |
+| sitemap | 200 | n/a | 20034 |
 | openapi | 200 | True | 61595 |
 | postman_public_collection | 200 | True | 27631 |
 | product_catalog | 200 | True | 12086 |
-| machine_onboarding | 200 | True | 75859 |
+| machine_onboarding | 200 | True | 81574 |
 
 ## Checks
 
@@ -319,6 +321,13 @@ It performs only public GET requests. It does not create customers, consume cred
 | machine_distribution_readiness_nowrite_probe_json_json_valid | OK | json_valid=True |
 | machine_distribution_readiness_nowrite_probe_json_contains_expected_marker | OK | marker=completed_machine_distribution_readiness_nowrite_probe |
 | machine_distribution_readiness_nowrite_probe_json_secret_scan | OK | public content has no secret-like token patterns |
+| machine_channel_rehearsal_nowrite_probe_md_reachable | OK | HTTP 200, bytes=7701 |
+| machine_channel_rehearsal_nowrite_probe_md_contains_expected_marker | OK | marker=MachineSignal - Channel Publication Rehearsal NoWrite Probe |
+| machine_channel_rehearsal_nowrite_probe_md_secret_scan | OK | public content has no secret-like token patterns |
+| machine_channel_rehearsal_nowrite_probe_json_reachable | OK | HTTP 200, bytes=15559 |
+| machine_channel_rehearsal_nowrite_probe_json_json_valid | OK | json_valid=True |
+| machine_channel_rehearsal_nowrite_probe_json_contains_expected_marker | OK | marker=completed_machine_channel_rehearsal_nowrite_probe |
+| machine_channel_rehearsal_nowrite_probe_json_secret_scan | OK | public content has no secret-like token patterns |
 | marketplace_api_directory_pack_md_reachable | OK | HTTP 200, bytes=15553 |
 | marketplace_api_directory_pack_md_contains_expected_marker | OK | marker=Sandbox-Only External Publication Pack |
 | marketplace_api_directory_pack_md_secret_scan | OK | public content has no secret-like token patterns |
@@ -333,19 +342,19 @@ It performs only public GET requests. It does not create customers, consume cred
 | marketplace_publication_execution_pack_json_json_valid | OK | json_valid=True |
 | marketplace_publication_execution_pack_json_contains_expected_marker | OK | marker=external_publication_policy |
 | marketplace_publication_execution_pack_json_secret_scan | OK | public content has no secret-like token patterns |
-| api_directory_submission_reachable | OK | HTTP 200, bytes=41335 |
+| api_directory_submission_reachable | OK | HTTP 200, bytes=31152 |
 | api_directory_submission_json_valid | OK | json_valid=True |
 | api_directory_submission_contains_expected_marker | OK | marker=latest_machine_buyer_evidence |
 | api_directory_submission_secret_scan | OK | public content has no secret-like token patterns |
-| rapidapi_listing_reachable | OK | HTTP 200, bytes=43020 |
+| rapidapi_listing_reachable | OK | HTTP 200, bytes=31752 |
 | rapidapi_listing_json_valid | OK | json_valid=True |
 | rapidapi_listing_contains_expected_marker | OK | marker=rapidapi_style_provider_metadata_ready_monetization_disabled |
 | rapidapi_listing_secret_scan | OK | public content has no secret-like token patterns |
-| marketplace_submission_pack_reachable | OK | HTTP 200, bytes=67665 |
+| marketplace_submission_pack_reachable | OK | HTTP 200, bytes=46103 |
 | marketplace_submission_pack_json_valid | OK | json_valid=True |
 | marketplace_submission_pack_contains_expected_marker | OK | marker=external_publication_policy |
 | marketplace_submission_pack_secret_scan | OK | public content has no secret-like token patterns |
-| postman_workspace_draft_reachable | OK | HTTP 200, bytes=9559 |
+| postman_workspace_draft_reachable | OK | HTTP 200, bytes=14722 |
 | postman_workspace_draft_json_valid | OK | json_valid=True |
 | postman_workspace_draft_contains_expected_marker | OK | marker=ready_for_private_or_team_workspace_setup_public_visibility_blocked_until_owner_approval |
 | postman_workspace_draft_secret_scan | OK | public content has no secret-like token patterns |
@@ -356,26 +365,26 @@ It performs only public GET requests. It does not create customers, consume cred
 | postman_private_workspace_checklist_json_json_valid | OK | json_valid=True |
 | postman_private_workspace_checklist_json_contains_expected_marker | OK | marker=blocked_actions |
 | postman_private_workspace_checklist_json_secret_scan | OK | public content has no secret-like token patterns |
-| mcp_tool_manifest_reachable | OK | HTTP 200, bytes=69059 |
+| mcp_tool_manifest_reachable | OK | HTTP 200, bytes=74498 |
 | mcp_tool_manifest_json_valid | OK | json_valid=True |
 | mcp_tool_manifest_contains_expected_marker | OK | marker=get_mcp_tool_registry_private_draft_review |
 | mcp_tool_manifest_secret_scan | OK | public content has no secret-like token patterns |
-| well_known_mcp_tool_manifest_reachable | OK | HTTP 200, bytes=69059 |
+| well_known_mcp_tool_manifest_reachable | OK | HTTP 200, bytes=74498 |
 | well_known_mcp_tool_manifest_json_valid | OK | json_valid=True |
 | well_known_mcp_tool_manifest_contains_expected_marker | OK | marker=get_mcp_tool_registry_private_draft_review |
 | well_known_mcp_tool_manifest_secret_scan | OK | public content has no secret-like token patterns |
-| well_known_machine_discovery_reachable | OK | HTTP 200, bytes=52606 |
+| well_known_machine_discovery_reachable | OK | HTTP 200, bytes=58321 |
 | well_known_machine_discovery_json_valid | OK | json_valid=True |
-| well_known_machine_discovery_contains_expected_marker | OK | marker=machine_distribution_readiness_nowrite_probe_json |
+| well_known_machine_discovery_contains_expected_marker | OK | marker=machine_channel_rehearsal_nowrite_probe_json |
 | well_known_machine_discovery_secret_scan | OK | public content has no secret-like token patterns |
-| llms_reachable | OK | HTTP 200, bytes=29384 |
-| llms_contains_expected_marker | OK | marker=Machine Distribution Readiness NoWrite Probe JSON |
+| llms_reachable | OK | HTTP 200, bytes=30015 |
+| llms_contains_expected_marker | OK | marker=Machine Channel Rehearsal NoWrite Probe JSON |
 | llms_secret_scan | OK | public content has no secret-like token patterns |
-| robots_reachable | OK | HTTP 200, bytes=12508 |
-| robots_contains_expected_marker | OK | marker=Machine-distribution-readiness-nowrite-probe-json |
+| robots_reachable | OK | HTTP 200, bytes=12766 |
+| robots_contains_expected_marker | OK | marker=Machine-channel-rehearsal-nowrite-probe-json |
 | robots_secret_scan | OK | public content has no secret-like token patterns |
-| sitemap_reachable | OK | HTTP 200, bytes=19799 |
-| sitemap_contains_expected_marker | OK | marker=machine_distribution_readiness_nowrite_probe_summary_20260611.json |
+| sitemap_reachable | OK | HTTP 200, bytes=20034 |
+| sitemap_contains_expected_marker | OK | marker=machine_channel_rehearsal_nowrite_probe_summary_20260611.json |
 | sitemap_secret_scan | OK | public content has no secret-like token patterns |
 | openapi_reachable | OK | HTTP 200, bytes=61595 |
 | openapi_json_valid | OK | json_valid=True |
@@ -389,7 +398,7 @@ It performs only public GET requests. It does not create customers, consume cred
 | product_catalog_json_valid | OK | json_valid=True |
 | product_catalog_contains_expected_marker | OK | marker=action_pack |
 | product_catalog_secret_scan | OK | public content has no secret-like token patterns |
-| machine_onboarding_reachable | OK | HTTP 200, bytes=75859 |
+| machine_onboarding_reachable | OK | HTTP 200, bytes=81574 |
 | machine_onboarding_json_valid | OK | json_valid=True |
 | machine_onboarding_contains_expected_marker | OK | marker=NoWrite |
 | machine_onboarding_secret_scan | OK | public content has no secret-like token patterns |

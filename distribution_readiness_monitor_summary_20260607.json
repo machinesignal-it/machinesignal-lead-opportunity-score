@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-11T08:48:06.1419705Z",
+    "generated_at":  "2026-06-11T09:10:20.5434769Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  79,
-    "checks_total":  287,
+    "resources_checked":  81,
+    "checks_total":  294,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -1048,6 +1048,41 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "machine_channel_rehearsal_nowrite_probe_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=7701"
+                   },
+                   {
+                       "name":  "machine_channel_rehearsal_nowrite_probe_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=MachineSignal - Channel Publication Rehearsal NoWrite Probe"
+                   },
+                   {
+                       "name":  "machine_channel_rehearsal_nowrite_probe_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "machine_channel_rehearsal_nowrite_probe_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=15559"
+                   },
+                   {
+                       "name":  "machine_channel_rehearsal_nowrite_probe_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "machine_channel_rehearsal_nowrite_probe_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_machine_channel_rehearsal_nowrite_probe"
+                   },
+                   {
+                       "name":  "machine_channel_rehearsal_nowrite_probe_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
                        "details":  "HTTP 200, bytes=15553"
@@ -1120,7 +1155,7 @@
                    {
                        "name":  "api_directory_submission_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=41335"
+                       "details":  "HTTP 200, bytes=31152"
                    },
                    {
                        "name":  "api_directory_submission_json_valid",
@@ -1140,7 +1175,7 @@
                    {
                        "name":  "rapidapi_listing_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=43020"
+                       "details":  "HTTP 200, bytes=31752"
                    },
                    {
                        "name":  "rapidapi_listing_json_valid",
@@ -1160,7 +1195,7 @@
                    {
                        "name":  "marketplace_submission_pack_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=67665"
+                       "details":  "HTTP 200, bytes=46103"
                    },
                    {
                        "name":  "marketplace_submission_pack_json_valid",
@@ -1180,7 +1215,7 @@
                    {
                        "name":  "postman_workspace_draft_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=9559"
+                       "details":  "HTTP 200, bytes=14722"
                    },
                    {
                        "name":  "postman_workspace_draft_json_valid",
@@ -1235,7 +1270,7 @@
                    {
                        "name":  "mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=69059"
+                       "details":  "HTTP 200, bytes=74498"
                    },
                    {
                        "name":  "mcp_tool_manifest_json_valid",
@@ -1255,7 +1290,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=69059"
+                       "details":  "HTTP 200, bytes=74498"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_json_valid",
@@ -1275,7 +1310,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=52606"
+                       "details":  "HTTP 200, bytes=58321"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -1285,7 +1320,7 @@
                    {
                        "name":  "well_known_machine_discovery_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=machine_distribution_readiness_nowrite_probe_json"
+                       "details":  "marker=machine_channel_rehearsal_nowrite_probe_json"
                    },
                    {
                        "name":  "well_known_machine_discovery_secret_scan",
@@ -1295,12 +1330,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=29384"
+                       "details":  "HTTP 200, bytes=30015"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Machine Distribution Readiness NoWrite Probe JSON"
+                       "details":  "marker=Machine Channel Rehearsal NoWrite Probe JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -1310,12 +1345,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=12508"
+                       "details":  "HTTP 200, bytes=12766"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Machine-distribution-readiness-nowrite-probe-json"
+                       "details":  "marker=Machine-channel-rehearsal-nowrite-probe-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -1325,12 +1360,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=19799"
+                       "details":  "HTTP 200, bytes=20034"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=machine_distribution_readiness_nowrite_probe_summary_20260611.json"
+                       "details":  "marker=machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",
@@ -1400,7 +1435,7 @@
                    {
                        "name":  "machine_onboarding_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=75859"
+                       "details":  "HTTP 200, bytes=81574"
                    },
                    {
                        "name":  "machine_onboarding_json_valid",
