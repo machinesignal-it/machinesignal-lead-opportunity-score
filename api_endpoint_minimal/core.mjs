@@ -1775,6 +1775,8 @@ Public demos for software, agents and partners:
 - Machine Buyer End-to-End Rehearsal JSON: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json
 - Agent Go/No-Go Sandbox Review: https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md
 - Agent Go/No-Go Sandbox Review JSON: https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json
+- Sandbox External Draft Distribution Readiness Review: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md
+- Sandbox External Draft Distribution Readiness Review JSON: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json
 - Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
 - Full machine buyer flow: https://machinesignal.it/demo/machine-buyer-flow/
 - Full flow JSON: https://machinesignal.it/demo/machine-buyer-flow/flow.json

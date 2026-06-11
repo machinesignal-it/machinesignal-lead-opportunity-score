@@ -782,3 +782,12 @@ The agent review consolidated technical, commercial, compliance/admin/legal and 
 - Summary JSON: https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json
 - Result: verdict=go_conditionally_for_sandbox_only_next_step, agent_votes=4/4 GO sandbox-only.
 - Safety: real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false.
+
+## Sandbox External Draft Distribution Readiness Review - 2026-06-11
+
+A NoWrite review now proves that a machine can understand the three approved sandbox-only purchase paths from public assets alone: customer with existing list, customer without a list, and Action Pack only after Deep Analysis confirms the gate.
+
+- Report: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md
+- Summary JSON: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json
+- Result: ok=true, resources_checked=16, checks_total=43, checks_failed=0, three scenario paths passed 7/7 each.
+- Safety: post_calls_executed=0, write_calls_executed=0, real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, external_publication_executed=false.

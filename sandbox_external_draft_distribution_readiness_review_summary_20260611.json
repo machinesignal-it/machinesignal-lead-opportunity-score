@@ -1,0 +1,625 @@
+{
+  "service": "MachineSignal",
+  "review_name": "sandbox_external_draft_distribution_readiness_review",
+  "status": "completed_sandbox_external_draft_distribution_readiness_review",
+  "ok": true,
+  "evidence_date": "2026-06-11",
+  "mode": "NoWriteExternalDraftDistributionReadiness",
+  "primary_customer_interface": "machine",
+  "machine_customer_mode": "machine_reads_public_assets_and_decides_whether_three_sandbox_only_purchase_paths_are_clear",
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "human_outreach_executed": false,
+  "external_publication_executed": false,
+  "live_monetization_enabled": false,
+  "production_api_key_published": false,
+  "public_paid_plans_enabled": false,
+  "resources_checked": 16,
+  "checks_total": 43,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "scenario_results": [
+    {
+      "scenario": "customer_with_existing_list",
+      "title": "Machine has a list and wants to score/prioritize it",
+      "understood_by_machine": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "machine_decision": "buy_or_use_score_pack_1k_then_follow_score_next_product",
+      "next_machine_call": "POST /v1/lead-opportunity-score"
+    },
+    {
+      "scenario": "customer_without_list",
+      "title": "Machine has no list and needs targets for a commercial objective",
+      "understood_by_machine": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "machine_decision": "buy_target_discovery_then_score_delivered_targets",
+      "next_machine_call": "POST /v1/purchase-intent product_code=target_discovery"
+    },
+    {
+      "scenario": "action_pack_after_deep_analysis",
+      "title": "Machine buys Action Pack only after Deep Analysis confirms the gate",
+      "understood_by_machine": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "machine_decision": "buy_action_pack_only_with_valid_deep_analysis_source_order",
+      "next_machine_call": "POST /v1/purchase-intent product_code=action_pack with source_order_intent_id"
+    }
+  ],
+  "overall_machine_decision": "ready_for_one_owner_approved_sandbox_only_external_draft_channel",
+  "blocked_until_owner_approval": [
+    "enable_live_checkout",
+    "issue_real_invoice",
+    "publish_paid_marketplace_plan",
+    "launch_hosted_mcp_publicly",
+    "publish_production_api_key",
+    "contact_humans_or_external_companies",
+    "irreversible_external_publication"
+  ],
+  "recommended_next_step": "Proceed to one owner-approved sandbox-only external draft channel, preferably Postman private/team workspace or an unpublished API directory draft, keeping monetization disabled.",
+  "public_report": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md",
+  "public_json": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json",
+  "resources": {
+    "product_catalog": {
+      "url": "https://machinesignal.it/product-catalog.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 12086,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "machine_buying_scenarios",
+          "ok": true
+        },
+        {
+          "marker": "target_discovery_pack_250",
+          "ok": true
+        },
+        {
+          "marker": "action_pack_25",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 393,
+      "error": null
+    },
+    "machine_onboarding": {
+      "url": "https://machinesignal.it/machine-onboarding.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 133893,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "completed_agent_go_no_go_sandbox_review",
+          "ok": true
+        },
+        {
+          "marker": "sandbox_customers",
+          "ok": true
+        },
+        {
+          "marker": "purchase-intent",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 92,
+      "error": null
+    },
+    "openapi": {
+      "url": "https://machinesignal.it/openapi.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 61595,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "/v1/lead-opportunity-score",
+          "ok": true
+        },
+        {
+          "marker": "/v1/purchase-intent",
+          "ok": true
+        },
+        {
+          "marker": "action_pack_gate_failed",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 46,
+      "error": null
+    },
+    "postman_collection": {
+      "url": "https://machinesignal.it/postman_public_collection.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 27564,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "Score business domain",
+          "ok": true
+        },
+        {
+          "marker": "Create beta purchase intent",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 46,
+      "error": null
+    },
+    "mcp_manifest": {
+      "url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 127038,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "score_lead_opportunity",
+          "ok": true
+        },
+        {
+          "marker": "create_purchase_intent",
+          "ok": true
+        },
+        {
+          "marker": "agent_go_no_go_sandbox_review_json",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 55,
+      "error": null
+    },
+    "marketplace_pack": {
+      "url": "https://machinesignal.it/distribution/marketplace-submission-pack.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 100765,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "external_publication_policy",
+          "ok": true
+        },
+        {
+          "marker": "latest_agent_go_no_go_sandbox_review",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 50,
+      "error": null
+    },
+    "channel_shortlist": {
+      "url": "https://machinesignal.it/distribution/channel-shortlist.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 63586,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "Postman",
+          "ok": true
+        },
+        {
+          "marker": "RapidAPI",
+          "ok": true
+        },
+        {
+          "marker": "MCP",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 42,
+      "error": null
+    },
+    "agent_review": {
+      "url": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 4456,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "completed_agent_go_no_go_sandbox_review",
+          "ok": true
+        },
+        {
+          "marker": "go_conditionally_for_sandbox_only_next_step",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 47,
+      "error": null
+    },
+    "machine_buyer_e2e": {
+      "url": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 261640,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "completed_machine_buyer_end_to_end_rehearsal",
+          "ok": true
+        },
+        {
+          "marker": "buy_deep_analysis",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 57,
+      "error": null
+    },
+    "distribution_monitor": {
+      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 80667,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "ready_for_distribution_review",
+          "ok": true
+        },
+        {
+          "marker": "checks_failed",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 53,
+      "error": null
+    },
+    "existing_list_example": {
+      "url": "https://machinesignal.it/examples/integration_existing_list_score_request.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 1030,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "customer_has_existing_list",
+          "ok": true
+        },
+        {
+          "marker": "lead-opportunity-score",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 51,
+      "error": null
+    },
+    "no_list_example": {
+      "url": "https://machinesignal.it/examples/integration_no_list_target_discovery_request.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 1030,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "customer_has_no_list",
+          "ok": true
+        },
+        {
+          "marker": "target_discovery",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 43,
+      "error": null
+    },
+    "action_pack_example": {
+      "url": "https://machinesignal.it/examples/integration_action_pack_crm_payload.json",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 1325,
+      "json_valid": true,
+      "marker_checks": [
+        {
+          "marker": "customer_wants_action_payload",
+          "ok": true
+        },
+        {
+          "marker": "action_pack",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 45,
+      "error": null
+    },
+    "llms": {
+      "url": "https://machinesignal.it/llms.txt",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 33761,
+      "json_valid": null,
+      "marker_checks": [
+        {
+          "marker": "Agent Go/No-Go Sandbox Review JSON",
+          "ok": true
+        },
+        {
+          "marker": "Machine Buyer End-to-End Rehearsal JSON",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 49,
+      "error": null
+    },
+    "robots": {
+      "url": "https://machinesignal.it/robots.txt",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 14089,
+      "json_valid": null,
+      "marker_checks": [
+        {
+          "marker": "Agent-go-no-go-sandbox-review-json",
+          "ok": true
+        },
+        {
+          "marker": "Machine-buyer-end-to-end-rehearsal-json",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 64,
+      "error": null
+    },
+    "sitemap": {
+      "url": "https://machinesignal.it/sitemap.xml",
+      "ok": true,
+      "http_status": 200,
+      "bytes": 21222,
+      "json_valid": null,
+      "marker_checks": [
+        {
+          "marker": "agent_go_no_go_sandbox_review_summary_20260611.json",
+          "ok": true
+        },
+        {
+          "marker": "machine_buyer_end_to_end_rehearsal_summary_20260611.json",
+          "ok": true
+        }
+      ],
+      "secret_hits": [],
+      "elapsed_ms": 69,
+      "error": null
+    }
+  },
+  "checks": [
+    {
+      "name": "product_catalog_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=12086; json=true; markers=3/3; secrets=0"
+    },
+    {
+      "name": "machine_onboarding_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=133893; json=true; markers=3/3; secrets=0"
+    },
+    {
+      "name": "openapi_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=61595; json=true; markers=3/3; secrets=0"
+    },
+    {
+      "name": "postman_collection_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=27564; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "mcp_manifest_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=127038; json=true; markers=3/3; secrets=0"
+    },
+    {
+      "name": "marketplace_pack_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=100765; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "channel_shortlist_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=63586; json=true; markers=3/3; secrets=0"
+    },
+    {
+      "name": "agent_review_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=4456; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "machine_buyer_e2e_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=261640; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "distribution_monitor_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=80667; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "existing_list_example_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=1030; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "no_list_example_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=1030; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "action_pack_example_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=1325; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "llms_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=33761; json=null; markers=2/2; secrets=0"
+    },
+    {
+      "name": "robots_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=14089; json=null; markers=2/2; secrets=0"
+    },
+    {
+      "name": "sitemap_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=21222; json=null; markers=2/2; secrets=0"
+    },
+    {
+      "name": "existing_list_example_declares_existing_list",
+      "ok": true,
+      "details": "customer_has_existing_list"
+    },
+    {
+      "name": "existing_list_first_call_is_score_endpoint",
+      "ok": true,
+      "details": "score endpoint documented"
+    },
+    {
+      "name": "existing_list_catalog_maps_to_score_pack",
+      "ok": true,
+      "details": "score_pack_1k"
+    },
+    {
+      "name": "existing_list_score_product_has_valid_output_rule",
+      "ok": true,
+      "details": "valid-output and duplicate rules present"
+    },
+    {
+      "name": "existing_list_machine_knows_output_fields",
+      "ok": true,
+      "details": "score output fields present"
+    },
+    {
+      "name": "existing_list_postman_or_mcp_has_score_tool",
+      "ok": true,
+      "details": "Postman and MCP score path present"
+    },
+    {
+      "name": "existing_list_idempotency_documented",
+      "ok": true,
+      "details": "idempotency key present"
+    },
+    {
+      "name": "no_list_example_declares_no_list",
+      "ok": true,
+      "details": "customer_has_no_list"
+    },
+    {
+      "name": "no_list_first_call_is_purchase_intent",
+      "ok": true,
+      "details": "purchase-intent endpoint documented"
+    },
+    {
+      "name": "no_list_product_code_target_discovery",
+      "ok": true,
+      "details": "target_discovery"
+    },
+    {
+      "name": "no_list_catalog_explains_commercial_objective",
+      "ok": true,
+      "details": "commercial objective present"
+    },
+    {
+      "name": "no_list_insufficient_market_alternatives_present",
+      "ok": true,
+      "details": "fallback alternatives present"
+    },
+    {
+      "name": "no_list_machine_knows_next_call_after_discovery",
+      "ok": true,
+      "details": "next scoring call present"
+    },
+    {
+      "name": "no_list_mcp_or_onboarding_exposes_purchase_intent",
+      "ok": true,
+      "details": "MCP/onboarding purchase-intent present"
+    },
+    {
+      "name": "action_pack_after_deep_analysis_example_declares_action_payload",
+      "ok": true,
+      "details": "customer_wants_action_payload"
+    },
+    {
+      "name": "action_pack_after_deep_analysis_deep_analysis_product_has_gate",
+      "ok": true,
+      "details": "Deep Analysis gate present"
+    },
+    {
+      "name": "action_pack_after_deep_analysis_action_pack_requires_prior_evidence",
+      "ok": true,
+      "details": "source order gate present"
+    },
+    {
+      "name": "action_pack_after_deep_analysis_gate_failure_documented",
+      "ok": true,
+      "details": "gate failure documented"
+    },
+    {
+      "name": "action_pack_after_deep_analysis_e2e_proves_gate_passed",
+      "ok": true,
+      "details": "e2e ok=true; gate=true"
+    },
+    {
+      "name": "action_pack_after_deep_analysis_payload_is_crm_workflow_ready",
+      "ok": true,
+      "details": "CRM/workflow payload fields present"
+    },
+    {
+      "name": "action_pack_after_deep_analysis_external_contact_blocked",
+      "ok": true,
+      "details": "approval/compliance gate present"
+    },
+    {
+      "name": "external_draft_distribution_agent_review_go_sandbox_only",
+      "ok": true,
+      "details": "go_conditionally_for_sandbox_only_next_step"
+    },
+    {
+      "name": "external_draft_distribution_monitor_green",
+      "ok": true,
+      "details": "failed=0"
+    },
+    {
+      "name": "external_draft_distribution_channels_cover_api_postman_mcp",
+      "ok": true,
+      "details": "channel assets present"
+    },
+    {
+      "name": "external_draft_distribution_publication_stays_blocked",
+      "ok": true,
+      "details": "owner approval required"
+    },
+    {
+      "name": "external_draft_distribution_live_monetization_stays_false",
+      "ok": true,
+      "details": "real payment and live monetization not enabled"
+    },
+    {
+      "name": "external_draft_distribution_public_surfaces_link_current_evidence",
+      "ok": true,
+      "details": "llms links evidence"
+    }
+  ]
+}

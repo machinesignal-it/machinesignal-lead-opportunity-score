@@ -336,3 +336,7 @@ Machine Buyer End-to-End Rehearsal Summary: a buyer machine can discover Machine
 Agent Go/No-Go Sandbox Review: https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md
 Agent Go/No-Go Sandbox Review JSON: https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json
 Agent Go/No-Go Sandbox Review Summary: technical, commercial, compliance/admin/legal and orchestration agents gave 4/4 GO for the next sandbox-only machine-to-machine step, with NO-GO for live monetization, real payment, fiscal invoicing, paid marketplace launch, hosted MCP launch, production API keys, irreversible external publication, human outreach or automatic external contact.
+
+Sandbox External Draft Distribution Readiness Review: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md
+Sandbox External Draft Distribution Readiness Review JSON: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json
+Sandbox External Draft Distribution Readiness Summary: a NoWrite machine review confirmed that public assets explain all three approved sandbox-only paths: existing-list Score path 7/7, no-list Target Discovery path 7/7, and Action Pack after Deep Analysis gate 7/7; checks_failed=0; post_calls_executed=0; external_publication_executed=false.

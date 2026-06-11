@@ -755,7 +755,9 @@
     "machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
     "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json",
     "agent_go_no_go_sandbox_review": "https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md",
-    "agent_go_no_go_sandbox_review_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
+    "agent_go_no_go_sandbox_review_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json",
+    "sandbox_external_draft_distribution_readiness_review": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md",
+    "sandbox_external_draft_distribution_readiness_review_json": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json"
   },
   "latest_machine_discovery_full_simulation": {
     "status": "completed_full_machine_discovery",
@@ -1079,7 +1081,9 @@
     "machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
     "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json",
     "agent_go_no_go_sandbox_review": "https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md",
-    "agent_go_no_go_sandbox_review_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
+    "agent_go_no_go_sandbox_review_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json",
+    "sandbox_external_draft_distribution_readiness_review": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md",
+    "sandbox_external_draft_distribution_readiness_review_json": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json"
   },
   "latest_mcp_purchase_decision_probe": {
     "status": "completed_mcp_purchase_decision_probe",
@@ -1453,7 +1457,9 @@
     "machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
     "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json",
     "agent_go_no_go_sandbox_review": "https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md",
-    "agent_go_no_go_sandbox_review_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
+    "agent_go_no_go_sandbox_review_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json",
+    "sandbox_external_draft_distribution_readiness_review": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md",
+    "sandbox_external_draft_distribution_readiness_review_json": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json"
   },
   "latest_postman_private_workspace_rehearsal_nowrite_probe": {
     "status": "completed_postman_private_workspace_rehearsal_nowrite",
@@ -2999,5 +3005,55 @@
     "public_report": "https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md",
     "public_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
   },
-  "current_agent_go_no_go_sandbox_review": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
+  "current_agent_go_no_go_sandbox_review": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json",
+  "latest_sandbox_external_draft_distribution_readiness_review": {
+    "status": "completed_sandbox_external_draft_distribution_readiness_review",
+    "ok": true,
+    "evidence_date": "2026-06-11",
+    "mode": "NoWriteExternalDraftDistributionReadiness",
+    "primary_customer_interface": "machine",
+    "overall_machine_decision": "ready_for_one_owner_approved_sandbox_only_external_draft_channel",
+    "resources_checked": 16,
+    "checks_total": 43,
+    "checks_failed": 0,
+    "scenario_results": [
+      {
+        "scenario": "customer_with_existing_list",
+        "understood_by_machine": true,
+        "checks_passed": 7,
+        "checks_total": 7,
+        "machine_decision": "buy_or_use_score_pack_1k_then_follow_score_next_product",
+        "next_machine_call": "POST /v1/lead-opportunity-score"
+      },
+      {
+        "scenario": "customer_without_list",
+        "understood_by_machine": true,
+        "checks_passed": 7,
+        "checks_total": 7,
+        "machine_decision": "buy_target_discovery_then_score_delivered_targets",
+        "next_machine_call": "POST /v1/purchase-intent product_code=target_discovery"
+      },
+      {
+        "scenario": "action_pack_after_deep_analysis",
+        "understood_by_machine": true,
+        "checks_passed": 7,
+        "checks_total": 7,
+        "machine_decision": "buy_action_pack_only_with_valid_deep_analysis_source_order",
+        "next_machine_call": "POST /v1/purchase-intent product_code=action_pack with source_order_intent_id"
+      }
+    ],
+    "safety": {
+      "write_calls_executed": 0,
+      "post_calls_executed": 0,
+      "real_payment_executed": false,
+      "real_invoice_issued": false,
+      "external_contact_executed": false,
+      "external_publication_executed": false,
+      "live_monetization_enabled": false,
+      "production_api_key_published": false
+    },
+    "public_report": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md",
+    "public_json": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json"
+  },
+  "current_sandbox_external_draft_distribution_readiness_review": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json"
 }

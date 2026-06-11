@@ -129,3 +129,5 @@ Machine-buyer-end-to-end-rehearsal: https://machinesignal.it/machine_buyer_end_t
 Machine-buyer-end-to-end-rehearsal-json: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json
 Agent-go-no-go-sandbox-review: https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md
 Agent-go-no-go-sandbox-review-json: https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json
+Sandbox-external-draft-distribution-readiness-review: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md
+Sandbox-external-draft-distribution-readiness-review-json: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json
