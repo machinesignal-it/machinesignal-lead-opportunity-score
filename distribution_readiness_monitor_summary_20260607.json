@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-11T15:06:41.5175142Z",
+    "generated_at":  "2026-06-11T16:37:01.0744906Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  99,
-    "checks_total":  357,
+    "resources_checked":  101,
+    "checks_total":  364,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -1223,6 +1223,41 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "agent_go_no_go_postman_api_directory_review_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=5257"
+                   },
+                   {
+                       "name":  "agent_go_no_go_postman_api_directory_review_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=MachineSignal Agent Go/No-Go Postman and API Directory Review"
+                   },
+                   {
+                       "name":  "agent_go_no_go_postman_api_directory_review_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "agent_go_no_go_postman_api_directory_review_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=3819"
+                   },
+                   {
+                       "name":  "agent_go_no_go_postman_api_directory_review_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "agent_go_no_go_postman_api_directory_review_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_agent_go_no_go_postman_api_directory_review"
+                   },
+                   {
+                       "name":  "agent_go_no_go_postman_api_directory_review_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "api_marketplace_draft_rehearsal_nowrite_probe_md_reachable",
                        "ok":  true,
                        "details":  "HTTP 200, bytes=16904"
@@ -1645,12 +1680,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=35258"
+                       "details":  "HTTP 200, bytes=36151"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=API Directory Private Listing Sandbox Rehearsal JSON"
+                       "details":  "marker=Agent Go/No-Go Postman and API Directory Review JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -1660,12 +1695,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=15229"
+                       "details":  "HTTP 200, bytes=15496"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Api-directory-private-listing-sandbox-rehearsal-json"
+                       "details":  "marker=Agent-go-no-go-postman-api-directory-review-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -1675,12 +1710,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=22216"
+                       "details":  "HTTP 200, bytes=22452"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=api_directory_private_listing_sandbox_rehearsal_summary_20260611.json"
+                       "details":  "marker=agent_go_no_go_postman_api_directory_review_summary_20260611.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",

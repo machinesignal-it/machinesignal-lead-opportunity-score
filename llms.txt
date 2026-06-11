@@ -82,6 +82,8 @@ Public demos for software, agents and partners:
 - Postman Private Team Workspace Sandbox Rehearsal JSON: https://machinesignal.it/postman_private_team_workspace_sandbox_rehearsal_summary_20260611.json
 - API Directory Private Listing Sandbox Rehearsal: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_report_20260611.md
 - API Directory Private Listing Sandbox Rehearsal JSON: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_summary_20260611.json
+- Agent Go/No-Go Postman and API Directory Review: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_20260611.md
+- Agent Go/No-Go Postman and API Directory Review JSON: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_summary_20260611.json
 - Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
 - Full machine buyer flow: https://machinesignal.it/demo/machine-buyer-flow/
 - Full flow JSON: https://machinesignal.it/demo/machine-buyer-flow/flow.json
@@ -342,6 +344,10 @@ Machine Buyer End-to-End Rehearsal Summary: a buyer machine can discover Machine
 Agent Go/No-Go Sandbox Review: https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md
 Agent Go/No-Go Sandbox Review JSON: https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json
 Agent Go/No-Go Sandbox Review Summary: technical, commercial, compliance/admin/legal and orchestration agents gave 4/4 GO for the next sandbox-only machine-to-machine step, with NO-GO for live monetization, real payment, fiscal invoicing, paid marketplace launch, hosted MCP launch, production API keys, irreversible external publication, human outreach or automatic external contact.
+
+Agent Go/No-Go Postman and API Directory Review: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_20260611.md
+Agent Go/No-Go Postman and API Directory Review JSON: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_summary_20260611.json
+Agent Go/No-Go Postman and API Directory Review Summary: five agents gave 5/5 GO for a RapidAPI-style unpublished provider sandbox rehearsal with max_post_calls_initial=3, synthetic_data_only=true, no public listing, no live monetization, no real payment, no invoice, no external invitation, no human outreach and no production API keys.
 
 Sandbox External Draft Distribution Readiness Review: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md
 Sandbox External Draft Distribution Readiness Review JSON: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json
