@@ -765,6 +765,15 @@ A write-capped Postman sandbox rehearsal now proves that a buyer machine can use
 - Result: ok=true, workspace_visibility=team, collection_item_count=28, post_calls_executed=3, checks_failed=0.
 - Safety: real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false, admin_endpoints_called=false, payment_endpoints_called=false.
 
+## API Directory Private Listing Sandbox Rehearsal - 2026-06-11
+
+A write-capped API directory rehearsal now proves that a generic API directory bot can understand the private listing draft and test the sandbox flow without public publication. The machine read the API directory draft pack, directory submission metadata, OpenAPI, product catalog and onboarding, then created a sandbox customer, scored one synthetic domain, ordered Target Discovery for the no-list case, and reconciled usage/orders.
+
+- Report: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_report_20260611.md
+- Summary JSON: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_summary_20260611.json
+- Result: ok=true, post_calls_executed=3, checks_failed=0, Target Discovery order accepted.
+- Safety: real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false, irreversible_submission_executed=false, live_monetization_enabled=false, production_api_key_published=false.
+
 ## API Marketplace Draft Rehearsal NoWrite Probe - 2026-06-11
 
 A NoWrite marketplace rehearsal now proves that a machine can evaluate the generic API-directory and RapidAPI-style draft metadata, understand the product and test route, and see that publication, monetization, production keys, payments, invoices and outreach remain blocked.

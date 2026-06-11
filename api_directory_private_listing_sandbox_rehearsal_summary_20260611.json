@@ -1,0 +1,470 @@
+{
+  "service": "MachineSignal",
+  "probe_name": "api_directory_private_listing_sandbox_rehearsal",
+  "status": "completed_api_directory_private_listing_sandbox_rehearsal",
+  "ok": true,
+  "evidence_date": "2026-06-11",
+  "run_id": "api-directory-private-listing-20260611145906",
+  "mode": "ApiDirectoryPrivateListingSandboxRehearsalWriteCapped",
+  "primary_customer_interface": "machine",
+  "channel": "generic_api_directory_private_draft",
+  "public_site": "https://machinesignal.it",
+  "directory_listing_status": "ready_for_api_directory_private_draft_only",
+  "post_calls_executed": 3,
+  "write_calls_executed": 3,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "human_outreach_executed": false,
+  "external_publication_executed": false,
+  "irreversible_submission_executed": false,
+  "live_monetization_enabled": false,
+  "public_paid_plans_enabled": false,
+  "production_api_key_published": false,
+  "machine_paths_tested": {
+    "private_listing_discovery_path": true,
+    "customer_with_existing_list_score_path": true,
+    "customer_without_list_target_discovery_path": true,
+    "usage_and_orders_reconciliation_path": true
+  },
+  "score_result": {
+    "domain": "studio-legale-api-directory-rehearsal.it",
+    "opportunity_score": 77,
+    "confidence": 0.49,
+    "decision": "needs_verification",
+    "commercial_strength": {
+      "level": "weak",
+      "spend_policy": "do_not_buy_paid_addons_before_verification",
+      "allowed_next_products": [],
+      "reason": "Commercial signal is not reliable enough; the customer machine should stop paid add-ons until data quality improves."
+    }
+  },
+  "target_discovery_result": {
+    "product_code": "target_discovery",
+    "order_intent_id": "ord_fc142863",
+    "status": "accepted_beta_order_intent",
+    "beta_price_range_eur": "149",
+    "promised_target_count": 250
+  },
+  "resources": {
+    "draft_pack_json": {
+      "url": "https://machinesignal.it/api_directory_private_draft_pack_20260608.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 27184
+    },
+    "draft_pack_md": {
+      "url": "https://machinesignal.it/api_directory_private_draft_pack_20260608.md",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 3555
+    },
+    "draft_review_json": {
+      "url": "https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 8322
+    },
+    "directory_submission": {
+      "url": "https://machinesignal.it/distribution/api-directory-submission.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 36210
+    },
+    "openapi": {
+      "url": "https://machinesignal.it/openapi.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 61595
+    },
+    "product_catalog": {
+      "url": "https://machinesignal.it/product-catalog.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 12086
+    },
+    "machine_onboarding": {
+      "url": "https://machinesignal.it/machine-onboarding.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 137138
+    },
+    "llms": {
+      "url": "https://machinesignal.it/llms.txt",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 34964
+    },
+    "robots": {
+      "url": "https://machinesignal.it/robots.txt",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 14939
+    },
+    "sitemap": {
+      "url": "https://machinesignal.it/sitemap.xml",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 21965
+    }
+  },
+  "checks_total": 57,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "draft_pack_json_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=27184"
+    },
+    {
+      "name": "draft_pack_json_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "draft_pack_json_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "draft_pack_md_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=3555"
+    },
+    {
+      "name": "draft_pack_md_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "draft_review_json_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=8322"
+    },
+    {
+      "name": "draft_review_json_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "draft_review_json_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "directory_submission_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=36210"
+    },
+    {
+      "name": "directory_submission_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "directory_submission_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "openapi_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=61595"
+    },
+    {
+      "name": "openapi_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "openapi_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "product_catalog_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=12086"
+    },
+    {
+      "name": "product_catalog_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "product_catalog_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "machine_onboarding_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=137138"
+    },
+    {
+      "name": "machine_onboarding_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "machine_onboarding_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "llms_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=34964"
+    },
+    {
+      "name": "llms_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "robots_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=14939"
+    },
+    {
+      "name": "robots_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "sitemap_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=21965"
+    },
+    {
+      "name": "sitemap_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "draft_pack_ready_private_only",
+      "ok": true,
+      "details": "ready_for_api_directory_private_draft_only"
+    },
+    {
+      "name": "draft_pack_machine_interface",
+      "ok": true,
+      "details": "machine"
+    },
+    {
+      "name": "draft_pack_blocks_external_publication",
+      "ok": true,
+      "details": "publication and irreversible submission remain false"
+    },
+    {
+      "name": "draft_pack_blocks_live_monetization",
+      "ok": true,
+      "details": "monetization and paid plans remain false"
+    },
+    {
+      "name": "draft_pack_blocks_keys_and_outreach",
+      "ok": true,
+      "details": "keys, external contact and outreach remain blocked"
+    },
+    {
+      "name": "draft_pack_has_listing_copy",
+      "ok": true,
+      "details": "MachineSignal Lead Opportunity Score API"
+    },
+    {
+      "name": "draft_pack_mentions_machine_buyer_products",
+      "ok": true,
+      "details": "Target Discovery, Deep Analysis and Action Pack present"
+    },
+    {
+      "name": "draft_review_completed",
+      "ok": true,
+      "details": "completed_api_directory_private_draft_review, ok=true"
+    },
+    {
+      "name": "directory_submission_machine_first",
+      "ok": true,
+      "details": "machine"
+    },
+    {
+      "name": "directory_submission_has_sandbox_endpoint",
+      "ok": true,
+      "details": "sandbox endpoint present"
+    },
+    {
+      "name": "directory_submission_has_openapi_and_onboarding",
+      "ok": true,
+      "details": "OpenAPI and onboarding URLs present"
+    },
+    {
+      "name": "openapi_has__v1_sandbox_customers",
+      "ok": true,
+      "details": "/v1/sandbox/customers"
+    },
+    {
+      "name": "openapi_has__v1_lead_opportunity_score",
+      "ok": true,
+      "details": "/v1/lead-opportunity-score"
+    },
+    {
+      "name": "openapi_has__v1_purchase_intent",
+      "ok": true,
+      "details": "/v1/purchase-intent"
+    },
+    {
+      "name": "openapi_has__v1_usage",
+      "ok": true,
+      "details": "/v1/usage"
+    },
+    {
+      "name": "openapi_has__v1_orders",
+      "ok": true,
+      "details": "/v1/orders"
+    },
+    {
+      "name": "catalog_has_machine_products",
+      "ok": true,
+      "details": "product catalog contains key machine products"
+    },
+    {
+      "name": "onboarding_explains_machine_paths",
+      "ok": true,
+      "details": "onboarding contains no-list path"
+    },
+    {
+      "name": "llms_links_api_directory_pack",
+      "ok": true,
+      "details": "llms links API directory draft pack"
+    },
+    {
+      "name": "robots_links_api_directory_pack",
+      "ok": true,
+      "details": "robots links API directory draft pack"
+    },
+    {
+      "name": "sitemap_links_api_directory_pack",
+      "ok": true,
+      "details": "sitemap links API directory draft pack"
+    },
+    {
+      "name": "sandbox_customer_created_by_directory_bot",
+      "ok": true,
+      "details": "HTTP 200, customer_id=sandbox_c094a6a8_mq9mi844"
+    },
+    {
+      "name": "score_domain_from_api_directory_listing_flow",
+      "ok": true,
+      "details": "HTTP 200, score=77, decision=needs_verification"
+    },
+    {
+      "name": "target_discovery_from_api_directory_listing_flow",
+      "ok": true,
+      "details": "HTTP 200, product=target_discovery"
+    },
+    {
+      "name": "usage_read_after_directory_flow",
+      "ok": true,
+      "details": "HTTP 200, customer_id=sandbox_c094a6a8_mq9mi844"
+    },
+    {
+      "name": "orders_read_after_directory_flow",
+      "ok": true,
+      "details": "HTTP 200, count=1"
+    },
+    {
+      "name": "post_write_budget_respected",
+      "ok": true,
+      "details": "post=3, write=3"
+    },
+    {
+      "name": "no_payment_endpoints_called",
+      "ok": true,
+      "details": "payment endpoint calls=0"
+    },
+    {
+      "name": "no_admin_endpoints_called",
+      "ok": true,
+      "details": "admin endpoint calls=0"
+    },
+    {
+      "name": "no_external_publication_executed",
+      "ok": true,
+      "details": "no external API directory write or submit call was executed"
+    },
+    {
+      "name": "no_external_contact_executed",
+      "ok": true,
+      "details": "only MachineSignal sandbox endpoints were called"
+    }
+  ],
+  "actions": [
+    {
+      "name": "create_sandbox_customer",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+      "status": 200,
+      "ok": true,
+      "idempotency_key": "api-directory-private-listing-20260611145906-sandbox",
+      "response_summary": "[REDACTED_SECRET_BEARING_RESPONSE]"
+    },
+    {
+      "name": "score_domain",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
+      "status": 200,
+      "ok": true,
+      "idempotency_key": "api-directory-private-listing-20260611145906-score",
+      "response_summary": {
+        "domain": "studio-legale-api-directory-rehearsal.it",
+        "opportunity_score": 77,
+        "confidence": 0.49,
+        "decision": "needs_verification",
+        "commercial_strength": {
+          "level": "weak",
+          "spend_policy": "do_not_buy_paid_addons_before_verification",
+          "allowed_next_products": [],
+          "reason": "Commercial signal is not reliable enough; the customer machine should stop paid add-ons until data quality improves."
+        }
+      }
+    },
+    {
+      "name": "order_target_discovery",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
+      "status": 200,
+      "ok": true,
+      "idempotency_key": "api-directory-private-listing-20260611145906-target-discovery",
+      "response_summary": "[REDACTED_SECRET_BEARING_RESPONSE]"
+    },
+    {
+      "name": "read_usage",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/usage",
+      "status": 200,
+      "ok": true,
+      "idempotency_key": "",
+      "response_summary": "[REDACTED_SECRET_BEARING_RESPONSE]"
+    },
+    {
+      "name": "list_orders",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/orders",
+      "status": 200,
+      "ok": true,
+      "idempotency_key": "",
+      "response_summary": "[REDACTED_SECRET_BEARING_RESPONSE]"
+    }
+  ],
+  "recommended_next_step": "Use this as evidence that a generic API directory private listing can be prepared and tested by machines. Next, run an agent review before deciding whether to prepare an unpublished RapidAPI-style provider draft or keep improving directory copy."
+}

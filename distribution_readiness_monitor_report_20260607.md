@@ -96,6 +96,8 @@ It performs only public GET requests. It does not create customers, consume cred
 | postman_private_team_workspace_setup_json | 200 | True | 1886 |
 | postman_private_team_workspace_sandbox_rehearsal_md | 200 | n/a | 2443 |
 | postman_private_team_workspace_sandbox_rehearsal_json | 200 | True | 182069 |
+| api_directory_private_listing_sandbox_rehearsal_md | 200 | n/a | 2204 |
+| api_directory_private_listing_sandbox_rehearsal_json | 200 | True | 13403 |
 | api_marketplace_draft_rehearsal_nowrite_probe_md | 200 | n/a | 16904 |
 | api_marketplace_draft_rehearsal_nowrite_probe_json | 200 | True | 28576 |
 | mcp_agent_registry_draft_rehearsal_nowrite_probe_md | 200 | n/a | 5365 |
@@ -119,9 +121,9 @@ It performs only public GET requests. It does not create customers, consume cred
 | mcp_tool_manifest | 200 | True | 130283 |
 | well_known_mcp_tool_manifest | 200 | True | 130283 |
 | well_known_machine_discovery | 200 | True | 113885 |
-| llms | 200 | n/a | 34964 |
-| robots | 200 | n/a | 14939 |
-| sitemap | 200 | n/a | 21965 |
+| llms | 200 | n/a | 35258 |
+| robots | 200 | n/a | 15229 |
+| sitemap | 200 | n/a | 22216 |
 | openapi | 200 | True | 61595 |
 | postman_public_collection | 200 | True | 27564 |
 | product_catalog | 200 | True | 12086 |
@@ -365,6 +367,13 @@ It performs only public GET requests. It does not create customers, consume cred
 | postman_private_team_workspace_sandbox_rehearsal_json_json_valid | OK | json_valid=True |
 | postman_private_team_workspace_sandbox_rehearsal_json_contains_expected_marker | OK | marker=completed_postman_private_team_workspace_sandbox_rehearsal |
 | postman_private_team_workspace_sandbox_rehearsal_json_secret_scan | OK | public content has no secret-like token patterns |
+| api_directory_private_listing_sandbox_rehearsal_md_reachable | OK | HTTP 200, bytes=2204 |
+| api_directory_private_listing_sandbox_rehearsal_md_contains_expected_marker | OK | marker=API Directory Private Listing Sandbox Rehearsal |
+| api_directory_private_listing_sandbox_rehearsal_md_secret_scan | OK | public content has no secret-like token patterns |
+| api_directory_private_listing_sandbox_rehearsal_json_reachable | OK | HTTP 200, bytes=13403 |
+| api_directory_private_listing_sandbox_rehearsal_json_json_valid | OK | json_valid=True |
+| api_directory_private_listing_sandbox_rehearsal_json_contains_expected_marker | OK | marker=completed_api_directory_private_listing_sandbox_rehearsal |
+| api_directory_private_listing_sandbox_rehearsal_json_secret_scan | OK | public content has no secret-like token patterns |
 | api_marketplace_draft_rehearsal_nowrite_probe_md_reachable | OK | HTTP 200, bytes=16904 |
 | api_marketplace_draft_rehearsal_nowrite_probe_md_contains_expected_marker | OK | marker=API Marketplace Draft Rehearsal NoWrite Probe |
 | api_marketplace_draft_rehearsal_nowrite_probe_md_secret_scan | OK | public content has no secret-like token patterns |
@@ -449,14 +458,14 @@ It performs only public GET requests. It does not create customers, consume cred
 | well_known_machine_discovery_json_valid | OK | json_valid=True |
 | well_known_machine_discovery_contains_expected_marker | OK | marker=sandbox_external_draft_distribution_readiness_review_json |
 | well_known_machine_discovery_secret_scan | OK | public content has no secret-like token patterns |
-| llms_reachable | OK | HTTP 200, bytes=34964 |
-| llms_contains_expected_marker | OK | marker=Postman Private Team Workspace Sandbox Rehearsal JSON |
+| llms_reachable | OK | HTTP 200, bytes=35258 |
+| llms_contains_expected_marker | OK | marker=API Directory Private Listing Sandbox Rehearsal JSON |
 | llms_secret_scan | OK | public content has no secret-like token patterns |
-| robots_reachable | OK | HTTP 200, bytes=14939 |
-| robots_contains_expected_marker | OK | marker=Postman-private-team-workspace-sandbox-rehearsal-json |
+| robots_reachable | OK | HTTP 200, bytes=15229 |
+| robots_contains_expected_marker | OK | marker=Api-directory-private-listing-sandbox-rehearsal-json |
 | robots_secret_scan | OK | public content has no secret-like token patterns |
-| sitemap_reachable | OK | HTTP 200, bytes=21965 |
-| sitemap_contains_expected_marker | OK | marker=postman_private_team_workspace_sandbox_rehearsal_summary_20260611.json |
+| sitemap_reachable | OK | HTTP 200, bytes=22216 |
+| sitemap_contains_expected_marker | OK | marker=api_directory_private_listing_sandbox_rehearsal_summary_20260611.json |
 | sitemap_secret_scan | OK | public content has no secret-like token patterns |
 | openapi_reachable | OK | HTTP 200, bytes=61595 |
 | openapi_json_valid | OK | json_valid=True |

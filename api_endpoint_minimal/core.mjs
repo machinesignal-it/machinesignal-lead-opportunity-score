@@ -1771,6 +1771,8 @@ Public demos for software, agents and partners:
 - Postman Private Team Workspace Setup JSON: https://machinesignal.it/postman_private_team_workspace_setup_summary_20260611.json
 - Postman Private Team Workspace Sandbox Rehearsal: https://machinesignal.it/postman_private_team_workspace_sandbox_rehearsal_report_20260611.md
 - Postman Private Team Workspace Sandbox Rehearsal JSON: https://machinesignal.it/postman_private_team_workspace_sandbox_rehearsal_summary_20260611.json
+- API Directory Private Listing Sandbox Rehearsal: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_report_20260611.md
+- API Directory Private Listing Sandbox Rehearsal JSON: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_summary_20260611.json
 - API Marketplace Draft Rehearsal NoWrite Probe: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md
 - API Marketplace Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
 - MCP Agent Registry Draft Rehearsal NoWrite Probe: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md
