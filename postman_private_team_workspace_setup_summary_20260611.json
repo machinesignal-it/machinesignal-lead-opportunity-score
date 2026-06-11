@@ -1,0 +1,55 @@
+{
+  "status": "completed_postman_private_team_workspace_setup",
+  "ok": true,
+  "service": "MachineSignal",
+  "date": "2026-06-11",
+  "primary_customer_interface": "machine",
+  "workspace": {
+    "id": "004a5fde-0aaa-4598-ad99-fe283bf31dff",
+    "name": "MachineSignal Public API",
+    "type": "team",
+    "visibility": "team",
+    "public_workspace_enabled": false
+  },
+  "collection": {
+    "action": "created",
+    "name": "MachineSignal Lead Opportunity Score API - Callable Beta",
+    "uid": "55284144-66c391f0-73a9-460e-8906-e79996af4eec",
+    "item_count": 28,
+    "secret_collection_variable_types_uploaded": false
+  },
+  "environment": {
+    "action": "created",
+    "name": "MachineSignal Public Sandbox Environment",
+    "uid": "55284144-dcb6c177-7820-4b14-9f7e-66a20d47e3a0",
+    "values_count": 7,
+    "real_secret_values_uploaded": false
+  },
+  "machine_buyer_paths": {
+    "customer_with_existing_list": true,
+    "customer_without_list": true,
+    "action_pack_after_deep_analysis_gate": true
+  },
+  "agent_decision": {
+    "selected_first_channel": "postman_private_team_workspace",
+    "votes_for_postman_private_team_workspace": 4,
+    "votes_for_mcp_local_adapter_first": 1,
+    "next_channels": [
+      "api_directory_private_draft",
+      "mcp_agent_registry_local_adapter"
+    ]
+  },
+  "safety": {
+    "sandbox_only": true,
+    "live_payments_enabled": false,
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "external_publication_executed": false,
+    "production_api_key_uploaded": false,
+    "real_api_keys_uploaded": false,
+    "real_secret_values_uploaded": false
+  },
+  "next_step": "Run a controlled Postman-oriented sandbox rehearsal with no public publication, no real keys, no live payment, no invoice and limited idempotent write-style requests."
+}

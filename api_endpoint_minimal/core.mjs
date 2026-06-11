@@ -1767,6 +1767,8 @@ Public demos for software, agents and partners:
 - Postman Public Collection JSON: https://machinesignal.it/postman_public_collection.json
 - Postman Public Environment Template JSON: https://machinesignal.it/postman_public_environment_template.json
 - Postman Workspace Secret Scan JSON: https://machinesignal.it/postman_workspace_secret_scan_20260606.json
+- Postman Private Team Workspace Setup: https://machinesignal.it/postman_private_team_workspace_setup_report_20260611.md
+- Postman Private Team Workspace Setup JSON: https://machinesignal.it/postman_private_team_workspace_setup_summary_20260611.json
 - API Marketplace Draft Rehearsal NoWrite Probe: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md
 - API Marketplace Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
 - MCP Agent Registry Draft Rehearsal NoWrite Probe: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md

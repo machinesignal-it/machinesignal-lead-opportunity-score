@@ -131,3 +131,5 @@ Agent-go-no-go-sandbox-review: https://machinesignal.it/agent_go_no_go_sandbox_r
 Agent-go-no-go-sandbox-review-json: https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json
 Sandbox-external-draft-distribution-readiness-review: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md
 Sandbox-external-draft-distribution-readiness-review-json: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json
+Postman-private-team-workspace-setup: https://machinesignal.it/postman_private_team_workspace_setup_report_20260611.md
+Postman-private-team-workspace-setup-json: https://machinesignal.it/postman_private_team_workspace_setup_summary_20260611.json

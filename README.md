@@ -747,6 +747,15 @@ A NoWrite Postman rehearsal now proves that a machine can import the MachineSign
 - Result: ok=true, collection_item_count=28, methods=GET/PATCH/POST, secret scan passed, environment private values blank.
 - Safety: post_calls_executed=0, write_calls_executed=0, real_payment_executed=false, external_contact_executed=false, public_workspace_enabled=false, real_api_keys_published=false.
 
+## Postman Private Team Workspace Setup - 2026-06-11
+
+The Postman private/team workspace setup is now complete for sandbox-only machine-to-machine evaluation. The callable beta collection and sandbox environment were created in a team workspace, with blank placeholders for all sensitive values.
+
+- Report: https://machinesignal.it/postman_private_team_workspace_setup_report_20260611.md
+- Summary JSON: https://machinesignal.it/postman_private_team_workspace_setup_summary_20260611.json
+- Result: ok=true, workspace_visibility=team, collection_item_count=28, environment_values_count=7.
+- Safety: public_workspace_enabled=false, live_payments_enabled=false, real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, production_api_key_uploaded=false.
+
 ## API Marketplace Draft Rehearsal NoWrite Probe - 2026-06-11
 
 A NoWrite marketplace rehearsal now proves that a machine can evaluate the generic API-directory and RapidAPI-style draft metadata, understand the product and test route, and see that publication, monetization, production keys, payments, invoices and outreach remain blocked.
