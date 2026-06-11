@@ -179,6 +179,8 @@ $resources = @(
     @{ name = "mcp_agent_registry_draft_rehearsal_nowrite_probe_json"; url = "$PublicSite/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json"; json = $true; must = "completed_mcp_agent_registry_draft_rehearsal_nowrite" },
     @{ name = "machine_buyer_end_to_end_rehearsal_md"; url = "$PublicSite/machine_buyer_end_to_end_rehearsal_report_20260611.md"; json = $false; must = "Machine Buyer End-to-End Rehearsal" },
     @{ name = "machine_buyer_end_to_end_rehearsal_json"; url = "$PublicSite/machine_buyer_end_to_end_rehearsal_summary_20260611.json"; json = $true; must = "completed_machine_buyer_end_to_end_rehearsal" },
+    @{ name = "agent_go_no_go_sandbox_review_md"; url = "$PublicSite/agent_go_no_go_sandbox_review_20260611.md"; json = $false; must = "MachineSignal Agent Go/No-Go Sandbox Review" },
+    @{ name = "agent_go_no_go_sandbox_review_json"; url = "$PublicSite/agent_go_no_go_sandbox_review_summary_20260611.json"; json = $true; must = "completed_agent_go_no_go_sandbox_review" },
     @{ name = "marketplace_api_directory_pack_md"; url = "$PublicSite/marketplace_api_directory_pack_20260606.md"; json = $false; must = "Sandbox-Only External Publication Pack" },
     @{ name = "marketplace_api_directory_pack_json"; url = "$PublicSite/marketplace_api_directory_pack_20260606.json"; json = $true; must = "external_publication_policy" },
     @{ name = "marketplace_publication_execution_pack_md"; url = "$PublicSite/marketplace_publication_execution_pack_20260606.md"; json = $false; must = "Sandbox-Only External Publication Pack" },
@@ -189,16 +191,16 @@ $resources = @(
     @{ name = "postman_workspace_draft"; url = "$PublicSite/distribution/postman-public-workspace-draft.json"; json = $true; must = "ready_for_private_or_team_workspace_setup_public_visibility_blocked_until_owner_approval" },
     @{ name = "postman_private_workspace_checklist_md"; url = "$PublicSite/postman_private_workspace_checklist_20260607.md"; json = $false; must = "Workspace Folder Structure" },
     @{ name = "postman_private_workspace_checklist_json"; url = "$PublicSite/postman_private_workspace_checklist_20260607.json"; json = $true; must = "blocked_actions" },
-    @{ name = "mcp_tool_manifest"; url = "$PublicSite/mcp-tool-manifest.json"; json = $true; must = "get_mcp_tool_registry_private_draft_review" },
-    @{ name = "well_known_mcp_tool_manifest"; url = "$PublicSite/.well-known/mcp-tool-manifest.json"; json = $true; must = "get_mcp_tool_registry_private_draft_review" },
-    @{ name = "well_known_machine_discovery"; url = "$PublicSite/.well-known/machine-discovery.json"; json = $true; must = "machine_buyer_end_to_end_rehearsal_json" },
-    @{ name = "llms"; url = "$PublicSite/llms.txt"; json = $false; must = "Machine Buyer End-to-End Rehearsal JSON" },
-    @{ name = "robots"; url = "$PublicSite/robots.txt"; json = $false; must = "Machine-buyer-end-to-end-rehearsal-json" },
-    @{ name = "sitemap"; url = "$PublicSite/sitemap.xml"; json = $false; must = "machine_buyer_end_to_end_rehearsal_summary_20260611.json" },
+    @{ name = "mcp_tool_manifest"; url = "$PublicSite/mcp-tool-manifest.json"; json = $true; must = "agent_go_no_go_sandbox_review_json" },
+    @{ name = "well_known_mcp_tool_manifest"; url = "$PublicSite/.well-known/mcp-tool-manifest.json"; json = $true; must = "agent_go_no_go_sandbox_review_json" },
+    @{ name = "well_known_machine_discovery"; url = "$PublicSite/.well-known/machine-discovery.json"; json = $true; must = "agent_go_no_go_sandbox_review_json" },
+    @{ name = "llms"; url = "$PublicSite/llms.txt"; json = $false; must = "Agent Go/No-Go Sandbox Review JSON" },
+    @{ name = "robots"; url = "$PublicSite/robots.txt"; json = $false; must = "Agent-go-no-go-sandbox-review-json" },
+    @{ name = "sitemap"; url = "$PublicSite/sitemap.xml"; json = $false; must = "agent_go_no_go_sandbox_review_summary_20260611.json" },
     @{ name = "openapi"; url = "$PublicSite/openapi.json"; json = $true; must = "action_pack_gate_failed" },
     @{ name = "postman_public_collection"; url = "$PublicSite/postman_public_collection.json"; json = $true; must = "deep_analysis_verification_gate_failed" },
     @{ name = "product_catalog"; url = "$PublicSite/product-catalog.json"; json = $true; must = "action_pack" },
-    @{ name = "machine_onboarding"; url = "$PublicSite/machine-onboarding.json"; json = $true; must = "NoWrite" }
+    @{ name = "machine_onboarding"; url = "$PublicSite/machine-onboarding.json"; json = $true; must = "completed_agent_go_no_go_sandbox_review" }
 )
 
 $checks = New-Object System.Collections.ArrayList

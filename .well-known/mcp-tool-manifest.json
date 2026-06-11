@@ -753,7 +753,9 @@
     "mcp_agent_registry_draft_rehearsal_nowrite_probe": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md",
     "mcp_agent_registry_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json",
     "machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
-    "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json"
+    "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json",
+    "agent_go_no_go_sandbox_review": "https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md",
+    "agent_go_no_go_sandbox_review_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
   },
   "latest_machine_discovery_full_simulation": {
     "status": "completed_full_machine_discovery",
@@ -1075,7 +1077,9 @@
     "mcp_agent_registry_draft_rehearsal_nowrite_probe": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md",
     "mcp_agent_registry_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json",
     "machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
-    "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json"
+    "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json",
+    "agent_go_no_go_sandbox_review": "https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md",
+    "agent_go_no_go_sandbox_review_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
   },
   "latest_mcp_purchase_decision_probe": {
     "status": "completed_mcp_purchase_decision_probe",
@@ -1447,7 +1451,9 @@
     "mcp_agent_registry_draft_rehearsal_nowrite_probe": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md",
     "mcp_agent_registry_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json",
     "machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
-    "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json"
+    "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json",
+    "agent_go_no_go_sandbox_review": "https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md",
+    "agent_go_no_go_sandbox_review_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
   },
   "latest_postman_private_workspace_rehearsal_nowrite_probe": {
     "status": "completed_postman_private_workspace_rehearsal_nowrite",
@@ -2969,5 +2975,29 @@
     "report": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
     "json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json"
   },
-  "current_machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json"
+  "current_machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json",
+  "latest_agent_go_no_go_sandbox_review": {
+    "status": "completed_agent_go_no_go_sandbox_review",
+    "ok": true,
+    "evidence_date": "2026-06-11",
+    "primary_customer_interface": "machine",
+    "verdict": "go_conditionally_for_sandbox_only_next_step",
+    "agent_votes_go_sandbox_only": 4,
+    "agent_votes_total": 4,
+    "no_go_for": [
+      "live_monetization",
+      "real_payment",
+      "real_invoice",
+      "public_paid_marketplace_launch",
+      "hosted_mcp_public_launch",
+      "production_api_keys",
+      "irreversible_external_publication",
+      "human_outreach",
+      "automatic_external_contact"
+    ],
+    "approved_next_step": "sandbox_only_external_draft_distribution_readiness_review",
+    "public_report": "https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md",
+    "public_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
+  },
+  "current_agent_go_no_go_sandbox_review": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
 }

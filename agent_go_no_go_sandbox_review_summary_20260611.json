@@ -1,0 +1,106 @@
+{
+  "service": "MachineSignal",
+  "review_name": "agent_go_no_go_sandbox_review",
+  "status": "completed_agent_go_no_go_sandbox_review",
+  "ok": true,
+  "evidence_date": "2026-06-11",
+  "primary_customer_interface": "machine",
+  "verdict": "go_conditionally_for_sandbox_only_next_step",
+  "no_go_for": [
+    "live_monetization",
+    "real_payment",
+    "real_invoice",
+    "public_paid_marketplace_launch",
+    "hosted_mcp_public_launch",
+    "production_api_keys",
+    "irreversible_external_publication",
+    "human_outreach",
+    "automatic_external_contact"
+  ],
+  "evidence_reviewed": {
+    "machine_buyer_end_to_end_rehearsal": {
+      "url": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json",
+      "ok": true,
+      "checks_failed": 0,
+      "post_calls_executed": 5,
+      "score": 81,
+      "confidence": 0.88,
+      "decision": "buy_deep_analysis",
+      "action_pack_gate_passed": true
+    },
+    "distribution_readiness_monitor": {
+      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+      "ok": true,
+      "resources_checked": 89,
+      "checks_total": 322,
+      "checks_failed": 0
+    },
+    "safety_flags": {
+      "real_payment_executed": false,
+      "real_invoice_issued": false,
+      "external_contact_executed": false,
+      "human_outreach_executed": false,
+      "external_publication_executed": false,
+      "live_monetization_enabled": false,
+      "production_api_key_published": false
+    }
+  },
+  "agent_votes": [
+    {
+      "agent_seat": "technical_api_readiness",
+      "verdict": "go_sandbox_only",
+      "reason": "API, OpenAPI, Postman, MCP, monitor and machine-buyer end-to-end path are working; write tests must remain bounded because of KV limits."
+    },
+    {
+      "agent_seat": "commercial_api_product_manager",
+      "verdict": "go_sandbox_only",
+      "reason": "The product path is understandable to machines: Target Discovery, Score, Deep Analysis and Action Pack create a logical buying sequence."
+    },
+    {
+      "agent_seat": "compliance_admin_legal",
+      "verdict": "go_sandbox_only",
+      "reason": "Guardrails block live payment, invoicing and outreach; fiscal/legal setup is required before paid go-live."
+    },
+    {
+      "agent_seat": "orchestrator_agent_manager",
+      "verdict": "go_sandbox_only",
+      "reason": "Agent coverage is good for testing; sales ops, post-sale, admin, legal and continuous learning must be formalized before scale."
+    }
+  ],
+  "consolidated_findings": [
+    "The current strongest proof is the machine-buyer end-to-end rehearsal.",
+    "MachineSignal sells machine-readable decisions and operational payloads, not human consulting.",
+    "Commercial prices and willingness-to-pay remain beta assumptions until controlled external sandbox/draft evidence exists.",
+    "Monitor jobs should stay NoWrite and write-capped tests must remain deliberate, limited and idempotent.",
+    "Fiscal, legal and admin readiness are the main blockers before paid go-live.",
+    "Machine-readable public assets, API directories, Postman and MCP/agent registries remain the right channels."
+  ],
+  "required_agent_coverage_before_monetization": [
+    "machine_to_machine_sales_ops_agent",
+    "customer_success_post_sale_agent",
+    "admin_finance_controller",
+    "legal_compliance_agent",
+    "continuous_improvement_competitive_learning_agent"
+  ],
+  "approved_next_step": {
+    "mode": "sandbox_only_external_draft_distribution",
+    "monetization_enabled": false,
+    "test_paths": [
+      "customer_with_existing_list",
+      "customer_without_list_target_discovery",
+      "action_pack_only_after_deep_analysis_gate"
+    ]
+  },
+  "blocked_until_owner_approval": [
+    "enable_live_checkout",
+    "issue_fiscal_invoices",
+    "publish_paid_marketplace_plans",
+    "launch_hosted_mcp_publicly",
+    "publish_production_api_keys",
+    "contact_humans_or_external_companies_automatically",
+    "start_irreversible_third_party_publication"
+  ],
+  "recommended_next_action": "Run a NoWrite public/draft channel readiness review that checks whether a machine can understand the three approved test paths from public assets alone. If it passes, proceed to one owner-approved sandbox-only external draft channel.",
+  "public_report": "https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md",
+  "public_json": "https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json"
+}

@@ -127,3 +127,5 @@ Mcp-agent-registry-draft-rehearsal-nowrite-probe: https://machinesignal.it/mcp_a
 Mcp-agent-registry-draft-rehearsal-nowrite-probe-json: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json
 Machine-buyer-end-to-end-rehearsal: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md
 Machine-buyer-end-to-end-rehearsal-json: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json
+Agent-go-no-go-sandbox-review: https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md
+Agent-go-no-go-sandbox-review-json: https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json

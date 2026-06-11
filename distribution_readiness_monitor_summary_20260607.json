@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-11T12:34:33.5429972Z",
+    "generated_at":  "2026-06-11T13:06:56.9978463Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  89,
-    "checks_total":  322,
+    "resources_checked":  91,
+    "checks_total":  329,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -225,7 +225,7 @@
                    {
                        "name":  "mcp_tool_registry_draft_checklist_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=51809"
+                       "details":  "HTTP 200, bytes=53069"
                    },
                    {
                        "name":  "mcp_tool_registry_draft_checklist_json_json_valid",
@@ -645,7 +645,7 @@
                    {
                        "name":  "mcp_tool_registry_private_draft_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=53354"
+                       "details":  "HTTP 200, bytes=54614"
                    },
                    {
                        "name":  "mcp_tool_registry_private_draft_pack_json_json_valid",
@@ -1223,6 +1223,41 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "agent_go_no_go_sandbox_review_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=4524"
+                   },
+                   {
+                       "name":  "agent_go_no_go_sandbox_review_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=MachineSignal Agent Go/No-Go Sandbox Review"
+                   },
+                   {
+                       "name":  "agent_go_no_go_sandbox_review_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "agent_go_no_go_sandbox_review_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=4456"
+                   },
+                   {
+                       "name":  "agent_go_no_go_sandbox_review_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "agent_go_no_go_sandbox_review_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_agent_go_no_go_sandbox_review"
+                   },
+                   {
+                       "name":  "agent_go_no_go_sandbox_review_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
                        "details":  "HTTP 200, bytes=15553"
@@ -1335,7 +1370,7 @@
                    {
                        "name":  "marketplace_submission_pack_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=99047"
+                       "details":  "HTTP 200, bytes=100765"
                    },
                    {
                        "name":  "marketplace_submission_pack_json_valid",
@@ -1410,7 +1445,7 @@
                    {
                        "name":  "mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=125320"
+                       "details":  "HTTP 200, bytes=127038"
                    },
                    {
                        "name":  "mcp_tool_manifest_json_valid",
@@ -1420,7 +1455,7 @@
                    {
                        "name":  "mcp_tool_manifest_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=get_mcp_tool_registry_private_draft_review"
+                       "details":  "marker=agent_go_no_go_sandbox_review_json"
                    },
                    {
                        "name":  "mcp_tool_manifest_secret_scan",
@@ -1430,7 +1465,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=125320"
+                       "details":  "HTTP 200, bytes=127038"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_json_valid",
@@ -1440,7 +1475,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=get_mcp_tool_registry_private_draft_review"
+                       "details":  "marker=agent_go_no_go_sandbox_review_json"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_secret_scan",
@@ -1450,7 +1485,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=108922"
+                       "details":  "HTTP 200, bytes=110640"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -1460,7 +1495,7 @@
                    {
                        "name":  "well_known_machine_discovery_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=machine_buyer_end_to_end_rehearsal_json"
+                       "details":  "marker=agent_go_no_go_sandbox_review_json"
                    },
                    {
                        "name":  "well_known_machine_discovery_secret_scan",
@@ -1470,12 +1505,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=33164"
+                       "details":  "HTTP 200, bytes=33761"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Machine Buyer End-to-End Rehearsal JSON"
+                       "details":  "marker=Agent Go/No-Go Sandbox Review JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -1485,12 +1520,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=13878"
+                       "details":  "HTTP 200, bytes=14089"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Machine-buyer-end-to-end-rehearsal-json"
+                       "details":  "marker=Agent-go-no-go-sandbox-review-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -1500,12 +1535,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=21014"
+                       "details":  "HTTP 200, bytes=21222"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=machine_buyer_end_to_end_rehearsal_summary_20260611.json"
+                       "details":  "marker=agent_go_no_go_sandbox_review_summary_20260611.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",
@@ -1575,7 +1610,7 @@
                    {
                        "name":  "machine_onboarding_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=132175"
+                       "details":  "HTTP 200, bytes=133893"
                    },
                    {
                        "name":  "machine_onboarding_json_valid",
@@ -1585,7 +1620,7 @@
                    {
                        "name":  "machine_onboarding_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=NoWrite"
+                       "details":  "marker=completed_agent_go_no_go_sandbox_review"
                    },
                    {
                        "name":  "machine_onboarding_secret_scan",

@@ -332,3 +332,7 @@ MCP Agent Registry Draft Rehearsal NoWrite Probe Summary: a machine can discover
 Machine Buyer End-to-End Rehearsal: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md
 Machine Buyer End-to-End Rehearsal JSON: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json
 Machine Buyer End-to-End Rehearsal Summary: a buyer machine can discover MachineSignal, create one limited sandbox customer, request Target Discovery, score a high-signal synthetic target, buy Deep Analysis, buy Action Pack after the Deep Analysis gate and reconcile orders/usage; ok=true; score=81; confidence=0.88; decision=buy_deep_analysis; post_calls_executed=5; real_payment_executed=false; real_invoice_issued=false; external_contact_executed=false; external_publication_executed=false.
+
+Agent Go/No-Go Sandbox Review: https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md
+Agent Go/No-Go Sandbox Review JSON: https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json
+Agent Go/No-Go Sandbox Review Summary: technical, commercial, compliance/admin/legal and orchestration agents gave 4/4 GO for the next sandbox-only machine-to-machine step, with NO-GO for live monetization, real payment, fiscal invoicing, paid marketplace launch, hosted MCP launch, production API keys, irreversible external publication, human outreach or automatic external contact.
