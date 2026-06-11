@@ -1,0 +1,978 @@
+{
+  "service": "MachineSignal",
+  "probe_name": "api_marketplace_draft_rehearsal_nowrite_probe",
+  "status": "completed_api_marketplace_draft_rehearsal_nowrite",
+  "ok": true,
+  "evidence_date": "2026-06-11",
+  "mode": "NoWriteApiMarketplaceDraftRehearsal",
+  "primary_customer_interface": "machine",
+  "machine_customer_mode": "machine_evaluates_api_directory_and_rapidapi_style_drafts_without_external_publication_or_live_monetization",
+  "channels_checked": [
+    "generic_api_directory",
+    "rapidapi_style_marketplace"
+  ],
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "human_outreach_executed": false,
+  "external_publication_executed": false,
+  "irreversible_submission_executed": false,
+  "live_monetization_enabled": false,
+  "public_paid_plans_enabled": false,
+  "marketplace_pricing_tiers_created": false,
+  "production_api_key_published": false,
+  "postman_rehearsal_dependency_ok": true,
+  "distribution_monitor_dependency_ok": true,
+  "channel_decisions": [
+    {
+      "channel": "Generic API directories",
+      "decision": "ready_for_private_or_unsubmitted_directory_draft",
+      "status": "ready_for_api_directory_private_draft_only",
+      "publication_blocked_until": "owner_approval",
+      "main_asset": "https://machinesignal.it/api_directory_private_draft_pack_20260608.json"
+    },
+    {
+      "channel": "RapidAPI-style marketplace",
+      "decision": "ready_for_unpublished_provider_draft_monetization_blocked",
+      "status": "ready_for_rapidapi_unpublished_provider_draft_only",
+      "publication_blocked_until": "owner_approval",
+      "main_asset": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json"
+    }
+  ],
+  "recommended_next_step": "Keep API-directory and RapidAPI-style assets as private/unsubmitted drafts; next run an MCP/agent-registry draft rehearsal or prepare owner-supervised manual review without publishing.",
+  "interpretation": "A machine can evaluate both API-directory and RapidAPI-style draft metadata, understand the product and test route, and see that publication, monetization, production keys, payments, invoices and outreach remain blocked.",
+  "resources": {
+    "api_directory_pack": {
+      "url": "https://machinesignal.it/api_directory_private_draft_pack_20260608.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 24991,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "api_directory_pack_md": {
+      "url": "https://machinesignal.it/api_directory_private_draft_pack_20260608.md",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 3555,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "api_directory_submission": {
+      "url": "https://machinesignal.it/distribution/api-directory-submission.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 34017,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "api_directory_review": {
+      "url": "https://machinesignal.it/api_directory_private_draft_review_summary_20260608.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 8322,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "rapidapi_pack": {
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 23557,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "rapidapi_pack_md": {
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.md",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 4123,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "rapidapi_listing": {
+      "url": "https://machinesignal.it/distribution/rapidapi-listing.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 34288,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "rapidapi_provider_setup": {
+      "url": "https://machinesignal.it/distribution/rapidapi-provider-setup.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 22406,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "rapidapi_review": {
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 10630,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "draft_checklist": {
+      "url": "https://machinesignal.it/api_directory_rapidapi_draft_checklist_20260607.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 9425,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "marketplace_pack": {
+      "url": "https://machinesignal.it/distribution/marketplace-submission-pack.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 49702,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "postman_rehearsal": {
+      "url": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 12985,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "distribution_monitor": {
+      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 73652,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "openapi": {
+      "url": "https://machinesignal.it/openapi.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 61595,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "machine_discovery": {
+      "url": "https://machinesignal.it/.well-known/machine-discovery.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 60007,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "llms": {
+      "url": "https://machinesignal.it/llms.txt",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 30943,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "robots": {
+      "url": "https://machinesignal.it/robots.txt",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 13064,
+      "hard_fails": [],
+      "missing_markers": []
+    },
+    "sitemap": {
+      "url": "https://machinesignal.it/sitemap.xml",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 20289,
+      "hard_fails": [],
+      "missing_markers": []
+    }
+  },
+  "checks": [
+    {
+      "name": "api_directory_pack_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=24991"
+    },
+    {
+      "name": "api_directory_pack_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "api_directory_pack_marker_ready_for_api_directory_private_draft_only",
+      "ok": true,
+      "details": "ready_for_api_directory_private_draft_only"
+    },
+    {
+      "name": "api_directory_pack_marker_machinesignal_lead_opportunity_score_api",
+      "ok": true,
+      "details": "MachineSignal Lead Opportunity Score API"
+    },
+    {
+      "name": "api_directory_pack_marker_external_publication_executed",
+      "ok": true,
+      "details": "external_publication_executed"
+    },
+    {
+      "name": "api_directory_pack_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "api_directory_pack_md_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=3555"
+    },
+    {
+      "name": "api_directory_pack_md_marker_api_directory_private_draft_pack",
+      "ok": true,
+      "details": "API Directory Private Draft Pack"
+    },
+    {
+      "name": "api_directory_pack_md_marker_external_publication_executed_false",
+      "ok": true,
+      "details": "external_publication_executed=false"
+    },
+    {
+      "name": "api_directory_pack_md_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "api_directory_submission_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=34017"
+    },
+    {
+      "name": "api_directory_submission_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "api_directory_submission_marker_sandbox_only_api_directory_draft_ready_owner_approval_required_for_external_submission",
+      "ok": true,
+      "details": "sandbox_only_api_directory_draft_ready_owner_approval_required_for_external_submission"
+    },
+    {
+      "name": "api_directory_submission_marker_api_directory_private_draft_pack_20260608_json",
+      "ok": true,
+      "details": "api_directory_private_draft_pack_20260608.json"
+    },
+    {
+      "name": "api_directory_submission_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "api_directory_review_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=8322"
+    },
+    {
+      "name": "api_directory_review_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "api_directory_review_marker_completed_api_directory_private_draft_review",
+      "ok": true,
+      "details": "completed_api_directory_private_draft_review"
+    },
+    {
+      "name": "api_directory_review_marker_nowriteapidirectoryprivatedraftreview",
+      "ok": true,
+      "details": "NoWriteApiDirectoryPrivateDraftReview"
+    },
+    {
+      "name": "api_directory_review_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "rapidapi_pack_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=23557"
+    },
+    {
+      "name": "rapidapi_pack_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "rapidapi_pack_marker_ready_for_rapidapi_unpublished_provider_draft_only",
+      "ok": true,
+      "details": "ready_for_rapidapi_unpublished_provider_draft_only"
+    },
+    {
+      "name": "rapidapi_pack_marker_do_not_create_public_paid_plans_yet",
+      "ok": true,
+      "details": "do_not_create_public_paid_plans_yet"
+    },
+    {
+      "name": "rapidapi_pack_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "rapidapi_pack_md_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=4123"
+    },
+    {
+      "name": "rapidapi_pack_md_marker_rapidapi_style_unpublished_provider_draft_pack",
+      "ok": true,
+      "details": "RapidAPI-Style Unpublished Provider Draft Pack"
+    },
+    {
+      "name": "rapidapi_pack_md_marker_monetization_disabled",
+      "ok": true,
+      "details": "monetization disabled"
+    },
+    {
+      "name": "rapidapi_pack_md_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "rapidapi_listing_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=34288"
+    },
+    {
+      "name": "rapidapi_listing_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "rapidapi_listing_marker_rapidapi_style_provider_metadata_ready_monetization_disabled",
+      "ok": true,
+      "details": "rapidapi_style_provider_metadata_ready_monetization_disabled"
+    },
+    {
+      "name": "rapidapi_listing_marker_public_paid_plans_enabled",
+      "ok": true,
+      "details": "public_paid_plans_enabled"
+    },
+    {
+      "name": "rapidapi_listing_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "rapidapi_provider_setup_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=22406"
+    },
+    {
+      "name": "rapidapi_provider_setup_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "rapidapi_provider_setup_marker_draft_or_unpublished_monetization_disabled",
+      "ok": true,
+      "details": "draft_or_unpublished_monetization_disabled"
+    },
+    {
+      "name": "rapidapi_provider_setup_marker_do_not_publish_monetized_until",
+      "ok": true,
+      "details": "do_not_publish_monetized_until"
+    },
+    {
+      "name": "rapidapi_provider_setup_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "rapidapi_review_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=10630"
+    },
+    {
+      "name": "rapidapi_review_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "rapidapi_review_marker_completed_rapidapi_unpublished_provider_draft_review",
+      "ok": true,
+      "details": "completed_rapidapi_unpublished_provider_draft_review"
+    },
+    {
+      "name": "rapidapi_review_marker_nowriterapidapiunpublishedproviderdraftreview",
+      "ok": true,
+      "details": "NoWriteRapidApiUnpublishedProviderDraftReview"
+    },
+    {
+      "name": "rapidapi_review_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "draft_checklist_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=9425"
+    },
+    {
+      "name": "draft_checklist_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "draft_checklist_marker_blocked_until_owner_approval",
+      "ok": true,
+      "details": "blocked_until_owner_approval"
+    },
+    {
+      "name": "draft_checklist_marker_do_not_contact_human_prospects_or_target_companies",
+      "ok": true,
+      "details": "do_not_contact_human_prospects_or_target_companies"
+    },
+    {
+      "name": "draft_checklist_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "marketplace_pack_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=49702"
+    },
+    {
+      "name": "marketplace_pack_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "marketplace_pack_marker_ready_for_sandbox_publication_drafts_with_full_beta_evidence",
+      "ok": true,
+      "details": "ready_for_sandbox_publication_drafts_with_full_beta_evidence"
+    },
+    {
+      "name": "marketplace_pack_marker_channel_private_draft_packs",
+      "ok": true,
+      "details": "channel_private_draft_packs"
+    },
+    {
+      "name": "marketplace_pack_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "postman_rehearsal_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=12985"
+    },
+    {
+      "name": "postman_rehearsal_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "postman_rehearsal_marker_completed_postman_private_workspace_rehearsal_nowrite",
+      "ok": true,
+      "details": "completed_postman_private_workspace_rehearsal_nowrite"
+    },
+    {
+      "name": "postman_rehearsal_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "distribution_monitor_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=73652"
+    },
+    {
+      "name": "distribution_monitor_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "distribution_monitor_marker_ready_for_distribution_review",
+      "ok": true,
+      "details": "ready_for_distribution_review"
+    },
+    {
+      "name": "distribution_monitor_marker_checks_failed",
+      "ok": true,
+      "details": "checks_failed"
+    },
+    {
+      "name": "distribution_monitor_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "openapi_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=61595"
+    },
+    {
+      "name": "openapi_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "openapi_marker_lead_opportunity_score",
+      "ok": true,
+      "details": "lead-opportunity-score"
+    },
+    {
+      "name": "openapi_marker_purchase_intent",
+      "ok": true,
+      "details": "purchase-intent"
+    },
+    {
+      "name": "openapi_marker_orders",
+      "ok": true,
+      "details": "orders"
+    },
+    {
+      "name": "openapi_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "machine_discovery_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=60007"
+    },
+    {
+      "name": "machine_discovery_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "machine_discovery_marker_postman_private_workspace_rehearsal_nowrite_probe_json",
+      "ok": true,
+      "details": "postman_private_workspace_rehearsal_nowrite_probe_json"
+    },
+    {
+      "name": "machine_discovery_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "llms_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=30943"
+    },
+    {
+      "name": "llms_marker_postman_private_workspace_rehearsal_nowrite_probe_json",
+      "ok": true,
+      "details": "Postman Private Workspace Rehearsal NoWrite Probe JSON"
+    },
+    {
+      "name": "llms_marker_rapidapi_listing_json",
+      "ok": true,
+      "details": "RapidAPI Listing JSON"
+    },
+    {
+      "name": "llms_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "robots_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=13064"
+    },
+    {
+      "name": "robots_marker_postman_private_workspace_rehearsal_nowrite_probe_json",
+      "ok": true,
+      "details": "Postman-private-workspace-rehearsal-nowrite-probe-json"
+    },
+    {
+      "name": "robots_marker_rapidapi_listing",
+      "ok": true,
+      "details": "RapidAPI-listing"
+    },
+    {
+      "name": "robots_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "sitemap_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=20289"
+    },
+    {
+      "name": "sitemap_marker_postman_private_workspace_rehearsal_nowrite_probe_summary_20260611_json",
+      "ok": true,
+      "details": "postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json"
+    },
+    {
+      "name": "sitemap_marker_rapidapi_listing_json",
+      "ok": true,
+      "details": "rapidapi-listing.json"
+    },
+    {
+      "name": "sitemap_no_hard_fail_patterns",
+      "ok": true,
+      "details": "none"
+    },
+    {
+      "name": "api_directory_required_directory_listing_fields_api_name",
+      "ok": true,
+      "details": "directory_listing_fields.api_name"
+    },
+    {
+      "name": "api_directory_required_directory_listing_fields_short_description",
+      "ok": true,
+      "details": "directory_listing_fields.short_description"
+    },
+    {
+      "name": "api_directory_required_directory_listing_fields_long_description",
+      "ok": true,
+      "details": "directory_listing_fields.long_description"
+    },
+    {
+      "name": "api_directory_required_directory_listing_fields_base_url",
+      "ok": true,
+      "details": "directory_listing_fields.base_url"
+    },
+    {
+      "name": "api_directory_required_directory_listing_fields_documentation_url",
+      "ok": true,
+      "details": "directory_listing_fields.documentation_url"
+    },
+    {
+      "name": "api_directory_required_directory_listing_fields_openapi_url",
+      "ok": true,
+      "details": "directory_listing_fields.openapi_url"
+    },
+    {
+      "name": "api_directory_required_directory_listing_fields_postman_collection_url",
+      "ok": true,
+      "details": "directory_listing_fields.postman_collection_url"
+    },
+    {
+      "name": "api_directory_required_directory_listing_fields_well_known_discovery_url",
+      "ok": true,
+      "details": "directory_listing_fields.well_known_discovery_url"
+    },
+    {
+      "name": "api_directory_required_directory_listing_fields_auth_type",
+      "ok": true,
+      "details": "directory_listing_fields.auth_type"
+    },
+    {
+      "name": "api_directory_required_directory_listing_fields_auth_header",
+      "ok": true,
+      "details": "directory_listing_fields.auth_header"
+    },
+    {
+      "name": "api_directory_required_endpoint_groups_for_directory",
+      "ok": true,
+      "details": "endpoint_groups_for_directory"
+    },
+    {
+      "name": "api_directory_required_products_to_describe",
+      "ok": true,
+      "details": "products_to_describe"
+    },
+    {
+      "name": "api_directory_required_blocked_before_public_submit",
+      "ok": true,
+      "details": "blocked_before_public_submit"
+    },
+    {
+      "name": "api_directory_required_machine_decision_decision",
+      "ok": true,
+      "details": "machine_decision.decision"
+    },
+    {
+      "name": "rapidapi_required_rapidapi_style_listing_fields_api_name",
+      "ok": true,
+      "details": "rapidapi_style_listing_fields.api_name"
+    },
+    {
+      "name": "rapidapi_required_rapidapi_style_listing_fields_visibility",
+      "ok": true,
+      "details": "rapidapi_style_listing_fields.visibility"
+    },
+    {
+      "name": "rapidapi_required_rapidapi_style_listing_fields_monetization",
+      "ok": true,
+      "details": "rapidapi_style_listing_fields.monetization"
+    },
+    {
+      "name": "rapidapi_required_rapidapi_style_listing_fields_pricing_plans",
+      "ok": true,
+      "details": "rapidapi_style_listing_fields.pricing_plans"
+    },
+    {
+      "name": "rapidapi_required_rapidapi_style_listing_fields_base_url",
+      "ok": true,
+      "details": "rapidapi_style_listing_fields.base_url"
+    },
+    {
+      "name": "rapidapi_required_rapidapi_style_listing_fields_auth_header",
+      "ok": true,
+      "details": "rapidapi_style_listing_fields.auth_header"
+    },
+    {
+      "name": "rapidapi_required_rapidapi_style_listing_fields_openapi_url",
+      "ok": true,
+      "details": "rapidapi_style_listing_fields.openapi_url"
+    },
+    {
+      "name": "rapidapi_required_rapidapi_style_listing_fields_postman_collection_url",
+      "ok": true,
+      "details": "rapidapi_style_listing_fields.postman_collection_url"
+    },
+    {
+      "name": "rapidapi_required_source_assets_rapidapi_listing_json",
+      "ok": true,
+      "details": "source_assets.rapidapi_listing_json"
+    },
+    {
+      "name": "rapidapi_required_source_assets_rapidapi_provider_setup_json",
+      "ok": true,
+      "details": "source_assets.rapidapi_provider_setup_json"
+    },
+    {
+      "name": "rapidapi_required_endpoint_groups_for_provider_draft",
+      "ok": true,
+      "details": "endpoint_groups_for_provider_draft"
+    },
+    {
+      "name": "rapidapi_required_draft_pricing_treatment_public_paid_plans_active",
+      "ok": true,
+      "details": "draft_pricing_treatment.public_paid_plans_active"
+    },
+    {
+      "name": "rapidapi_required_draft_pricing_treatment_create_marketplace_pricing_tiers",
+      "ok": true,
+      "details": "draft_pricing_treatment.create_marketplace_pricing_tiers"
+    },
+    {
+      "name": "rapidapi_required_blocked_before_public_submit",
+      "ok": true,
+      "details": "blocked_before_public_submit"
+    },
+    {
+      "name": "rapidapi_required_machine_decision_decision",
+      "ok": true,
+      "details": "machine_decision.decision"
+    },
+    {
+      "name": "api_directory_status_private_draft_only",
+      "ok": true,
+      "details": "status=ready_for_api_directory_private_draft_only"
+    },
+    {
+      "name": "rapidapi_status_unpublished_draft_only",
+      "ok": true,
+      "details": "status=ready_for_rapidapi_unpublished_provider_draft_only"
+    },
+    {
+      "name": "api_directory_submission_owner_approval_required",
+      "ok": true,
+      "details": "sandbox_only_api_directory_draft_ready_owner_approval_required_for_external_submission"
+    },
+    {
+      "name": "rapidapi_listing_monetization_disabled",
+      "ok": true,
+      "details": "rapidapi_style_provider_metadata_ready_monetization_disabled"
+    },
+    {
+      "name": "rapidapi_provider_setup_draft_or_unpublished",
+      "ok": true,
+      "details": "draft_or_unpublished_monetization_disabled"
+    },
+    {
+      "name": "marketplace_sequence_has_rapidapi_and_api_directory",
+      "ok": true,
+      "details": "recommended sequence includes both channels"
+    },
+    {
+      "name": "marketplace_channel_private_draft_packs_present",
+      "ok": true,
+      "details": "channel-specific draft packs present"
+    },
+    {
+      "name": "postman_rehearsal_passed",
+      "ok": true,
+      "details": "status=completed_postman_private_workspace_rehearsal_nowrite"
+    },
+    {
+      "name": "distribution_monitor_green",
+      "ok": true,
+      "details": "ok=true, failed=0"
+    },
+    {
+      "name": "api_directory_pack_zero_writes",
+      "ok": true,
+      "details": "write_calls_executed=0"
+    },
+    {
+      "name": "api_directory_pack_zero_posts",
+      "ok": true,
+      "details": "post_calls_executed=0"
+    },
+    {
+      "name": "api_directory_pack_no_real_payment",
+      "ok": true,
+      "details": "real_payment_executed=false"
+    },
+    {
+      "name": "api_directory_pack_no_external_contact",
+      "ok": true,
+      "details": "external_contact_executed=false"
+    },
+    {
+      "name": "api_directory_pack_no_external_publication",
+      "ok": true,
+      "details": "external_publication_executed=false"
+    },
+    {
+      "name": "api_directory_pack_no_live_monetization",
+      "ok": true,
+      "details": "live_monetization_enabled=false"
+    },
+    {
+      "name": "rapidapi_pack_zero_writes",
+      "ok": true,
+      "details": "write_calls_executed=0"
+    },
+    {
+      "name": "rapidapi_pack_zero_posts",
+      "ok": true,
+      "details": "post_calls_executed=0"
+    },
+    {
+      "name": "rapidapi_pack_no_real_payment",
+      "ok": true,
+      "details": "real_payment_executed=false"
+    },
+    {
+      "name": "rapidapi_pack_no_external_contact",
+      "ok": true,
+      "details": "external_contact_executed=false"
+    },
+    {
+      "name": "rapidapi_pack_no_external_publication",
+      "ok": true,
+      "details": "external_publication_executed=false"
+    },
+    {
+      "name": "rapidapi_pack_no_live_monetization",
+      "ok": true,
+      "details": "live_monetization_enabled=false"
+    },
+    {
+      "name": "api_directory_review_zero_writes",
+      "ok": true,
+      "details": "write_calls_executed=0"
+    },
+    {
+      "name": "api_directory_review_zero_posts",
+      "ok": true,
+      "details": "post_calls_executed=0"
+    },
+    {
+      "name": "api_directory_review_no_real_payment",
+      "ok": true,
+      "details": "real_payment_executed=false"
+    },
+    {
+      "name": "api_directory_review_no_external_contact",
+      "ok": true,
+      "details": "external_contact_executed=false"
+    },
+    {
+      "name": "api_directory_review_no_external_publication",
+      "ok": true,
+      "details": "external_publication_executed=false"
+    },
+    {
+      "name": "api_directory_review_no_live_monetization",
+      "ok": true,
+      "details": "live_monetization_enabled=false"
+    },
+    {
+      "name": "rapidapi_review_zero_writes",
+      "ok": true,
+      "details": "write_calls_executed=0"
+    },
+    {
+      "name": "rapidapi_review_zero_posts",
+      "ok": true,
+      "details": "post_calls_executed=0"
+    },
+    {
+      "name": "rapidapi_review_no_real_payment",
+      "ok": true,
+      "details": "real_payment_executed=false"
+    },
+    {
+      "name": "rapidapi_review_no_external_contact",
+      "ok": true,
+      "details": "external_contact_executed=false"
+    },
+    {
+      "name": "rapidapi_review_no_external_publication",
+      "ok": true,
+      "details": "external_publication_executed=false"
+    },
+    {
+      "name": "rapidapi_review_no_live_monetization",
+      "ok": true,
+      "details": "live_monetization_enabled=false"
+    },
+    {
+      "name": "postman_rehearsal_zero_writes",
+      "ok": true,
+      "details": "write_calls_executed=0"
+    },
+    {
+      "name": "postman_rehearsal_zero_posts",
+      "ok": true,
+      "details": "post_calls_executed=0"
+    },
+    {
+      "name": "postman_rehearsal_no_real_payment",
+      "ok": true,
+      "details": "real_payment_executed=false"
+    },
+    {
+      "name": "postman_rehearsal_no_external_contact",
+      "ok": true,
+      "details": "external_contact_executed=false"
+    },
+    {
+      "name": "postman_rehearsal_no_external_publication",
+      "ok": true,
+      "details": "external_publication_executed=false"
+    },
+    {
+      "name": "postman_rehearsal_no_live_monetization",
+      "ok": true,
+      "details": "live_monetization_enabled=false"
+    }
+  ],
+  "failed_checks": []
+}

@@ -127,6 +127,8 @@ Public discovery starts here:
 - Machine Channel Rehearsal NoWrite Probe JSON: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json
 - Postman Private Workspace Rehearsal NoWrite Probe: https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_report_20260611.md
 - Postman Private Workspace Rehearsal NoWrite Probe JSON: https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json
+- API Marketplace Draft Rehearsal NoWrite Probe: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md
+- API Marketplace Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -740,3 +742,12 @@ A NoWrite Postman rehearsal now proves that a machine can import the MachineSign
 - Summary JSON: https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json
 - Result: ok=true, collection_item_count=28, methods=GET/PATCH/POST, secret scan passed, environment private values blank.
 - Safety: post_calls_executed=0, write_calls_executed=0, real_payment_executed=false, external_contact_executed=false, public_workspace_enabled=false, real_api_keys_published=false.
+
+## API Marketplace Draft Rehearsal NoWrite Probe - 2026-06-11
+
+A NoWrite marketplace rehearsal now proves that a machine can evaluate the generic API-directory and RapidAPI-style draft metadata, understand the product and test route, and see that publication, monetization, production keys, payments, invoices and outreach remain blocked.
+
+- Report: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md
+- Summary JSON: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
+- Result: ok=true, channels_checked=generic_api_directory and rapidapi_style_marketplace.
+- Safety: post_calls_executed=0, write_calls_executed=0, external_publication_executed=false, live_monetization_enabled=false, public_paid_plans_enabled=false, production_api_key_published=false.

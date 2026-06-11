@@ -132,7 +132,9 @@
     "machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md",
     "machine_channel_rehearsal_nowrite_probe_json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json",
     "postman_private_workspace_rehearsal_nowrite_probe": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_report_20260611.md",
-    "postman_private_workspace_rehearsal_nowrite_probe_json": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json"
+    "postman_private_workspace_rehearsal_nowrite_probe_json": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json",
+    "api_marketplace_draft_rehearsal_nowrite_probe": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md",
+    "api_marketplace_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json"
   },
   "authentication": {
     "type": "apiKey",
@@ -778,7 +780,9 @@
     "machine_distribution_readiness_nowrite_probe": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md",
     "machine_distribution_readiness_nowrite_probe_json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json",
     "machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md",
-    "machine_channel_rehearsal_nowrite_probe_json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
+    "machine_channel_rehearsal_nowrite_probe_json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json",
+    "api_marketplace_draft_rehearsal_nowrite_probe": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md",
+    "api_marketplace_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json"
   },
   "latest_private_draft_submission_rehearsal": {
     "status": "completed_private_draft_submission_rehearsal",
@@ -1363,5 +1367,33 @@
     "json": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json",
     "recommended_next_step": "Keep Postman private/team, optionally run an owner-supervised in-Postman import check, then prepare unpublished API-directory or RapidAPI draft metadata only."
   },
-  "current_postman_private_workspace_rehearsal_nowrite_probe": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json"
+  "current_postman_private_workspace_rehearsal_nowrite_probe": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json",
+  "latest_api_marketplace_draft_rehearsal_nowrite_probe": {
+    "status": "completed_api_marketplace_draft_rehearsal_nowrite",
+    "ok": true,
+    "evidence_date": "2026-06-11",
+    "mode": "NoWriteApiMarketplaceDraftRehearsal",
+    "primary_customer_interface": "machine",
+    "machine_customer_mode": "machine_evaluates_api_directory_and_rapidapi_style_drafts_without_external_publication_or_live_monetization",
+    "channels_checked": [
+      "generic_api_directory",
+      "rapidapi_style_marketplace"
+    ],
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "external_publication_executed": false,
+    "irreversible_submission_executed": false,
+    "live_monetization_enabled": false,
+    "public_paid_plans_enabled": false,
+    "marketplace_pricing_tiers_created": false,
+    "production_api_key_published": false,
+    "report": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md",
+    "json": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json",
+    "recommended_next_step": "Keep API-directory and RapidAPI-style assets as private/unsubmitted drafts; next run MCP/agent-registry draft rehearsal or prepare owner-supervised manual review without publishing."
+  },
+  "current_api_marketplace_draft_rehearsal_nowrite_probe": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json"
 }

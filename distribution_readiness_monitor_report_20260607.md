@@ -39,7 +39,7 @@ It performs only public GET requests. It does not create customers, consume cred
 | external_sandbox_publication_drafts_md | 200 | n/a | 7076 |
 | external_sandbox_publication_drafts_json | 200 | True | 57583 |
 | api_directory_rapidapi_draft_checklist_md | 200 | n/a | 6325 |
-| api_directory_rapidapi_draft_checklist_json | 200 | True | 7141 |
+| api_directory_rapidapi_draft_checklist_json | 200 | True | 11618 |
 | mcp_tool_registry_draft_checklist_md | 200 | n/a | 5569 |
 | mcp_tool_registry_draft_checklist_json | 200 | True | 6202 |
 | machine_discovery_full_simulation_md | 200 | n/a | 3486 |
@@ -57,11 +57,11 @@ It performs only public GET requests. It does not create customers, consume cred
 | private_draft_submission_rehearsal_md | 200 | n/a | 3067 |
 | private_draft_submission_rehearsal_json | 200 | True | 56658 |
 | api_directory_private_draft_pack_md | 200 | n/a | 3555 |
-| api_directory_private_draft_pack_json | 200 | True | 39590 |
+| api_directory_private_draft_pack_json | 200 | True | 27184 |
 | api_directory_private_draft_review_md | 200 | n/a | 2510 |
 | api_directory_private_draft_review_json | 200 | True | 8322 |
 | rapidapi_unpublished_provider_draft_pack_md | 200 | n/a | 4123 |
-| rapidapi_unpublished_provider_draft_pack_json | 200 | True | 37854 |
+| rapidapi_unpublished_provider_draft_pack_json | 200 | True | 25750 |
 | rapidapi_unpublished_provider_draft_review_md | 200 | n/a | 2783 |
 | rapidapi_unpublished_provider_draft_review_json | 200 | True | 10630 |
 | mcp_tool_registry_private_draft_pack_md | 200 | n/a | 4822 |
@@ -92,26 +92,28 @@ It performs only public GET requests. It does not create customers, consume cred
 | machine_channel_rehearsal_nowrite_probe_json | 200 | True | 15559 |
 | postman_private_workspace_rehearsal_nowrite_probe_md | 200 | n/a | 8132 |
 | postman_private_workspace_rehearsal_nowrite_probe_json | 200 | True | 12985 |
+| api_marketplace_draft_rehearsal_nowrite_probe_md | 200 | n/a | 16904 |
+| api_marketplace_draft_rehearsal_nowrite_probe_json | 200 | True | 28576 |
 | marketplace_api_directory_pack_md | 200 | n/a | 15553 |
 | marketplace_api_directory_pack_json | 200 | True | 63247 |
 | marketplace_publication_execution_pack_md | 200 | n/a | 14318 |
 | marketplace_publication_execution_pack_json | 200 | True | 57816 |
-| api_directory_submission | 200 | True | 32863 |
-| rapidapi_listing | 200 | True | 31752 |
-| marketplace_submission_pack | 200 | True | 47814 |
+| api_directory_submission | 200 | True | 36210 |
+| rapidapi_listing | 200 | True | 36481 |
+| marketplace_submission_pack | 200 | True | 52304 |
 | postman_workspace_draft | 200 | True | 16661 |
 | postman_private_workspace_checklist_md | 200 | n/a | 4368 |
 | postman_private_workspace_checklist_json | 200 | True | 5098 |
-| mcp_tool_manifest | 200 | True | 76205 |
-| well_known_mcp_tool_manifest | 200 | True | 76205 |
-| well_known_machine_discovery | 200 | True | 60007 |
-| llms | 200 | n/a | 30943 |
-| robots | 200 | n/a | 13064 |
-| sitemap | 200 | n/a | 20289 |
+| mcp_tool_manifest | 200 | True | 78377 |
+| well_known_mcp_tool_manifest | 200 | True | 78377 |
+| well_known_machine_discovery | 200 | True | 62179 |
+| llms | 200 | n/a | 31652 |
+| robots | 200 | n/a | 13346 |
+| sitemap | 200 | n/a | 20536 |
 | openapi | 200 | True | 61595 |
 | postman_public_collection | 200 | True | 27564 |
 | product_catalog | 200 | True | 12086 |
-| machine_onboarding | 200 | True | 83260 |
+| machine_onboarding | 200 | True | 85432 |
 
 ## Checks
 
@@ -151,7 +153,7 @@ It performs only public GET requests. It does not create customers, consume cred
 | api_directory_rapidapi_draft_checklist_md_reachable | OK | HTTP 200, bytes=6325 |
 | api_directory_rapidapi_draft_checklist_md_contains_expected_marker | OK | marker=Generic API Directory Fields |
 | api_directory_rapidapi_draft_checklist_md_secret_scan | OK | public content has no secret-like token patterns |
-| api_directory_rapidapi_draft_checklist_json_reachable | OK | HTTP 200, bytes=7141 |
+| api_directory_rapidapi_draft_checklist_json_reachable | OK | HTTP 200, bytes=11618 |
 | api_directory_rapidapi_draft_checklist_json_json_valid | OK | json_valid=True |
 | api_directory_rapidapi_draft_checklist_json_contains_expected_marker | OK | marker=draft_pricing_treatment |
 | api_directory_rapidapi_draft_checklist_json_secret_scan | OK | public content has no secret-like token patterns |
@@ -214,7 +216,7 @@ It performs only public GET requests. It does not create customers, consume cred
 | api_directory_private_draft_pack_md_reachable | OK | HTTP 200, bytes=3555 |
 | api_directory_private_draft_pack_md_contains_expected_marker | OK | marker=API Directory Private Draft Pack |
 | api_directory_private_draft_pack_md_secret_scan | OK | public content has no secret-like token patterns |
-| api_directory_private_draft_pack_json_reachable | OK | HTTP 200, bytes=39590 |
+| api_directory_private_draft_pack_json_reachable | OK | HTTP 200, bytes=27184 |
 | api_directory_private_draft_pack_json_json_valid | OK | json_valid=True |
 | api_directory_private_draft_pack_json_contains_expected_marker | OK | marker=ready_for_api_directory_private_draft_only |
 | api_directory_private_draft_pack_json_secret_scan | OK | public content has no secret-like token patterns |
@@ -228,7 +230,7 @@ It performs only public GET requests. It does not create customers, consume cred
 | rapidapi_unpublished_provider_draft_pack_md_reachable | OK | HTTP 200, bytes=4123 |
 | rapidapi_unpublished_provider_draft_pack_md_contains_expected_marker | OK | marker=RapidAPI-Style Unpublished Provider Draft Pack |
 | rapidapi_unpublished_provider_draft_pack_md_secret_scan | OK | public content has no secret-like token patterns |
-| rapidapi_unpublished_provider_draft_pack_json_reachable | OK | HTTP 200, bytes=37854 |
+| rapidapi_unpublished_provider_draft_pack_json_reachable | OK | HTTP 200, bytes=25750 |
 | rapidapi_unpublished_provider_draft_pack_json_json_valid | OK | json_valid=True |
 | rapidapi_unpublished_provider_draft_pack_json_contains_expected_marker | OK | marker=ready_for_rapidapi_unpublished_provider_draft_only |
 | rapidapi_unpublished_provider_draft_pack_json_secret_scan | OK | public content has no secret-like token patterns |
@@ -337,6 +339,13 @@ It performs only public GET requests. It does not create customers, consume cred
 | postman_private_workspace_rehearsal_nowrite_probe_json_json_valid | OK | json_valid=True |
 | postman_private_workspace_rehearsal_nowrite_probe_json_contains_expected_marker | OK | marker=completed_postman_private_workspace_rehearsal_nowrite |
 | postman_private_workspace_rehearsal_nowrite_probe_json_secret_scan | OK | public content has no secret-like token patterns |
+| api_marketplace_draft_rehearsal_nowrite_probe_md_reachable | OK | HTTP 200, bytes=16904 |
+| api_marketplace_draft_rehearsal_nowrite_probe_md_contains_expected_marker | OK | marker=API Marketplace Draft Rehearsal NoWrite Probe |
+| api_marketplace_draft_rehearsal_nowrite_probe_md_secret_scan | OK | public content has no secret-like token patterns |
+| api_marketplace_draft_rehearsal_nowrite_probe_json_reachable | OK | HTTP 200, bytes=28576 |
+| api_marketplace_draft_rehearsal_nowrite_probe_json_json_valid | OK | json_valid=True |
+| api_marketplace_draft_rehearsal_nowrite_probe_json_contains_expected_marker | OK | marker=completed_api_marketplace_draft_rehearsal_nowrite |
+| api_marketplace_draft_rehearsal_nowrite_probe_json_secret_scan | OK | public content has no secret-like token patterns |
 | marketplace_api_directory_pack_md_reachable | OK | HTTP 200, bytes=15553 |
 | marketplace_api_directory_pack_md_contains_expected_marker | OK | marker=Sandbox-Only External Publication Pack |
 | marketplace_api_directory_pack_md_secret_scan | OK | public content has no secret-like token patterns |
@@ -351,15 +360,15 @@ It performs only public GET requests. It does not create customers, consume cred
 | marketplace_publication_execution_pack_json_json_valid | OK | json_valid=True |
 | marketplace_publication_execution_pack_json_contains_expected_marker | OK | marker=external_publication_policy |
 | marketplace_publication_execution_pack_json_secret_scan | OK | public content has no secret-like token patterns |
-| api_directory_submission_reachable | OK | HTTP 200, bytes=32863 |
+| api_directory_submission_reachable | OK | HTTP 200, bytes=36210 |
 | api_directory_submission_json_valid | OK | json_valid=True |
 | api_directory_submission_contains_expected_marker | OK | marker=latest_machine_buyer_evidence |
 | api_directory_submission_secret_scan | OK | public content has no secret-like token patterns |
-| rapidapi_listing_reachable | OK | HTTP 200, bytes=31752 |
+| rapidapi_listing_reachable | OK | HTTP 200, bytes=36481 |
 | rapidapi_listing_json_valid | OK | json_valid=True |
 | rapidapi_listing_contains_expected_marker | OK | marker=rapidapi_style_provider_metadata_ready_monetization_disabled |
 | rapidapi_listing_secret_scan | OK | public content has no secret-like token patterns |
-| marketplace_submission_pack_reachable | OK | HTTP 200, bytes=47814 |
+| marketplace_submission_pack_reachable | OK | HTTP 200, bytes=52304 |
 | marketplace_submission_pack_json_valid | OK | json_valid=True |
 | marketplace_submission_pack_contains_expected_marker | OK | marker=external_publication_policy |
 | marketplace_submission_pack_secret_scan | OK | public content has no secret-like token patterns |
@@ -374,26 +383,26 @@ It performs only public GET requests. It does not create customers, consume cred
 | postman_private_workspace_checklist_json_json_valid | OK | json_valid=True |
 | postman_private_workspace_checklist_json_contains_expected_marker | OK | marker=blocked_actions |
 | postman_private_workspace_checklist_json_secret_scan | OK | public content has no secret-like token patterns |
-| mcp_tool_manifest_reachable | OK | HTTP 200, bytes=76205 |
+| mcp_tool_manifest_reachable | OK | HTTP 200, bytes=78377 |
 | mcp_tool_manifest_json_valid | OK | json_valid=True |
 | mcp_tool_manifest_contains_expected_marker | OK | marker=get_mcp_tool_registry_private_draft_review |
 | mcp_tool_manifest_secret_scan | OK | public content has no secret-like token patterns |
-| well_known_mcp_tool_manifest_reachable | OK | HTTP 200, bytes=76205 |
+| well_known_mcp_tool_manifest_reachable | OK | HTTP 200, bytes=78377 |
 | well_known_mcp_tool_manifest_json_valid | OK | json_valid=True |
 | well_known_mcp_tool_manifest_contains_expected_marker | OK | marker=get_mcp_tool_registry_private_draft_review |
 | well_known_mcp_tool_manifest_secret_scan | OK | public content has no secret-like token patterns |
-| well_known_machine_discovery_reachable | OK | HTTP 200, bytes=60007 |
+| well_known_machine_discovery_reachable | OK | HTTP 200, bytes=62179 |
 | well_known_machine_discovery_json_valid | OK | json_valid=True |
-| well_known_machine_discovery_contains_expected_marker | OK | marker=postman_private_workspace_rehearsal_nowrite_probe_json |
+| well_known_machine_discovery_contains_expected_marker | OK | marker=api_marketplace_draft_rehearsal_nowrite_probe_json |
 | well_known_machine_discovery_secret_scan | OK | public content has no secret-like token patterns |
-| llms_reachable | OK | HTTP 200, bytes=30943 |
-| llms_contains_expected_marker | OK | marker=Postman Private Workspace Rehearsal NoWrite Probe JSON |
+| llms_reachable | OK | HTTP 200, bytes=31652 |
+| llms_contains_expected_marker | OK | marker=API Marketplace Draft Rehearsal NoWrite Probe JSON |
 | llms_secret_scan | OK | public content has no secret-like token patterns |
-| robots_reachable | OK | HTTP 200, bytes=13064 |
-| robots_contains_expected_marker | OK | marker=Postman-private-workspace-rehearsal-nowrite-probe-json |
+| robots_reachable | OK | HTTP 200, bytes=13346 |
+| robots_contains_expected_marker | OK | marker=Api-marketplace-draft-rehearsal-nowrite-probe-json |
 | robots_secret_scan | OK | public content has no secret-like token patterns |
-| sitemap_reachable | OK | HTTP 200, bytes=20289 |
-| sitemap_contains_expected_marker | OK | marker=postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json |
+| sitemap_reachable | OK | HTTP 200, bytes=20536 |
+| sitemap_contains_expected_marker | OK | marker=api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json |
 | sitemap_secret_scan | OK | public content has no secret-like token patterns |
 | openapi_reachable | OK | HTTP 200, bytes=61595 |
 | openapi_json_valid | OK | json_valid=True |
@@ -407,7 +416,7 @@ It performs only public GET requests. It does not create customers, consume cred
 | product_catalog_json_valid | OK | json_valid=True |
 | product_catalog_contains_expected_marker | OK | marker=action_pack |
 | product_catalog_secret_scan | OK | public content has no secret-like token patterns |
-| machine_onboarding_reachable | OK | HTTP 200, bytes=83260 |
+| machine_onboarding_reachable | OK | HTTP 200, bytes=85432 |
 | machine_onboarding_json_valid | OK | json_valid=True |
 | machine_onboarding_contains_expected_marker | OK | marker=NoWrite |
 | machine_onboarding_secret_scan | OK | public content has no secret-like token patterns |
