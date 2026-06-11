@@ -1,0 +1,556 @@
+{
+  "service": "MachineSignal",
+  "probe_name": "rapidapi_unpublished_provider_sandbox_rehearsal",
+  "status": "completed_rapidapi_unpublished_provider_sandbox_rehearsal",
+  "ok": true,
+  "evidence_date": "2026-06-11",
+  "run_id": "rapidapi-unpublished-provider-20260611164748",
+  "mode": "RapidApiStyleUnpublishedProviderSandboxRehearsalWriteCapped",
+  "primary_customer_interface": "machine",
+  "channel": "rapidapi_style_unpublished_provider_draft",
+  "public_site": "https://machinesignal.it",
+  "provider_status": "ready_for_rapidapi_unpublished_provider_draft_only",
+  "post_calls_executed": 3,
+  "write_calls_executed": 3,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "human_outreach_executed": false,
+  "external_publication_executed": false,
+  "irreversible_submission_executed": false,
+  "live_monetization_enabled": false,
+  "public_paid_plans_enabled": false,
+  "create_marketplace_pricing_tiers": false,
+  "production_api_key_published": false,
+  "rapidapi_provider_created_or_published": false,
+  "rapidapi_external_api_called": false,
+  "machine_paths_tested": {
+    "unpublished_provider_discovery_path": true,
+    "customer_with_existing_list_score_path": true,
+    "customer_without_list_target_discovery_path": true,
+    "usage_and_orders_reconciliation_path": true
+  },
+  "score_result": {
+    "domain": "studio-dentale-rapidapi-rehearsal.it",
+    "opportunity_score": 51,
+    "confidence": 0.35,
+    "decision": "needs_verification",
+    "commercial_strength": {
+      "level": "weak",
+      "spend_policy": "do_not_buy_paid_addons_before_verification",
+      "allowed_next_products": [],
+      "reason": "Commercial signal is not reliable enough; the customer machine should stop paid add-ons until data quality improves."
+    },
+    "next_product": "verification"
+  },
+  "target_discovery_result": {
+    "product_code": "target_discovery",
+    "order_intent_id": "ord_9f9fac2d",
+    "status": "accepted_beta_order_intent",
+    "beta_price_range_eur": "149",
+    "promised_target_count": 250
+  },
+  "resources": {
+    "draft_pack_json": {
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 25750
+    },
+    "draft_pack_md": {
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_pack_20260608.md",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 4123
+    },
+    "draft_review_json": {
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_draft_review_summary_20260608.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 10630
+    },
+    "rapidapi_listing": {
+      "url": "https://machinesignal.it/distribution/rapidapi-listing.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 36481
+    },
+    "rapidapi_provider_setup": {
+      "url": "https://machinesignal.it/distribution/rapidapi-provider-setup.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 24599
+    },
+    "agent_go_no_go": {
+      "url": "https://machinesignal.it/agent_go_no_go_postman_api_directory_review_summary_20260611.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 3819
+    },
+    "openapi": {
+      "url": "https://machinesignal.it/openapi.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 61595
+    },
+    "product_catalog": {
+      "url": "https://machinesignal.it/product-catalog.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 12086
+    },
+    "machine_onboarding": {
+      "url": "https://machinesignal.it/machine-onboarding.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 137138
+    },
+    "llms": {
+      "url": "https://machinesignal.it/llms.txt",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 36151
+    },
+    "robots": {
+      "url": "https://machinesignal.it/robots.txt",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 15496
+    },
+    "sitemap": {
+      "url": "https://machinesignal.it/sitemap.xml",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 22452
+    }
+  },
+  "checks_total": 66,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "draft_pack_json_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=25750"
+    },
+    {
+      "name": "draft_pack_json_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "draft_pack_json_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "draft_pack_md_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=4123"
+    },
+    {
+      "name": "draft_pack_md_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "draft_review_json_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=10630"
+    },
+    {
+      "name": "draft_review_json_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "draft_review_json_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "rapidapi_listing_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=36481"
+    },
+    {
+      "name": "rapidapi_listing_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "rapidapi_listing_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "rapidapi_provider_setup_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=24599"
+    },
+    {
+      "name": "rapidapi_provider_setup_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "rapidapi_provider_setup_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "agent_go_no_go_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=3819"
+    },
+    {
+      "name": "agent_go_no_go_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "agent_go_no_go_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "openapi_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=61595"
+    },
+    {
+      "name": "openapi_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "openapi_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "product_catalog_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=12086"
+    },
+    {
+      "name": "product_catalog_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "product_catalog_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "machine_onboarding_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=137138"
+    },
+    {
+      "name": "machine_onboarding_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "machine_onboarding_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "llms_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=36151"
+    },
+    {
+      "name": "llms_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "robots_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=15496"
+    },
+    {
+      "name": "robots_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "sitemap_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=22452"
+    },
+    {
+      "name": "sitemap_secret_scan",
+      "ok": true,
+      "details": "no secret-like public token patterns"
+    },
+    {
+      "name": "agent_review_go_for_this_test",
+      "ok": true,
+      "details": "go_sandbox_only_for_rapidapi_style_unpublished_provider_rehearsal, votes_go=5"
+    },
+    {
+      "name": "draft_pack_ready_unpublished_only",
+      "ok": true,
+      "details": "ready_for_rapidapi_unpublished_provider_draft_only"
+    },
+    {
+      "name": "draft_pack_machine_interface",
+      "ok": true,
+      "details": "machine"
+    },
+    {
+      "name": "draft_pack_visibility_private_unpublished",
+      "ok": true,
+      "details": "private_draft_or_unpublished"
+    },
+    {
+      "name": "draft_pack_monetization_disabled",
+      "ok": true,
+      "details": "disabled"
+    },
+    {
+      "name": "draft_pack_blocks_public_pricing",
+      "ok": true,
+      "details": "paid plans and pricing tiers disabled"
+    },
+    {
+      "name": "draft_pack_blocks_publication_and_outreach",
+      "ok": true,
+      "details": "publication, human outreach and external contact false"
+    },
+    {
+      "name": "draft_pack_blocks_production_keys",
+      "ok": true,
+      "details": "production key publication false"
+    },
+    {
+      "name": "draft_pack_has_provider_fields",
+      "ok": true,
+      "details": "MachineSignal Lead Opportunity Score API"
+    },
+    {
+      "name": "draft_review_completed",
+      "ok": true,
+      "details": "completed_rapidapi_unpublished_provider_draft_review, ok=true"
+    },
+    {
+      "name": "rapidapi_listing_metadata_ready",
+      "ok": true,
+      "details": "rapidapi_style_provider_metadata_ready_monetization_disabled"
+    },
+    {
+      "name": "rapidapi_listing_machine_first",
+      "ok": true,
+      "details": "machine"
+    },
+    {
+      "name": "provider_setup_unpublished_mode",
+      "ok": true,
+      "details": "draft_or_unpublished_monetization_disabled"
+    },
+    {
+      "name": "provider_setup_acceptance_tests_include_sandbox",
+      "ok": true,
+      "details": "sandbox and no real payment present"
+    },
+    {
+      "name": "openapi_has__v1_sandbox_customers",
+      "ok": true,
+      "details": "/v1/sandbox/customers"
+    },
+    {
+      "name": "openapi_has__v1_lead_opportunity_score",
+      "ok": true,
+      "details": "/v1/lead-opportunity-score"
+    },
+    {
+      "name": "openapi_has__v1_purchase_intent",
+      "ok": true,
+      "details": "/v1/purchase-intent"
+    },
+    {
+      "name": "openapi_has__v1_usage",
+      "ok": true,
+      "details": "/v1/usage"
+    },
+    {
+      "name": "openapi_has__v1_orders",
+      "ok": true,
+      "details": "/v1/orders"
+    },
+    {
+      "name": "catalog_has_rapidapi_products",
+      "ok": true,
+      "details": "catalog contains target discovery, score pack and action pack"
+    },
+    {
+      "name": "onboarding_explains_machine_customer",
+      "ok": true,
+      "details": "onboarding contains machine flow and Target Discovery"
+    },
+    {
+      "name": "llms_links_rapidapi_pack",
+      "ok": true,
+      "details": "llms links RapidAPI draft pack"
+    },
+    {
+      "name": "robots_links_rapidapi_pack",
+      "ok": true,
+      "details": "robots links RapidAPI draft pack"
+    },
+    {
+      "name": "sitemap_links_rapidapi_pack",
+      "ok": true,
+      "details": "sitemap links RapidAPI draft pack"
+    },
+    {
+      "name": "sandbox_customer_created_by_rapidapi_style_bot",
+      "ok": true,
+      "details": "HTTP 200, customer_id=sandbox_5326ba9_mq9qe0ao"
+    },
+    {
+      "name": "score_domain_from_rapidapi_unpublished_flow",
+      "ok": true,
+      "details": "HTTP 200, score=51, decision=needs_verification"
+    },
+    {
+      "name": "target_discovery_from_rapidapi_unpublished_flow",
+      "ok": true,
+      "details": "HTTP 200, product=target_discovery"
+    },
+    {
+      "name": "usage_read_after_rapidapi_unpublished_flow",
+      "ok": true,
+      "details": "HTTP 200, customer_id=sandbox_5326ba9_mq9qe0ao"
+    },
+    {
+      "name": "orders_read_after_rapidapi_unpublished_flow",
+      "ok": true,
+      "details": "HTTP 200, count=1"
+    },
+    {
+      "name": "post_write_budget_respected",
+      "ok": true,
+      "details": "post=3, write=3"
+    },
+    {
+      "name": "no_payment_endpoints_called",
+      "ok": true,
+      "details": "payment endpoint calls=0"
+    },
+    {
+      "name": "no_admin_endpoints_called",
+      "ok": true,
+      "details": "admin endpoint calls=0"
+    },
+    {
+      "name": "no_external_publication_executed",
+      "ok": true,
+      "details": "no RapidAPI API write, submit or publish call was executed"
+    },
+    {
+      "name": "no_external_contact_executed",
+      "ok": true,
+      "details": "only MachineSignal sandbox endpoints were called"
+    }
+  ],
+  "actions": [
+    {
+      "name": "create_sandbox_customer",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/sandbox/customers",
+      "status": 200,
+      "ok": true,
+      "idempotency_key": "rapidapi-unpublished-provider-20260611164748-sandbox",
+      "response_summary": {
+        "customer_id": "sandbox_5326ba9_mq9qe0ao",
+        "plan": "sandbox_limited",
+        "status": "active",
+        "sandbox": true,
+        "expires_at": "2026-06-18T16:47:50.016Z",
+        "sandbox_limits": {
+          "score_pack_1k": 5,
+          "target_discovery_pack_250": 1,
+          "deep_analysis_pack_100": 1,
+          "action_pack_25": 1,
+          "verification_pack_100": 1,
+          "nurture_signal_pack_100": 1,
+          "domain_enrichment_pack_100": 1,
+          "opportunity_feed_monthly": 0
+        },
+        "guardrails": {
+          "real_payment_executed": false,
+          "external_contact_executed": false,
+          "allowed_use": "low-volume technical evaluation only",
+          "expires_at": "2026-06-18T16:47:50.016Z"
+        }
+      }
+    },
+    {
+      "name": "score_domain",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/lead-opportunity-score",
+      "status": 200,
+      "ok": true,
+      "idempotency_key": "rapidapi-unpublished-provider-20260611164748-score",
+      "response_summary": {
+        "domain": "studio-dentale-rapidapi-rehearsal.it",
+        "opportunity_score": 51,
+        "confidence": 0.35,
+        "decision": "needs_verification",
+        "commercial_strength": {
+          "level": "weak",
+          "spend_policy": "do_not_buy_paid_addons_before_verification",
+          "allowed_next_products": [],
+          "reason": "Commercial signal is not reliable enough; the customer machine should stop paid add-ons until data quality improves."
+        },
+        "next_product": "verification"
+      }
+    },
+    {
+      "name": "order_target_discovery",
+      "method": "POST",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/purchase-intent",
+      "status": 200,
+      "ok": true,
+      "idempotency_key": "rapidapi-unpublished-provider-20260611164748-target-discovery",
+      "response_summary": "[REDACTED_SECRET_BEARING_RESPONSE]"
+    },
+    {
+      "name": "read_usage",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/usage",
+      "status": 200,
+      "ok": true,
+      "idempotency_key": "",
+      "response_summary": "[REDACTED_SECRET_BEARING_RESPONSE]"
+    },
+    {
+      "name": "list_orders",
+      "method": "GET",
+      "url": "https://machinesignal-api.beta-878.workers.dev/v1/orders",
+      "status": 200,
+      "ok": true,
+      "idempotency_key": "",
+      "response_summary": "[REDACTED_SECRET_BEARING_RESPONSE]"
+    }
+  ],
+  "recommended_next_step": "Use this as evidence that the RapidAPI-style unpublished provider path can be tested by machines without marketplace publication or billing. Next, run an agent review before deciding whether to prepare any owner-approved private external evaluator access."
+}

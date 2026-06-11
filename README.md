@@ -783,6 +783,15 @@ The agent review consolidated technical, commercial, growth/distribution, compli
 - Result: verdict=go_sandbox_only_for_rapidapi_style_unpublished_provider_rehearsal, agent_votes=5/5 GO sandbox-only.
 - Safety: max_post_calls_initial=3, synthetic_data_only=true, real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false.
 
+## RapidAPI-Style Unpublished Provider Sandbox Rehearsal - 2026-06-11
+
+A write-capped RapidAPI-style rehearsal now proves that a marketplace-like consumer bot can read the unpublished provider draft, listing metadata, provider setup, OpenAPI, product catalog and onboarding, then create a sandbox customer, score one synthetic domain, order Target Discovery for the no-list case, and reconcile usage/orders without creating or publishing a RapidAPI provider.
+
+- Report: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_report_20260611.md
+- Summary JSON: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_summary_20260611.json
+- Result: ok=true, post_calls_executed=3, checks_failed=0, Target Discovery order accepted, promised_target_count=250.
+- Safety: rapidapi_provider_created_or_published=false, rapidapi_external_api_called=false, real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false.
+
 ## API Marketplace Draft Rehearsal NoWrite Probe - 2026-06-11
 
 A NoWrite marketplace rehearsal now proves that a machine can evaluate the generic API-directory and RapidAPI-style draft metadata, understand the product and test route, and see that publication, monetization, production keys, payments, invoices and outreach remain blocked.

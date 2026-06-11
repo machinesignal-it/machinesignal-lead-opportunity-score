@@ -84,6 +84,8 @@ Public demos for software, agents and partners:
 - API Directory Private Listing Sandbox Rehearsal JSON: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_summary_20260611.json
 - Agent Go/No-Go Postman and API Directory Review: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_20260611.md
 - Agent Go/No-Go Postman and API Directory Review JSON: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_summary_20260611.json
+- RapidAPI-Style Unpublished Provider Sandbox Rehearsal: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_report_20260611.md
+- RapidAPI-Style Unpublished Provider Sandbox Rehearsal JSON: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_summary_20260611.json
 - Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
 - Full machine buyer flow: https://machinesignal.it/demo/machine-buyer-flow/
 - Full flow JSON: https://machinesignal.it/demo/machine-buyer-flow/flow.json
@@ -348,6 +350,10 @@ Agent Go/No-Go Sandbox Review Summary: technical, commercial, compliance/admin/l
 Agent Go/No-Go Postman and API Directory Review: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_20260611.md
 Agent Go/No-Go Postman and API Directory Review JSON: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_summary_20260611.json
 Agent Go/No-Go Postman and API Directory Review Summary: five agents gave 5/5 GO for a RapidAPI-style unpublished provider sandbox rehearsal with max_post_calls_initial=3, synthetic_data_only=true, no public listing, no live monetization, no real payment, no invoice, no external invitation, no human outreach and no production API keys.
+
+RapidAPI-Style Unpublished Provider Sandbox Rehearsal: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_report_20260611.md
+RapidAPI-Style Unpublished Provider Sandbox Rehearsal JSON: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_summary_20260611.json
+RapidAPI-Style Unpublished Provider Sandbox Rehearsal Summary: a marketplace-like consumer bot can read unpublished provider metadata, create one sandbox customer, score one synthetic domain and order Target Discovery under a 3-POST cap; ok=true; checks_failed=0; rapidapi_provider_created_or_published=false; rapidapi_external_api_called=false; real_payment_executed=false; external_contact_executed=false.
 
 Sandbox External Draft Distribution Readiness Review: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md
 Sandbox External Draft Distribution Readiness Review JSON: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json

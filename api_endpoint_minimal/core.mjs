@@ -1775,6 +1775,8 @@ Public demos for software, agents and partners:
 - API Directory Private Listing Sandbox Rehearsal JSON: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_summary_20260611.json
 - Agent Go/No-Go Postman and API Directory Review: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_20260611.md
 - Agent Go/No-Go Postman and API Directory Review JSON: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_summary_20260611.json
+- RapidAPI-Style Unpublished Provider Sandbox Rehearsal: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_report_20260611.md
+- RapidAPI-Style Unpublished Provider Sandbox Rehearsal JSON: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_summary_20260611.json
 - API Marketplace Draft Rehearsal NoWrite Probe: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md
 - API Marketplace Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
 - MCP Agent Registry Draft Rehearsal NoWrite Probe: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md

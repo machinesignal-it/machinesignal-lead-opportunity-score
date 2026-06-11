@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-11T16:37:01.0744906Z",
+    "generated_at":  "2026-06-11T16:53:45.2825773Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  101,
-    "checks_total":  364,
+    "resources_checked":  103,
+    "checks_total":  371,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -1258,6 +1258,41 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "rapidapi_unpublished_provider_sandbox_rehearsal_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=2516"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_sandbox_rehearsal_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=RapidAPI-Style Unpublished Provider Sandbox Rehearsal"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_sandbox_rehearsal_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_sandbox_rehearsal_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=15994"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_sandbox_rehearsal_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_sandbox_rehearsal_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_rapidapi_unpublished_provider_sandbox_rehearsal"
+                   },
+                   {
+                       "name":  "rapidapi_unpublished_provider_sandbox_rehearsal_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "api_marketplace_draft_rehearsal_nowrite_probe_md_reachable",
                        "ok":  true,
                        "details":  "HTTP 200, bytes=16904"
@@ -1680,12 +1715,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=36151"
+                       "details":  "HTTP 200, bytes=37168"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Agent Go/No-Go Postman and API Directory Review JSON"
+                       "details":  "marker=RapidAPI-Style Unpublished Provider Sandbox Rehearsal JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -1695,12 +1730,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=15496"
+                       "details":  "HTTP 200, bytes=15786"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Agent-go-no-go-postman-api-directory-review-json"
+                       "details":  "marker=Rapidapi-unpublished-provider-sandbox-rehearsal-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -1710,12 +1745,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=22452"
+                       "details":  "HTTP 200, bytes=22703"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=agent_go_no_go_postman_api_directory_review_summary_20260611.json"
+                       "details":  "marker=rapidapi_unpublished_provider_sandbox_rehearsal_summary_20260611.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",

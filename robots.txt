@@ -139,3 +139,5 @@ Api-directory-private-listing-sandbox-rehearsal: https://machinesignal.it/api_di
 Api-directory-private-listing-sandbox-rehearsal-json: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_summary_20260611.json
 Agent-go-no-go-postman-api-directory-review: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_20260611.md
 Agent-go-no-go-postman-api-directory-review-json: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_summary_20260611.json
+Rapidapi-unpublished-provider-sandbox-rehearsal: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_report_20260611.md
+Rapidapi-unpublished-provider-sandbox-rehearsal-json: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_summary_20260611.json
