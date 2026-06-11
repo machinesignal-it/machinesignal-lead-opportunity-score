@@ -129,6 +129,8 @@ Public discovery starts here:
 - Postman Private Workspace Rehearsal NoWrite Probe JSON: https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json
 - API Marketplace Draft Rehearsal NoWrite Probe: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md
 - API Marketplace Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
+- MCP Agent Registry Draft Rehearsal NoWrite Probe: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md
+- MCP Agent Registry Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -751,3 +753,12 @@ A NoWrite marketplace rehearsal now proves that a machine can evaluate the gener
 - Summary JSON: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
 - Result: ok=true, channels_checked=generic_api_directory and rapidapi_style_marketplace.
 - Safety: post_calls_executed=0, write_calls_executed=0, external_publication_executed=false, live_monetization_enabled=false, public_paid_plans_enabled=false, production_api_key_published=false.
+
+## MCP Agent Registry Draft Rehearsal NoWrite Probe - 2026-06-11
+
+A NoWrite MCP and agent-registry rehearsal now proves that a machine can discover the MCP manifest, registry draft, local adapter contract and evidence chain without hosted MCP publication, live monetization, production keys, payments, invoices or outreach.
+
+- Report: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md
+- Summary JSON: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json
+- Result: ok=true, channels_checked=mcp_tool_registry, agent_registry and local_mcp_adapter.
+- Safety: post_calls_executed=0, write_calls_executed=0, hosted_mcp_live=false, external_publication_executed=false, live_monetization_enabled=false, public_paid_plans_enabled=false, production_api_key_published=false.
