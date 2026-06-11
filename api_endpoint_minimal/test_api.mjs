@@ -89,6 +89,8 @@ assert.ok(openApiPayload.components.schemas.PaymentTestIntentRequest);
 assert.ok(openApiPayload.components.schemas.PaymentTestIntentResponse);
 assert.ok(openApiPayload.components.schemas.PaymentTestWebhookRequest);
 assert.ok(openApiPayload.components.schemas.BetaDelivery);
+assert.ok(JSON.stringify(openApiPayload.paths["/v1/purchase-intent"]).includes("deep_analysis_verification_gate_failed"));
+assert.ok(JSON.stringify(openApiPayload.paths["/v1/purchase-intent"]).includes("action_pack_gate_failed"));
 assert.equal(
   openApiPayload.components.schemas.PurchaseIntentResponse.properties.delivery.$ref,
   "#/components/schemas/BetaDelivery"

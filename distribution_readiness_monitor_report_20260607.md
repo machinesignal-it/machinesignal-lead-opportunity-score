@@ -86,6 +86,8 @@ It performs only public GET requests. It does not create customers, consume cred
 | mcp_action_pack_deep_analysis_gate_probe_json | 200 | True | 6070 |
 | mcp_full_chain_idempotency_probe_md | 200 | n/a | 5575 |
 | mcp_full_chain_idempotency_probe_json | 200 | True | 8745 |
+| machine_distribution_readiness_nowrite_probe_md | 200 | n/a | 9194 |
+| machine_distribution_readiness_nowrite_probe_json | 200 | True | 17633 |
 | marketplace_api_directory_pack_md | 200 | n/a | 15553 |
 | marketplace_api_directory_pack_json | 200 | True | 63247 |
 | marketplace_publication_execution_pack_md | 200 | n/a | 14318 |
@@ -96,16 +98,16 @@ It performs only public GET requests. It does not create customers, consume cred
 | postman_workspace_draft | 200 | True | 9559 |
 | postman_private_workspace_checklist_md | 200 | n/a | 4368 |
 | postman_private_workspace_checklist_json | 200 | True | 5098 |
-| mcp_tool_manifest | 200 | True | 67258 |
-| well_known_mcp_tool_manifest | 200 | True | 67258 |
-| well_known_machine_discovery | 200 | True | 49986 |
-| llms | 200 | n/a | 28734 |
-| robots | 200 | n/a | 12230 |
-| sitemap | 200 | n/a | 19554 |
-| openapi | 200 | True | 60353 |
+| mcp_tool_manifest | 200 | True | 69059 |
+| well_known_mcp_tool_manifest | 200 | True | 69059 |
+| well_known_machine_discovery | 200 | True | 52606 |
+| llms | 200 | n/a | 29384 |
+| robots | 200 | n/a | 12508 |
+| sitemap | 200 | n/a | 19799 |
+| openapi | 200 | True | 61595 |
 | postman_public_collection | 200 | True | 27631 |
 | product_catalog | 200 | True | 12086 |
-| machine_onboarding | 200 | True | 73671 |
+| machine_onboarding | 200 | True | 75859 |
 
 ## Checks
 
@@ -310,6 +312,13 @@ It performs only public GET requests. It does not create customers, consume cred
 | mcp_full_chain_idempotency_probe_json_json_valid | OK | json_valid=True |
 | mcp_full_chain_idempotency_probe_json_contains_expected_marker | OK | marker=completed_mcp_full_chain_idempotency_probe |
 | mcp_full_chain_idempotency_probe_json_secret_scan | OK | public content has no secret-like token patterns |
+| machine_distribution_readiness_nowrite_probe_md_reachable | OK | HTTP 200, bytes=9194 |
+| machine_distribution_readiness_nowrite_probe_md_contains_expected_marker | OK | marker=Machine Distribution Readiness NoWrite Probe |
+| machine_distribution_readiness_nowrite_probe_md_secret_scan | OK | public content has no secret-like token patterns |
+| machine_distribution_readiness_nowrite_probe_json_reachable | OK | HTTP 200, bytes=17633 |
+| machine_distribution_readiness_nowrite_probe_json_json_valid | OK | json_valid=True |
+| machine_distribution_readiness_nowrite_probe_json_contains_expected_marker | OK | marker=completed_machine_distribution_readiness_nowrite_probe |
+| machine_distribution_readiness_nowrite_probe_json_secret_scan | OK | public content has no secret-like token patterns |
 | marketplace_api_directory_pack_md_reachable | OK | HTTP 200, bytes=15553 |
 | marketplace_api_directory_pack_md_contains_expected_marker | OK | marker=Sandbox-Only External Publication Pack |
 | marketplace_api_directory_pack_md_secret_scan | OK | public content has no secret-like token patterns |
@@ -347,30 +356,30 @@ It performs only public GET requests. It does not create customers, consume cred
 | postman_private_workspace_checklist_json_json_valid | OK | json_valid=True |
 | postman_private_workspace_checklist_json_contains_expected_marker | OK | marker=blocked_actions |
 | postman_private_workspace_checklist_json_secret_scan | OK | public content has no secret-like token patterns |
-| mcp_tool_manifest_reachable | OK | HTTP 200, bytes=67258 |
+| mcp_tool_manifest_reachable | OK | HTTP 200, bytes=69059 |
 | mcp_tool_manifest_json_valid | OK | json_valid=True |
 | mcp_tool_manifest_contains_expected_marker | OK | marker=get_mcp_tool_registry_private_draft_review |
 | mcp_tool_manifest_secret_scan | OK | public content has no secret-like token patterns |
-| well_known_mcp_tool_manifest_reachable | OK | HTTP 200, bytes=67258 |
+| well_known_mcp_tool_manifest_reachable | OK | HTTP 200, bytes=69059 |
 | well_known_mcp_tool_manifest_json_valid | OK | json_valid=True |
 | well_known_mcp_tool_manifest_contains_expected_marker | OK | marker=get_mcp_tool_registry_private_draft_review |
 | well_known_mcp_tool_manifest_secret_scan | OK | public content has no secret-like token patterns |
-| well_known_machine_discovery_reachable | OK | HTTP 200, bytes=49986 |
+| well_known_machine_discovery_reachable | OK | HTTP 200, bytes=52606 |
 | well_known_machine_discovery_json_valid | OK | json_valid=True |
-| well_known_machine_discovery_contains_expected_marker | OK | marker=mcp_full_chain_idempotency_probe_json |
+| well_known_machine_discovery_contains_expected_marker | OK | marker=machine_distribution_readiness_nowrite_probe_json |
 | well_known_machine_discovery_secret_scan | OK | public content has no secret-like token patterns |
-| llms_reachable | OK | HTTP 200, bytes=28734 |
-| llms_contains_expected_marker | OK | marker=MCP Full Chain Idempotency Probe JSON |
+| llms_reachable | OK | HTTP 200, bytes=29384 |
+| llms_contains_expected_marker | OK | marker=Machine Distribution Readiness NoWrite Probe JSON |
 | llms_secret_scan | OK | public content has no secret-like token patterns |
-| robots_reachable | OK | HTTP 200, bytes=12230 |
-| robots_contains_expected_marker | OK | marker=Mcp-full-chain-idempotency-probe-json |
+| robots_reachable | OK | HTTP 200, bytes=12508 |
+| robots_contains_expected_marker | OK | marker=Machine-distribution-readiness-nowrite-probe-json |
 | robots_secret_scan | OK | public content has no secret-like token patterns |
-| sitemap_reachable | OK | HTTP 200, bytes=19554 |
-| sitemap_contains_expected_marker | OK | marker=mcp_full_chain_idempotency_probe_summary_20260611.json |
+| sitemap_reachable | OK | HTTP 200, bytes=19799 |
+| sitemap_contains_expected_marker | OK | marker=machine_distribution_readiness_nowrite_probe_summary_20260611.json |
 | sitemap_secret_scan | OK | public content has no secret-like token patterns |
-| openapi_reachable | OK | HTTP 200, bytes=60353 |
+| openapi_reachable | OK | HTTP 200, bytes=61595 |
 | openapi_json_valid | OK | json_valid=True |
-| openapi_contains_expected_marker | OK | marker=deep_analysis_verification_gate_failed |
+| openapi_contains_expected_marker | OK | marker=action_pack_gate_failed |
 | openapi_secret_scan | OK | public content has no secret-like token patterns |
 | postman_public_collection_reachable | OK | HTTP 200, bytes=27631 |
 | postman_public_collection_json_valid | OK | json_valid=True |
@@ -380,7 +389,7 @@ It performs only public GET requests. It does not create customers, consume cred
 | product_catalog_json_valid | OK | json_valid=True |
 | product_catalog_contains_expected_marker | OK | marker=action_pack |
 | product_catalog_secret_scan | OK | public content has no secret-like token patterns |
-| machine_onboarding_reachable | OK | HTTP 200, bytes=73671 |
+| machine_onboarding_reachable | OK | HTTP 200, bytes=75859 |
 | machine_onboarding_json_valid | OK | json_valid=True |
 | machine_onboarding_contains_expected_marker | OK | marker=NoWrite |
 | machine_onboarding_secret_scan | OK | public content has no secret-like token patterns |

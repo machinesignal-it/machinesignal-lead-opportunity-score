@@ -126,7 +126,9 @@
     "mcp_local_adapter_nowrite_validation": "https://machinesignal.it/mcp_local_adapter_nowrite_validation_report_20260610.md",
     "mcp_local_adapter_nowrite_validation_json": "https://machinesignal.it/mcp_local_adapter_nowrite_validation_summary_20260610.json",
     "mcp_write_capped_sandbox_probe": "https://machinesignal.it/mcp_write_capped_sandbox_probe_report_20260610.md",
-    "mcp_write_capped_sandbox_probe_json": "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json"
+    "mcp_write_capped_sandbox_probe_json": "https://machinesignal.it/mcp_write_capped_sandbox_probe_summary_20260610.json",
+    "machine_distribution_readiness_nowrite_probe": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md",
+    "machine_distribution_readiness_nowrite_probe_json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json"
   },
   "authentication": {
     "type": "apiKey",
@@ -768,7 +770,9 @@
     "mcp_verification_gate_probe": "https://machinesignal.it/mcp_verification_gate_probe_report_20260610.md",
     "mcp_verification_gate_probe_json": "https://machinesignal.it/mcp_verification_gate_probe_summary_20260610.json",
     "mcp_deep_analysis_verification_gate_probe": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_report_20260610.md",
-    "mcp_deep_analysis_verification_gate_probe_json": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json"
+    "mcp_deep_analysis_verification_gate_probe_json": "https://machinesignal.it/mcp_deep_analysis_verification_gate_probe_summary_20260610.json",
+    "machine_distribution_readiness_nowrite_probe": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md",
+    "machine_distribution_readiness_nowrite_probe_json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json"
   },
   "latest_private_draft_submission_rehearsal": {
     "status": "completed_private_draft_submission_rehearsal",
@@ -964,7 +968,9 @@
     "mcp_action_pack_deep_analysis_gate_probe": "https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_report_20260610.md",
     "mcp_action_pack_deep_analysis_gate_probe_json": "https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json",
     "mcp_full_chain_idempotency_probe": "https://machinesignal.it/mcp_full_chain_idempotency_probe_report_20260611.md",
-    "mcp_full_chain_idempotency_probe_json": "https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json"
+    "mcp_full_chain_idempotency_probe_json": "https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json",
+    "machine_distribution_readiness_nowrite_probe": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md",
+    "machine_distribution_readiness_nowrite_probe_json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json"
   },
   "latest_mcp_purchase_decision_probe": {
     "status": "completed_mcp_purchase_decision_probe",
@@ -1166,5 +1172,59 @@
     "report": "https://machinesignal.it/mcp_full_chain_idempotency_probe_report_20260611.md",
     "json": "https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json"
   },
-  "current_mcp_full_chain_idempotency_probe": "https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json"
+  "current_mcp_full_chain_idempotency_probe": "https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json",
+  "latest_machine_distribution_readiness_nowrite_probe": {
+    "status": "completed_machine_distribution_readiness_nowrite_probe",
+    "ok": true,
+    "evidence_date": "2026-06-11",
+    "mode": "NoWriteMachineDistributionReadinessProbe",
+    "primary_customer_interface": "machine",
+    "machine_customer_mode": "machine_discovers_and_evaluates_public_distribution_surfaces_without_write_calls",
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "external_publication_executed": false,
+    "total_channels": 9,
+    "high_fit_channels": [
+      "Own domain machine surfaces",
+      "GitHub repository",
+      "Postman Public API Network",
+      "RapidAPI Hub",
+      "Smithery",
+      "Glama MCP registry",
+      "AgentNDX"
+    ],
+    "ready_channels": [
+      "Postman Public API Network",
+      "Smithery",
+      "Glama MCP registry",
+      "MCPDrop"
+    ],
+    "openapi_required_paths_present": [
+      "/v1/sandbox/customers",
+      "/v1/lead-opportunity-score",
+      "/v1/purchase-intent",
+      "/v1/orders",
+      "/v1/usage"
+    ],
+    "postman_required_examples_present": [
+      "Create limited sandbox customer",
+      "Score business domain",
+      "Create beta purchase intent",
+      "Order deep analysis after a strong score",
+      "Order action pack after confirmed opportunity",
+      "Repeat same score without double charge"
+    ],
+    "mcp_total_tools": 31,
+    "mcp_public_read_tools": 20,
+    "mcp_post_tools_classified": 4,
+    "machine_decision": "machine_distribution_surfaces_ready_for_owner_supervised_channel_work",
+    "recommended_next_step": "Prepare owner-supervised Postman/RapidAPI/private registry publication rehearsal without enabling paid plans or contacting humans.",
+    "interpretation": "A buyer machine can discover MachineSignal from public machine-readable surfaces, inspect OpenAPI, Postman, MCP manifests, channel metadata and current evidence without executing writes, purchases, external publication or human outreach.",
+    "report": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md",
+    "json": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json"
+  },
+  "current_machine_distribution_readiness_nowrite_probe": "https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json"
 }

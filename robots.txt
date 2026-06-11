@@ -115,3 +115,5 @@ Mcp-action-pack-deep-analysis-gate-probe: https://machinesignal.it/mcp_action_pa
 Mcp-action-pack-deep-analysis-gate-probe-json: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json
 Mcp-full-chain-idempotency-probe: https://machinesignal.it/mcp_full_chain_idempotency_probe_report_20260611.md
 Mcp-full-chain-idempotency-probe-json: https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json
+Machine-distribution-readiness-nowrite-probe: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md
+Machine-distribution-readiness-nowrite-probe-json: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json

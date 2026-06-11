@@ -121,6 +121,8 @@ Public discovery starts here:
 - MCP Action Pack Deep Analysis Gate Probe JSON: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json
 - MCP Full Chain Idempotency Probe: https://machinesignal.it/mcp_full_chain_idempotency_probe_report_20260611.md
 - MCP Full Chain Idempotency Probe JSON: https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json
+- Machine Distribution Readiness NoWrite Probe: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md
+- Machine Distribution Readiness NoWrite Probe JSON: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -707,3 +709,12 @@ A write-capped MCP probe now proves retry safety across the machine purchase lad
 - Summary JSON: https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json
 - Result: score_duplicate_detected=true, deep_analysis_duplicate_detected=true, action_pack_duplicate_detected=true, score_credits_used_after=1, deep_analysis_credits_used_after=1, action_pack_credits_used_after=1.
 - Safety: post_calls_executed=7, write_calls_executed=7, real_payment_executed=false, external_contact_executed=false, external_publication_executed=false.
+
+## Machine Distribution Readiness NoWrite Probe - 2026-06-11
+
+A NoWrite machine-discovery probe now proves that a buyer machine can find MachineSignal from public machine-readable surfaces, inspect OpenAPI, Postman, MCP manifests, channel metadata and current evidence without creating records, sending requests, making payments, publishing externally or contacting humans.
+
+- Report: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md
+- Summary JSON: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json
+- Result: ok=true, primary_customer_interface=machine, total_channels=9, high_fit_channels=7, OpenAPI paths present, Postman examples present, MCP tools present.
+- Safety: post_calls_executed=0, write_calls_executed=0, real_payment_executed=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false.

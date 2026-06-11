@@ -301,7 +301,7 @@
       "post": {
         "operationId": "createPurchaseIntent",
         "summary": "Create a beta order intent for a recommended next product",
-        "description": "Creates a tracked beta order intent for target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment. If deep_analysis is requested with source_verification_order_intent_id, the source Verification order must be accepted, same-domain and positive; otherwise the API returns deep_analysis_verification_gate_failed and consumes no credit.",
+        "description": "Creates a tracked beta order intent for target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment. If deep_analysis is requested with source_verification_order_intent_id, the source Verification order must be accepted, same-domain and positive; otherwise the API returns deep_analysis_verification_gate_failed and consumes no credit. If action_pack is requested, source_order_intent_id is required and must point to an accepted Deep Analysis order for the same domain; otherwise the API returns action_pack_gate_failed and consumes no credit.",
         "security": [
           {
             "ApiKeyAuth": []
@@ -343,6 +343,25 @@
                     "domain": "studio-legale-demo.it",
                     "source_score_request_id": "crm-import-20260529-row-0007",
                     "reason": "Score decision was needs_verification"
+                  }
+                },
+                "deepAnalysisAfterPositiveVerification": {
+                  "summary": "Order Deep Analysis after positive Verification",
+                  "value": {
+                    "product_code": "deep_analysis",
+                    "domain": "studio-legale-demo.it",
+                    "source_score_request_id": "crm-import-20260529-row-0007",
+                    "source_verification_order_intent_id": "ord_verification_0001",
+                    "reason": "Verification verdict is positive enough to deepen"
+                  }
+                },
+                "actionPackAfterDeepAnalysis": {
+                  "summary": "Order Action Pack after accepted Deep Analysis",
+                  "value": {
+                    "product_code": "action_pack",
+                    "domain": "studio-legale-demo.it",
+                    "source_order_intent_id": "ord_deep_analysis_0001",
+                    "reason": "Deep Analysis confirms a machine-actionable commercial opportunity"
                   }
                 }
               }

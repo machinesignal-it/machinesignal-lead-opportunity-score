@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-11T07:55:57.3905291Z",
+    "generated_at":  "2026-06-11T08:48:06.1419705Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  77,
-    "checks_total":  280,
+    "resources_checked":  79,
+    "checks_total":  287,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -1013,6 +1013,41 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "machine_distribution_readiness_nowrite_probe_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=9194"
+                   },
+                   {
+                       "name":  "machine_distribution_readiness_nowrite_probe_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Machine Distribution Readiness NoWrite Probe"
+                   },
+                   {
+                       "name":  "machine_distribution_readiness_nowrite_probe_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "machine_distribution_readiness_nowrite_probe_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=17633"
+                   },
+                   {
+                       "name":  "machine_distribution_readiness_nowrite_probe_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "machine_distribution_readiness_nowrite_probe_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_machine_distribution_readiness_nowrite_probe"
+                   },
+                   {
+                       "name":  "machine_distribution_readiness_nowrite_probe_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
                        "details":  "HTTP 200, bytes=15553"
@@ -1200,7 +1235,7 @@
                    {
                        "name":  "mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=67258"
+                       "details":  "HTTP 200, bytes=69059"
                    },
                    {
                        "name":  "mcp_tool_manifest_json_valid",
@@ -1220,7 +1255,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=67258"
+                       "details":  "HTTP 200, bytes=69059"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_json_valid",
@@ -1240,7 +1275,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=49986"
+                       "details":  "HTTP 200, bytes=52606"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -1250,7 +1285,7 @@
                    {
                        "name":  "well_known_machine_discovery_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=mcp_full_chain_idempotency_probe_json"
+                       "details":  "marker=machine_distribution_readiness_nowrite_probe_json"
                    },
                    {
                        "name":  "well_known_machine_discovery_secret_scan",
@@ -1260,12 +1295,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=28734"
+                       "details":  "HTTP 200, bytes=29384"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=MCP Full Chain Idempotency Probe JSON"
+                       "details":  "marker=Machine Distribution Readiness NoWrite Probe JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -1275,12 +1310,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=12230"
+                       "details":  "HTTP 200, bytes=12508"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Mcp-full-chain-idempotency-probe-json"
+                       "details":  "marker=Machine-distribution-readiness-nowrite-probe-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -1290,12 +1325,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=19554"
+                       "details":  "HTTP 200, bytes=19799"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=mcp_full_chain_idempotency_probe_summary_20260611.json"
+                       "details":  "marker=machine_distribution_readiness_nowrite_probe_summary_20260611.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",
@@ -1305,7 +1340,7 @@
                    {
                        "name":  "openapi_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=60353"
+                       "details":  "HTTP 200, bytes=61595"
                    },
                    {
                        "name":  "openapi_json_valid",
@@ -1315,7 +1350,7 @@
                    {
                        "name":  "openapi_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=deep_analysis_verification_gate_failed"
+                       "details":  "marker=action_pack_gate_failed"
                    },
                    {
                        "name":  "openapi_secret_scan",
@@ -1365,7 +1400,7 @@
                    {
                        "name":  "machine_onboarding_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=73671"
+                       "details":  "HTTP 200, bytes=75859"
                    },
                    {
                        "name":  "machine_onboarding_json_valid",

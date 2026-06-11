@@ -306,3 +306,7 @@ MCP Action Pack Deep Analysis Gate Probe Summary: a machine cannot buy Action Pa
 MCP Full Chain Idempotency Probe: https://machinesignal.it/mcp_full_chain_idempotency_probe_report_20260611.md
 MCP Full Chain Idempotency Probe JSON: https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json
 MCP Full Chain Idempotency Probe Summary: a machine repeated Score, Deep Analysis and Action Pack with the same Idempotency-Key; score_duplicate_detected=true; deep_analysis_duplicate_detected=true; action_pack_duplicate_detected=true; final credits used were score=1, deep_analysis=1, action_pack=1; real_payment_executed=false; external_contact_executed=false.
+
+Machine Distribution Readiness NoWrite Probe: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_report_20260611.md
+Machine Distribution Readiness NoWrite Probe JSON: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json
+Machine Distribution Readiness NoWrite Probe Summary: a machine discovered MachineSignal through robots.txt, llms.txt, sitemap, well-known discovery, OpenAPI, Postman, MCP manifests, channel metadata and current evidence; ok=true; post_calls_executed=0; write_calls_executed=0; real_payment_executed=false; external_contact_executed=false; human_outreach_executed=false.
