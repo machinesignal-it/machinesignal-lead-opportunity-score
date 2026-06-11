@@ -898,27 +898,31 @@
     },
     {
       "key": "machinesignal_api_key",
-      "value": "paste_customer_beta_key_here"
+      "value": "",
+      "type": "secret"
     },
     {
       "key": "machinesignal_admin_api_key",
-      "value": "paste_admin_beta_key_here"
+      "value": "",
+      "type": "secret"
     },
     {
       "key": "beta_customer_id",
-      "value": "beta_partner_001"
+      "value": "",
+      "type": "secret"
     },
     {
       "key": "order_intent_id",
-      "value": "paste_deep_analysis_order_intent_id_here"
+      "value": ""
     },
     {
       "key": "payment_test_id",
-      "value": "paste_payment_test_id_here"
+      "value": ""
     },
     {
       "key": "payment_test_success_signature",
-      "value": "paste_success_signature_here"
+      "value": "",
+      "type": "secret"
     }
   ]
 }

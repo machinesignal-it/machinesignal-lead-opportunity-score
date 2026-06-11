@@ -1,0 +1,452 @@
+{
+  "service": "MachineSignal",
+  "probe_name": "postman_private_workspace_rehearsal_nowrite_probe",
+  "status": "completed_postman_private_workspace_rehearsal_nowrite",
+  "ok": true,
+  "evidence_date": "2026-06-11",
+  "mode": "NoWritePostmanPrivateWorkspaceRehearsal",
+  "primary_customer_interface": "machine",
+  "machine_customer_mode": "machine_imports_private_postman_workspace_and_reads_sandbox_contract_without_publication_or_real_keys",
+  "public_site": "https://machinesignal.it",
+  "collection_item_count": 28,
+  "methods": [
+    "GET",
+    "PATCH",
+    "POST"
+  ],
+  "mutating_examples": [
+    "Create limited sandbox customer",
+    "Score business domain",
+    "Create beta purchase intent",
+    "Create payment test intent",
+    "Simulate payment test success webhook",
+    "Order target discovery when machine has no list",
+    "Order deep analysis after a strong score",
+    "Order action pack after confirmed opportunity",
+    "Create beta customer",
+    "Admin top up beta customer credits",
+    "Repeat same score without double charge"
+  ],
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "human_outreach_executed": false,
+  "external_publication_executed": false,
+  "live_monetization_enabled": false,
+  "public_workspace_enabled": false,
+  "real_api_keys_published": false,
+  "recommended_next_step": "Keep Postman private/team, optionally run an owner-supervised in-Postman import check, then decide whether to prepare an unpublished API-directory/RapidAPI draft.",
+  "interpretation": "A machine can import the MachineSignal Postman assets, see the machine-buyer flow, use blank secret variables, and understand that live payments, public publication, real keys and human outreach are blocked.",
+  "resources": {
+    "collection": {
+      "url": "https://machinesignal.it/postman_public_collection.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 27564
+    },
+    "environment": {
+      "url": "https://machinesignal.it/postman_public_environment_template.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 1148
+    },
+    "secret_scan": {
+      "url": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 3896
+    },
+    "workspace_draft": {
+      "url": "https://machinesignal.it/distribution/postman-public-workspace-draft.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 16661
+    },
+    "checklist": {
+      "url": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 5098
+    },
+    "llms": {
+      "url": "https://machinesignal.it/llms.txt",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 30943
+    },
+    "robots": {
+      "url": "https://machinesignal.it/robots.txt",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 13064
+    },
+    "sitemap": {
+      "url": "https://machinesignal.it/sitemap.xml",
+      "status": 200,
+      "ok": true,
+      "json_ok": false,
+      "bytes": 20289
+    }
+  },
+  "checks": [
+    {
+      "name": "collection_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=27564"
+    },
+    {
+      "name": "collection_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "collection_no_secret_like_patterns",
+      "ok": true,
+      "details": "public content does not expose token-like patterns"
+    },
+    {
+      "name": "environment_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=1148"
+    },
+    {
+      "name": "environment_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "environment_no_secret_like_patterns",
+      "ok": true,
+      "details": "public content does not expose token-like patterns"
+    },
+    {
+      "name": "secret_scan_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=3896"
+    },
+    {
+      "name": "secret_scan_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "secret_scan_no_secret_like_patterns",
+      "ok": true,
+      "details": "public content does not expose token-like patterns"
+    },
+    {
+      "name": "workspace_draft_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=16661"
+    },
+    {
+      "name": "workspace_draft_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "workspace_draft_no_secret_like_patterns",
+      "ok": true,
+      "details": "public content does not expose token-like patterns"
+    },
+    {
+      "name": "checklist_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=5098"
+    },
+    {
+      "name": "checklist_json_valid",
+      "ok": true,
+      "details": "json_valid=true"
+    },
+    {
+      "name": "checklist_no_secret_like_patterns",
+      "ok": true,
+      "details": "public content does not expose token-like patterns"
+    },
+    {
+      "name": "llms_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=30943"
+    },
+    {
+      "name": "llms_no_secret_like_patterns",
+      "ok": true,
+      "details": "public content does not expose token-like patterns"
+    },
+    {
+      "name": "robots_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=13064"
+    },
+    {
+      "name": "robots_no_secret_like_patterns",
+      "ok": true,
+      "details": "public content does not expose token-like patterns"
+    },
+    {
+      "name": "sitemap_reachable",
+      "ok": true,
+      "details": "HTTP 200, bytes=20289"
+    },
+    {
+      "name": "sitemap_no_secret_like_patterns",
+      "ok": true,
+      "details": "public content does not expose token-like patterns"
+    },
+    {
+      "name": "collection_has_28_items",
+      "ok": true,
+      "details": "items=28"
+    },
+    {
+      "name": "collection_required_item_read_full_machine_buyer_flow_demo",
+      "ok": true,
+      "details": "Read full machine buyer flow demo"
+    },
+    {
+      "name": "collection_required_item_read_crm_consumer_demo_output",
+      "ok": true,
+      "details": "Read CRM consumer demo output"
+    },
+    {
+      "name": "collection_required_item_create_limited_sandbox_customer",
+      "ok": true,
+      "details": "Create limited sandbox customer"
+    },
+    {
+      "name": "collection_required_item_score_business_domain",
+      "ok": true,
+      "details": "Score business domain"
+    },
+    {
+      "name": "collection_required_item_order_target_discovery_when_machine_has_no_list",
+      "ok": true,
+      "details": "Order target discovery when machine has no list"
+    },
+    {
+      "name": "collection_required_item_order_deep_analysis_after_a_strong_score",
+      "ok": true,
+      "details": "Order deep analysis after a strong score"
+    },
+    {
+      "name": "collection_required_item_order_action_pack_after_confirmed_opportunity",
+      "ok": true,
+      "details": "Order action pack after confirmed opportunity"
+    },
+    {
+      "name": "collection_required_item_repeat_same_score_without_double_charge",
+      "ok": true,
+      "details": "Repeat same score without double charge"
+    },
+    {
+      "name": "collection_required_item_fetch_openapi_schema",
+      "ok": true,
+      "details": "Fetch OpenAPI schema"
+    },
+    {
+      "name": "collection_uses_only_expected_methods",
+      "ok": true,
+      "details": "methods=GET,PATCH,POST"
+    },
+    {
+      "name": "collection_has_machine_demo_and_crm_output",
+      "ok": true,
+      "details": "machine flow and CRM consumer demos are included"
+    },
+    {
+      "name": "collection_has_idempotency_examples",
+      "ok": true,
+      "details": "most mutating sandbox examples include Idempotency-Key"
+    },
+    {
+      "name": "collection_has_api_key_guarded_calls",
+      "ok": true,
+      "details": "customer and admin keys are referenced as variables"
+    },
+    {
+      "name": "collection_machinesignal_api_key_blank_secret",
+      "ok": true,
+      "details": "machinesignal_api_key collection variable is blank secret"
+    },
+    {
+      "name": "environment_machinesignal_api_key_blank_secret",
+      "ok": true,
+      "details": "machinesignal_api_key environment variable is blank secret"
+    },
+    {
+      "name": "collection_machinesignal_admin_api_key_blank_secret",
+      "ok": true,
+      "details": "machinesignal_admin_api_key collection variable is blank secret"
+    },
+    {
+      "name": "environment_machinesignal_admin_api_key_blank_secret",
+      "ok": true,
+      "details": "machinesignal_admin_api_key environment variable is blank secret"
+    },
+    {
+      "name": "collection_beta_customer_id_blank_secret",
+      "ok": true,
+      "details": "beta_customer_id collection variable is blank secret"
+    },
+    {
+      "name": "environment_beta_customer_id_blank_secret",
+      "ok": true,
+      "details": "beta_customer_id environment variable is blank secret"
+    },
+    {
+      "name": "collection_payment_test_success_signature_blank_secret",
+      "ok": true,
+      "details": "payment_test_success_signature collection variable is blank secret"
+    },
+    {
+      "name": "environment_payment_test_success_signature_blank_secret",
+      "ok": true,
+      "details": "payment_test_success_signature environment variable is blank secret"
+    },
+    {
+      "name": "environment_declares_base_url",
+      "ok": true,
+      "details": "base_url"
+    },
+    {
+      "name": "environment_declares_machinesignal_api_key",
+      "ok": true,
+      "details": "machinesignal_api_key"
+    },
+    {
+      "name": "environment_declares_machinesignal_admin_api_key",
+      "ok": true,
+      "details": "machinesignal_admin_api_key"
+    },
+    {
+      "name": "environment_declares_beta_customer_id",
+      "ok": true,
+      "details": "beta_customer_id"
+    },
+    {
+      "name": "environment_declares_payment_test_id",
+      "ok": true,
+      "details": "payment_test_id"
+    },
+    {
+      "name": "environment_declares_order_intent_id",
+      "ok": true,
+      "details": "order_intent_id"
+    },
+    {
+      "name": "environment_declares_payment_test_success_signature",
+      "ok": true,
+      "details": "payment_test_success_signature"
+    },
+    {
+      "name": "environment_private_values_blank",
+      "ok": true,
+      "details": "non_base_non_blank=0"
+    },
+    {
+      "name": "secret_scan_passed",
+      "ok": true,
+      "details": "status=passed"
+    },
+    {
+      "name": "secret_scan_item_count_matches_collection",
+      "ok": true,
+      "details": "scan=28, collection=28"
+    },
+    {
+      "name": "secret_scan_has_no_hits",
+      "ok": true,
+      "details": "secret_hits=0"
+    },
+    {
+      "name": "secret_scan_blocks_public_keys",
+      "ok": true,
+      "details": "public key publication is blocked"
+    },
+    {
+      "name": "workspace_private_or_team_only",
+      "ok": true,
+      "details": "private_or_team_before_owner_approval"
+    },
+    {
+      "name": "workspace_public_visibility_blocked",
+      "ok": true,
+      "details": "final_in_postman_secret_scan_and_owner_approval"
+    },
+    {
+      "name": "workspace_policy_blocks_live_payments",
+      "ok": true,
+      "details": "live payments disabled"
+    },
+    {
+      "name": "workspace_policy_blocks_real_keys",
+      "ok": true,
+      "details": "real key publication disabled"
+    },
+    {
+      "name": "workspace_policy_blocks_human_outreach",
+      "ok": true,
+      "details": "human outreach disabled"
+    },
+    {
+      "name": "workspace_import_assets_include_secret_scan",
+      "ok": true,
+      "details": "secret scan linked in import assets"
+    },
+    {
+      "name": "checklist_blocks_make_workspace_public",
+      "ok": true,
+      "details": "make_workspace_public"
+    },
+    {
+      "name": "checklist_blocks_publish_real_api_keys",
+      "ok": true,
+      "details": "publish_real_api_keys"
+    },
+    {
+      "name": "checklist_blocks_publish_admin_keys",
+      "ok": true,
+      "details": "publish_admin_keys"
+    },
+    {
+      "name": "checklist_blocks_activate_live_payments",
+      "ok": true,
+      "details": "activate_live_payments"
+    },
+    {
+      "name": "checklist_blocks_run_external_outreach",
+      "ok": true,
+      "details": "run_external_outreach"
+    },
+    {
+      "name": "checklist_blocks_contact_target_companies",
+      "ok": true,
+      "details": "contact_target_companies"
+    },
+    {
+      "name": "llms_lists_postman_rehearsal_inputs",
+      "ok": true,
+      "details": "llms points to Postman import inputs"
+    },
+    {
+      "name": "robots_lists_postman_collection",
+      "ok": true,
+      "details": "robots lists Postman collection"
+    },
+    {
+      "name": "sitemap_lists_postman_collection",
+      "ok": true,
+      "details": "sitemap lists Postman collection"
+    }
+  ],
+  "failed_checks": []
+}

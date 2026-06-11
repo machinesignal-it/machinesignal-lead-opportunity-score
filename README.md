@@ -125,6 +125,8 @@ Public discovery starts here:
 - Machine Distribution Readiness NoWrite Probe JSON: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json
 - Machine Channel Rehearsal NoWrite Probe: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md
 - Machine Channel Rehearsal NoWrite Probe JSON: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json
+- Postman Private Workspace Rehearsal NoWrite Probe: https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_report_20260611.md
+- Postman Private Workspace Rehearsal NoWrite Probe JSON: https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -729,3 +731,12 @@ A NoWrite channel rehearsal now proves that a machine can evaluate Postman, Rapi
 - Summary JSON: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json
 - Result: ok=true, Postman 10/10, RapidAPI-style 8/8, API directory 8/8, MCP/agent registry 8/8.
 - Safety: post_calls_executed=0, write_calls_executed=0, real_payment_executed=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false.
+
+## Postman Private Workspace Rehearsal NoWrite Probe - 2026-06-11
+
+A NoWrite Postman rehearsal now proves that a machine can import the MachineSignal Postman assets, read the machine-buyer flow, use blank secret variables and understand that live payments, public publication, real keys and human outreach are blocked.
+
+- Report: https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_report_20260611.md
+- Summary JSON: https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json
+- Result: ok=true, collection_item_count=28, methods=GET/PATCH/POST, secret scan passed, environment private values blank.
+- Safety: post_calls_executed=0, write_calls_executed=0, real_payment_executed=false, external_contact_executed=false, public_workspace_enabled=false, real_api_keys_published=false.

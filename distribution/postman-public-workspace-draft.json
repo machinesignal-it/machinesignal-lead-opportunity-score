@@ -47,7 +47,9 @@
     "postman_private_workspace_checklist": "https://machinesignal.it/postman_private_workspace_checklist_20260607.md",
     "postman_private_workspace_checklist_json": "https://machinesignal.it/postman_private_workspace_checklist_20260607.json",
     "machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md",
-    "machine_channel_rehearsal_nowrite_probe_json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
+    "machine_channel_rehearsal_nowrite_probe_json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json",
+    "postman_private_workspace_rehearsal_nowrite_probe": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_report_20260611.md",
+    "postman_private_workspace_rehearsal_nowrite_probe_json": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json"
   },
   "environment_variables": [
     {
@@ -106,15 +108,17 @@
     "Score, purchase-intent and order retrieval work with the sandbox key.",
     "Payment-test sandbox intent and reconciliation work.",
     "Workspace text clearly says sandbox only and no real payments.",
-    "Workspace includes Machine Buyer Evidence Brief and Full Beta Runner links."
+    "Workspace includes Machine Buyer Evidence Brief and Full Beta Runner links.",
+    "Postman private workspace rehearsal NoWrite probe is passed."
   ],
   "current_import_readiness": {
-    "status": "ready_for_private_workspace_import",
+    "status": "ready_for_private_workspace_import_rehearsal_passed_public_visibility_blocked",
     "import_pack": "https://machinesignal.it/postman_workspace_import_pack_20260606.json",
     "environment_template": "https://machinesignal.it/postman_public_environment_template.json",
     "local_secret_scan": "https://machinesignal.it/postman_workspace_secret_scan_20260606.json",
     "blocker": "Postman login session required before Codex can import into the account.",
-    "public_visibility_blocked_until": "final in-Postman secret scan and owner approval"
+    "public_visibility_blocked_until": "final in-Postman secret scan and owner approval",
+    "latest_private_workspace_rehearsal": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json"
   },
   "human_approval_required_for": [
     "Making the workspace public if it exposes account-level settings.",
@@ -259,5 +263,27 @@
     "report": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md",
     "json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
   },
-  "current_machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json"
+  "current_machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json",
+  "latest_postman_private_workspace_rehearsal_nowrite_probe": {
+    "status": "completed_postman_private_workspace_rehearsal_nowrite",
+    "ok": true,
+    "evidence_date": "2026-06-11",
+    "mode": "NoWritePostmanPrivateWorkspaceRehearsal",
+    "primary_customer_interface": "machine",
+    "machine_customer_mode": "machine_imports_private_postman_workspace_and_reads_sandbox_contract_without_publication_or_real_keys",
+    "collection_item_count": 28,
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "external_publication_executed": false,
+    "live_monetization_enabled": false,
+    "public_workspace_enabled": false,
+    "real_api_keys_published": false,
+    "report": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_report_20260611.md",
+    "json": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json",
+    "recommended_next_step": "Keep Postman private/team, optionally run an owner-supervised in-Postman import check, then prepare unpublished API-directory or RapidAPI draft metadata only."
+  },
+  "current_postman_private_workspace_rehearsal_nowrite_probe": "https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json"
 }

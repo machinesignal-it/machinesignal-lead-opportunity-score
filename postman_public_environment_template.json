@@ -15,6 +15,12 @@
       "enabled": true
     },
     {
+      "key": "machinesignal_admin_api_key",
+      "value": "",
+      "type": "secret",
+      "enabled": true
+    },
+    {
       "key": "beta_customer_id",
       "value": "",
       "type": "secret",

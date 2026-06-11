@@ -119,3 +119,5 @@ Machine-distribution-readiness-nowrite-probe: https://machinesignal.it/machine_d
 Machine-distribution-readiness-nowrite-probe-json: https://machinesignal.it/machine_distribution_readiness_nowrite_probe_summary_20260611.json
 Machine-channel-rehearsal-nowrite-probe: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md
 Machine-channel-rehearsal-nowrite-probe-json: https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json
+Postman-private-workspace-rehearsal-nowrite-probe: https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_report_20260611.md
+Postman-private-workspace-rehearsal-nowrite-probe-json: https://machinesignal.it/postman_private_workspace_rehearsal_nowrite_probe_summary_20260611.json
