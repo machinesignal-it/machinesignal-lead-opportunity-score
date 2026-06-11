@@ -92,6 +92,8 @@ It performs only public GET requests. It does not create customers, consume cred
 | machine_channel_rehearsal_nowrite_probe_json | 200 | True | 15559 |
 | postman_private_workspace_rehearsal_nowrite_probe_md | 200 | n/a | 8132 |
 | postman_private_workspace_rehearsal_nowrite_probe_json | 200 | True | 12985 |
+| postman_private_team_workspace_setup_md | 200 | n/a | 2820 |
+| postman_private_team_workspace_setup_json | 200 | True | 1886 |
 | api_marketplace_draft_rehearsal_nowrite_probe_md | 200 | n/a | 16904 |
 | api_marketplace_draft_rehearsal_nowrite_probe_json | 200 | True | 28576 |
 | mcp_agent_registry_draft_rehearsal_nowrite_probe_md | 200 | n/a | 5365 |
@@ -115,9 +117,9 @@ It performs only public GET requests. It does not create customers, consume cred
 | mcp_tool_manifest | 200 | True | 130283 |
 | well_known_mcp_tool_manifest | 200 | True | 130283 |
 | well_known_machine_discovery | 200 | True | 113885 |
-| llms | 200 | n/a | 34416 |
-| robots | 200 | n/a | 14399 |
-| sitemap | 200 | n/a | 21483 |
+| llms | 200 | n/a | 34666 |
+| robots | 200 | n/a | 14645 |
+| sitemap | 200 | n/a | 21712 |
 | openapi | 200 | True | 61595 |
 | postman_public_collection | 200 | True | 27564 |
 | product_catalog | 200 | True | 12086 |
@@ -347,6 +349,13 @@ It performs only public GET requests. It does not create customers, consume cred
 | postman_private_workspace_rehearsal_nowrite_probe_json_json_valid | OK | json_valid=True |
 | postman_private_workspace_rehearsal_nowrite_probe_json_contains_expected_marker | OK | marker=completed_postman_private_workspace_rehearsal_nowrite |
 | postman_private_workspace_rehearsal_nowrite_probe_json_secret_scan | OK | public content has no secret-like token patterns |
+| postman_private_team_workspace_setup_md_reachable | OK | HTTP 200, bytes=2820 |
+| postman_private_team_workspace_setup_md_contains_expected_marker | OK | marker=Postman Private Team Workspace Setup |
+| postman_private_team_workspace_setup_md_secret_scan | OK | public content has no secret-like token patterns |
+| postman_private_team_workspace_setup_json_reachable | OK | HTTP 200, bytes=1886 |
+| postman_private_team_workspace_setup_json_json_valid | OK | json_valid=True |
+| postman_private_team_workspace_setup_json_contains_expected_marker | OK | marker=completed_postman_private_team_workspace_setup |
+| postman_private_team_workspace_setup_json_secret_scan | OK | public content has no secret-like token patterns |
 | api_marketplace_draft_rehearsal_nowrite_probe_md_reachable | OK | HTTP 200, bytes=16904 |
 | api_marketplace_draft_rehearsal_nowrite_probe_md_contains_expected_marker | OK | marker=API Marketplace Draft Rehearsal NoWrite Probe |
 | api_marketplace_draft_rehearsal_nowrite_probe_md_secret_scan | OK | public content has no secret-like token patterns |
@@ -431,14 +440,14 @@ It performs only public GET requests. It does not create customers, consume cred
 | well_known_machine_discovery_json_valid | OK | json_valid=True |
 | well_known_machine_discovery_contains_expected_marker | OK | marker=sandbox_external_draft_distribution_readiness_review_json |
 | well_known_machine_discovery_secret_scan | OK | public content has no secret-like token patterns |
-| llms_reachable | OK | HTTP 200, bytes=34416 |
-| llms_contains_expected_marker | OK | marker=Sandbox External Draft Distribution Readiness Review JSON |
+| llms_reachable | OK | HTTP 200, bytes=34666 |
+| llms_contains_expected_marker | OK | marker=Postman Private Team Workspace Setup JSON |
 | llms_secret_scan | OK | public content has no secret-like token patterns |
-| robots_reachable | OK | HTTP 200, bytes=14399 |
-| robots_contains_expected_marker | OK | marker=Sandbox-external-draft-distribution-readiness-review-json |
+| robots_reachable | OK | HTTP 200, bytes=14645 |
+| robots_contains_expected_marker | OK | marker=Postman-private-team-workspace-setup-json |
 | robots_secret_scan | OK | public content has no secret-like token patterns |
-| sitemap_reachable | OK | HTTP 200, bytes=21483 |
-| sitemap_contains_expected_marker | OK | marker=sandbox_external_draft_distribution_readiness_review_summary_20260611.json |
+| sitemap_reachable | OK | HTTP 200, bytes=21712 |
+| sitemap_contains_expected_marker | OK | marker=postman_private_team_workspace_setup_summary_20260611.json |
 | sitemap_secret_scan | OK | public content has no secret-like token patterns |
 | openapi_reachable | OK | HTTP 200, bytes=61595 |
 | openapi_json_valid | OK | json_valid=True |
