@@ -1771,6 +1771,8 @@ Public demos for software, agents and partners:
 - API Marketplace Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
 - MCP Agent Registry Draft Rehearsal NoWrite Probe: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md
 - MCP Agent Registry Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json
+- Machine Buyer End-to-End Rehearsal: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md
+- Machine Buyer End-to-End Rehearsal JSON: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json
 - Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
 - Full machine buyer flow: https://machinesignal.it/demo/machine-buyer-flow/
 - Full flow JSON: https://machinesignal.it/demo/machine-buyer-flow/flow.json

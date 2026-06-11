@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-11T11:52:47.5417260Z",
+    "generated_at":  "2026-06-11T12:34:33.5429972Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  87,
-    "checks_total":  315,
+    "resources_checked":  89,
+    "checks_total":  322,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -225,7 +225,7 @@
                    {
                        "name":  "mcp_tool_registry_draft_checklist_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=49129"
+                       "details":  "HTTP 200, bytes=51809"
                    },
                    {
                        "name":  "mcp_tool_registry_draft_checklist_json_json_valid",
@@ -645,7 +645,7 @@
                    {
                        "name":  "mcp_tool_registry_private_draft_pack_json_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=50418"
+                       "details":  "HTTP 200, bytes=53354"
                    },
                    {
                        "name":  "mcp_tool_registry_private_draft_pack_json_json_valid",
@@ -1188,6 +1188,41 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "machine_buyer_end_to_end_rehearsal_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=1911"
+                   },
+                   {
+                       "name":  "machine_buyer_end_to_end_rehearsal_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Machine Buyer End-to-End Rehearsal"
+                   },
+                   {
+                       "name":  "machine_buyer_end_to_end_rehearsal_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "machine_buyer_end_to_end_rehearsal_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=261640"
+                   },
+                   {
+                       "name":  "machine_buyer_end_to_end_rehearsal_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "machine_buyer_end_to_end_rehearsal_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_machine_buyer_end_to_end_rehearsal"
+                   },
+                   {
+                       "name":  "machine_buyer_end_to_end_rehearsal_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
                        "details":  "HTTP 200, bytes=15553"
@@ -1300,7 +1335,7 @@
                    {
                        "name":  "marketplace_submission_pack_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=95855"
+                       "details":  "HTTP 200, bytes=99047"
                    },
                    {
                        "name":  "marketplace_submission_pack_json_valid",
@@ -1375,7 +1410,7 @@
                    {
                        "name":  "mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=122035"
+                       "details":  "HTTP 200, bytes=125320"
                    },
                    {
                        "name":  "mcp_tool_manifest_json_valid",
@@ -1395,7 +1430,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=122035"
+                       "details":  "HTTP 200, bytes=125320"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_json_valid",
@@ -1415,7 +1450,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=105730"
+                       "details":  "HTTP 200, bytes=108922"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -1425,7 +1460,7 @@
                    {
                        "name":  "well_known_machine_discovery_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=mcp_agent_registry_draft_rehearsal_nowrite_probe_json"
+                       "details":  "marker=machine_buyer_end_to_end_rehearsal_json"
                    },
                    {
                        "name":  "well_known_machine_discovery_secret_scan",
@@ -1435,12 +1470,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=32431"
+                       "details":  "HTTP 200, bytes=33164"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=MCP Agent Registry Draft Rehearsal NoWrite Probe JSON"
+                       "details":  "marker=Machine Buyer End-to-End Rehearsal JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -1450,12 +1485,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=13640"
+                       "details":  "HTTP 200, bytes=13878"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Mcp-agent-registry-draft-rehearsal-nowrite-probe-json"
+                       "details":  "marker=Machine-buyer-end-to-end-rehearsal-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -1465,12 +1500,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=20789"
+                       "details":  "HTTP 200, bytes=21014"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json"
+                       "details":  "marker=machine_buyer_end_to_end_rehearsal_summary_20260611.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",
@@ -1540,7 +1575,7 @@
                    {
                        "name":  "machine_onboarding_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=128983"
+                       "details":  "HTTP 200, bytes=132175"
                    },
                    {
                        "name":  "machine_onboarding_json_valid",

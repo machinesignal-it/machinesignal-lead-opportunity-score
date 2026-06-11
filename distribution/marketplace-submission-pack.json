@@ -280,7 +280,9 @@
     "api_marketplace_draft_rehearsal_nowrite_probe": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md",
     "api_marketplace_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json",
     "mcp_agent_registry_draft_rehearsal_nowrite_probe": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md",
-    "mcp_agent_registry_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json"
+    "mcp_agent_registry_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json",
+    "machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
+    "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json"
   },
   "current_mcp_tool_registry_checklist": "https://machinesignal.it/mcp_tool_registry_draft_checklist_20260607.json",
   "latest_machine_discovery_full_simulation": {
@@ -593,7 +595,9 @@
     "machine_channel_rehearsal_nowrite_probe": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_report_20260611.md",
     "machine_channel_rehearsal_nowrite_probe_json": "https://machinesignal.it/machine_channel_rehearsal_nowrite_probe_summary_20260611.json",
     "mcp_agent_registry_draft_rehearsal_nowrite_probe": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md",
-    "mcp_agent_registry_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json"
+    "mcp_agent_registry_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json",
+    "machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
+    "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json"
   },
   "latest_mcp_purchase_decision_probe": {
     "status": "completed_mcp_purchase_decision_probe",
@@ -808,7 +812,9 @@
     "api_marketplace_draft_rehearsal_nowrite_probe": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md",
     "api_marketplace_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json",
     "mcp_agent_registry_draft_rehearsal_nowrite_probe": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md",
-    "mcp_agent_registry_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json"
+    "mcp_agent_registry_draft_rehearsal_nowrite_probe_json": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json",
+    "machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
+    "machine_buyer_end_to_end_rehearsal_json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json"
   },
   "latest_api_marketplace_draft_rehearsal_nowrite_probe": {
     "status": "completed_api_marketplace_draft_rehearsal_nowrite",
@@ -2266,5 +2272,47 @@
     "report": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md",
     "json": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json"
   },
-  "current_mcp_agent_registry_draft_rehearsal_nowrite_probe": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json"
+  "current_mcp_agent_registry_draft_rehearsal_nowrite_probe": "https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json",
+  "latest_machine_buyer_end_to_end_rehearsal": {
+    "status": "completed_machine_buyer_end_to_end_rehearsal",
+    "ok": true,
+    "evidence_date": "2026-06-11",
+    "mode": "MachineBuyerEndToEndRehearsalWriteCapped",
+    "primary_customer_interface": "machine",
+    "machine_customer_mode": "machine_discovers_public_assets_creates_sandbox_scores_target_buys_sandbox_deep_analysis_and_action_pack_without_payment_or_outreach",
+    "target_domain": "studio-dentale-demo-8.it",
+    "post_calls_executed": 5,
+    "write_calls_executed": 5,
+    "max_post_calls_allowed": 5,
+    "score": {
+      "opportunity_score": 81,
+      "confidence": 0.88,
+      "decision": "buy_deep_analysis",
+      "next_product": "deep_analysis",
+      "commercial_strength_level": "strong",
+      "spend_policy": "buy_deep_analysis_then_consider_action_pack_if_deep_confirms",
+      "web_architect_status": "architect_opportunity_signal_passed"
+    },
+    "purchases": {
+      "target_discovery_order_intent_id": "ord_b445f2c0",
+      "deep_analysis_order_intent_id": "ord_a49c51f3",
+      "action_pack_order_intent_id": "ord_d00cd073",
+      "action_pack_gate_passed": true
+    },
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "external_publication_executed": false,
+    "live_monetization_enabled": false,
+    "public_paid_plans_enabled": false,
+    "production_api_key_published": false,
+    "checks_total": 46,
+    "checks_failed": 0,
+    "interpretation": "A buyer machine can discover MachineSignal, create a limited sandbox customer, request no-list Target Discovery, score a synthetic high-signal target, follow the recommended Deep Analysis purchase, buy Action Pack after the Deep Analysis gate and retrieve orders and usage without real payment, invoice, outreach or external publication.",
+    "recommended_next_step": "Use this as the current strongest machine-buyer evidence. Next step: run an owner-supervised go/no-go review before enabling hosted MCP, marketplace publication or paid checkout.",
+    "report": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md",
+    "json": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json"
+  },
+  "current_machine_buyer_end_to_end_rehearsal": "https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json"
 }

@@ -131,6 +131,8 @@ Public discovery starts here:
 - API Marketplace Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
 - MCP Agent Registry Draft Rehearsal NoWrite Probe: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md
 - MCP Agent Registry Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json
+- Machine Buyer End-to-End Rehearsal: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md
+- Machine Buyer End-to-End Rehearsal JSON: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -762,3 +764,12 @@ A NoWrite MCP and agent-registry rehearsal now proves that a machine can discove
 - Summary JSON: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json
 - Result: ok=true, channels_checked=mcp_tool_registry, agent_registry and local_mcp_adapter.
 - Safety: post_calls_executed=0, write_calls_executed=0, hosted_mcp_live=false, external_publication_executed=false, live_monetization_enabled=false, public_paid_plans_enabled=false, production_api_key_published=false.
+
+## Machine Buyer End-to-End Rehearsal - 2026-06-11
+
+A write-capped machine-buyer rehearsal now proves that a machine can discover MachineSignal, create one sandbox customer, request no-list Target Discovery, score a high-signal synthetic target, buy Deep Analysis, buy Action Pack after the Deep Analysis gate, and retrieve orders and usage without real payment, invoice, external contact or publication.
+
+- Report: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md
+- Summary JSON: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json
+- Result: ok=true, score=81, confidence=0.88, decision=buy_deep_analysis, action_pack_gate_passed=true.
+- Safety: post_calls_executed=5, write_calls_executed=5, real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, external_publication_executed=false.

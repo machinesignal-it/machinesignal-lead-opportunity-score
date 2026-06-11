@@ -125,3 +125,5 @@ Api-marketplace-draft-rehearsal-nowrite-probe: https://machinesignal.it/api_mark
 Api-marketplace-draft-rehearsal-nowrite-probe-json: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
 Mcp-agent-registry-draft-rehearsal-nowrite-probe: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md
 Mcp-agent-registry-draft-rehearsal-nowrite-probe-json: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json
+Machine-buyer-end-to-end-rehearsal: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md
+Machine-buyer-end-to-end-rehearsal-json: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json
