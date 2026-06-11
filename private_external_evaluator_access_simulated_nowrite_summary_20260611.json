@@ -1,0 +1,405 @@
+{
+  "service": "MachineSignal",
+  "probe_name": "private_external_evaluator_access_simulated_no_write",
+  "status": "completed_private_external_evaluator_access_simulated_no_write",
+  "ok": true,
+  "evidence_date": "2026-06-11",
+  "mode": "NoWriteExternalEvaluatorSimulation",
+  "primary_customer_interface": "machine",
+  "simulated_evaluator_profile": {
+    "evaluator_type": "external_machine_buyer_simulator",
+    "starting_knowledge": "none",
+    "has_existing_list": false,
+    "market": "cliniche odontoiatriche",
+    "area": "Milano",
+    "commercial_objective": "find dental clinic websites worth scoring for digital presence improvement opportunities"
+  },
+  "public_site": "https://machinesignal.it",
+  "post_calls_executed": 0,
+  "write_calls_executed": 0,
+  "external_invites_sent": 0,
+  "sandbox_customers_created": 0,
+  "orders_created": 0,
+  "credits_consumed": 0,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "human_outreach_executed": false,
+  "external_publication_executed": false,
+  "production_api_key_published": false,
+  "real_customer_data_used": false,
+  "personal_data_used": false,
+  "third_party_api_called": false,
+  "no_list_product_choice": {
+    "selected_product": "target_discovery_pack_250",
+    "reason": "The simulated external evaluator has no starting list and needs coherent targets for a declared market, area and commercial objective.",
+    "price_eur": 149,
+    "required_input": {
+      "product_code": "target_discovery",
+      "market": "cliniche odontoiatriche",
+      "area": "Milano",
+      "commercial_objective": "find dental clinic websites worth scoring for digital presence improvement opportunities"
+    },
+    "expected_output": {
+      "target_count": 250,
+      "format": "machine-readable JSON or CSV",
+      "next_machine_call": "POST /v1/lead-opportunity-score for each valid discovered domain"
+    },
+    "simulated_purchase_intent": "would_simulate_purchase_intent_if_write_allowed",
+    "actual_purchase_intent_executed": false
+  },
+  "existing_list_product_choice": {
+    "selected_product": "score_pack_1k",
+    "reason": "If the evaluator already had domains, it would buy valid scores before spending campaign or CRM budget.",
+    "price_eur": 99,
+    "required_input": {
+      "domain": "example-business-domain.test",
+      "sector_hint": "sector",
+      "country_hint": "IT"
+    },
+    "expected_output": {
+      "fields": [
+        "opportunity_score",
+        "confidence",
+        "decision",
+        "commercial_strength",
+        "next_purchase"
+      ]
+    },
+    "actual_score_executed": false
+  },
+  "simulated_machine_decision": {
+    "decision": "machine_understands_and_would_test_target_discovery_in_sandbox_if_write_allowed",
+    "confidence": 0.83,
+    "selected_primary_product": "target_discovery_pack_250",
+    "secondary_product_if_list_exists": "score_pack_1k",
+    "would_create_sandbox_customer_if_write_allowed": true,
+    "actual_sandbox_customer_created": false,
+    "would_create_purchase_intent_if_write_allowed": true,
+    "actual_purchase_intent_created": false,
+    "why": [
+      "Public assets explain that MachineSignal sells machine-readable lead opportunity decisions and target discovery outputs.",
+      "Product catalog gives exact products, prices, required inputs and output expectations.",
+      "OpenAPI and Postman expose the endpoint path a machine would use once writes are allowed."
+    ],
+    "remaining_trust_gaps_before_real_external_access": [
+      "private evaluator access pack with expiration and revocation policy",
+      "terms/privacy/DPA review before real data",
+      "rate limits and abuse policy for external keys",
+      "retention period for evaluator logs",
+      "owner approval before any real invite"
+    ]
+  },
+  "resources": {
+    "home_page": {
+      "url": "https://machinesignal.it/",
+      "status": 200,
+      "ok": true,
+      "json_ok": null,
+      "bytes": 17831
+    },
+    "api_page": {
+      "url": "https://machinesignal.it/api/",
+      "status": 200,
+      "ok": true,
+      "json_ok": null,
+      "bytes": 14370
+    },
+    "beta_page": {
+      "url": "https://machinesignal.it/beta/",
+      "status": 200,
+      "ok": true,
+      "json_ok": null,
+      "bytes": 11430
+    },
+    "llms": {
+      "url": "https://machinesignal.it/llms.txt",
+      "status": 200,
+      "ok": true,
+      "json_ok": null,
+      "bytes": 38058
+    },
+    "robots": {
+      "url": "https://machinesignal.it/robots.txt",
+      "status": 200,
+      "ok": true,
+      "json_ok": null,
+      "bytes": 16073
+    },
+    "sitemap": {
+      "url": "https://machinesignal.it/sitemap.xml",
+      "status": 200,
+      "ok": true,
+      "json_ok": null,
+      "bytes": 22949
+    },
+    "well_known_machine_discovery": {
+      "url": "https://machinesignal.it/.well-known/machine-discovery.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 113885
+    },
+    "openapi": {
+      "url": "https://machinesignal.it/openapi.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 61595
+    },
+    "product_catalog": {
+      "url": "https://machinesignal.it/product-catalog.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 12086
+    },
+    "machine_onboarding": {
+      "url": "https://machinesignal.it/machine-onboarding.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 137138
+    },
+    "postman_collection": {
+      "url": "https://machinesignal.it/postman_public_collection.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 27564
+    },
+    "mcp_manifest": {
+      "url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 130283
+    },
+    "rapidapi_listing": {
+      "url": "https://machinesignal.it/distribution/rapidapi-listing.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 36481
+    },
+    "rapidapi_provider_setup": {
+      "url": "https://machinesignal.it/distribution/rapidapi-provider-setup.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 24599
+    },
+    "rapidapi_rehearsal": {
+      "url": "https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_summary_20260611.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 15994
+    },
+    "agent_private_evaluator_review": {
+      "url": "https://machinesignal.it/agent_go_no_go_private_external_evaluator_review_summary_20260611.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 2912
+    },
+    "distribution_monitor": {
+      "url": "https://machinesignal.it/distribution_readiness_monitor_summary_20260607.json",
+      "status": 200,
+      "ok": true,
+      "json_ok": true,
+      "bytes": 91810
+    }
+  },
+  "checks_total": 37,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "home_page_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=17831; json=null; markers=1/1; secrets=0"
+    },
+    {
+      "name": "api_page_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=14370; json=null; markers=1/1; secrets=0"
+    },
+    {
+      "name": "beta_page_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=11430; json=null; markers=1/1; secrets=0"
+    },
+    {
+      "name": "llms_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=38058; json=null; markers=2/2; secrets=0"
+    },
+    {
+      "name": "robots_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=16073; json=null; markers=2/2; secrets=0"
+    },
+    {
+      "name": "sitemap_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=22949; json=null; markers=2/2; secrets=0"
+    },
+    {
+      "name": "well_known_machine_discovery_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=113885; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "openapi_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=61595; json=true; markers=3/3; secrets=0"
+    },
+    {
+      "name": "product_catalog_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=12086; json=true; markers=3/3; secrets=0"
+    },
+    {
+      "name": "machine_onboarding_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=137138; json=true; markers=3/3; secrets=0"
+    },
+    {
+      "name": "postman_collection_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=27564; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "mcp_manifest_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=130283; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "rapidapi_listing_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=36481; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "rapidapi_provider_setup_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=24599; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "rapidapi_rehearsal_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=15994; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "agent_private_evaluator_review_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=2912; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "distribution_monitor_reachable_and_clean",
+      "ok": true,
+      "details": "HTTP 200; bytes=91810; json=true; markers=2/2; secrets=0"
+    },
+    {
+      "name": "openapi_has__v1_sandbox_customers",
+      "ok": true,
+      "details": "/v1/sandbox/customers"
+    },
+    {
+      "name": "openapi_has__v1_lead_opportunity_score",
+      "ok": true,
+      "details": "/v1/lead-opportunity-score"
+    },
+    {
+      "name": "openapi_has__v1_purchase_intent",
+      "ok": true,
+      "details": "/v1/purchase-intent"
+    },
+    {
+      "name": "openapi_has__v1_usage",
+      "ok": true,
+      "details": "/v1/usage"
+    },
+    {
+      "name": "openapi_has__v1_orders",
+      "ok": true,
+      "details": "/v1/orders"
+    },
+    {
+      "name": "catalog_explains_no_list_path",
+      "ok": true,
+      "details": "target_discovery"
+    },
+    {
+      "name": "catalog_explains_existing_list_path",
+      "ok": true,
+      "details": "score_pack_1k"
+    },
+    {
+      "name": "catalog_has_exact_target_discovery_price",
+      "ok": true,
+      "details": "149"
+    },
+    {
+      "name": "catalog_has_exact_score_pack_price",
+      "ok": true,
+      "details": "99"
+    },
+    {
+      "name": "catalog_defines_valid_output_rule",
+      "ok": true,
+      "details": "valid-output credit rule present"
+    },
+    {
+      "name": "onboarding_explains_sandbox_and_purchase_intent",
+      "ok": true,
+      "details": "sandbox and purchase-intent language present"
+    },
+    {
+      "name": "postman_has_machine_flow_items",
+      "ok": true,
+      "details": "Postman collection includes evaluator path"
+    },
+    {
+      "name": "mcp_manifest_has_machine_tools",
+      "ok": true,
+      "details": "MCP manifest includes machine tools"
+    },
+    {
+      "name": "rapidapi_listing_is_machine_first",
+      "ok": true,
+      "details": "machine"
+    },
+    {
+      "name": "rapidapi_listing_keeps_monetization_disabled",
+      "ok": true,
+      "details": "rapidapi_style_provider_metadata_ready_monetization_disabled"
+    },
+    {
+      "name": "provider_setup_blocks_public_paid_mode",
+      "ok": true,
+      "details": "draft_or_unpublished_monetization_disabled"
+    },
+    {
+      "name": "latest_rapidapi_rehearsal_ok",
+      "ok": true,
+      "details": "completed_rapidapi_unpublished_provider_sandbox_rehearsal, checks_failed=0"
+    },
+    {
+      "name": "agent_review_approved_nowrite_only",
+      "ok": true,
+      "details": "go_simulated_private_external_evaluator_nowrite_only, votes=5"
+    },
+    {
+      "name": "monitor_currently_clean",
+      "ok": true,
+      "details": "ok=true, checks_failed=0"
+    },
+    {
+      "name": "simulated_inputs_have_no_personal_data",
+      "ok": true,
+      "details": ""
+    }
+  ],
+  "recommended_next_step": "Run an agent review. If approved, prepare an owner-approved private external evaluator pack, still without sending real invitations until the owner explicitly authorizes it."
+}

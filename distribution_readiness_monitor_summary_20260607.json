@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-11T16:53:45.2825773Z",
+    "generated_at":  "2026-06-11T17:16:46.7004926Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  103,
-    "checks_total":  371,
+    "resources_checked":  107,
+    "checks_total":  385,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -1293,6 +1293,76 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "agent_go_no_go_private_external_evaluator_review_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=3936"
+                   },
+                   {
+                       "name":  "agent_go_no_go_private_external_evaluator_review_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=MachineSignal Agent Go/No-Go Private External Evaluator Review"
+                   },
+                   {
+                       "name":  "agent_go_no_go_private_external_evaluator_review_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "agent_go_no_go_private_external_evaluator_review_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=2912"
+                   },
+                   {
+                       "name":  "agent_go_no_go_private_external_evaluator_review_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "agent_go_no_go_private_external_evaluator_review_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_agent_go_no_go_private_external_evaluator_review"
+                   },
+                   {
+                       "name":  "agent_go_no_go_private_external_evaluator_review_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "private_external_evaluator_access_simulated_nowrite_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=2396"
+                   },
+                   {
+                       "name":  "private_external_evaluator_access_simulated_nowrite_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Private External Evaluator Access Simulated NoWrite"
+                   },
+                   {
+                       "name":  "private_external_evaluator_access_simulated_nowrite_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "private_external_evaluator_access_simulated_nowrite_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=12527"
+                   },
+                   {
+                       "name":  "private_external_evaluator_access_simulated_nowrite_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "private_external_evaluator_access_simulated_nowrite_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_private_external_evaluator_access_simulated_no_write"
+                   },
+                   {
+                       "name":  "private_external_evaluator_access_simulated_nowrite_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "api_marketplace_draft_rehearsal_nowrite_probe_md_reachable",
                        "ok":  true,
                        "details":  "HTTP 200, bytes=16904"
@@ -1715,12 +1785,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=37168"
+                       "details":  "HTTP 200, bytes=39047"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=RapidAPI-Style Unpublished Provider Sandbox Rehearsal JSON"
+                       "details":  "marker=Private External Evaluator Access Simulated NoWrite JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -1730,12 +1800,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=15786"
+                       "details":  "HTTP 200, bytes=16379"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Rapidapi-unpublished-provider-sandbox-rehearsal-json"
+                       "details":  "marker=Private-external-evaluator-access-simulated-nowrite-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -1745,12 +1815,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=22703"
+                       "details":  "HTTP 200, bytes=23208"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=rapidapi_unpublished_provider_sandbox_rehearsal_summary_20260611.json"
+                       "details":  "marker=private_external_evaluator_access_simulated_nowrite_summary_20260611.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",

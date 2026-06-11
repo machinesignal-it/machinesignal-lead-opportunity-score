@@ -642,4 +642,16 @@
   <url>
     <loc>https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_summary_20260611.json</loc>
   </url>
+  <url>
+    <loc>https://machinesignal.it/agent_go_no_go_private_external_evaluator_review_20260611.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/agent_go_no_go_private_external_evaluator_review_summary_20260611.json</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/private_external_evaluator_access_simulated_nowrite_report_20260611.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/private_external_evaluator_access_simulated_nowrite_summary_20260611.json</loc>
+  </url>
 </urlset>

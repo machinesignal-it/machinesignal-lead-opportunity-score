@@ -792,6 +792,24 @@ A write-capped RapidAPI-style rehearsal now proves that a marketplace-like consu
 - Result: ok=true, post_calls_executed=3, checks_failed=0, Target Discovery order accepted, promised_target_count=250.
 - Safety: rapidapi_provider_created_or_published=false, rapidapi_external_api_called=false, real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false.
 
+## Agent Go/No-Go Private External Evaluator Review - 2026-06-11
+
+The agent review after the RapidAPI-style rehearsal gave 5/5 GO for a simulated private external evaluator access test in NoWrite mode only. This is not approval for real external invitations, public marketplace publication, live monetization, real payments, fiscal invoices, third-party key sharing, real customer data or human outreach.
+
+- Report: https://machinesignal.it/agent_go_no_go_private_external_evaluator_review_20260611.md
+- Summary JSON: https://machinesignal.it/agent_go_no_go_private_external_evaluator_review_summary_20260611.json
+- Result: verdict=go_simulated_private_external_evaluator_nowrite_only, agent_votes=5/5 GO NoWrite-only.
+- Safety: post_calls_executed=0 required, write_calls_executed=0 required, external_invites_sent=0 required, credits_consumed=0 required, personal_data_used=false required.
+
+## Private External Evaluator Access Simulated NoWrite - 2026-06-11
+
+A NoWrite external evaluator simulation now proves that a machine starting from public assets only can understand what MachineSignal sells, identify Target Discovery as the correct no-list product, understand required inputs and expected outputs, and decide it would test the product if writes were allowed. The simulation executed no POST calls and created no sandbox customer, order, credit consumption, external invitation or publication.
+
+- Report: https://machinesignal.it/private_external_evaluator_access_simulated_nowrite_report_20260611.md
+- Summary JSON: https://machinesignal.it/private_external_evaluator_access_simulated_nowrite_summary_20260611.json
+- Result: ok=true, checks_failed=0, decision=machine_understands_and_would_test_target_discovery_in_sandbox_if_write_allowed.
+- Safety: post_calls_executed=0, write_calls_executed=0, external_invites_sent=0, sandbox_customers_created=0, orders_created=0, credits_consumed=0, personal_data_used=false.
+
 ## API Marketplace Draft Rehearsal NoWrite Probe - 2026-06-11
 
 A NoWrite marketplace rehearsal now proves that a machine can evaluate the generic API-directory and RapidAPI-style draft metadata, understand the product and test route, and see that publication, monetization, production keys, payments, invoices and outreach remain blocked.
