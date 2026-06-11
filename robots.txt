@@ -133,3 +133,5 @@ Sandbox-external-draft-distribution-readiness-review: https://machinesignal.it/s
 Sandbox-external-draft-distribution-readiness-review-json: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json
 Postman-private-team-workspace-setup: https://machinesignal.it/postman_private_team_workspace_setup_report_20260611.md
 Postman-private-team-workspace-setup-json: https://machinesignal.it/postman_private_team_workspace_setup_summary_20260611.json
+Postman-private-team-workspace-sandbox-rehearsal: https://machinesignal.it/postman_private_team_workspace_sandbox_rehearsal_report_20260611.md
+Postman-private-team-workspace-sandbox-rehearsal-json: https://machinesignal.it/postman_private_team_workspace_sandbox_rehearsal_summary_20260611.json

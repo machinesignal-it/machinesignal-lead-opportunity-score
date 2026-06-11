@@ -756,6 +756,15 @@ The Postman private/team workspace setup is now complete for sandbox-only machin
 - Result: ok=true, workspace_visibility=team, collection_item_count=28, environment_values_count=7.
 - Safety: public_workspace_enabled=false, live_payments_enabled=false, real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, production_api_key_uploaded=false.
 
+## Postman Private Team Workspace Sandbox Rehearsal - 2026-06-11
+
+A write-capped Postman sandbox rehearsal now proves that a buyer machine can use the private/team Postman workspace as an evaluation channel. The machine fetched the workspace, collection and environment through the Postman API, created one sandbox customer, read the product catalog, scored one synthetic domain, ordered Target Discovery for the no-list case, and reconciled usage/orders.
+
+- Report: https://machinesignal.it/postman_private_team_workspace_sandbox_rehearsal_report_20260611.md
+- Summary JSON: https://machinesignal.it/postman_private_team_workspace_sandbox_rehearsal_summary_20260611.json
+- Result: ok=true, workspace_visibility=team, collection_item_count=28, post_calls_executed=3, checks_failed=0.
+- Safety: real_payment_executed=false, real_invoice_issued=false, external_contact_executed=false, human_outreach_executed=false, external_publication_executed=false, admin_endpoints_called=false, payment_endpoints_called=false.
+
 ## API Marketplace Draft Rehearsal NoWrite Probe - 2026-06-11
 
 A NoWrite marketplace rehearsal now proves that a machine can evaluate the generic API-directory and RapidAPI-style draft metadata, understand the product and test route, and see that publication, monetization, production keys, payments, invoices and outreach remain blocked.

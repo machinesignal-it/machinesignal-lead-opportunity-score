@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-11T14:24:12.5036830Z",
+    "generated_at":  "2026-06-11T14:46:28.5848878Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  95,
-    "checks_total":  343,
+    "resources_checked":  97,
+    "checks_total":  350,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -1153,6 +1153,41 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "postman_private_team_workspace_sandbox_rehearsal_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=2443"
+                   },
+                   {
+                       "name":  "postman_private_team_workspace_sandbox_rehearsal_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=Postman Private Team Workspace Sandbox Rehearsal"
+                   },
+                   {
+                       "name":  "postman_private_team_workspace_sandbox_rehearsal_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "postman_private_team_workspace_sandbox_rehearsal_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=182069"
+                   },
+                   {
+                       "name":  "postman_private_team_workspace_sandbox_rehearsal_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "postman_private_team_workspace_sandbox_rehearsal_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_postman_private_team_workspace_sandbox_rehearsal"
+                   },
+                   {
+                       "name":  "postman_private_team_workspace_sandbox_rehearsal_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "api_marketplace_draft_rehearsal_nowrite_probe_md_reachable",
                        "ok":  true,
                        "details":  "HTTP 200, bytes=16904"
@@ -1575,12 +1610,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=34666"
+                       "details":  "HTTP 200, bytes=34964"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Postman Private Team Workspace Setup JSON"
+                       "details":  "marker=Postman Private Team Workspace Sandbox Rehearsal JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -1590,12 +1625,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=14645"
+                       "details":  "HTTP 200, bytes=14939"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Postman-private-team-workspace-setup-json"
+                       "details":  "marker=Postman-private-team-workspace-sandbox-rehearsal-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -1605,12 +1640,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=21712"
+                       "details":  "HTTP 200, bytes=21965"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=postman_private_team_workspace_setup_summary_20260611.json"
+                       "details":  "marker=postman_private_team_workspace_sandbox_rehearsal_summary_20260611.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",
