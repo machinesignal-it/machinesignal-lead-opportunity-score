@@ -302,3 +302,7 @@ MCP Positive Verification Deep Analysis Probe Summary: a machine bought Deep Ana
 MCP Action Pack Deep Analysis Gate Probe: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_report_20260610.md
 MCP Action Pack Deep Analysis Gate Probe JSON: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json
 MCP Action Pack Deep Analysis Gate Probe Summary: a machine cannot buy Action Pack without a valid source_order_intent_id from Deep Analysis; live API returns action_pack_gate_failed and consumes no Action Pack credit; after accepted same-domain Deep Analysis, action_pack_gate_passed=true and exactly one Action Pack credit is consumed; real_payment_executed=false; external_contact_executed=false.
+
+MCP Full Chain Idempotency Probe: https://machinesignal.it/mcp_full_chain_idempotency_probe_report_20260611.md
+MCP Full Chain Idempotency Probe JSON: https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json
+MCP Full Chain Idempotency Probe Summary: a machine repeated Score, Deep Analysis and Action Pack with the same Idempotency-Key; score_duplicate_detected=true; deep_analysis_duplicate_detected=true; action_pack_duplicate_detected=true; final credits used were score=1, deep_analysis=1, action_pack=1; real_payment_executed=false; external_contact_executed=false.

@@ -558,4 +558,10 @@
   <url>
     <loc>https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json</loc>
   </url>
+  <url>
+    <loc>https://machinesignal.it/mcp_full_chain_idempotency_probe_report_20260611.md</loc>
+  </url>
+  <url>
+    <loc>https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json</loc>
+  </url>
 </urlset>

@@ -84,6 +84,8 @@ It performs only public GET requests. It does not create customers, consume cred
 | mcp_positive_verification_deep_analysis_probe_json | 200 | True | 5714 |
 | mcp_action_pack_deep_analysis_gate_probe_md | 200 | n/a | 3500 |
 | mcp_action_pack_deep_analysis_gate_probe_json | 200 | True | 6070 |
+| mcp_full_chain_idempotency_probe_md | 200 | n/a | 5575 |
+| mcp_full_chain_idempotency_probe_json | 200 | True | 8745 |
 | marketplace_api_directory_pack_md | 200 | n/a | 15553 |
 | marketplace_api_directory_pack_json | 200 | True | 63247 |
 | marketplace_publication_execution_pack_md | 200 | n/a | 14318 |
@@ -94,16 +96,16 @@ It performs only public GET requests. It does not create customers, consume cred
 | postman_workspace_draft | 200 | True | 9559 |
 | postman_private_workspace_checklist_md | 200 | n/a | 4368 |
 | postman_private_workspace_checklist_json | 200 | True | 5098 |
-| mcp_tool_manifest | 200 | True | 64934 |
-| well_known_mcp_tool_manifest | 200 | True | 64934 |
-| well_known_machine_discovery | 200 | True | 47662 |
-| llms | 200 | n/a | 28140 |
-| robots | 200 | n/a | 12000 |
-| sitemap | 200 | n/a | 19333 |
+| mcp_tool_manifest | 200 | True | 67258 |
+| well_known_mcp_tool_manifest | 200 | True | 67258 |
+| well_known_machine_discovery | 200 | True | 49986 |
+| llms | 200 | n/a | 28734 |
+| robots | 200 | n/a | 12230 |
+| sitemap | 200 | n/a | 19554 |
 | openapi | 200 | True | 60353 |
 | postman_public_collection | 200 | True | 27631 |
 | product_catalog | 200 | True | 12086 |
-| machine_onboarding | 200 | True | 71347 |
+| machine_onboarding | 200 | True | 73671 |
 
 ## Checks
 
@@ -301,6 +303,13 @@ It performs only public GET requests. It does not create customers, consume cred
 | mcp_action_pack_deep_analysis_gate_probe_json_json_valid | OK | json_valid=True |
 | mcp_action_pack_deep_analysis_gate_probe_json_contains_expected_marker | OK | marker=completed_mcp_action_pack_deep_analysis_gate_probe |
 | mcp_action_pack_deep_analysis_gate_probe_json_secret_scan | OK | public content has no secret-like token patterns |
+| mcp_full_chain_idempotency_probe_md_reachable | OK | HTTP 200, bytes=5575 |
+| mcp_full_chain_idempotency_probe_md_contains_expected_marker | OK | marker=MCP Full Chain Idempotency Probe |
+| mcp_full_chain_idempotency_probe_md_secret_scan | OK | public content has no secret-like token patterns |
+| mcp_full_chain_idempotency_probe_json_reachable | OK | HTTP 200, bytes=8745 |
+| mcp_full_chain_idempotency_probe_json_json_valid | OK | json_valid=True |
+| mcp_full_chain_idempotency_probe_json_contains_expected_marker | OK | marker=completed_mcp_full_chain_idempotency_probe |
+| mcp_full_chain_idempotency_probe_json_secret_scan | OK | public content has no secret-like token patterns |
 | marketplace_api_directory_pack_md_reachable | OK | HTTP 200, bytes=15553 |
 | marketplace_api_directory_pack_md_contains_expected_marker | OK | marker=Sandbox-Only External Publication Pack |
 | marketplace_api_directory_pack_md_secret_scan | OK | public content has no secret-like token patterns |
@@ -338,26 +347,26 @@ It performs only public GET requests. It does not create customers, consume cred
 | postman_private_workspace_checklist_json_json_valid | OK | json_valid=True |
 | postman_private_workspace_checklist_json_contains_expected_marker | OK | marker=blocked_actions |
 | postman_private_workspace_checklist_json_secret_scan | OK | public content has no secret-like token patterns |
-| mcp_tool_manifest_reachable | OK | HTTP 200, bytes=64934 |
+| mcp_tool_manifest_reachable | OK | HTTP 200, bytes=67258 |
 | mcp_tool_manifest_json_valid | OK | json_valid=True |
 | mcp_tool_manifest_contains_expected_marker | OK | marker=get_mcp_tool_registry_private_draft_review |
 | mcp_tool_manifest_secret_scan | OK | public content has no secret-like token patterns |
-| well_known_mcp_tool_manifest_reachable | OK | HTTP 200, bytes=64934 |
+| well_known_mcp_tool_manifest_reachable | OK | HTTP 200, bytes=67258 |
 | well_known_mcp_tool_manifest_json_valid | OK | json_valid=True |
 | well_known_mcp_tool_manifest_contains_expected_marker | OK | marker=get_mcp_tool_registry_private_draft_review |
 | well_known_mcp_tool_manifest_secret_scan | OK | public content has no secret-like token patterns |
-| well_known_machine_discovery_reachable | OK | HTTP 200, bytes=47662 |
+| well_known_machine_discovery_reachable | OK | HTTP 200, bytes=49986 |
 | well_known_machine_discovery_json_valid | OK | json_valid=True |
-| well_known_machine_discovery_contains_expected_marker | OK | marker=mcp_action_pack_deep_analysis_gate_probe_json |
+| well_known_machine_discovery_contains_expected_marker | OK | marker=mcp_full_chain_idempotency_probe_json |
 | well_known_machine_discovery_secret_scan | OK | public content has no secret-like token patterns |
-| llms_reachable | OK | HTTP 200, bytes=28140 |
-| llms_contains_expected_marker | OK | marker=MCP Action Pack Deep Analysis Gate Probe JSON |
+| llms_reachable | OK | HTTP 200, bytes=28734 |
+| llms_contains_expected_marker | OK | marker=MCP Full Chain Idempotency Probe JSON |
 | llms_secret_scan | OK | public content has no secret-like token patterns |
-| robots_reachable | OK | HTTP 200, bytes=12000 |
-| robots_contains_expected_marker | OK | marker=Mcp-action-pack-deep-analysis-gate-probe-json |
+| robots_reachable | OK | HTTP 200, bytes=12230 |
+| robots_contains_expected_marker | OK | marker=Mcp-full-chain-idempotency-probe-json |
 | robots_secret_scan | OK | public content has no secret-like token patterns |
-| sitemap_reachable | OK | HTTP 200, bytes=19333 |
-| sitemap_contains_expected_marker | OK | marker=mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json |
+| sitemap_reachable | OK | HTTP 200, bytes=19554 |
+| sitemap_contains_expected_marker | OK | marker=mcp_full_chain_idempotency_probe_summary_20260611.json |
 | sitemap_secret_scan | OK | public content has no secret-like token patterns |
 | openapi_reachable | OK | HTTP 200, bytes=60353 |
 | openapi_json_valid | OK | json_valid=True |
@@ -371,7 +380,7 @@ It performs only public GET requests. It does not create customers, consume cred
 | product_catalog_json_valid | OK | json_valid=True |
 | product_catalog_contains_expected_marker | OK | marker=action_pack |
 | product_catalog_secret_scan | OK | public content has no secret-like token patterns |
-| machine_onboarding_reachable | OK | HTTP 200, bytes=71347 |
+| machine_onboarding_reachable | OK | HTTP 200, bytes=73671 |
 | machine_onboarding_json_valid | OK | json_valid=True |
 | machine_onboarding_contains_expected_marker | OK | marker=NoWrite |
 | machine_onboarding_secret_scan | OK | public content has no secret-like token patterns |

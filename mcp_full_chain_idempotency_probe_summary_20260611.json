@@ -1,0 +1,227 @@
+{
+  "artifact": "mcp_full_chain_idempotency_probe",
+  "status": "completed_mcp_full_chain_idempotency_probe",
+  "ok": true,
+  "evidence_date": "2026-06-11",
+  "mode": "McpFullChainIdempotencyProbeWriteCapped",
+  "primary_customer_interface": "machine",
+  "max_post_calls_allowed": 8,
+  "post_calls_executed": 7,
+  "write_calls_executed": 7,
+  "domain": "idempotent-action-chain.test",
+  "score_request_id": "mcp-full-chain-idempotency-20260611075108-1781164268-score",
+  "score_duplicate_detected": true,
+  "deep_analysis_order_intent_id": "ord_52f1a0dd",
+  "deep_analysis_duplicate_detected": true,
+  "action_pack_order_intent_id": "ord_f526797d",
+  "action_pack_duplicate_detected": true,
+  "action_pack_gate_passed": true,
+  "score_credits_used_before": 0,
+  "score_credits_used_after": 1,
+  "deep_analysis_credits_used_before": 0,
+  "deep_analysis_credits_used_after": 1,
+  "action_pack_credits_used_before": 0,
+  "action_pack_credits_used_after": 1,
+  "real_payment_executed": false,
+  "external_contact_executed": false,
+  "real_invoice_issued": false,
+  "payment_test_created": false,
+  "external_publication_executed": false,
+  "human_outreach_executed": false,
+  "production_api_key_published": false,
+  "machine_decision": "full_chain_retries_are_idempotent",
+  "interpretation": "A buyer machine can retry Score, Deep Analysis and Action Pack with the same Idempotency-Key; the live API marks each retry as duplicate and consumes only one credit per actual unit.",
+  "recommended_next_step": "Keep this idempotency probe in the public monitor; next test should cover no-write marketplace/distribution readiness for machine discovery channels.",
+  "actions": [
+    {
+      "tool": "create_sandbox_customer",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "none"
+    },
+    {
+      "tool": "get_usage before",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "score_lead_opportunity first",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "score_lead_opportunity duplicate",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage after score retry",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent deep_analysis first",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent deep_analysis duplicate",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage after deep retry",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent action_pack first",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "create_purchase_intent action_pack duplicate",
+      "kind": "POST/write",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    },
+    {
+      "tool": "get_usage after action retry",
+      "kind": "GET/read",
+      "http_status": 200,
+      "ok": true,
+      "auth": "customer_api_key"
+    }
+  ],
+  "checks": [
+    {
+      "name": "mcp_initialize",
+      "ok": true,
+      "details": "{'name': 'machinesignal-local-mcp-adapter', 'version': '2026-06-04'}"
+    },
+    {
+      "name": "required_tools_present",
+      "ok": true,
+      "details": "tools=31; missing=[]"
+    },
+    {
+      "name": "sandbox_created",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "usage_before_read",
+      "ok": true,
+      "details": "HTTP 200; score=0; deep=0; action=0"
+    },
+    {
+      "name": "score_created",
+      "ok": true,
+      "details": "HTTP 200; score=52"
+    },
+    {
+      "name": "score_duplicate_detected",
+      "ok": true,
+      "details": "{'event_id': 'evt_0001', 'timestamp': '2026-06-11T07:51:10.052Z', 'customer_id': 'sandbox_146add1a_mq977tuy', 'product_code': 'score_pack_1k', 'request_id': 'mcp-full-chain-idempotency-20260611075108-1781164268-score', 'status': 'valid_output', 'reason': 'score_delivered', 'units_requested': 1, 'credits_consumed': 1, 'credits_remaining': 4, 'metadata': {'domain': 'idempotent-action-chain.test', 'decision': 'watchlist', 'opportunity_score': 52, 'confidence': 0.5}, 'duplicate_request': True}"
+    },
+    {
+      "name": "score_retry_consumes_one_credit_total",
+      "ok": true,
+      "details": "before=0; after_score_retry=1"
+    },
+    {
+      "name": "deep_analysis_created",
+      "ok": true,
+      "details": "HTTP 200; order_id=ord_52f1a0dd"
+    },
+    {
+      "name": "deep_analysis_ready_for_action_pack",
+      "ok": true,
+      "details": "type=deep_opportunity_analysis; status=deep_analysis_ready"
+    },
+    {
+      "name": "deep_analysis_duplicate_detected",
+      "ok": true,
+      "details": "{'event_id': 'evt_0002', 'timestamp': '2026-06-11T07:51:10.303Z', 'customer_id': 'sandbox_146add1a_mq977tuy', 'product_code': 'deep_analysis_pack_100', 'request_id': 'mcp-full-chain-idempotency-20260611075108-1781164268-deep-analysis', 'status': 'valid_output', 'reason': 'beta_order_intent_created', 'units_requested': 1, 'credits_consumed': 1, 'credits_remaining': 0, 'metadata': {'domain': 'idempotent-action-chain.test', 'product_code': 'deep_analysis', 'source_score_request_id': 'mcp-full-chain-idempotency-20260611075108-1781164268-score', 'source_order_intent_id': None, 'source_verification_order_intent_id': None, 'action_pack_gate': None, 'deep_analysis_verification_gate': None, 'real_payment_executed': False, 'external_contact_executed': False}, 'duplicate_request': True}"
+    },
+    {
+      "name": "deep_analysis_duplicate_returns_same_order",
+      "ok": true,
+      "details": "first=ord_52f1a0dd; duplicate=ord_52f1a0dd"
+    },
+    {
+      "name": "deep_analysis_retry_consumes_one_credit_total",
+      "ok": true,
+      "details": "before=0; after_deep_retry=1"
+    },
+    {
+      "name": "action_pack_created",
+      "ok": true,
+      "details": "HTTP 200; order_id=ord_f526797d; gate=True"
+    },
+    {
+      "name": "action_pack_duplicate_detected",
+      "ok": true,
+      "details": "{'event_id': 'evt_0003', 'timestamp': '2026-06-11T07:51:10.557Z', 'customer_id': 'sandbox_146add1a_mq977tuy', 'product_code': 'action_pack_25', 'request_id': 'mcp-full-chain-idempotency-20260611075108-1781164268-action-pack', 'status': 'valid_output', 'reason': 'beta_order_intent_created', 'units_requested': 1, 'credits_consumed': 1, 'credits_remaining': 0, 'metadata': {'domain': 'idempotent-action-chain.test', 'product_code': 'action_pack', 'source_score_request_id': 'mcp-full-chain-idempotency-20260611075108-1781164268-score', 'source_order_intent_id': 'ord_52f1a0dd', 'source_verification_order_intent_id': None, 'action_pack_gate': {'gate_passed': True, 'source_order_intent_id': 'ord_52f1a0dd', 'source_event_id': 'evt_0002', 'source_delivery_id': 'del_2007a519', 'source_deep_analysis_version': 'domain_specific_commercial_evidence_v1'}, 'deep_analysis_verification_gate': None, 'real_payment_executed': False, 'external_contact_executed': False}, 'duplicate_request': True}"
+    },
+    {
+      "name": "action_pack_duplicate_returns_same_order",
+      "ok": true,
+      "details": "first=ord_f526797d; duplicate=ord_f526797d"
+    },
+    {
+      "name": "usage_after_read",
+      "ok": true,
+      "details": "HTTP 200; score=1; deep=1; action=1"
+    },
+    {
+      "name": "score_final_credit_delta_one",
+      "ok": true,
+      "details": "before=0; after=1"
+    },
+    {
+      "name": "deep_final_credit_delta_one",
+      "ok": true,
+      "details": "before=0; after=1"
+    },
+    {
+      "name": "action_final_credit_delta_one",
+      "ok": true,
+      "details": "before=0; after=1"
+    },
+    {
+      "name": "post_budget_respected",
+      "ok": true,
+      "details": "post_calls=7; max=8"
+    },
+    {
+      "name": "no_real_payment_or_external_contact",
+      "ok": true,
+      "details": "payment=False; contact=False"
+    }
+  ],
+  "usage_summary": {
+    "http_status": 200,
+    "ledger_backend": "durable_object",
+    "real_payment_executed": false,
+    "external_contact_executed": false
+  }
+}

@@ -736,6 +736,33 @@ assert.equal(deepAnalysisPayload.delivery.recommended_next_step.product_code, "a
 assert.ok(deepAnalysisPayload.delivery.recommended_next_step.condition.includes("sector fit"));
 assert.equal(deepAnalysisPayload.delivery.next_machine_call.endpoint, "/v1/purchase-intent");
 
+const duplicateDeepAnalysisResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "deep_analysis",
+      domain: "strong-clinic.it",
+      sector_hint: "dentist",
+      area: "Lombardy",
+      commercial_objective:
+        "Find dental clinic websites that deserve CRM-ready digital opportunity action",
+      source_score_request_id: "test-score-strong-001",
+      reason: "Repeated Deep Analysis request with same idempotency key"
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key",
+      "idempotency-key": "test-deep-analysis-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(duplicateDeepAnalysisResponse.status, 200);
+const duplicateDeepAnalysisPayload = await duplicateDeepAnalysisResponse.json();
+assert.equal(duplicateDeepAnalysisPayload.order_intent_id, deepAnalysisPayload.order_intent_id);
+assert.equal(duplicateDeepAnalysisPayload.order.duplicate_request, true);
+assert.equal(duplicateDeepAnalysisPayload.usage.current_event.duplicate_request, true);
+
 const actionPackWithoutDeepSourceResponse = await handleRequest(
   new Request("http://localhost/v1/purchase-intent", {
     method: "POST",
@@ -867,6 +894,31 @@ assert.ok(actionPackPayload.delivery.approval_gate.blocked_without_approval.incl
 assert.ok(actionPackPayload.delivery.next_api_calls.some((item) => item.endpoint === "/v1/orders/{order_intent_id}"));
 assert.ok(actionPackPayload.delivery.agent_instructions.includes("Do not contact the target automatically."));
 assert.ok(actionPackPayload.delivery.stop_rules.length >= 3);
+
+const duplicateActionPackResponse = await handleRequest(
+  new Request("http://localhost/v1/purchase-intent", {
+    method: "POST",
+    body: JSON.stringify({
+      product_code: "action_pack",
+      domain: "strong-clinic.it",
+      source_score_request_id: "test-score-strong-001",
+      source_order_intent_id: deepAnalysisPayload.order_intent_id,
+      reason: "Repeated Action Pack request with same idempotency key",
+      max_budget_eur: 10
+    }),
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": "test-key",
+      "idempotency-key": "test-action-pack-001"
+    }
+  }),
+  { MACHINESIGNAL_API_KEY: "test-key" }
+);
+assert.equal(duplicateActionPackResponse.status, 200);
+const duplicateActionPackPayload = await duplicateActionPackResponse.json();
+assert.equal(duplicateActionPackPayload.order_intent_id, actionPackPayload.order_intent_id);
+assert.equal(duplicateActionPackPayload.order.duplicate_request, true);
+assert.equal(duplicateActionPackPayload.usage.current_event.duplicate_request, true);
 
 const domainEnrichmentResponse = await handleRequest(
   new Request("http://localhost/v1/purchase-intent", {

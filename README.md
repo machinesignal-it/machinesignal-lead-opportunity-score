@@ -119,6 +119,8 @@ Public discovery starts here:
 - MCP Positive Verification Deep Analysis Probe JSON: https://machinesignal.it/mcp_positive_verification_deep_analysis_probe_summary_20260610.json
 - MCP Action Pack Deep Analysis Gate Probe: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_report_20260610.md
 - MCP Action Pack Deep Analysis Gate Probe JSON: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json
+- MCP Full Chain Idempotency Probe: https://machinesignal.it/mcp_full_chain_idempotency_probe_report_20260611.md
+- MCP Full Chain Idempotency Probe JSON: https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json
 - Sandbox-Only External Publication Pack: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.md
 - Sandbox-Only External Publication Pack JSON: https://machinesignal.it/sandbox_only_external_publication_pack_20260607.json
 - External Sandbox Publication Drafts: https://machinesignal.it/external_sandbox_publication_drafts_20260607.md
@@ -696,3 +698,12 @@ A write-capped MCP probe now proves the next spend gate: a buyer machine cannot 
 - Summary JSON: https://machinesignal.it/mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json
 - Result: blocked_action_pack_error=action_pack_gate_failed, action_pack_gate_passed=true, action_pack_credits_used_before=0, action_pack_credits_used_after_blocked_attempt=0, action_pack_credits_used_after_valid_purchase=1.
 - Safety: post_calls_executed=5, write_calls_executed=5, real_payment_executed=false, external_contact_executed=false, external_publication_executed=false.
+
+## MCP Full Chain Idempotency Probe - 2026-06-11
+
+A write-capped MCP probe now proves retry safety across the machine purchase ladder. A buyer machine repeats Score, Deep Analysis and Action Pack with the same `Idempotency-Key`; the API marks each retry as duplicate and consumes only one credit per actual unit.
+
+- Report: https://machinesignal.it/mcp_full_chain_idempotency_probe_report_20260611.md
+- Summary JSON: https://machinesignal.it/mcp_full_chain_idempotency_probe_summary_20260611.json
+- Result: score_duplicate_detected=true, deep_analysis_duplicate_detected=true, action_pack_duplicate_detected=true, score_credits_used_after=1, deep_analysis_credits_used_after=1, action_pack_credits_used_after=1.
+- Safety: post_calls_executed=7, write_calls_executed=7, real_payment_executed=false, external_contact_executed=false, external_publication_executed=false.

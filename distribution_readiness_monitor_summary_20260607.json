@@ -1,7 +1,7 @@
 {
     "monitor_name":  "machinesignal_distribution_readiness_monitor",
     "mode":  "NoWrite",
-    "generated_at":  "2026-06-10T16:52:51.0784982Z",
+    "generated_at":  "2026-06-11T07:55:57.3905291Z",
     "public_site":  "https://machinesignal.it",
     "ok":  true,
     "status":  "ready_for_distribution_review",
@@ -10,8 +10,8 @@
     "post_calls_executed":  0,
     "real_payment_executed":  false,
     "external_contact_executed":  false,
-    "resources_checked":  75,
-    "checks_total":  273,
+    "resources_checked":  77,
+    "checks_total":  280,
     "checks_failed":  0,
     "failed_checks":  [
 
@@ -978,6 +978,41 @@
                        "details":  "public content has no secret-like token patterns"
                    },
                    {
+                       "name":  "mcp_full_chain_idempotency_probe_md_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=5575"
+                   },
+                   {
+                       "name":  "mcp_full_chain_idempotency_probe_md_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=MCP Full Chain Idempotency Probe"
+                   },
+                   {
+                       "name":  "mcp_full_chain_idempotency_probe_md_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
+                       "name":  "mcp_full_chain_idempotency_probe_json_reachable",
+                       "ok":  true,
+                       "details":  "HTTP 200, bytes=8745"
+                   },
+                   {
+                       "name":  "mcp_full_chain_idempotency_probe_json_json_valid",
+                       "ok":  true,
+                       "details":  "json_valid=True"
+                   },
+                   {
+                       "name":  "mcp_full_chain_idempotency_probe_json_contains_expected_marker",
+                       "ok":  true,
+                       "details":  "marker=completed_mcp_full_chain_idempotency_probe"
+                   },
+                   {
+                       "name":  "mcp_full_chain_idempotency_probe_json_secret_scan",
+                       "ok":  true,
+                       "details":  "public content has no secret-like token patterns"
+                   },
+                   {
                        "name":  "marketplace_api_directory_pack_md_reachable",
                        "ok":  true,
                        "details":  "HTTP 200, bytes=15553"
@@ -1165,7 +1200,7 @@
                    {
                        "name":  "mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=64934"
+                       "details":  "HTTP 200, bytes=67258"
                    },
                    {
                        "name":  "mcp_tool_manifest_json_valid",
@@ -1185,7 +1220,7 @@
                    {
                        "name":  "well_known_mcp_tool_manifest_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=64934"
+                       "details":  "HTTP 200, bytes=67258"
                    },
                    {
                        "name":  "well_known_mcp_tool_manifest_json_valid",
@@ -1205,7 +1240,7 @@
                    {
                        "name":  "well_known_machine_discovery_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=47662"
+                       "details":  "HTTP 200, bytes=49986"
                    },
                    {
                        "name":  "well_known_machine_discovery_json_valid",
@@ -1215,7 +1250,7 @@
                    {
                        "name":  "well_known_machine_discovery_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=mcp_action_pack_deep_analysis_gate_probe_json"
+                       "details":  "marker=mcp_full_chain_idempotency_probe_json"
                    },
                    {
                        "name":  "well_known_machine_discovery_secret_scan",
@@ -1225,12 +1260,12 @@
                    {
                        "name":  "llms_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=28140"
+                       "details":  "HTTP 200, bytes=28734"
                    },
                    {
                        "name":  "llms_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=MCP Action Pack Deep Analysis Gate Probe JSON"
+                       "details":  "marker=MCP Full Chain Idempotency Probe JSON"
                    },
                    {
                        "name":  "llms_secret_scan",
@@ -1240,12 +1275,12 @@
                    {
                        "name":  "robots_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=12000"
+                       "details":  "HTTP 200, bytes=12230"
                    },
                    {
                        "name":  "robots_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=Mcp-action-pack-deep-analysis-gate-probe-json"
+                       "details":  "marker=Mcp-full-chain-idempotency-probe-json"
                    },
                    {
                        "name":  "robots_secret_scan",
@@ -1255,12 +1290,12 @@
                    {
                        "name":  "sitemap_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=19333"
+                       "details":  "HTTP 200, bytes=19554"
                    },
                    {
                        "name":  "sitemap_contains_expected_marker",
                        "ok":  true,
-                       "details":  "marker=mcp_action_pack_deep_analysis_gate_probe_summary_20260610.json"
+                       "details":  "marker=mcp_full_chain_idempotency_probe_summary_20260611.json"
                    },
                    {
                        "name":  "sitemap_secret_scan",
@@ -1330,7 +1365,7 @@
                    {
                        "name":  "machine_onboarding_reachable",
                        "ok":  true,
-                       "details":  "HTTP 200, bytes=71347"
+                       "details":  "HTTP 200, bytes=73671"
                    },
                    {
                        "name":  "machine_onboarding_json_valid",
