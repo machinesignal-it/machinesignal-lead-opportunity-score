@@ -1,0 +1,592 @@
+{
+  "artifact": "github_repo_discoverability_probe",
+  "version": "2026-06-12-github-first",
+  "status": "completed_github_first_discoverability_probe",
+  "ok": true,
+  "mode": "GitHubRawReadOnlyNoWriteNoPostNoPaymentNoPersonalData",
+  "primary_customer_interface": "machine",
+  "simulated_machine_starting_point": "GitHub repository raw README and machine entrypoint files",
+  "files_checked": 9,
+  "github_raw_base": "https://raw.githubusercontent.com/machinesignal-it/machinesignal-lead-opportunity-score/main",
+  "checks_total": 113,
+  "checks_failed": 0,
+  "safety_counters": {
+    "external_publication_executed": 0,
+    "external_send_executed": 0,
+    "post_calls_executed": 0,
+    "write_calls_executed": 0,
+    "payment_executed": 0,
+    "credits_consumed": 0,
+    "personal_data_used": 0
+  },
+  "interpretation": "A machine can start from GitHub raw repository files, find the machine-first entrypoint, understand product routing, understand MCP/local-adapter status, identify read-only public tools versus blocked write tools, and preserve NoPublish/NoSend/NoPayment/NoPersonalData boundaries.",
+  "recommended_next_step": "Prepare an owner-approved public-safe GitHub repository metadata proposal, or run an agent go/no-go review before changing public GitHub description, topics or external distribution.",
+  "checks": [
+    {
+      "name": "github_raw_reachable_README.md",
+      "ok": true,
+      "details": "HTTP 200, bytes=67250"
+    },
+    {
+      "name": "github_raw_reachable_MACHINE_AGENT_ENTRYPOINT.md",
+      "ok": true,
+      "details": "HTTP 200, bytes=4048"
+    },
+    {
+      "name": "github_raw_reachable_MACHINE_AGENT_ENTRYPOINT.json",
+      "ok": true,
+      "details": "HTTP 200, bytes=4391"
+    },
+    {
+      "name": "github_raw_reachable_private-evaluator-pack_product_selector_contract.json",
+      "ok": true,
+      "details": "HTTP 200, bytes=7734"
+    },
+    {
+      "name": "github_raw_reachable_private-evaluator-pack_mcp_channel_entrypoint_draft_nopublish.json",
+      "ok": true,
+      "details": "HTTP 200, bytes=8792"
+    },
+    {
+      "name": "github_raw_reachable_private-evaluator-pack_channel_selection_matrix_20260612.json",
+      "ok": true,
+      "details": "HTTP 200, bytes=8007"
+    },
+    {
+      "name": "github_raw_reachable_mcp-tool-manifest.json",
+      "ok": true,
+      "details": "HTTP 200, bytes=130283"
+    },
+    {
+      "name": "github_raw_reachable_MCP_TOOL_CONTRACT.md",
+      "ok": true,
+      "details": "HTTP 200, bytes=6446"
+    },
+    {
+      "name": "github_raw_reachable_mcp_adapter_README.md",
+      "ok": true,
+      "details": "HTTP 200, bytes=2552"
+    },
+    {
+      "name": "json_valid_MACHINE_AGENT_ENTRYPOINT.json",
+      "ok": true,
+      "details": "valid JSON"
+    },
+    {
+      "name": "json_valid_private-evaluator-pack_product_selector_contract.json",
+      "ok": true,
+      "details": "valid JSON"
+    },
+    {
+      "name": "json_valid_private-evaluator-pack_mcp_channel_entrypoint_draft_nopublish.json",
+      "ok": true,
+      "details": "valid JSON"
+    },
+    {
+      "name": "json_valid_private-evaluator-pack_channel_selection_matrix_20260612.json",
+      "ok": true,
+      "details": "valid JSON"
+    },
+    {
+      "name": "json_valid_mcp-tool-manifest.json",
+      "ok": true,
+      "details": "valid JSON"
+    },
+    {
+      "name": "readme_has_machine_reader_quick_start",
+      "ok": true,
+      "details": "README exposes a machine-first section"
+    },
+    {
+      "name": "readme_links_MACHINE_AGENT_ENTRYPOINT.md",
+      "ok": true,
+      "details": "MACHINE_AGENT_ENTRYPOINT.md"
+    },
+    {
+      "name": "readme_links_MACHINE_AGENT_ENTRYPOINT.json",
+      "ok": true,
+      "details": "MACHINE_AGENT_ENTRYPOINT.json"
+    },
+    {
+      "name": "readme_links_private-evaluator-pack_product_selector_contract.json",
+      "ok": true,
+      "details": "private-evaluator-pack/product_selector_contract.json"
+    },
+    {
+      "name": "readme_links_private-evaluator-pack_mcp_channel_entrypoint_draft_nopublish.json",
+      "ok": true,
+      "details": "private-evaluator-pack/mcp_channel_entrypoint_draft_nopublish.json"
+    },
+    {
+      "name": "entrypoint_json_status_is_non_live_offer",
+      "ok": true,
+      "details": "status=public_github_documentation_draft_not_live_offer"
+    },
+    {
+      "name": "entrypoint_json_business_rule_machine_not_human",
+      "ok": true,
+      "details": "business_rule=sell_to_machines_not_humans"
+    },
+    {
+      "name": "entrypoint_safety_external_send_allowed",
+      "ok": true,
+      "details": "external_send_allowed=false"
+    },
+    {
+      "name": "entrypoint_safety_human_outreach_allowed",
+      "ok": true,
+      "details": "human_outreach_allowed=false"
+    },
+    {
+      "name": "entrypoint_safety_marketplace_publication_allowed",
+      "ok": true,
+      "details": "marketplace_publication_allowed=false"
+    },
+    {
+      "name": "entrypoint_safety_mcp_registry_submission_allowed",
+      "ok": true,
+      "details": "mcp_registry_submission_allowed=false"
+    },
+    {
+      "name": "entrypoint_safety_hosted_public_mcp_live",
+      "ok": true,
+      "details": "hosted_public_mcp_live=false"
+    },
+    {
+      "name": "entrypoint_safety_live_payment_allowed",
+      "ok": true,
+      "details": "live_payment_allowed=false"
+    },
+    {
+      "name": "entrypoint_safety_invoice_allowed",
+      "ok": true,
+      "details": "invoice_allowed=false"
+    },
+    {
+      "name": "entrypoint_safety_subscription_allowed",
+      "ok": true,
+      "details": "subscription_allowed=false"
+    },
+    {
+      "name": "entrypoint_safety_production_key_distribution_allowed",
+      "ok": true,
+      "details": "production_key_distribution_allowed=false"
+    },
+    {
+      "name": "entrypoint_safety_personal_data_allowed",
+      "ok": true,
+      "details": "personal_data_allowed=false"
+    },
+    {
+      "name": "entrypoint_safety_real_customer_data_allowed",
+      "ok": true,
+      "details": "real_customer_data_allowed=false"
+    },
+    {
+      "name": "entrypoint_safety_real_lead_list_allowed",
+      "ok": true,
+      "details": "real_lead_list_allowed=false"
+    },
+    {
+      "name": "entrypoint_read_order_includes_product-catalog.json",
+      "ok": true,
+      "details": "product-catalog.json"
+    },
+    {
+      "name": "entrypoint_read_order_includes_machine-onboarding.json",
+      "ok": true,
+      "details": "machine-onboarding.json"
+    },
+    {
+      "name": "entrypoint_read_order_includes_openapi.json",
+      "ok": true,
+      "details": "openapi.json"
+    },
+    {
+      "name": "entrypoint_read_order_includes_mcp-tool-manifest.json",
+      "ok": true,
+      "details": "mcp-tool-manifest.json"
+    },
+    {
+      "name": "entrypoint_read_order_includes_MCP_TOOL_CONTRACT.md",
+      "ok": true,
+      "details": "MCP_TOOL_CONTRACT.md"
+    },
+    {
+      "name": "entrypoint_read_order_includes_mcp_adapter_README.md",
+      "ok": true,
+      "details": "mcp_adapter/README.md"
+    },
+    {
+      "name": "entrypoint_read_order_includes_private-evaluator-pack_product_selector_contract.json",
+      "ok": true,
+      "details": "private-evaluator-pack/product_selector_contract.json"
+    },
+    {
+      "name": "entrypoint_read_order_includes_private-evaluator-pack_mcp_channel_entrypoint_draft_nopublish.json",
+      "ok": true,
+      "details": "private-evaluator-pack/mcp_channel_entrypoint_draft_nopublish.json"
+    },
+    {
+      "name": "entrypoint_product_route_no_starting_list",
+      "ok": true,
+      "details": "no_starting_list=>target_discovery_pack_250"
+    },
+    {
+      "name": "entrypoint_product_route_existing_domain_or_company_list",
+      "ok": true,
+      "details": "existing_domain_or_company_list=>score_pack_1k"
+    },
+    {
+      "name": "entrypoint_product_route_company_names_without_reliable_domains",
+      "ok": true,
+      "details": "company_names_without_reliable_domains=>domain_enrichment_pack_100"
+    },
+    {
+      "name": "entrypoint_product_route_score_gte_75_and_confidence_gte_0_75",
+      "ok": true,
+      "details": "score_gte_75_and_confidence_gte_0_75=>deep_analysis_pack_100"
+    },
+    {
+      "name": "entrypoint_product_route_deep_analysis_gate_confirmed",
+      "ok": true,
+      "details": "deep_analysis_gate_confirmed=>action_pack_25"
+    },
+    {
+      "name": "product_selector_status_is_simulated_not_live",
+      "ok": true,
+      "details": "status=machine_readable_simulated_pricing_not_live_offer"
+    },
+    {
+      "name": "product_selector_global_rule_prices_are_simulated",
+      "ok": true,
+      "details": "prices_are_simulated=true"
+    },
+    {
+      "name": "product_selector_global_rule_live_checkout_enabled",
+      "ok": true,
+      "details": "live_checkout_enabled=false"
+    },
+    {
+      "name": "product_selector_global_rule_real_payment_allowed",
+      "ok": true,
+      "details": "real_payment_allowed=false"
+    },
+    {
+      "name": "product_selector_global_rule_invoice_allowed",
+      "ok": true,
+      "details": "invoice_allowed=false"
+    },
+    {
+      "name": "product_selector_global_rule_credit_consumption_allowed",
+      "ok": true,
+      "details": "credit_consumption_allowed=false"
+    },
+    {
+      "name": "product_selector_global_rule_post_execution_allowed_in_this_pack",
+      "ok": true,
+      "details": "post_execution_allowed_in_this_pack=false"
+    },
+    {
+      "name": "product_selector_global_rule_write_execution_allowed_in_this_pack",
+      "ok": true,
+      "details": "write_execution_allowed_in_this_pack=false"
+    },
+    {
+      "name": "product_selector_global_rule_personal_data_allowed",
+      "ok": true,
+      "details": "personal_data_allowed=false"
+    },
+    {
+      "name": "product_selector_global_rule_real_lead_data_allowed",
+      "ok": true,
+      "details": "real_lead_data_allowed=false"
+    },
+    {
+      "name": "product_selector_has_target_discovery_pack_250",
+      "ok": true,
+      "details": "target_discovery_pack_250"
+    },
+    {
+      "name": "product_selector_price_target_discovery_pack_250",
+      "ok": true,
+      "details": "price=149"
+    },
+    {
+      "name": "product_selector_output_clear_target_discovery_pack_250",
+      "ok": true,
+      "details": "250 coherent synthetic/evaluator targets if pre-check passes; otherwise no activation and suggested alternatives."
+    },
+    {
+      "name": "product_selector_has_score_pack_1k",
+      "ok": true,
+      "details": "score_pack_1k"
+    },
+    {
+      "name": "product_selector_price_score_pack_1k",
+      "ok": true,
+      "details": "price=99"
+    },
+    {
+      "name": "product_selector_output_clear_score_pack_1k",
+      "ok": true,
+      "details": "1000 valid scores with opportunity_score, confidence, decision, spend_policy, reason, priority and next_purchase."
+    },
+    {
+      "name": "product_selector_has_domain_enrichment_pack_100",
+      "ok": true,
+      "details": "domain_enrichment_pack_100"
+    },
+    {
+      "name": "product_selector_price_domain_enrichment_pack_100",
+      "ok": true,
+      "details": "price=149"
+    },
+    {
+      "name": "product_selector_output_clear_domain_enrichment_pack_100",
+      "ok": true,
+      "details": "100 completed domain-enrichment decisions with status, confidence, candidate domain and reason."
+    },
+    {
+      "name": "product_selector_has_deep_analysis_pack_100",
+      "ok": true,
+      "details": "deep_analysis_pack_100"
+    },
+    {
+      "name": "product_selector_price_deep_analysis_pack_100",
+      "ok": true,
+      "details": "price=299"
+    },
+    {
+      "name": "product_selector_output_clear_deep_analysis_pack_100",
+      "ok": true,
+      "details": "100 valid Deep Analysis outputs with evidence, decision matrix, action gate, stop rules and next_machine_call."
+    },
+    {
+      "name": "product_selector_has_action_pack_25",
+      "ok": true,
+      "details": "action_pack_25"
+    },
+    {
+      "name": "product_selector_price_action_pack_25",
+      "ok": true,
+      "details": "price=399"
+    },
+    {
+      "name": "product_selector_output_clear_action_pack_25",
+      "ok": true,
+      "details": "25 CRM/workflow payloads with record patch, task, webhook event, agent instruction, approval gate and compliance guardrail."
+    },
+    {
+      "name": "target_discovery_requires_objective_and_250",
+      "ok": true,
+      "details": "Target Discovery requires objective and exactly 250 requested targets"
+    },
+    {
+      "name": "score_pack_tracks_valid_credit_rule",
+      "ok": true,
+      "details": "Score Pack includes 1000 valid scores; invalid or duplicate records do not consume valid score credits"
+    },
+    {
+      "name": "deep_analysis_thresholds_clear",
+      "ok": true,
+      "details": "Deep Analysis threshold score>=75 and confidence>=0.75"
+    },
+    {
+      "name": "action_pack_deep_gate_clear",
+      "ok": true,
+      "details": "Action Pack only after confirmed Deep Analysis gate"
+    },
+    {
+      "name": "mcp_channel_status_is_nopublish_nowrite",
+      "ok": true,
+      "details": "status=draft_nopublish_nosend_nowrite_simulation_only"
+    },
+    {
+      "name": "mcp_channel_business_rule_machine_not_human",
+      "ok": true,
+      "details": "business_rule=sell_to_machines_not_humans"
+    },
+    {
+      "name": "mcp_channel_hosted_not_live",
+      "ok": true,
+      "details": "public hosted MCP is not live"
+    },
+    {
+      "name": "mcp_channel_local_adapter_available",
+      "ok": true,
+      "details": "local stdio adapter available"
+    },
+    {
+      "name": "mcp_channel_registry_submission_blocked",
+      "ok": true,
+      "details": "registry submission blocked"
+    },
+    {
+      "name": "mcp_channel_blocks_mcp_registry_submission",
+      "ok": true,
+      "details": "mcp_registry_submission"
+    },
+    {
+      "name": "mcp_channel_blocks_hosted_mcp_launch",
+      "ok": true,
+      "details": "hosted_mcp_launch"
+    },
+    {
+      "name": "mcp_channel_blocks_public_marketplace_publication",
+      "ok": true,
+      "details": "public_marketplace_publication"
+    },
+    {
+      "name": "mcp_channel_blocks_external_send",
+      "ok": true,
+      "details": "external_send"
+    },
+    {
+      "name": "mcp_channel_blocks_human_outreach",
+      "ok": true,
+      "details": "human_outreach"
+    },
+    {
+      "name": "mcp_channel_blocks_live_payment",
+      "ok": true,
+      "details": "live_payment"
+    },
+    {
+      "name": "mcp_channel_blocks_invoice",
+      "ok": true,
+      "details": "invoice"
+    },
+    {
+      "name": "mcp_channel_blocks_subscription",
+      "ok": true,
+      "details": "subscription"
+    },
+    {
+      "name": "mcp_channel_blocks_sandbox_customer_creation_in_this_probe",
+      "ok": true,
+      "details": "sandbox_customer_creation_in_this_probe"
+    },
+    {
+      "name": "mcp_channel_blocks_score_call_execution_in_this_probe",
+      "ok": true,
+      "details": "score_call_execution_in_this_probe"
+    },
+    {
+      "name": "mcp_channel_blocks_ledger_write",
+      "ok": true,
+      "details": "ledger_write"
+    },
+    {
+      "name": "mcp_channel_blocks_credit_consumption",
+      "ok": true,
+      "details": "credit_consumption"
+    },
+    {
+      "name": "mcp_channel_blocks_personal_data_processing",
+      "ok": true,
+      "details": "personal_data_processing"
+    },
+    {
+      "name": "channel_matrix_primary_mcp_companion_github",
+      "ok": true,
+      "details": "primary=mcp_tool_registry_draft, companion=github_machine_docs"
+    },
+    {
+      "name": "channel_matrix_external_publication_blocked",
+      "ok": true,
+      "details": "external publication and writes are blocked"
+    },
+    {
+      "name": "mcp_manifest_has_read_only_public_tools",
+      "ok": true,
+      "details": "read_only_public_tools=20"
+    },
+    {
+      "name": "mcp_manifest_has_write_tool_create_sandbox_customer",
+      "ok": true,
+      "details": "create_sandbox_customer method=POST"
+    },
+    {
+      "name": "mcp_manifest_has_write_tool_score_lead_opportunity",
+      "ok": true,
+      "details": "score_lead_opportunity method=POST"
+    },
+    {
+      "name": "mcp_manifest_has_write_tool_create_purchase_intent",
+      "ok": true,
+      "details": "create_purchase_intent method=POST"
+    },
+    {
+      "name": "mcp_manifest_has_write_tool_create_payment_test_intent",
+      "ok": true,
+      "details": "create_payment_test_intent method=POST"
+    },
+    {
+      "name": "mcp_manifest_hosted_public_mcp_not_live",
+      "ok": true,
+      "details": "public_mcp_server_live=false"
+    },
+    {
+      "name": "mcp_manifest_local_adapter_available",
+      "ok": true,
+      "details": "local_adapter_status=available_in_github_repo"
+    },
+    {
+      "name": "mcp_contract_states_hosted_not_live",
+      "ok": true,
+      "details": "MCP contract clearly says hosted MCP is not live"
+    },
+    {
+      "name": "mcp_contract_states_no_payment_invoice_outreach",
+      "ok": true,
+      "details": "MCP contract states payment, invoice and external target blockers"
+    },
+    {
+      "name": "mcp_adapter_readme_states_local_and_no_credit_validation",
+      "ok": true,
+      "details": "MCP adapter README is clear for a local machine client"
+    },
+    {
+      "name": "machine_entrypoint_md_plain_language",
+      "ok": true,
+      "details": "Markdown entrypoint is readable and machine-first"
+    },
+    {
+      "name": "probe_counter_external_publication_executed_zero",
+      "ok": true,
+      "details": "external_publication_executed=0"
+    },
+    {
+      "name": "probe_counter_external_send_executed_zero",
+      "ok": true,
+      "details": "external_send_executed=0"
+    },
+    {
+      "name": "probe_counter_post_calls_executed_zero",
+      "ok": true,
+      "details": "post_calls_executed=0"
+    },
+    {
+      "name": "probe_counter_write_calls_executed_zero",
+      "ok": true,
+      "details": "write_calls_executed=0"
+    },
+    {
+      "name": "probe_counter_payment_executed_zero",
+      "ok": true,
+      "details": "payment_executed=0"
+    },
+    {
+      "name": "probe_counter_credits_consumed_zero",
+      "ok": true,
+      "details": "credits_consumed=0"
+    },
+    {
+      "name": "probe_counter_personal_data_used_zero",
+      "ok": true,
+      "details": "personal_data_used=0"
+    }
+  ],
+  "failed_checks": []
+}
