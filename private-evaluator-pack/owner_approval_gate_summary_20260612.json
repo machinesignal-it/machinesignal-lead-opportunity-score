@@ -1,0 +1,84 @@
+{
+  "artifact": "machinesignal_owner_approval_gate_summary",
+  "date": "2026-06-12",
+  "decision": "GO_controlled",
+  "approved_state": "externally_presentable_draft_nosend_nowrite_nopayment_nopersonaldata",
+  "not_a_launch": true,
+  "not_marketplace_publication": true,
+  "not_external_invitation": true,
+  "not_live_monetization": true,
+  "evidence": {
+    "private_evaluator_pack_validation": {
+      "checks_total": 37,
+      "checks_failed": 0
+    },
+    "machine_buyer_replay": {
+      "checks_total": 7,
+      "checks_failed": 0
+    },
+    "safety_state": {
+      "post_calls_executed": 0,
+      "write_calls_executed": 0,
+      "credits_consumed": 0,
+      "payment_executed": false,
+      "invoice_issued": false,
+      "personal_data_used": false
+    }
+  },
+  "agent_decisions": [
+    {
+      "agent_role": "Machine Buyer Simulation",
+      "decision": "GO",
+      "condition": "Add a single machine entrypoint and make thresholds clearer."
+    },
+    {
+      "agent_role": "Provider Policy & Security",
+      "decision": "GO_internal_draft_only",
+      "condition": "No secrets, no external send, no production keys, rate limits and kill switch needed before real access."
+    },
+    {
+      "agent_role": "Commercial/API Product",
+      "decision": "GO_controlled",
+      "condition": "Add a machine-readable product selector contract before monetization."
+    },
+    {
+      "agent_role": "Compliance/Admin/Legal/Finance",
+      "decision": "GO_conditional",
+      "condition": "No PIVA, checkout, invoice, payment, data, or external send for this test."
+    },
+    {
+      "agent_role": "Orchestrator/HR",
+      "decision": "GO_controlled",
+      "condition": "Prepare entrypoint and run blind machine entrypoint probe."
+    }
+  ],
+  "absolute_blocks": [
+    "external_send",
+    "human_outreach",
+    "marketplace_publication",
+    "api_directory_publication",
+    "live_payment",
+    "invoice",
+    "subscription",
+    "piva_activation_for_this_test",
+    "production_api_keys",
+    "order_creation",
+    "ledger_write",
+    "credit_consumption",
+    "personal_data",
+    "real_customer_data",
+    "real_lead_data",
+    "scraping_or_contact_harvesting",
+    "roi_guarantee_claim",
+    "certified_compliance_claim"
+  ],
+  "next_allowed_action": "run_blind_machine_entrypoint_probe",
+  "requires_new_gate_before": [
+    "any_external_send",
+    "any_marketplace_submission",
+    "any_live_billing",
+    "any_production_key_distribution",
+    "any_real_customer_data_processing"
+  ]
+}
+

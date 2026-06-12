@@ -1,0 +1,53 @@
+{
+  "artifact": "machinesignal_blind_machine_entrypoint_probe",
+  "generated_at": "2026-06-12T10:21:19.332Z",
+  "ok": true,
+  "checks_total": 10,
+  "checks_failed": 0,
+  "failures": [],
+  "starting_input": "private_evaluator_entrypoint.json_only",
+  "machine_decision": {
+    "explanation": "MachineSignal sells machine-readable commercial opportunity decisions and productized next steps for software, CRMs, AI agents and workflows.",
+    "no_list_product": "target_discovery_pack_250",
+    "existing_list_product": "score_pack_1k",
+    "missing_domain_product": "domain_enrichment_pack_100",
+    "high_score_next_product": "deep_analysis_pack_100",
+    "confirmed_evidence_next_product": "action_pack_25",
+    "blocked_actions_acknowledged": [
+      "external_send",
+      "email_or_invitation",
+      "human_outreach",
+      "marketplace_submission",
+      "api_directory_publication",
+      "post_call_execution",
+      "write_call_execution",
+      "order_creation",
+      "ledger_write",
+      "credit_consumption",
+      "payment",
+      "invoice",
+      "subscription",
+      "piva_activation_for_this_test",
+      "production_key_distribution",
+      "personal_data_processing",
+      "real_customer_data_processing",
+      "real_lead_list_processing"
+    ],
+    "remaining_questions_before_real_external_use": [
+      "Which external channel will be approved first?",
+      "What rate limits and kill switch will be active?",
+      "Which terms, privacy, refund and fiscal rules apply?",
+      "When do simulated prices become live commercial prices?",
+      "Which production credentials, if any, will be issued and how will they be revoked?"
+    ]
+  },
+  "external_send_executed": false,
+  "post_calls_executed": 0,
+  "write_calls_executed": 0,
+  "payment_executed": false,
+  "invoice_issued": false,
+  "credits_consumed": 0,
+  "personal_data_used": false,
+  "real_customer_data_used": false,
+  "recommendation": "entrypoint_passed_blind_machine_probe_ready_for_owner_review_not_external_send"
+}

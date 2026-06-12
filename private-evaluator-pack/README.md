@@ -140,9 +140,24 @@ The pack passes if a machine can, without a human explanation:
 ## Required Local Files
 
 - `manifest.json`
+- `private_evaluator_entrypoint.json`
+- `product_selector_contract.json`
 - `evaluation_scenarios.json`
 - `evaluation_checklist.json`
 - `validate_private_evaluator_pack_20260612.mjs`
+- `blind_machine_entrypoint_probe_20260612.mjs`
+
+## Current Gate Status
+
+Owner approval gate status: `externally_presentable_draft_nosend_nowrite_nopayment_nopersonaldata`.
+
+This means the pack is clearer and more structured for a future machine evaluator, but it is still blocked from external send, publication, marketplace submission, live payment, invoice, production API key distribution and real data processing.
+
+The single starting file for a blind machine test is:
+
+```text
+private_evaluator_entrypoint.json
+```
 - `owner_approval_gate_machine_buyer_review_20260612.md`
 - `owner_approval_gate_machine_buyer_review_20260612.json`
 - `owner_approval_gate_commercial_api_product_review_20260612.md`

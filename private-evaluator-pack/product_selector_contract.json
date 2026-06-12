@@ -1,0 +1,220 @@
+{
+  "artifact": "machinesignal_product_selector_contract",
+  "version": "2026-06-12-draft",
+  "status": "machine_readable_simulated_pricing_not_live_offer",
+  "purpose": "Tell a machine which MachineSignal product to choose based on starting state, input availability, score strength, confidence and evidence gates.",
+  "global_rules": {
+    "prices_are_simulated": true,
+    "live_checkout_enabled": false,
+    "real_payment_allowed": false,
+    "invoice_allowed": false,
+    "credit_consumption_allowed": false,
+    "post_execution_allowed_in_this_pack": false,
+    "write_execution_allowed_in_this_pack": false,
+    "personal_data_allowed": false,
+    "real_lead_data_allowed": false
+  },
+  "inputs_required_for_selection": [
+    "machine_starting_state",
+    "commercial_objective",
+    "has_existing_domains",
+    "has_company_names_without_domains",
+    "requested_area",
+    "requested_sector",
+    "score",
+    "confidence",
+    "deep_analysis_gate"
+  ],
+  "products": {
+    "target_discovery_pack_250": {
+      "simulated_price_eur": 149,
+      "selection_rule": "Choose when machine_starting_state is no_starting_list and the machine has a declared sector, area and commercial objective.",
+      "required_inputs": [
+        "requested_sector",
+        "requested_area",
+        "commercial_objective",
+        "requested_target_count"
+      ],
+      "valid_input_constraints": {
+        "requested_target_count": 250,
+        "commercial_objective_required": true
+      },
+      "expected_output": "250 coherent synthetic/evaluator targets if pre-check passes; otherwise no activation and suggested alternatives.",
+      "blocked_if": [
+        "commercial_objective_missing",
+        "requested_target_count_not_250",
+        "market_precheck_cannot_confirm_target_availability"
+      ],
+      "next_allowed_products": [
+        "score_pack_1k",
+        "domain_enrichment_pack_100"
+      ]
+    },
+    "score_pack_1k": {
+      "simulated_price_eur": 99,
+      "selection_rule": "Choose when the machine already has domains or analyzable company records and needs prioritization.",
+      "required_inputs": [
+        "domain_or_company_records",
+        "commercial_objective"
+      ],
+      "valid_input_constraints": {
+        "valid_scores_included": 1000,
+        "duplicates_do_not_consume_valid_score_credits": true,
+        "invalid_records_do_not_consume_valid_score_credits": true
+      },
+      "expected_output": "1000 valid scores with opportunity_score, confidence, decision, spend_policy, reason, priority and next_purchase.",
+      "blocked_if": [
+        "no_records_supplied",
+        "records_not_analyzable",
+        "commercial_objective_missing"
+      ],
+      "next_allowed_products": [
+        "deep_analysis_pack_100",
+        "domain_enrichment_pack_100",
+        "opportunity_feed_monthly"
+      ]
+    },
+    "domain_enrichment_pack_100": {
+      "simulated_price_eur": 149,
+      "selection_rule": "Choose when the machine has company names but no reliable domains to score.",
+      "required_inputs": [
+        "company_name_records",
+        "country_or_area_hint",
+        "commercial_objective"
+      ],
+      "valid_input_constraints": {
+        "completed_decisions_included": 100
+      },
+      "expected_output": "100 completed domain-enrichment decisions with status, confidence, candidate domain and reason.",
+      "blocked_if": [
+        "company_names_missing",
+        "commercial_objective_missing"
+      ],
+      "next_allowed_products": [
+        "score_pack_1k"
+      ]
+    },
+    "deep_analysis_pack_100": {
+      "simulated_price_eur": 299,
+      "selection_rule": "Choose after score_pack_1k when score is high enough and confidence is sufficient.",
+      "required_inputs": [
+        "domain",
+        "source_score_request_id",
+        "score",
+        "confidence",
+        "reason"
+      ],
+      "thresholds": {
+        "buy_deep_analysis_if_score_gte": 75,
+        "buy_deep_analysis_if_confidence_gte": 0.75,
+        "watchlist_if_score_between": [
+          55,
+          74
+        ],
+        "request_verification_if_confidence_lt": 0.6
+      },
+      "expected_output": "100 valid Deep Analysis outputs with evidence, decision matrix, action gate, stop rules and next_machine_call.",
+      "blocked_if": [
+        "score_below_75",
+        "confidence_below_0_75",
+        "source_score_missing"
+      ],
+      "next_allowed_products": [
+        "action_pack_25"
+      ]
+    },
+    "action_pack_25": {
+      "simulated_price_eur": 399,
+      "selection_rule": "Choose only after Deep Analysis confirms the action_pack_purchase_gate.",
+      "required_inputs": [
+        "domain",
+        "source_deep_analysis_id",
+        "deep_analysis_gate",
+        "crm_or_workflow_target"
+      ],
+      "thresholds": {
+        "buy_action_pack_only_if_deep_gate": "confirmed",
+        "stop_if_deep_gate": [
+          "failed",
+          "uncertain",
+          "needs_verification"
+        ]
+      },
+      "expected_output": "25 CRM/workflow payloads with record patch, task, webhook event, agent instruction, approval gate and compliance guardrail.",
+      "blocked_if": [
+        "deep_analysis_gate_not_confirmed",
+        "source_deep_analysis_missing",
+        "crm_or_workflow_target_missing"
+      ],
+      "next_allowed_products": [
+        "api_pro_monthly",
+        "opportunity_feed_monthly"
+      ]
+    },
+    "opportunity_feed_monthly": {
+      "simulated_price_eur": 249,
+      "billing_interval": "month",
+      "selection_rule": "Choose when the machine wants recurring opportunity discovery after product-market fit is validated.",
+      "required_inputs": [
+        "sector",
+        "area",
+        "commercial_objective",
+        "delivery_frequency"
+      ],
+      "expected_output": "4 scheduled scans and 4 deliveries per month.",
+      "blocked_if": [
+        "live_billing_not_approved",
+        "recurring_terms_not_approved"
+      ]
+    },
+    "api_starter_monthly": {
+      "simulated_price_eur": 99,
+      "billing_interval": "month",
+      "selection_rule": "Choose for light recurring usage after external access, billing and terms are approved.",
+      "expected_output": "500 valid scores per month, demo environment, docs and basic usage report.",
+      "blocked_if": [
+        "live_billing_not_approved",
+        "production_key_not_approved"
+      ]
+    },
+    "api_pro_monthly": {
+      "simulated_price_eur": 499,
+      "billing_interval": "month",
+      "selection_rule": "Choose for recurring workflow volume after external access, billing and terms are approved.",
+      "expected_output": "3000 valid scores per month, 50 Deep Analysis outputs per month, 1 monthly Opportunity Feed, webhook support and advanced usage report.",
+      "blocked_if": [
+        "live_billing_not_approved",
+        "production_key_not_approved",
+        "webhook_policy_not_approved"
+      ]
+    }
+  },
+  "routing_examples": [
+    {
+      "case": "no_list",
+      "input_signal": "machine_has_no_starting_list_and_has_sector_area_objective",
+      "selected_product": "target_discovery_pack_250"
+    },
+    {
+      "case": "existing_domain_list",
+      "input_signal": "machine_has_domains_and_needs_prioritization",
+      "selected_product": "score_pack_1k"
+    },
+    {
+      "case": "company_names_without_domains",
+      "input_signal": "machine_has_names_but_no_reliable_domains",
+      "selected_product": "domain_enrichment_pack_100"
+    },
+    {
+      "case": "high_score",
+      "input_signal": "score_gte_75_and_confidence_gte_0_75",
+      "selected_product": "deep_analysis_pack_100"
+    },
+    {
+      "case": "deep_confirmed",
+      "input_signal": "deep_analysis_gate_confirmed",
+      "selected_product": "action_pack_25"
+    }
+  ]
+}
+

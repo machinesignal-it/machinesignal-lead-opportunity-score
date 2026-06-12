@@ -1,6 +1,6 @@
 # MachineSignal Private Evaluator Pack Validation
 
-Generated at: 2026-06-12T10:13:30.410Z
+Generated at: 2026-06-12T10:21:17.701Z
 
 Status: PASS
 
@@ -15,7 +15,7 @@ Status: PASS
 
 ## Checks
 
-- checks_total: 37
+- checks_total: 40
 - checks_failed: 0
 
 ## Recommendation

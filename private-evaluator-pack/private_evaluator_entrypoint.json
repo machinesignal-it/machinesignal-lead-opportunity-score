@@ -1,0 +1,107 @@
+{
+  "artifact": "machinesignal_private_evaluator_entrypoint",
+  "version": "2026-06-12-draft",
+  "status": "externally_presentable_draft_nosend_nowrite_simulation_only",
+  "primary_instruction": "Evaluate MachineSignal as a machine-first API business without sending anything externally, without making write calls, without payments, without consuming credits, and without using personal or real customer data.",
+  "business_rule": "sell_to_machines_not_humans",
+  "machine_summary": "MachineSignal helps software, CRM systems, AI agents and automated workflows discover or score commercial opportunities, choose the next productized analysis step, and produce machine-readable outputs for prioritization and workflow routing.",
+  "current_stage": {
+    "stage": "owner_approval_gate",
+    "commercial_status": "simulated_prices_only_not_a_live_offer",
+    "distribution_status": "not_sent_not_published_not_listed",
+    "technical_status": "read_only_pack_evaluation",
+    "legal_finance_status": "no_payment_no_invoice_no_piva_activation_for_this_test"
+  },
+  "read_order": [
+    {
+      "step": 1,
+      "name": "pack_manifest",
+      "relative_path": "manifest.json",
+      "purpose": "Understand scope, products, safety state and owner approval requirements."
+    },
+    {
+      "step": 2,
+      "name": "product_selector_contract",
+      "relative_path": "product_selector_contract.json",
+      "purpose": "Choose the correct product for each machine need."
+    },
+    {
+      "step": 3,
+      "name": "evaluation_scenarios",
+      "relative_path": "evaluation_scenarios.json",
+      "purpose": "Replay synthetic no-list, existing-list and upgrade-path cases."
+    },
+    {
+      "step": 4,
+      "name": "evaluation_checklist",
+      "relative_path": "evaluation_checklist.json",
+      "purpose": "Check NoSend, NoWrite, NoPayment, NoPersonalData and owner gate constraints."
+    },
+    {
+      "step": 5,
+      "name": "owner_approval_gate_summary",
+      "relative_path": "owner_approval_gate_summary_20260612.json",
+      "purpose": "Verify current gate decision and blocked actions."
+    }
+  ],
+  "allowed_actions": [
+    "read_pack_files",
+    "read_public_reference_links",
+    "simulate_product_choice",
+    "simulate_purchase_intent_without_execution",
+    "produce_evaluation_report",
+    "use_synthetic_dot_test_domains_only"
+  ],
+  "blocked_actions": [
+    "external_send",
+    "email_or_invitation",
+    "human_outreach",
+    "marketplace_submission",
+    "api_directory_publication",
+    "post_call_execution",
+    "write_call_execution",
+    "order_creation",
+    "ledger_write",
+    "credit_consumption",
+    "payment",
+    "invoice",
+    "subscription",
+    "piva_activation_for_this_test",
+    "production_key_distribution",
+    "personal_data_processing",
+    "real_customer_data_processing",
+    "real_lead_list_processing"
+  ],
+  "public_reference_links": {
+    "website": "https://machinesignal.it/",
+    "api_page": "https://machinesignal.it/api/",
+    "beta_page": "https://machinesignal.it/beta/",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "machine_discovery": "https://machinesignal.it/.well-known/machine-discovery.json"
+  },
+  "expected_machine_outputs": [
+    "plain_language_summary_of_what_machinesignal_sells",
+    "product_choice_for_no_list_case",
+    "product_choice_for_existing_list_case",
+    "upgrade_path_for_high_score_case",
+    "blocked_actions_acknowledgement",
+    "remaining_questions_before_real_external_use"
+  ],
+  "success_criteria": {
+    "understands_machine_first_business": true,
+    "routes_no_list_to_target_discovery": true,
+    "routes_existing_list_to_score_pack": true,
+    "routes_high_score_to_deep_analysis_before_action_pack": true,
+    "acknowledges_prices_are_simulated": true,
+    "executes_post_calls": false,
+    "executes_write_calls": false,
+    "sends_external_messages": false,
+    "uses_personal_data": false,
+    "executes_payment": false
+  }
+}
+

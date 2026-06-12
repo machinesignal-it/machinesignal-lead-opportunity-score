@@ -1,9 +1,9 @@
 {
   "artifact": "machinesignal_private_evaluator_pack_validation",
-  "generated_at": "2026-06-12T10:13:30.410Z",
+  "generated_at": "2026-06-12T10:21:17.701Z",
   "pack_status": "draft_nosend_nowrite_simulation_only",
   "ok": true,
-  "checks_total": 37,
+  "checks_total": 40,
   "checks_failed": 0,
   "failures": [],
   "safety_result": "nosend_nowrite_nopayment_nopersonaldata",
@@ -28,5 +28,7 @@
     "existing_list_score_pack_1k",
     "upgrade_path_deep_analysis_then_action_pack"
   ],
+  "entrypoint_checked": "private_evaluator_entrypoint.json",
+  "product_selector_checked": "product_selector_contract.json",
   "recommendation": "pack_ready_for_owner_review_not_for_external_send"
 }

@@ -9,12 +9,18 @@ const parse = (name) => JSON.parse(read(name));
 const manifest = parse("manifest.json");
 const scenarios = parse("evaluation_scenarios.json");
 const checklist = parse("evaluation_checklist.json");
+const entrypoint = parse("private_evaluator_entrypoint.json");
+const productSelector = parse("product_selector_contract.json");
 const readme = read("README.md");
 const files = [
   "README.md",
   "manifest.json",
+  "private_evaluator_entrypoint.json",
+  "product_selector_contract.json",
   "evaluation_scenarios.json",
   "evaluation_checklist.json",
+  "owner_approval_gate_summary_20260612.md",
+  "owner_approval_gate_summary_20260612.json",
   "agent_review_summary_20260612.md",
   "agent_review_summary_20260612.json"
 ];
@@ -69,6 +75,30 @@ check(
   "three_scenarios_present",
   Array.isArray(scenarios.scenarios) && scenarios.scenarios.length === 3,
   "exactly three synthetic evaluator scenarios must be present"
+);
+
+check(
+  "entrypoint_present",
+  entrypoint.status === "externally_presentable_draft_nosend_nowrite_simulation_only" &&
+    Array.isArray(entrypoint.read_order) &&
+    entrypoint.read_order.some((item) => item.relative_path === "product_selector_contract.json"),
+  "entrypoint must be externally presentable draft and point to product selector"
+);
+
+check(
+  "product_selector_present",
+  productSelector.status === "machine_readable_simulated_pricing_not_live_offer" &&
+    productSelector.global_rules?.prices_are_simulated === true &&
+    productSelector.global_rules?.live_checkout_enabled === false,
+  "product selector must mark prices as simulated and live checkout disabled"
+);
+
+check(
+  "product_selector_thresholds",
+  productSelector.products?.deep_analysis_pack_100?.thresholds?.buy_deep_analysis_if_score_gte === 75 &&
+    productSelector.products?.deep_analysis_pack_100?.thresholds?.buy_deep_analysis_if_confidence_gte === 0.75 &&
+    productSelector.products?.action_pack_25?.thresholds?.buy_action_pack_only_if_deep_gate === "confirmed",
+  "product selector must define deep-analysis and action-pack gates"
 );
 
 const allScenarioText = JSON.stringify(scenarios);
@@ -141,6 +171,8 @@ const summary = {
   personal_data_used: false,
   products_checked: [...productCodes],
   scenarios_checked: (scenarios.scenarios || []).map((s) => s.scenario_id),
+  entrypoint_checked: "private_evaluator_entrypoint.json",
+  product_selector_checked: "product_selector_contract.json",
   recommendation: failures.length === 0
     ? "pack_ready_for_owner_review_not_for_external_send"
     : "fix_failures_before_owner_review"
