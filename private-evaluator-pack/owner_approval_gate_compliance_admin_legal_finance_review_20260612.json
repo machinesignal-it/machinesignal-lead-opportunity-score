@@ -1,0 +1,140 @@
+{
+  "artifact": "machinesignal_owner_approval_gate_compliance_admin_legal_finance_review",
+  "date": "2026-06-12",
+  "role": "Compliance/Admin/Legal/Finance Agent",
+  "scope": "private_evaluator_pack_draft_nosend_nowrite_simulation_only",
+  "legal_disclaimer": "Prudent operational review only. Not final legal, tax, accounting, or privacy advice.",
+  "verdict": {
+    "internal_draft": "GO",
+    "external_exposure": "NO_GO",
+    "external_send": "NO_GO",
+    "marketplace_publication": "NO_GO",
+    "live_monetization": "NO_GO",
+    "payment": "NO_GO",
+    "invoice": "NO_GO",
+    "subscription": "NO_GO",
+    "piva_fiscal_activation_now": "NO_GO",
+    "real_customer_data_processing": "NO_GO",
+    "personal_data_processing": "NO_GO",
+    "reason": "The pack is internal documentation and simulation only. It has no live sale, no external delivery, no payment, no invoice, no customer account, no customer credits, and no personal data. It can remain as an internal owner-review artifact but must not be exposed externally or monetized."
+  },
+  "allowed_now": [
+    "internal_repository_draft",
+    "local_machine_buyer_simulation",
+    "local_validation",
+    "local_link_check",
+    "secret_scan",
+    "product_clarity_improvement",
+    "synthetic_examples_only",
+    "simulated_prices_only"
+  ],
+  "blocked_now": [
+    "external_send",
+    "external_invitation",
+    "human_outreach",
+    "marketplace_publication",
+    "public_paid_listing",
+    "live_checkout",
+    "real_payment",
+    "real_invoice",
+    "subscription_activation",
+    "customer_account_creation",
+    "customer_credit_sale",
+    "customer_credit_consumption",
+    "ledger_write_for_customer",
+    "real_lead_list_processing",
+    "personal_data_processing",
+    "production_credential_exposure"
+  ],
+  "piva_and_fiscal_position": {
+    "activate_piva_now": false,
+    "activate_billing_now": false,
+    "reason": "Current activity is internal preparation and simulation only. Before any real paid recurring or commercial activity, obtain Italian accountant advice on legal form, VAT, ATECO, INPS/INAIL, Registro Imprese/SUAP if applicable, and e-invoicing.",
+    "before_live_sale_required": [
+      "qualified_accountant_review",
+      "legal_form_decision",
+      "vat_position_review",
+      "ateco_review",
+      "inps_inail_review_if_applicable",
+      "registro_imprese_or_suap_review_if_applicable",
+      "electronic_invoicing_process",
+      "payment_reconciliation_process",
+      "invoice_or_receipt_rules",
+      "refund_and_cancellation_rules"
+    ]
+  },
+  "privacy_limits": {
+    "personal_data_allowed_now": false,
+    "real_leads_allowed_now": false,
+    "tracking_allowed_now": false,
+    "allowed_data_now": [
+      "synthetic_domains",
+      "synthetic_scenarios",
+      "mock_responses",
+      "public_documentation_links",
+      "non_personal_operational_metadata"
+    ],
+    "blocked_data_now": [
+      "real_names",
+      "real_email_addresses",
+      "phone_numbers",
+      "real_professional_records",
+      "real_customer_payloads",
+      "scraped_contact_lists",
+      "identifiable_individual_profiles",
+      "cookies_or_ip_tracking_for_evaluator_profiling",
+      "authenticated_panel_screenshots",
+      "logs_containing_personal_data"
+    ],
+    "future_privacy_gate_required": [
+      "controller_processor_role_mapping",
+      "legal_basis",
+      "privacy_notice",
+      "retention_policy",
+      "data_subject_rights_process",
+      "subprocessor_list",
+      "security_measures",
+      "automated_decision_or_profiling_review",
+      "dpia_assessment_if_needed",
+      "special_category_data_block"
+    ]
+  },
+  "admin_finance_current_state": {
+    "revenue_recognized_eur": 0,
+    "invoices_issued": 0,
+    "payments_collected": 0,
+    "subscriptions_active": 0,
+    "customer_credits_sold": 0,
+    "customer_credits_consumed": 0,
+    "customer_accounts_created": 0
+  },
+  "owner_approval_checklist": [
+    "pack_marked_draft_nosend_nowrite_simulation_only",
+    "prices_marked_simulated_non_binding",
+    "zero_real_payments_invoices_orders_subscriptions_customer_accounts",
+    "zero_real_customer_or_lead_lists",
+    "zero_personal_data",
+    "zero_human_outreach_instructions",
+    "all_examples_synthetic",
+    "secret_scan_passed",
+    "production_credentials_absent",
+    "private_draft_files_not_publicly_indexed",
+    "product_selector_and_output_samples_clear",
+    "usage_limits_cost_caps_and_kill_switch_defined_before_external_access",
+    "commercial_status_field_added",
+    "accountant_fiscal_review_completed_before_live_sale",
+    "privacy_review_completed_before_personal_data_processing",
+    "owner_approved_exact_channel_file_set_and_allowed_actions_before_next_step"
+  ],
+  "final_decision": "GO_internal_draft_only_NO_GO_external_send_monetization_piva_billing_personal_data",
+  "next_allowed_action": "validate_pack_locally_and_run_internal_owner_approval_simulation_only",
+  "sources_checked": [
+    "https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en",
+    "https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-42019-article-25-data-protection-design-and_en",
+    "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/9677876",
+    "https://www.agenziaentrate.gov.it/portale/schede/istanze/aa9_11-apertura-variazione-chiusura-pf/quando-utilizzare",
+    "https://www.agenziaentrate.gov.it/portale/aree-tematiche/fatturazione-elettronica",
+    "https://www.registroimprese.it/comunicazione-unica-d-impresa",
+    "https://www.registroimprese.it/impresa-individuale"
+  ]
+}
