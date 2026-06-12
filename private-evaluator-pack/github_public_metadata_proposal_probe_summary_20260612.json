@@ -1,0 +1,251 @@
+{
+  "artifact": "github_public_metadata_proposal_probe",
+  "version": "2026-06-12",
+  "status": "completed_github_metadata_proposal_probe",
+  "ok": true,
+  "mode": "NoWriteNoGitHubMetadataUpdateNoExternalPublication",
+  "proposal": "private-evaluator-pack/github_public_metadata_proposal_20260612.json",
+  "proposed_description": "Machine-first lead opportunity scoring API for CRMs, AI agents, MCP clients and workflows. Sandbox-only beta: no outreach or live billing.",
+  "proposed_homepage": "https://machinesignal.it/machine-discovery/",
+  "proposed_topics": [
+    "machine-first",
+    "machine-readable",
+    "lead-scoring",
+    "opportunity-scoring",
+    "ai-agents",
+    "crm",
+    "revops",
+    "mcp",
+    "openapi",
+    "api",
+    "workflow-automation",
+    "data-enrichment",
+    "sandbox-beta"
+  ],
+  "checks_total": 42,
+  "checks_failed": 0,
+  "safety_counters": {
+    "github_metadata_update_executed": 0,
+    "external_marketplace_publication_executed": 0,
+    "external_send_executed": 0,
+    "payment_executed": 0,
+    "credits_consumed": 0,
+    "personal_data_used": 0,
+    "real_customer_data_used": 0
+  },
+  "interpretation": "The GitHub public metadata proposal is machine-first, sandbox-bounded, topic-format safe and ready for owner review. No GitHub metadata update was executed.",
+  "recommended_next_step": "Ask owner whether to apply the proposed GitHub description, homepage and topics. Do not apply without explicit confirmation.",
+  "checks": [
+    {
+      "name": "proposal_status_not_applied",
+      "ok": true,
+      "details": "status=proposal_only_not_applied"
+    },
+    {
+      "name": "business_rule_machine_not_human",
+      "ok": true,
+      "details": "business_rule=sell_to_machines_not_humans"
+    },
+    {
+      "name": "description_length_safe",
+      "ok": true,
+      "details": "length=138"
+    },
+    {
+      "name": "description_machine_first",
+      "ok": true,
+      "details": "Machine-first lead opportunity scoring API for CRMs, AI agents, MCP clients and workflows. Sandbox-only beta: no outreach or live billing."
+    },
+    {
+      "name": "description_sandbox_only_no_live_billing",
+      "ok": true,
+      "details": "Machine-first lead opportunity scoring API for CRMs, AI agents, MCP clients and workflows. Sandbox-only beta: no outreach or live billing."
+    },
+    {
+      "name": "homepage_machine_discovery",
+      "ok": true,
+      "details": "https://machinesignal.it/machine-discovery/"
+    },
+    {
+      "name": "topics_count_safe",
+      "ok": true,
+      "details": "topics=13"
+    },
+    {
+      "name": "topics_format_valid",
+      "ok": true,
+      "details": "all valid"
+    },
+    {
+      "name": "topic_present_machine-first",
+      "ok": true,
+      "details": "machine-first"
+    },
+    {
+      "name": "topic_present_machine-readable",
+      "ok": true,
+      "details": "machine-readable"
+    },
+    {
+      "name": "topic_present_lead-scoring",
+      "ok": true,
+      "details": "lead-scoring"
+    },
+    {
+      "name": "topic_present_opportunity-scoring",
+      "ok": true,
+      "details": "opportunity-scoring"
+    },
+    {
+      "name": "topic_present_ai-agents",
+      "ok": true,
+      "details": "ai-agents"
+    },
+    {
+      "name": "topic_present_mcp",
+      "ok": true,
+      "details": "mcp"
+    },
+    {
+      "name": "topic_present_openapi",
+      "ok": true,
+      "details": "openapi"
+    },
+    {
+      "name": "topic_present_sandbox-beta",
+      "ok": true,
+      "details": "sandbox-beta"
+    },
+    {
+      "name": "forbidden_pattern_absent_guaranteed\\s+revenue",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "forbidden_pattern_absent_automatic\\s+income",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "forbidden_pattern_absent_passive\\s+income",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "forbidden_pattern_absent_live\\s+paid\\s+checkout",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "forbidden_pattern_absent_active\\s+subscriptions",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "forbidden_pattern_absent_production\\s+keys\\s+available",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "forbidden_pattern_absent_automatic\\s+email\\s+outreach",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "forbidden_pattern_absent_human\\s+sales\\s+outreach",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "forbidden_pattern_absent_processing\\s+real\\s+customer\\s+data",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "forbidden_pattern_absent_processing\\s+personal\\s+data",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "forbidden_pattern_absent_live\\s+hosted\\s+mcp\\s+server",
+      "ok": true,
+      "details": "description checked"
+    },
+    {
+      "name": "owner_gate_required",
+      "ok": true,
+      "details": "owner approval required before public metadata change"
+    },
+    {
+      "name": "blocked_until_approval_change_github_repository_description",
+      "ok": true,
+      "details": "change_github_repository_description"
+    },
+    {
+      "name": "blocked_until_approval_change_github_repository_homepage",
+      "ok": true,
+      "details": "change_github_repository_homepage"
+    },
+    {
+      "name": "blocked_until_approval_change_github_repository_topics",
+      "ok": true,
+      "details": "change_github_repository_topics"
+    },
+    {
+      "name": "blocked_until_approval_publish_marketplace_listing",
+      "ok": true,
+      "details": "publish_marketplace_listing"
+    },
+    {
+      "name": "blocked_until_approval_submit_mcp_registry_entry",
+      "ok": true,
+      "details": "submit_mcp_registry_entry"
+    },
+    {
+      "name": "blocked_until_approval_enable_live_billing",
+      "ok": true,
+      "details": "enable_live_billing"
+    },
+    {
+      "name": "blocked_until_approval_issue_production_keys",
+      "ok": true,
+      "details": "issue_production_keys"
+    },
+    {
+      "name": "counter_github_metadata_update_executed_zero",
+      "ok": true,
+      "details": "github_metadata_update_executed=0"
+    },
+    {
+      "name": "counter_external_marketplace_publication_executed_zero",
+      "ok": true,
+      "details": "external_marketplace_publication_executed=0"
+    },
+    {
+      "name": "counter_external_send_executed_zero",
+      "ok": true,
+      "details": "external_send_executed=0"
+    },
+    {
+      "name": "counter_payment_executed_zero",
+      "ok": true,
+      "details": "payment_executed=0"
+    },
+    {
+      "name": "counter_credits_consumed_zero",
+      "ok": true,
+      "details": "credits_consumed=0"
+    },
+    {
+      "name": "counter_personal_data_used_zero",
+      "ok": true,
+      "details": "personal_data_used=0"
+    },
+    {
+      "name": "counter_real_customer_data_used_zero",
+      "ok": true,
+      "details": "real_customer_data_used=0"
+    }
+  ],
+  "failed_checks": []
+}

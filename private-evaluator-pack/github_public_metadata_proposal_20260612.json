@@ -1,0 +1,96 @@
+{
+  "artifact": "github_public_metadata_proposal",
+  "version": "2026-06-12-draft",
+  "status": "proposal_only_not_applied",
+  "primary_customer_interface": "machine",
+  "business_rule": "sell_to_machines_not_humans",
+  "purpose": "Improve GitHub discoverability for AI agents, MCP clients, CRM workflows, API-directory bots and technical software evaluators without changing public repository metadata until owner approval.",
+  "current_metadata_observed": {
+    "repository": "machinesignal-it/machinesignal-lead-opportunity-score",
+    "visibility": "public",
+    "description": "Machine-readable lead opportunity scoring API for CRM, RevOps and AI-agent workflows. Private beta.",
+    "homepage": null,
+    "topics": []
+  },
+  "proposed_metadata": {
+    "description": "Machine-first lead opportunity scoring API for CRMs, AI agents, MCP clients and workflows. Sandbox-only beta: no outreach or live billing.",
+    "homepage": "https://machinesignal.it/machine-discovery/",
+    "topics": [
+      "machine-first",
+      "machine-readable",
+      "lead-scoring",
+      "opportunity-scoring",
+      "ai-agents",
+      "crm",
+      "revops",
+      "mcp",
+      "openapi",
+      "api",
+      "workflow-automation",
+      "data-enrichment",
+      "sandbox-beta"
+    ]
+  },
+  "why_this_positioning": [
+    {
+      "field": "description",
+      "reason": "States the machine-first buyer interface, names the concrete API category and preserves sandbox-only boundaries."
+    },
+    {
+      "field": "homepage",
+      "reason": "Points machines and technical evaluators to the machine-discovery entrypoint rather than a generic website page."
+    },
+    {
+      "field": "topics",
+      "reason": "Uses search terms that software evaluators and agent builders can understand without implying live commercial availability."
+    }
+  ],
+  "must_not_claim": [
+    "guaranteed revenue",
+    "automatic income",
+    "live paid checkout",
+    "active subscriptions",
+    "production keys available",
+    "automatic email outreach",
+    "human sales outreach",
+    "processing real customer data",
+    "processing personal data",
+    "live hosted MCP server"
+  ],
+  "safe_public_language_rules": {
+    "must_include_machine_first": true,
+    "must_include_sandbox_or_beta_limit": true,
+    "must_not_include_live_payment_claim": true,
+    "must_not_include_outreach_claim": true,
+    "must_not_include_guaranteed_roi_claim": true,
+    "must_not_include_real_data_claim": true
+  },
+  "approval_gate": {
+    "owner_approval_required_before_applying": true,
+    "reason": "Repository description, homepage and topics are public metadata changes. Applying them is a public positioning decision even if no marketplace is published.",
+    "allowed_now": [
+      "prepare proposal",
+      "validate proposal",
+      "commit proposal as safe evidence"
+    ],
+    "blocked_until_explicit_owner_approval": [
+      "change_github_repository_description",
+      "change_github_repository_homepage",
+      "change_github_repository_topics",
+      "publish_marketplace_listing",
+      "submit_mcp_registry_entry",
+      "enable_live_billing",
+      "issue_production_keys"
+    ]
+  },
+  "execution_counters": {
+    "github_metadata_update_executed": 0,
+    "external_marketplace_publication_executed": 0,
+    "external_send_executed": 0,
+    "payment_executed": 0,
+    "credits_consumed": 0,
+    "personal_data_used": 0,
+    "real_customer_data_used": 0
+  },
+  "recommended_next_step_if_approved_later": "Apply the proposed GitHub description, homepage and topics from repository settings or via a tightly scoped GitHub metadata update, then rerun the GitHub-first discoverability probe."
+}
