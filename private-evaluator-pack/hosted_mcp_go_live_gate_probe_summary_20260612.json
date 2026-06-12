@@ -1,0 +1,490 @@
+{
+  "artifact": "hosted_mcp_go_live_gate_probe",
+  "version": "2026-06-12",
+  "status": "completed_hosted_mcp_go_live_gate_probe",
+  "ok": true,
+  "mode": "NoBuildNoPublishNoHostedLaunchNoPaymentNoRealData",
+  "gate": "private-evaluator-pack/hosted_mcp_go_live_gate_20260612.json",
+  "gates_total": 10,
+  "gates_passed_now": 0,
+  "checks_total": 89,
+  "checks_failed": 0,
+  "launch_allowed_now": false,
+  "registry_submission_allowed_now": false,
+  "live_billing_allowed_now": false,
+  "recommended_next_step": {
+    "action": "architecture_spike_no_build",
+    "description": "Create a hosted MCP architecture design and threat model based on these gates. Do not implement, publish or submit until a later owner approval.",
+    "allowed_now": true,
+    "external_publication": false,
+    "hosted_launch": false,
+    "write_calls": false,
+    "payment": false,
+    "real_data": false
+  },
+  "execution_counters": {
+    "hosted_mcp_launch_executed": 0,
+    "mcp_registry_submission_executed": 0,
+    "external_marketplace_publication_executed": 0,
+    "external_send_executed": 0,
+    "human_outreach_executed": 0,
+    "machinesignal_api_post_calls_executed": 0,
+    "machinesignal_api_write_calls_executed": 0,
+    "payment_executed": 0,
+    "invoice_issued": 0,
+    "credits_consumed": 0,
+    "production_key_published": 0,
+    "personal_data_used": 0,
+    "real_customer_data_used": 0,
+    "real_lead_list_used": 0
+  },
+  "interpretation": "The hosted MCP go-live gate is defined and correctly blocks launch, registry submission, live billing, production keys and real data until all required gates pass.",
+  "checks": [
+    {
+      "name": "gate_status_defined_not_passed",
+      "ok": true,
+      "details": "gate_defined_not_passed"
+    },
+    {
+      "name": "primary_interface_machine",
+      "ok": true,
+      "details": "machine"
+    },
+    {
+      "name": "business_rule_machine_not_human",
+      "ok": true,
+      "details": "sell_to_machines_not_humans"
+    },
+    {
+      "name": "latest_agent_review_linked",
+      "ok": true,
+      "details": "private-evaluator-pack/agent_go_no_go_mcp_v2_review_20260612.json"
+    },
+    {
+      "name": "agent_review_no_go_context",
+      "ok": true,
+      "details": "GO for private MCP v2 review and local adapter. NO-GO for hosted MCP, registry submission or live monetization now."
+    },
+    {
+      "name": "global_pass_rule_hosted_mcp_launch_allowed_false",
+      "ok": true,
+      "details": "hosted_mcp_launch_allowed=false"
+    },
+    {
+      "name": "global_pass_rule_registry_submission_allowed_false",
+      "ok": true,
+      "details": "registry_submission_allowed=false"
+    },
+    {
+      "name": "global_pass_rule_live_billing_allowed_false",
+      "ok": true,
+      "details": "live_billing_allowed=false"
+    },
+    {
+      "name": "global_pass_rule_production_key_distribution_allowed_false",
+      "ok": true,
+      "details": "production_key_distribution_allowed=false"
+    },
+    {
+      "name": "global_pass_rule_real_customer_data_allowed_false",
+      "ok": true,
+      "details": "real_customer_data_allowed=false"
+    },
+    {
+      "name": "global_pass_rule_personal_data_allowed_false",
+      "ok": true,
+      "details": "personal_data_allowed=false"
+    },
+    {
+      "name": "official_source_present_https___modelcontextprotocol_io_specification_2025_11_25",
+      "ok": true,
+      "details": "https://modelcontextprotocol.io/specification/2025-11-25"
+    },
+    {
+      "name": "official_source_present_https___modelcontextprotocol_io_docs_tutorials_security_authorization",
+      "ok": true,
+      "details": "https://modelcontextprotocol.io/docs/tutorials/security/authorization"
+    },
+    {
+      "name": "official_source_present_https___modelcontextprotocol_io_docs_tutorials_security_security_best_practices",
+      "ok": true,
+      "details": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+    },
+    {
+      "name": "official_source_present_https___modelcontextprotocol_io_specification_2025_11_25_server_tools",
+      "ok": true,
+      "details": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools"
+    },
+    {
+      "name": "official_source_present_https___www_edpb_europa_eu_sme_data_protection_guide_process_personal_data_lawfully_en",
+      "ok": true,
+      "details": "https://www.edpb.europa.eu/sme-data-protection-guide/process-personal-data-lawfully_en"
+    },
+    {
+      "name": "official_source_present_https___www_edpb_europa_eu_sme_data_protection_guide_respect_individuals_rights_en",
+      "ok": true,
+      "details": "https://www.edpb.europa.eu/sme-data-protection-guide/respect-individuals-rights_en"
+    },
+    {
+      "name": "official_source_present_https___taxation_customs_ec_europa_eu_taxation_vat_vat_businesses_invoicing_en",
+      "ok": true,
+      "details": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-businesses/invoicing_en"
+    },
+    {
+      "name": "required_gate_present_G0_owner_strategy_and_scope",
+      "ok": true,
+      "details": "G0_owner_strategy_and_scope"
+    },
+    {
+      "name": "required_gate_present_G1_mcp_protocol_and_conformance",
+      "ok": true,
+      "details": "G1_mcp_protocol_and_conformance"
+    },
+    {
+      "name": "required_gate_present_G2_authorization_scopes_and_revocation",
+      "ok": true,
+      "details": "G2_authorization_scopes_and_revocation"
+    },
+    {
+      "name": "required_gate_present_G3_tool_safety_and_user_consent",
+      "ok": true,
+      "details": "G3_tool_safety_and_user_consent"
+    },
+    {
+      "name": "required_gate_present_G4_abuse_rate_limit_and_cost_controls",
+      "ok": true,
+      "details": "G4_abuse_rate_limit_and_cost_controls"
+    },
+    {
+      "name": "required_gate_present_G5_observability_audit_and_incident_response",
+      "ok": true,
+      "details": "G5_observability_audit_and_incident_response"
+    },
+    {
+      "name": "required_gate_present_G6_data_protection_and_privacy",
+      "ok": true,
+      "details": "G6_data_protection_and_privacy"
+    },
+    {
+      "name": "required_gate_present_G7_fiscal_legal_and_live_billing",
+      "ok": true,
+      "details": "G7_fiscal_legal_and_live_billing"
+    },
+    {
+      "name": "required_gate_present_G8_product_api_schema_and_quality",
+      "ok": true,
+      "details": "G8_product_api_schema_and_quality"
+    },
+    {
+      "name": "required_gate_present_G9_registry_distribution_and_claims",
+      "ok": true,
+      "details": "G9_registry_distribution_and_claims"
+    },
+    {
+      "name": "gate_G0_owner_strategy_and_scope_required",
+      "ok": true,
+      "details": "required=true"
+    },
+    {
+      "name": "gate_G0_owner_strategy_and_scope_not_passed",
+      "ok": true,
+      "details": "status=not_passed"
+    },
+    {
+      "name": "gate_G0_owner_strategy_and_scope_has_evidence",
+      "ok": true,
+      "details": "evidence=4"
+    },
+    {
+      "name": "gate_G0_owner_strategy_and_scope_has_pass_criteria",
+      "ok": true,
+      "details": "pass_criteria=2"
+    },
+    {
+      "name": "gate_G1_mcp_protocol_and_conformance_required",
+      "ok": true,
+      "details": "required=true"
+    },
+    {
+      "name": "gate_G1_mcp_protocol_and_conformance_not_passed",
+      "ok": true,
+      "details": "status=not_passed"
+    },
+    {
+      "name": "gate_G1_mcp_protocol_and_conformance_has_evidence",
+      "ok": true,
+      "details": "evidence=4"
+    },
+    {
+      "name": "gate_G1_mcp_protocol_and_conformance_has_pass_criteria",
+      "ok": true,
+      "details": "pass_criteria=4"
+    },
+    {
+      "name": "gate_G2_authorization_scopes_and_revocation_required",
+      "ok": true,
+      "details": "required=true"
+    },
+    {
+      "name": "gate_G2_authorization_scopes_and_revocation_not_passed",
+      "ok": true,
+      "details": "status=not_passed"
+    },
+    {
+      "name": "gate_G2_authorization_scopes_and_revocation_has_evidence",
+      "ok": true,
+      "details": "evidence=5"
+    },
+    {
+      "name": "gate_G2_authorization_scopes_and_revocation_has_pass_criteria",
+      "ok": true,
+      "details": "pass_criteria=4"
+    },
+    {
+      "name": "gate_G3_tool_safety_and_user_consent_required",
+      "ok": true,
+      "details": "required=true"
+    },
+    {
+      "name": "gate_G3_tool_safety_and_user_consent_not_passed",
+      "ok": true,
+      "details": "status=not_passed"
+    },
+    {
+      "name": "gate_G3_tool_safety_and_user_consent_has_evidence",
+      "ok": true,
+      "details": "evidence=5"
+    },
+    {
+      "name": "gate_G3_tool_safety_and_user_consent_has_pass_criteria",
+      "ok": true,
+      "details": "pass_criteria=4"
+    },
+    {
+      "name": "gate_G4_abuse_rate_limit_and_cost_controls_required",
+      "ok": true,
+      "details": "required=true"
+    },
+    {
+      "name": "gate_G4_abuse_rate_limit_and_cost_controls_not_passed",
+      "ok": true,
+      "details": "status=not_passed"
+    },
+    {
+      "name": "gate_G4_abuse_rate_limit_and_cost_controls_has_evidence",
+      "ok": true,
+      "details": "evidence=5"
+    },
+    {
+      "name": "gate_G4_abuse_rate_limit_and_cost_controls_has_pass_criteria",
+      "ok": true,
+      "details": "pass_criteria=4"
+    },
+    {
+      "name": "gate_G5_observability_audit_and_incident_response_required",
+      "ok": true,
+      "details": "required=true"
+    },
+    {
+      "name": "gate_G5_observability_audit_and_incident_response_not_passed",
+      "ok": true,
+      "details": "status=not_passed"
+    },
+    {
+      "name": "gate_G5_observability_audit_and_incident_response_has_evidence",
+      "ok": true,
+      "details": "evidence=5"
+    },
+    {
+      "name": "gate_G5_observability_audit_and_incident_response_has_pass_criteria",
+      "ok": true,
+      "details": "pass_criteria=4"
+    },
+    {
+      "name": "gate_G6_data_protection_and_privacy_required",
+      "ok": true,
+      "details": "required=true"
+    },
+    {
+      "name": "gate_G6_data_protection_and_privacy_not_passed",
+      "ok": true,
+      "details": "status=not_passed"
+    },
+    {
+      "name": "gate_G6_data_protection_and_privacy_has_evidence",
+      "ok": true,
+      "details": "evidence=6"
+    },
+    {
+      "name": "gate_G6_data_protection_and_privacy_has_pass_criteria",
+      "ok": true,
+      "details": "pass_criteria=4"
+    },
+    {
+      "name": "gate_G7_fiscal_legal_and_live_billing_required",
+      "ok": true,
+      "details": "required=true"
+    },
+    {
+      "name": "gate_G7_fiscal_legal_and_live_billing_not_passed",
+      "ok": true,
+      "details": "status=not_passed"
+    },
+    {
+      "name": "gate_G7_fiscal_legal_and_live_billing_has_evidence",
+      "ok": true,
+      "details": "evidence=5"
+    },
+    {
+      "name": "gate_G7_fiscal_legal_and_live_billing_has_pass_criteria",
+      "ok": true,
+      "details": "pass_criteria=5"
+    },
+    {
+      "name": "gate_G8_product_api_schema_and_quality_required",
+      "ok": true,
+      "details": "required=true"
+    },
+    {
+      "name": "gate_G8_product_api_schema_and_quality_not_passed",
+      "ok": true,
+      "details": "status=not_passed"
+    },
+    {
+      "name": "gate_G8_product_api_schema_and_quality_has_evidence",
+      "ok": true,
+      "details": "evidence=6"
+    },
+    {
+      "name": "gate_G8_product_api_schema_and_quality_has_pass_criteria",
+      "ok": true,
+      "details": "pass_criteria=4"
+    },
+    {
+      "name": "gate_G9_registry_distribution_and_claims_required",
+      "ok": true,
+      "details": "required=true"
+    },
+    {
+      "name": "gate_G9_registry_distribution_and_claims_not_passed",
+      "ok": true,
+      "details": "status=not_passed"
+    },
+    {
+      "name": "gate_G9_registry_distribution_and_claims_has_evidence",
+      "ok": true,
+      "details": "evidence=5"
+    },
+    {
+      "name": "gate_G9_registry_distribution_and_claims_has_pass_criteria",
+      "ok": true,
+      "details": "pass_criteria=4"
+    },
+    {
+      "name": "auth_gate_has_revocation_and_scopes",
+      "ok": true,
+      "details": "G2 authorization scope requirements"
+    },
+    {
+      "name": "privacy_gate_has_lawful_basis_and_dsar",
+      "ok": true,
+      "details": "G6 privacy requirements"
+    },
+    {
+      "name": "fiscal_gate_has_vat_invoice_payment",
+      "ok": true,
+      "details": "G7 fiscal requirements"
+    },
+    {
+      "name": "product_gate_has_schema_ledger_contract",
+      "ok": true,
+      "details": "G8 product quality evidence"
+    },
+    {
+      "name": "go_live_probe_requires_all_gates_passed",
+      "ok": true,
+      "details": "all gates must pass"
+    },
+    {
+      "name": "go_live_probe_fails_if_any_gate_not_passed",
+      "ok": true,
+      "details": "probe fails if any gate is not_passed"
+    },
+    {
+      "name": "recommended_next_step_architecture_no_build",
+      "ok": true,
+      "details": "{\"action\":\"architecture_spike_no_build\",\"description\":\"Create a hosted MCP architecture design and threat model based on these gates. Do not implement, publish or submit until a later owner approval.\",\"allowed_now\":true,\"external_publication\":false,\"hosted_launch\":false,\"write_calls\":false,\"payment\":false,\"real_data\":false}"
+    },
+    {
+      "name": "counter_hosted_mcp_launch_executed_zero",
+      "ok": true,
+      "details": "hosted_mcp_launch_executed=0"
+    },
+    {
+      "name": "counter_mcp_registry_submission_executed_zero",
+      "ok": true,
+      "details": "mcp_registry_submission_executed=0"
+    },
+    {
+      "name": "counter_external_marketplace_publication_executed_zero",
+      "ok": true,
+      "details": "external_marketplace_publication_executed=0"
+    },
+    {
+      "name": "counter_external_send_executed_zero",
+      "ok": true,
+      "details": "external_send_executed=0"
+    },
+    {
+      "name": "counter_human_outreach_executed_zero",
+      "ok": true,
+      "details": "human_outreach_executed=0"
+    },
+    {
+      "name": "counter_machinesignal_api_post_calls_executed_zero",
+      "ok": true,
+      "details": "machinesignal_api_post_calls_executed=0"
+    },
+    {
+      "name": "counter_machinesignal_api_write_calls_executed_zero",
+      "ok": true,
+      "details": "machinesignal_api_write_calls_executed=0"
+    },
+    {
+      "name": "counter_payment_executed_zero",
+      "ok": true,
+      "details": "payment_executed=0"
+    },
+    {
+      "name": "counter_invoice_issued_zero",
+      "ok": true,
+      "details": "invoice_issued=0"
+    },
+    {
+      "name": "counter_credits_consumed_zero",
+      "ok": true,
+      "details": "credits_consumed=0"
+    },
+    {
+      "name": "counter_production_key_published_zero",
+      "ok": true,
+      "details": "production_key_published=0"
+    },
+    {
+      "name": "counter_personal_data_used_zero",
+      "ok": true,
+      "details": "personal_data_used=0"
+    },
+    {
+      "name": "counter_real_customer_data_used_zero",
+      "ok": true,
+      "details": "real_customer_data_used=0"
+    },
+    {
+      "name": "counter_real_lead_list_used_zero",
+      "ok": true,
+      "details": "real_lead_list_used=0"
+    }
+  ],
+  "failed_checks": []
+}

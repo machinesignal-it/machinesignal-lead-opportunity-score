@@ -1,0 +1,436 @@
+{
+  "artifact": "hosted_mcp_go_live_gate",
+  "version": "2026-06-12",
+  "status": "gate_defined_not_passed",
+  "primary_customer_interface": "machine",
+  "business_rule": "sell_to_machines_not_humans",
+  "purpose": "Define the mandatory architecture, security, compliance, fiscal and operational gates that must pass before MachineSignal can launch a hosted public MCP endpoint, submit to an MCP/tool registry, enable public write tools, distribute production keys or activate live billing.",
+  "current_decision_context": {
+    "latest_agent_review": "private-evaluator-pack/agent_go_no_go_mcp_v2_review_20260612.json",
+    "latest_mcp_private_draft": "private-evaluator-pack/mcp_tool_registry_private_draft_pack_v2_20260612.json",
+    "latest_mcp_probe": "private-evaluator-pack/mcp_tool_registry_private_draft_v2_probe_summary_20260612.json",
+    "current_allowed_path": "local_stdio_adapter_and_private_registry_ready_draft",
+    "current_no_go": [
+      "hosted public MCP",
+      "public registry submission",
+      "write-enabled public MCP tools",
+      "live billing",
+      "real payment",
+      "invoices",
+      "production keys",
+      "automatic outreach",
+      "external target contact",
+      "personal data",
+      "real customer data",
+      "real lead lists"
+    ]
+  },
+  "official_sources_checked": [
+    {
+      "name": "MCP specification 2025-11-25",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25",
+      "why_it_matters": "Baseline protocol and tool safety expectations."
+    },
+    {
+      "name": "MCP authorization tutorial",
+      "url": "https://modelcontextprotocol.io/docs/tutorials/security/authorization",
+      "why_it_matters": "Remote or sensitive MCP access needs proper authorization."
+    },
+    {
+      "name": "MCP security best practices",
+      "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
+      "why_it_matters": "Covers MCP-specific security risks and operator considerations."
+    },
+    {
+      "name": "MCP authorization specification",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
+      "why_it_matters": "HTTP-based MCP implementations should conform to the authorization framework."
+    },
+    {
+      "name": "MCP tools specification",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools",
+      "why_it_matters": "Tools are model-controlled and need clear schemas, annotations and safety handling."
+    },
+    {
+      "name": "MCP schema reference",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/schema",
+      "why_it_matters": "Tool errors should be returned in structured results so clients can reason about failures."
+    },
+    {
+      "name": "EDPB legal basis guide",
+      "url": "https://www.edpb.europa.eu/sme-data-protection-guide/process-personal-data-lawfully_en",
+      "why_it_matters": "Personal data processing requires a lawful basis."
+    },
+    {
+      "name": "EDPB data subject rights guide",
+      "url": "https://www.edpb.europa.eu/sme-data-protection-guide/respect-individuals-rights_en",
+      "why_it_matters": "If personal data enters, rights handling is mandatory."
+    },
+    {
+      "name": "EDPB secure personal data guide",
+      "url": "https://www.edpb.europa.eu/sme-data-protection-guide/secure-personal-data_en",
+      "why_it_matters": "Security measures must match the context and risk."
+    },
+    {
+      "name": "EU VAT invoicing",
+      "url": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-businesses/invoicing_en",
+      "why_it_matters": "Live B2B/B2C billing creates invoicing obligations."
+    },
+    {
+      "name": "EU VAT for businesses",
+      "url": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-businesses_en",
+      "why_it_matters": "VAT treatment varies by country and transaction type."
+    }
+  ],
+  "global_pass_rule": {
+    "hosted_mcp_launch_allowed": false,
+    "registry_submission_allowed": false,
+    "live_billing_allowed": false,
+    "production_key_distribution_allowed": false,
+    "real_customer_data_allowed": false,
+    "personal_data_allowed": false,
+    "rule": "All required gates must be passed, signed off by owner, and revalidated by a go-live probe before any hosted MCP, registry submission, live billing, production key distribution or real data processing."
+  },
+  "gates": [
+    {
+      "gate_id": "G0_owner_strategy_and_scope",
+      "status": "not_passed",
+      "required": true,
+      "purpose": "Decide what hosted MCP is allowed to do before anything is built.",
+      "must_define": [
+        "read-only hosted MCP scope",
+        "write-enabled hosted MCP scope",
+        "admin-only scope",
+        "customer type",
+        "countries served",
+        "data categories",
+        "monetization mode",
+        "support model",
+        "kill switch"
+      ],
+      "required_evidence": [
+        "owner signed go-live intent",
+        "scope document",
+        "explicit no-go list",
+        "rollback plan"
+      ],
+      "pass_criteria": [
+        "owner approves hosted MCP architecture scope",
+        "public claims remain sandbox-bounded until all gates pass"
+      ]
+    },
+    {
+      "gate_id": "G1_mcp_protocol_and_conformance",
+      "status": "not_passed",
+      "required": true,
+      "purpose": "Prove the hosted endpoint follows the current MCP protocol expectations.",
+      "must_define": [
+        "supported MCP spec version",
+        "transport",
+        "tools/list behavior",
+        "tools/call behavior",
+        "structured tool results",
+        "error taxonomy",
+        "capability negotiation",
+        "version monitoring"
+      ],
+      "required_evidence": [
+        "MCP conformance smoke report",
+        "MCP Inspector or equivalent test run",
+        "tool schema parity report against mcp-tool-manifest.json",
+        "negative/error test report"
+      ],
+      "pass_criteria": [
+        "all public tools have stable names, descriptions and schemas",
+        "tool errors are returned as structured tool results",
+        "no admin tool is exposed publicly",
+        "no write tool is exposed without write scope"
+      ]
+    },
+    {
+      "gate_id": "G2_authorization_scopes_and_revocation",
+      "status": "not_passed",
+      "required": true,
+      "purpose": "Protect sensitive tools and customer data with scoped authorization.",
+      "must_define": [
+        "authorization model",
+        "token scopes",
+        "customer identity binding",
+        "token expiry",
+        "token revocation",
+        "key rotation",
+        "production key distribution policy",
+        "separate read/write/admin access"
+      ],
+      "required_evidence": [
+        "authorization design",
+        "scope matrix",
+        "revocation test",
+        "least-privilege test",
+        "credential storage review"
+      ],
+      "pass_criteria": [
+        "read-only, write-enabled and admin scopes are separated",
+        "revoked credentials stop working",
+        "production keys are never logged or returned in full",
+        "admin tools are unreachable from customer scopes"
+      ]
+    },
+    {
+      "gate_id": "G3_tool_safety_and_user_consent",
+      "status": "not_passed",
+      "required": true,
+      "purpose": "Prevent unintended tool execution by machines or users.",
+      "must_define": [
+        "tool annotations",
+        "dangerous action labeling",
+        "human/owner approval points",
+        "idempotency requirements",
+        "write confirmation policy",
+        "spend policy",
+        "dry-run mode"
+      ],
+      "required_evidence": [
+        "tool safety matrix",
+        "dry-run examples",
+        "idempotency tests",
+        "write confirmation tests",
+        "spend cap tests"
+      ],
+      "pass_criteria": [
+        "write tools cannot run without explicit scope and idempotency key",
+        "payment and invoice tools remain disabled until fiscal gate passes",
+        "Action Pack does not send email or execute outreach",
+        "dangerous tools are labeled and blocked by default"
+      ]
+    },
+    {
+      "gate_id": "G4_abuse_rate_limit_and_cost_controls",
+      "status": "not_passed",
+      "required": true,
+      "purpose": "Avoid runaway usage, KV/compute limits, cost spikes and automated abuse.",
+      "must_define": [
+        "per-customer rate limits",
+        "per-IP limits",
+        "daily write budget",
+        "monthly cost ceiling",
+        "sandbox quota",
+        "production quota",
+        "429 behavior",
+        "abuse escalation"
+      ],
+      "required_evidence": [
+        "load test",
+        "rate-limit test",
+        "daily write budget test",
+        "cost forecast",
+        "abuse simulation"
+      ],
+      "pass_criteria": [
+        "over-limit requests fail safely",
+        "KV/write usage cannot exceed approved budget",
+        "customer-facing errors are structured",
+        "kill switch can stop writes"
+      ]
+    },
+    {
+      "gate_id": "G5_observability_audit_and_incident_response",
+      "status": "not_passed",
+      "required": true,
+      "purpose": "Make hosted MCP debuggable and auditable before real customers use it.",
+      "must_define": [
+        "request logs",
+        "tool-call logs",
+        "customer usage ledger",
+        "security event logs",
+        "incident severity levels",
+        "alerting",
+        "retention",
+        "redaction"
+      ],
+      "required_evidence": [
+        "observability dashboard",
+        "audit event sample",
+        "incident runbook",
+        "redaction test",
+        "ledger reconciliation test"
+      ],
+      "pass_criteria": [
+        "each protected tool call has an audit record",
+        "logs redact secrets and personal data",
+        "incident runbook exists",
+        "usage ledger reconciles with credits and orders"
+      ]
+    },
+    {
+      "gate_id": "G6_data_protection_and_privacy",
+      "status": "not_passed",
+      "required": true,
+      "purpose": "Block personal data and real customer data until privacy controls are defined.",
+      "must_define": [
+        "data map",
+        "data categories",
+        "personal data boundary",
+        "lawful basis",
+        "controller/processor role",
+        "retention",
+        "data subject rights workflow",
+        "DPA/processor terms",
+        "international transfer policy",
+        "DPIA/LIA decision"
+      ],
+      "required_evidence": [
+        "data protection pack",
+        "privacy notice draft",
+        "DPA draft",
+        "retention matrix",
+        "DSAR workflow",
+        "real-data no-go checklist"
+      ],
+      "pass_criteria": [
+        "real customer data remains blocked until owner/legal approval",
+        "personal data remains blocked until lawful basis and rights workflow are approved",
+        "logs and telemetry do not contain personal data by default",
+        "data minimization is documented"
+      ]
+    },
+    {
+      "gate_id": "G7_fiscal_legal_and_live_billing",
+      "status": "not_passed",
+      "required": true,
+      "purpose": "Avoid accidental commercial/fiscal activation before the business is ready.",
+      "must_define": [
+        "PIVA/company status",
+        "terms of service",
+        "privacy/cookie policy alignment",
+        "VAT treatment",
+        "invoicing process",
+        "refund and credit note process",
+        "payment provider",
+        "checkout mode",
+        "B2B/B2C policy",
+        "cross-border EU handling"
+      ],
+      "required_evidence": [
+        "fiscal advisor approval",
+        "billing design",
+        "test-mode payment reconciliation",
+        "invoice workflow",
+        "terms approval"
+      ],
+      "pass_criteria": [
+        "live billing is explicitly approved",
+        "invoice workflow is defined",
+        "VAT treatment is defined",
+        "payment provider is in live-ready compliant mode",
+        "terms are published before checkout"
+      ]
+    },
+    {
+      "gate_id": "G8_product_api_schema_and_quality",
+      "status": "not_passed",
+      "required": true,
+      "purpose": "Make the product reliable enough for machines to buy and consume.",
+      "must_define": [
+        "tool schema parity with OpenAPI",
+        "stable error taxonomy",
+        "versioning policy",
+        "quota behavior",
+        "credit ledger semantics",
+        "valid output definition",
+        "product fulfillment SLA",
+        "backward compatibility"
+      ],
+      "required_evidence": [
+        "OpenAPI-to-tool schema diff",
+        "contract tests",
+        "credit ledger tests",
+        "negative input tests",
+        "batch/volume test",
+        "product fulfillment sample set"
+      ],
+      "pass_criteria": [
+        "tools and OpenAPI agree",
+        "invalid/duplicate records do not consume valid credits",
+        "all product outputs are machine-readable",
+        "errors are stable and actionable"
+      ]
+    },
+    {
+      "gate_id": "G9_registry_distribution_and_claims",
+      "status": "not_passed",
+      "required": true,
+      "purpose": "Ensure public registry or marketplace descriptions do not overclaim readiness.",
+      "must_define": [
+        "registry target",
+        "submission fields",
+        "public claims",
+        "support contact",
+        "versioning",
+        "deprecation policy",
+        "security disclosure contact",
+        "listing rollback"
+      ],
+      "required_evidence": [
+        "registry submission draft",
+        "claim review",
+        "security review",
+        "owner approval",
+        "rollback plan"
+      ],
+      "pass_criteria": [
+        "listing says hosted MCP only if it is live and passed gates",
+        "billing claims match fiscal gate",
+        "write tools are not advertised without scopes and policies",
+        "owner approves exact public copy"
+      ]
+    }
+  ],
+  "go_live_probe_requirements": {
+    "required_before_launch": [
+      "all gates status=passed",
+      "all pass criteria evidenced",
+      "API regression green",
+      "ledger regression green",
+      "MCP conformance green",
+      "security auth/revocation green",
+      "rate-limit and abuse tests green",
+      "privacy/legal/fiscal sign-off recorded",
+      "owner approval recorded"
+    ],
+    "probe_must_fail_if": [
+      "any gate is not_passed",
+      "hosted_mcp_launch_executed is already true before approval",
+      "registry_submission_executed is already true before approval",
+      "live billing is enabled before fiscal gate",
+      "production key is published before security gate",
+      "personal or real customer data appears before privacy gate"
+    ]
+  },
+  "recommended_next_step": {
+    "action": "architecture_spike_no_build",
+    "description": "Create a hosted MCP architecture design and threat model based on these gates. Do not implement, publish or submit until a later owner approval.",
+    "allowed_now": true,
+    "external_publication": false,
+    "hosted_launch": false,
+    "write_calls": false,
+    "payment": false,
+    "real_data": false
+  },
+  "execution_counters": {
+    "hosted_mcp_launch_executed": 0,
+    "mcp_registry_submission_executed": 0,
+    "external_marketplace_publication_executed": 0,
+    "external_send_executed": 0,
+    "human_outreach_executed": 0,
+    "machinesignal_api_post_calls_executed": 0,
+    "machinesignal_api_write_calls_executed": 0,
+    "payment_executed": 0,
+    "invoice_issued": 0,
+    "credits_consumed": 0,
+    "production_key_published": 0,
+    "personal_data_used": 0,
+    "real_customer_data_used": 0,
+    "real_lead_list_used": 0
+  }
+}
