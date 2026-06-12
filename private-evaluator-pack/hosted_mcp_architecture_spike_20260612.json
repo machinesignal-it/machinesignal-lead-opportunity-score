@@ -1,0 +1,493 @@
+{
+  "artifact": "hosted_mcp_architecture_spike",
+  "version": "2026-06-12",
+  "status": "architecture_spike_no_build_no_deploy",
+  "primary_customer_interface": "machine",
+  "business_rule": "sell_to_machines_not_humans",
+  "purpose": "Define a future hosted MCP architecture for MachineSignal without building, deploying, publishing, enabling billing, issuing production keys or using real customer data.",
+  "decision": {
+    "recommended_path_now": "do_not_build_hosted_mcp_yet",
+    "allowed_now": [
+      "architecture review",
+      "threat model",
+      "scope matrix",
+      "no-build probe",
+      "local adapter validation",
+      "private draft documentation"
+    ],
+    "blocked_now": [
+      "hosted MCP deployment",
+      "public MCP registry submission",
+      "write-enabled public MCP tools",
+      "live billing",
+      "real payments",
+      "invoices",
+      "production customer keys",
+      "automatic outreach",
+      "external target contact",
+      "real customer data",
+      "personal data",
+      "real lead lists"
+    ],
+    "why": "Hosted MCP turns MachineSignal from a local/private machine-readable beta into an internet-facing tool server. That creates security, consent, authorization, cost, privacy, fiscal and support obligations that must be closed first."
+  },
+  "official_sources_checked": [
+    {
+      "name": "MCP specification 2025-11-25",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25",
+      "used_for": "Protocol roles, JSON-RPC model, capability negotiation and security principles."
+    },
+    {
+      "name": "MCP authorization specification 2025-11-25",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
+      "used_for": "HTTP-based authorization, protected resource metadata, OAuth 2.1 alignment, scope challenges and token handling."
+    },
+    {
+      "name": "MCP tools specification 2025-11-25",
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools",
+      "used_for": "Tool listing, tool calls, schemas, model-controlled execution and structured errors."
+    },
+    {
+      "name": "MCP security best practices",
+      "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
+      "used_for": "Threat model, tool poisoning, consent, authorization, data protection and operator safeguards."
+    },
+    {
+      "name": "Cloudflare Durable Objects overview",
+      "url": "https://developers.cloudflare.com/durable-objects/",
+      "used_for": "Stateful coordination and globally unique server-side state."
+    },
+    {
+      "name": "Cloudflare Durable Objects storage",
+      "url": "https://developers.cloudflare.com/durable-objects/best-practices/access-durable-objects-storage/",
+      "used_for": "Transactional, strongly consistent persistent storage for ledger, idempotency and quota state."
+    },
+    {
+      "name": "Cloudflare Workers KV limits",
+      "url": "https://developers.cloudflare.com/kv/platform/limits/",
+      "used_for": "Avoiding KV writes on request paths after free-tier write limit evidence."
+    },
+    {
+      "name": "EDPB legal basis guide",
+      "url": "https://www.edpb.europa.eu/sme-data-protection-guide/process-personal-data-lawfully_en",
+      "used_for": "No personal data before lawful basis and privacy workflow."
+    },
+    {
+      "name": "EU VAT invoicing",
+      "url": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-businesses/invoicing_en",
+      "used_for": "No live billing or invoices before fiscal gate."
+    }
+  ],
+  "target_architecture": {
+    "future_canonical_endpoint": "https://mcp.machinesignal.it/mcp",
+    "future_alternative_endpoint": "https://api.machinesignal.it/mcp",
+    "current_endpoint_status": "not_live_not_configured",
+    "transport": "HTTP-based MCP only after authorization gate; local stdio remains current MCP path",
+    "public_discovery_without_tool_execution": [
+      "https://machinesignal.it/.well-known/machine-discovery.json",
+      "https://machinesignal.it/mcp-tool-manifest.json",
+      "https://machinesignal.it/openapi.json",
+      "https://machinesignal.it/product-catalog.json"
+    ],
+    "protected_mcp_metadata_future": [
+      "https://mcp.machinesignal.it/.well-known/oauth-protected-resource",
+      "https://mcp.machinesignal.it/.well-known/oauth-protected-resource/mcp"
+    ],
+    "authorization_server_future": "external_or_dedicated_oauth_provider_to_be_selected",
+    "hosting_plane": "Cloudflare Workers plus Durable Objects for coordinated state",
+    "storage_plane": {
+      "durable_objects": [
+        "customer ledger",
+        "idempotency records",
+        "quota counters",
+        "spend caps",
+        "audit summary indexes",
+        "kill-switch state"
+      ],
+      "kv": [
+        "static manifests",
+        "read-only cache with strict write budget",
+        "non-critical public metadata"
+      ],
+      "r2_or_equivalent_future": [
+        "large generated delivery artifacts",
+        "non-sensitive export bundles",
+        "signed-download assets"
+      ],
+      "no_go": [
+        "per-request KV writes for every score",
+        "storing tokens in logs",
+        "storing raw personal data in telemetry",
+        "mixing customer ledgers"
+      ]
+    }
+  },
+  "scope_matrix": [
+    {
+      "scope": "mcp:catalog:read",
+      "class": "read_only",
+      "allowed_tools": [
+        "get_product_catalog",
+        "get_machine_onboarding",
+        "get_mcp_status",
+        "get_public_evidence_pack"
+      ],
+      "credit_consumption": false,
+      "writes": false,
+      "public_or_authenticated": "public_or_authenticated",
+      "notes": "Safe discovery tools may be public if they never disclose customer state."
+    },
+    {
+      "scope": "mcp:score:create",
+      "class": "customer_write",
+      "allowed_tools": [
+        "score_lead_opportunity"
+      ],
+      "credit_consumption": true,
+      "writes": true,
+      "public_or_authenticated": "authenticated_only",
+      "required_controls": [
+        "idempotency_key",
+        "customer_id_binding",
+        "daily_quota",
+        "monthly_credit_cap",
+        "structured_429",
+        "dry_run_supported"
+      ]
+    },
+    {
+      "scope": "mcp:purchase_intent:create",
+      "class": "customer_write",
+      "allowed_tools": [
+        "create_purchase_intent"
+      ],
+      "credit_consumption": "simulation_now_live_later_only_after_fiscal_gate",
+      "writes": true,
+      "public_or_authenticated": "authenticated_only",
+      "required_controls": [
+        "idempotency_key",
+        "source_score_or_source_order_reference",
+        "spend_policy",
+        "no_live_payment_until_fiscal_gate",
+        "no_invoice_until_fiscal_gate"
+      ]
+    },
+    {
+      "scope": "mcp:orders:read",
+      "class": "customer_read",
+      "allowed_tools": [
+        "get_order",
+        "list_orders",
+        "get_delivery"
+      ],
+      "credit_consumption": false,
+      "writes": false,
+      "public_or_authenticated": "authenticated_only",
+      "required_controls": [
+        "customer_id_binding",
+        "redacted_outputs",
+        "retention_policy"
+      ]
+    },
+    {
+      "scope": "mcp:admin:*",
+      "class": "admin",
+      "allowed_tools": [
+        "get_admin_metrics",
+        "set_kill_switch",
+        "reconcile_ledger"
+      ],
+      "credit_consumption": false,
+      "writes": true,
+      "public_or_authenticated": "owner_admin_only_never_registry_public",
+      "required_controls": [
+        "separate_admin_domain_or_console",
+        "strong_auth",
+        "audit_log",
+        "manual_owner_approval"
+      ]
+    }
+  ],
+  "tool_exposure_policy": {
+    "public_registry_safe_tools": [
+      "get_product_catalog",
+      "get_machine_onboarding",
+      "get_mcp_status",
+      "get_public_evidence_pack"
+    ],
+    "authenticated_customer_tools": [
+      "score_lead_opportunity",
+      "create_purchase_intent",
+      "get_order",
+      "list_orders",
+      "get_delivery",
+      "get_usage"
+    ],
+    "admin_tools_never_public": [
+      "get_admin_metrics",
+      "set_kill_switch",
+      "reconcile_ledger",
+      "rotate_customer_key"
+    ],
+    "dangerous_actions_blocked_by_default": [
+      "send_email",
+      "contact_external_target",
+      "charge_card",
+      "issue_invoice",
+      "export_personal_data",
+      "process_real_customer_list",
+      "publish_registry_listing"
+    ],
+    "write_tool_rules": [
+      "Every write tool requires authentication.",
+      "Every write tool requires an idempotency key.",
+      "Every credit-consuming tool supports dry_run.",
+      "Every over-limit request returns structured 429 without partial writes.",
+      "Every write creates one redacted audit event.",
+      "Action Pack only creates machine-readable payloads; it never sends outreach."
+    ]
+  },
+  "request_flow": [
+    {
+      "step": 1,
+      "name": "machine_discovers_public_manifest",
+      "description": "Machine reads public discovery assets and learns that hosted MCP is not live yet."
+    },
+    {
+      "step": 2,
+      "name": "machine_attempts_protected_mcp",
+      "description": "Future MCP endpoint responds with OAuth protected-resource metadata or a clear not-live response until launch."
+    },
+    {
+      "step": 3,
+      "name": "machine_obtains_scoped_token",
+      "description": "Future machine obtains a scoped token through approved authorization server."
+    },
+    {
+      "step": 4,
+      "name": "machine_lists_tools",
+      "description": "MCP tools/list returns only tools allowed by token scope."
+    },
+    {
+      "step": 5,
+      "name": "machine_calls_tool",
+      "description": "Tool call validates schema, scope, idempotency, customer binding, quota and spend policy before execution."
+    },
+    {
+      "step": 6,
+      "name": "state_and_audit",
+      "description": "Durable Object records quota, ledger and audit event. KV is not used for per-call writes."
+    },
+    {
+      "step": 7,
+      "name": "structured_response",
+      "description": "MCP response returns structured JSON with decision, evidence, usage impact, next_allowed_machine_action and errors if any."
+    }
+  ],
+  "threat_model": [
+    {
+      "threat": "token_theft",
+      "risk_level": "high",
+      "mitigation": [
+        "short-lived access tokens",
+        "revocation",
+        "scoped access",
+        "no token logging",
+        "rotation runbook"
+      ]
+    },
+    {
+      "threat": "prompt_or_tool_poisoning",
+      "risk_level": "high",
+      "mitigation": [
+        "stable tool descriptions",
+        "tool output treated as untrusted by clients",
+        "no hidden external actions",
+        "dangerous action labels",
+        "human/owner gate for publication and billing"
+      ]
+    },
+    {
+      "threat": "runaway_write_costs",
+      "risk_level": "high",
+      "mitigation": [
+        "Durable Object quota counters",
+        "daily write budget",
+        "monthly customer cap",
+        "structured 429",
+        "kill switch",
+        "KV write avoidance on hot path"
+      ]
+    },
+    {
+      "threat": "cross_customer_data_leakage",
+      "risk_level": "high",
+      "mitigation": [
+        "customer-bound tokens",
+        "per-customer Durable Object state",
+        "strict customer_id checks",
+        "redacted logs",
+        "negative authorization tests"
+      ]
+    },
+    {
+      "threat": "accidental_live_billing",
+      "risk_level": "high",
+      "mitigation": [
+        "live billing flag false by default",
+        "invoice tool absent from public MCP",
+        "fiscal gate required",
+        "owner approval required",
+        "test-mode reconciliation only"
+      ]
+    },
+    {
+      "threat": "privacy_boundary_break",
+      "risk_level": "high",
+      "mitigation": [
+        "synthetic/public-only beta",
+        "no personal data before legal basis",
+        "retention matrix",
+        "DSAR workflow",
+        "DPA and privacy notice before real data"
+      ]
+    },
+    {
+      "threat": "premature_public_registry_launch",
+      "risk_level": "medium",
+      "mitigation": [
+        "owner approval gate",
+        "publication_status false",
+        "no registry submission automation",
+        "private draft labels"
+      ]
+    },
+    {
+      "threat": "schema_confusion_for_machine_buyers",
+      "risk_level": "medium",
+      "mitigation": [
+        "machine-readable scope matrix",
+        "clear product selector",
+        "structured errors",
+        "versioned schemas",
+        "contract tests"
+      ]
+    }
+  ],
+  "go_live_phases": [
+    {
+      "phase": "P0_no_build_architecture",
+      "status": "current",
+      "allowed": [
+        "write architecture spike",
+        "write threat model",
+        "run no-build probe"
+      ],
+      "exit_criteria": [
+        "architecture probe passes",
+        "owner understands that hosted MCP is still blocked"
+      ]
+    },
+    {
+      "phase": "P1_local_conformance",
+      "status": "future",
+      "allowed": [
+        "local MCP adapter conformance checks",
+        "schema parity checks",
+        "negative tests"
+      ],
+      "exit_criteria": [
+        "local tools/list and tools/call behavior verified",
+        "no write calls require live data"
+      ]
+    },
+    {
+      "phase": "P2_private_staging_hosted",
+      "status": "future_blocked",
+      "allowed": [
+        "private authenticated staging endpoint",
+        "synthetic data only",
+        "no billing",
+        "no registry"
+      ],
+      "exit_criteria": [
+        "OAuth or equivalent authorization design implemented",
+        "revocation test passes",
+        "rate-limit test passes",
+        "audit log test passes"
+      ]
+    },
+    {
+      "phase": "P3_closed_machine_beta",
+      "status": "future_blocked",
+      "allowed": [
+        "selected machine clients",
+        "test credits",
+        "synthetic or approved non-personal data",
+        "support runbook"
+      ],
+      "exit_criteria": [
+        "no data leakage",
+        "no runaway costs",
+        "usage ledger reconciles",
+        "support workflow works"
+      ]
+    },
+    {
+      "phase": "P4_controlled_paid_beta",
+      "status": "future_blocked",
+      "allowed": [
+        "test-to-live billing only after fiscal approval",
+        "terms accepted",
+        "invoice workflow approved"
+      ],
+      "exit_criteria": [
+        "fiscal gate passed",
+        "legal gate passed",
+        "payment reconciliation passed"
+      ]
+    },
+    {
+      "phase": "P5_public_hosted_mcp_and_registry",
+      "status": "future_blocked",
+      "allowed": [
+        "public hosted MCP",
+        "registry submission",
+        "public machine discovery claim"
+      ],
+      "exit_criteria": [
+        "all hosted MCP go-live gates pass",
+        "owner signs final go-live",
+        "rollback plan tested"
+      ]
+    }
+  ],
+  "minimum_build_spec_later": {
+    "files_to_create_later_only_after_gate": [
+      "mcp_hosted_worker.mjs",
+      "mcp_hosted_auth.mjs",
+      "mcp_hosted_scope_matrix.json",
+      "mcp_hosted_conformance_probe.mjs",
+      "mcp_hosted_threat_model_report.md"
+    ],
+    "environment_flags": [
+      "HOSTED_MCP_ENABLED=false",
+      "MCP_WRITE_TOOLS_ENABLED=false",
+      "LIVE_BILLING_ENABLED=false",
+      "REAL_DATA_ENABLED=false",
+      "PUBLIC_REGISTRY_SUBMISSION_ENABLED=false"
+    ],
+    "kill_switches": [
+      "global_disable_mcp",
+      "disable_write_tools",
+      "disable_credit_consumption",
+      "disable_purchase_intents",
+      "disable_delivery_exports"
+    ]
+  },
+  "architecture_recommendation": {
+    "recommendation": "Keep MachineSignal on local MCP plus passive machine-readable discovery now. Prepare hosted MCP only as a staged, authenticated, read-first architecture. Do not expose credit-consuming or purchase-intent tools publicly until authorization, quotas, audit, privacy and fiscal gates are passed.",
+    "next_allowed_action": "run_hosted_mcp_architecture_spike_probe",
+    "next_blocked_action": "hosted_mcp_build_or_deploy"
+  }
+}

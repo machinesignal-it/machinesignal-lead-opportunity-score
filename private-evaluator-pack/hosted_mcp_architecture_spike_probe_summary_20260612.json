@@ -1,0 +1,208 @@
+{
+  "artifact": "hosted_mcp_architecture_spike_probe",
+  "version": "2026-06-12",
+  "ok": true,
+  "checks_total": 37,
+  "checks_failed": 0,
+  "hosted_mcp_build_allowed": false,
+  "hosted_mcp_deploy_allowed": false,
+  "registry_submission_allowed": false,
+  "live_billing_allowed": false,
+  "real_data_allowed": false,
+  "personal_data_allowed": false,
+  "next_allowed_action": "run_hosted_mcp_architecture_spike_probe",
+  "next_blocked_action": "hosted_mcp_build_or_deploy",
+  "failed_checks": [],
+  "checked_files": [
+    "private-evaluator-pack\\hosted_mcp_architecture_spike_20260612.json",
+    "private-evaluator-pack\\hosted_mcp_architecture_spike_20260612.md",
+    "private-evaluator-pack\\hosted_mcp_architecture_spike_probe_20260612.mjs"
+  ],
+  "checks": [
+    {
+      "id": "artifact_name",
+      "pass": true,
+      "detail": "Artifact name must match the hosted MCP architecture spike."
+    },
+    {
+      "id": "status_no_build",
+      "pass": true,
+      "detail": "Status must remain no-build and no-deploy."
+    },
+    {
+      "id": "machine_first_rule",
+      "pass": true,
+      "detail": "The spike must remain machine-first."
+    },
+    {
+      "id": "deployment_blocked",
+      "pass": true,
+      "detail": "Hosted MCP deployment must remain blocked."
+    },
+    {
+      "id": "blocked_actions_core",
+      "pass": true,
+      "detail": "Core blocked actions must be explicit."
+    },
+    {
+      "id": "sources_present",
+      "pass": true,
+      "detail": "Official sources must be present and HTTPS."
+    },
+    {
+      "id": "mcp_sources_present",
+      "pass": true,
+      "detail": "MCP specification, authorization and tools sources must be present."
+    },
+    {
+      "id": "cloudflare_sources_present",
+      "pass": true,
+      "detail": "Cloudflare Durable Objects and KV limits sources must be present."
+    },
+    {
+      "id": "future_endpoint_https",
+      "pass": true,
+      "detail": "Future endpoints must be HTTPS."
+    },
+    {
+      "id": "endpoint_not_live",
+      "pass": true,
+      "detail": "Hosted MCP endpoint must not be marked live."
+    },
+    {
+      "id": "local_adapter_current",
+      "pass": true,
+      "detail": "Local stdio adapter must remain current MCP path."
+    },
+    {
+      "id": "protected_metadata_future",
+      "pass": true,
+      "detail": "Future protected resource metadata URLs must be declared."
+    },
+    {
+      "id": "durable_objects_hot_state",
+      "pass": true,
+      "detail": "Durable Objects must own coordinated mutable state."
+    },
+    {
+      "id": "kv_not_hot_path",
+      "pass": true,
+      "detail": "KV must not be used for hot-path writes or unsafe data."
+    },
+    {
+      "id": "scope_catalog_read_exists",
+      "pass": true,
+      "detail": "Read-only catalog scope must exist and not write."
+    },
+    {
+      "id": "scope_score_create_protected",
+      "pass": true,
+      "detail": "Score creation must be authenticated and write-scoped."
+    },
+    {
+      "id": "scope_purchase_intent_protected",
+      "pass": true,
+      "detail": "Purchase intent must be authenticated and live only after fiscal gate."
+    },
+    {
+      "id": "scope_admin_never_public",
+      "pass": true,
+      "detail": "Admin scope must never be public."
+    },
+    {
+      "id": "dangerous_actions_blocked",
+      "pass": true,
+      "detail": "Dangerous actions must be blocked by default."
+    },
+    {
+      "id": "write_tool_rules",
+      "pass": true,
+      "detail": "Write tool rules must include idempotency, dry-run and Action Pack no-outreach behavior."
+    },
+    {
+      "id": "request_flow_ordered",
+      "pass": true,
+      "detail": "Request flow must be complete and ordered."
+    },
+    {
+      "id": "threat_model_highs",
+      "pass": true,
+      "detail": "Threat model must include multiple high-risk hosted MCP threats."
+    },
+    {
+      "id": "go_live_phases_present",
+      "pass": true,
+      "detail": "Go-live phases must run from no-build architecture to public hosted MCP."
+    },
+    {
+      "id": "future_phases_blocked",
+      "pass": true,
+      "detail": "Hosted staging, beta, paid beta and public launch phases must be blocked."
+    },
+    {
+      "id": "env_flags_default_false",
+      "pass": true,
+      "detail": "Future build environment flags must default to false."
+    },
+    {
+      "id": "recommendation_blocks_build",
+      "pass": true,
+      "detail": "Recommendation must allow only the probe and block build/deploy."
+    },
+    {
+      "id": "markdown_mentions_no_build",
+      "pass": true,
+      "detail": "Markdown must state no-build/no-deploy/no-publication."
+    },
+    {
+      "id": "markdown_mentions_kv_decision",
+      "pass": true,
+      "detail": "Markdown must explain KV hot-path avoidance."
+    },
+    {
+      "id": "markdown_mentions_scope_matrix",
+      "pass": true,
+      "detail": "Markdown must include the scope matrix."
+    },
+    {
+      "id": "markdown_mentions_blocked_actions",
+      "pass": true,
+      "detail": "Markdown must include dangerous blocked actions."
+    },
+    {
+      "id": "markdown_mentions_go_live_phases",
+      "pass": true,
+      "detail": "Markdown must include go-live phases."
+    },
+    {
+      "id": "ascii_hosted_mcp_architecture_spike_20260612.json",
+      "pass": true,
+      "detail": "hosted_mcp_architecture_spike_20260612.json must remain ASCII."
+    },
+    {
+      "id": "secret_scan_hosted_mcp_architecture_spike_20260612.json",
+      "pass": true,
+      "detail": "hosted_mcp_architecture_spike_20260612.json must not contain obvious secrets."
+    },
+    {
+      "id": "ascii_hosted_mcp_architecture_spike_20260612.md",
+      "pass": true,
+      "detail": "hosted_mcp_architecture_spike_20260612.md must remain ASCII."
+    },
+    {
+      "id": "secret_scan_hosted_mcp_architecture_spike_20260612.md",
+      "pass": true,
+      "detail": "hosted_mcp_architecture_spike_20260612.md must not contain obvious secrets."
+    },
+    {
+      "id": "ascii_hosted_mcp_architecture_spike_probe_20260612.mjs",
+      "pass": true,
+      "detail": "hosted_mcp_architecture_spike_probe_20260612.mjs must remain ASCII."
+    },
+    {
+      "id": "secret_scan_hosted_mcp_architecture_spike_probe_20260612.mjs",
+      "pass": true,
+      "detail": "hosted_mcp_architecture_spike_probe_20260612.mjs must not contain obvious secrets."
+    }
+  ]
+}
