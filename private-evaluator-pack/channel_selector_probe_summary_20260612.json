@@ -1,0 +1,23 @@
+{
+  "artifact": "machinesignal_channel_selector_probe",
+  "generated_at": "2026-06-12T10:34:52.662Z",
+  "ok": true,
+  "checks_total": 10,
+  "checks_failed": 0,
+  "failures": [],
+  "recommended_primary_next_channel": "mcp_tool_registry_draft",
+  "recommended_companion_channel": "github_machine_docs",
+  "deferred_channels": [
+    "rapidapi_marketplace_publication",
+    "postman_api_network_publication",
+    "generic_api_directory_publication"
+  ],
+  "external_publication_executed": false,
+  "external_send_executed": false,
+  "post_calls_executed": 0,
+  "write_calls_executed": 0,
+  "payment_executed": false,
+  "credits_consumed": 0,
+  "personal_data_used": false,
+  "recommendation": "prepare_mcp_channel_entrypoint_draft_nopublish_nowrite_next"
+}

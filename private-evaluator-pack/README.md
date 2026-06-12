@@ -158,6 +158,18 @@ The single starting file for a blind machine test is:
 ```text
 private_evaluator_entrypoint.json
 ```
+
+## Channel Selection
+
+Current channel decision: prepare `mcp_tool_registry_draft` next, with `github_machine_docs` as companion evidence.
+
+This is still NoPublish and NoSend. It does not authorize MCP registry submission, hosted MCP launch, API marketplace publication, live billing or production API keys.
+
+Channel selector files:
+
+- `channel_selection_matrix_20260612.json`
+- `channel_selection_matrix_20260612.md`
+- `channel_selector_probe_20260612.mjs`
 - `owner_approval_gate_machine_buyer_review_20260612.md`
 - `owner_approval_gate_machine_buyer_review_20260612.json`
 - `owner_approval_gate_commercial_api_product_review_20260612.md`

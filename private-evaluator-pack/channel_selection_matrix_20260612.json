@@ -1,0 +1,212 @@
+{
+  "artifact": "machinesignal_channel_selection_matrix",
+  "version": "2026-06-12-draft",
+  "status": "nopublish_nosend_nowrite_simulation_only",
+  "business_rule": "sell_to_machines_not_humans",
+  "purpose": "Choose which machine-distribution channel should be strengthened next without publishing externally or activating monetization.",
+  "decision": {
+    "recommended_primary_next_channel": "mcp_tool_registry_draft",
+    "recommended_companion_channel": "github_machine_docs",
+    "recommended_defer_channels": [
+      "rapidapi_marketplace_publication",
+      "postman_api_network_publication",
+      "generic_api_directory_publication"
+    ],
+    "reason": "MCP/tool registry is the most machine-native path for AI agents and automated tool consumers. GitHub machine docs are the lowest-risk companion because they improve machine-readable evidence without payments, subscriptions, external sends or marketplace publication."
+  },
+  "safety_scope": {
+    "external_publication_allowed": false,
+    "external_send_allowed": false,
+    "human_outreach_allowed": false,
+    "marketplace_submission_allowed": false,
+    "live_payment_allowed": false,
+    "invoice_allowed": false,
+    "subscription_allowed": false,
+    "production_key_distribution_allowed": false,
+    "personal_data_allowed": false,
+    "write_calls_allowed": false,
+    "credit_consumption_allowed": false
+  },
+  "criteria_weights": {
+    "machine_native_fit": 30,
+    "current_readiness": 20,
+    "risk_control": 20,
+    "automation_potential": 15,
+    "future_monetization_fit": 15
+  },
+  "channels": [
+    {
+      "channel_id": "mcp_tool_registry_draft",
+      "name": "MCP / Tool Registry Draft",
+      "stage": "private_draft_only",
+      "machine_native_fit": 10,
+      "current_readiness": 7,
+      "risk_control": 6,
+      "automation_potential": 10,
+      "future_monetization_fit": 5,
+      "weighted_score": 7.85,
+      "why_it_matters": "MCP is designed for AI applications to connect to external tools and resources. This is closest to the idea that the customer interface is a machine.",
+      "what_to_prepare_next": [
+        "entrypoint-to-mcp mapping",
+        "tool descriptions aligned to product_selector_contract",
+        "read-only registry draft",
+        "hosted-MCP NO-GO note until security gate passes",
+        "blind MCP discovery probe"
+      ],
+      "blocked_until_new_gate": [
+        "official_registry_submission",
+        "hosted_mcp_launch",
+        "production_tool_credentials",
+        "write_enabled_public_tools",
+        "third_party_publication"
+      ]
+    },
+    {
+      "channel_id": "github_machine_docs",
+      "name": "GitHub Machine Docs",
+      "stage": "repo_docs_internal_update",
+      "machine_native_fit": 7,
+      "current_readiness": 9,
+      "risk_control": 9,
+      "automation_potential": 7,
+      "future_monetization_fit": 2,
+      "weighted_score": 7.15,
+      "why_it_matters": "GitHub documentation is low risk and supports discoverability through README, topics and structured repository files, but it is less directly transactional for machine buyers.",
+      "what_to_prepare_next": [
+        "machine-first README section",
+        "clear docs entrypoint",
+        "repository topics proposal",
+        "no-live-offer disclaimer",
+        "link from public docs only after owner gate"
+      ],
+      "blocked_until_new_gate": [
+        "turning_private_pack_into_public_indexed_asset",
+        "claims_of_live_commercial_availability",
+        "production_key_distribution"
+      ]
+    },
+    {
+      "channel_id": "postman_api_network_draft",
+      "name": "Postman API Network / Public Workspace Draft",
+      "stage": "private_workspace_ready_publication_blocked",
+      "machine_native_fit": 8,
+      "current_readiness": 8,
+      "risk_control": 6,
+      "automation_potential": 8,
+      "future_monetization_fit": 4,
+      "weighted_score": 7.0,
+      "why_it_matters": "Postman helps API consumers discover and consume APIs through workspaces, collections, APIs and flows, but public workspace publication is still an external distribution event.",
+      "what_to_prepare_next": [
+        "public-workspace copy review",
+        "secret scanner clean result",
+        "blank environment variables only",
+        "collection examples aligned with product selector",
+        "owner approval checklist"
+      ],
+      "blocked_until_new_gate": [
+        "public_workspace_publication",
+        "api_network_publication",
+        "real_keys_in_environment",
+        "live_payment_claims"
+      ]
+    },
+    {
+      "channel_id": "generic_api_directory_draft",
+      "name": "Generic API Directory Draft",
+      "stage": "private_unsubmitted_draft",
+      "machine_native_fit": 8,
+      "current_readiness": 7,
+      "risk_control": 6,
+      "automation_potential": 7,
+      "future_monetization_fit": 4,
+      "weighted_score": 6.75,
+      "why_it_matters": "API directories can help software find APIs, but submission rules vary and public listing creates external exposure.",
+      "what_to_prepare_next": [
+        "unsubmitted listing metadata",
+        "policy checklist per directory",
+        "no-live-payment copy",
+        "sandbox-only examples",
+        "public-submit blocker"
+      ],
+      "blocked_until_new_gate": [
+        "irreversible_submit",
+        "public_listing",
+        "production_availability_claim",
+        "paid_plan_creation"
+      ]
+    },
+    {
+      "channel_id": "rapidapi_marketplace_draft",
+      "name": "RapidAPI-Style Marketplace Draft",
+      "stage": "unpublished_provider_draft_only",
+      "machine_native_fit": 7,
+      "current_readiness": 7,
+      "risk_control": 4,
+      "automation_potential": 7,
+      "future_monetization_fit": 8,
+      "weighted_score": 6.45,
+      "why_it_matters": "RapidAPI-style marketplaces are stronger for future monetization, but they are closer to live provider setup, pricing, key management, billing, policies and support obligations.",
+      "what_to_prepare_next": [
+        "keep unpublished",
+        "separate simulated pricing from live offer",
+        "key rotation and abuse plan",
+        "fiscal/legal checklist",
+        "provider policy review"
+      ],
+      "blocked_until_new_gate": [
+        "public_marketplace_publication",
+        "live_pricing_tiers",
+        "checkout",
+        "subscription",
+        "invoice",
+        "piva_dependent_sales_activity",
+        "production_key_distribution"
+      ]
+    }
+  ],
+  "official_sources_checked": [
+    {
+      "name": "Postman API Network overview",
+      "url": "https://learning.postman.com/docs/postman-api-network/overview"
+    },
+    {
+      "name": "Postman publish public APIs",
+      "url": "https://learning.postman.com/docs/postman-api-network/showcase/publish/public-apis"
+    },
+    {
+      "name": "RapidAPI add API project",
+      "url": "https://docs.rapidapi.com/docs/add-api-getting-started"
+    },
+    {
+      "name": "RapidAPI key rotation",
+      "url": "https://docs.rapidapi.com/docs/keys-and-key-rotation"
+    },
+    {
+      "name": "MCP introduction",
+      "url": "https://modelcontextprotocol.io/docs/getting-started/intro"
+    },
+    {
+      "name": "MCP tools specification",
+      "url": "https://modelcontextprotocol.io/specification/2025-06-18/server/tools"
+    },
+    {
+      "name": "GitHub repository topics",
+      "url": "https://docs.github.com/articles/classifying-your-repository-with-topics"
+    },
+    {
+      "name": "GitHub README documentation",
+      "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes"
+    }
+  ],
+  "next_allowed_action": "prepare_mcp_channel_entrypoint_draft_nopublish_nowrite",
+  "requires_new_gate_before": [
+    "publishing_postman_workspace",
+    "submitting_api_directory_listing",
+    "submitting_rapidapi_provider",
+    "submitting_mcp_registry_entry",
+    "launching_hosted_mcp",
+    "activating_live_billing",
+    "issuing_production_keys"
+  ]
+}
+
