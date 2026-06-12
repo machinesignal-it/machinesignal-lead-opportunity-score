@@ -1,0 +1,585 @@
+{
+  "artifact": "mcp_tool_registry_private_draft_v2_probe",
+  "version": "2026-06-12",
+  "status": "completed_mcp_tool_registry_private_draft_v2_probe",
+  "ok": true,
+  "mode": "NoPublishNoWriteNoHostedMcpNoPaymentNoOutreachNoRealData",
+  "draft": "private-evaluator-pack/mcp_tool_registry_private_draft_pack_v2_20260612.json",
+  "checks_total": 110,
+  "checks_failed": 0,
+  "public_read_only_tools_checked": 18,
+  "sandbox_write_tools_blocked_checked": 4,
+  "protected_read_tools_checked": 6,
+  "admin_tools_blocked_checked": 1,
+  "execution_counters": {
+    "mcp_registry_submission_executed": 0,
+    "hosted_mcp_launch_executed": 0,
+    "external_marketplace_publication_executed": 0,
+    "external_send_executed": 0,
+    "human_outreach_executed": 0,
+    "machinesignal_api_post_calls_executed": 0,
+    "machinesignal_api_write_calls_executed": 0,
+    "payment_executed": 0,
+    "invoice_issued": 0,
+    "credits_consumed": 0,
+    "production_key_published": 0,
+    "personal_data_used": 0,
+    "real_customer_data_used": 0,
+    "real_lead_list_used": 0
+  },
+  "interpretation": "The v2 MCP/tool-registry private draft is registry-ready for owner review while remaining unpublished, local-adapter-first, sandbox-bounded and machine-first.",
+  "recommended_next_step": "Keep this as the current private registry-ready MCP draft. Next, run an agent go/no-go review before any external registry submission or hosted MCP build decision.",
+  "checks": [
+    {
+      "name": "draft_status_private_not_published",
+      "ok": true,
+      "details": "private_draft_ready_not_submitted_not_published"
+    },
+    {
+      "name": "business_rule_machine_not_human",
+      "ok": true,
+      "details": "sell_to_machines_not_humans"
+    },
+    {
+      "name": "primary_customer_interface_machine",
+      "ok": true,
+      "details": "machine"
+    },
+    {
+      "name": "github_metadata_description_matches_applied",
+      "ok": true,
+      "details": "Machine-first lead opportunity scoring API for CRMs, AI agents, MCP clients and workflows. Sandbox-only beta: no outreach or live billing."
+    },
+    {
+      "name": "github_metadata_homepage_matches_applied",
+      "ok": true,
+      "details": "https://machinesignal.it/machine-discovery/"
+    },
+    {
+      "name": "github_metadata_topics_include_mcp_and_sandbox",
+      "ok": true,
+      "details": "ai-agents,api,crm,data-enrichment,lead-scoring,machine-first,machine-readable,mcp,openapi,opportunity-scoring,revops,workflow-automation,sandbox-beta"
+    },
+    {
+      "name": "official_context_has_stable_spec_basis",
+      "ok": true,
+      "details": "2025-11-25"
+    },
+    {
+      "name": "official_context_monitors_2026_release_candidate",
+      "ok": true,
+      "details": "2026-07-28 release candidate monitored"
+    },
+    {
+      "name": "official_context_sources_present",
+      "ok": true,
+      "details": "https://modelcontextprotocol.io/specification/2025-11-25,https://modelcontextprotocol.io/specification/draft/server/tools,https://modelcontextprotocol.io/docs/tutorials/security/authorization,https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/"
+    },
+    {
+      "name": "listing_name_present",
+      "ok": true,
+      "details": "MachineSignal Lead Opportunity Score"
+    },
+    {
+      "name": "listing_visibility_private",
+      "ok": true,
+      "details": "private_draft_or_unsubmitted"
+    },
+    {
+      "name": "listing_long_description_sandbox_bounded",
+      "ok": true,
+      "details": "MachineSignal helps customer machines decide which companies or domains deserve commercial attention. It exposes machine-readable products for target discovery, lead opportunity scoring, domain enrichment, deep analysis and CRM/workflow action packs. The current channel is sandbox/private-draft only: local stdio adapter available, hosted public MCP not live, registry submission blocked, live billing disabled, production keys blocked, no external contact, no human outreach and no real customer or personal data processing."
+    },
+    {
+      "name": "listing_long_description_blocks_outreach",
+      "ok": true,
+      "details": "outreach blockers present"
+    },
+    {
+      "name": "listing_keywords_machine_safe",
+      "ok": true,
+      "details": "machine-first,machine-readable,lead-scoring,opportunity-scoring,ai-agents,crm,revops,mcp,openapi,workflow-automation,data-enrichment,sandbox-beta"
+    },
+    {
+      "name": "transport_current_local_stdio",
+      "ok": true,
+      "details": "local_stdio_adapter"
+    },
+    {
+      "name": "transport_hosted_mcp_not_live",
+      "ok": true,
+      "details": "hosted MCP blocked"
+    },
+    {
+      "name": "transport_remote_requirements_before_launch",
+      "ok": true,
+      "details": "requirements=8"
+    },
+    {
+      "name": "transport_requires_authorization",
+      "ok": true,
+      "details": "authorization requirement present"
+    },
+    {
+      "name": "public_read_tool_exists_get_product_catalog",
+      "ok": true,
+      "details": "get_product_catalog"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_product_catalog",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_machine_onboarding",
+      "ok": true,
+      "details": "get_machine_onboarding"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_machine_onboarding",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_machine_api_sandbox_test",
+      "ok": true,
+      "details": "get_machine_api_sandbox_test"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_machine_api_sandbox_test",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_dentists_beta_pack",
+      "ok": true,
+      "details": "get_dentists_beta_pack"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_dentists_beta_pack",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_machine_buyer_evidence_brief",
+      "ok": true,
+      "details": "get_machine_buyer_evidence_brief"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_machine_buyer_evidence_brief",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_mcp_tool_registry_draft_checklist",
+      "ok": true,
+      "details": "get_mcp_tool_registry_draft_checklist"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_mcp_tool_registry_draft_checklist",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_machine_deep_analysis_single_purchase_proof",
+      "ok": true,
+      "details": "get_machine_deep_analysis_single_purchase_proof"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_machine_deep_analysis_single_purchase_proof",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_machine_action_pack_single_purchase_proof",
+      "ok": true,
+      "details": "get_machine_action_pack_single_purchase_proof"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_machine_action_pack_single_purchase_proof",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_public_sandbox_claims_no_write_review",
+      "ok": true,
+      "details": "get_public_sandbox_claims_no_write_review"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_public_sandbox_claims_no_write_review",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_external_submission_pack_no_write_review",
+      "ok": true,
+      "details": "get_external_submission_pack_no_write_review"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_external_submission_pack_no_write_review",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_external_draft_submission_bundle",
+      "ok": true,
+      "details": "get_external_draft_submission_bundle"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_external_draft_submission_bundle",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_private_draft_submission_rehearsal",
+      "ok": true,
+      "details": "get_private_draft_submission_rehearsal"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_private_draft_submission_rehearsal",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_api_directory_private_draft_pack",
+      "ok": true,
+      "details": "get_api_directory_private_draft_pack"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_api_directory_private_draft_pack",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_api_directory_private_draft_review",
+      "ok": true,
+      "details": "get_api_directory_private_draft_review"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_api_directory_private_draft_review",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_rapidapi_unpublished_provider_draft_pack",
+      "ok": true,
+      "details": "get_rapidapi_unpublished_provider_draft_pack"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_rapidapi_unpublished_provider_draft_pack",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_rapidapi_unpublished_provider_draft_review",
+      "ok": true,
+      "details": "get_rapidapi_unpublished_provider_draft_review"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_rapidapi_unpublished_provider_draft_review",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_mcp_tool_registry_private_draft_pack",
+      "ok": true,
+      "details": "get_mcp_tool_registry_private_draft_pack"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_mcp_tool_registry_private_draft_pack",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "public_read_tool_exists_get_mcp_tool_registry_private_draft_review",
+      "ok": true,
+      "details": "get_mcp_tool_registry_private_draft_review"
+    },
+    {
+      "name": "public_read_tool_get_or_readonly_get_mcp_tool_registry_private_draft_review",
+      "ok": true,
+      "details": "method=GET; auth=none"
+    },
+    {
+      "name": "blocked_write_tool_exists_create_sandbox_customer",
+      "ok": true,
+      "details": "create_sandbox_customer"
+    },
+    {
+      "name": "blocked_write_tool_is_post_create_sandbox_customer",
+      "ok": true,
+      "details": "method=POST"
+    },
+    {
+      "name": "blocked_write_tool_exists_score_lead_opportunity",
+      "ok": true,
+      "details": "score_lead_opportunity"
+    },
+    {
+      "name": "blocked_write_tool_is_post_score_lead_opportunity",
+      "ok": true,
+      "details": "method=POST"
+    },
+    {
+      "name": "blocked_write_tool_exists_create_purchase_intent",
+      "ok": true,
+      "details": "create_purchase_intent"
+    },
+    {
+      "name": "blocked_write_tool_is_post_create_purchase_intent",
+      "ok": true,
+      "details": "method=POST"
+    },
+    {
+      "name": "blocked_write_tool_exists_create_payment_test_intent",
+      "ok": true,
+      "details": "create_payment_test_intent"
+    },
+    {
+      "name": "blocked_write_tool_is_post_create_payment_test_intent",
+      "ok": true,
+      "details": "method=POST"
+    },
+    {
+      "name": "protected_read_tool_exists_get_customer_onboarding",
+      "ok": true,
+      "details": "get_customer_onboarding"
+    },
+    {
+      "name": "protected_read_tool_exists_list_orders",
+      "ok": true,
+      "details": "list_orders"
+    },
+    {
+      "name": "protected_read_tool_exists_get_order",
+      "ok": true,
+      "details": "get_order"
+    },
+    {
+      "name": "protected_read_tool_exists_get_usage",
+      "ok": true,
+      "details": "get_usage"
+    },
+    {
+      "name": "protected_read_tool_exists_get_payment_test_intent",
+      "ok": true,
+      "details": "get_payment_test_intent"
+    },
+    {
+      "name": "protected_read_tool_exists_get_payment_test_reconciliation",
+      "ok": true,
+      "details": "get_payment_test_reconciliation"
+    },
+    {
+      "name": "admin_blocked_tool_exists_get_admin_sandbox_metrics",
+      "ok": true,
+      "details": "get_admin_sandbox_metrics"
+    },
+    {
+      "name": "product_map_has_five_routes",
+      "ok": true,
+      "details": "routes=5"
+    },
+    {
+      "name": "product_map_includes_target_discovery_pack_250",
+      "ok": true,
+      "details": "target_discovery_pack_250"
+    },
+    {
+      "name": "product_selector_contains_target_discovery_pack_250",
+      "ok": true,
+      "details": "target_discovery_pack_250"
+    },
+    {
+      "name": "product_map_includes_score_pack_1k",
+      "ok": true,
+      "details": "score_pack_1k"
+    },
+    {
+      "name": "product_selector_contains_score_pack_1k",
+      "ok": true,
+      "details": "score_pack_1k"
+    },
+    {
+      "name": "product_map_includes_domain_enrichment_pack_100",
+      "ok": true,
+      "details": "domain_enrichment_pack_100"
+    },
+    {
+      "name": "product_selector_contains_domain_enrichment_pack_100",
+      "ok": true,
+      "details": "domain_enrichment_pack_100"
+    },
+    {
+      "name": "product_map_includes_deep_analysis_pack_100",
+      "ok": true,
+      "details": "deep_analysis_pack_100"
+    },
+    {
+      "name": "product_selector_contains_deep_analysis_pack_100",
+      "ok": true,
+      "details": "deep_analysis_pack_100"
+    },
+    {
+      "name": "product_map_includes_action_pack_25",
+      "ok": true,
+      "details": "action_pack_25"
+    },
+    {
+      "name": "product_selector_contains_action_pack_25",
+      "ok": true,
+      "details": "action_pack_25"
+    },
+    {
+      "name": "target_discovery_requires_250_and_objective",
+      "ok": true,
+      "details": "target discovery preconditions"
+    },
+    {
+      "name": "deep_analysis_requires_score_confidence_gate",
+      "ok": true,
+      "details": "deep analysis gate"
+    },
+    {
+      "name": "action_pack_requires_deep_gate",
+      "ok": true,
+      "details": "action pack deep gate"
+    },
+    {
+      "name": "go_no_go_blocks_public_registry_submission",
+      "ok": true,
+      "details": "public registry submission"
+    },
+    {
+      "name": "go_no_go_blocks_hosted_public_MCP_launch",
+      "ok": true,
+      "details": "hosted public MCP launch"
+    },
+    {
+      "name": "go_no_go_blocks_live_monetization",
+      "ok": true,
+      "details": "live monetization"
+    },
+    {
+      "name": "go_no_go_blocks_real_payment",
+      "ok": true,
+      "details": "real payment"
+    },
+    {
+      "name": "go_no_go_blocks_invoices",
+      "ok": true,
+      "details": "invoices"
+    },
+    {
+      "name": "go_no_go_blocks_production_API_keys",
+      "ok": true,
+      "details": "production API keys"
+    },
+    {
+      "name": "go_no_go_blocks_automatic_outreach",
+      "ok": true,
+      "details": "automatic outreach"
+    },
+    {
+      "name": "go_no_go_blocks_external_target_contact",
+      "ok": true,
+      "details": "external target contact"
+    },
+    {
+      "name": "go_no_go_blocks_personal_data",
+      "ok": true,
+      "details": "personal data"
+    },
+    {
+      "name": "go_no_go_blocks_real_customer_data",
+      "ok": true,
+      "details": "real customer data"
+    },
+    {
+      "name": "go_no_go_blocks_real_lead_lists",
+      "ok": true,
+      "details": "real lead lists"
+    },
+    {
+      "name": "counter_mcp_registry_submission_executed_zero",
+      "ok": true,
+      "details": "mcp_registry_submission_executed=0"
+    },
+    {
+      "name": "counter_hosted_mcp_launch_executed_zero",
+      "ok": true,
+      "details": "hosted_mcp_launch_executed=0"
+    },
+    {
+      "name": "counter_external_marketplace_publication_executed_zero",
+      "ok": true,
+      "details": "external_marketplace_publication_executed=0"
+    },
+    {
+      "name": "counter_external_send_executed_zero",
+      "ok": true,
+      "details": "external_send_executed=0"
+    },
+    {
+      "name": "counter_human_outreach_executed_zero",
+      "ok": true,
+      "details": "human_outreach_executed=0"
+    },
+    {
+      "name": "counter_machinesignal_api_post_calls_executed_zero",
+      "ok": true,
+      "details": "machinesignal_api_post_calls_executed=0"
+    },
+    {
+      "name": "counter_machinesignal_api_write_calls_executed_zero",
+      "ok": true,
+      "details": "machinesignal_api_write_calls_executed=0"
+    },
+    {
+      "name": "counter_payment_executed_zero",
+      "ok": true,
+      "details": "payment_executed=0"
+    },
+    {
+      "name": "counter_invoice_issued_zero",
+      "ok": true,
+      "details": "invoice_issued=0"
+    },
+    {
+      "name": "counter_credits_consumed_zero",
+      "ok": true,
+      "details": "credits_consumed=0"
+    },
+    {
+      "name": "counter_production_key_published_zero",
+      "ok": true,
+      "details": "production_key_published=0"
+    },
+    {
+      "name": "counter_personal_data_used_zero",
+      "ok": true,
+      "details": "personal_data_used=0"
+    },
+    {
+      "name": "counter_real_customer_data_used_zero",
+      "ok": true,
+      "details": "real_customer_data_used=0"
+    },
+    {
+      "name": "counter_real_lead_list_used_zero",
+      "ok": true,
+      "details": "real_lead_list_used=0"
+    },
+    {
+      "name": "machine_decision_private_review_only",
+      "ok": true,
+      "details": "ready_for_private_mcp_tool_registry_review_only"
+    },
+    {
+      "name": "machine_decision_blocks_submit_and_launch",
+      "ok": true,
+      "details": "registry submit,hosted MCP launch,live payment,production key sharing,outreach,real data processing"
+    }
+  ],
+  "failed_checks": []
+}

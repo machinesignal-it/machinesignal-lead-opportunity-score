@@ -1,0 +1,300 @@
+{
+  "artifact": "mcp_tool_registry_private_draft_pack_v2",
+  "version": "2026-06-12",
+  "status": "private_draft_ready_not_submitted_not_published",
+  "primary_customer_interface": "machine",
+  "business_rule": "sell_to_machines_not_humans",
+  "purpose": "Provide a registry-ready private MCP/tool listing package that a machine, registry reviewer or integration partner can evaluate without public registry submission, hosted MCP launch, live billing, production credentials, outreach or real data processing.",
+  "public_positioning_already_applied": {
+    "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+    "description": "Machine-first lead opportunity scoring API for CRMs, AI agents, MCP clients and workflows. Sandbox-only beta: no outreach or live billing.",
+    "homepage": "https://machinesignal.it/machine-discovery/",
+    "topics": [
+      "ai-agents",
+      "api",
+      "crm",
+      "data-enrichment",
+      "lead-scoring",
+      "machine-first",
+      "machine-readable",
+      "mcp",
+      "openapi",
+      "opportunity-scoring",
+      "revops",
+      "workflow-automation",
+      "sandbox-beta"
+    ],
+    "evidence": "private-evaluator-pack/github_public_metadata_applied_summary_20260612.json"
+  },
+  "official_mcp_context_checked": {
+    "checked_at": "2026-06-12",
+    "stable_spec_basis": "2025-11-25",
+    "draft_or_future_items_to_monitor": [
+      "2026-07-28 release candidate: stateless protocol core, extensions framework, tasks, MCP Apps, authorization hardening and JSON Schema 2020-12 for tools"
+    ],
+    "implementation_decision_now": "Use local stdio adapter and tool-style manifest now. Do not claim hosted public MCP until a dedicated security, authorization, rate-limit and conformance gate passes.",
+    "sources": [
+      "https://modelcontextprotocol.io/specification/2025-11-25",
+      "https://modelcontextprotocol.io/specification/draft/server/tools",
+      "https://modelcontextprotocol.io/docs/tutorials/security/authorization",
+      "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/"
+    ]
+  },
+  "registry_listing": {
+    "name": "MachineSignal Lead Opportunity Score",
+    "provider": "MachineSignal",
+    "visibility": "private_draft_or_unsubmitted",
+    "category": "lead_scoring_and_workflow_decisioning",
+    "audience": [
+      "CRM agents",
+      "AI agents",
+      "MCP clients",
+      "RevOps workflows",
+      "data enrichment pipelines",
+      "software evaluators"
+    ],
+    "short_description": "Machine-first lead opportunity scoring, target discovery and action-pack decision tool for CRMs, AI agents, MCP clients and automated workflows.",
+    "long_description": "MachineSignal helps customer machines decide which companies or domains deserve commercial attention. It exposes machine-readable products for target discovery, lead opportunity scoring, domain enrichment, deep analysis and CRM/workflow action packs. The current channel is sandbox/private-draft only: local stdio adapter available, hosted public MCP not live, registry submission blocked, live billing disabled, production keys blocked, no external contact, no human outreach and no real customer or personal data processing.",
+    "keywords": [
+      "machine-first",
+      "machine-readable",
+      "lead-scoring",
+      "opportunity-scoring",
+      "ai-agents",
+      "crm",
+      "revops",
+      "mcp",
+      "openapi",
+      "workflow-automation",
+      "data-enrichment",
+      "sandbox-beta"
+    ],
+    "primary_user": "Machine: CRM, AI agent, workflow engine, enrichment pipeline, MCP client or software buyer.",
+    "human_role": "Owner supervision, approval, legal/fiscal control and audit only.",
+    "website": "https://machinesignal.it/",
+    "machine_discovery": "https://machinesignal.it/machine-discovery/",
+    "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "well_known_tool_manifest": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+    "wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "llms_txt": "https://machinesignal.it/llms.txt"
+  },
+  "transport_strategy": {
+    "current_transport": "local_stdio_adapter",
+    "current_transport_status": "available_in_github_repo",
+    "current_adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
+    "client_config_example_path": "mcp_adapter/mcp_client_config.example.json",
+    "no_credit_validation_command": "python mcp_adapter/validate_machine_client_installation_20260603.py",
+    "start_command": "python mcp_adapter/machinesignal_mcp_server.py",
+    "hosted_public_mcp_server_live": false,
+    "hosted_mcp_endpoint_published": false,
+    "recommended_remote_transport_later": "hosted MCP or streamable HTTP only after owner-approved security and authorization gate",
+    "remote_mcp_requirements_before_launch": [
+      "scoped authorization and revocation",
+      "rate limits and abuse controls",
+      "usage logging and audit trail",
+      "production key distribution policy",
+      "separate read-only and write-enabled scopes",
+      "personal-data and real-customer-data policy",
+      "conformance smoke tests against current MCP spec",
+      "cost guardrails for hosted operation"
+    ]
+  },
+  "tools_to_expose_in_private_registry_draft": {
+    "public_read_only_no_auth": [
+      "get_product_catalog",
+      "get_machine_onboarding",
+      "get_machine_api_sandbox_test",
+      "get_dentists_beta_pack",
+      "get_machine_buyer_evidence_brief",
+      "get_mcp_tool_registry_draft_checklist",
+      "get_machine_deep_analysis_single_purchase_proof",
+      "get_machine_action_pack_single_purchase_proof",
+      "get_public_sandbox_claims_no_write_review",
+      "get_external_submission_pack_no_write_review",
+      "get_external_draft_submission_bundle",
+      "get_private_draft_submission_rehearsal",
+      "get_api_directory_private_draft_pack",
+      "get_api_directory_private_draft_review",
+      "get_rapidapi_unpublished_provider_draft_pack",
+      "get_rapidapi_unpublished_provider_draft_review",
+      "get_mcp_tool_registry_private_draft_pack",
+      "get_mcp_tool_registry_private_draft_review"
+    ],
+    "sandbox_write_tools_blocked_in_this_draft_review": [
+      "create_sandbox_customer",
+      "score_lead_opportunity",
+      "create_purchase_intent",
+      "create_payment_test_intent"
+    ],
+    "protected_customer_read_tools_require_sandbox_or_customer_key": [
+      "get_customer_onboarding",
+      "list_orders",
+      "get_order",
+      "get_usage",
+      "get_payment_test_intent",
+      "get_payment_test_reconciliation"
+    ],
+    "admin_tools_not_for_registry_public_use": [
+      "get_admin_sandbox_metrics"
+    ]
+  },
+  "product_to_tool_map": [
+    {
+      "machine_starting_state": "no_starting_list",
+      "product": "target_discovery_pack_250",
+      "tool_or_call": "create_purchase_intent with product_code=target_discovery",
+      "preconditions": [
+        "sector present",
+        "area present",
+        "commercial_objective present",
+        "requested_target_count exactly 250",
+        "market pre-check positive"
+      ],
+      "machine_value": "The machine receives a bounded target discovery output or a no-go decision instead of manually searching the web."
+    },
+    {
+      "machine_starting_state": "existing_domains_or_company_records",
+      "product": "score_pack_1k",
+      "tool_or_call": "score_lead_opportunity",
+      "preconditions": [
+        "valid analyzable domain or company record",
+        "commercial_objective present",
+        "idempotency key present for protected calls"
+      ],
+      "machine_value": "The machine receives score, confidence, decision, spend policy and recommended next product."
+    },
+    {
+      "machine_starting_state": "company_names_without_domains",
+      "product": "domain_enrichment_pack_100",
+      "tool_or_call": "create_purchase_intent with product_code=domain_enrichment",
+      "preconditions": [
+        "company name records present",
+        "country or area hint present",
+        "commercial_objective present"
+      ],
+      "machine_value": "The machine receives completed domain-enrichment decisions before scoring."
+    },
+    {
+      "machine_starting_state": "high_score_high_confidence",
+      "product": "deep_analysis_pack_100",
+      "tool_or_call": "create_purchase_intent with product_code=deep_analysis",
+      "preconditions": [
+        "source score request present",
+        "score >= 75",
+        "confidence >= 0.75"
+      ],
+      "machine_value": "The machine receives deeper evidence before spending budget on action payloads."
+    },
+    {
+      "machine_starting_state": "deep_analysis_gate_confirmed",
+      "product": "action_pack_25",
+      "tool_or_call": "create_purchase_intent with product_code=action_pack and source_order_intent_id",
+      "preconditions": [
+        "valid same-domain Deep Analysis order",
+        "deep analysis gate confirmed",
+        "CRM or workflow target present"
+      ],
+      "machine_value": "The machine receives CRM/workflow payloads, tasks, webhook event shapes, agent instructions and stop rules."
+    }
+  ],
+  "registry_review_questions_and_answers": [
+    {
+      "question": "Is this a hosted public MCP server?",
+      "answer": "No. Current mode is local stdio adapter only."
+    },
+    {
+      "question": "Can a machine test without talking to a human?",
+      "answer": "Yes, via sandbox/private beta flow and public read-only docs, but this draft review itself performs no sandbox writes."
+    },
+    {
+      "question": "Can this listing take payments?",
+      "answer": "No. Live billing, subscriptions, invoices and production keys are blocked."
+    },
+    {
+      "question": "Does Action Pack send emails or contact targets?",
+      "answer": "No. It produces payloads and approval gates; it does not send emails or execute external contact."
+    },
+    {
+      "question": "Does this process personal data or real customer data now?",
+      "answer": "No. This private draft uses synthetic or public documentation only and blocks real data processing."
+    },
+    {
+      "question": "What is the commercial object sold to machines?",
+      "answer": "Structured decisions and machine-readable outputs: target discovery, score, enrichment, deep analysis and action payloads."
+    }
+  ],
+  "go_no_go": {
+    "go_now": [
+      "private registry draft review",
+      "local adapter documentation",
+      "no-credit validator",
+      "GitHub machine docs",
+      "read-only public manifest discovery"
+    ],
+    "no_go_now": [
+      "public registry submission",
+      "hosted public MCP launch",
+      "live monetization",
+      "real payment",
+      "invoices",
+      "production API keys",
+      "automatic outreach",
+      "external target contact",
+      "personal data",
+      "real customer data",
+      "real lead lists"
+    ],
+    "next_gate_required_for": [
+      "remote hosted MCP endpoint",
+      "registry submission",
+      "write-enabled public MCP tools",
+      "live billing",
+      "production key distribution",
+      "real customer onboarding"
+    ]
+  },
+  "execution_counters": {
+    "mcp_registry_submission_executed": 0,
+    "hosted_mcp_launch_executed": 0,
+    "external_marketplace_publication_executed": 0,
+    "external_send_executed": 0,
+    "human_outreach_executed": 0,
+    "machinesignal_api_post_calls_executed": 0,
+    "machinesignal_api_write_calls_executed": 0,
+    "payment_executed": 0,
+    "invoice_issued": 0,
+    "credits_consumed": 0,
+    "production_key_published": 0,
+    "personal_data_used": 0,
+    "real_customer_data_used": 0,
+    "real_lead_list_used": 0
+  },
+  "evidence_chain": [
+    "private-evaluator-pack/github_public_metadata_applied_summary_20260612.json",
+    "private-evaluator-pack/github_repo_discoverability_probe_summary_20260612.json",
+    "private-evaluator-pack/product_selector_contract.json",
+    "private-evaluator-pack/mcp_channel_entrypoint_draft_nopublish.json",
+    "mcp-tool-manifest.json",
+    "MCP_TOOL_CONTRACT.md",
+    "mcp_adapter/README.md",
+    "mcp_tool_registry_private_draft_pack_20260608.json",
+    "mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json",
+    "machine_buyer_end_to_end_rehearsal_summary_20260611.json"
+  ],
+  "machine_decision": {
+    "decision": "ready_for_private_mcp_tool_registry_review_only",
+    "recommended_next_step": "Run the v2 NoPublish/NoWrite probe. If it passes, keep this as the current private registry-ready draft. Do not submit externally until an owner-approved go-live gate is completed.",
+    "do_not_execute": [
+      "registry submit",
+      "hosted MCP launch",
+      "live payment",
+      "production key sharing",
+      "outreach",
+      "real data processing"
+    ]
+  }
+}
