@@ -143,29 +143,55 @@ The pack passes if a machine can, without a human explanation:
 - `evaluation_scenarios.json`
 - `evaluation_checklist.json`
 - `validate_private_evaluator_pack_20260612.mjs`
+- `owner_approval_gate_machine_buyer_review_20260612.md`
+- `owner_approval_gate_machine_buyer_review_20260612.json`
+- `owner_approval_gate_commercial_api_product_review_20260612.md`
+- `owner_approval_gate_commercial_api_product_review_20260612.json`
+- `provider_policy_security_owner_approval_gate_review_20260612.md`
+- `provider_policy_security_owner_approval_gate_review_20260612.json`
+- `owner_approval_gate_orchestrator_review_20260612.md`
+- `owner_approval_gate_orchestrator_review_20260612.json`
+- `owner_approval_gate_compliance_admin_legal_finance_review_20260612.md`
+- `owner_approval_gate_compliance_admin_legal_finance_review_20260612.json`
 
 ## Owner Approval Gate Reviews
 
-- `owner_approval_gate_commercial_api_product_review_20260612.md`
-- `owner_approval_gate_commercial_api_product_review_20260612.json`
+Machine Buyer Simulation Agent:
 
-Commercial/API Product verdict: GO for internal owner approval draft; NO-GO for monetization or external distribution until product selector, concrete output samples, unit economics, usage ledger, billing/legal terms, and quality thresholds are completed.
-- `owner_approval_gate_machine_buyer_review_20260612.md`
-- `owner_approval_gate_machine_buyer_review_20260612.json`
-- `owner_approval_gate_orchestrator_review_20260612.md`
-- `owner_approval_gate_orchestrator_review_20260612.json`
-- `provider_policy_security_owner_approval_gate_review_20260612.md`
-- `provider_policy_security_owner_approval_gate_review_20260612.json`
+```text
+GO for externally_presentable_draft_not_sent
+```
 
-## Owner Approval Gate
+Commercial/API Product Agent:
 
-Latest Orchestrator / HR Agent verdict:
+```text
+GO for internal owner approval draft; NO-GO for monetization or external distribution until product selector, concrete output samples, unit economics, usage ledger, billing/legal terms, and quality thresholds are completed.
+```
+
+Provider Policy & Security Agent:
+
+```text
+GO for internal draft only; NO-GO for external send, public marketplace submission, production access, live billing, real customer data, real lead lists, or production API keys.
+```
+
+Compliance/Admin/Legal/Finance Agent:
+
+```text
+GO internal draft only; NO-GO for external send, monetization, P.IVA/fiscal activation, billing, customer onboarding, real lead processing, or personal data processing.
+```
+
+Orchestrator / HR Agent:
 
 ```text
 GO_CONTROLLED for externally_presentable_draft_not_sent
 ```
 
-This means the pack can move from internal validated pack to externally presentable draft, but it is still not approved for real sending, production use, payment, marketplace publication, customer onboarding, personal data processing, or human outreach.
+Overall gate result:
+
+```text
+The pack can move from internal validated pack to externally presentable draft.
+It is still not approved for real sending, production use, payment, marketplace publication, customer onboarding, personal data processing, or human outreach.
+```
 
 Next operating order:
 
