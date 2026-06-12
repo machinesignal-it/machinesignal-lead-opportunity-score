@@ -170,6 +170,17 @@ Channel selector files:
 - `channel_selection_matrix_20260612.json`
 - `channel_selection_matrix_20260612.md`
 - `channel_selector_probe_20260612.mjs`
+
+## MCP Channel Draft
+
+Current MCP decision: prepare a local-adapter MCP/tool-registry draft, still NoPublish and NoSend.
+
+This does not authorize hosted MCP launch, MCP registry submission, public tool publication, production keys, live billing, external users or write-enabled external tools.
+
+MCP draft files:
+
+- `mcp_channel_entrypoint_draft_nopublish.json`
+- `mcp_channel_entrypoint_probe_20260612.mjs`
 - `owner_approval_gate_machine_buyer_review_20260612.md`
 - `owner_approval_gate_machine_buyer_review_20260612.json`
 - `owner_approval_gate_commercial_api_product_review_20260612.md`

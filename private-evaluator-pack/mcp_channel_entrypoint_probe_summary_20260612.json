@@ -1,0 +1,39 @@
+{
+  "artifact": "machinesignal_mcp_channel_entrypoint_probe",
+  "generated_at": "2026-06-12T11:27:06.983Z",
+  "ok": true,
+  "checks_total": 12,
+  "checks_failed": 0,
+  "failures": [],
+  "starting_input": "mcp_channel_entrypoint_draft_nopublish.json",
+  "machine_decision": {
+    "channel_understood": "MachineSignal should be prepared as an MCP/tool-registry draft through the local stdio adapter, not as a hosted public MCP server.",
+    "registry_submission_decision": "blocked_until_new_gate",
+    "hosted_mcp_decision": "not_live",
+    "current_adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
+    "read_only_tools_count": 20,
+    "blocked_write_tools": [
+      "create_sandbox_customer",
+      "score_lead_opportunity",
+      "create_purchase_intent",
+      "create_payment_test_intent"
+    ],
+    "product_mapping_understood": [
+      "target_discovery_pack_250",
+      "score_pack_1k",
+      "deep_analysis_pack_100",
+      "action_pack_25"
+    ],
+    "next_allowed_action": "prepare_mcp_draft_readme_patch_for_github_machine_docs_nopublish"
+  },
+  "external_publication_executed": false,
+  "external_send_executed": false,
+  "post_calls_executed": 0,
+  "write_calls_executed": 0,
+  "payment_executed": false,
+  "invoice_issued": false,
+  "credits_consumed": 0,
+  "personal_data_used": false,
+  "real_customer_data_used": false,
+  "recommendation": "mcp_channel_entrypoint_passed_prepare_github_machine_docs_patch_nopublish_next"
+}

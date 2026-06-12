@@ -1,0 +1,221 @@
+{
+  "artifact": "machinesignal_mcp_channel_entrypoint_draft_nopublish",
+  "version": "2026-06-12-draft",
+  "status": "draft_nopublish_nosend_nowrite_simulation_only",
+  "channel_id": "mcp_tool_registry_draft",
+  "business_rule": "sell_to_machines_not_humans",
+  "purpose": "Prepare a machine-readable MCP/tool-registry channel draft without publishing to any registry, launching hosted MCP, sending invitations, enabling payments, distributing production keys or processing real data.",
+  "current_mcp_positioning": {
+    "public_hosted_mcp_server_live": false,
+    "local_stdio_adapter_available": true,
+    "recommended_transport_now": "local_stdio_adapter",
+    "recommended_transport_later": "hosted_mcp_or_streamable_http_only_after_security_gate",
+    "registry_submission_allowed_now": false,
+    "tool_registry_status": "private_draft_or_unsubmitted_only",
+    "adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
+    "client_config_example_path": "mcp_adapter/mcp_client_config.example.json",
+    "tool_manifest_path": "mcp-tool-manifest.json",
+    "wrapper_pack_path": "mcp/machinesignal-mcp-wrapper.json"
+  },
+  "official_context": {
+    "mcp_intro": "MCP is an open standard for connecting AI applications to external tools, data and workflows.",
+    "mcp_tools": "MCP servers can expose tools that language models can discover and invoke.",
+    "mcp_resources": "MCP resources provide application-controlled context to clients and models.",
+    "mcp_authorization_note": "Remote or sensitive MCP access should use appropriate authorization, scopes, rate limits, logging and revocation.",
+    "sources": [
+      "https://modelcontextprotocol.io/docs/getting-started/intro",
+      "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+      "https://modelcontextprotocol.io/specification/2025-06-18/server/resources",
+      "https://modelcontextprotocol.io/docs/tutorials/security/authorization"
+    ]
+  },
+  "read_order_for_machine": [
+    {
+      "step": 1,
+      "name": "channel_selection_matrix",
+      "relative_path": "channel_selection_matrix_20260612.json",
+      "reason": "Confirm why MCP/tool registry is the primary next draft channel."
+    },
+    {
+      "step": 2,
+      "name": "private_evaluator_entrypoint",
+      "relative_path": "private_evaluator_entrypoint.json",
+      "reason": "Confirm NoSend/NoWrite/NoPayment/NoPersonalData boundaries."
+    },
+    {
+      "step": 3,
+      "name": "product_selector_contract",
+      "relative_path": "product_selector_contract.json",
+      "reason": "Understand how a machine chooses Target Discovery, Score Pack, Deep Analysis and Action Pack."
+    },
+    {
+      "step": 4,
+      "name": "mcp_tool_manifest",
+      "relative_path": "../mcp-tool-manifest.json",
+      "reason": "Understand tool names, methods, auth, schemas and purpose."
+    },
+    {
+      "step": 5,
+      "name": "mcp_tool_contract",
+      "relative_path": "../MCP_TOOL_CONTRACT.md",
+      "reason": "Understand the local adapter, hosted-MCP NO-GO and tool contract."
+    },
+    {
+      "step": 6,
+      "name": "mcp_wrapper_pack",
+      "relative_path": "../mcp/machinesignal-mcp-wrapper.json",
+      "reason": "Understand current wrapper status and installation flow."
+    },
+    {
+      "step": 7,
+      "name": "mcp_adapter_readme",
+      "relative_path": "../mcp_adapter/README.md",
+      "reason": "Understand local stdio adapter setup and guardrails."
+    },
+    {
+      "step": 8,
+      "name": "mcp_client_config_example",
+      "relative_path": "../mcp_adapter/mcp_client_config.example.json",
+      "reason": "Understand how a local MCP client would point to the adapter."
+    },
+    {
+      "step": 9,
+      "name": "mcp_tool_registry_private_draft_pack",
+      "relative_path": "../mcp_tool_registry_private_draft_pack_20260608.json",
+      "reason": "Understand the unsubmitted/private tool registry metadata."
+    }
+  ],
+  "tool_groups": {
+    "read_only_public_tools_allowed_for_draft_review": [
+      "get_product_catalog",
+      "get_machine_onboarding",
+      "get_marketplace_api_directory_pack",
+      "get_marketplace_publication_execution_pack",
+      "get_machine_api_sandbox_test",
+      "get_dentists_beta_pack",
+      "get_machine_buyer_evidence_brief",
+      "get_mcp_tool_registry_draft_checklist",
+      "get_machine_deep_analysis_single_purchase_proof",
+      "get_machine_action_pack_single_purchase_proof",
+      "get_public_sandbox_claims_no_write_review",
+      "get_external_submission_pack_no_write_review",
+      "get_external_draft_submission_bundle",
+      "get_private_draft_submission_rehearsal",
+      "get_api_directory_private_draft_pack",
+      "get_api_directory_private_draft_review",
+      "get_rapidapi_unpublished_provider_draft_pack",
+      "get_rapidapi_unpublished_provider_draft_review",
+      "get_mcp_tool_registry_private_draft_pack",
+      "get_mcp_tool_registry_private_draft_review"
+    ],
+    "sandbox_or_write_tools_blocked_in_this_nopublish_probe": [
+      "create_sandbox_customer",
+      "score_lead_opportunity",
+      "create_purchase_intent",
+      "create_payment_test_intent"
+    ],
+    "protected_read_tools_blocked_without_sandbox_key": [
+      "get_customer_onboarding",
+      "list_orders",
+      "get_order",
+      "get_usage",
+      "get_payment_test_intent",
+      "get_payment_test_reconciliation"
+    ],
+    "admin_tools_blocked": [
+      "get_admin_sandbox_metrics"
+    ]
+  },
+  "draft_registry_metadata": {
+    "tool_name": "MachineSignal Lead Opportunity Score",
+    "provider": "MachineSignal",
+    "visibility": "private_draft_or_unsubmitted",
+    "transport_now": "stdio_json_rpc_local_adapter",
+    "hosted_mcp_live": false,
+    "monetization": "disabled",
+    "short_description": "Machine-first lead scoring, target discovery and spend-control tool for CRMs, AI agents and automated workflows.",
+    "primary_user": "Machine: CRM, AI agent, workflow, enrichment pipeline or software buyer.",
+    "human_role": "Owner supervision, approval and audit only.",
+    "repository": "https://github.com/machinesignal-it/machinesignal-lead-opportunity-score",
+    "website": "https://machinesignal.it/",
+    "tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "wrapper_pack": "https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json"
+  },
+  "local_adapter_draft_flow": [
+    {
+      "step": 1,
+      "action": "read manifest and wrapper pack",
+      "write": false,
+      "credit_consumption": false
+    },
+    {
+      "step": 2,
+      "action": "inspect local adapter config",
+      "write": false,
+      "credit_consumption": false
+    },
+    {
+      "step": 3,
+      "action": "validate installation with no-credit validator in a future owner-approved local run",
+      "write": false,
+      "credit_consumption": false
+    },
+    {
+      "step": 4,
+      "action": "do not run sandbox buyer flow in this probe",
+      "write": false,
+      "credit_consumption": false
+    }
+  ],
+  "blocked_actions": [
+    "mcp_registry_submission",
+    "hosted_mcp_launch",
+    "streamable_http_mcp_public_endpoint",
+    "public_marketplace_publication",
+    "external_send",
+    "human_outreach",
+    "production_key_distribution",
+    "live_payment",
+    "invoice",
+    "subscription",
+    "piva_activation_for_this_test",
+    "sandbox_customer_creation_in_this_probe",
+    "score_call_execution_in_this_probe",
+    "purchase_intent_execution_in_this_probe",
+    "payment_test_intent_execution_in_this_probe",
+    "ledger_write",
+    "credit_consumption",
+    "personal_data_processing",
+    "real_customer_data_processing",
+    "real_lead_list_processing"
+  ],
+  "success_criteria": {
+    "machine_understands_mcp_channel": true,
+    "machine_understands_local_adapter_now": true,
+    "machine_understands_hosted_mcp_not_live": true,
+    "machine_understands_registry_submission_blocked": true,
+    "machine_can_identify_read_only_public_tools": true,
+    "machine_can_identify_write_tools_blocked_in_probe": true,
+    "machine_can_map_products_to_tools": true,
+    "post_calls_executed": 0,
+    "write_calls_executed": 0,
+    "external_publication_executed": false,
+    "payment_executed": false,
+    "credits_consumed": 0,
+    "personal_data_used": false
+  },
+  "next_allowed_action_if_probe_passes": "prepare_mcp_draft_readme_patch_for_github_machine_docs_nopublish",
+  "requires_new_gate_before": [
+    "mcp_registry_submission",
+    "hosted_mcp_launch",
+    "public_mcp_endpoint",
+    "production_key_distribution",
+    "write_enabled_external_mcp_tools",
+    "live_billing",
+    "real_customer_data_processing"
+  ]
+}
+
