@@ -1,0 +1,67 @@
+{
+  "artifact": "machinesignal_agent_review_summary_private_evaluator_pack",
+  "date": "2026-06-12",
+  "verdict": "GO_prepare_pack_only",
+  "scope": "NoSend_NoWrite_NoPayment_NoPersonalData_SimulationOnly",
+  "votes": [
+    {
+      "agent_role": "Technical/API Readiness",
+      "vote": "GO",
+      "condition": "Include machine-readable manifest, clear API path, synthetic scenario, and automatic NoWrite validation."
+    },
+    {
+      "agent_role": "Commercial/API Product",
+      "vote": "GO_conditional",
+      "condition": "Explain clearly when a machine buys Target Discovery, Score Pack, Deep Analysis, and Action Pack."
+    },
+    {
+      "agent_role": "Growth & Distribution",
+      "vote": "GO_controlled",
+      "condition": "Prepare machine-readable assets, but do not publish to marketplaces or send invitations."
+    },
+    {
+      "agent_role": "Compliance/Admin/Legal",
+      "vote": "GO_conditional",
+      "condition": "No data, no send, no writes, no payment, no secrets, no legal or fiscal commitment."
+    },
+    {
+      "agent_role": "Orchestrator/HR",
+      "vote": "GO",
+      "condition": "Proceed with pack preparation and activate Machine Buyer Simulation and Provider Policy/Security roles."
+    }
+  ],
+  "previous_test_evidence": {
+    "post_calls_executed": 0,
+    "write_calls_executed": 0,
+    "external_invites_sent": 0,
+    "credits_consumed": 0,
+    "personal_data_used": false,
+    "selected_product": "target_discovery_pack_250"
+  },
+  "required_pack_contents": [
+    "machine_readable_manifest",
+    "machine_first_readme",
+    "public_reference_asset_map",
+    "product_decision_guide",
+    "target_discovery_no_list_path",
+    "score_pack_existing_list_path",
+    "deep_analysis_action_pack_upgrade_path",
+    "nosend_nowrite_safety_policy",
+    "evaluator_checklist",
+    "synthetic_test_scenarios",
+    "expected_machine_decisions",
+    "openapi_postman_mcp_product_catalog_machine_discovery_links"
+  ],
+  "stop_conditions": [
+    "external_send",
+    "marketplace_publication",
+    "live_billing",
+    "invoice",
+    "production_key_distribution",
+    "real_customer_data_processing",
+    "human_contact",
+    "real_lead_list_usage"
+  ],
+  "next_recommended_step": "machine_buyer_replay_against_pack_nosend_nowrite"
+}
+

@@ -1,0 +1,169 @@
+{
+  "artifact": "machinesignal_private_evaluator_pack",
+  "version": "2026-06-12-draft",
+  "status": "draft_nosend_nowrite_simulation_only",
+  "created_at": "2026-06-12",
+  "primary_customer_interface": "machine",
+  "business_rule": "sell_to_machines_not_humans",
+  "purpose": "Test whether a machine evaluator can understand MachineSignal, choose a product, and simulate purchase intent without human sales interaction.",
+  "audience": [
+    "machine_evaluator",
+    "ai_agent",
+    "crm_workflow",
+    "api_directory_bot",
+    "owner_supervised_technical_reviewer"
+  ],
+  "explicit_non_goals": [
+    "external_send",
+    "human_outreach",
+    "real_external_invitation",
+    "real_payment",
+    "real_invoice",
+    "real_subscription",
+    "real_customer_account_creation",
+    "credit_consumption",
+    "ledger_write",
+    "production_api_key_distribution",
+    "public_paid_marketplace_publication",
+    "personal_data_processing",
+    "real_lead_list_processing"
+  ],
+  "safety_state": {
+    "send_allowed": false,
+    "write_allowed": false,
+    "payment_allowed": false,
+    "invoice_allowed": false,
+    "credit_consumption_allowed": false,
+    "external_invitation_allowed": false,
+    "human_outreach_allowed": false,
+    "personal_data_allowed": false,
+    "real_customer_data_allowed": false,
+    "production_key_allowed": false,
+    "marketplace_publication_allowed": false
+  },
+  "public_reference_links": {
+    "website": "https://machinesignal.it/",
+    "api_page": "https://machinesignal.it/api/",
+    "beta_page": "https://machinesignal.it/beta/",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "mcp_tool_manifest": "https://machinesignal.it/mcp-tool-manifest.json",
+    "machine_discovery": "https://machinesignal.it/.well-known/machine-discovery.json"
+  },
+  "products": [
+    {
+      "product_code": "target_discovery_pack_250",
+      "name": "Target Discovery Pack 250",
+      "simulated_price_eur": 149,
+      "when_to_use": "The machine has no starting list and needs targets for a sector, area, and commercial objective.",
+      "exact_output": "250 coherent target records if pre-check passes; otherwise no activation and suggested alternatives.",
+      "validity_rule": "Activate only if the market pre-check confirms that 250 coherent targets can be produced."
+    },
+    {
+      "product_code": "score_pack_1k",
+      "name": "Score Pack 1k",
+      "simulated_price_eur": 99,
+      "when_to_use": "The machine already has domains or companies to prioritize.",
+      "exact_output": "1000 valid scores with opportunity_score, confidence, decision, spend_policy, reason, priority, and next_purchase.",
+      "validity_rule": "Duplicate, invalid, or non-analyzable records do not count as valid score credits."
+    },
+    {
+      "product_code": "domain_enrichment_pack_100",
+      "name": "Domain Enrichment Pack 100",
+      "simulated_price_eur": 149,
+      "when_to_use": "The machine has company names but weak or missing domains.",
+      "exact_output": "100 completed domain-enrichment decisions with domain candidate, confidence, status, and reason.",
+      "validity_rule": "Only completed enrichment decisions count."
+    },
+    {
+      "product_code": "deep_analysis_pack_100",
+      "name": "Deep Analysis Pack 100",
+      "simulated_price_eur": 299,
+      "when_to_use": "A score is strong enough to justify buying evidence before more spend.",
+      "exact_output": "100 valid deep-analysis outputs with evidence, gates, stop rules, CRM summary, and next_machine_call.",
+      "validity_rule": "Use after a strong score or explicit score recommendation."
+    },
+    {
+      "product_code": "action_pack_25",
+      "name": "Action Pack 25",
+      "simulated_price_eur": 399,
+      "when_to_use": "Deep Analysis confirms the opportunity and the machine needs a CRM or workflow action payload.",
+      "exact_output": "25 CRM/workflow action payloads with approval gate and compliance guardrail.",
+      "validity_rule": "Use only after Deep Analysis confirms purchase gates."
+    },
+    {
+      "product_code": "opportunity_feed_monthly",
+      "name": "Opportunity Feed Monthly",
+      "simulated_price_eur": 249,
+      "billing_interval": "month",
+      "when_to_use": "The machine wants recurring opportunity discovery without launching one-off discovery each time.",
+      "exact_output": "4 scheduled scans and 4 deliveries per month.",
+      "validity_rule": "Recurring delivery remains simulated until live billing and owner approval exist."
+    },
+    {
+      "product_code": "api_starter_monthly",
+      "name": "API Starter Monthly",
+      "simulated_price_eur": 99,
+      "billing_interval": "month",
+      "when_to_use": "The machine needs light recurring API access.",
+      "exact_output": "500 valid scores per month, demo environment, docs, and basic usage report.",
+      "validity_rule": "Recurring access remains simulated until live billing and owner approval exist."
+    },
+    {
+      "product_code": "api_pro_monthly",
+      "name": "API Pro Monthly",
+      "simulated_price_eur": 499,
+      "billing_interval": "month",
+      "when_to_use": "The machine needs recurring workflow volume and integration support.",
+      "exact_output": "3000 valid scores per month, 50 Deep Analysis outputs per month, 1 monthly Opportunity Feed, webhook support, and advanced usage report.",
+      "validity_rule": "Recurring access remains simulated until live billing and owner approval exist."
+    }
+  ],
+  "decision_rules": [
+    {
+      "if": "machine_has_no_list",
+      "then_product": "target_discovery_pack_250",
+      "reason": "The machine first needs coherent targets before scoring."
+    },
+    {
+      "if": "machine_has_domains_or_companies",
+      "then_product": "score_pack_1k",
+      "reason": "The machine can prioritize existing records and route spend."
+    },
+    {
+      "if": "machine_has_company_names_without_reliable_domains",
+      "then_product": "domain_enrichment_pack_100",
+      "reason": "The machine needs domain decisions before scoring."
+    },
+    {
+      "if": "score_is_high_and_confidence_is_sufficient",
+      "then_product": "deep_analysis_pack_100",
+      "reason": "The machine should buy evidence before action spend."
+    },
+    {
+      "if": "deep_analysis_confirms_purchase_gates",
+      "then_product": "action_pack_25",
+      "reason": "The machine can prepare an operational CRM/workflow action payload."
+    }
+  ],
+  "success_criteria": [
+    "machine_explains_what_machinesignal_sells",
+    "machine_selects_correct_product_for_no_list_case",
+    "machine_selects_correct_product_for_existing_list_case",
+    "machine_understands_upgrade_path",
+    "machine_stays_nosend_nowrite_nopayment",
+    "machine_uses_synthetic_data_only",
+    "machine_does_not_create_external_contact"
+  ],
+  "owner_approval_required_before": [
+    "external_send",
+    "real_private_evaluator_invitation",
+    "third_party_marketplace_submission",
+    "live_billing",
+    "production_key_distribution",
+    "processing_real_customer_data"
+  ]
+}
+

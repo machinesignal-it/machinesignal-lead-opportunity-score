@@ -1,0 +1,32 @@
+{
+  "artifact": "machinesignal_private_evaluator_pack_validation",
+  "generated_at": "2026-06-12T09:50:27.379Z",
+  "pack_status": "draft_nosend_nowrite_simulation_only",
+  "ok": true,
+  "checks_total": 37,
+  "checks_failed": 0,
+  "failures": [],
+  "safety_result": "nosend_nowrite_nopayment_nopersonaldata",
+  "external_send_executed": false,
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "payment_executed": false,
+  "credits_consumed": 0,
+  "personal_data_used": false,
+  "products_checked": [
+    "target_discovery_pack_250",
+    "score_pack_1k",
+    "domain_enrichment_pack_100",
+    "deep_analysis_pack_100",
+    "action_pack_25",
+    "opportunity_feed_monthly",
+    "api_starter_monthly",
+    "api_pro_monthly"
+  ],
+  "scenarios_checked": [
+    "no_list_target_discovery_dentists_milan",
+    "existing_list_score_pack_1k",
+    "upgrade_path_deep_analysis_then_action_pack"
+  ],
+  "recommendation": "pack_ready_for_owner_review_not_for_external_send"
+}

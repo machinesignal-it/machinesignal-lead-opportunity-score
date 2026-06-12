@@ -1,0 +1,48 @@
+{
+  "artifact": "machinesignal_private_evaluator_checklist",
+  "version": "2026-06-12-draft",
+  "status": "nosend_nowrite_simulation_only",
+  "required_checks": [
+    {
+      "check_id": "pack_status",
+      "requirement": "Pack status must clearly state Draft - NoSend - NoWrite - Simulation Only."
+    },
+    {
+      "check_id": "no_send",
+      "requirement": "Pack must not include email sending, invitations, or outreach instructions."
+    },
+    {
+      "check_id": "no_write",
+      "requirement": "Pack must not execute write calls, orders, ledger mutations, credit consumption, or account creation."
+    },
+    {
+      "check_id": "no_payment",
+      "requirement": "Pack must not activate payment, invoice, checkout, or subscription."
+    },
+    {
+      "check_id": "no_personal_data",
+      "requirement": "Pack must use synthetic examples only and avoid personal data or real lead lists."
+    },
+    {
+      "check_id": "product_clarity",
+      "requirement": "Machine must understand when to use Target Discovery, Score Pack, Domain Enrichment, Deep Analysis, Action Pack, Opportunity Feed, API Starter, and API Pro."
+    },
+    {
+      "check_id": "decision_rules",
+      "requirement": "Machine must understand no-list, existing-list, missing-domain, high-score, and confirmed-evidence routing."
+    },
+    {
+      "check_id": "public_reference_links",
+      "requirement": "Reference links must be public documentation links only and must not expose private authenticated panels."
+    },
+    {
+      "check_id": "secret_scan",
+      "requirement": "Pack must not contain API keys, bearer tokens, passwords, cookies, FTP credentials, GitHub tokens, Cloudflare tokens, Postman tokens, or DataForSEO credentials."
+    },
+    {
+      "check_id": "owner_gate",
+      "requirement": "Owner approval must be required before any external send, marketplace publication, live billing, production key distribution, or real customer-data processing."
+    }
+  ]
+}
+

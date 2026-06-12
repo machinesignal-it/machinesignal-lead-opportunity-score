@@ -1,0 +1,41 @@
+{
+  "artifact": "machinesignal_machine_buyer_replay_private_evaluator_pack",
+  "generated_at": "2026-06-12T09:50:27.600Z",
+  "ok": true,
+  "checks_total": 7,
+  "checks_failed": 0,
+  "failures": [],
+  "machine_decision": {
+    "no_list_case": {
+      "chosen_product": "target_discovery_pack_250",
+      "reason": "The machine has no targets to score and must first buy bounded target discovery for a declared sector, area, and commercial objective.",
+      "simulated_purchase_intent": true,
+      "real_purchase_executed": false
+    },
+    "existing_list_case": {
+      "chosen_product": "score_pack_1k",
+      "reason": "The machine already has records and needs score, confidence, spend policy, and routing decision.",
+      "simulated_purchase_intent": true,
+      "real_purchase_executed": false
+    },
+    "upgrade_case": {
+      "chosen_product_path": [
+        "deep_analysis_pack_100",
+        "action_pack_25"
+      ],
+      "reason": "The machine should buy deeper evidence after a strong score, then buy action payloads only after the evidence gate confirms.",
+      "simulated_purchase_intent": true,
+      "real_purchase_executed": false
+    }
+  },
+  "external_send_executed": false,
+  "write_calls_executed": 0,
+  "post_calls_executed": 0,
+  "payment_executed": false,
+  "invoice_issued": false,
+  "credits_consumed": 0,
+  "personal_data_used": false,
+  "real_customer_data_used": false,
+  "human_outreach_executed": false,
+  "recommendation": "pack_understandable_by_machine_buyer_ready_for_owner_review_not_external_send"
+}

@@ -1,0 +1,166 @@
+{
+  "artifact": "machinesignal_private_evaluator_scenarios",
+  "version": "2026-06-12-draft",
+  "status": "synthetic_nosend_nowrite",
+  "scenarios": [
+    {
+      "scenario_id": "no_list_target_discovery_dentists_milan",
+      "machine_starting_state": "no_starting_list",
+      "machine_goal": "Find dentist and odontoiatric clinic targets in Milan useful for evaluating website-led commercial opportunity and CRM-ready follow-up preparation.",
+      "synthetic_input": {
+        "market": "dentists_and_odontoiatric_clinics",
+        "area": "Milan",
+        "country": "IT",
+        "commercial_objective": "identify clinic websites worth scoring for website-led commercial opportunity and CRM-ready follow-up preparation",
+        "requested_target_count": 250
+      },
+      "expected_product": "target_discovery_pack_250",
+      "expected_simulated_price_eur": 149,
+      "expected_decision": "simulate_purchase_intent_only",
+      "expected_output": {
+        "target_count": 250,
+        "format": [
+          "json",
+          "csv"
+        ],
+        "fields": [
+          "target_id",
+          "synthetic_company_name",
+          "synthetic_domain",
+          "category",
+          "area",
+          "opportunity_hypothesis",
+          "initial_signals",
+          "reason_for_inclusion",
+          "next_recommended_product"
+        ]
+      },
+      "must_not_execute": [
+        "real_discovery",
+        "external_send",
+        "write_call",
+        "credit_consumption",
+        "payment",
+        "human_outreach"
+      ],
+      "synthetic_example_records": [
+        {
+          "target_id": "syn-mi-dent-001",
+          "synthetic_company_name": "Studio Aurora Milano Test",
+          "synthetic_domain": "studio-aurora-milano.test",
+          "category": "odontoiatric_clinic",
+          "area": "Milan",
+          "opportunity_hypothesis": "Website-led commercial opportunity may exist if digital presence and conversion signals are weak.",
+          "initial_signals": [
+            "local_sector_fit",
+            "website_presence_to_score",
+            "crm_follow_up_possible"
+          ],
+          "reason_for_inclusion": "Synthetic record useful to test Target Discovery output shape.",
+          "next_recommended_product": "score_pack_1k"
+        }
+      ]
+    },
+    {
+      "scenario_id": "existing_list_score_pack_1k",
+      "machine_starting_state": "has_existing_domain_list",
+      "machine_goal": "Prioritize an existing list of synthetic domains before spending CRM or agent budget.",
+      "synthetic_input": {
+        "records": [
+          {
+            "domain": "clinic-alpha.test",
+            "sector_hint": "dentist",
+            "country_hint": "IT"
+          },
+          {
+            "domain": "clinic-beta.test",
+            "sector_hint": "dentist",
+            "country_hint": "IT"
+          },
+          {
+            "domain": "clinic-alpha.test",
+            "sector_hint": "dentist",
+            "country_hint": "IT",
+            "note": "intentional duplicate"
+          }
+        ],
+        "commercial_objective": "prioritize domains worth deeper commercial evaluation"
+      },
+      "expected_product": "score_pack_1k",
+      "expected_simulated_price_eur": 99,
+      "expected_decision": "score_valid_records_only",
+      "expected_output": {
+        "valid_score_capacity": 1000,
+        "fields": [
+          "domain",
+          "opportunity_score",
+          "confidence",
+          "priority",
+          "decision",
+          "commercial_strength",
+          "spend_policy",
+          "reason",
+          "next_purchase"
+        ],
+        "credit_rule": "duplicates_invalid_or_non_analyzable_records_do_not_consume_valid_score_credits"
+      },
+      "must_not_execute": [
+        "real_scoring_against_customer_data",
+        "write_call",
+        "credit_consumption",
+        "payment",
+        "external_send"
+      ]
+    },
+    {
+      "scenario_id": "upgrade_path_deep_analysis_then_action_pack",
+      "machine_starting_state": "has_high_score_synthetic_domain",
+      "machine_goal": "Decide whether a high-scoring synthetic domain should receive deeper evidence and then an operational CRM/workflow action payload.",
+      "synthetic_input": {
+        "domain": "clinic-gamma.test",
+        "score_result": {
+          "opportunity_score": 84,
+          "confidence": 0.88,
+          "decision": "buy_deep_analysis",
+          "commercial_strength_level": "strong"
+        }
+      },
+      "expected_product_path": [
+        "deep_analysis_pack_100",
+        "action_pack_25"
+      ],
+      "expected_simulated_prices_eur": {
+        "deep_analysis_pack_100": 299,
+        "action_pack_25": 399
+      },
+      "expected_decision": "simulate_deep_analysis_first_then_action_pack_only_if_gate_confirms",
+      "expected_output": {
+        "deep_analysis_fields": [
+          "commercial_evidence",
+          "machine_decision_matrix",
+          "action_pack_purchase_gate",
+          "crm_summary_payload",
+          "stop_rules",
+          "next_machine_call"
+        ],
+        "action_pack_fields": [
+          "crm_record_patch",
+          "workflow_payload",
+          "webhook_event",
+          "agent_instruction",
+          "approval_gate",
+          "compliance_guardrail"
+        ]
+      },
+      "must_not_execute": [
+        "action_pack_without_deep_analysis_gate",
+        "write_call",
+        "credit_consumption",
+        "payment",
+        "external_send",
+        "human_outreach"
+      ]
+    }
+  ]
+}
+
