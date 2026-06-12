@@ -1,0 +1,374 @@
+{
+  "artifact": "mcp_local_conformance_p1_probe",
+  "version": "2026-06-12",
+  "ok": true,
+  "checks_total": 56,
+  "checks_failed": 0,
+  "phase": "P1_local_conformance",
+  "mode": "nowrite_local_stdio_adapter",
+  "public_tool_calls": [
+    {
+      "tool": "get_product_catalog",
+      "isError": false,
+      "ok": true,
+      "http_status": 200,
+      "auth": "none"
+    },
+    {
+      "tool": "get_machine_onboarding",
+      "isError": false,
+      "ok": true,
+      "http_status": 200,
+      "auth": "none"
+    },
+    {
+      "tool": "get_machine_api_sandbox_test",
+      "isError": false,
+      "ok": true,
+      "http_status": 200,
+      "auth": "none"
+    }
+  ],
+  "negative_tool_calls": [
+    {
+      "case": "unknown_tool",
+      "payload": {
+        "error": "unknown_tool",
+        "tool": "not_a_real_machinesignal_tool"
+      }
+    },
+    {
+      "case": "score_without_customer_key",
+      "payload": {
+        "error": "missing_customer_api_key",
+        "message": "Call create_sandbox_customer first or set MACHINESIGNAL_CUSTOMER_API_KEY."
+      }
+    },
+    {
+      "case": "purchase_without_customer_key",
+      "payload": {
+        "error": "missing_customer_api_key",
+        "message": "Call create_sandbox_customer first or set MACHINESIGNAL_CUSTOMER_API_KEY."
+      }
+    },
+    {
+      "case": "get_order_without_customer_key",
+      "payload": {
+        "error": "missing_customer_api_key",
+        "message": "Call create_sandbox_customer first or set MACHINESIGNAL_CUSTOMER_API_KEY."
+      }
+    },
+    {
+      "case": "admin_without_key",
+      "payload": {
+        "error": "missing_admin_api_key",
+        "message": "Set MACHINESIGNAL_ADMIN_API_KEY to use admin tools."
+      }
+    }
+  ],
+  "safety_counters": {
+    "sandbox_customer_created": false,
+    "score_call_executed": false,
+    "purchase_intent_created": false,
+    "payment_test_intent_created": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "external_contact_executed": false,
+    "external_publication_executed": false,
+    "hosted_mcp_deployed": false,
+    "registry_submission_executed": false,
+    "credits_consumed": false
+  },
+  "hosted_mcp_build_allowed": false,
+  "hosted_mcp_deploy_allowed": false,
+  "registry_submission_allowed": false,
+  "live_billing_allowed": false,
+  "production_keys_allowed": false,
+  "real_data_allowed": false,
+  "personal_data_allowed": false,
+  "next_action_if_passed": "continue_with_p1_schema_parity_and_error_taxonomy_or_prepare_p2_staging_design_only",
+  "next_action_if_failed": "fix_local_adapter_or_manifest_before_any_hosted_mcp_work",
+  "failed_checks": [],
+  "checks": [
+    {
+      "id": "spec_artifact",
+      "pass": true,
+      "detail": "P1 artifact must be named correctly."
+    },
+    {
+      "id": "spec_status",
+      "pass": true,
+      "detail": "P1 status must be NoWrite."
+    },
+    {
+      "id": "spec_machine_first",
+      "pass": true,
+      "detail": "P1 must remain machine-first."
+    },
+    {
+      "id": "spec_blocks_hosted_and_billing",
+      "pass": true,
+      "detail": "P1 must explicitly block hosted MCP, billing, outreach and real data."
+    },
+    {
+      "id": "manifest_hosted_false",
+      "pass": true,
+      "detail": "Manifest must say hosted public MCP is not live."
+    },
+    {
+      "id": "manifest_adapter_required",
+      "pass": true,
+      "detail": "Manifest must require adapter for MCP compatibility."
+    },
+    {
+      "id": "manifest_local_adapter_status",
+      "pass": true,
+      "detail": "Manifest must point to local stdio adapter."
+    },
+    {
+      "id": "manifest_guardrails_false",
+      "pass": true,
+      "detail": "Manifest guardrails must keep keys hidden, real payment false and external contact false."
+    },
+    {
+      "id": "well_known_manifest_parity",
+      "pass": true,
+      "detail": ".well-known manifest must expose same tool names as root manifest."
+    },
+    {
+      "id": "manifest_core_public_tools",
+      "pass": true,
+      "detail": "Manifest must include required public read tools."
+    },
+    {
+      "id": "manifest_core_protected_tools",
+      "pass": true,
+      "detail": "Manifest must include required protected tools."
+    },
+    {
+      "id": "manifest_requires_idempotency_score_lead_opportunity",
+      "pass": true,
+      "detail": "score_lead_opportunity must require idempotency in manifest."
+    },
+    {
+      "id": "manifest_requires_idempotency_create_purchase_intent",
+      "pass": true,
+      "detail": "create_purchase_intent must require idempotency in manifest."
+    },
+    {
+      "id": "manifest_requires_idempotency_create_payment_test_intent",
+      "pass": true,
+      "detail": "create_payment_test_intent must require idempotency in manifest."
+    },
+    {
+      "id": "adapter_file_exists",
+      "pass": true,
+      "detail": "Adapter file must exist."
+    },
+    {
+      "id": "adapter_supports_initialize",
+      "pass": true,
+      "detail": "Adapter must support initialize."
+    },
+    {
+      "id": "adapter_supports_tools_list",
+      "pass": true,
+      "detail": "Adapter must support tools/list."
+    },
+    {
+      "id": "adapter_supports_tools_call",
+      "pass": true,
+      "detail": "Adapter must support tools/call."
+    },
+    {
+      "id": "adapter_redacts_secrets",
+      "pass": true,
+      "detail": "Adapter must redact secrets."
+    },
+    {
+      "id": "adapter_notification_no_response",
+      "pass": true,
+      "detail": "Adapter must ignore notifications."
+    },
+    {
+      "id": "client_config_points_to_adapter",
+      "pass": true,
+      "detail": "Client config must point to local adapter."
+    },
+    {
+      "id": "readme_guardrails",
+      "pass": true,
+      "detail": "README must keep hosted MCP and unsafe actions blocked."
+    },
+    {
+      "id": "runtime_initialize_result",
+      "pass": true,
+      "detail": "initialize must return serverInfo and tools capability."
+    },
+    {
+      "id": "runtime_tools_list_count",
+      "pass": true,
+      "detail": "31 tools listed."
+    },
+    {
+      "id": "runtime_tools_list_core_parity",
+      "pass": true,
+      "detail": "Adapter tools/list must include core public and protected tools."
+    },
+    {
+      "id": "runtime_tools_have_schemas",
+      "pass": true,
+      "detail": "Every listed tool must have name, description and object inputSchema."
+    },
+    {
+      "id": "runtime_idempotency_in_schema_score_lead_opportunity",
+      "pass": true,
+      "detail": "score_lead_opportunity must expose required idempotency_key through adapter schema."
+    },
+    {
+      "id": "runtime_idempotency_in_schema_create_purchase_intent",
+      "pass": true,
+      "detail": "create_purchase_intent must expose required idempotency_key through adapter schema."
+    },
+    {
+      "id": "runtime_idempotency_in_schema_create_payment_test_intent",
+      "pass": true,
+      "detail": "create_payment_test_intent must expose required idempotency_key through adapter schema."
+    },
+    {
+      "id": "runtime_public_call_get_product_catalog",
+      "pass": true,
+      "detail": "get_product_catalog must return OK without auth."
+    },
+    {
+      "id": "runtime_public_call_get_machine_onboarding",
+      "pass": true,
+      "detail": "get_machine_onboarding must return OK without auth."
+    },
+    {
+      "id": "runtime_public_call_get_machine_api_sandbox_test",
+      "pass": true,
+      "detail": "get_machine_api_sandbox_test must return OK without auth."
+    },
+    {
+      "id": "runtime_unknown_tool_structured_error",
+      "pass": true,
+      "detail": "Unknown tool must return structured isError result."
+    },
+    {
+      "id": "runtime_score_without_key_blocked",
+      "pass": true,
+      "detail": "Score must fail locally without customer key."
+    },
+    {
+      "id": "runtime_purchase_without_key_blocked",
+      "pass": true,
+      "detail": "Purchase intent must fail locally without customer key."
+    },
+    {
+      "id": "runtime_get_order_without_key_blocked",
+      "pass": true,
+      "detail": "Order read must fail locally without customer key."
+    },
+    {
+      "id": "runtime_admin_without_key_blocked",
+      "pass": true,
+      "detail": "Admin metrics must fail locally without admin key."
+    },
+    {
+      "id": "runtime_unknown_method_jsonrpc_error",
+      "pass": true,
+      "detail": "Unknown JSON-RPC method must return Method not found."
+    },
+    {
+      "id": "safety_counter_sandbox_customer_created",
+      "pass": true,
+      "detail": "sandbox_customer_created must remain false."
+    },
+    {
+      "id": "safety_counter_score_call_executed",
+      "pass": true,
+      "detail": "score_call_executed must remain false."
+    },
+    {
+      "id": "safety_counter_purchase_intent_created",
+      "pass": true,
+      "detail": "purchase_intent_created must remain false."
+    },
+    {
+      "id": "safety_counter_payment_test_intent_created",
+      "pass": true,
+      "detail": "payment_test_intent_created must remain false."
+    },
+    {
+      "id": "safety_counter_real_payment_executed",
+      "pass": true,
+      "detail": "real_payment_executed must remain false."
+    },
+    {
+      "id": "safety_counter_invoice_issued",
+      "pass": true,
+      "detail": "invoice_issued must remain false."
+    },
+    {
+      "id": "safety_counter_external_contact_executed",
+      "pass": true,
+      "detail": "external_contact_executed must remain false."
+    },
+    {
+      "id": "safety_counter_external_publication_executed",
+      "pass": true,
+      "detail": "external_publication_executed must remain false."
+    },
+    {
+      "id": "safety_counter_hosted_mcp_deployed",
+      "pass": true,
+      "detail": "hosted_mcp_deployed must remain false."
+    },
+    {
+      "id": "safety_counter_registry_submission_executed",
+      "pass": true,
+      "detail": "registry_submission_executed must remain false."
+    },
+    {
+      "id": "safety_counter_credits_consumed",
+      "pass": true,
+      "detail": "credits_consumed must remain false."
+    },
+    {
+      "id": "ascii_mcp_local_conformance_p1_20260612.json",
+      "pass": true,
+      "detail": "mcp_local_conformance_p1_20260612.json must remain ASCII."
+    },
+    {
+      "id": "secret_scan_mcp_local_conformance_p1_20260612.json",
+      "pass": true,
+      "detail": "mcp_local_conformance_p1_20260612.json must not contain obvious secrets."
+    },
+    {
+      "id": "ascii_mcp_local_conformance_p1_20260612.md",
+      "pass": true,
+      "detail": "mcp_local_conformance_p1_20260612.md must remain ASCII."
+    },
+    {
+      "id": "secret_scan_mcp_local_conformance_p1_20260612.md",
+      "pass": true,
+      "detail": "mcp_local_conformance_p1_20260612.md must not contain obvious secrets."
+    },
+    {
+      "id": "ascii_mcp_local_conformance_p1_probe_20260612.mjs",
+      "pass": true,
+      "detail": "mcp_local_conformance_p1_probe_20260612.mjs must remain ASCII."
+    },
+    {
+      "id": "secret_scan_mcp_local_conformance_p1_probe_20260612.mjs",
+      "pass": true,
+      "detail": "mcp_local_conformance_p1_probe_20260612.mjs must not contain obvious secrets."
+    },
+    {
+      "id": "markdown_states_no_write",
+      "pass": true,
+      "detail": "Markdown must state no-write and false counters."
+    }
+  ]
+}

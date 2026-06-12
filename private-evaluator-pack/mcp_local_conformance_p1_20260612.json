@@ -1,0 +1,132 @@
+{
+  "artifact": "mcp_local_conformance_p1",
+  "version": "2026-06-12",
+  "status": "p1_local_conformance_defined_no_write",
+  "primary_customer_interface": "machine",
+  "business_rule": "sell_to_machines_not_humans",
+  "purpose": "Validate that the local stdio MCP adapter is coherent with the MachineSignal tool manifest and can be used by a machine in NoWrite mode before any hosted MCP work begins.",
+  "decision": {
+    "phase": "P1_local_conformance",
+    "allowed_now": [
+      "start local stdio adapter",
+      "initialize JSON-RPC session",
+      "list tools",
+      "read public no-auth tools",
+      "run local negative/error tests",
+      "compare adapter output with manifest safety rules"
+    ],
+    "blocked_now": [
+      "hosted MCP build",
+      "hosted MCP deploy",
+      "public MCP registry submission",
+      "create sandbox customer",
+      "score real domains",
+      "create purchase intent",
+      "create payment-test intent",
+      "live billing",
+      "real payment",
+      "invoice",
+      "external target contact",
+      "automatic outreach",
+      "real customer data",
+      "personal data",
+      "real lead lists"
+    ]
+  },
+  "source_evidence": [
+    "mcp_adapter/machinesignal_mcp_server.py",
+    "mcp_adapter/README.md",
+    "mcp_adapter/mcp_client_config.example.json",
+    "mcp-tool-manifest.json",
+    ".well-known/mcp-tool-manifest.json",
+    "MCP_TOOL_CONTRACT.md",
+    "MCP_MACHINE_CLIENT_INSTALLATION.md",
+    "private-evaluator-pack/hosted_mcp_architecture_spike_20260612.json"
+  ],
+  "official_mcp_expectations_checked": [
+    {
+      "expectation": "MCP uses JSON-RPC style messages and capability negotiation.",
+      "local_check": "initialize must return protocolVersion, tools capability and serverInfo."
+    },
+    {
+      "expectation": "Servers expose tools with names, descriptions and input schemas.",
+      "local_check": "tools/list must return manifest-derived tools with inputSchema."
+    },
+    {
+      "expectation": "Tool calls must produce structured results and safe errors.",
+      "local_check": "unknown tools and missing credentials must return isError tool results without remote writes."
+    },
+    {
+      "expectation": "HTTP-based hosted MCP needs authorization; local stdio retrieves credentials from environment or local state.",
+      "local_check": "customer/admin protected tools must not run without local credentials."
+    },
+    {
+      "expectation": "Tool safety and user control are required.",
+      "local_check": "write tools remain listed but not called in this P1 NoWrite run; dangerous actions remain blocked."
+    }
+  ],
+  "manifest_conformance_requirements": {
+    "public_mcp_server_live": false,
+    "adapter_required": true,
+    "local_adapter_status": "available_in_github_repo",
+    "local_adapter_transport": "stdio_json_rpc",
+    "full_api_keys_returned_to_client": false,
+    "real_payment_executed_in_beta": false,
+    "external_contact_executed_in_beta": false,
+    "public_read_tools_must_be_callable_without_auth": [
+      "get_product_catalog",
+      "get_machine_onboarding",
+      "get_machine_api_sandbox_test"
+    ],
+    "protected_tools_must_fail_without_credentials": [
+      "score_lead_opportunity",
+      "create_purchase_intent",
+      "get_order",
+      "get_admin_sandbox_metrics"
+    ],
+    "idempotency_tools_must_expose_idempotency_key": [
+      "score_lead_opportunity",
+      "create_purchase_intent",
+      "create_payment_test_intent"
+    ]
+  },
+  "adapter_runtime_checks": [
+    "adapter starts from repository root",
+    "initialize returns machinesignal-local-mcp-adapter",
+    "notifications/initialized produces no response",
+    "tools/list returns at least the manifest public and protected core tools",
+    "public tools return HTTP 2xx through adapter",
+    "unknown tool returns isError true with unknown_tool",
+    "customer tool without key returns isError true with missing_customer_api_key",
+    "admin tool without key returns isError true with missing_admin_api_key",
+    "unknown JSON-RPC method returns method not found error",
+    "no sandbox customer is created",
+    "no score call reaches the API",
+    "no purchase intent reaches the API",
+    "no payment-test intent is created",
+    "no external contact is executed"
+  ],
+  "safety_counters_required": {
+    "sandbox_customer_created": false,
+    "score_call_executed": false,
+    "purchase_intent_created": false,
+    "payment_test_intent_created": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "external_contact_executed": false,
+    "external_publication_executed": false,
+    "hosted_mcp_deployed": false,
+    "registry_submission_executed": false,
+    "credits_consumed": false
+  },
+  "pass_criteria": [
+    "all runtime checks pass",
+    "all manifest conformance checks pass",
+    "all blocked actions remain false",
+    "no secrets are written to report files",
+    "local adapter remains the only MCP execution path",
+    "hosted MCP remains blocked"
+  ],
+  "next_action_if_passed": "continue_with_p1_schema_parity_and_error_taxonomy_or_prepare_p2_staging_design_only",
+  "next_action_if_failed": "fix_local_adapter_or_manifest_before_any_hosted_mcp_work"
+}
