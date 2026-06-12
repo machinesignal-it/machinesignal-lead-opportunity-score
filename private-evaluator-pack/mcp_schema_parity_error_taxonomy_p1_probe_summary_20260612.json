@@ -1,0 +1,707 @@
+{
+  "artifact": "mcp_schema_parity_error_taxonomy_p1_probe",
+  "version": "2026-06-12",
+  "ok": true,
+  "checks_total": 105,
+  "checks_failed": 0,
+  "phase": "P1_schema_parity_error_taxonomy",
+  "mode": "nowrite_local_contract_validation",
+  "api_tools_checked": 11,
+  "parity_rows": [
+    {
+      "tool": "create_sandbox_customer",
+      "method": "POST",
+      "path": "/v1/sandbox/customers",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": []
+    },
+    {
+      "tool": "get_customer_onboarding",
+      "method": "GET",
+      "path": "/v1/onboarding",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": []
+    },
+    {
+      "tool": "score_lead_opportunity",
+      "method": "POST",
+      "path": "/v1/lead-opportunity-score",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": []
+    },
+    {
+      "tool": "create_purchase_intent",
+      "method": "POST",
+      "path": "/v1/purchase-intent",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": []
+    },
+    {
+      "tool": "list_orders",
+      "method": "GET",
+      "path": "/v1/orders",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": []
+    },
+    {
+      "tool": "get_order",
+      "method": "GET",
+      "path": "/v1/orders/{order_intent_id}",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": []
+    },
+    {
+      "tool": "get_usage",
+      "method": "GET",
+      "path": "/v1/usage",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": []
+    },
+    {
+      "tool": "create_payment_test_intent",
+      "method": "POST",
+      "path": "/v1/payment-test/intents",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": [
+        "amount_eur"
+      ]
+    },
+    {
+      "tool": "get_payment_test_intent",
+      "method": "GET",
+      "path": "/v1/payment-test/intents/{payment_test_id}",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": []
+    },
+    {
+      "tool": "get_payment_test_reconciliation",
+      "method": "GET",
+      "path": "/v1/payment-test/reconciliation/{payment_test_id}",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": []
+    },
+    {
+      "tool": "get_admin_sandbox_metrics",
+      "method": "GET",
+      "path": "/v1/admin/sandbox-metrics",
+      "operation_found": true,
+      "auth_ok": true,
+      "idempotency_ok": true,
+      "required_ok": true,
+      "properties_ok": true,
+      "stricter_manifest_fields": []
+    }
+  ],
+  "negative_runtime_rows": [
+    {
+      "case": "unknown_tool",
+      "error": "unknown_tool"
+    },
+    {
+      "case": "missing_customer_api_key",
+      "error": "missing_customer_api_key"
+    },
+    {
+      "case": "missing_admin_api_key",
+      "error": "missing_admin_api_key"
+    },
+    {
+      "case": "method_not_found",
+      "error": "Method not found"
+    },
+    {
+      "case": "missing_idempotency_key",
+      "error": "missing_idempotency_key"
+    }
+  ],
+  "safety_counters": {
+    "sandbox_customer_created": false,
+    "score_call_executed": false,
+    "purchase_intent_created": false,
+    "payment_test_intent_created": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "external_contact_executed": false,
+    "external_publication_executed": false,
+    "hosted_mcp_deployed": false,
+    "registry_submission_executed": false,
+    "credits_consumed": false
+  },
+  "hosted_mcp_build_allowed": false,
+  "hosted_mcp_deploy_allowed": false,
+  "registry_submission_allowed": false,
+  "live_billing_allowed": false,
+  "production_keys_allowed": false,
+  "real_data_allowed": false,
+  "personal_data_allowed": false,
+  "next_action_if_passed": "verify_public_deployed_contracts_or_prepare_p2_staging_design_only",
+  "next_action_if_failed": "fix_manifest_openapi_or_adapter_before_any_hosted_mcp_work",
+  "failed_checks": [],
+  "checks": [
+    {
+      "id": "spec_artifact",
+      "pass": true,
+      "detail": "Spec artifact name must match."
+    },
+    {
+      "id": "spec_status",
+      "pass": true,
+      "detail": "Spec status must remain NoWrite."
+    },
+    {
+      "id": "spec_machine_first",
+      "pass": true,
+      "detail": "Spec must remain machine-first."
+    },
+    {
+      "id": "spec_exclusions_core",
+      "pass": true,
+      "detail": "Spec must exclude hosted, billing, write and real-data actions."
+    },
+    {
+      "id": "manifest_tool_name_parity",
+      "pass": true,
+      "detail": "Root and .well-known manifests must expose same tool names."
+    },
+    {
+      "id": "manifest_input_schema_parity_create_sandbox_customer",
+      "pass": true,
+      "detail": "create_sandbox_customer input schema must match root and .well-known manifests."
+    },
+    {
+      "id": "manifest_input_schema_parity_score_lead_opportunity",
+      "pass": true,
+      "detail": "score_lead_opportunity input schema must match root and .well-known manifests."
+    },
+    {
+      "id": "manifest_input_schema_parity_create_purchase_intent",
+      "pass": true,
+      "detail": "create_purchase_intent input schema must match root and .well-known manifests."
+    },
+    {
+      "id": "manifest_input_schema_parity_create_payment_test_intent",
+      "pass": true,
+      "detail": "create_payment_test_intent input schema must match root and .well-known manifests."
+    },
+    {
+      "id": "manifest_input_schema_parity_get_order",
+      "pass": true,
+      "detail": "get_order input schema must match root and .well-known manifests."
+    },
+    {
+      "id": "api_tools_present",
+      "pass": true,
+      "detail": "11 API tools found in manifest."
+    },
+    {
+      "id": "api_operation_exists_create_sandbox_customer",
+      "pass": true,
+      "detail": "POST /v1/sandbox/customers must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_create_sandbox_customer",
+      "pass": true,
+      "detail": "create_sandbox_customer auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_create_sandbox_customer",
+      "pass": true,
+      "detail": "create_sandbox_customer idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_create_sandbox_customer",
+      "pass": true,
+      "detail": "create_sandbox_customer manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_create_sandbox_customer",
+      "pass": true,
+      "detail": "create_sandbox_customer manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "api_operation_exists_get_customer_onboarding",
+      "pass": true,
+      "detail": "GET /v1/onboarding must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_get_customer_onboarding",
+      "pass": true,
+      "detail": "get_customer_onboarding auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_get_customer_onboarding",
+      "pass": true,
+      "detail": "get_customer_onboarding idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_get_customer_onboarding",
+      "pass": true,
+      "detail": "get_customer_onboarding manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_get_customer_onboarding",
+      "pass": true,
+      "detail": "get_customer_onboarding manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "api_operation_exists_score_lead_opportunity",
+      "pass": true,
+      "detail": "POST /v1/lead-opportunity-score must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_score_lead_opportunity",
+      "pass": true,
+      "detail": "score_lead_opportunity auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_score_lead_opportunity",
+      "pass": true,
+      "detail": "score_lead_opportunity idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_score_lead_opportunity",
+      "pass": true,
+      "detail": "score_lead_opportunity manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_score_lead_opportunity",
+      "pass": true,
+      "detail": "score_lead_opportunity manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "api_operation_exists_create_purchase_intent",
+      "pass": true,
+      "detail": "POST /v1/purchase-intent must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_create_purchase_intent",
+      "pass": true,
+      "detail": "create_purchase_intent auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_create_purchase_intent",
+      "pass": true,
+      "detail": "create_purchase_intent idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_create_purchase_intent",
+      "pass": true,
+      "detail": "create_purchase_intent manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_create_purchase_intent",
+      "pass": true,
+      "detail": "create_purchase_intent manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "api_operation_exists_list_orders",
+      "pass": true,
+      "detail": "GET /v1/orders must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_list_orders",
+      "pass": true,
+      "detail": "list_orders auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_list_orders",
+      "pass": true,
+      "detail": "list_orders idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_list_orders",
+      "pass": true,
+      "detail": "list_orders manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_list_orders",
+      "pass": true,
+      "detail": "list_orders manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "api_operation_exists_get_order",
+      "pass": true,
+      "detail": "GET /v1/orders/{order_intent_id} must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_get_order",
+      "pass": true,
+      "detail": "get_order auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_get_order",
+      "pass": true,
+      "detail": "get_order idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_get_order",
+      "pass": true,
+      "detail": "get_order manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_get_order",
+      "pass": true,
+      "detail": "get_order manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "api_operation_exists_get_usage",
+      "pass": true,
+      "detail": "GET /v1/usage must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_get_usage",
+      "pass": true,
+      "detail": "get_usage auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_get_usage",
+      "pass": true,
+      "detail": "get_usage idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_get_usage",
+      "pass": true,
+      "detail": "get_usage manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_get_usage",
+      "pass": true,
+      "detail": "get_usage manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "api_operation_exists_create_payment_test_intent",
+      "pass": true,
+      "detail": "POST /v1/payment-test/intents must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_create_payment_test_intent",
+      "pass": true,
+      "detail": "create_payment_test_intent auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_create_payment_test_intent",
+      "pass": true,
+      "detail": "create_payment_test_intent idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_create_payment_test_intent",
+      "pass": true,
+      "detail": "create_payment_test_intent manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_create_payment_test_intent",
+      "pass": true,
+      "detail": "create_payment_test_intent manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "api_operation_exists_get_payment_test_intent",
+      "pass": true,
+      "detail": "GET /v1/payment-test/intents/{payment_test_id} must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_get_payment_test_intent",
+      "pass": true,
+      "detail": "get_payment_test_intent auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_get_payment_test_intent",
+      "pass": true,
+      "detail": "get_payment_test_intent idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_get_payment_test_intent",
+      "pass": true,
+      "detail": "get_payment_test_intent manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_get_payment_test_intent",
+      "pass": true,
+      "detail": "get_payment_test_intent manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "api_operation_exists_get_payment_test_reconciliation",
+      "pass": true,
+      "detail": "GET /v1/payment-test/reconciliation/{payment_test_id} must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_get_payment_test_reconciliation",
+      "pass": true,
+      "detail": "get_payment_test_reconciliation auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_get_payment_test_reconciliation",
+      "pass": true,
+      "detail": "get_payment_test_reconciliation idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_get_payment_test_reconciliation",
+      "pass": true,
+      "detail": "get_payment_test_reconciliation manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_get_payment_test_reconciliation",
+      "pass": true,
+      "detail": "get_payment_test_reconciliation manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "api_operation_exists_get_admin_sandbox_metrics",
+      "pass": true,
+      "detail": "GET /v1/admin/sandbox-metrics must exist in OpenAPI."
+    },
+    {
+      "id": "auth_parity_get_admin_sandbox_metrics",
+      "pass": true,
+      "detail": "get_admin_sandbox_metrics auth must match OpenAPI security."
+    },
+    {
+      "id": "idempotency_parity_get_admin_sandbox_metrics",
+      "pass": true,
+      "detail": "get_admin_sandbox_metrics idempotency flag must match required Idempotency-Key header."
+    },
+    {
+      "id": "required_input_parity_get_admin_sandbox_metrics",
+      "pass": true,
+      "detail": "get_admin_sandbox_metrics manifest must require all OpenAPI required inputs. missing="
+    },
+    {
+      "id": "input_property_parity_get_admin_sandbox_metrics",
+      "pass": true,
+      "detail": "get_admin_sandbox_metrics manifest properties must be documented in OpenAPI. missing="
+    },
+    {
+      "id": "purchase_schema_machine_fields",
+      "pass": true,
+      "detail": "OpenAPI PurchaseIntentRequest must document market, area and commercial_objective."
+    },
+    {
+      "id": "manifest_purchase_machine_fields",
+      "pass": true,
+      "detail": "Manifest create_purchase_intent must document market, area and commercial_objective."
+    },
+    {
+      "id": "sandbox_customer_fields_openapi",
+      "pass": true,
+      "detail": "OpenAPI sandbox customer schema must document evaluator_type, integration_target and expected_test_path."
+    },
+    {
+      "id": "sandbox_customer_fields_manifest",
+      "pass": true,
+      "detail": "Manifest sandbox customer schema must use current OpenAPI field names."
+    },
+    {
+      "id": "core_purchase_schema_machine_fields",
+      "pass": true,
+      "detail": "core.mjs OpenAPI source must include target discovery fields."
+    },
+    {
+      "id": "adapter_unknown_tool_error",
+      "pass": true,
+      "detail": "Adapter must define unknown_tool error."
+    },
+    {
+      "id": "adapter_missing_customer_error",
+      "pass": true,
+      "detail": "Adapter must define missing_customer_api_key error."
+    },
+    {
+      "id": "adapter_missing_admin_error",
+      "pass": true,
+      "detail": "Adapter must define missing_admin_api_key error."
+    },
+    {
+      "id": "adapter_missing_idempotency_error",
+      "pass": true,
+      "detail": "Adapter must define missing_idempotency_key error."
+    },
+    {
+      "id": "adapter_jsonrpc_method_not_found",
+      "pass": true,
+      "detail": "Adapter must define JSON-RPC method not found."
+    },
+    {
+      "id": "core_error_taxonomy_gates",
+      "pass": true,
+      "detail": "Core must include action/deep-analysis gate errors."
+    },
+    {
+      "id": "core_payment_test_errors",
+      "pass": true,
+      "detail": "Core must include payment-test error codes."
+    },
+    {
+      "id": "runtime_unknown_tool_error_shape",
+      "pass": true,
+      "detail": "Unknown tool must return structured isError payload."
+    },
+    {
+      "id": "runtime_missing_customer_error_shape",
+      "pass": true,
+      "detail": "Customer tool without key must return missing_customer_api_key."
+    },
+    {
+      "id": "runtime_missing_admin_error_shape",
+      "pass": true,
+      "detail": "Admin tool without key must return missing_admin_api_key."
+    },
+    {
+      "id": "runtime_method_not_found_shape",
+      "pass": true,
+      "detail": "Unknown JSON-RPC method must return -32601."
+    },
+    {
+      "id": "runtime_missing_idempotency_error_shape",
+      "pass": true,
+      "detail": "Write tool without idempotency key must fail locally before HTTP request."
+    },
+    {
+      "id": "safety_counter_sandbox_customer_created",
+      "pass": true,
+      "detail": "sandbox_customer_created must remain false."
+    },
+    {
+      "id": "safety_counter_score_call_executed",
+      "pass": true,
+      "detail": "score_call_executed must remain false."
+    },
+    {
+      "id": "safety_counter_purchase_intent_created",
+      "pass": true,
+      "detail": "purchase_intent_created must remain false."
+    },
+    {
+      "id": "safety_counter_payment_test_intent_created",
+      "pass": true,
+      "detail": "payment_test_intent_created must remain false."
+    },
+    {
+      "id": "safety_counter_real_payment_executed",
+      "pass": true,
+      "detail": "real_payment_executed must remain false."
+    },
+    {
+      "id": "safety_counter_invoice_issued",
+      "pass": true,
+      "detail": "invoice_issued must remain false."
+    },
+    {
+      "id": "safety_counter_external_contact_executed",
+      "pass": true,
+      "detail": "external_contact_executed must remain false."
+    },
+    {
+      "id": "safety_counter_external_publication_executed",
+      "pass": true,
+      "detail": "external_publication_executed must remain false."
+    },
+    {
+      "id": "safety_counter_hosted_mcp_deployed",
+      "pass": true,
+      "detail": "hosted_mcp_deployed must remain false."
+    },
+    {
+      "id": "safety_counter_registry_submission_executed",
+      "pass": true,
+      "detail": "registry_submission_executed must remain false."
+    },
+    {
+      "id": "safety_counter_credits_consumed",
+      "pass": true,
+      "detail": "credits_consumed must remain false."
+    },
+    {
+      "id": "secret_scan_mcp_schema_parity_error_taxonomy_p1_20260612.json",
+      "pass": true,
+      "detail": "mcp_schema_parity_error_taxonomy_p1_20260612.json must not contain obvious secrets."
+    },
+    {
+      "id": "secret_scan_mcp_schema_parity_error_taxonomy_p1_20260612.md",
+      "pass": true,
+      "detail": "mcp_schema_parity_error_taxonomy_p1_20260612.md must not contain obvious secrets."
+    },
+    {
+      "id": "secret_scan_mcp-tool-manifest.json",
+      "pass": true,
+      "detail": "mcp-tool-manifest.json must not contain obvious secrets."
+    },
+    {
+      "id": "secret_scan_mcp-tool-manifest.json",
+      "pass": true,
+      "detail": "mcp-tool-manifest.json must not contain obvious secrets."
+    },
+    {
+      "id": "secret_scan_openapi.json",
+      "pass": true,
+      "detail": "openapi.json must not contain obvious secrets."
+    },
+    {
+      "id": "secret_scan_core.mjs",
+      "pass": true,
+      "detail": "core.mjs must not contain obvious secrets."
+    },
+    {
+      "id": "secret_scan_mcp_schema_parity_error_taxonomy_p1_probe_20260612.mjs",
+      "pass": true,
+      "detail": "mcp_schema_parity_error_taxonomy_p1_probe_20260612.mjs must not contain obvious secrets."
+    },
+    {
+      "id": "ascii_mcp_schema_parity_error_taxonomy_p1_20260612.json",
+      "pass": true,
+      "detail": "mcp_schema_parity_error_taxonomy_p1_20260612.json must remain ASCII."
+    },
+    {
+      "id": "ascii_mcp_schema_parity_error_taxonomy_p1_20260612.md",
+      "pass": true,
+      "detail": "mcp_schema_parity_error_taxonomy_p1_20260612.md must remain ASCII."
+    },
+    {
+      "id": "ascii_mcp_schema_parity_error_taxonomy_p1_probe_20260612.mjs",
+      "pass": true,
+      "detail": "mcp_schema_parity_error_taxonomy_p1_probe_20260612.mjs must remain ASCII."
+    },
+    {
+      "id": "markdown_mentions_known_strictness",
+      "pass": true,
+      "detail": "Markdown must document known non-blocking strictness."
+    }
+  ]
+}

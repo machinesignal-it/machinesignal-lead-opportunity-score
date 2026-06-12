@@ -157,13 +157,17 @@
       "input_schema": {
         "type": "object",
         "properties": {
-          "evaluator_id": {
+          "evaluator_type": {
             "type": "string",
-            "description": "Optional stable identifier for the evaluator machine."
+            "description": "Optional evaluator type, for example ai_agent, crm_workflow or api_directory_bot."
           },
-          "use_case": {
+          "integration_target": {
             "type": "string",
-            "description": "Optional plain-language description of the automated test."
+            "description": "Optional integration target, for example custom CRM workflow."
+          },
+          "expected_test_path": {
+            "type": "string",
+            "description": "Optional expected sandbox test path, for example full_flow or nowrite_review."
           }
         },
         "required": []

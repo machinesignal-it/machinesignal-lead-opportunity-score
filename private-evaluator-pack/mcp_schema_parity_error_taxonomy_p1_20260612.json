@@ -1,0 +1,180 @@
+{
+  "artifact": "mcp_schema_parity_error_taxonomy_p1",
+  "version": "2026-06-12",
+  "status": "p1_schema_parity_and_error_taxonomy_defined_nowrite",
+  "primary_customer_interface": "machine",
+  "business_rule": "sell_to_machines_not_humans",
+  "purpose": "Verify that MachineSignal's local MCP tool manifest, .well-known manifest, OpenAPI contract and local adapter speak the same machine-readable language before any hosted MCP or public registry work.",
+  "scope": {
+    "included": [
+      "mcp-tool-manifest.json",
+      ".well-known/mcp-tool-manifest.json",
+      "openapi.json",
+      "api_endpoint_minimal/core.mjs OpenAPI source",
+      "mcp_adapter/machinesignal_mcp_server.py",
+      "runtime local adapter negative checks"
+    ],
+    "excluded": [
+      "hosted MCP build",
+      "hosted MCP deploy",
+      "public MCP registry submission",
+      "sandbox customer creation",
+      "score execution",
+      "purchase intent execution",
+      "payment-test intent execution",
+      "live billing",
+      "real payment",
+      "invoice",
+      "external target contact",
+      "real customer data",
+      "personal data",
+      "real lead lists"
+    ]
+  },
+  "schema_parity_requirements": [
+    {
+      "id": "manifest_parity",
+      "requirement": "Root manifest and .well-known manifest must expose the same tool names and same input schemas for core API tools."
+    },
+    {
+      "id": "api_tool_path_parity",
+      "requirement": "Every manifest tool that points to the MachineSignal API worker must map to an OpenAPI method and path."
+    },
+    {
+      "id": "auth_parity",
+      "requirement": "Manifest auth none/customer_api_key/admin_api_key must match OpenAPI public or ApiKeyAuth requirements."
+    },
+    {
+      "id": "idempotency_parity",
+      "requirement": "Manifest requires_idempotency_key must match OpenAPI required Idempotency-Key headers for score, purchase and payment-test writes."
+    },
+    {
+      "id": "input_required_parity",
+      "requirement": "All OpenAPI required inputs must be required or safely represented in the manifest tool schema."
+    },
+    {
+      "id": "input_property_parity",
+      "requirement": "Every manifest API tool input property must be documented in OpenAPI as body, path or query input."
+    },
+    {
+      "id": "machine_specific_fields",
+      "requirement": "Target Discovery fields market, area and commercial_objective must be present in OpenAPI PurchaseIntentRequest and manifest create_purchase_intent."
+    },
+    {
+      "id": "sandbox_customer_fields",
+      "requirement": "create_sandbox_customer must use evaluator_type, integration_target and expected_test_path consistently across manifest and OpenAPI."
+    }
+  ],
+  "error_taxonomy": {
+    "json_rpc_errors": [
+      {
+        "code": -32700,
+        "name": "parse_error",
+        "meaning": "Invalid JSON received by adapter."
+      },
+      {
+        "code": -32601,
+        "name": "method_not_found",
+        "meaning": "Unsupported JSON-RPC method."
+      },
+      {
+        "code": -32603,
+        "name": "internal_error",
+        "meaning": "Unexpected adapter runtime error."
+      },
+      {
+        "code": -32000,
+        "name": "adapter_startup_failed",
+        "meaning": "Adapter could not load manifest or start."
+      }
+    ],
+    "adapter_tool_errors": [
+      {
+        "name": "unknown_tool",
+        "is_error": true,
+        "meaning": "Requested tool is not present in manifest."
+      },
+      {
+        "name": "missing_customer_api_key",
+        "is_error": true,
+        "meaning": "Customer-protected tool called before create_sandbox_customer or without customer key."
+      },
+      {
+        "name": "missing_admin_api_key",
+        "is_error": true,
+        "meaning": "Admin tool called without admin key."
+      },
+      {
+        "name": "missing_idempotency_key",
+        "is_error": true,
+        "meaning": "Write tool requiring Idempotency-Key was called without idempotency_key argument."
+      },
+      {
+        "name": "url_error",
+        "is_error": true,
+        "meaning": "Remote resource could not be reached by adapter."
+      }
+    ],
+    "api_error_families": [
+      "unauthorized",
+      "bad_request",
+      "not_found",
+      "sandbox_key_creation_disabled",
+      "sandbox_creation_rate_limited",
+      "live_payment_mode_blocked",
+      "invalid_provider_mode",
+      "invalid_provider",
+      "deep_analysis_verification_gate_failed",
+      "action_pack_gate_failed"
+    ],
+    "required_response_shape": {
+      "adapter_tool_result": [
+        "content",
+        "isError"
+      ],
+      "adapter_payload": [
+        "error",
+        "message"
+      ],
+      "api_error_payload": [
+        "error",
+        "message"
+      ]
+    }
+  },
+  "known_non_blocking_contract_strictness": [
+    {
+      "tool": "create_payment_test_intent",
+      "field": "amount_eur",
+      "manifest": "required",
+      "openapi": "optional",
+      "classification": "manifest_stricter_than_api",
+      "reason": "A machine-facing payment-test call is clearer when amount_eur is supplied, while the API can still derive or tolerate missing amount in sandbox mode."
+    }
+  ],
+  "safety_counters_required": {
+    "sandbox_customer_created": false,
+    "score_call_executed": false,
+    "purchase_intent_created": false,
+    "payment_test_intent_created": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "external_contact_executed": false,
+    "external_publication_executed": false,
+    "hosted_mcp_deployed": false,
+    "registry_submission_executed": false,
+    "credits_consumed": false
+  },
+  "pass_criteria": [
+    "root and .well-known manifests match",
+    "all API tools in manifest map to OpenAPI operations",
+    "auth, idempotency, path parameters and required inputs align",
+    "target discovery machine fields are documented in OpenAPI and manifest",
+    "sandbox customer fields align between manifest and OpenAPI",
+    "local adapter negative errors are structured",
+    "all safety counters remain false",
+    "no obvious secrets are written to reports"
+  ],
+  "next_action_if_passed": "verify_public_deployed_contracts_or_prepare_p2_staging_design_only",
+  "next_action_if_failed": "fix_manifest_openapi_or_adapter_before_any_hosted_mcp_work"
+}

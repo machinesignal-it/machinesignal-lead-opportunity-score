@@ -642,7 +642,10 @@ export const openApi = {
                   summary: "Order a beta target discovery pack",
                   value: {
                     product_code: "target_discovery",
-                    domain: "dentist-market-demo.it",
+                    market: "medicina estetica",
+                    area: "Lombardia",
+                    commercial_objective:
+                      "find aesthetic medicine clinic websites worth scoring for digital presence improvement opportunities",
                     source_score_request_id: null,
                     reason: "Customer machine does not already have a list to score"
                   }
@@ -1237,6 +1240,25 @@ export const openApi = {
             description:
               "Target name for products that start before a reliable domain exists, such as domain_enrichment.",
             example: "Studio Dentistico Demo"
+          },
+          market: {
+            type: "string",
+            description:
+              "Market or niche for target discovery when the customer machine does not already have a list.",
+            example: "medicina estetica"
+          },
+          area: {
+            type: "string",
+            description:
+              "Geographic area for target discovery or market-level purchase intents.",
+            example: "Lombardia"
+          },
+          commercial_objective: {
+            type: "string",
+            description:
+              "Specific commercial objective that explains what opportunity the machine wants to find, not just a generic sector label.",
+            example:
+              "find aesthetic medicine clinic websites worth scoring for digital presence improvement opportunities"
           },
           batch_id: {
             type: "string",
