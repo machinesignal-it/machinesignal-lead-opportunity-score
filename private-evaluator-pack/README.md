@@ -153,6 +153,7 @@ The pack passes if a machine can, without a human explanation:
 - `owner_approval_gate_orchestrator_review_20260612.json`
 - `owner_approval_gate_compliance_admin_legal_finance_review_20260612.md`
 - `owner_approval_gate_compliance_admin_legal_finance_review_20260612.json`
+- `owner_approval_gate_compliance_admin_legal_finance_review_20260612.json`
 
 ## Owner Approval Gate Reviews
 
@@ -184,6 +185,12 @@ Orchestrator / HR Agent:
 
 ```text
 GO_CONTROLLED for externally_presentable_draft_not_sent
+```
+
+Compliance/Admin/Legal/Finance Agent:
+
+```text
+GO for internal draft only; NO-GO for external exposure, live sale, payment, invoice, subscription, customer onboarding, marketplace publication, real lead processing, or personal data processing.
 ```
 
 Overall gate result:
