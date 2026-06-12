@@ -1,0 +1,156 @@
+{
+  "date": "2026-06-12",
+  "status": "passed",
+  "purpose": "Verify that the deployed public static MachineSignal contracts match the local repo contracts after FTP publication.",
+  "scope": {
+    "public_site": "https://machinesignal.it",
+    "deployed_contracts": [
+      "https://machinesignal.it/openapi.json",
+      "https://machinesignal.it/mcp-tool-manifest.json",
+      "https://machinesignal.it/.well-known/mcp-tool-manifest.json"
+    ],
+    "no_live_billing": true,
+    "no_production_keys": true,
+    "no_real_customer_data": true,
+    "no_personal_data": true,
+    "no_human_outreach": true,
+    "no_hosted_mcp_deploy": true
+  },
+  "observed": [
+    {
+      "name": "openapi",
+      "public_url": "https://machinesignal.it/openapi.json",
+      "status": 200,
+      "content_type": "application/json",
+      "local_bytes": 62565,
+      "public_bytes": 62565
+    },
+    {
+      "name": "root_mcp_manifest",
+      "public_url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "status": 200,
+      "content_type": "application/json",
+      "local_bytes": 130510,
+      "public_bytes": 130510
+    },
+    {
+      "name": "well_known_mcp_manifest",
+      "public_url": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+      "status": 200,
+      "content_type": "application/json",
+      "local_bytes": 130510,
+      "public_bytes": 130510
+    }
+  ],
+  "checks_total": 21,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "openapi_http_200",
+      "ok": true,
+      "details": "https://machinesignal.it/openapi.json"
+    },
+    {
+      "name": "openapi_json_matches_local",
+      "ok": true,
+      "details": "openapi.json"
+    },
+    {
+      "name": "root_mcp_manifest_http_200",
+      "ok": true,
+      "details": "https://machinesignal.it/mcp-tool-manifest.json"
+    },
+    {
+      "name": "root_mcp_manifest_json_matches_local",
+      "ok": true,
+      "details": "mcp-tool-manifest.json"
+    },
+    {
+      "name": "well_known_mcp_manifest_http_200",
+      "ok": true,
+      "details": "https://machinesignal.it/.well-known/mcp-tool-manifest.json"
+    },
+    {
+      "name": "well_known_mcp_manifest_json_matches_local",
+      "ok": true,
+      "details": ".well-known/mcp-tool-manifest.json"
+    },
+    {
+      "name": "public_openapi_has_market",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "public_openapi_has_area",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "public_openapi_has_commercial_objective",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/mcp-tool-manifest.json_has_create_sandbox_customer",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/mcp-tool-manifest.json_has_evaluator_type",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/mcp-tool-manifest.json_has_integration_target",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/mcp-tool-manifest.json_has_expected_test_path",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/mcp-tool-manifest.json_has_no_old_evaluator_id",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/mcp-tool-manifest.json_has_no_old_use_case",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/.well-known/mcp-tool-manifest.json_has_create_sandbox_customer",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/.well-known/mcp-tool-manifest.json_has_evaluator_type",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/.well-known/mcp-tool-manifest.json_has_integration_target",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/.well-known/mcp-tool-manifest.json_has_expected_test_path",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/.well-known/mcp-tool-manifest.json_has_no_old_evaluator_id",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "https://machinesignal.it/.well-known/mcp-tool-manifest.json_has_no_old_use_case",
+      "ok": true,
+      "details": ""
+    }
+  ],
+  "next_action_if_passed": "continue_p2_staging_design_only_or_public_machine_docs_probe",
+  "next_action_if_failed": "repair_public_static_contract_deploy_before_any_distribution_step"
+}
