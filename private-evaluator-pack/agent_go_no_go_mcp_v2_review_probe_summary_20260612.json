@@ -1,0 +1,158 @@
+{
+  "artifact": "agent_go_no_go_mcp_v2_review_probe",
+  "version": "2026-06-12",
+  "status": "completed_agent_go_no_go_mcp_v2_review_probe",
+  "ok": true,
+  "mode": "NoPublishNoWriteAgentReviewValidation",
+  "review": "private-evaluator-pack/agent_go_no_go_mcp_v2_review_20260612.json",
+  "checks_total": 25,
+  "checks_failed": 0,
+  "decision": "GO for private MCP v2 review and local adapter. NO-GO for hosted MCP, registry submission or live monetization now.",
+  "recommended_next_step": "Create a hosted MCP architecture checklist and go-live gate, but do not build or publish a hosted endpoint yet.",
+  "execution_counters": {
+    "agents_completed": 3,
+    "agents_timed_out_or_shutdown": 2,
+    "mcp_registry_submission_executed": 0,
+    "hosted_mcp_launch_executed": 0,
+    "external_marketplace_publication_executed": 0,
+    "external_send_executed": 0,
+    "human_outreach_executed": 0,
+    "machinesignal_api_post_calls_executed": 0,
+    "machinesignal_api_write_calls_executed": 0,
+    "payment_executed": 0,
+    "invoice_issued": 0,
+    "credits_consumed": 0,
+    "production_key_published": 0,
+    "personal_data_used": 0,
+    "real_customer_data_used": 0,
+    "real_lead_list_used": 0
+  },
+  "checks": [
+    {
+      "name": "review_status_completed",
+      "ok": true,
+      "details": "completed_agent_go_no_go_mcp_v2_review"
+    },
+    {
+      "name": "business_rule_machine_not_human",
+      "ok": true,
+      "details": "sell_to_machines_not_humans"
+    },
+    {
+      "name": "primary_interface_machine",
+      "ok": true,
+      "details": "machine"
+    },
+    {
+      "name": "mcp_probe_green",
+      "ok": true,
+      "details": "ok=true; failed=0"
+    },
+    {
+      "name": "evidence_snapshot_mcp_counts_match",
+      "ok": true,
+      "details": "MCP v2 counts"
+    },
+    {
+      "name": "agent_votes_count_minimum",
+      "ok": true,
+      "details": "votes=4"
+    },
+    {
+      "name": "final_decision_go_private_no_go_public",
+      "ok": true,
+      "details": "GO for private MCP v2 review and local adapter. NO-GO for hosted MCP, registry submission or live monetization now."
+    },
+    {
+      "name": "go_now_includes_local_adapter",
+      "ok": true,
+      "details": "keep MCP/tool-registry v2 as private registry-ready draft,continue local stdio adapter as the official MCP path,keep GitHub machine docs and passive public machine discovery,run no-credit/local read-only validation,prepare owner-supervised hosted MCP architecture checklist"
+    },
+    {
+      "name": "no_go_blocks_registry_hosted_billing_keys_data",
+      "ok": true,
+      "details": "public MCP/tool registry submission,hosted public MCP endpoint,write-enabled public MCP tools,live billing,real payment,invoices,production key distribution,automatic outreach,external target contact,real customer data,personal data,real lead lists,public marketplace launch"
+    },
+    {
+      "name": "minimum_prerequisites_auth_rate_audit_scopes",
+      "ok": true,
+      "details": "scoped authorization and revocation,rate limits and abuse controls,usage logging and audit trail,separate read-only, write-enabled and admin scopes,production key distribution and rotation policy,personal-data and real-customer-data policy,MCP conformance smoke tests against current spec,cost guardrails for hosted operation,fiscal gate for live billing and invoices,owner-approved go-live decision"
+    },
+    {
+      "name": "next_action_checklist_not_build",
+      "ok": true,
+      "details": "Create a hosted MCP architecture checklist and go-live gate, but do not build or publish a hosted endpoint yet."
+    },
+    {
+      "name": "counter_mcp_registry_submission_executed_zero",
+      "ok": true,
+      "details": "mcp_registry_submission_executed=0"
+    },
+    {
+      "name": "counter_hosted_mcp_launch_executed_zero",
+      "ok": true,
+      "details": "hosted_mcp_launch_executed=0"
+    },
+    {
+      "name": "counter_external_marketplace_publication_executed_zero",
+      "ok": true,
+      "details": "external_marketplace_publication_executed=0"
+    },
+    {
+      "name": "counter_external_send_executed_zero",
+      "ok": true,
+      "details": "external_send_executed=0"
+    },
+    {
+      "name": "counter_human_outreach_executed_zero",
+      "ok": true,
+      "details": "human_outreach_executed=0"
+    },
+    {
+      "name": "counter_machinesignal_api_post_calls_executed_zero",
+      "ok": true,
+      "details": "machinesignal_api_post_calls_executed=0"
+    },
+    {
+      "name": "counter_machinesignal_api_write_calls_executed_zero",
+      "ok": true,
+      "details": "machinesignal_api_write_calls_executed=0"
+    },
+    {
+      "name": "counter_payment_executed_zero",
+      "ok": true,
+      "details": "payment_executed=0"
+    },
+    {
+      "name": "counter_invoice_issued_zero",
+      "ok": true,
+      "details": "invoice_issued=0"
+    },
+    {
+      "name": "counter_credits_consumed_zero",
+      "ok": true,
+      "details": "credits_consumed=0"
+    },
+    {
+      "name": "counter_production_key_published_zero",
+      "ok": true,
+      "details": "production_key_published=0"
+    },
+    {
+      "name": "counter_personal_data_used_zero",
+      "ok": true,
+      "details": "personal_data_used=0"
+    },
+    {
+      "name": "counter_real_customer_data_used_zero",
+      "ok": true,
+      "details": "real_customer_data_used=0"
+    },
+    {
+      "name": "counter_real_lead_list_used_zero",
+      "ok": true,
+      "details": "real_lead_list_used=0"
+    }
+  ],
+  "failed_checks": []
+}

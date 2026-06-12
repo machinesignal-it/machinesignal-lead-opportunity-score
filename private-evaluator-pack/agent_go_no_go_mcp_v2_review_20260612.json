@@ -1,0 +1,152 @@
+{
+  "artifact": "agent_go_no_go_mcp_v2_review",
+  "version": "2026-06-12",
+  "status": "completed_agent_go_no_go_mcp_v2_review",
+  "primary_customer_interface": "machine",
+  "business_rule": "sell_to_machines_not_humans",
+  "review_scope": "Evaluate whether MachineSignal should proceed from MCP/tool-registry private draft v2 toward public registry submission or hosted MCP.",
+  "source_evidence": [
+    "private-evaluator-pack/mcp_tool_registry_private_draft_pack_v2_20260612.json",
+    "private-evaluator-pack/mcp_tool_registry_private_draft_v2_probe_summary_20260612.json",
+    "private-evaluator-pack/github_public_metadata_applied_summary_20260612.json",
+    "private-evaluator-pack/github_repo_discoverability_probe_summary_20260612.json",
+    "private-evaluator-pack/product_selector_contract.json",
+    "mcp-tool-manifest.json",
+    "MCP_TOOL_CONTRACT.md",
+    "mcp_adapter/README.md"
+  ],
+  "evidence_snapshot": {
+    "mcp_v2_probe_checks_total": 110,
+    "mcp_v2_probe_checks_failed": 0,
+    "github_first_probe_checks_total": 113,
+    "github_first_probe_checks_failed": 0,
+    "github_metadata_probe_checks_total": 25,
+    "github_metadata_probe_checks_failed": 0,
+    "public_read_only_tools_checked": 18,
+    "sandbox_write_tools_blocked_checked": 4,
+    "mcp_registry_submission_executed": 0,
+    "hosted_mcp_launch_executed": 0,
+    "payment_executed": 0,
+    "credits_consumed": 0,
+    "personal_data_used": 0,
+    "real_customer_data_used": 0
+  },
+  "agent_votes": [
+    {
+      "agent": "Architetto Web AI / MCP Architect",
+      "vote": "GO_LOCAL_ADAPTER_NO_GO_HOSTED_MCP",
+      "summary": "GO for current local stdio adapter and private registry-ready draft. NO-GO for hosted public MCP now. Hosted MCP needs scoped auth, revocation, read/write/admin separation, rate limits, audit, production key policy, data policy, conformance tests and cost guardrails."
+    },
+    {
+      "agent": "Data Quality & Compliance + Legal",
+      "vote": "GO_PRIVATE_REVIEW_NO_GO_PUBLIC_REGISTRY_OR_HOSTED_MCP",
+      "summary": "GO only for private review, owner review, local stdio adapter and read-only manifest discovery. NO-GO for registry submission or hosted MCP. Main blockers: privacy/GDPR boundary, MCP security, fiscal/billing requirements, production keys and real data."
+    },
+    {
+      "agent": "Growth & Distribution + Customer Feedback",
+      "vote": "GO_PASSIVE_DISCOVERABILITY_NO_GO_EXTERNAL_PUBLICATION",
+      "summary": "GO for GitHub/public docs and private draft/sandbox discoverability. NO-GO for irreversible external publication, public marketplaces, hosted MCP, billing live, production keys or outreach. Main risks: exposure, clonazione, rumore and false maturity signal."
+    },
+    {
+      "agent": "API Product Manager + Scoring Optimizer Desk",
+      "vote": "GO_PRODUCT_PRIVATE_DRAFT_NO_GO_PUBLIC_MCP",
+      "summary": "Based on the v2 probe and product selector, the product routing is clear enough for private MCP review: no-list -> Target Discovery, existing list -> Score Pack, names without domains -> Domain Enrichment, high score -> Deep Analysis, confirmed deep gate -> Action Pack. Before go-live, API schema, quotas, write scopes, usage metrics and conversion/safety telemetry must be hardened."
+    }
+  ],
+  "consensus": {
+    "go_now": [
+      "keep MCP/tool-registry v2 as private registry-ready draft",
+      "continue local stdio adapter as the official MCP path",
+      "keep GitHub machine docs and passive public machine discovery",
+      "run no-credit/local read-only validation",
+      "prepare owner-supervised hosted MCP architecture checklist"
+    ],
+    "no_go_now": [
+      "public MCP/tool registry submission",
+      "hosted public MCP endpoint",
+      "write-enabled public MCP tools",
+      "live billing",
+      "real payment",
+      "invoices",
+      "production key distribution",
+      "automatic outreach",
+      "external target contact",
+      "real customer data",
+      "personal data",
+      "real lead lists",
+      "public marketplace launch"
+    ],
+    "final_decision": "GO for private MCP v2 review and local adapter. NO-GO for hosted MCP, registry submission or live monetization now."
+  },
+  "risk_register": [
+    {
+      "risk": "Hosted MCP security surface",
+      "level": "high_if_hosted_now",
+      "mitigation": "Design scoped authorization, revocation, audit, rate limits, cost guardrails and read/write/admin separation before any hosted endpoint."
+    },
+    {
+      "risk": "Privacy and real data boundary",
+      "level": "high_if_real_data_enters",
+      "mitigation": "Keep synthetic/public documentation only. Build data map, legal basis, retention, DSAR flow and DPA/processor terms before real data."
+    },
+    {
+      "risk": "Fiscal and live billing obligations",
+      "level": "high_if_billing_enabled",
+      "mitigation": "Keep prices simulated and billing disabled. Before live billing, complete IVA/invoicing/reconciliation/legal terms review."
+    },
+    {
+      "risk": "Cloning and exposure",
+      "level": "medium",
+      "mitigation": "Accept passive discoverability, avoid public registry/marketplace launch now, keep production implementation details and keys private."
+    },
+    {
+      "risk": "False maturity signal",
+      "level": "medium",
+      "mitigation": "Continue stating sandbox-only, no hosted MCP, no live billing, no outreach and no production keys."
+    },
+    {
+      "risk": "API/product schema hardening",
+      "level": "medium",
+      "mitigation": "Before go-live, add formal quotas, usage telemetry, schema compatibility tests, error taxonomy and write-scope gating."
+    }
+  ],
+  "minimum_hosted_mcp_prerequisites": [
+    "scoped authorization and revocation",
+    "rate limits and abuse controls",
+    "usage logging and audit trail",
+    "separate read-only, write-enabled and admin scopes",
+    "production key distribution and rotation policy",
+    "personal-data and real-customer-data policy",
+    "MCP conformance smoke tests against current spec",
+    "cost guardrails for hosted operation",
+    "fiscal gate for live billing and invoices",
+    "owner-approved go-live decision"
+  ],
+  "next_action": {
+    "recommended": "Create a hosted MCP architecture checklist and go-live gate, but do not build or publish a hosted endpoint yet.",
+    "why": "The private MCP draft is strong enough for review, but hosted/public MCP would introduce security, compliance, fiscal and operational obligations that are not yet closed.",
+    "allowed_now": true,
+    "external_publication": false,
+    "write_calls": false,
+    "payment": false,
+    "real_data": false
+  },
+  "execution_counters": {
+    "agents_completed": 3,
+    "agents_timed_out_or_shutdown": 2,
+    "mcp_registry_submission_executed": 0,
+    "hosted_mcp_launch_executed": 0,
+    "external_marketplace_publication_executed": 0,
+    "external_send_executed": 0,
+    "human_outreach_executed": 0,
+    "machinesignal_api_post_calls_executed": 0,
+    "machinesignal_api_write_calls_executed": 0,
+    "payment_executed": 0,
+    "invoice_issued": 0,
+    "credits_consumed": 0,
+    "production_key_published": 0,
+    "personal_data_used": 0,
+    "real_customer_data_used": 0,
+    "real_lead_list_used": 0
+  }
+}
