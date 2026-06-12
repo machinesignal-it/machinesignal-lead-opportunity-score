@@ -1,0 +1,130 @@
+{
+  "artifact": "machinesignal_machine_agent_entrypoint",
+  "version": "2026-06-12-draft",
+  "status": "public_github_documentation_draft_not_live_offer",
+  "primary_customer_interface": "machine",
+  "business_rule": "sell_to_machines_not_humans",
+  "purpose": "Give AI agents, MCP clients, CRM workflows, API-directory bots and software evaluators a compact GitHub starting point for understanding MachineSignal.",
+  "current_safety_state": {
+    "external_send_allowed": false,
+    "human_outreach_allowed": false,
+    "marketplace_publication_allowed": false,
+    "mcp_registry_submission_allowed": false,
+    "hosted_public_mcp_live": false,
+    "live_payment_allowed": false,
+    "invoice_allowed": false,
+    "subscription_allowed": false,
+    "production_key_distribution_allowed": false,
+    "personal_data_allowed": false,
+    "real_customer_data_allowed": false,
+    "real_lead_list_allowed": false
+  },
+  "read_order": [
+    {
+      "step": 1,
+      "path": "MACHINE_AGENT_ENTRYPOINT.md",
+      "purpose": "Plain-language machine-first GitHub guide."
+    },
+    {
+      "step": 2,
+      "path": "product-catalog.json",
+      "purpose": "Products, simulated prices, deliverables and credit rules."
+    },
+    {
+      "step": 3,
+      "path": "machine-onboarding.json",
+      "purpose": "Machine buyer flow, onboarding resources and guardrails."
+    },
+    {
+      "step": 4,
+      "path": "openapi.json",
+      "purpose": "HTTP API contract."
+    },
+    {
+      "step": 5,
+      "path": "mcp-tool-manifest.json",
+      "purpose": "Tool-style manifest for MCP-style wrappers and agent tooling."
+    },
+    {
+      "step": 6,
+      "path": "MCP_TOOL_CONTRACT.md",
+      "purpose": "MCP local-adapter contract and hosted MCP blockers."
+    },
+    {
+      "step": 7,
+      "path": "mcp_adapter/README.md",
+      "purpose": "Local stdio adapter setup and guardrails."
+    },
+    {
+      "step": 8,
+      "path": "private-evaluator-pack/product_selector_contract.json",
+      "purpose": "Machine-readable product selection rules."
+    },
+    {
+      "step": 9,
+      "path": "private-evaluator-pack/mcp_channel_entrypoint_draft_nopublish.json",
+      "purpose": "MCP/tool-registry channel draft, still NoPublish."
+    }
+  ],
+  "product_routing": {
+    "no_starting_list": "target_discovery_pack_250",
+    "existing_domain_or_company_list": "score_pack_1k",
+    "company_names_without_reliable_domains": "domain_enrichment_pack_100",
+    "score_gte_75_and_confidence_gte_0_75": "deep_analysis_pack_100",
+    "deep_analysis_gate_confirmed": "action_pack_25"
+  },
+  "current_channel_decision": {
+    "primary_next_channel": "mcp_tool_registry_draft",
+    "companion_channel": "github_machine_docs",
+    "deferred_channels": [
+      "rapidapi_marketplace_publication",
+      "postman_api_network_publication",
+      "generic_api_directory_publication",
+      "hosted_public_mcp_launch"
+    ]
+  },
+  "mcp_status": {
+    "local_stdio_adapter_available": true,
+    "adapter_path": "mcp_adapter/machinesignal_mcp_server.py",
+    "client_config_example": "mcp_adapter/mcp_client_config.example.json",
+    "hosted_public_mcp_server_live": false,
+    "registry_submission_allowed_now": false,
+    "write_enabled_external_tools_allowed_now": false
+  },
+  "latest_local_proofs": {
+    "private_evaluator_pack_validation": {
+      "checks_total": 40,
+      "checks_failed": 0,
+      "path": "private-evaluator-pack/private_evaluator_pack_validation_summary_20260612.json"
+    },
+    "blind_machine_entrypoint_probe": {
+      "checks_total": 10,
+      "checks_failed": 0,
+      "path": "private-evaluator-pack/blind_machine_entrypoint_probe_summary_20260612.json"
+    },
+    "channel_selector_probe": {
+      "checks_total": 10,
+      "checks_failed": 0,
+      "path": "private-evaluator-pack/channel_selector_probe_summary_20260612.json"
+    },
+    "mcp_channel_entrypoint_probe": {
+      "checks_total": 12,
+      "checks_failed": 0,
+      "path": "private-evaluator-pack/mcp_channel_entrypoint_probe_summary_20260612.json"
+    }
+  },
+  "requires_new_owner_gate_before": [
+    "external_send",
+    "marketplace_or_registry_publication",
+    "hosted_mcp_launch",
+    "production_key_distribution",
+    "write_enabled_external_mcp_tools",
+    "live_billing",
+    "invoice",
+    "subscription",
+    "real_customer_data_processing",
+    "personal_data_processing",
+    "real_lead_list_processing"
+  ]
+}
+

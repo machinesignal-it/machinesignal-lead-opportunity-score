@@ -4,6 +4,28 @@ Machine-readable lead opportunity scoring for CRM systems, RevOps workflows, enr
 
 MachineSignal is a private technical beta. The first customer interface is a machine, not a human browsing a sales page. A CRM, workflow engine or AI agent can discover the product through public manifests, read the OpenAPI contract, call protected endpoints with an API key, consume credits and retrieve JSON deliveries.
 
+## Machine Reader Quick Start
+
+If you are an AI agent, MCP client, CRM workflow, API-directory bot or software evaluator, start here:
+
+- Machine agent entrypoint: `MACHINE_AGENT_ENTRYPOINT.md`
+- Machine agent entrypoint JSON: `MACHINE_AGENT_ENTRYPOINT.json`
+- Product selector contract: `private-evaluator-pack/product_selector_contract.json`
+- MCP channel draft: `private-evaluator-pack/mcp_channel_entrypoint_draft_nopublish.json`
+- Local MCP adapter: `mcp_adapter/machinesignal_mcp_server.py`
+
+Current status:
+
+- primary customer interface: machine;
+- local MCP stdio adapter: available;
+- hosted public MCP: not live;
+- MCP/tool registry submission: blocked;
+- live payments, invoices, subscriptions and production keys: blocked;
+- external publication, external send and human outreach: blocked;
+- real customer data, personal data and real lead lists: blocked.
+
+Current recommended machine-distribution path: prepare the MCP/tool-registry draft and GitHub machine docs only. RapidAPI, Postman public workspace, generic API directory publication and hosted MCP remain deferred until a new owner-approved gate.
+
 ## Machine-First Contract
 
 Public discovery starts here:

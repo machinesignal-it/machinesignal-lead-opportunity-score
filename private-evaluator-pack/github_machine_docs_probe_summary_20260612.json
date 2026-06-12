@@ -1,0 +1,18 @@
+{
+  "artifact": "machinesignal_github_machine_docs_probe",
+  "generated_at": "2026-06-12T11:53:38.861Z",
+  "ok": true,
+  "checks_total": 9,
+  "checks_failed": 0,
+  "failures": [],
+  "docs_entrypoint": "MACHINE_AGENT_ENTRYPOINT.md",
+  "json_entrypoint": "MACHINE_AGENT_ENTRYPOINT.json",
+  "external_publication_executed": false,
+  "external_send_executed": false,
+  "post_calls_executed": 0,
+  "write_calls_executed": 0,
+  "payment_executed": false,
+  "credits_consumed": 0,
+  "personal_data_used": false,
+  "recommendation": "github_machine_docs_ready_for_repo_readers_no_external_send"
+}
