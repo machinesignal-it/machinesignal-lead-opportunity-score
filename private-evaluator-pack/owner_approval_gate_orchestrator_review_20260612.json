@@ -1,0 +1,183 @@
+{
+  "artifact": "machinesignal_owner_approval_gate_orchestrator_review",
+  "generated_at": "2026-06-12T00:00:00+02:00",
+  "role": "Orchestrator / HR Agent",
+  "business_rule": "sell_to_machines_not_humans",
+  "pack_reviewed": "Private Evaluator Pack - Draft - NoSend - NoWrite - Simulation Only",
+  "verdict": "GO_CONTROLLED",
+  "approval_scope": "externally_presentable_draft_not_sent",
+  "decision_type": "readiness_gate_not_launch_gate",
+  "evidence_reviewed": {
+    "pack_validation_checks_passed": 37,
+    "pack_validation_checks_failed": 0,
+    "machine_buyer_replay_checks_passed": 7,
+    "machine_buyer_replay_checks_failed": 0,
+    "post_calls_executed": 0,
+    "write_calls_executed": 0,
+    "external_invites_sent": 0,
+    "credits_consumed": 0,
+    "payments_executed": 0,
+    "personal_data_used": false,
+    "product_routing_understandable": true
+  },
+  "machine_buyer_product_routing": [
+    {
+      "condition": "buyer_machine_has_no_list",
+      "recommended_product": "target_discovery_pack_250"
+    },
+    {
+      "condition": "buyer_machine_has_existing_domains",
+      "recommended_product": "score_pack_1k"
+    },
+    {
+      "condition": "score_and_confidence_are_strong",
+      "recommended_product": "deep_analysis_pack_100"
+    },
+    {
+      "condition": "evidence_gate_confirms_after_deep_analysis",
+      "recommended_product": "action_pack_25"
+    },
+    {
+      "condition": "confidence_is_low",
+      "recommended_product": "request_verification"
+    }
+  ],
+  "agent_consensus": [
+    {
+      "agent": "Technical / API Readiness Agent",
+      "vote": "GO",
+      "condition": "machine-readable assets, synthetic scenarios, API references and NoWrite validation remain in place"
+    },
+    {
+      "agent": "Commercial / API Product Agent",
+      "vote": "GO_CONDITIONAL",
+      "condition": "each product clearly states input, output, value and decision logic"
+    },
+    {
+      "agent": "Growth & Distribution Agent",
+      "vote": "GO_CONTROLLED",
+      "condition": "no external publication, marketplace submission or invitation yet"
+    },
+    {
+      "agent": "Compliance / Admin / Legal Agent",
+      "vote": "GO_CONDITIONAL",
+      "condition": "draft, simulation-only, NoSend, NoWrite, NoPayment, NoPersonalData and no secrets"
+    },
+    {
+      "agent": "Provider Policy & Security Agent",
+      "vote": "GO_INTERNAL_DRAFT_ONLY",
+      "condition": "no external access, production keys, marketplace submission, live billing, customer data or uncapped automated access"
+    },
+    {
+      "agent": "Machine Buyer Simulation Agent",
+      "vote": "GO",
+      "condition": "simulated machine understands offer, products and blocked actions"
+    },
+    {
+      "agent": "Orchestrator / HR Agent",
+      "vote": "GO_CONTROLLED",
+      "condition": "team remains machine-first and avoids human outreach"
+    }
+  ],
+  "responsible_agents": {
+    "Orchestrator / HR Agent": [
+      "coordinate agents",
+      "keep work machine-first",
+      "block human outreach and premature selling",
+      "verify evidence"
+    ],
+    "API Product Manager Agent": [
+      "own product clarity",
+      "define product routing",
+      "maintain API-facing wording"
+    ],
+    "Technical / API Readiness Agent": [
+      "validate endpoints and schemas",
+      "check JSON, links and OpenAPI consistency",
+      "verify no write operation is needed"
+    ],
+    "Machine Buyer Simulation Agent": [
+      "simulate buyer machine",
+      "choose products for synthetic cases",
+      "flag product or purchase ambiguity"
+    ],
+    "Provider Policy & Security Agent": [
+      "check policy fit for future directories",
+      "block secrets and uncontrolled access",
+      "define future expiry, revocation and abuse controls"
+    ],
+    "Growth & Distribution Agent": [
+      "prepare future machine-readable discovery paths",
+      "avoid email campaigns and human contact",
+      "avoid external publication before approval"
+    ],
+    "Data Quality & Compliance Agent": [
+      "ensure synthetic data only",
+      "block personal data and real lead lists",
+      "prevent contact scraping"
+    ],
+    "Admin & Finance Controller Agent": [
+      "confirm no invoice, payment or fiscal event",
+      "keep pricing as simulated planning assumptions"
+    ],
+    "Legal / Risk Agent": [
+      "check disclaimers and data boundaries",
+      "block unsupported ROI or compliance claims"
+    ],
+    "Customer Feedback Agent": [
+      "use simulated machine feedback only",
+      "avoid human beta feedback requests"
+    ]
+  },
+  "new_agents_needed": {
+    "permanent_now": [],
+    "active_specialist_roles": [
+      "Machine Buyer Simulation Agent",
+      "Provider Policy & Security Agent"
+    ],
+    "optional_later_before_real_external_access": [
+      "Credential & Access Safety Agent"
+    ]
+  },
+  "next_operating_order": {
+    "name": "prepare_private_evaluator_entrypoint_and_blind_probe",
+    "primary_artifact": "private_evaluator_entrypoint.json",
+    "purpose": [
+      "single canonical machine entrypoint",
+      "state commercial status as externally_presentable_draft_not_sent",
+      "list allowed evaluation actions",
+      "list blocked actions",
+      "link to manifest, README, product catalog, OpenAPI, Postman collection, MCP manifest, scenarios and checklist",
+      "include short synthetic objective for blind machine testing"
+    ],
+    "required_checks": [
+      "json_validation",
+      "link_validation",
+      "no_secret_scan",
+      "NoSend_NoWrite_policy_check",
+      "blind_machine_entrypoint_probe"
+    ]
+  },
+  "blocked_actions": [
+    "send_pack_externally",
+    "contact_humans",
+    "invite_partner_evaluators",
+    "publish_on_marketplaces_or_directories",
+    "enable_checkout_or_billing",
+    "create_production_external_api_keys",
+    "consume_buyer_credits",
+    "write_to_ledger_from_evaluator_tests",
+    "use_real_lead_lists_or_personal_data",
+    "present_simulated_prices_as_binding_offers",
+    "claim_guaranteed_roi_or_certified_compliance"
+  ],
+  "final_status": [
+    "externally_presentable_draft_not_sent",
+    "NoSend",
+    "NoWrite",
+    "NoPayment",
+    "NoPersonalData",
+    "NoHumanOutreach",
+    "NoMarketplacePublication"
+  ]
+}

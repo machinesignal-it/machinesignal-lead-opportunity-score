@@ -152,13 +152,23 @@ The pack passes if a machine can, without a human explanation:
 Commercial/API Product verdict: GO for internal owner approval draft; NO-GO for monetization or external distribution until product selector, concrete output samples, unit economics, usage ledger, billing/legal terms, and quality thresholds are completed.
 - `owner_approval_gate_machine_buyer_review_20260612.md`
 - `owner_approval_gate_machine_buyer_review_20260612.json`
+- `owner_approval_gate_orchestrator_review_20260612.md`
+- `owner_approval_gate_orchestrator_review_20260612.json`
+- `provider_policy_security_owner_approval_gate_review_20260612.md`
+- `provider_policy_security_owner_approval_gate_review_20260612.json`
 
 ## Owner Approval Gate
 
-Latest Machine Buyer Simulation Agent verdict:
+Latest Orchestrator / HR Agent verdict:
 
 ```text
-GO for externally_presentable_draft_not_sent
+GO_CONTROLLED for externally_presentable_draft_not_sent
 ```
 
-This means the pack is clear enough to become a future externally presentable draft, but it is still not approved for real sending, production use, payment, marketplace publication, customer onboarding, or personal data processing.
+This means the pack can move from internal validated pack to externally presentable draft, but it is still not approved for real sending, production use, payment, marketplace publication, customer onboarding, personal data processing, or human outreach.
+
+Next operating order:
+
+```text
+prepare private_evaluator_entrypoint.json and run blind machine entrypoint probe
+```
