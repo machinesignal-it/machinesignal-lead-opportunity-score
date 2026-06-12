@@ -143,4 +143,15 @@ The pack passes if a machine can, without a human explanation:
 - `evaluation_scenarios.json`
 - `evaluation_checklist.json`
 - `validate_private_evaluator_pack_20260612.mjs`
+- `owner_approval_gate_machine_buyer_review_20260612.md`
+- `owner_approval_gate_machine_buyer_review_20260612.json`
 
+## Owner Approval Gate
+
+Latest Machine Buyer Simulation Agent verdict:
+
+```text
+GO for externally_presentable_draft_not_sent
+```
+
+This means the pack is clear enough to become a future externally presentable draft, but it is still not approved for real sending, production use, payment, marketplace publication, customer onboarding, or personal data processing.

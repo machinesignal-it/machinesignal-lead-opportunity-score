@@ -1,0 +1,61 @@
+{
+  "artifact": "machinesignal_owner_approval_gate_machine_buyer_review",
+  "generated_at": "2026-06-12",
+  "role": "Machine Buyer Simulation Agent",
+  "pack_reviewed": "Private Evaluator Pack - Draft - NoSend - NoWrite - Simulation Only",
+  "evidence_reviewed": {
+    "validation_checks_passed": 37,
+    "validation_checks_failed": 0,
+    "replay_checks_passed": 7,
+    "replay_checks_failed": 0,
+    "post_calls_executed": 0,
+    "write_calls_executed": 0,
+    "credits_consumed": 0,
+    "payment_executed": false,
+    "personal_data_used": false
+  },
+  "verdict": "GO",
+  "approval_scope": "externally_presentable_draft_not_sent",
+  "not_approved_for": [
+    "real_external_send",
+    "production_use",
+    "real_payment",
+    "marketplace_publication",
+    "customer_onboarding",
+    "personal_data_processing"
+  ],
+  "clear_items": [
+    {
+      "title": "MachineSignal sells machine-readable commercial decisions",
+      "detail": "The pack makes clear that the operating customer is a CRM, AI agent, workflow, API client, or software platform."
+    },
+    {
+      "title": "Product routing is understandable",
+      "detail": "No list maps to target_discovery_pack_250, an existing list maps to score_pack_1k, and strong scored targets can progress to deep_analysis_pack_100 and then action_pack_25 after evidence gates."
+    },
+    {
+      "title": "Safety boundary is explicit",
+      "detail": "External sending, writes, ledger operations, credit consumption, payment, customer creation, production keys, personal data, real lists, and human outreach are blocked."
+    }
+  ],
+  "residual_ambiguities": [
+    {
+      "title": "Single machine entrypoint",
+      "detail": "A future external evaluator should receive one canonical start file or URL."
+    },
+    {
+      "title": "Simulated price versus live offer",
+      "detail": "A future machine buyer will need an explicit commercial_status field before any real transaction can exist."
+    },
+    {
+      "title": "Thresholds for deeper products",
+      "detail": "The score-to-deep-analysis-to-action-pack path is understandable, but numerical thresholds should be stricter before external use."
+    }
+  ],
+  "next_test": {
+    "name": "owner_approval_gate_blind_machine_entrypoint_probe",
+    "mode": "NoSend_NoWrite_NoPayment_NoPersonalData",
+    "description": "Provide only the pack entrypoint to a separate machine evaluator and require it to identify the product, choose the correct product for three synthetic cases, list blocked actions, and produce only simulated purchase intent.",
+    "success_condition": "The machine independently concludes that the pack is an externally presentable draft, but not yet distributable, sellable, or executable in production."
+  }
+}
