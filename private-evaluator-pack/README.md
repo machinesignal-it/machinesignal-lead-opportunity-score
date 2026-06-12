@@ -143,6 +143,13 @@ The pack passes if a machine can, without a human explanation:
 - `evaluation_scenarios.json`
 - `evaluation_checklist.json`
 - `validate_private_evaluator_pack_20260612.mjs`
+
+## Owner Approval Gate Reviews
+
+- `owner_approval_gate_commercial_api_product_review_20260612.md`
+- `owner_approval_gate_commercial_api_product_review_20260612.json`
+
+Commercial/API Product verdict: GO for internal owner approval draft; NO-GO for monetization or external distribution until product selector, concrete output samples, unit economics, usage ledger, billing/legal terms, and quality thresholds are completed.
 - `owner_approval_gate_machine_buyer_review_20260612.md`
 - `owner_approval_gate_machine_buyer_review_20260612.json`
 
