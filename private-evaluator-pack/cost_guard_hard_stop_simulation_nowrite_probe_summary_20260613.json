@@ -1,0 +1,10 @@
+{
+  "probe_id": "cost_guard_hard_stop_simulation_nowrite_probe_20260613",
+  "status": "passed",
+  "checks_total": 73,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "commercial_status": "not_live",
+  "commercial_go_live": "no_go",
+  "recommended_next_action": "production_api_key_policy_draft"
+}

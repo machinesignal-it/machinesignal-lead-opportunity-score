@@ -1,0 +1,117 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "simulation_id": "cost_guard_hard_stop_simulation_nowrite_20260613",
+  "created_at": "2026-06-13",
+  "status": "completed",
+  "mode": "NoWrite simulation",
+  "source_support_guard": "support_and_cost_guard_draft_20260613",
+  "commercial_status": "not_live",
+  "plain_italian_summary": "La simulazione verifica che i cost guard fermino o mettano in pausa l'uso prima di generare costi non autorizzati. Nessuna chiamata paid esterna, pagamento, fattura, contatto o dato reale e' stato usato.",
+  "simulation_rules": {
+    "real_payments_executed": false,
+    "invoices_issued": false,
+    "payment_methods_collected": false,
+    "external_paid_api_calls_executed": 0,
+    "external_contacts_executed": 0,
+    "real_data_used": false,
+    "personal_data_used": false,
+    "post_calls_executed": 0,
+    "write_calls_executed": 0
+  },
+  "thresholds": {
+    "cloudflare_kv_writes_soft_limit": 500,
+    "cloudflare_kv_writes_hard_stop": 900,
+    "write_capped_post_calls_limit": 5,
+    "external_paid_api_calls_allowed_without_budget": 0,
+    "real_payment_attempts_allowed": 0,
+    "human_outreach_attempts_allowed": 0
+  },
+  "scenarios": [
+    {
+      "scenario": "cloudflare_or_worker_429",
+      "simulated_signal": "HTTP 429",
+      "expected_action": "pause write-capped tests, continue no-write public checks, create incident note",
+      "status_level": "red",
+      "hard_stop_triggered": true,
+      "result": "passed"
+    },
+    {
+      "scenario": "kv_write_soft_limit_exceeded",
+      "simulated_signal": "KV writes 520 > soft limit 500",
+      "expected_action": "pause write-capped tests and warn owner in summary",
+      "status_level": "yellow",
+      "hard_stop_triggered": false,
+      "result": "passed"
+    },
+    {
+      "scenario": "kv_write_hard_stop_exceeded",
+      "simulated_signal": "KV writes 905 > hard stop 900",
+      "expected_action": "stop all write-capped tests and do not retry automatically",
+      "status_level": "red",
+      "hard_stop_triggered": true,
+      "result": "passed"
+    },
+    {
+      "scenario": "external_paid_api_call_without_budget",
+      "simulated_signal": "DataForSEO/OpenAI paid call requested without budget approval",
+      "expected_action": "block paid call and create cost risk note",
+      "status_level": "red",
+      "hard_stop_triggered": true,
+      "result": "passed"
+    },
+    {
+      "scenario": "product_cost_above_threshold",
+      "simulated_signal": "Deep Analysis valid report cost exceeds allowed threshold",
+      "expected_action": "mark product not live-ready and require price/cost review",
+      "status_level": "yellow",
+      "hard_stop_triggered": false,
+      "result": "passed"
+    },
+    {
+      "scenario": "real_or_personal_data_in_test",
+      "simulated_signal": "payload appears to contain real or personal data",
+      "expected_action": "block processing, do not store payload, escalate to owner",
+      "status_level": "red",
+      "hard_stop_triggered": true,
+      "result": "passed"
+    },
+    {
+      "scenario": "api_key_exposure_suspected",
+      "simulated_signal": "possible key exposure in a public artifact",
+      "expected_action": "stop live-key flow, require revocation/rotation review, do not publish",
+      "status_level": "red",
+      "hard_stop_triggered": true,
+      "result": "passed"
+    }
+  ],
+  "result_summary": {
+    "scenarios_total": 7,
+    "scenarios_passed": 7,
+    "red_scenarios": 5,
+    "yellow_scenarios": 2,
+    "hard_stops_triggered": 5,
+    "automatic_retries_allowed": false,
+    "no_write_mode_preserved": true,
+    "commercial_go_live": "no_go"
+  },
+  "blocked_until_owner_approval": [
+    "real payments",
+    "invoices",
+    "payment method collection",
+    "external paid API calls",
+    "external outreach",
+    "real data processing",
+    "personal data processing",
+    "production API key issuing",
+    "public paid marketplace publication",
+    "hosted public MCP launch",
+    "MCP registry publication",
+    "commercial go-live"
+  ],
+  "recommended_next_action": {
+    "name": "production_api_key_policy_draft",
+    "mode": "NoWrite planning",
+    "plain_italian": "Preparare una policy per API key di produzione: emissione, prefissi, rotazione, revoca, separazione test/live e cosa fare in caso di esposizione chiavi.",
+    "requires_owner_supervision": false
+  }
+}
