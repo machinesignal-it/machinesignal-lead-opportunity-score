@@ -1,0 +1,181 @@
+{
+  "probe_id": "terms_privacy_outline_draft_probe_20260613",
+  "created_at": "2026-06-13T16:01:13.937Z",
+  "files_checked": [
+    "C:\\Users\\natal\\AppData\\Local\\Temp\\MachineSignal\\github_repo_sync_20260530\\private-evaluator-pack\\terms_privacy_outline_draft_20260613.json",
+    "C:\\Users\\natal\\AppData\\Local\\Temp\\MachineSignal\\github_repo_sync_20260530\\private-evaluator-pack\\terms_privacy_outline_draft_20260613.md"
+  ],
+  "checks": [
+    {
+      "name": "status_prepared",
+      "ok": true,
+      "detail": "prepared"
+    },
+    {
+      "name": "mode_nowrite",
+      "ok": true,
+      "detail": "NoWrite planning"
+    },
+    {
+      "name": "commercial_not_live",
+      "ok": true,
+      "detail": "not_live"
+    },
+    {
+      "name": "not_final_legal_document",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "requires_professional_review",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "name": "scope_sandbox_only",
+      "ok": true,
+      "detail": "true expected true"
+    },
+    {
+      "name": "scope_synthetic_data_only",
+      "ok": true,
+      "detail": "true expected true"
+    },
+    {
+      "name": "scope_real_customer_data_allowed",
+      "ok": true,
+      "detail": "false expected false"
+    },
+    {
+      "name": "scope_personal_data_processing_allowed",
+      "ok": true,
+      "detail": "false expected false"
+    },
+    {
+      "name": "scope_real_payments_allowed",
+      "ok": true,
+      "detail": "false expected false"
+    },
+    {
+      "name": "scope_invoices_allowed",
+      "ok": true,
+      "detail": "false expected false"
+    },
+    {
+      "name": "scope_external_outreach_allowed",
+      "ok": true,
+      "detail": "false expected false"
+    },
+    {
+      "name": "scope_public_marketplace_allowed",
+      "ok": true,
+      "detail": "false expected false"
+    },
+    {
+      "name": "scope_hosted_mcp_public_allowed",
+      "ok": true,
+      "detail": "false expected false"
+    },
+    {
+      "name": "terms_sections_present",
+      "ok": true,
+      "detail": "Service scope, Beta and sandbox, Acceptable use, Credits and valid output, API keys and security, Availability and limits, Payments and invoices, Support and escalation"
+    },
+    {
+      "name": "privacy_sections_present",
+      "ok": true,
+      "detail": "Roles and responsibility, Data categories, Purposes and legal bases, Minimization, retention and deletion, Data subject rights, Processors, subprocessors and transfers, Cookies and website privacy, Data breach"
+    },
+    {
+      "name": "blocked_items_present",
+      "ok": true,
+      "detail": "real_payments, invoices, payment_method_collection, external_outreach, real_data_processing, personal_data_processing, production_api_key_issuing, public_paid_marketplace, hosted_mcp_public, mcp_registry_publication, commercial_go_live"
+    },
+    {
+      "name": "owner_decisions_count",
+      "ok": true,
+      "detail": "10"
+    },
+    {
+      "name": "source_refs_count",
+      "ok": true,
+      "detail": "10"
+    },
+    {
+      "name": "source_refs_garante_present",
+      "ok": true,
+      "detail": "garanteprivacy.it"
+    },
+    {
+      "name": "source_refs_ec_present",
+      "ok": true,
+      "detail": "commission.europa.eu"
+    },
+    {
+      "name": "readiness_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "readiness_after_45",
+      "ok": true,
+      "detail": "45"
+    },
+    {
+      "name": "next_action_terms_privacy_agent_review",
+      "ok": true,
+      "detail": "terms_privacy_agent_review"
+    },
+    {
+      "name": "forbidden_claim_absent_legal_approved",
+      "ok": true,
+      "detail": "legal approved"
+    },
+    {
+      "name": "forbidden_claim_absent_privacy_approved",
+      "ok": true,
+      "detail": "privacy approved"
+    },
+    {
+      "name": "forbidden_claim_absent_commercial_live_enabled",
+      "ok": true,
+      "detail": "commercial live enabled"
+    },
+    {
+      "name": "forbidden_claim_absent_payment_enabled",
+      "ok": true,
+      "detail": "payment enabled"
+    },
+    {
+      "name": "forbidden_claim_absent_real_data_allowed",
+      "ok": true,
+      "detail": "real data allowed"
+    },
+    {
+      "name": "forbidden_claim_absent_production_keys_enabled",
+      "ok": true,
+      "detail": "production keys enabled"
+    },
+    {
+      "name": "forbidden_claim_absent_go-live_commerciale:_go",
+      "ok": true,
+      "detail": "go-live commerciale: go"
+    },
+    {
+      "name": "md_not_legal_final_notice",
+      "ok": true,
+      "detail": "notice"
+    },
+    {
+      "name": "md_sources_present",
+      "ok": true,
+      "detail": "official links"
+    },
+    {
+      "name": "md_next_action_present",
+      "ok": true,
+      "detail": "next action"
+    }
+  ],
+  "errors": []
+}

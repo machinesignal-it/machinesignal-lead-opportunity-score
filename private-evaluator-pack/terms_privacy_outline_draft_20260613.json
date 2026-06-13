@@ -1,0 +1,258 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "outline_id": "terms_privacy_outline_draft_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "commercial_status": "not_live",
+  "legal_document_final": false,
+  "requires_professional_review": true,
+  "plain_italian_summary": "Questo pacchetto e' una bozza operativa di termini, privacy e condizioni d'uso per MachineSignal. Non e' un documento legale definitivo, non abilita vendite, non abilita pagamenti e non consente ancora dati reali o personali. Serve a capire cosa dovra' essere pronto prima del go-live commerciale.",
+  "current_allowed_scope": {
+    "sandbox_only": true,
+    "synthetic_data_only": true,
+    "real_customer_data_allowed": false,
+    "personal_data_processing_allowed": false,
+    "real_payments_allowed": false,
+    "invoices_allowed": false,
+    "external_outreach_allowed": false,
+    "public_marketplace_allowed": false,
+    "hosted_mcp_public_allowed": false
+  },
+  "terms_outline": [
+    {
+      "section": "Service scope",
+      "plain_description": "MachineSignal fornisce API e output machine-readable per aiutare CRM, agenti AI, workflow e software a capire quali aziende, domini o liste meritano priorita' commerciale.",
+      "must_say": [
+        "Il servizio supporta decisioni operative ma non garantisce vendite, ricavi o conversioni.",
+        "Gli output sono score, motivazioni sintetiche, azioni consigliate e pacchetti di approfondimento quando disponibili.",
+        "Il cliente operativo puo' essere una macchina, ma il contratto e la responsabilita' restano in capo a un soggetto umano o aziendale."
+      ]
+    },
+    {
+      "section": "Beta and sandbox",
+      "plain_description": "Prima del go-live il servizio resta in beta/sandbox: dati sintetici, output dimostrativi, nessun pagamento reale.",
+      "must_say": [
+        "Le API beta possono cambiare.",
+        "Le risposte beta non devono essere usate per campagne reali, profilazione reale o decisioni commerciali automatiche su persone.",
+        "Le chiavi sandbox possono essere revocate o limitate se usate fuori dallo scopo di test."
+      ]
+    },
+    {
+      "section": "Acceptable use",
+      "plain_description": "Definisce cio' che clienti, agenti e integrazioni possono fare o non fare con l'API.",
+      "must_say": [
+        "Niente raccolta, scraping, arricchimento o contatto di persone senza base giuridica e senza autorizzazione.",
+        "Niente dati sensibili o categorie particolari di dati.",
+        "Niente uso per spam, discriminazione, decisioni automatizzate dannose o violazioni di piattaforme terze.",
+        "Niente tentativi di aggirare rate limit, ledger crediti, sicurezza o controlli anti-abuso."
+      ]
+    },
+    {
+      "section": "Credits and valid output",
+      "plain_description": "Il consumo crediti deve essere legato a output validi e tracciabili, non a tentativi falliti.",
+      "must_say": [
+        "Un credito viene scalato solo se l'output e' valido secondo le regole del prodotto acquistato.",
+        "Gli errori tecnici, input non validi o output incompleti non devono consumare credito cliente.",
+        "Ogni consumo deve avere request_id, product_code, timestamp, idempotency_key e motivo di consumo."
+      ]
+    },
+    {
+      "section": "API keys and security",
+      "plain_description": "Stabilisce come gestire chiavi, revoche e responsabilita' di sicurezza.",
+      "must_say": [
+        "Le chiavi API sono personali per cliente o integrazione e non vanno condivise pubblicamente.",
+        "MachineSignal puo' revocare o ruotare chiavi compromesse, abusive o fuori policy.",
+        "Le chiavi produzione non devono essere generate finche' i gate legali, fiscali, privacy, supporto e costi non sono approvati."
+      ]
+    },
+    {
+      "section": "Availability and limits",
+      "plain_description": "Spiega limiti tecnici, soglie di costo e possibili interruzioni.",
+      "must_say": [
+        "Il servizio puo' applicare rate limit, hard stop e protezioni cost guard.",
+        "Durante beta e pre-live non esiste SLA commerciale.",
+        "In produzione eventuali SLA andranno definiti per piano e confermati legalmente."
+      ]
+    },
+    {
+      "section": "Payments and invoices",
+      "plain_description": "Chiarisce che pagamenti e fatture sono bloccati fino a decisione proprietario.",
+      "must_say": [
+        "Nessun pagamento reale deve essere raccolto prima dei gate fiscali e legali.",
+        "Nessuna fattura deve essere emessa prima della decisione amministrativa e fiscale.",
+        "I prezzi pre-live sono materiale di modellazione e test, non offerta commerciale vincolante."
+      ]
+    },
+    {
+      "section": "Support and escalation",
+      "plain_description": "Definisce quali casi possono essere gestiti dagli agenti e quali richiedono escalation.",
+      "must_say": [
+        "Gli agenti possono gestire supporto comune, report e diagnostica tecnica.",
+        "Reclami legali, privacy, pagamento, sicurezza o blocchi produzione devono essere escalati al proprietario o consulente competente.",
+        "Il sistema deve evitare accumulo di ticket se il proprietario non e' disponibile."
+      ]
+    }
+  ],
+  "privacy_outline": [
+    {
+      "section": "Roles and responsibility",
+      "plain_description": "Prima del live bisogna decidere quando MachineSignal e' titolare, responsabile o sub-responsabile del trattamento.",
+      "must_define": [
+        "Quando il cliente invia una lista di aziende o domini.",
+        "Quando MachineSignal produce scoring e log di utilizzo.",
+        "Quando un agente o workflow terzo chiama l'API per conto del cliente.",
+        "Quando MachineSignal raccoglie dati di account, supporto o fatturazione."
+      ]
+    },
+    {
+      "section": "Data categories",
+      "plain_description": "Elenco prudente dei dati potenzialmente trattati in futuro, da minimizzare.",
+      "must_define": [
+        "Dati account cliente e contatti business.",
+        "Dati aziendali pubblici e domini.",
+        "Input API, output API, log tecnici, request_id, usage e credit ledger.",
+        "Dati supporto e comunicazioni.",
+        "Dati fiscali e billing solo dopo abilitazione commerciale.",
+        "Eventuali dati personali devono restare bloccati fino a mappa privacy approvata."
+      ]
+    },
+    {
+      "section": "Purposes and legal bases",
+      "plain_description": "Ogni trattamento deve avere finalita' e base giuridica definite prima del live.",
+      "must_define": [
+        "Erogazione del servizio API.",
+        "Sicurezza, prevenzione abusi e rate limiting.",
+        "Supporto cliente e gestione errori.",
+        "Adempimenti fiscali e amministrativi dopo abilitazione vendita.",
+        "Miglioramento prodotto solo con dati minimizzati e regole chiare."
+      ]
+    },
+    {
+      "section": "Minimization, retention and deletion",
+      "plain_description": "Il sistema deve conservare solo cio' che serve, per il tempo necessario.",
+      "must_define": [
+        "Retention log tecnici.",
+        "Retention credit ledger.",
+        "Retention input cliente.",
+        "Retention output report.",
+        "Procedura di cancellazione e anonimizzazione.",
+        "Regole speciali per dati di test e sandbox."
+      ]
+    },
+    {
+      "section": "Data subject rights",
+      "plain_description": "Devono essere gestite richieste di accesso, rettifica, cancellazione, limitazione, opposizione e portabilita' quando applicabili.",
+      "must_define": [
+        "Canale per richieste privacy.",
+        "Tempi di risposta.",
+        "Responsabile operativo interno.",
+        "Registro delle richieste e degli esiti."
+      ]
+    },
+    {
+      "section": "Processors, subprocessors and transfers",
+      "plain_description": "Serve una lista di fornitori e sub-responsabili, con regole per trasferimenti extra UE/SEE.",
+      "must_define": [
+        "Cloudflare, GitHub, Postman, DataForSEO e altri fornitori effettivamente usati.",
+        "Ruolo di ogni fornitore.",
+        "DPA o accordi equivalenti.",
+        "Trasferimenti internazionali e uso di SCC se necessario."
+      ]
+    },
+    {
+      "section": "Cookies and website privacy",
+      "plain_description": "La landing pubblica deve essere verificata per cookie, analytics, form e informative.",
+      "must_define": [
+        "Se il sito usa solo cookie tecnici.",
+        "Se vengono inseriti analytics, marketing pixel, form o strumenti terzi.",
+        "Se serve banner cookie.",
+        "Informativa privacy visibile e coerente con il trattamento reale."
+      ]
+    },
+    {
+      "section": "Data breach",
+      "plain_description": "Serve una procedura per incidenti di sicurezza e data breach.",
+      "must_define": [
+        "Come rilevare un incidente.",
+        "Chi valuta gravita' e rischio.",
+        "Quando notificare autorita' o interessati.",
+        "Come documentare evento, impatto e rimedio."
+      ]
+    }
+  ],
+  "owner_decisions_before_legal_live": [
+    "Confermare forma fiscale e amministrativa prima di vendere.",
+    "Far revisionare termini, privacy e DPA da professionista competente.",
+    "Decidere se accettare dati reali, e quali.",
+    "Approvare mappa dati e ruoli titolare/responsabile.",
+    "Approvare retention per log, input, output e ledger crediti.",
+    "Approvare lista fornitori/subprocessor.",
+    "Approvare cookie/banner/privacy page del sito pubblico.",
+    "Approvare processo data breach.",
+    "Approvare termini di pagamento e fatturazione solo dopo readiness fiscale.",
+    "Approvare produzione API key e condizioni live."
+  ],
+  "blocked_until_owner_approval": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live"
+  ],
+  "readiness_impact": {
+    "legal_privacy_readiness_before": 25,
+    "legal_privacy_readiness_after_outline": 45,
+    "commercial_go_live_status": "no_go",
+    "reason": "La bozza rende chiari i punti da completare, ma mancano revisione professionale, decisioni owner, privacy data map, DPA, retention approvata e condizioni fiscali."
+  },
+  "source_refs": [
+    {
+      "label": "Garante Privacy - Regolamento UE",
+      "url": "https://www.garanteprivacy.it/regolamentoue"
+    },
+    {
+      "label": "Garante Privacy - Informativa",
+      "url": "https://www.garanteprivacy.it/temi/informativa"
+    },
+    {
+      "label": "Garante Privacy - Principi fondamentali del trattamento",
+      "url": "https://www.garanteprivacy.it/home/principi-fondamentali-del-trattamento"
+    },
+    {
+      "label": "Garante Privacy - Diritti degli interessati",
+      "url": "https://www.garanteprivacy.it/home/diritti/come-agire-per-tutelare-i-tuoi-dati-personali"
+    },
+    {
+      "label": "Garante Privacy - Cookie FAQ",
+      "url": "https://www.garanteprivacy.it/faq/cookie"
+    },
+    {
+      "label": "Garante Privacy - Data breach",
+      "url": "https://www.garanteprivacy.it/data-breach"
+    },
+    {
+      "label": "Garante Privacy - Dati personali",
+      "url": "https://www.garanteprivacy.it/home/diritti/cosa-intendiamo-per-dati-personali"
+    },
+    {
+      "label": "European Commission - Controller or processor",
+      "url": "https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/obligations/controllerprocessor/what-data-controller-or-data-processor_en"
+    },
+    {
+      "label": "European Commission - Processing on behalf of organisation",
+      "url": "https://commission.europa.eu/law/law-topic/data-protection/rules-business-and-organisations/obligations/controllerprocessor/can-someone-else-process-data-my-organisations-behalf_en"
+    },
+    {
+      "label": "European Commission - Standard Contractual Clauses",
+      "url": "https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/standard-contractual-clauses-scc_en"
+    }
+  ],
+  "recommended_next_action": "terms_privacy_agent_review"
+}
