@@ -1,0 +1,174 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "policy_id": "production_api_key_policy_draft_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_matrix": "pre_live_readiness_matrix_20260613",
+  "source_cost_guard": "cost_guard_hard_stop_simulation_nowrite_20260613",
+  "commercial_status": "not_live",
+  "plain_italian_summary": "Questa policy definisce come dovranno funzionare le API key di produzione, ma non genera chiavi reali e non abilita accessi live. L'emissione di chiavi produzione resta bloccata fino ad approvazione proprietario e passaggio dei gate commerciali.",
+  "key_classes": [
+    {
+      "class": "sandbox_customer_key",
+      "prefix": "ms_sbx_",
+      "status": "allowed_for_sandbox",
+      "purpose": "Safe sandbox testing with synthetic data and limited credits."
+    },
+    {
+      "class": "production_customer_key",
+      "prefix": "ms_live_",
+      "status": "blocked_until_owner_approval",
+      "purpose": "Future paid live customer usage after fiscal, legal, payment, privacy and cost gates."
+    },
+    {
+      "class": "admin_key",
+      "prefix": "ms_admin_",
+      "status": "restricted_internal_only",
+      "purpose": "Owner/agent administrative operations, never exposed in public docs."
+    },
+    {
+      "class": "test_webhook_signature",
+      "prefix": "ms_wh_test_",
+      "status": "test_only",
+      "purpose": "Test-mode payment/webhook simulations without real payments."
+    }
+  ],
+  "production_key_issuance_policy": {
+    "live_key_generation_allowed_now": false,
+    "requires_owner_approval": true,
+    "requires_passed_gates": [
+      "admin_fiscal_readiness",
+      "legal_terms_readiness",
+      "privacy_data_readiness",
+      "payment_billing_readiness",
+      "support_post_sale_readiness",
+      "cost_guard_readiness"
+    ],
+    "minimum_key_metadata": [
+      "customer_id",
+      "plan_code",
+      "created_at",
+      "key_prefix_only",
+      "status",
+      "rate_limit_profile",
+      "allowed_products",
+      "environment",
+      "revocation_reason"
+    ],
+    "never_store_or_publish": [
+      "full plaintext production key",
+      "full admin key",
+      "payment provider secret",
+      "customer personal data in key metadata"
+    ]
+  },
+  "rate_limit_profiles": [
+    {
+      "profile": "sandbox_low",
+      "environment": "sandbox",
+      "max_requests_per_minute": 30,
+      "max_write_calls_per_day": 5,
+      "real_payments_allowed": false,
+      "real_data_allowed": false
+    },
+    {
+      "profile": "live_starter_draft",
+      "environment": "production",
+      "max_requests_per_minute": 60,
+      "max_write_calls_per_day": 500,
+      "real_payments_allowed": false,
+      "real_data_allowed": false,
+      "status": "draft_not_enabled"
+    },
+    {
+      "profile": "live_pro_draft",
+      "environment": "production",
+      "max_requests_per_minute": 180,
+      "max_write_calls_per_day": 2500,
+      "real_payments_allowed": false,
+      "real_data_allowed": false,
+      "status": "draft_not_enabled"
+    }
+  ],
+  "rotation_revocation_policy": {
+    "rotation_required_every_days": 90,
+    "immediate_revocation_triggers": [
+      "key appears in public repository",
+      "key appears in browser screenshot or public document",
+      "unexpected usage spike",
+      "429 or cost guard red event",
+      "customer asks to revoke",
+      "suspected abuse",
+      "real data detected during test mode"
+    ],
+    "revocation_actions": [
+      "set key status to revoked",
+      "stop write calls for affected key",
+      "preserve audit record with prefix only",
+      "do not retry failed costly operations",
+      "create owner incident summary"
+    ],
+    "rotation_actions": [
+      "create replacement key only after owner-approved gate",
+      "invalidate old key after overlap window",
+      "log prefix-only audit event",
+      "verify no public artifact contains full key"
+    ]
+  },
+  "public_documentation_rules": [
+    "Public docs may show prefixes but never full keys.",
+    "Examples must use placeholders such as {{machinesignal_api_key}}.",
+    "Postman environments must keep secret values blank.",
+    "OpenAPI may document security scheme but not real credentials.",
+    "GitHub must never contain production or admin keys."
+  ],
+  "incident_response": {
+    "suspected_key_exposure": {
+      "status_level": "red",
+      "automatic_actions": [
+        "pause production key issuing",
+        "stop write-capable flows for suspected key",
+        "create incident note",
+        "scan public artifacts for secret-like values",
+        "notify owner with exact decision needed"
+      ],
+      "owner_decision_needed": [
+        "approve revocation if key is real",
+        "approve replacement key if live customer exists",
+        "approve disclosure response if third party is affected"
+      ]
+    }
+  },
+  "blocked_until_owner_approval": [
+    "production API key generation",
+    "production API key publication",
+    "admin key sharing",
+    "real payments",
+    "invoices",
+    "payment method collection",
+    "external outreach",
+    "real data processing",
+    "personal data processing",
+    "public paid marketplace publication",
+    "hosted public MCP launch",
+    "MCP registry publication",
+    "commercial go-live"
+  ],
+  "readiness_impact": {
+    "production_api_key_readiness_before": 45,
+    "production_api_key_readiness_after_policy": 60,
+    "remaining_blockers": [
+      "no live key generation test",
+      "no owner approval",
+      "no fiscal/legal/payment/privacy gates",
+      "no production key storage implementation validated"
+    ]
+  },
+  "recommended_next_action": {
+    "name": "production_api_key_policy_probe_and_secret_scan",
+    "mode": "NoWrite validation",
+    "plain_italian": "Validare la policy e fare una secret scan dei documenti pubblici/locali per verificare che non ci siano chiavi reali o valori sensibili.",
+    "requires_owner_supervision": false
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "probe_id": "production_api_key_policy_draft_probe_20260613",
+  "status": "passed",
+  "checks_total": 66,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "commercial_status": "not_live",
+  "production_api_key_readiness_after_policy": 60,
+  "recommended_next_action": "production_api_key_policy_probe_and_secret_scan"
+}
