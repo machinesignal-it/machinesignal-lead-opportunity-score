@@ -1,0 +1,94 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "review_id": "pricing_pack_agent_go_no_go_review_20260613",
+  "created_at": "2026-06-13",
+  "status": "completed",
+  "mode": "NoWrite planning",
+  "source_pack": "price_revision_and_live_candidate_pack_20260613",
+  "plain_italian_summary": "Gli agenti approvano il bundle Score Pack 1k + Action Pack 25 come candidato pre-live da modellare, ma non autorizzano la vendita reale. Il live commerciale resta bloccato finche' non passano fiscalita', legal/privacy, pagamenti, API key produzione, supporto automatico e cost guard.",
+  "commercial_status": "not_live",
+  "reviewed_bundle": {
+    "name": "MachineSignal Controlled Entry Bundle",
+    "components": [
+      "score_pack_1k",
+      "action_pack_25"
+    ],
+    "status": "approved_for_pre_live_modeling_only",
+    "commercial_go_live_allowed": false
+  },
+  "agent_votes": [
+    {
+      "agent": "Orchestratore",
+      "vote": "GO_pre_live_modeling_NO_GO_live",
+      "reason": "The bundle is coherent and lower-risk than launching all products, but live gates are still blocked."
+    },
+    {
+      "agent": "Agente Admin & Finance Controller",
+      "vote": "GO_pre_live_modeling_NO_GO_live",
+      "reason": "Pricing can be modeled, but no payments or invoices until fiscal/billing gate passes."
+    },
+    {
+      "agent": "Agente API Product Manager",
+      "vote": "GO_pre_live_modeling_NO_GO_live",
+      "reason": "Score and Action Pack have clear machine-readable contracts, but production API key process is not live-ready."
+    },
+    {
+      "agent": "Machine-to-Machine Sales Ops",
+      "vote": "GO_pre_live_modeling_NO_GO_live",
+      "reason": "Bundle positioning is strong for machine buyers: score first, then action payload. Distribution must remain passive."
+    },
+    {
+      "agent": "Agente Legal & Compliance",
+      "vote": "GO_pre_live_modeling_NO_GO_live",
+      "reason": "No paid launch until terms, privacy, no-guarantee language and data rules are approved."
+    },
+    {
+      "agent": "Agente Customer Success & Post-Sale",
+      "vote": "GO_pre_live_modeling_NO_GO_live",
+      "reason": "Support model is promising, but live support automation and escalation rules need a final readiness test."
+    }
+  ],
+  "decision": {
+    "pre_live_pricing_model": "go",
+    "commercial_live_sale": "no_go",
+    "public_paid_distribution": "no_go",
+    "recommended_first_bundle": "MachineSignal Controlled Entry Bundle",
+    "recommended_first_bundle_components": [
+      "score_pack_1k",
+      "action_pack_25"
+    ],
+    "products_deferred_from_first_bundle": [
+      "target_discovery_pack_250",
+      "deep_analysis_pack_100"
+    ]
+  },
+  "conditions_before_live": [
+    "P.IVA/fiscal decision completed",
+    "terms of service approved",
+    "privacy and data processing rules approved",
+    "payment provider live flow approved",
+    "invoice or receipt process approved",
+    "production API key process ready",
+    "support automation readiness tested",
+    "cost guard hard stops tested",
+    "owner explicit approval recorded"
+  ],
+  "blocked_until_owner_approval": [
+    "real payments",
+    "invoices",
+    "payment method collection",
+    "external outreach",
+    "real data processing",
+    "personal data processing",
+    "production API key issuing",
+    "public paid marketplace publication",
+    "hosted public MCP launch",
+    "MCP registry publication"
+  ],
+  "recommended_next_action": {
+    "name": "pre_live_readiness_matrix",
+    "mode": "NoWrite planning",
+    "plain_italian": "Creare una matrice finale dei gate live: per ogni condizione indicare stato, evidenza disponibile, cosa manca, agente responsabile e se serve decisione del proprietario.",
+    "requires_owner_supervision": false
+  }
+}

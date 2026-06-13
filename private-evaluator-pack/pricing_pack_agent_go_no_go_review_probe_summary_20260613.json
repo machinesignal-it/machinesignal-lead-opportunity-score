@@ -1,0 +1,10 @@
+{
+  "probe_id": "pricing_pack_agent_go_no_go_review_probe_20260613",
+  "status": "passed",
+  "checks_total": 46,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "commercial_status": "not_live",
+  "commercial_live_sale": "no_go",
+  "recommended_next_action": "pre_live_readiness_matrix"
+}
