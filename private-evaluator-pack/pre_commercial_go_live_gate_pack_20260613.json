@@ -1,0 +1,163 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "pack_id": "pre_commercial_go_live_gate_pack_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "scope": "pre_commercial_go_live_planning_only",
+  "mode": "NoWrite planning",
+  "plain_italian_summary": "Questo pack definisce cosa deve essere pronto prima di vendere davvero MachineSignal. Non abilita pagamenti, non pubblica marketplace, non invia email, non contatta clienti e non usa dati reali.",
+  "source_review": "go_live_test_closure_review_20260613",
+  "commercial_go_live_current_status": "blocked",
+  "activation_rule": "Commercial go-live can start only after all required gates are passed and the owner gives explicit approval.",
+  "required_gates": [
+    {
+      "gate": "admin_fiscal_gate",
+      "owner_agent": "Agente Admin & Finance Controller",
+      "status": "blocked",
+      "required_before_live": [
+        "decisione su P.IVA o altra forma fiscale",
+        "regole emissione fattura",
+        "conto o provider per incassi",
+        "riconciliazione ricavi e costi",
+        "registro crediti cliente"
+      ],
+      "live_blocker": true
+    },
+    {
+      "gate": "legal_terms_gate",
+      "owner_agent": "Agente Legal & Compliance",
+      "status": "blocked",
+      "required_before_live": [
+        "termini di servizio",
+        "limitazione responsabilita'",
+        "descrizione output come supporto decisionale non garanzia",
+        "regole rimborso/no-credit se output non valido",
+        "policy abuso e uso accettabile"
+      ],
+      "live_blocker": true
+    },
+    {
+      "gate": "privacy_data_gate",
+      "owner_agent": "Agente Legal & Compliance",
+      "status": "blocked",
+      "required_before_live": [
+        "privacy policy per clienti paganti",
+        "data processing terms se vengono usati dati cliente",
+        "regola synthetic vs real data",
+        "minimizzazione dati",
+        "retention e cancellazione dati"
+      ],
+      "live_blocker": true
+    },
+    {
+      "gate": "payment_billing_gate",
+      "owner_agent": "Agente Admin & Finance Controller",
+      "status": "blocked",
+      "required_before_live": [
+        "provider pagamento in modalita' live",
+        "checkout live separato da test mode",
+        "webhook pagamenti verificato",
+        "invoice/receipt flow deciso",
+        "stop automatico in caso di mismatch pagamento-crediti"
+      ],
+      "live_blocker": true
+    },
+    {
+      "gate": "production_api_key_gate",
+      "owner_agent": "Agente API Product Manager",
+      "status": "blocked",
+      "required_before_live": [
+        "procedura emissione API key reale",
+        "rate limit per cliente",
+        "revoca key",
+        "rotazione key",
+        "separazione chiavi test/live"
+      ],
+      "live_blocker": true
+    },
+    {
+      "gate": "support_post_sale_gate",
+      "owner_agent": "Agente Customer Success & Post-Sale",
+      "status": "not_ready",
+      "required_before_live": [
+        "risposte automatiche per errori comuni",
+        "usage e order status leggibili via API",
+        "regole escalation al proprietario",
+        "limite massimo lavoro umano giornaliero",
+        "procedura no-work-accumulation"
+      ],
+      "live_blocker": true
+    },
+    {
+      "gate": "cost_limit_gate",
+      "owner_agent": "Orchestratore",
+      "status": "not_ready",
+      "required_before_live": [
+        "soglie costo Cloudflare/DataForSEO/OpenAI",
+        "limiti giornalieri per cliente",
+        "circuit breaker per 429 o cost spike",
+        "report costo per output valido",
+        "margine minimo per prodotto"
+      ],
+      "live_blocker": true
+    },
+    {
+      "gate": "public_distribution_gate",
+      "owner_agent": "Agente Growth & Distribution",
+      "status": "blocked",
+      "required_before_live": [
+        "decisione canale: GitHub, Postman, API directory, MCP registry o marketplace",
+        "messaggio pubblico coerente con limiti legali",
+        "nessuna promessa di risultato garantito",
+        "nessun claim hosted MCP se non live",
+        "approvazione proprietario prima di pubblicazione irreversibile"
+      ],
+      "live_blocker": true
+    }
+  ],
+  "allowed_now": [
+    "prepare documents",
+    "run no-write checks",
+    "improve docs and examples",
+    "simulate billing logic with fake/test data",
+    "prepare owner approval checklist",
+    "prepare support automation draft"
+  ],
+  "blocked_now": [
+    "enable real payments",
+    "issue invoices",
+    "collect payment methods",
+    "publish paid marketplace listing",
+    "publish hosted public MCP",
+    "publish to MCP registry",
+    "issue production API keys",
+    "send outreach",
+    "contact external companies",
+    "process real customer data",
+    "process personal data",
+    "process real lead lists"
+  ],
+  "minimum_go_live_definition": {
+    "what_go_live_means": "A machine customer can buy a paid product, receive credits, call the API, consume credits only on valid outputs, retrieve usage/orders and receive automatic support without manual work.",
+    "minimum_products": [
+      "target_discovery_pack_250",
+      "score_pack_1k",
+      "deep_analysis_pack_100",
+      "action_pack_25"
+    ],
+    "minimum_controls": [
+      "payment success activates credits once",
+      "duplicate events do not double-credit",
+      "invalid outputs do not consume credits",
+      "usage ledger is auditable",
+      "cost guard stops runaway usage",
+      "owner can disable live mode"
+    ]
+  },
+  "recommended_next_action": {
+    "name": "pre_commercial_gate_gap_analysis",
+    "mode": "NoWrite planning",
+    "plain_italian": "Confrontare ogni gate con quello che abbiamo gia' pronto e produrre una lista concreta di gap: cosa manca, chi lo deve preparare, se serve il proprietario, quanto blocca il go-live.",
+    "requires_owner_supervision": false
+  }
+}
