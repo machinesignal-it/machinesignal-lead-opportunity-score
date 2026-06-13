@@ -1,0 +1,197 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "guard_id": "public_wording_guard_nowrite_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_rehearsal": "agent_policy_compliance_rehearsal_nowrite_20260613",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "public_publication_allowed": false,
+  "plain_italian_summary": "Questo guardrail impedisce che documenti, README, pagine o JSON pubblici sembrino una vendita live, una promessa di risultato o un documento legale finale. Tutto deve restare in linguaggio beta/sandbox/no-write fino ad approvazione esplicita.",
+  "allowed_wording_patterns": [
+    {
+      "pattern": "sandbox synthetic testing only",
+      "why_allowed": "Clarifies that usage is not live."
+    },
+    {
+      "pattern": "draft_not_live",
+      "why_allowed": "Marks products as draft and not commercially live."
+    },
+    {
+      "pattern": "no_go",
+      "why_allowed": "Preserves go-live block."
+    },
+    {
+      "pattern": "requires owner approval",
+      "why_allowed": "Makes decision gate explicit."
+    },
+    {
+      "pattern": "requires professional/legal review",
+      "why_allowed": "Avoids legal approval claims."
+    },
+    {
+      "pattern": "no real payments",
+      "why_allowed": "Blocks payment interpretation."
+    },
+    {
+      "pattern": "synthetic data only",
+      "why_allowed": "Blocks real data interpretation."
+    },
+    {
+      "pattern": "machine-readable draft",
+      "why_allowed": "Describes format without promising live service."
+    }
+  ],
+  "forbidden_wording_patterns": [
+    {
+      "pattern": "buy now",
+      "severity": "critical",
+      "reason": "Implies live commercial sale."
+    },
+    {
+      "pattern": "subscribe now",
+      "severity": "critical",
+      "reason": "Implies payment/subscription availability."
+    },
+    {
+      "pattern": "pay now",
+      "severity": "critical",
+      "reason": "Implies payment collection."
+    },
+    {
+      "pattern": "invoice available",
+      "severity": "critical",
+      "reason": "Implies fiscal readiness."
+    },
+    {
+      "pattern": "production ready",
+      "severity": "high",
+      "reason": "Implies live readiness not approved."
+    },
+    {
+      "pattern": "go live approved",
+      "severity": "critical",
+      "reason": "Contradicts current no_go state."
+    },
+    {
+      "pattern": "legally approved",
+      "severity": "critical",
+      "reason": "Claims legal approval not granted."
+    },
+    {
+      "pattern": "GDPR compliant",
+      "severity": "high",
+      "reason": "Compliance claim requires professional validation."
+    },
+    {
+      "pattern": "guaranteed leads",
+      "severity": "high",
+      "reason": "Promises business outcome."
+    },
+    {
+      "pattern": "guaranteed revenue",
+      "severity": "high",
+      "reason": "Promises revenue."
+    },
+    {
+      "pattern": "send outreach",
+      "severity": "critical",
+      "reason": "Contradicts no outreach block."
+    },
+    {
+      "pattern": "real customer data supported",
+      "severity": "critical",
+      "reason": "Contradicts no real data block."
+    },
+    {
+      "pattern": "production API key",
+      "severity": "high",
+      "reason": "Can imply production keys are available."
+    },
+    {
+      "pattern": "public marketplace listing",
+      "severity": "high",
+      "reason": "Marketplace publication is not approved."
+    }
+  ],
+  "replacement_guidance": [
+    {
+      "avoid": "buy now",
+      "use": "request owner review for future commercial access"
+    },
+    {
+      "avoid": "production ready",
+      "use": "pre-live sandbox draft"
+    },
+    {
+      "avoid": "GDPR compliant",
+      "use": "privacy/legal review required before live"
+    },
+    {
+      "avoid": "guaranteed leads",
+      "use": "supports machine-readable lead prioritization"
+    },
+    {
+      "avoid": "real customer data supported",
+      "use": "synthetic data only until approval"
+    },
+    {
+      "avoid": "production API key",
+      "use": "sandbox or draft key policy only"
+    }
+  ],
+  "files_to_scan_before_publication": [
+    "README.md",
+    "docs",
+    "api",
+    "machinesignal_site",
+    "public JSON contracts",
+    "OpenAPI files",
+    "Postman collections",
+    "MCP descriptors",
+    "landing pages"
+  ],
+  "scan_policy": {
+    "case_insensitive": true,
+    "block_on_critical": true,
+    "block_on_high_if_public": true,
+    "allow_internal_private_with_warning": false,
+    "must_report": [
+      "file",
+      "line",
+      "pattern",
+      "severity",
+      "suggested_replacement"
+    ]
+  },
+  "sample_safe_public_notice": {
+    "status": "draft",
+    "text": "MachineSignal is currently a sandbox/pre-live API concept for synthetic testing and machine-readable evaluation flows. Commercial live use, payments, invoices, real data processing and production API keys require explicit owner approval and legal/privacy/fiscal review."
+  },
+  "hard_blocks_preserved": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "email_sending_to_humans",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live",
+    "claim_legal_approval",
+    "publish_final_terms",
+    "publish_final_privacy_notice"
+  ],
+  "readiness_after_guard": {
+    "public_wording_safety_readiness": 76,
+    "agent_governance_readiness": 84,
+    "commercial_readiness": 68,
+    "go_live_status": "no_go",
+    "reason": "The guard defines forbidden claims and replacements, but public scans and owner approval are still required before changing any public page or listing."
+  },
+  "recommended_next_action": "public_wording_scan_nowrite"
+}
