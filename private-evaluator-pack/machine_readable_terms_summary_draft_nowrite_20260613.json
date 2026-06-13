@@ -1,0 +1,319 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "summary_id": "machine_readable_terms_summary_draft_nowrite_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_data_map": "privacy_data_map_draft_nowrite_20260613",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "public_release_allowed": false,
+  "real_payments_allowed": false,
+  "real_data_allowed": false,
+  "personal_data_allowed": false,
+  "plain_italian_summary": "Questa bozza trasforma termini, limiti e prodotti MachineSignal in formato leggibile da software. Serve per preparare l'uso machine-first, ma non pubblica offerte live, non abilita pagamenti e non consente dati reali.",
+  "machine_contract": {
+    "contract_version": "0.1-draft-nowrite",
+    "intended_reader": [
+      "CRM",
+      "AI agent",
+      "workflow automation",
+      "API client",
+      "procurement bot"
+    ],
+    "human_account_required": true,
+    "human_account_rule": "Every machine/API client must be linked to a responsible human or company account before any live usage.",
+    "environment": "sandbox_or_pre_live_only",
+    "data_scope": "synthetic_or_future_approved_business_domain_data_only",
+    "no_public_offer": true
+  },
+  "products": [
+    {
+      "product_code": "score_pack_1k",
+      "status": "draft_not_live",
+      "machine_intent": "Evaluate a supplied list of business domains/companies and return priority decisions.",
+      "input_required": [
+        "company_or_domain_list",
+        "sector_optional",
+        "geography_optional",
+        "idempotency_key"
+      ],
+      "input_forbidden": [
+        "person_name",
+        "personal_email",
+        "personal_phone",
+        "sensitive_data",
+        "payment_card_data",
+        "free_text_with_personal_data"
+      ],
+      "output_if_valid": [
+        "opportunity_score",
+        "confidence",
+        "decision",
+        "reason_codes",
+        "recommended_next_action",
+        "request_id",
+        "credit_delta"
+      ],
+      "valid_output_rule": "At least one accepted business domain/company is evaluated and response includes score, confidence, decision and reason_codes.",
+      "credit_policy": {
+        "credit_consumed_on_valid_output": 1,
+        "no_credit_if": [
+          "invalid_schema",
+          "all_items_rejected_by_input_policy",
+          "system_error",
+          "duplicate_idempotency_key",
+          "incomplete_output"
+        ],
+        "ledger_required_fields": [
+          "request_id",
+          "product_code",
+          "idempotency_key",
+          "timestamp",
+          "credit_delta",
+          "valid_output_reason"
+        ]
+      },
+      "live_blocker": "privacy_data_map, DPA/terms, retention approval, production API key policy"
+    },
+    {
+      "product_code": "target_discovery_pack_250",
+      "status": "draft_not_live",
+      "machine_intent": "Find a fixed batch of 250 business-domain targets matching sector and area criteria, without personal contact details.",
+      "input_required": [
+        "sector",
+        "geography",
+        "business_goal",
+        "idempotency_key"
+      ],
+      "input_forbidden": [
+        "person_targeting",
+        "personal_contact_data_request",
+        "sensitive_category_targeting",
+        "outreach_request"
+      ],
+      "output_if_valid": [
+        "250_target_records_or_substitution_policy_result",
+        "domain_or_company_name",
+        "source_type",
+        "quality_flags",
+        "score_readiness",
+        "request_id",
+        "credit_delta"
+      ],
+      "valid_output_rule": "Exactly 250 accepted target records are delivered, or the no-fill policy is triggered with no charge/partial charge according to approved future terms.",
+      "credit_policy": {
+        "credit_consumed_on_valid_output": "draft_pack_price_future",
+        "no_credit_if": [
+          "insufficient_market_after_precheck",
+          "policy_rejects_requested_targeting",
+          "system_error",
+          "output_contains_personal_contact_data"
+        ],
+        "ledger_required_fields": [
+          "request_id",
+          "product_code",
+          "idempotency_key",
+          "timestamp",
+          "credit_delta",
+          "valid_output_reason",
+          "delivered_target_count"
+        ]
+      },
+      "live_blocker": "source policy, public-source legal review, no-contact-data rule, owner approval"
+    },
+    {
+      "product_code": "action_pack_25",
+      "status": "draft_not_live",
+      "machine_intent": "Turn scored business-domain leads into machine-usable next actions, CRM tags and follow-up logic, without sending outreach.",
+      "input_required": [
+        "scored_lead_records",
+        "allowed_action_types",
+        "idempotency_key"
+      ],
+      "input_forbidden": [
+        "send_email_instruction",
+        "contact_person_instruction",
+        "personalized_human_outreach_request",
+        "personal_data"
+      ],
+      "output_if_valid": [
+        "crm_tags",
+        "next_best_action",
+        "nurturing_stage",
+        "watchlist_reason",
+        "verification_needed_flag",
+        "request_id",
+        "credit_delta"
+      ],
+      "valid_output_rule": "At least 25 accepted scored records receive CRM-safe action metadata, or fewer records if the input batch contains fewer valid accepted records and future terms allow it.",
+      "credit_policy": {
+        "credit_consumed_on_valid_output": "draft_pack_price_future",
+        "no_credit_if": [
+          "input_scores_missing",
+          "request_requires_outreach",
+          "system_error",
+          "output_incomplete"
+        ],
+        "ledger_required_fields": [
+          "request_id",
+          "product_code",
+          "idempotency_key",
+          "timestamp",
+          "credit_delta",
+          "valid_output_reason",
+          "processed_record_count"
+        ]
+      },
+      "live_blocker": "terms acceptance flow, support playbook, no-outreach guard"
+    },
+    {
+      "product_code": "deepening_report_single",
+      "status": "draft_not_live",
+      "machine_intent": "Provide a deeper structured explanation for one business-domain opportunity already scored.",
+      "input_required": [
+        "domain_or_company",
+        "previous_score_id",
+        "requested_depth",
+        "idempotency_key"
+      ],
+      "input_forbidden": [
+        "person_lookup",
+        "personal_contact_lookup",
+        "sensitive_data",
+        "guaranteed_sales_claim_request"
+      ],
+      "output_if_valid": [
+        "score_drivers",
+        "website_or_business_signals",
+        "risk_flags",
+        "confidence_explanation",
+        "recommended_machine_action",
+        "request_id",
+        "credit_delta"
+      ],
+      "valid_output_rule": "The report references an existing score and returns drivers, risks, confidence explanation and recommended_machine_action.",
+      "credit_policy": {
+        "credit_consumed_on_valid_output": "draft_single_report_price_future",
+        "no_credit_if": [
+          "previous_score_id_not_found",
+          "request_requires_personal_data",
+          "system_error",
+          "insufficient_signals"
+        ],
+        "ledger_required_fields": [
+          "request_id",
+          "product_code",
+          "idempotency_key",
+          "timestamp",
+          "credit_delta",
+          "valid_output_reason"
+        ]
+      },
+      "live_blocker": "valid report definition, data retention approval, legal review"
+    }
+  ],
+  "decisions_supported": [
+    {
+      "decision": "discard",
+      "meaning": "Do not spend more credits or workflow effort on this item now."
+    },
+    {
+      "decision": "watchlist",
+      "meaning": "Keep the item for future monitoring but do not act immediately."
+    },
+    {
+      "decision": "nurture",
+      "meaning": "Store the item in a low-priority CRM/workflow stage without outreach."
+    },
+    {
+      "decision": "buy_deepening",
+      "meaning": "Machine may request a deeper report only if account, terms, credits and live gates are approved."
+    },
+    {
+      "decision": "request_verification",
+      "meaning": "Ask for additional automated checks or owner review before consuming more credits."
+    }
+  ],
+  "global_no_credit_rules": [
+    "invalid_schema",
+    "idempotent_duplicate",
+    "system_error",
+    "forbidden_input_detected",
+    "personal_data_detected",
+    "output_missing_required_fields",
+    "operation_blocked_by_policy"
+  ],
+  "global_hard_blocks": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "email_sending_to_humans",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live"
+  ],
+  "machine_response_minimum_schema": {
+    "request_id": "string",
+    "product_code": "string",
+    "environment": "sandbox | pre_live | future_live",
+    "status": "ok | rejected | blocked | error",
+    "decision": "discard | watchlist | nurture | buy_deepening | request_verification",
+    "opportunity_score": "number_or_null",
+    "confidence": "number_or_null",
+    "reason_codes": "array",
+    "credit_delta": "number",
+    "credit_reason": "string",
+    "policy_flags": "array",
+    "next_allowed_actions": "array"
+  },
+  "machine_error_taxonomy": [
+    {
+      "error_code": "MS_POLICY_FORBIDDEN_INPUT",
+      "credit_delta": 0,
+      "meaning": "Input contains forbidden or unapproved data."
+    },
+    {
+      "error_code": "MS_POLICY_LIVE_BLOCKED",
+      "credit_delta": 0,
+      "meaning": "Operation requires live approval that has not been granted."
+    },
+    {
+      "error_code": "MS_SCHEMA_INVALID",
+      "credit_delta": 0,
+      "meaning": "Request schema is invalid."
+    },
+    {
+      "error_code": "MS_OUTPUT_INCOMPLETE",
+      "credit_delta": 0,
+      "meaning": "The system could not produce all required valid output fields."
+    },
+    {
+      "error_code": "MS_RATE_LIMITED",
+      "credit_delta": 0,
+      "meaning": "Request blocked by rate or cost guard."
+    }
+  ],
+  "owner_decisions_still_required": [
+    "Approve if and when this summary can become public.",
+    "Approve final prices/credit amounts for pack products.",
+    "Approve terms acceptance flow for machine buyers.",
+    "Approve privacy data map and retention.",
+    "Approve production API key issuance.",
+    "Approve commercial go-live."
+  ],
+  "readiness_after_summary": {
+    "machine_buyer_contract_readiness": 52,
+    "api_product_readiness": 72,
+    "legal_privacy_readiness": 58,
+    "commercial_readiness": 63,
+    "go_live_status": "no_go",
+    "reason": "The machine-readable contract draft clarifies product behavior and credit logic, but it is not public, not legally approved and not commercially live."
+  },
+  "recommended_next_action": "terms_acceptance_flow_draft_nowrite"
+}
