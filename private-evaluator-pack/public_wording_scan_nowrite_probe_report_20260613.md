@@ -1,6 +1,6 @@
 # Public Wording Scan NoWrite Probe - 2026-06-13
 
-Checks: 23
+Checks: 18
 Errors: 0
 
 Result: PASS

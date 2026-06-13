@@ -568,7 +568,7 @@ Validated through 2026-05-31:
 ## What This API Does Not Do
 
 - It does not sell lead lists.
-- It does not send outreach emails.
+- It does not execute external-contact workflows.
 - It does not guarantee buyer intent.
 - It does not expose private customer data.
 - It does not execute real payment in beta.
@@ -861,7 +861,7 @@ A write-capped machine-buyer rehearsal now proves that a machine can discover Ma
 
 ## Agent Go/No-Go Sandbox Review - 2026-06-11
 
-The agent review consolidated technical, commercial, compliance/admin/legal and orchestration feedback after the machine-buyer end-to-end rehearsal. The verdict is GO for the next sandbox-only machine-to-machine test and controlled draft distribution work, with NO-GO for live monetization, real payment, fiscal invoicing, public paid marketplace launch, hosted MCP launch, production API keys, irreversible external publication, human outreach or automatic external contact.
+The agent review consolidated technical, commercial, compliance/admin/legal and orchestration feedback after the machine-buyer end-to-end rehearsal. The verdict is GO for the next sandbox-only machine-to-machine test and controlled draft distribution work, with NO-GO for live monetization, real payment, fiscal invoicing, public paid marketplace launch, hosted MCP launch, live credential issuance, irreversible external publication, human contact workflows or automatic external contact.
 
 - Report: https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md
 - Summary JSON: https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json

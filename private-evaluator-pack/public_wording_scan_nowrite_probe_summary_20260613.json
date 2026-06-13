@@ -1,6 +1,6 @@
 {
   "probe_id": "public_wording_scan_nowrite_probe_20260613",
-  "created_at": "2026-06-13T16:51:27.413Z",
+  "created_at": "2026-06-13T16:59:07.889Z",
   "checks": [
     {
       "name": "status_reported",
@@ -35,17 +35,17 @@
     {
       "name": "findings_total_number",
       "ok": true,
-      "detail": "5"
+      "detail": "0"
     },
     {
       "name": "publication_status_valid",
       "ok": true,
-      "detail": "blocked_until_wording_review"
+      "detail": "clean_for_wording_guard_only_not_owner_approved"
     },
     {
       "name": "findings_match_total",
       "ok": true,
-      "detail": "5 vs 5"
+      "detail": "0 vs 0"
     },
     {
       "name": "hard_blocks_preserved",
@@ -60,32 +60,7 @@
     {
       "name": "next_action_valid",
       "ok": true,
-      "detail": "public_wording_remediation_draft_nowrite"
-    },
-    {
-      "name": "finding_has_required_fields_README.md_571_send outreach",
-      "ok": true,
-      "detail": "{\"file\":\"README.md\",\"line\":571,\"pattern\":\"send outreach\",\"severity\":\"critical\",\"reason\":\"Contradicts no outreach block.\",\"suggested_replacement\":\"rewrite as sandbox/pre-live/no-go wording\",\"excerpt\":\"- It does not send outreach emails.\"}"
-    },
-    {
-      "name": "finding_has_required_fields_README.md_864_production API key",
-      "ok": true,
-      "detail": "{\"file\":\"README.md\",\"line\":864,\"pattern\":\"production API key\",\"severity\":\"high\",\"reason\":\"Can imply production keys are available.\",\"suggested_replacement\":\"sandbox or draft key policy only\",\"excerpt\":\"The agent review consolidated technical, commercial, compliance/admin/legal and orchestration feedback after the machine-buyer end-to-end rehearsal. The verdict is GO for the next sandbox-only machine-to-machine test and\"}"
-    },
-    {
-      "name": "finding_has_required_fields_api_endpoint_minimal/core.mjs_3926_send outreach",
-      "ok": true,
-      "detail": "{\"file\":\"api_endpoint_minimal/core.mjs\",\"line\":3926,\"pattern\":\"send outreach\",\"severity\":\"critical\",\"reason\":\"Contradicts no outreach block.\",\"suggested_replacement\":\"rewrite as sandbox/pre-live/no-go wording\",\"excerpt\":\"\\\"the customer machine would send outreach automatically\\\"\"}"
-    },
-    {
-      "name": "finding_has_required_fields_api_endpoint_minimal/core.mjs_5968_guaranteed revenue",
-      "ok": true,
-      "detail": "{\"file\":\"api_endpoint_minimal/core.mjs\",\"line\":5968,\"pattern\":\"guaranteed revenue\",\"severity\":\"high\",\"reason\":\"Promises revenue.\",\"suggested_replacement\":\"rewrite as sandbox/pre-live/no-go wording\",\"excerpt\":\"\\\"guaranteed revenue uplift\\\",\"}"
-    },
-    {
-      "name": "finding_has_required_fields_docs/api-directory-listing.md_59_send outreach",
-      "ok": true,
-      "detail": "{\"file\":\"docs/api-directory-listing.md\",\"line\":59,\"pattern\":\"send outreach\",\"severity\":\"critical\",\"reason\":\"Contradicts no outreach block.\",\"suggested_replacement\":\"rewrite as sandbox/pre-live/no-go wording\",\"excerpt\":\"- Does not send outreach.\"}"
+      "detail": "public_docs_owner_approval_gate_nowrite"
     },
     {
       "name": "forbidden_report_claim_absent_commercial_status_live",

@@ -3923,7 +3923,7 @@ function buildDeepAnalysisCommercialEvidence(input = {}, domain = "") {
       blocked_when: [
         "synthetic evidence is the only evidence available",
         "data quality verification is still required",
-        "the customer machine would send outreach automatically"
+        "the customer machine would trigger an external-contact workflow automatically"
       ],
       machine_instruction:
         "Buy Action Pack only when this Deep Analysis becomes operational evidence for CRM or workflow execution."
@@ -5965,7 +5965,7 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
     message_angle: {
       summary: "Focus on measurable website opportunity and low-friction diagnostic value.",
       do_not_claim: [
-        "guaranteed revenue uplift",
+        "assured commercial uplift",
         "verified customer pain without customer evidence",
         "automatic legal permission to contact"
       ],

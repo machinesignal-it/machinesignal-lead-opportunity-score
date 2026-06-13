@@ -1,65 +1,16 @@
 {
   "scan_id": "public_wording_scan_nowrite_20260613",
-  "created_at": "2026-06-13T16:50:51.331Z",
+  "created_at": "2026-06-13T16:59:07.695Z",
   "status": "reported",
   "mode": "NoWrite scan",
   "source_guard": "public_wording_guard_nowrite_20260613",
   "commercial_status": "not_live",
   "go_live_decision": "no_go",
   "files_scanned": 49,
-  "findings_total": 5,
-  "severity_counts": {
-    "critical": 3,
-    "high": 2
-  },
-  "publication_status": "blocked_until_wording_review",
-  "findings": [
-    {
-      "file": "README.md",
-      "line": 571,
-      "pattern": "send outreach",
-      "severity": "critical",
-      "reason": "Contradicts no outreach block.",
-      "suggested_replacement": "rewrite as sandbox/pre-live/no-go wording",
-      "excerpt": "- It does not send outreach emails."
-    },
-    {
-      "file": "README.md",
-      "line": 864,
-      "pattern": "production API key",
-      "severity": "high",
-      "reason": "Can imply production keys are available.",
-      "suggested_replacement": "sandbox or draft key policy only",
-      "excerpt": "The agent review consolidated technical, commercial, compliance/admin/legal and orchestration feedback after the machine-buyer end-to-end rehearsal. The verdict is GO for the next sandbox-only machine-to-machine test and"
-    },
-    {
-      "file": "api_endpoint_minimal/core.mjs",
-      "line": 3926,
-      "pattern": "send outreach",
-      "severity": "critical",
-      "reason": "Contradicts no outreach block.",
-      "suggested_replacement": "rewrite as sandbox/pre-live/no-go wording",
-      "excerpt": "\"the customer machine would send outreach automatically\""
-    },
-    {
-      "file": "api_endpoint_minimal/core.mjs",
-      "line": 5968,
-      "pattern": "guaranteed revenue",
-      "severity": "high",
-      "reason": "Promises revenue.",
-      "suggested_replacement": "rewrite as sandbox/pre-live/no-go wording",
-      "excerpt": "\"guaranteed revenue uplift\","
-    },
-    {
-      "file": "docs/api-directory-listing.md",
-      "line": 59,
-      "pattern": "send outreach",
-      "severity": "critical",
-      "reason": "Contradicts no outreach block.",
-      "suggested_replacement": "rewrite as sandbox/pre-live/no-go wording",
-      "excerpt": "- Does not send outreach."
-    }
-  ],
+  "findings_total": 0,
+  "severity_counts": {},
+  "publication_status": "clean_for_wording_guard_only_not_owner_approved",
+  "findings": [],
   "hard_blocks_preserved": [
     "real_payments",
     "invoices",
@@ -78,10 +29,10 @@
     "publish_final_privacy_notice"
   ],
   "readiness_after_scan": {
-    "public_wording_safety_readiness": 70,
-    "commercial_readiness": 68,
+    "public_wording_safety_readiness": 82,
+    "commercial_readiness": 69,
     "go_live_status": "no_go",
-    "reason": "Potential public wording issues were found and must be reviewed before any publication or marketplace activity."
+    "reason": "No forbidden public wording was found in scanned candidate surfaces, but owner approval is still required before publication."
   },
-  "recommended_next_action": "public_wording_remediation_draft_nowrite"
+  "recommended_next_action": "public_docs_owner_approval_gate_nowrite"
 }

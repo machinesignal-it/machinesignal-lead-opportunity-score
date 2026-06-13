@@ -1,0 +1,73 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "apply_id": "apply_public_wording_remediation_nowrite_20260613",
+  "created_at": "2026-06-13",
+  "status": "applied",
+  "mode": "NoWrite remediation",
+  "source_draft": "public_wording_remediation_draft_nowrite_20260613",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "plain_italian_summary": "Sono state applicate solo le 5 sostituzioni di wording gia' validate. Non sono state modificate funzionalita', prezzi, pagamenti, dati, API key o canali esterni. Il public wording scan ora torna con 0 finding.",
+  "files_changed": [
+    "README.md",
+    "api_endpoint_minimal/core.mjs",
+    "docs/api-directory-listing.md"
+  ],
+  "applied_replacements": [
+    {
+      "file": "README.md",
+      "old": "- It does not send outreach emails.",
+      "new": "- It does not execute external-contact workflows."
+    },
+    {
+      "file": "README.md",
+      "old": "production API keys, irreversible external publication, human outreach or automatic external contact",
+      "new": "live credential issuance, irreversible external publication, human contact workflows or automatic external contact"
+    },
+    {
+      "file": "api_endpoint_minimal/core.mjs",
+      "old": "the customer machine would send outreach automatically",
+      "new": "the customer machine would trigger an external-contact workflow automatically"
+    },
+    {
+      "file": "api_endpoint_minimal/core.mjs",
+      "old": "guaranteed revenue uplift",
+      "new": "assured commercial uplift"
+    },
+    {
+      "file": "docs/api-directory-listing.md",
+      "old": "- Does not send outreach.",
+      "new": "- Does not execute external-contact workflows."
+    }
+  ],
+  "validation": {
+    "public_wording_scan_files_scanned": 49,
+    "public_wording_scan_findings": 0,
+    "public_wording_scan_probe_errors": 0,
+    "direct_sensitive_phrase_check_findings": 0
+  },
+  "hard_blocks_preserved": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "email_sending_to_humans",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live",
+    "claim_legal_approval",
+    "publish_final_terms",
+    "publish_final_privacy_notice"
+  ],
+  "readiness_after_apply": {
+    "public_wording_safety_readiness": 82,
+    "commercial_readiness": 69,
+    "go_live_status": "no_go",
+    "reason": "Public wording findings are cleared, but owner approval is still required before publication or live commercial actions."
+  },
+  "recommended_next_action": "public_docs_owner_approval_gate_nowrite"
+}

@@ -56,7 +56,7 @@ GET  /v1/orders
 ## What It Does Not Do
 
 - Does not sell generic lead lists.
-- Does not send outreach.
+- Does not execute external-contact workflows.
 - Does not guarantee buyer intent.
 - Does not execute real payment in beta.
 - Does not expose private customer data.

@@ -6,28 +6,19 @@ Commercial status: not_live
 Go-live: no_go
 
 Files scanned: 49
-Findings: 5
-Publication status: blocked_until_wording_review
+Findings: 0
+Publication status: clean_for_wording_guard_only_not_owner_approved
 
 ## Severity counts
 
-- critical: 3
-- high: 2
+- critical: 0
+- high: 0
 - medium: 0
 - low: 0
 
 ## Findings
 
-- CRITICAL README.md:571 pattern `send outreach` -> rewrite as sandbox/pre-live/no-go wording
-  - - It does not send outreach emails.
-- HIGH README.md:864 pattern `production API key` -> sandbox or draft key policy only
-  - The agent review consolidated technical, commercial, compliance/admin/legal and orchestration feedback after the machine-buyer end-to-end rehearsal. The verdict is GO for the next sandbox-only machine-to-machine test and
-- CRITICAL api_endpoint_minimal/core.mjs:3926 pattern `send outreach` -> rewrite as sandbox/pre-live/no-go wording
-  - "the customer machine would send outreach automatically"
-- HIGH api_endpoint_minimal/core.mjs:5968 pattern `guaranteed revenue` -> rewrite as sandbox/pre-live/no-go wording
-  - "guaranteed revenue uplift",
-- CRITICAL docs/api-directory-listing.md:59 pattern `send outreach` -> rewrite as sandbox/pre-live/no-go wording
-  - - Does not send outreach.
+None.
 
 ## Hard blocks preserved
 
@@ -45,4 +36,4 @@ Publication status: blocked_until_wording_review
 
 ## Next action
 
-public_wording_remediation_draft_nowrite
+public_docs_owner_approval_gate_nowrite

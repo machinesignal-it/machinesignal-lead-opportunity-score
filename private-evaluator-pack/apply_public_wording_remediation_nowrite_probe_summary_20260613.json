@@ -1,0 +1,137 @@
+{
+  "probe_id": "apply_public_wording_remediation_nowrite_probe_20260613",
+  "created_at": "2026-06-13T17:00:53.067Z",
+  "checks": [
+    {
+      "name": "status_applied",
+      "ok": true,
+      "detail": "applied"
+    },
+    {
+      "name": "mode_nowrite_remediation",
+      "ok": true,
+      "detail": "NoWrite remediation"
+    },
+    {
+      "name": "commercial_not_live",
+      "ok": true,
+      "detail": "not_live"
+    },
+    {
+      "name": "go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "five_replacements_applied",
+      "ok": true,
+      "detail": "5"
+    },
+    {
+      "name": "changed_files_expected",
+      "ok": true,
+      "detail": "[\"README.md\",\"api_endpoint_minimal/core.mjs\",\"docs/api-directory-listing.md\"]"
+    },
+    {
+      "name": "scan_findings_zero",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "scan_publication_status_clean",
+      "ok": true,
+      "detail": "clean_for_wording_guard_only_not_owner_approved"
+    },
+    {
+      "name": "validation_zero_findings",
+      "ok": true,
+      "detail": "{\"public_wording_scan_files_scanned\":49,\"public_wording_scan_findings\":0,\"public_wording_scan_probe_errors\":0,\"direct_sensitive_phrase_check_findings\":0}"
+    },
+    {
+      "name": "sensitive_absent_README_md_send_outreach",
+      "ok": true,
+      "detail": "README.md send outreach"
+    },
+    {
+      "name": "sensitive_absent_README_md_production_API_key",
+      "ok": true,
+      "detail": "README.md production API key"
+    },
+    {
+      "name": "sensitive_absent_README_md_guaranteed_revenue",
+      "ok": true,
+      "detail": "README.md guaranteed revenue"
+    },
+    {
+      "name": "sensitive_absent_api_endpoint_minimal_core_mjs_send_outreach",
+      "ok": true,
+      "detail": "api_endpoint_minimal/core.mjs send outreach"
+    },
+    {
+      "name": "sensitive_absent_api_endpoint_minimal_core_mjs_production_API_key",
+      "ok": true,
+      "detail": "api_endpoint_minimal/core.mjs production API key"
+    },
+    {
+      "name": "sensitive_absent_api_endpoint_minimal_core_mjs_guaranteed_revenue",
+      "ok": true,
+      "detail": "api_endpoint_minimal/core.mjs guaranteed revenue"
+    },
+    {
+      "name": "sensitive_absent_docs_api_directory_listing_md_send_outreach",
+      "ok": true,
+      "detail": "docs/api-directory-listing.md send outreach"
+    },
+    {
+      "name": "sensitive_absent_docs_api_directory_listing_md_production_API_key",
+      "ok": true,
+      "detail": "docs/api-directory-listing.md production API key"
+    },
+    {
+      "name": "sensitive_absent_docs_api_directory_listing_md_guaranteed_revenue",
+      "ok": true,
+      "detail": "docs/api-directory-listing.md guaranteed revenue"
+    },
+    {
+      "name": "hard_blocks_preserved",
+      "ok": true,
+      "detail": "real_payments, invoices, payment_method_collection, external_outreach, email_sending_to_humans, real_data_processing, personal_data_processing, production_api_key_issuing, public_paid_marketplace, hosted_mcp_public, mcp_registry_publication, commercial_go_live"
+    },
+    {
+      "name": "readiness_go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "next_action_owner_gate",
+      "ok": true,
+      "detail": "public_docs_owner_approval_gate_nowrite"
+    },
+    {
+      "name": "forbidden_claim_absent_commercial_status_live_",
+      "ok": true,
+      "detail": "commercial_status\": \"live\""
+    },
+    {
+      "name": "forbidden_claim_absent_go_live_decision_go_",
+      "ok": true,
+      "detail": "go_live_decision\": \"go\""
+    },
+    {
+      "name": "forbidden_claim_absent_pagamenti_abilitati",
+      "ok": true,
+      "detail": "pagamenti abilitati"
+    },
+    {
+      "name": "forbidden_claim_absent_pubblicazione_approvata",
+      "ok": true,
+      "detail": "pubblicazione approvata"
+    },
+    {
+      "name": "forbidden_claim_absent_go_live_go",
+      "ok": true,
+      "detail": "go-live: go"
+    }
+  ],
+  "errors": []
+}
