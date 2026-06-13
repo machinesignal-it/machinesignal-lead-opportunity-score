@@ -1,0 +1,10 @@
+{
+  "probe_id": "pre_commercial_gate_gap_analysis_probe_20260613",
+  "status": "passed",
+  "checks_total": 59,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "commercial_go_live_readiness_percentage": 38,
+  "commercial_go_live_status": "blocked",
+  "recommended_next_action": "support_and_cost_guard_draft"
+}

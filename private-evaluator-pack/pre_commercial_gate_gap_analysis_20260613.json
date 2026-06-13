@@ -1,0 +1,229 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "analysis_id": "pre_commercial_gate_gap_analysis_20260613",
+  "created_at": "2026-06-13",
+  "status": "completed",
+  "mode": "NoWrite planning",
+  "source_pack": "pre_commercial_go_live_gate_pack_20260613",
+  "plain_italian_summary": "La parte tecnica sandbox e' quasi chiusa, ma il go-live commerciale resta bloccato da 8 gate. Gli agenti possono preparare molti materiali, ma alcune decisioni restano del proprietario: fiscalita'/P.IVA, approvazione termini, scelta provider pagamenti, accettazione rischi e attivazione live.",
+  "roadmap": {
+    "sandbox_test_completion_percentage": 94,
+    "commercial_go_live_readiness_percentage": 38,
+    "commercial_go_live_status": "blocked",
+    "main_reason": "technical sandbox is ready, commercial/legal/admin activation is not ready"
+  },
+  "gap_summary": {
+    "total_gates": 8,
+    "blocking_gates": 8,
+    "agent_preparable_gates": 8,
+    "owner_decision_required_gates": 5,
+    "estimated_agent_work_blocks": 13,
+    "estimated_owner_decision_blocks": 5
+  },
+  "gates": [
+    {
+      "gate": "admin_fiscal_gate",
+      "status": "blocked",
+      "priority": "critical",
+      "owner_agent": "Agente Admin & Finance Controller",
+      "what_is_missing": [
+        "decisione se e quando aprire P.IVA o altra forma fiscale",
+        "regola su fattura/ricevuta per clienti paganti",
+        "schema riconciliazione ricavi, crediti e costi",
+        "policy su quando un ordine diventa fiscalmente rilevante"
+      ],
+      "agents_can_prepare": [
+        "bozza checklist fiscale",
+        "schema registro ricavi/costi",
+        "modello audit crediti e ordini",
+        "domande da portare a commercialista"
+      ],
+      "owner_must_decide": [
+        "assetto fiscale",
+        "quando autorizzare incassi reali"
+      ],
+      "blocks_go_live": true
+    },
+    {
+      "gate": "legal_terms_gate",
+      "status": "blocked",
+      "priority": "critical",
+      "owner_agent": "Agente Legal & Compliance",
+      "what_is_missing": [
+        "termini di servizio per clienti paganti",
+        "limitazione responsabilita'",
+        "regole su output non valido/no-credit",
+        "uso accettabile e divieti",
+        "disclaimer: score e report supportano decisioni, non garantiscono risultati"
+      ],
+      "agents_can_prepare": [
+        "bozza termini non definitiva",
+        "mappa rischi legali",
+        "testo disclaimer prodotto",
+        "policy no-credit"
+      ],
+      "owner_must_decide": [
+        "approvazione legale finale con consulente se necessario"
+      ],
+      "blocks_go_live": true
+    },
+    {
+      "gate": "privacy_data_gate",
+      "status": "blocked",
+      "priority": "critical",
+      "owner_agent": "Agente Legal & Compliance",
+      "what_is_missing": [
+        "regola chiara per dati cliente reali",
+        "privacy policy per clienti paganti",
+        "data processing terms se il cliente carica liste",
+        "retention e cancellazione dati",
+        "separazione test sintetici vs dati live"
+      ],
+      "agents_can_prepare": [
+        "mappa dati trattati",
+        "bozza data handling policy",
+        "schema retention",
+        "controlli automatici per bloccare dati personali in test"
+      ],
+      "owner_must_decide": [
+        "se accettare dati reali in fase iniziale",
+        "approvazione privacy finale"
+      ],
+      "blocks_go_live": true
+    },
+    {
+      "gate": "payment_billing_gate",
+      "status": "blocked",
+      "priority": "critical",
+      "owner_agent": "Agente Admin & Finance Controller",
+      "what_is_missing": [
+        "provider pagamento live scelto",
+        "checkout live separato da test mode",
+        "webhook pagamento live validato",
+        "regola attivazione crediti dopo pagamento",
+        "riconciliazione pagamento-crediti-fattura"
+      ],
+      "agents_can_prepare": [
+        "simulazione tecnica test mode",
+        "schema evento pagamento",
+        "mappa errori pagamento",
+        "circuit breaker su mismatch"
+      ],
+      "owner_must_decide": [
+        "provider pagamento",
+        "attivazione live"
+      ],
+      "blocks_go_live": true
+    },
+    {
+      "gate": "production_api_key_gate",
+      "status": "blocked",
+      "priority": "high",
+      "owner_agent": "Agente API Product Manager",
+      "what_is_missing": [
+        "procedura emissione API key live",
+        "rotazione e revoca key",
+        "rate limit per cliente",
+        "separazione test/live",
+        "policy key compromessa"
+      ],
+      "agents_can_prepare": [
+        "API key policy",
+        "schema prefissi key",
+        "endpoint admin o procedura manuale protetta",
+        "test revoca/rotazione in ambiente sandbox"
+      ],
+      "owner_must_decide": [
+        "soglie live per cliente"
+      ],
+      "blocks_go_live": true
+    },
+    {
+      "gate": "support_post_sale_gate",
+      "status": "not_ready",
+      "priority": "high",
+      "owner_agent": "Agente Customer Success & Post-Sale",
+      "what_is_missing": [
+        "risposte automatiche errori comuni",
+        "stato ordini leggibile via API",
+        "stato crediti leggibile via API",
+        "regola escalation proprietario",
+        "procedura per non accumulare lavoro se il proprietario manca"
+      ],
+      "agents_can_prepare": [
+        "support playbook automatico",
+        "error catalog",
+        "SLA sandbox/live",
+        "no-work-accumulation queue policy"
+      ],
+      "owner_must_decide": [
+        "limite massimo escalation giornaliera"
+      ],
+      "blocks_go_live": true
+    },
+    {
+      "gate": "cost_limit_gate",
+      "status": "not_ready",
+      "priority": "high",
+      "owner_agent": "Orchestratore",
+      "what_is_missing": [
+        "limiti costo giornalieri",
+        "limiti per cliente",
+        "soglie Cloudflare KV/Worker",
+        "soglie DataForSEO/OpenAI",
+        "margine minimo per prodotto"
+      ],
+      "agents_can_prepare": [
+        "cost guard policy",
+        "simulazione margine per listino",
+        "daily spend monitor",
+        "stop trigger su cost spike"
+      ],
+      "owner_must_decide": [
+        "budget massimo giornaliero/mensile"
+      ],
+      "blocks_go_live": true
+    },
+    {
+      "gate": "public_distribution_gate",
+      "status": "blocked",
+      "priority": "medium",
+      "owner_agent": "Agente Growth & Distribution",
+      "what_is_missing": [
+        "scelta canale pubblico iniziale",
+        "messaggio marketplace/API directory",
+        "decisione se pubblicare hosted MCP",
+        "policy niente outreach umano",
+        "approvazione pubblicazione irreversibile"
+      ],
+      "agents_can_prepare": [
+        "bozze listing",
+        "checklist pubblicazione",
+        "canale consigliato",
+        "risk review prima di pubblicare"
+      ],
+      "owner_must_decide": [
+        "canale pubblico",
+        "approvazione pubblicazione"
+      ],
+      "blocks_go_live": true
+    }
+  ],
+  "recommended_sequence": [
+    "support_post_sale_gate",
+    "cost_limit_gate",
+    "production_api_key_gate",
+    "legal_terms_gate",
+    "privacy_data_gate",
+    "admin_fiscal_gate",
+    "payment_billing_gate",
+    "public_distribution_gate"
+  ],
+  "why_this_sequence": "Prima si riduce il rischio operativo automatico, poi quello tecnico-live, poi legale/fiscale/pagamenti, e solo alla fine si aumenta la distribuzione.",
+  "next_action": {
+    "name": "support_and_cost_guard_draft",
+    "mode": "NoWrite planning",
+    "plain_italian": "Preparare prima supporto automatico e limiti di costo, per evitare che il go-live crei lavoro umano o spese non controllate.",
+    "requires_owner_supervision": false
+  }
+}
