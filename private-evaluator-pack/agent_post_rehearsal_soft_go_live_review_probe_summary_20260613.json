@@ -1,0 +1,9 @@
+{
+  "probe_id": "agent_post_rehearsal_soft_go_live_review_probe_20260613",
+  "status": "passed",
+  "checks_total": 48,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "reviewed_artifact": "private-evaluator-pack\\agent_post_rehearsal_soft_go_live_review_20260613.json",
+  "recommended_next_step": "Sandbox Visibility Monitoring Pack"
+}

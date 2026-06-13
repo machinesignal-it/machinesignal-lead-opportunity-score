@@ -1,0 +1,155 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "review_id": "agent_post_rehearsal_soft_go_live_review_20260613",
+  "created_at": "2026-06-13",
+  "status": "completed",
+  "review_scope": "post_rehearsal_soft_go_live_sandbox_only",
+  "business_positioning": {
+    "customer": "machines_first",
+    "plain_language": "Il cliente operativo e' la macchina: CRM, agenti AI, workflow e software che cercano dati, score, report e pacchetti azionabili tramite API e contratti leggibili da sistemi automatici.",
+    "human_role": "Il proprietario supervisiona, approva blocchi critici e non gestisce lavoro commerciale manuale ordinario."
+  },
+  "evidence_reviewed": [
+    {
+      "artifact": "public_static_contract_deploy_probe_report_20260612.md",
+      "status": "passed",
+      "summary": "OpenAPI e manifest MCP sono pubblici e leggibili."
+    },
+    {
+      "artifact": "public_machine_readability_probe_report_20260613.md",
+      "status": "passed",
+      "checks_total": 97,
+      "checks_failed": 0,
+      "summary": "Il sito pubblico, GitHub e gli entrypoint macchina risultano leggibili."
+    },
+    {
+      "artifact": "soft_go_live_sandbox_only_control_pack_probe_report_20260613.md",
+      "status": "passed",
+      "checks_total": 76,
+      "checks_failed": 0,
+      "summary": "Il control pack impone sandbox, limiti di scrittura, blocchi commerciali e stop trigger."
+    },
+    {
+      "artifact": "soft_go_live_sandbox_only_rehearsal_report_20260613.md",
+      "status": "completed_soft_go_live_sandbox_only_rehearsal",
+      "checks_total": 58,
+      "checks_failed": 0,
+      "post_calls_executed": 5,
+      "max_post_calls_allowed": 5,
+      "summary": "Il percorso macchina ha letto i contratti pubblici, creato una sandbox sintetica, richiesto discovery, score, deep analysis, action pack, usage e orders."
+    }
+  ],
+  "rehearsal_result": {
+    "ok": true,
+    "score": 81,
+    "confidence": 0.88,
+    "decision": "buy_deep_analysis",
+    "action_pack_gate_passed": true,
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "external_publication_executed": false,
+    "production_api_key_published": false,
+    "real_customer_data_used": false,
+    "personal_data_used": false
+  },
+  "agent_votes": [
+    {
+      "agent": "Orchestratore",
+      "vote": "go_conditional",
+      "position": "keep_sandbox_visible_continue_controlled_testing",
+      "reason": "Il flusso macchina funziona entro i limiti del control pack."
+    },
+    {
+      "agent": "Agente API Product Manager",
+      "vote": "go_conditional",
+      "position": "prepare_observation_metrics",
+      "reason": "Endpoint, OpenAPI e manifest sono comprensibili; serve monitorare quali path vengono letti e testati."
+    },
+    {
+      "agent": "Machine-to-Machine Sales Ops",
+      "vote": "go_conditional",
+      "position": "passive_machine_visibility_only",
+      "reason": "La visibilita' passiva e' coerente con il modello machine-first; niente outreach umano."
+    },
+    {
+      "agent": "Agente Customer Success & Post-Sale",
+      "vote": "go_conditional",
+      "position": "prepare_sandbox_support_rules",
+      "reason": "La post-vendita deve restare automatizzata con risposte di stato, usage, ordini sandbox e report."
+    },
+    {
+      "agent": "Agente Admin & Finance Controller",
+      "vote": "no_go_paid",
+      "position": "block_paid_launch_until_tax_and_billing_ready",
+      "reason": "Senza assetto amministrativo e fiscale approvato non si attivano pagamenti, fatture o contratti pagati."
+    },
+    {
+      "agent": "Agente Legal & Compliance",
+      "vote": "no_go_real_data_or_external_contact",
+      "position": "synthetic_only_no_personal_data",
+      "reason": "Il test deve restare su dati sintetici e senza contatti esterni."
+    },
+    {
+      "agent": "Agente Growth & Distribution",
+      "vote": "hold_distribution",
+      "position": "no_marketplace_no_public_registry_yet",
+      "reason": "Prima di pubblicare su marketplace, registry o canali esterni servono monitoraggio, pricing finale e governance."
+    },
+    {
+      "agent": "Agente Continuous Learning",
+      "vote": "go_conditional",
+      "position": "run_learning_without_external_writes",
+      "reason": "Si possono migliorare documentazione, scoring e listino usando benchmark e test interni senza contattare terzi."
+    },
+    {
+      "agent": "Agente HR & Agent Manager",
+      "vote": "go_conditional",
+      "position": "agent_coverage_ok",
+      "reason": "Gli agenti coprono prodotto, dati, scoring, growth, commerciale automatico, post-vendita, admin e legale."
+    }
+  ],
+  "decision": {
+    "verdict": "keep_sandbox_visible_continue_no_paid_no_external_publication",
+    "plain_language": "La sandbox puo' restare visibile e puo' essere testata dalle macchine. Non e' un paid launch e non e' ancora una distribuzione commerciale pubblica.",
+    "allowed_next_action": "prepare_sandbox_visibility_monitoring_pack",
+    "allowed_now": [
+      "keep_public_machine_readable_docs_visible",
+      "run_private_sandbox_rehearsals_with_synthetic_data",
+      "monitor_public_readability_and_contract_integrity",
+      "improve docs, examples, pricing explanation and sandbox responses",
+      "prepare automated post-sale sandbox flows"
+    ],
+    "blocked_until_owner_approval": [
+      "real payment",
+      "paid checkout",
+      "invoice issuance",
+      "payment method collection",
+      "public paid marketplace listing",
+      "hosted public MCP",
+      "MCP registry publication",
+      "production API key publication",
+      "human outreach",
+      "email campaign",
+      "external contact",
+      "real customer data",
+      "personal data",
+      "real lead list processing",
+      "unbounded write operations"
+    ]
+  },
+  "recommended_next_step": {
+    "name": "Sandbox Visibility Monitoring Pack",
+    "purpose": "Definire come gli agenti controllano ogni giorno se le macchine riescono a trovare, leggere e testare MachineSignal senza generare costi, contatti esterni o rischi commerciali.",
+    "must_include": [
+      "daily public endpoint checks",
+      "OpenAPI and MCP manifest integrity checks",
+      "sandbox usage counters",
+      "Cloudflare KV usage guard",
+      "GitHub public documentation checks",
+      "stop triggers for 429, billing, payment, external contact or real data",
+      "daily user summary within 1-2 hours supervision"
+    ]
+  }
+}
