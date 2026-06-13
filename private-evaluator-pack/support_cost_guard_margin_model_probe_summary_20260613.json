@@ -1,0 +1,10 @@
+{
+  "probe_id": "support_cost_guard_margin_model_probe_20260613",
+  "status": "passed",
+  "checks_total": 55,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "commercial_status": "not_live",
+  "products_count": 4,
+  "recommended_next_action": "margin_model_agent_review"
+}

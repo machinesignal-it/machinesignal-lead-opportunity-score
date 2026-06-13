@@ -1,0 +1,126 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "model_id": "support_cost_guard_margin_model_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_draft": "support_and_cost_guard_draft_20260613",
+  "plain_italian_summary": "Questo modello stima i margini minimi da rispettare prima di vendere davvero. Non attiva pagamenti, non usa dati reali, non contatta clienti e non chiama servizi paid esterni.",
+  "commercial_status": "not_live",
+  "assumptions": {
+    "currency": "EUR",
+    "prices_are_planning_prices": true,
+    "real_payments_enabled": false,
+    "invoices_enabled": false,
+    "external_paid_api_calls_enabled": false,
+    "real_customer_data_enabled": false,
+    "minimum_gross_margin_target": 0.7,
+    "minimum_margin_after_agent_cost_target": 0.55,
+    "agent_credit_cost_is_variable": true,
+    "agent_credit_cost_rule": "Agent cost must be measured per valid output and included before any live sale."
+  },
+  "products": [
+    {
+      "product_code": "target_discovery_pack_250",
+      "planning_price_eur": 149,
+      "unit_sold": "250 coherent target records or no-go market coverage decision",
+      "valid_output_rule": "Charge only if 250 coherent records are delivered or a documented no-go coverage decision is returned.",
+      "estimated_cost_components": {
+        "data_source_cost_max_eur": 25,
+        "agent_credit_cost_max_eur": 20,
+        "infrastructure_cost_max_eur": 5,
+        "quality_control_cost_max_eur": 10,
+        "support_cost_max_eur": 5
+      },
+      "max_total_cost_eur": 65,
+      "minimum_expected_gross_margin_eur": 84,
+      "minimum_expected_gross_margin_pct": 0.56,
+      "status": "needs_cost_reduction_or_price_review",
+      "stop_rule": "Do not sell live if expected total cost exceeds 65 EUR or if valid-output rate is below 85%."
+    },
+    {
+      "product_code": "score_pack_1k",
+      "planning_price_eur": 99,
+      "unit_sold": "1000 valid opportunity scores",
+      "valid_output_rule": "Consume credit only on valid score with decision, confidence and auditable reason codes.",
+      "estimated_cost_components": {
+        "data_source_cost_max_eur": 10,
+        "agent_credit_cost_max_eur": 12,
+        "infrastructure_cost_max_eur": 4,
+        "quality_control_cost_max_eur": 4,
+        "support_cost_max_eur": 3
+      },
+      "max_total_cost_eur": 33,
+      "minimum_expected_gross_margin_eur": 66,
+      "minimum_expected_gross_margin_pct": 0.67,
+      "status": "close_to_margin_target",
+      "stop_rule": "Do not sell live if cost per valid score exceeds 0.033 EUR or duplicate/idempotency protection fails."
+    },
+    {
+      "product_code": "deep_analysis_pack_100",
+      "planning_price_eur": 249,
+      "unit_sold": "100 valid deep analysis reports",
+      "valid_output_rule": "Consume credit only if the report includes evidence, risk, opportunity reason, next decision and no-credit handling.",
+      "estimated_cost_components": {
+        "data_source_cost_max_eur": 35,
+        "agent_credit_cost_max_eur": 40,
+        "infrastructure_cost_max_eur": 8,
+        "quality_control_cost_max_eur": 15,
+        "support_cost_max_eur": 8
+      },
+      "max_total_cost_eur": 106,
+      "minimum_expected_gross_margin_eur": 143,
+      "minimum_expected_gross_margin_pct": 0.57,
+      "status": "needs_cost_reduction_or_price_review",
+      "stop_rule": "Do not sell live if cost per valid report exceeds 1.06 EUR or no-credit validation fails."
+    },
+    {
+      "product_code": "action_pack_25",
+      "planning_price_eur": 149,
+      "unit_sold": "25 valid machine-readable action packs",
+      "valid_output_rule": "Consume credit only after Deep Analysis gate passes and action pack includes CRM patch, task, payload, stop rules and audit event.",
+      "estimated_cost_components": {
+        "data_source_cost_max_eur": 8,
+        "agent_credit_cost_max_eur": 18,
+        "infrastructure_cost_max_eur": 4,
+        "quality_control_cost_max_eur": 10,
+        "support_cost_max_eur": 5
+      },
+      "max_total_cost_eur": 45,
+      "minimum_expected_gross_margin_eur": 104,
+      "minimum_expected_gross_margin_pct": 0.7,
+      "status": "meets_margin_target",
+      "stop_rule": "Do not sell live if Deep Analysis gate is missing or cost per valid action pack exceeds 1.80 EUR."
+    }
+  ],
+  "portfolio_summary": {
+    "products_count": 4,
+    "meets_margin_target_count": 1,
+    "close_to_margin_target_count": 1,
+    "needs_price_or_cost_review_count": 2,
+    "recommended_live_order": [
+      "action_pack_25",
+      "score_pack_1k",
+      "deep_analysis_pack_100",
+      "target_discovery_pack_250"
+    ],
+    "reason": "Action Pack has the strongest planning margin if gated by Deep Analysis. Score Pack is scalable but must prove cost per valid score. Deep Analysis and Target Discovery need cost reduction or price review before paid launch."
+  },
+  "global_stop_rules": [
+    "real payment attempted before owner approval",
+    "invoice attempted before owner approval",
+    "external paid API call attempted without budget approval",
+    "agent credit cost cannot be measured per valid output",
+    "valid-output rate below 85%",
+    "cost per product exceeds max_total_cost_eur",
+    "idempotency or duplicate protection fails",
+    "personal data or real customer data appears in test mode",
+    "Cloudflare KV or Worker 429 appears"
+  ],
+  "recommended_next_action": {
+    "name": "margin_model_agent_review",
+    "mode": "NoWrite planning",
+    "plain_italian": "Far rivedere il modello agli agenti Admin, API Product, Sales Ops e Legal per decidere se i prezzi sono sostenibili o se serve cambiare listino prima del live.",
+    "requires_owner_supervision": false
+  }
+}
