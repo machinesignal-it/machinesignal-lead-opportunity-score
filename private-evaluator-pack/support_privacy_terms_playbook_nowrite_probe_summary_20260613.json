@@ -1,0 +1,137 @@
+{
+  "probe_id": "support_privacy_terms_playbook_nowrite_probe_20260613",
+  "created_at": "2026-06-13T16:29:01.016Z",
+  "checks": [
+    {
+      "name": "status_prepared",
+      "ok": true,
+      "detail": "prepared"
+    },
+    {
+      "name": "mode_nowrite",
+      "ok": true,
+      "detail": "NoWrite planning"
+    },
+    {
+      "name": "source_acceptance_flow_present",
+      "ok": true,
+      "detail": "terms_acceptance_flow_draft_nowrite_20260613"
+    },
+    {
+      "name": "commercial_not_live",
+      "ok": true,
+      "detail": "not_live"
+    },
+    {
+      "name": "go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "allowed_cases_present",
+      "ok": true,
+      "detail": "S1_terms_explanation, S2_credit_no_credit_question, S3_schema_or_error_help, S4_policy_status_question, S5_sandbox_usage_question"
+    },
+    {
+      "name": "allowed_cases_no_owner_escalation",
+      "ok": true,
+      "detail": "ordinary cases no escalation"
+    },
+    {
+      "name": "mandatory_escalations_present",
+      "ok": true,
+      "detail": "E1_real_data_or_personal_data, E2_payment_invoice_or_tax, E3_legal_or_dpa_approval, E4_external_outreach, E5_security_or_key_exposure, E6_publication_or_marketplace"
+    },
+    {
+      "name": "mandatory_escalations_all_escalate",
+      "ok": true,
+      "detail": "all escalation true"
+    },
+    {
+      "name": "standard_responses_present",
+      "ok": true,
+      "detail": "MS_POLICY_LIVE_BLOCKED, MS_POLICY_FORBIDDEN_INPUT, MS_OUTPUT_INCOMPLETE, MS_LEGAL_REVIEW_REQUIRED"
+    },
+    {
+      "name": "standard_responses_zero_credit",
+      "ok": true,
+      "detail": "zero credit"
+    },
+    {
+      "name": "queue_control_limits_owner",
+      "ok": true,
+      "detail": "{\"normal_agent_handling_limit_per_day\":25,\"owner_escalation_digest_limit\":3,\"duplicate_ticket_auto_close\":true,\"owner_absence_mode_after_hours\":24,\"owner_absence_behavior\":[\"continue answering allowed cases\",\"block mandatory escalation cases\",\"do not retry payment/live/publication actions\",\"summarize only top 3 escalations\",\"preserve no-write mode\"],\"hard_stop_if_escalations_exceed\":5}"
+    },
+    {
+      "name": "queue_control_owner_absence",
+      "ok": true,
+      "detail": "absence behavior"
+    },
+    {
+      "name": "evidence_without_sensitive_data",
+      "ok": true,
+      "detail": "case_id, request_id, error_code, blocked_reason, credit_delta, redacted_payload_shape"
+    },
+    {
+      "name": "forbidden_storage_present",
+      "ok": true,
+      "detail": "full_personal_payload, full_api_key, password, payment_card_data, personal_email_from_payload, personal_phone_from_payload, sensitive_data"
+    },
+    {
+      "name": "hard_blocks_preserved",
+      "ok": true,
+      "detail": "real_payments, invoices, payment_method_collection, external_outreach, email_sending_to_humans, real_data_processing, personal_data_processing, production_api_key_issuing, public_paid_marketplace, hosted_mcp_public, mcp_registry_publication, commercial_go_live"
+    },
+    {
+      "name": "readiness_go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "next_action_agent_policy",
+      "ok": true,
+      "detail": "agent_operating_policy_update_nowrite"
+    },
+    {
+      "name": "forbidden_claim_absent_commercial_status_live_",
+      "ok": true,
+      "detail": "commercial_status\": \"live\""
+    },
+    {
+      "name": "forbidden_claim_absent_go_live_decision_go_",
+      "ok": true,
+      "detail": "go_live_decision\": \"go\""
+    },
+    {
+      "name": "forbidden_claim_absent_pagamenti_abilitati",
+      "ok": true,
+      "detail": "pagamenti abilitati"
+    },
+    {
+      "name": "forbidden_claim_absent_dati_reali_approvati",
+      "ok": true,
+      "detail": "dati reali approvati"
+    },
+    {
+      "name": "forbidden_claim_absent_legalmente_approvato",
+      "ok": true,
+      "detail": "legalmente approvato"
+    },
+    {
+      "name": "forbidden_claim_absent_send_email_true",
+      "ok": true,
+      "detail": "send_email\": true"
+    },
+    {
+      "name": "md_contains_escalation_language",
+      "ok": true,
+      "detail": "escalation heading"
+    },
+    {
+      "name": "md_next_action_present",
+      "ok": true,
+      "detail": "next action"
+    }
+  ],
+  "errors": []
+}

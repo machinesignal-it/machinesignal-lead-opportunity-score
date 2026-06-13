@@ -1,0 +1,274 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "playbook_id": "support_privacy_terms_playbook_nowrite_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_acceptance_flow": "terms_acceptance_flow_draft_nowrite_20260613",
+  "source_support_guard": "support_and_cost_guard_draft_20260613",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "agent_only_goal": "Let agents handle ordinary support, privacy and terms questions without accumulating owner work, while blocking legal, payment, real-data and external-contact actions.",
+  "plain_italian_summary": "Questo playbook dice agli agenti cosa possono rispondere da soli e quando devono fermarsi. Serve a mantenere il modello agent-only: gli agenti gestiscono casi ordinari, ma non prendono decisioni legali, fiscali, privacy delicate o commerciali live.",
+  "allowed_agent_handling": [
+    {
+      "case_id": "S1_terms_explanation",
+      "case": "A machine or account owner asks what the service does.",
+      "agent_can_answer": true,
+      "response_mode": "plain_summary_plus_machine_readable_links",
+      "must_include": [
+        "service supports machine decisioning",
+        "no guaranteed revenue",
+        "human/company owner required for legal responsibility",
+        "not live for paid commercial use"
+      ],
+      "owner_escalation": false
+    },
+    {
+      "case_id": "S2_credit_no_credit_question",
+      "case": "Machine asks why a credit was or was not consumed.",
+      "agent_can_answer": true,
+      "response_mode": "ledger_explanation",
+      "must_include": [
+        "request_id",
+        "product_code",
+        "credit_delta",
+        "valid_output_reason_or_no_credit_reason",
+        "idempotency_key_if_available"
+      ],
+      "owner_escalation": false
+    },
+    {
+      "case_id": "S3_schema_or_error_help",
+      "case": "Machine asks how to fix invalid schema or blocked request.",
+      "agent_can_answer": true,
+      "response_mode": "structured_retry_guidance",
+      "must_include": [
+        "error_code",
+        "missing_or_forbidden_fields",
+        "retry_allowed",
+        "example_synthetic_payload_only"
+      ],
+      "owner_escalation": false
+    },
+    {
+      "case_id": "S4_policy_status_question",
+      "case": "Machine asks whether it can consume credits, process real data or pay.",
+      "agent_can_answer": true,
+      "response_mode": "policy_status_response",
+      "must_include": [
+        "can_consume_credits",
+        "can_process_real_data=false",
+        "can_make_payment=false",
+        "blocked_reasons",
+        "next_allowed_actions"
+      ],
+      "owner_escalation": false
+    },
+    {
+      "case_id": "S5_sandbox_usage_question",
+      "case": "Machine asks how to run demo or sandbox tests.",
+      "agent_can_answer": true,
+      "response_mode": "sandbox_only_steps",
+      "must_include": [
+        "synthetic_data_only",
+        "no real data",
+        "no payment",
+        "no external outreach",
+        "rate/cost guard applies"
+      ],
+      "owner_escalation": false
+    }
+  ],
+  "mandatory_escalation_cases": [
+    {
+      "case_id": "E1_real_data_or_personal_data",
+      "trigger": "Payload, request or ticket includes real customer data, personal data, contact data or free text that may identify a person.",
+      "agent_action": "block_processing_and_acknowledge_policy",
+      "owner_escalation": true,
+      "must_not_do": [
+        "process_payload",
+        "store_payload_in_report",
+        "summarize_personal_details",
+        "send_external_contact"
+      ]
+    },
+    {
+      "case_id": "E2_payment_invoice_or_tax",
+      "trigger": "Request asks for payment, invoice, VAT, fiscal terms, refund as money or paid activation.",
+      "agent_action": "block_commercial_action_and_report_gate",
+      "owner_escalation": true,
+      "must_not_do": [
+        "collect_payment_method",
+        "issue_invoice",
+        "promise_paid_activation",
+        "quote_final_legal_terms"
+      ]
+    },
+    {
+      "case_id": "E3_legal_or_dpa_approval",
+      "trigger": "Request asks whether terms, privacy, DPA, liability or SLA are legally approved.",
+      "agent_action": "state_not_final_and_escalate",
+      "owner_escalation": true,
+      "must_not_do": [
+        "claim_legal_approval",
+        "publish_final_terms",
+        "accept_liability_change",
+        "promise_sla"
+      ]
+    },
+    {
+      "case_id": "E4_external_outreach",
+      "trigger": "Request asks to send emails, contact humans, message prospects or perform outreach.",
+      "agent_action": "block_outreach",
+      "owner_escalation": true,
+      "must_not_do": [
+        "send_email",
+        "prepare_personalized_outreach_to_real_person",
+        "scrape_contact_details",
+        "contact_external_party"
+      ]
+    },
+    {
+      "case_id": "E5_security_or_key_exposure",
+      "trigger": "API key, password, token, suspicious usage or security incident appears.",
+      "agent_action": "redact_and_escalate_security",
+      "owner_escalation": true,
+      "must_not_do": [
+        "repeat_secret",
+        "commit_secret",
+        "log_full_key",
+        "continue_using_exposed_key"
+      ]
+    },
+    {
+      "case_id": "E6_publication_or_marketplace",
+      "trigger": "Request asks to publish to marketplace, registry, hosted MCP or irreversible public channel.",
+      "agent_action": "block_publication_without_explicit_owner_approval",
+      "owner_escalation": true,
+      "must_not_do": [
+        "publish_marketplace_listing",
+        "publish_hosted_mcp",
+        "register_public_tool",
+        "turn_on_paid_public_offer"
+      ]
+    }
+  ],
+  "standard_responses": [
+    {
+      "response_id": "R1_not_live",
+      "use_when": "Any machine asks for paid/live capability before approval.",
+      "machine_response": {
+        "status": "blocked",
+        "error_code": "MS_POLICY_LIVE_BLOCKED",
+        "credit_delta": 0,
+        "message": "Commercial live usage is not enabled. Sandbox synthetic testing only.",
+        "next_allowed_actions": [
+          "run_synthetic_demo",
+          "read_machine_readable_terms",
+          "request_owner_review"
+        ]
+      }
+    },
+    {
+      "response_id": "R2_real_data_blocked",
+      "use_when": "Real or personal data appears in input.",
+      "machine_response": {
+        "status": "blocked",
+        "error_code": "MS_POLICY_FORBIDDEN_INPUT",
+        "credit_delta": 0,
+        "message": "Real/personal data processing is not approved. Payload not processed.",
+        "next_allowed_actions": [
+          "retry_with_synthetic_data",
+          "remove_personal_fields",
+          "request_privacy_review"
+        ]
+      }
+    },
+    {
+      "response_id": "R3_no_credit_invalid_output",
+      "use_when": "Output cannot be completed or request schema is invalid.",
+      "machine_response": {
+        "status": "rejected",
+        "error_code": "MS_OUTPUT_INCOMPLETE",
+        "credit_delta": 0,
+        "message": "No credit consumed because required valid output was not produced.",
+        "next_allowed_actions": [
+          "retry_with_valid_schema",
+          "check_required_fields"
+        ]
+      }
+    },
+    {
+      "response_id": "R4_terms_not_final",
+      "use_when": "Question asks whether legal terms/privacy/DPA are final.",
+      "machine_response": {
+        "status": "blocked",
+        "error_code": "MS_LEGAL_REVIEW_REQUIRED",
+        "credit_delta": 0,
+        "message": "Terms/privacy/DPA are draft and require owner/professional approval before live use.",
+        "next_allowed_actions": [
+          "read_draft_summary",
+          "request_owner_review"
+        ]
+      }
+    }
+  ],
+  "queue_control": {
+    "normal_agent_handling_limit_per_day": 25,
+    "owner_escalation_digest_limit": 3,
+    "duplicate_ticket_auto_close": true,
+    "owner_absence_mode_after_hours": 24,
+    "owner_absence_behavior": [
+      "continue answering allowed cases",
+      "block mandatory escalation cases",
+      "do not retry payment/live/publication actions",
+      "summarize only top 3 escalations",
+      "preserve no-write mode"
+    ],
+    "hard_stop_if_escalations_exceed": 5
+  },
+  "evidence_to_store_without_sensitive_data": [
+    "case_id",
+    "request_id",
+    "product_code_if_any",
+    "error_code",
+    "blocked_reason",
+    "credit_delta",
+    "redacted_payload_shape",
+    "owner_escalation_required",
+    "timestamp"
+  ],
+  "forbidden_storage": [
+    "full_personal_payload",
+    "full_api_key",
+    "password",
+    "payment_card_data",
+    "personal_email_from_payload",
+    "personal_phone_from_payload",
+    "sensitive_data"
+  ],
+  "hard_blocks_preserved": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "email_sending_to_humans",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live"
+  ],
+  "readiness_after_playbook": {
+    "support_agent_only_readiness": 72,
+    "privacy_terms_support_readiness": 64,
+    "machine_buyer_contract_readiness": 62,
+    "commercial_readiness": 65,
+    "go_live_status": "no_go",
+    "reason": "The playbook reduces owner workload and defines escalation, but legal/privacy/fiscal gates and live support process remain unapproved."
+  },
+  "recommended_next_action": "agent_operating_policy_update_nowrite"
+}
