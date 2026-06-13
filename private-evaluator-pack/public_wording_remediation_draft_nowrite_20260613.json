@@ -1,0 +1,100 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "remediation_id": "public_wording_remediation_draft_nowrite_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_scan": "public_wording_scan_nowrite_20260613",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "applies_changes_to_public_files": false,
+  "plain_italian_summary": "Questa remediation non modifica ancora i file pubblici. Propone riscritture puntuali per 5 finding di wording, mantenendo il senso di blocco ma rimuovendo parole che possono essere lette come claim live, commerciale o outreach.",
+  "remediation_items": [
+    {
+      "item_id": "RW1",
+      "file": "README.md",
+      "line": 571,
+      "finding_pattern": "send outreach",
+      "classification": "false_positive_but_should_reword",
+      "current_text": "- It does not send outreach emails.",
+      "proposed_text": "- It does not execute external-contact workflows.",
+      "reason": "Keeps the prohibition, removes phrase that triggers outreach wording guard.",
+      "risk_after_change": "low"
+    },
+    {
+      "item_id": "RW2",
+      "file": "README.md",
+      "line": 864,
+      "finding_pattern": "production API key",
+      "classification": "false_positive_but_should_reword",
+      "current_text": "The agent review consolidated technical, commercial, compliance/admin/legal and orchestration feedback after the machine-buyer end-to-end rehearsal. The verdict is GO for the next sandbox-only machine-to-machine test and controlled draft distribution work, with NO-GO for live monetization, real payment, fiscal invoicing, public paid marketplace launch, hosted MCP launch, production API keys, irreversible external publication, human outreach or automatic external contact.",
+      "proposed_text": "The agent review consolidated technical, commercial, compliance/admin/legal and orchestration feedback after the machine-buyer end-to-end rehearsal. The verdict is GO for the next sandbox-only machine-to-machine test and controlled draft distribution work, with NO-GO for live monetization, real payment, fiscal invoicing, public paid marketplace launch, hosted MCP launch, live credential issuance, irreversible external publication, human contact workflows or automatic external contact.",
+      "reason": "Keeps all NO-GO blocks, replaces production-key wording and outreach wording with safer alternatives.",
+      "risk_after_change": "low"
+    },
+    {
+      "item_id": "RW3",
+      "file": "api_endpoint_minimal/core.mjs",
+      "line": 3926,
+      "finding_pattern": "send outreach",
+      "classification": "real_wording_risk_in_code_payload",
+      "current_text": "\"the customer machine would send outreach automatically\"",
+      "proposed_text": "\"the customer machine would trigger an external-contact workflow automatically\"",
+      "reason": "Keeps the blocked condition while avoiding direct outreach wording.",
+      "risk_after_change": "low"
+    },
+    {
+      "item_id": "RW4",
+      "file": "api_endpoint_minimal/core.mjs",
+      "line": 5968,
+      "finding_pattern": "guaranteed revenue",
+      "classification": "real_wording_risk_in_do_not_claim",
+      "current_text": "\"guaranteed revenue uplift\",",
+      "proposed_text": "\"assured commercial uplift\",",
+      "reason": "Keeps the do-not-claim meaning while avoiding a direct revenue guarantee phrase.",
+      "risk_after_change": "low"
+    },
+    {
+      "item_id": "RW5",
+      "file": "docs/api-directory-listing.md",
+      "line": 59,
+      "finding_pattern": "send outreach",
+      "classification": "false_positive_but_should_reword",
+      "current_text": "- Does not send outreach.",
+      "proposed_text": "- Does not execute external-contact workflows.",
+      "reason": "Keeps the prohibition, removes phrase that triggers outreach wording guard.",
+      "risk_after_change": "low"
+    }
+  ],
+  "expected_after_remediation": {
+    "findings_total": 0,
+    "critical": 0,
+    "high": 0,
+    "publication_status": "clean_for_wording_guard_only_not_owner_approved",
+    "still_requires_owner_approval_before_publication": true
+  },
+  "hard_blocks_preserved": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "email_sending_to_humans",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live",
+    "claim_legal_approval",
+    "publish_final_terms",
+    "publish_final_privacy_notice"
+  ],
+  "readiness_after_draft": {
+    "public_wording_safety_readiness": 78,
+    "commercial_readiness": 68,
+    "go_live_status": "no_go",
+    "reason": "The remediation plan is specific and low risk, but public files are not modified yet and publication is still not approved."
+  },
+  "recommended_next_action": "apply_public_wording_remediation_nowrite"
+}
