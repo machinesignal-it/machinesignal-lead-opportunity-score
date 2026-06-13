@@ -1,0 +1,569 @@
+{
+  "date": "2026-06-13",
+  "status": "passed",
+  "purpose": "Simulate a machine evaluator discovering MachineSignal from public assets and deciding what product or endpoint to use.",
+  "mode": "NoWritePublicMachineReadabilityProbe",
+  "resources_checked": 10,
+  "category_summary": {
+    "discoverability": {
+      "checks_total": 26,
+      "checks_failed": 0,
+      "score_pct": 100
+    },
+    "commercial_clarity": {
+      "checks_total": 43,
+      "checks_failed": 0,
+      "score_pct": 100
+    },
+    "technical_actionability": {
+      "checks_total": 26,
+      "checks_failed": 0,
+      "score_pct": 100
+    },
+    "safety_boundedness": {
+      "checks_total": 4,
+      "checks_failed": 0,
+      "score_pct": 100
+    }
+  },
+  "machine_decision": {
+    "customer_with_existing_list": {
+      "understood": true,
+      "product": "score_pack_1k",
+      "first_call": "POST /v1/lead-opportunity-score",
+      "expected_endpoint_present": true
+    },
+    "customer_without_list": {
+      "understood": true,
+      "product": "target_discovery",
+      "first_call": "POST /v1/purchase-intent",
+      "required_inputs": [
+        "market",
+        "area",
+        "commercial_objective"
+      ],
+      "expected_endpoint_present": true
+    },
+    "customer_wants_next_action": {
+      "understood": true,
+      "product": "action_pack",
+      "first_call": "POST /v1/purchase-intent",
+      "expected_endpoint_present": true
+    },
+    "mcp_client": {
+      "understood": true,
+      "tools": [
+        "score_lead_opportunity",
+        "create_purchase_intent",
+        "create_sandbox_customer",
+        "get_order"
+      ],
+      "hosted_mcp_live": false,
+      "local_adapter_or_manifest_path": "mcp-tool-manifest.json"
+    }
+  },
+  "safety": {
+    "write_calls_executed": 0,
+    "post_calls_executed": 0,
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "external_publication_executed": false,
+    "live_monetization_enabled": false,
+    "production_api_key_published": false,
+    "personal_data_used": false,
+    "real_customer_data_used": false
+  },
+  "checks_total": 97,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "homepage_reachable",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "homepage_non_empty",
+      "ok": true,
+      "details": "17831 bytes"
+    },
+    {
+      "name": "robots_reachable",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "robots_non_empty",
+      "ok": true,
+      "details": "16379 bytes"
+    },
+    {
+      "name": "llms_reachable",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "llms_non_empty",
+      "ok": true,
+      "details": "39047 bytes"
+    },
+    {
+      "name": "machine_onboarding_reachable",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "machine_onboarding_non_empty",
+      "ok": true,
+      "details": "137138 bytes"
+    },
+    {
+      "name": "product_catalog_reachable",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "product_catalog_non_empty",
+      "ok": true,
+      "details": "12086 bytes"
+    },
+    {
+      "name": "openapi_reachable",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "openapi_non_empty",
+      "ok": true,
+      "details": "62565 bytes"
+    },
+    {
+      "name": "mcp_manifest_reachable",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "mcp_manifest_non_empty",
+      "ok": true,
+      "details": "130510 bytes"
+    },
+    {
+      "name": "well_known_manifest_reachable",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "well_known_manifest_non_empty",
+      "ok": true,
+      "details": "130510 bytes"
+    },
+    {
+      "name": "github_readme_reachable",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "github_readme_non_empty",
+      "ok": true,
+      "details": "67250 bytes"
+    },
+    {
+      "name": "github_machine_entrypoint_reachable",
+      "ok": true,
+      "details": "HTTP 200"
+    },
+    {
+      "name": "github_machine_entrypoint_non_empty",
+      "ok": true,
+      "details": "4048 bytes"
+    },
+    {
+      "name": "machine_onboarding_json_valid",
+      "ok": true,
+      "details": "application/json"
+    },
+    {
+      "name": "product_catalog_json_valid",
+      "ok": true,
+      "details": "application/json"
+    },
+    {
+      "name": "openapi_json_valid",
+      "ok": true,
+      "details": "application/json"
+    },
+    {
+      "name": "mcp_manifest_json_valid",
+      "ok": true,
+      "details": "application/json"
+    },
+    {
+      "name": "well_known_manifest_json_valid",
+      "ok": true,
+      "details": "application/json"
+    },
+    {
+      "name": "public_assets_state_machine_first_customer",
+      "ok": true,
+      "details": "machine-first wording and structured interface markers"
+    },
+    {
+      "name": "public_assets_explain_human_supervision_only",
+      "ok": true,
+      "details": "human role is bounded to supervision, approval or audit"
+    },
+    {
+      "name": "onboarding_has_machine_first_rule",
+      "ok": true,
+      "details": "Do not rely on human email persuasion as the primary sales channel. Use public manifests, OpenAPI, llms.txt and callable endpoints."
+    },
+    {
+      "name": "onboarding_has_base_url",
+      "ok": true,
+      "details": "https://machinesignal-api.beta-878.workers.dev"
+    },
+    {
+      "name": "onboarding_points_to_openapi",
+      "ok": true,
+      "details": "/openapi.json"
+    },
+    {
+      "name": "onboarding_points_to_product_catalog",
+      "ok": true,
+      "details": "/product-catalog.json"
+    },
+    {
+      "name": "onboarding_points_to_well_known_machine_discovery",
+      "ok": true,
+      "details": "https://machinesignal.it/.well-known/machine-discovery.json"
+    },
+    {
+      "name": "catalog_has_existing_list_scenario",
+      "ok": true,
+      "details": "{\"machine_goal\":\"Prioritize an existing list of domains or companies before spending campaign, CRM or agent budget.\",\"first_call\":\"POST /v1/lead-opportunity-score\",\"first_product\":\"score_pack_1k\",\"next_products\":[\"deep_analysis\",\"verification\",\"nurture_signal\",\"action_pack\"]}"
+    },
+    {
+      "name": "catalog_has_no_list_scenario",
+      "ok": true,
+      "details": "{\"machine_goal\":\"Find companies or domains useful for a specific commercial objective, sector and area.\",\"first_call\":\"POST /v1/purchase-intent\",\"first_product\":\"target_discovery\",\"required_inputs\":[\"market\",\"area\",\"commercial_objective\"],\"example_commercial_objective\":\"find real estate agency websites worth scoring for digital presence improvement opportunities\",\"next_products\":[\"score_pack_1k\",\"domain_enrichment\",\"deep_analysis\"]}"
+    },
+    {
+      "name": "catalog_no_list_requires_market_area_objective",
+      "ok": true,
+      "details": "[\"market\",\"area\",\"commercial_objective\"]"
+    },
+    {
+      "name": "catalog_has_next_action_scenario",
+      "ok": true,
+      "details": "{\"machine_goal\":\"Turn a confirmed opportunity into a CRM- or agent-readable action payload.\",\"first_call\":\"POST /v1/purchase-intent\",\"first_product\":\"action_pack\",\"required_inputs\":[\"domain\",\"source_score_request_id\",\"reason\"],\"next_products\":[\"opportunity_feed\",\"api_pro\"]}"
+    },
+    {
+      "name": "target_discovery_pack_250_exists",
+      "ok": true,
+      "details": "target_discovery_pack_250"
+    },
+    {
+      "name": "target_discovery_pack_250_has_price_or_quote",
+      "ok": true,
+      "details": "Target Discovery Pack"
+    },
+    {
+      "name": "target_discovery_pack_250_has_when_to_buy",
+      "ok": true,
+      "details": "When the customer machine does not already have a list and wants targets for a specific commercial objective, sector and area."
+    },
+    {
+      "name": "target_discovery_pack_250_has_machine_output",
+      "ok": true,
+      "details": "A target list built for a declared commercial objective, ready for scoring or CRM enrichment workflows."
+    },
+    {
+      "name": "target_discovery_pack_250_has_validity_rule",
+      "ok": true,
+      "details": "The pack is activated only when the pre-check indicates that 250 coherent targets can be produced. If not, the machine receives alternatives: Mini Discovery, wider area, broader criteria or changed commercial objective."
+    },
+    {
+      "name": "score_pack_1k_exists",
+      "ok": true,
+      "details": "score_pack_1k"
+    },
+    {
+      "name": "score_pack_1k_has_price_or_quote",
+      "ok": true,
+      "details": "Score Pack 1k"
+    },
+    {
+      "name": "score_pack_1k_has_when_to_buy",
+      "ok": true,
+      "details": "When the customer machine already has a list and needs to prioritize where to spend budget."
+    },
+    {
+      "name": "score_pack_1k_has_machine_output",
+      "ok": true,
+      "details": "Score, confidence, commercial strength, spend policy, decision, reason, priority and recommended next product."
+    },
+    {
+      "name": "score_pack_1k_has_validity_rule",
+      "ok": true,
+      "details": "Duplicate, invalid or non-analyzable records do not consume score credits. The pack ends after 1000 valid scores."
+    },
+    {
+      "name": "domain_enrichment_pack_100_exists",
+      "ok": true,
+      "details": "domain_enrichment_pack_100"
+    },
+    {
+      "name": "domain_enrichment_pack_100_has_price_or_quote",
+      "ok": true,
+      "details": "Domain Enrichment Pack 100"
+    },
+    {
+      "name": "domain_enrichment_pack_100_has_when_to_buy",
+      "ok": true,
+      "details": "When the customer machine has target names but does not have reliable domains to score."
+    },
+    {
+      "name": "domain_enrichment_pack_100_has_machine_output",
+      "ok": true,
+      "details": "A domain-enrichment result list that tells the workflow which records can move to scoring and which records should stop or be widened."
+    },
+    {
+      "name": "domain_enrichment_pack_100_has_validity_rule",
+      "ok": true,
+      "details": "One credit is consumed for each completed enrichment decision: verified_domain, candidate_not_reliable or no_reliable_domain. The product does not promise that every target will have a domain."
+    },
+    {
+      "name": "deep_analysis_pack_100_exists",
+      "ok": true,
+      "details": "deep_analysis_pack_100"
+    },
+    {
+      "name": "deep_analysis_pack_100_has_price_or_quote",
+      "ok": true,
+      "details": "Deep Analysis Pack 100"
+    },
+    {
+      "name": "deep_analysis_pack_100_has_when_to_buy",
+      "ok": true,
+      "details": "When a high score needs operational commercial evidence before the workflow buys Action Pack or spends more budget."
+    },
+    {
+      "name": "deep_analysis_pack_100_has_machine_output",
+      "ok": true,
+      "details": "A spend-control JSON decision pack that tells the workflow whether to buy Action Pack, keep the lead in watchlist or stop."
+    },
+    {
+      "name": "deep_analysis_pack_100_has_validity_rule",
+      "ok": true,
+      "details": "Leads without enough data for a complete analysis do not consume deep-analysis credits and are returned with an exclusion reason."
+    },
+    {
+      "name": "action_pack_25_exists",
+      "ok": true,
+      "details": "action_pack_25"
+    },
+    {
+      "name": "action_pack_25_has_price_or_quote",
+      "ok": true,
+      "details": "Action Pack 25"
+    },
+    {
+      "name": "action_pack_25_has_when_to_buy",
+      "ok": true,
+      "details": "When Deep Analysis confirms that a lead deserves a prepared commercial action."
+    },
+    {
+      "name": "action_pack_25_has_machine_output",
+      "ok": true,
+      "details": "A CRM-ready JSON action payload for workflow automation, webhook forwarding or supervised agent execution."
+    },
+    {
+      "name": "action_pack_25_has_validity_rule",
+      "ok": true,
+      "details": "If the lead does not have enough signal for a sensible commercial action, the pack is not consumed and the system returns the exclusion reason."
+    },
+    {
+      "name": "opportunity_feed_monthly_exists",
+      "ok": true,
+      "details": "opportunity_feed_monthly"
+    },
+    {
+      "name": "opportunity_feed_monthly_has_price_or_quote",
+      "ok": true,
+      "details": "Opportunity Feed"
+    },
+    {
+      "name": "opportunity_feed_monthly_has_when_to_buy",
+      "ok": true,
+      "details": "When the customer machine wants recurring opportunities without launching one-off discovery requests."
+    },
+    {
+      "name": "opportunity_feed_monthly_has_machine_output",
+      "ok": true,
+      "details": "A scheduled feed of targets, scores and signals for automated systems."
+    },
+    {
+      "name": "opportunity_feed_monthly_has_validity_rule",
+      "ok": true,
+      "details": "If a scan does not produce coherent opportunities, the system returns a market coverage report and suggested changes. It does not fill the feed with weak targets."
+    },
+    {
+      "name": "api_starter_monthly_exists",
+      "ok": true,
+      "details": "api_starter_monthly"
+    },
+    {
+      "name": "api_starter_monthly_has_price_or_quote",
+      "ok": true,
+      "details": "API Starter"
+    },
+    {
+      "name": "api_starter_monthly_has_when_to_buy",
+      "ok": true,
+      "details": "For light recurring use and continuous testing."
+    },
+    {
+      "name": "api_starter_monthly_has_machine_output",
+      "ok": true,
+      "details": "Authenticated access to the score API with monthly usage visibility."
+    },
+    {
+      "name": "api_starter_monthly_has_validity_rule",
+      "ok": true,
+      "details": "The 500 monthly scores follow the valid-output rule. Extra usage requires add-on packs or upgrade."
+    },
+    {
+      "name": "api_pro_monthly_exists",
+      "ok": true,
+      "details": "api_pro_monthly"
+    },
+    {
+      "name": "api_pro_monthly_has_price_or_quote",
+      "ok": true,
+      "details": "API Pro"
+    },
+    {
+      "name": "api_pro_monthly_has_when_to_buy",
+      "ok": true,
+      "details": "For CRMs, agencies, platforms or automated workflows with recurring volume."
+    },
+    {
+      "name": "api_pro_monthly_has_machine_output",
+      "ok": true,
+      "details": "Higher-volume API access with feed, webhook and usage reporting."
+    },
+    {
+      "name": "api_pro_monthly_has_validity_rule",
+      "ok": true,
+      "details": "Scores and Deep Analysis follow the valid-output rule. Action Packs and extra usage are bought separately."
+    },
+    {
+      "name": "openapi_has_/v1/lead-opportunity-score",
+      "ok": true,
+      "details": "/v1/lead-opportunity-score"
+    },
+    {
+      "name": "openapi_has_/v1/purchase-intent",
+      "ok": true,
+      "details": "/v1/purchase-intent"
+    },
+    {
+      "name": "openapi_has_/v1/sandbox/customers",
+      "ok": true,
+      "details": "/v1/sandbox/customers"
+    },
+    {
+      "name": "openapi_has_/v1/orders/{order_intent_id}",
+      "ok": true,
+      "details": "/v1/orders/{order_intent_id}"
+    },
+    {
+      "name": "openapi_purchase_intent_has_market",
+      "ok": true,
+      "details": "market"
+    },
+    {
+      "name": "openapi_purchase_intent_has_area",
+      "ok": true,
+      "details": "area"
+    },
+    {
+      "name": "openapi_purchase_intent_has_commercial_objective",
+      "ok": true,
+      "details": "commercial_objective"
+    },
+    {
+      "name": "mcp_manifest_has_score_lead_opportunity",
+      "ok": true,
+      "details": "score_lead_opportunity"
+    },
+    {
+      "name": "well_known_manifest_has_score_lead_opportunity",
+      "ok": true,
+      "details": "score_lead_opportunity"
+    },
+    {
+      "name": "mcp_manifest_has_create_purchase_intent",
+      "ok": true,
+      "details": "create_purchase_intent"
+    },
+    {
+      "name": "well_known_manifest_has_create_purchase_intent",
+      "ok": true,
+      "details": "create_purchase_intent"
+    },
+    {
+      "name": "mcp_manifest_has_create_sandbox_customer",
+      "ok": true,
+      "details": "create_sandbox_customer"
+    },
+    {
+      "name": "well_known_manifest_has_create_sandbox_customer",
+      "ok": true,
+      "details": "create_sandbox_customer"
+    },
+    {
+      "name": "mcp_manifest_has_get_order",
+      "ok": true,
+      "details": "get_order"
+    },
+    {
+      "name": "well_known_manifest_has_get_order",
+      "ok": true,
+      "details": "get_order"
+    },
+    {
+      "name": "root_and_well_known_tool_names_match",
+      "ok": true,
+      "details": "31 root tools, 31 well-known tools"
+    },
+    {
+      "name": "github_entrypoint_has_fast_path",
+      "ok": true,
+      "details": "machine evaluator reading order"
+    },
+    {
+      "name": "github_entrypoint_blocks_external_publication",
+      "ok": true,
+      "details": "unsafe channels blocked"
+    },
+    {
+      "name": "public_assets_include_safety_signals",
+      "ok": true,
+      "details": "11 safety markers found"
+    },
+    {
+      "name": "public_assets_have_no_forbidden_positive_claims",
+      "ok": true,
+      "details": "no risky positive commercial or operational claims"
+    },
+    {
+      "name": "public_assets_paid_checkout_only_appears_as_blocked_claim",
+      "ok": true,
+      "details": "live paid checkout is not advertised as active"
+    }
+  ],
+  "next_action_if_passed": "run_agent_go_no_go_review_for_soft_go_live_readiness",
+  "next_action_if_failed": "repair_public_docs_machine_clarity_before_any_soft_go_live_review"
+}
