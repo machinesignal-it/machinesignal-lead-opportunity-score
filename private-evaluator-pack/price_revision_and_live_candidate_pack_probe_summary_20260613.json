@@ -1,0 +1,10 @@
+{
+  "probe_id": "price_revision_and_live_candidate_pack_probe_20260613",
+  "status": "passed",
+  "checks_total": 43,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "commercial_status": "not_live",
+  "recommended_bundle": "MachineSignal Controlled Entry Bundle",
+  "recommended_next_action": "pricing_pack_agent_go_no_go_review"
+}

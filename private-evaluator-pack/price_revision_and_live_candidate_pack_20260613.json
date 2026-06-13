@@ -1,0 +1,110 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "pack_id": "price_revision_and_live_candidate_pack_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_review": "margin_model_agent_review_20260613",
+  "commercial_status": "not_live",
+  "plain_italian_summary": "Questo pack rivede il listino pre-live per migliorare i margini. Non attiva prezzi reali, pagamenti, fatture, checkout, API key produzione o pubblicazioni esterne.",
+  "pricing_principles": [
+    "Prices are planning recommendations only.",
+    "No real payment is enabled.",
+    "Every product must have valid-output credit rules.",
+    "Agent credit cost must be measured per valid output.",
+    "Products below margin target need price increase, cost reduction or delayed live launch.",
+    "Action Pack remains gated by Deep Analysis.",
+    "Score Pack remains the scalable entry candidate."
+  ],
+  "revised_products": [
+    {
+      "product_code": "action_pack_25",
+      "current_planning_price_eur": 149,
+      "recommended_planning_price_eur": 149,
+      "decision": "keep_candidate",
+      "live_candidate_rank": 1,
+      "reason": "Best planning margin if Deep Analysis gate remains mandatory.",
+      "must_hold_before_live": [
+        "Deep Analysis gate enforced",
+        "cost per valid action pack <= 1.80 EUR",
+        "no automatic outreach",
+        "CRM payload and audit event included"
+      ]
+    },
+    {
+      "product_code": "score_pack_1k",
+      "current_planning_price_eur": 99,
+      "recommended_planning_price_eur": 119,
+      "decision": "raise_or_measure_before_live",
+      "live_candidate_rank": 2,
+      "reason": "Scalable entry product, but 99 EUR is close to margin threshold. 119 EUR gives more room for agent-credit and data-source variance.",
+      "must_hold_before_live": [
+        "cost per valid score <= 0.033 EUR at 99 EUR or <= 0.040 EUR at 119 EUR",
+        "valid-output rate >= 85%",
+        "idempotency and duplicate protection pass",
+        "score includes decision, confidence and reason codes"
+      ]
+    },
+    {
+      "product_code": "deep_analysis_pack_100",
+      "current_planning_price_eur": 249,
+      "recommended_planning_price_eur": 349,
+      "decision": "raise_or_reduce_cost_before_live",
+      "live_candidate_rank": 3,
+      "reason": "Useful product, but current planning margin is too low. It should be higher-priced or more automated before live sale.",
+      "must_hold_before_live": [
+        "cost per valid report <= 1.06 EUR at 249 EUR or <= 1.50 EUR at 349 EUR",
+        "no-credit invalid-output rule passes",
+        "evidence and risk fields consistent",
+        "legal disclaimer ready"
+      ]
+    },
+    {
+      "product_code": "target_discovery_pack_250",
+      "current_planning_price_eur": 149,
+      "recommended_planning_price_eur": 249,
+      "decision": "raise_or_sell_later",
+      "live_candidate_rank": 4,
+      "reason": "Valuable when the machine has no list, but it is cost-heavy. Keep as add-on or raise price before live sale.",
+      "must_hold_before_live": [
+        "total cost <= 65 EUR at 149 EUR or <= 90 EUR at 249 EUR",
+        "valid target output rate >= 85%",
+        "no-go coverage decision accepted as valid deliverable",
+        "no contact harvesting or outreach claim"
+      ]
+    }
+  ],
+  "recommended_pre_live_bundle": {
+    "name": "MachineSignal Controlled Entry Bundle",
+    "status": "planning_only",
+    "components": [
+      "score_pack_1k",
+      "action_pack_25"
+    ],
+    "why": "This pairing keeps the entry product scalable and monetizes higher-value machine actions only after gates.",
+    "excluded_from_first_live_bundle": [
+      "target_discovery_pack_250",
+      "deep_analysis_pack_100"
+    ],
+    "exclusion_reason": "They remain strategically useful but need price/cost review before first live paid offer."
+  },
+  "commercial_go_live_allowed": false,
+  "blocked_until_owner_approval": [
+    "real payments",
+    "invoices",
+    "payment method collection",
+    "external outreach",
+    "real data processing",
+    "personal data processing",
+    "production API key issuing",
+    "public paid marketplace publication",
+    "hosted public MCP launch",
+    "MCP registry publication"
+  ],
+  "recommended_next_action": {
+    "name": "pricing_pack_agent_go_no_go_review",
+    "mode": "NoWrite planning",
+    "plain_italian": "Far approvare agli agenti la revisione listino e decidere se il primo candidato live deve essere il bundle Score Pack + Action Pack, restando senza pagamenti reali.",
+    "requires_owner_supervision": false
+  }
+}
