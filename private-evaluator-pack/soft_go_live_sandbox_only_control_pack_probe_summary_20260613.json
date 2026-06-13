@@ -1,0 +1,404 @@
+{
+  "date": "2026-06-13",
+  "status": "passed",
+  "purpose": "Validate the Soft Go-Live Sandbox-Only Control Pack before any bounded rehearsal.",
+  "control_pack": "private-evaluator-pack/soft_go_live_sandbox_only_control_pack_20260613.json",
+  "checks_total": 76,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "pack_status_prepared",
+      "ok": true,
+      "details": "prepared"
+    },
+    {
+      "name": "primary_customer_machine",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "source_verdict_is_soft_go_live_sandbox_only",
+      "ok": true,
+      "details": "go_conditionally_for_soft_go_live_sandbox_only"
+    },
+    {
+      "name": "scope_allowed_present",
+      "ok": true,
+      "details": "16 allowed items"
+    },
+    {
+      "name": "scope_blocked_present",
+      "ok": true,
+      "details": "17 blocked items"
+    },
+    {
+      "name": "allowed_machine_reads_public_website",
+      "ok": true,
+      "details": "machine reads public website"
+    },
+    {
+      "name": "allowed_machine_reads_openapi.json",
+      "ok": true,
+      "details": "machine reads openapi.json"
+    },
+    {
+      "name": "allowed_machine_reads_mcp-tool-manifest.json",
+      "ok": true,
+      "details": "machine reads mcp-tool-manifest.json"
+    },
+    {
+      "name": "allowed_machine_creates_bounded_sandbox_customer",
+      "ok": true,
+      "details": "machine creates bounded sandbox customer"
+    },
+    {
+      "name": "allowed_machine_creates_beta_purchase-intent_records",
+      "ok": true,
+      "details": "machine creates beta purchase-intent records"
+    },
+    {
+      "name": "allowed_machine_retrieves_usage_and_orders",
+      "ok": true,
+      "details": "machine retrieves usage and orders"
+    },
+    {
+      "name": "blocked_real_payment",
+      "ok": true,
+      "details": "real payment"
+    },
+    {
+      "name": "blocked_paid_checkout",
+      "ok": true,
+      "details": "paid checkout"
+    },
+    {
+      "name": "blocked_payment_method_collection",
+      "ok": true,
+      "details": "payment method collection"
+    },
+    {
+      "name": "blocked_invoice_issuance",
+      "ok": true,
+      "details": "invoice issuance"
+    },
+    {
+      "name": "blocked_public_paid_marketplace_launch",
+      "ok": true,
+      "details": "public paid marketplace launch"
+    },
+    {
+      "name": "blocked_public_MCP_registry_submission",
+      "ok": true,
+      "details": "public MCP registry submission"
+    },
+    {
+      "name": "blocked_hosted_public_MCP_launch",
+      "ok": true,
+      "details": "hosted public MCP launch"
+    },
+    {
+      "name": "blocked_production_API_key_distribution",
+      "ok": true,
+      "details": "production API key distribution"
+    },
+    {
+      "name": "blocked_human_outreach",
+      "ok": true,
+      "details": "human outreach"
+    },
+    {
+      "name": "blocked_automatic_external_contact",
+      "ok": true,
+      "details": "automatic external contact"
+    },
+    {
+      "name": "blocked_contacting_target_companies",
+      "ok": true,
+      "details": "contacting target companies"
+    },
+    {
+      "name": "blocked_real_customer_data",
+      "ok": true,
+      "details": "real customer data"
+    },
+    {
+      "name": "blocked_personal_data",
+      "ok": true,
+      "details": "personal data"
+    },
+    {
+      "name": "blocked_real_lead_lists",
+      "ok": true,
+      "details": "real lead lists"
+    },
+    {
+      "name": "blocked_unbounded_write_tests",
+      "ok": true,
+      "details": "unbounded write tests"
+    },
+    {
+      "name": "has_existing_list_score_path",
+      "ok": true,
+      "details": "existing_list_score_path"
+    },
+    {
+      "name": "has_no_list_target_discovery_path",
+      "ok": true,
+      "details": "no_list_target_discovery_path"
+    },
+    {
+      "name": "has_action_after_deep_analysis_path",
+      "ok": true,
+      "details": "action_after_deep_analysis_path"
+    },
+    {
+      "name": "has_mcp_manifest_read_path",
+      "ok": true,
+      "details": "mcp_manifest_read_path"
+    },
+    {
+      "name": "no_list_requires_market_area_objective",
+      "ok": true,
+      "details": "[\"market\",\"area\",\"commercial_objective\"]"
+    },
+    {
+      "name": "action_pack_requires_deep_analysis_gate",
+      "ok": true,
+      "details": "Action Pack is allowed only after Deep Analysis confirms the action_pack_purchase_gate."
+    },
+    {
+      "name": "mcp_path_states_hosted_public_mcp_not_live",
+      "ok": true,
+      "details": "Machine understands tool names, input schemas and that hosted public MCP is not live."
+    },
+    {
+      "name": "write_budget_default_nowrite",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "write_budget_capped_enabled",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "write_budget_max_posts_5",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "write_budget_idempotency_required",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "write_budget_cloudflare_kv_stop_rule",
+      "ok": true,
+      "details": "Stop write-capped tests if Cloudflare KV daily free-tier write limit risk is detected or if 429 errors appear."
+    },
+    {
+      "name": "success_metric_machine_readability_checks_failed",
+      "ok": true,
+      "details": "0"
+    },
+    {
+      "name": "success_metric_public_contract_checks_failed",
+      "ok": true,
+      "details": "0"
+    },
+    {
+      "name": "success_metric_e2e_rehearsal_checks_failed",
+      "ok": true,
+      "details": "0"
+    },
+    {
+      "name": "success_metric_agent_go_no_go_probe_checks_failed",
+      "ok": true,
+      "details": "0"
+    },
+    {
+      "name": "success_metric_forbidden_actions_count",
+      "ok": true,
+      "details": "0"
+    },
+    {
+      "name": "success_metric_real_payment_count",
+      "ok": true,
+      "details": "0"
+    },
+    {
+      "name": "success_metric_invoice_count",
+      "ok": true,
+      "details": "0"
+    },
+    {
+      "name": "success_metric_external_contact_count",
+      "ok": true,
+      "details": "0"
+    },
+    {
+      "name": "success_metric_personal_data_records_used",
+      "ok": true,
+      "details": "0"
+    },
+    {
+      "name": "success_metric_real_customer_records_used",
+      "ok": true,
+      "details": "0"
+    },
+    {
+      "name": "rollback_mentions_HTTP_4xx/5xx",
+      "ok": true,
+      "details": "HTTP 4xx/5xx"
+    },
+    {
+      "name": "rollback_mentions_OpenAPI_and_MCP_manifests_diverge",
+      "ok": true,
+      "details": "OpenAPI and MCP manifests diverge"
+    },
+    {
+      "name": "rollback_mentions_payment,_invoice_or_external_contact_flags_become_true",
+      "ok": true,
+      "details": "payment, invoice or external contact flags become true"
+    },
+    {
+      "name": "rollback_mentions_production_key",
+      "ok": true,
+      "details": "production key"
+    },
+    {
+      "name": "rollback_mentions_real_customer_data_or_personal_data",
+      "ok": true,
+      "details": "real customer data or personal data"
+    },
+    {
+      "name": "rollback_mentions_Cloudflare_KV_write_limits",
+      "ok": true,
+      "details": "Cloudflare KV write limits"
+    },
+    {
+      "name": "owner_approval_before_enabling_real_payment",
+      "ok": true,
+      "details": "enabling real payment"
+    },
+    {
+      "name": "owner_approval_before_collecting_payment_methods",
+      "ok": true,
+      "details": "collecting payment methods"
+    },
+    {
+      "name": "owner_approval_before_issuing_invoices",
+      "ok": true,
+      "details": "issuing invoices"
+    },
+    {
+      "name": "owner_approval_before_using_partita_iva_or_fiscal_identity_for_sale",
+      "ok": true,
+      "details": "using partita iva or fiscal identity for sale"
+    },
+    {
+      "name": "owner_approval_before_publishing_paid_plans",
+      "ok": true,
+      "details": "publishing paid plans"
+    },
+    {
+      "name": "owner_approval_before_submitting_to_public_MCP_registry",
+      "ok": true,
+      "details": "submitting to public MCP registry"
+    },
+    {
+      "name": "owner_approval_before_launching_hosted_MCP",
+      "ok": true,
+      "details": "launching hosted MCP"
+    },
+    {
+      "name": "owner_approval_before_issuing_production_API_keys",
+      "ok": true,
+      "details": "issuing production API keys"
+    },
+    {
+      "name": "owner_approval_before_processing_real_customer_data",
+      "ok": true,
+      "details": "processing real customer data"
+    },
+    {
+      "name": "owner_approval_before_processing_personal_data",
+      "ok": true,
+      "details": "processing personal data"
+    },
+    {
+      "name": "owner_approval_before_contacting_humans_or_companies",
+      "ok": true,
+      "details": "contacting humans or companies"
+    },
+    {
+      "name": "responsibility_Orchestratore",
+      "ok": true,
+      "details": "Orchestratore"
+    },
+    {
+      "name": "responsibility_Agente_API",
+      "ok": true,
+      "details": "Agente API"
+    },
+    {
+      "name": "responsibility_Machine-to-Machine_Sales_Ops",
+      "ok": true,
+      "details": "Machine-to-Machine Sales Ops"
+    },
+    {
+      "name": "responsibility_Customer_Success_&_Post-Sale",
+      "ok": true,
+      "details": "Customer Success & Post-Sale"
+    },
+    {
+      "name": "responsibility_Admin_&_Finance_Controller",
+      "ok": true,
+      "details": "Admin & Finance Controller"
+    },
+    {
+      "name": "responsibility_Legal_&_Compliance",
+      "ok": true,
+      "details": "Legal & Compliance"
+    },
+    {
+      "name": "responsibility_Continuous_Improvement_/_Competitive_Learning",
+      "ok": true,
+      "details": "Continuous Improvement / Competitive Learning"
+    },
+    {
+      "name": "responsibility_HR_/_Agent_Manager",
+      "ok": true,
+      "details": "HR / Agent Manager"
+    },
+    {
+      "name": "markdown_states_not_paid_launch",
+      "ok": true,
+      "details": "not paid launch"
+    },
+    {
+      "name": "markdown_has_next_step_probe",
+      "ok": true,
+      "details": "next step"
+    },
+    {
+      "name": "pack_has_no_forbidden_positive_go",
+      "ok": true,
+      "details": "no forbidden positive go phrase"
+    }
+  ],
+  "safety": {
+    "paid_launch_allowed": false,
+    "live_payment_allowed": false,
+    "invoice_allowed": false,
+    "hosted_public_mcp_allowed": false,
+    "mcp_registry_submission_allowed": false,
+    "human_outreach_allowed": false,
+    "external_contact_allowed": false,
+    "real_customer_data_allowed": false,
+    "personal_data_allowed": false,
+    "max_post_calls_per_controlled_rehearsal": 5
+  },
+  "next_action_if_passed": "run_one_bounded_soft_go_live_rehearsal_against_public_assets",
+  "next_action_if_failed": "repair_control_pack_before_rehearsal"
+}

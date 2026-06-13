@@ -1,0 +1,232 @@
+{
+  "service": "MachineSignal",
+  "pack_name": "soft_go_live_sandbox_only_control_pack",
+  "date": "2026-06-13",
+  "status": "prepared",
+  "primary_customer_interface": "machine",
+  "purpose": "Define the exact sandbox-only soft go-live perimeter for machine discovery and machine evaluation without paid launch, human outreach, external contact, hosted public MCP, real customer data or personal data.",
+  "plain_italian_summary": "Questo pacchetto autorizza solo test controllati in sandbox: una macchina puo scoprire MachineSignal, leggere i contratti pubblici, creare un cliente sandbox limitato, provare score e purchase-intent beta, e recuperare ordini/delivery. Non puo pagare, ricevere fatture, usare dati reali, contattare aziende esterne o accedere a chiavi produzione.",
+  "source_decision": {
+    "review": "private-evaluator-pack/agent_go_no_go_soft_go_live_sandbox_only_20260613.json",
+    "verdict": "go_conditionally_for_soft_go_live_sandbox_only",
+    "validation": "private-evaluator-pack/agent_go_no_go_soft_go_live_sandbox_only_probe_summary_20260613.json"
+  },
+  "scope": {
+    "allowed": [
+      "machine reads public website",
+      "machine reads robots.txt",
+      "machine reads llms.txt",
+      "machine reads machine-onboarding.json",
+      "machine reads product-catalog.json",
+      "machine reads openapi.json",
+      "machine reads mcp-tool-manifest.json",
+      "machine reads .well-known/mcp-tool-manifest.json",
+      "machine reads GitHub README and MACHINE_AGENT_ENTRYPOINT",
+      "machine creates bounded sandbox customer",
+      "machine runs synthetic score test",
+      "machine creates beta purchase-intent records",
+      "machine retrieves usage and orders",
+      "machine tests Target Discovery, Score Pack, Deep Analysis and Action Pack using synthetic examples",
+      "agents collect no-write/read-only diagnostics",
+      "agents collect write-capped sandbox diagnostics"
+    ],
+    "blocked": [
+      "real payment",
+      "paid checkout",
+      "payment method collection",
+      "invoice issuance",
+      "public paid marketplace launch",
+      "public MCP registry submission",
+      "hosted public MCP launch",
+      "production API key distribution",
+      "human outreach",
+      "automatic external contact",
+      "contacting target companies",
+      "real customer data",
+      "personal data",
+      "real lead lists",
+      "unbounded write tests",
+      "scraping contact data",
+      "email campaign execution"
+    ]
+  },
+  "machine_test_paths": [
+    {
+      "path_id": "existing_list_score_path",
+      "customer_machine_situation": "The customer machine already has domains or company records.",
+      "goal": "Prioritize where to spend CRM, campaign or agent budget.",
+      "first_product": "score_pack_1k",
+      "first_call": "POST /v1/lead-opportunity-score",
+      "allowed_next_products": [
+        "deep_analysis",
+        "verification",
+        "nurture_signal",
+        "action_pack"
+      ],
+      "success_condition": "Machine receives opportunity_score, confidence, commercial_strength, spend_policy, decision, reason, priority and recommended next product.",
+      "stop_conditions": [
+        "domain invalid",
+        "duplicate record",
+        "insufficient signal",
+        "missing sandbox key",
+        "write budget exceeded"
+      ]
+    },
+    {
+      "path_id": "no_list_target_discovery_path",
+      "customer_machine_situation": "The customer machine has no target list.",
+      "goal": "Find companies or domains useful for a specific commercial objective, sector and area.",
+      "first_product": "target_discovery",
+      "first_call": "POST /v1/purchase-intent",
+      "required_inputs": [
+        "market",
+        "area",
+        "commercial_objective"
+      ],
+      "allowed_next_products": [
+        "score_pack_1k",
+        "domain_enrichment",
+        "deep_analysis"
+      ],
+      "success_condition": "Machine receives a target-discovery pre-check or synthetic target list output with clear next call.",
+      "stop_conditions": [
+        "market too narrow",
+        "commercial objective unclear",
+        "area too narrow",
+        "250 coherent targets cannot be produced",
+        "write budget exceeded"
+      ]
+    },
+    {
+      "path_id": "action_after_deep_analysis_path",
+      "customer_machine_situation": "The customer machine has a high-signal scored opportunity.",
+      "goal": "Turn a confirmed opportunity into a CRM- or agent-readable action payload.",
+      "first_product": "deep_analysis",
+      "second_product": "action_pack",
+      "first_call": "POST /v1/purchase-intent product_code=deep_analysis",
+      "second_call": "POST /v1/purchase-intent product_code=action_pack",
+      "required_gate": "Action Pack is allowed only after Deep Analysis confirms the action_pack_purchase_gate.",
+      "success_condition": "Machine receives CRM-ready JSON with approval gate, stop rules, webhook policy, CRM mappings and no automatic external contact.",
+      "stop_conditions": [
+        "deep analysis gate not passed",
+        "missing source_order_intent_id",
+        "compliance gate absent",
+        "external contact requested",
+        "write budget exceeded"
+      ]
+    },
+    {
+      "path_id": "mcp_manifest_read_path",
+      "customer_machine_situation": "The customer machine is an MCP-aware agent or tool evaluator.",
+      "goal": "Read available tool contracts and decide if a local/private MCP adapter can be evaluated.",
+      "first_product": "mcp_local_adapter_private_review",
+      "first_call": "GET /mcp-tool-manifest.json",
+      "allowed_tools": [
+        "score_lead_opportunity",
+        "create_purchase_intent",
+        "create_sandbox_customer",
+        "get_order"
+      ],
+      "success_condition": "Machine understands tool names, input schemas and that hosted public MCP is not live.",
+      "stop_conditions": [
+        "hosted public MCP requested",
+        "registry submission requested",
+        "production key requested",
+        "real data requested"
+      ]
+    }
+  ],
+  "write_budget": {
+    "default_mode": "NoWrite",
+    "write_capped_mode_allowed": true,
+    "max_post_calls_per_controlled_rehearsal": 5,
+    "max_sandbox_customers_per_rehearsal": 1,
+    "max_target_discovery_orders_per_rehearsal": 1,
+    "max_deep_analysis_orders_per_rehearsal": 1,
+    "max_action_pack_orders_per_rehearsal": 1,
+    "daily_kv_write_budget_rule": "Stop write-capped tests if Cloudflare KV daily free-tier write limit risk is detected or if 429 errors appear.",
+    "idempotency_required": true
+  },
+  "success_metrics": {
+    "machine_readability_checks_failed": 0,
+    "public_contract_checks_failed": 0,
+    "e2e_rehearsal_checks_failed": 0,
+    "agent_go_no_go_probe_checks_failed": 0,
+    "public_asset_reachability_required": "all core assets HTTP 200",
+    "machine_decision_paths_understood": [
+      "existing_list_score_path",
+      "no_list_target_discovery_path",
+      "action_after_deep_analysis_path",
+      "mcp_manifest_read_path"
+    ],
+    "forbidden_actions_count": 0,
+    "real_payment_count": 0,
+    "invoice_count": 0,
+    "external_contact_count": 0,
+    "personal_data_records_used": 0,
+    "real_customer_records_used": 0
+  },
+  "rollback_rules": [
+    "Stop if any public asset returns HTTP 4xx/5xx for core discovery resources.",
+    "Stop if OpenAPI and MCP manifests diverge.",
+    "Stop if sandbox creation can be abused beyond capped limits.",
+    "Stop if payment, invoice or external contact flags become true.",
+    "Stop if any production key appears in public artifacts.",
+    "Stop if real customer data or personal data is detected.",
+    "Stop if Cloudflare KV write limits are exceeded.",
+    "Stop if a machine cannot identify the correct product for existing-list, no-list or action-pack scenarios."
+  ],
+  "owner_approval_required_before": [
+    "enabling real payment",
+    "collecting payment methods",
+    "issuing invoices",
+    "using partita iva or fiscal identity for sale",
+    "publishing paid plans",
+    "submitting to public MCP registry",
+    "launching hosted MCP",
+    "issuing production API keys",
+    "processing real customer data",
+    "processing personal data",
+    "contacting humans or companies",
+    "running any external publication that cannot be reversed"
+  ],
+  "agent_responsibilities": [
+    {
+      "agent": "Orchestratore",
+      "responsibility": "Keep the soft go-live inside sandbox-only limits and trigger stop rules."
+    },
+    {
+      "agent": "Agente API",
+      "responsibility": "Maintain OpenAPI, MCP manifest, endpoint examples and schema parity."
+    },
+    {
+      "agent": "Machine-to-Machine Sales Ops",
+      "responsibility": "Prepare passive machine-readable distribution drafts without submitting them publicly."
+    },
+    {
+      "agent": "Customer Success & Post-Sale",
+      "responsibility": "Monitor sandbox usage, order retrieval, delivery clarity and machine support signals."
+    },
+    {
+      "agent": "Admin & Finance Controller",
+      "responsibility": "Confirm that no real payment, invoice or paid checkout is enabled."
+    },
+    {
+      "agent": "Legal & Compliance",
+      "responsibility": "Confirm that no real data, personal data, external contact or public paid terms are activated."
+    },
+    {
+      "agent": "Continuous Improvement / Competitive Learning",
+      "responsibility": "Compare machine comprehension, API clarity and product packaging against public competitor/provider patterns without copying protected material."
+    },
+    {
+      "agent": "HR / Agent Manager",
+      "responsibility": "Check whether any missing agent role is needed and keep agent learning evidence-based."
+    }
+  ],
+  "next_step_after_pack": {
+    "step": "run_soft_go_live_control_pack_probe",
+    "purpose": "Validate that this control pack is complete, internally consistent and blocks forbidden actions.",
+    "then_if_passed": "run_one_bounded_soft_go_live_rehearsal_against_public_assets"
+  }
+}
