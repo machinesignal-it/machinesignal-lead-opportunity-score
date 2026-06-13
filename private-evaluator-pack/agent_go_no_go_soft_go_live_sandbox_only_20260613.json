@@ -1,0 +1,192 @@
+{
+  "service": "MachineSignal",
+  "review_name": "agent_go_no_go_soft_go_live_sandbox_only",
+  "date": "2026-06-13",
+  "status": "completed",
+  "primary_customer_interface": "machine",
+  "verdict": "go_conditionally_for_soft_go_live_sandbox_only",
+  "plain_italian_verdict": "Possiamo procedere con un soft go-live solo sandbox: le macchine possono scoprire, leggere e testare il servizio in modo controllato. Restano bloccati pagamenti reali, fatture, marketplace pubblico, hosted MCP pubblico, outreach umano e dati clienti reali.",
+  "allowed_next_step": "prepare_soft_go_live_sandbox_only_control_pack",
+  "blocked_until_owner_approval": [
+    "live_payment",
+    "real_invoice",
+    "paid_checkout",
+    "public_paid_marketplace_launch",
+    "hosted_public_mcp_launch",
+    "mcp_registry_submission",
+    "production_api_key_distribution",
+    "human_outreach",
+    "automatic_external_contact",
+    "real_customer_data",
+    "personal_data",
+    "real_lead_lists",
+    "unbounded_write_tests"
+  ],
+  "evidence_reviewed": [
+    {
+      "name": "public_machine_readability_probe",
+      "date": "2026-06-13",
+      "status": "passed",
+      "checks_total": 97,
+      "checks_failed": 0,
+      "summary": "A machine can discover public assets, understand products, map buying scenarios to endpoints and read safety limits."
+    },
+    {
+      "name": "public_static_contract_deploy_probe",
+      "date": "2026-06-12",
+      "status": "passed",
+      "checks_total": 21,
+      "checks_failed": 0,
+      "summary": "Public OpenAPI and MCP manifests match the local repository contracts."
+    },
+    {
+      "name": "machine_buyer_end_to_end_rehearsal",
+      "date": "2026-06-11",
+      "status": "passed",
+      "checks_total": 46,
+      "checks_failed": 0,
+      "summary": "A synthetic buyer machine completed discovery, sandbox creation, target discovery, scoring, deep analysis purchase, action pack purchase and order retrieval without payment or outreach."
+    },
+    {
+      "name": "agent_go_no_go_sandbox_review",
+      "date": "2026-06-11",
+      "status": "completed",
+      "verdict": "go_conditionally_for_sandbox_only_next_step",
+      "summary": "Agents approved sandbox-only work and blocked live monetization, external publication, hosted MCP and outreach."
+    },
+    {
+      "name": "mcp_schema_parity_error_taxonomy_p1",
+      "date": "2026-06-12",
+      "status": "passed",
+      "checks_total": 105,
+      "checks_failed": 0,
+      "summary": "Local MCP manifest, .well-known manifest, OpenAPI contract and local adapter speak the same machine-readable language."
+    }
+  ],
+  "agent_votes": [
+    {
+      "agent": "Orchestratore",
+      "vote": "go_sandbox_only",
+      "reason": "The system has enough evidence to run a controlled sandbox-only soft go-live, while keeping irreversible and paid actions blocked."
+    },
+    {
+      "agent": "Agente analisi mercato potenziale",
+      "vote": "go_sandbox_only",
+      "reason": "The machine-first positioning is coherent: sell decisions, scores, discovery packs and action payloads to automated systems."
+    },
+    {
+      "agent": "Architetto web AI",
+      "vote": "go_sandbox_only",
+      "reason": "Public assets are reachable and machine-readable; no website correction is required before the next sandbox-only control pack."
+    },
+    {
+      "agent": "Agente API",
+      "vote": "go_sandbox_only",
+      "reason": "OpenAPI and MCP manifests are aligned and expose the core machine actions."
+    },
+    {
+      "agent": "Data Scout",
+      "vote": "go_sandbox_only",
+      "reason": "No-list Target Discovery is understandable by machines through market, area and commercial_objective."
+    },
+    {
+      "agent": "Data Quality & Compliance",
+      "vote": "go_sandbox_only",
+      "reason": "The valid-output rule, duplicate handling and no-real-data perimeter are explicit enough for sandbox use."
+    },
+    {
+      "agent": "Scoring Optimizer",
+      "vote": "go_sandbox_only",
+      "reason": "Score, confidence, commercial strength and next-product routing are visible and usable by automated workflows."
+    },
+    {
+      "agent": "API Product Manager",
+      "vote": "go_sandbox_only",
+      "reason": "Products, prices, validity rules and machine outputs are clear in the product catalog."
+    },
+    {
+      "agent": "Growth & Distribution",
+      "vote": "go_sandbox_only",
+      "reason": "Passive machine-readable distribution can proceed; irreversible marketplace or registry publication remains blocked."
+    },
+    {
+      "agent": "Customer Feedback",
+      "vote": "go_sandbox_only",
+      "reason": "The next test should capture machine comprehension, endpoint errors and missing-field feedback without involving human outreach."
+    },
+    {
+      "agent": "Machine-to-Machine Sales Ops",
+      "vote": "go_sandbox_only",
+      "reason": "The commercial path can be tested as machine discovery plus sandbox evaluation, not human selling."
+    },
+    {
+      "agent": "Customer Success & Post-Sale",
+      "vote": "go_sandbox_only",
+      "reason": "Order retrieval, usage visibility and Action Pack delivery are tested enough for sandbox-only support simulation."
+    },
+    {
+      "agent": "Admin & Finance Controller",
+      "vote": "no_go_paid",
+      "reason": "Fiscal, payment, invoice, reconciliation and P.IVA gates are not ready for paid go-live."
+    },
+    {
+      "agent": "Legal & Compliance",
+      "vote": "no_go_paid_or_real_data",
+      "reason": "Real customer data, personal data, public paid terms, DPA, privacy and retention policies must be completed before monetization."
+    },
+    {
+      "agent": "Continuous Improvement / Competitive Learning",
+      "vote": "go_sandbox_only",
+      "reason": "The next learning loop should compare machine comprehension and failure cases against competing API/provider patterns."
+    },
+    {
+      "agent": "HR / Agent Manager",
+      "vote": "go_sandbox_only",
+      "reason": "Agent coverage is sufficient for the next controlled stage; recurring self-improvement should remain evidence-based and supervised."
+    }
+  ],
+  "consolidated_findings": [
+    "The machine-first public path is now readable: a machine can understand what MachineSignal sells and which endpoint to call.",
+    "The commercial model is clear enough for sandbox testing: existing list -> Score Pack, no list -> Target Discovery, high signal -> Deep Analysis, confirmed action gate -> Action Pack.",
+    "The technical contract is aligned across OpenAPI, MCP root manifest and .well-known manifest.",
+    "The system remains safely bounded: no payment, no invoice, no outreach, no external publication, no production keys and no real data.",
+    "The main remaining risk is not product clarity but business activation: fiscal/legal/payment readiness and real external demand are not yet validated.",
+    "A soft go-live must be framed as sandbox-only machine evaluation, not as a paid public launch."
+  ],
+  "soft_go_live_sandbox_only_definition": {
+    "allowed": [
+      "public machine-readable documentation",
+      "public OpenAPI and MCP manifests",
+      "sandbox-only machine discovery",
+      "bounded sandbox customer creation",
+      "synthetic examples",
+      "no-write or write-capped probes",
+      "public GitHub documentation",
+      "private draft distribution packs"
+    ],
+    "not_allowed": [
+      "charging money",
+      "collecting payment methods",
+      "issuing invoices",
+      "publishing paid marketplace plans",
+      "submitting to public MCP registry",
+      "launching hosted MCP publicly",
+      "contacting humans",
+      "contacting external target companies",
+      "processing real customer data",
+      "processing personal data"
+    ]
+  },
+  "recommended_next_action": {
+    "step": "prepare_soft_go_live_sandbox_only_control_pack",
+    "purpose": "Define exactly what a machine can do in the soft go-live, what remains blocked, what evidence we collect and what owner approval is required before any paid/public escalation.",
+    "expected_output": [
+      "soft go-live scope",
+      "machine test path",
+      "safety gates",
+      "success metrics",
+      "rollback rules",
+      "owner approval checklist"
+    ]
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "date": "2026-06-13",
+  "status": "passed",
+  "purpose": "Validate the agent go/no-go review for a sandbox-only soft go-live without enabling paid, outreach, hosted MCP or real-data activity.",
+  "review": "private-evaluator-pack/agent_go_no_go_soft_go_live_sandbox_only_20260613.json",
+  "checks_total": 36,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "review_status_completed",
+      "ok": true,
+      "details": "completed"
+    },
+    {
+      "name": "verdict_go_conditionally_sandbox_only",
+      "ok": true,
+      "details": "go_conditionally_for_soft_go_live_sandbox_only"
+    },
+    {
+      "name": "primary_customer_machine",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "agent_votes_count_at_least_12",
+      "ok": true,
+      "details": "16 votes"
+    },
+    {
+      "name": "admin_finance_blocks_paid",
+      "ok": true,
+      "details": "Admin & Finance Controller vote"
+    },
+    {
+      "name": "legal_blocks_paid_or_real_data",
+      "ok": true,
+      "details": "Legal & Compliance vote"
+    },
+    {
+      "name": "evidence_has_public_readability_pass",
+      "ok": true,
+      "details": "public readability evidence"
+    },
+    {
+      "name": "evidence_has_e2e_machine_buyer_pass",
+      "ok": true,
+      "details": "machine buyer e2e evidence"
+    },
+    {
+      "name": "blocked_live_payment",
+      "ok": true,
+      "details": "live_payment"
+    },
+    {
+      "name": "blocked_real_invoice",
+      "ok": true,
+      "details": "real_invoice"
+    },
+    {
+      "name": "blocked_paid_checkout",
+      "ok": true,
+      "details": "paid_checkout"
+    },
+    {
+      "name": "blocked_hosted_public_mcp_launch",
+      "ok": true,
+      "details": "hosted_public_mcp_launch"
+    },
+    {
+      "name": "blocked_mcp_registry_submission",
+      "ok": true,
+      "details": "mcp_registry_submission"
+    },
+    {
+      "name": "blocked_production_api_key_distribution",
+      "ok": true,
+      "details": "production_api_key_distribution"
+    },
+    {
+      "name": "blocked_human_outreach",
+      "ok": true,
+      "details": "human_outreach"
+    },
+    {
+      "name": "blocked_automatic_external_contact",
+      "ok": true,
+      "details": "automatic_external_contact"
+    },
+    {
+      "name": "blocked_real_customer_data",
+      "ok": true,
+      "details": "real_customer_data"
+    },
+    {
+      "name": "blocked_personal_data",
+      "ok": true,
+      "details": "personal_data"
+    },
+    {
+      "name": "allowed_public_machine-readable_documentation",
+      "ok": true,
+      "details": "public machine-readable documentation"
+    },
+    {
+      "name": "allowed_public_OpenAPI_and_MCP_manifests",
+      "ok": true,
+      "details": "public OpenAPI and MCP manifests"
+    },
+    {
+      "name": "allowed_sandbox-only_machine_discovery",
+      "ok": true,
+      "details": "sandbox-only machine discovery"
+    },
+    {
+      "name": "allowed_bounded_sandbox_customer_creation",
+      "ok": true,
+      "details": "bounded sandbox customer creation"
+    },
+    {
+      "name": "allowed_synthetic_examples",
+      "ok": true,
+      "details": "synthetic examples"
+    },
+    {
+      "name": "not_allowed_charging_money",
+      "ok": true,
+      "details": "charging money"
+    },
+    {
+      "name": "not_allowed_collecting_payment_methods",
+      "ok": true,
+      "details": "collecting payment methods"
+    },
+    {
+      "name": "not_allowed_issuing_invoices",
+      "ok": true,
+      "details": "issuing invoices"
+    },
+    {
+      "name": "not_allowed_publishing_paid_marketplace_plans",
+      "ok": true,
+      "details": "publishing paid marketplace plans"
+    },
+    {
+      "name": "not_allowed_submitting_to_public_MCP_registry",
+      "ok": true,
+      "details": "submitting to public MCP registry"
+    },
+    {
+      "name": "not_allowed_launching_hosted_MCP_publicly",
+      "ok": true,
+      "details": "launching hosted MCP publicly"
+    },
+    {
+      "name": "not_allowed_contacting_humans",
+      "ok": true,
+      "details": "contacting humans"
+    },
+    {
+      "name": "not_allowed_processing_real_customer_data",
+      "ok": true,
+      "details": "processing real customer data"
+    },
+    {
+      "name": "not_allowed_processing_personal_data",
+      "ok": true,
+      "details": "processing personal data"
+    },
+    {
+      "name": "markdown_repeats_not_paid_launch",
+      "ok": true,
+      "details": "markdown wording"
+    },
+    {
+      "name": "markdown_lists_still_blocked",
+      "ok": true,
+      "details": "blocked list"
+    },
+    {
+      "name": "recommended_next_action_control_pack",
+      "ok": true,
+      "details": "prepare_soft_go_live_sandbox_only_control_pack"
+    },
+    {
+      "name": "review_has_no_forbidden_positive_go",
+      "ok": true,
+      "details": "no forbidden positive go phrase"
+    }
+  ],
+  "safety": {
+    "live_payment_allowed": false,
+    "real_invoice_allowed": false,
+    "paid_checkout_allowed": false,
+    "hosted_public_mcp_allowed": false,
+    "mcp_registry_submission_allowed": false,
+    "human_outreach_allowed": false,
+    "external_contact_allowed": false,
+    "real_customer_data_allowed": false,
+    "personal_data_allowed": false
+  },
+  "next_action_if_passed": "prepare_soft_go_live_sandbox_only_control_pack",
+  "next_action_if_failed": "repair_agent_go_no_go_review_before_control_pack"
+}
