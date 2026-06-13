@@ -1,0 +1,352 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "map_id": "privacy_data_map_draft_nowrite_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_review": "terms_privacy_agent_review_20260613",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "real_data_used_in_this_artifact": false,
+  "personal_data_processing_allowed_now": false,
+  "plain_italian_summary": "Questa mappa dati descrive quali dati potrebbero entrare, uscire o restare nei sistemi MachineSignal. E' una bozza senza dati reali: serve a capire rischi, retention, cancellazione, ruoli privacy e blocchi prima di qualunque uso commerciale.",
+  "data_principles": [
+    "sandbox_only_until_owner_approval",
+    "synthetic_data_only_until_privacy_approval",
+    "minimize_input_fields",
+    "separate_account_data_from_scoring_data",
+    "store_credit_ledger_without unnecessary personal data",
+    "no_sensitive_data",
+    "no_person_data_enrichment",
+    "no_outreach_contact_harvesting"
+  ],
+  "data_flows": [
+    {
+      "flow_id": "F1_account_registration_future",
+      "status": "future_blocked",
+      "trigger": "A human or company owner creates an account for a machine/API integration.",
+      "actor": "Human/company account owner",
+      "machine_actor": "CRM, workflow, agent or software connected by the owner",
+      "input_data_categories": [
+        "business account name",
+        "business email",
+        "company name",
+        "billing country after paid live",
+        "plan code after paid live"
+      ],
+      "personal_data_risk": "medium",
+      "purpose": "Account access, API key ownership, terms acceptance and support.",
+      "legal_basis_to_confirm": "contract or pre-contractual steps; legal obligation for billing after paid live",
+      "storage_location_logical": "account system, not public repo",
+      "retention_draft": "Account lifetime plus limited legal/accounting retention after closure, to be approved.",
+      "deletion_draft": "Deactivate account, revoke API keys, retain only legally required billing/security records.",
+      "live_blocker": "fiscal_admin_go_live_gate and privacy notice final approval"
+    },
+    {
+      "flow_id": "F2_sandbox_api_request",
+      "status": "allowed_sandbox_only",
+      "trigger": "A machine calls sandbox endpoints using synthetic domains or examples.",
+      "actor": "Machine/API client",
+      "machine_actor": "Postman, CRM test workflow, AI agent, local evaluator",
+      "input_data_categories": [
+        "synthetic company/domain",
+        "product_code",
+        "request_id",
+        "idempotency_key",
+        "sandbox API key prefix only"
+      ],
+      "personal_data_risk": "low_if_synthetic_only",
+      "purpose": "Test scoring, validate schemas and prove machine-readable flow.",
+      "legal_basis_to_confirm": "not applicable for synthetic data; contractual basis if tied to beta account",
+      "storage_location_logical": "sandbox logs and local test reports",
+      "retention_draft": "Short technical retention for debugging, suggested 30 days, to be approved.",
+      "deletion_draft": "Delete sandbox logs on request or scheduled cleanup.",
+      "live_blocker": "none for synthetic sandbox; still no external outreach"
+    },
+    {
+      "flow_id": "F3_customer_uploaded_company_list_future",
+      "status": "future_blocked",
+      "trigger": "A customer machine submits a list of companies or domains for scoring.",
+      "actor": "Customer account owner through machine integration",
+      "machine_actor": "CRM, enrichment workflow, sales automation software",
+      "input_data_categories": [
+        "company name",
+        "business domain",
+        "sector",
+        "city/area",
+        "optional public website signals",
+        "no names of people",
+        "no personal emails",
+        "no phone numbers"
+      ],
+      "personal_data_risk": "medium_if_company_data_contains_identifiable_persons",
+      "purpose": "Score commercial opportunity for website/API/service need.",
+      "legal_basis_to_confirm": "customer responsibility and DPA if MachineSignal acts as processor",
+      "storage_location_logical": "scoring queue, temporary processing store, output store if enabled",
+      "retention_draft": "Input list deleted after processing or within a short period, suggested 7-30 days, to be approved.",
+      "deletion_draft": "Delete raw input, retain aggregated score metadata only if allowed.",
+      "live_blocker": "privacy_data_map approval, DPA, retention approval, terms acceptance flow"
+    },
+    {
+      "flow_id": "F4_machine_requested_target_discovery_future",
+      "status": "future_blocked",
+      "trigger": "A customer machine asks MachineSignal to find companies/domains in a niche and area.",
+      "actor": "Customer account owner through machine integration",
+      "machine_actor": "AI procurement agent, CRM workflow, data ops agent",
+      "input_data_categories": [
+        "sector",
+        "geography",
+        "business criteria",
+        "budget/pack code",
+        "no personal target attributes"
+      ],
+      "output_data_categories": [
+        "company/domain list",
+        "source type",
+        "quality flags",
+        "score readiness",
+        "no personal contact details"
+      ],
+      "personal_data_risk": "medium",
+      "purpose": "Prepare business-domain targets for machine scoring, not human outreach.",
+      "legal_basis_to_confirm": "controller/processor role and public-source policy to be defined",
+      "storage_location_logical": "target discovery work queue and output pack store",
+      "retention_draft": "Output retained only for customer retrieval window, suggested 30-90 days, to be approved.",
+      "deletion_draft": "Delete output packs after expiry or customer request.",
+      "live_blocker": "source policy, no-contact-data rule, legal review, owner approval"
+    },
+    {
+      "flow_id": "F5_score_output_and_action_pack",
+      "status": "allowed_only_with_synthetic_or_future_approved_inputs",
+      "trigger": "MachineSignal returns score, decision and optional action pack.",
+      "actor": "MachineSignal API",
+      "machine_actor": "Receiving CRM, workflow or AI agent",
+      "output_data_categories": [
+        "opportunity_score",
+        "confidence",
+        "decision",
+        "reason_codes",
+        "recommended_next_action",
+        "product_code",
+        "credit_consumed_if_valid"
+      ],
+      "personal_data_risk": "low_if_no_person_fields",
+      "purpose": "Allow machine to discard, watchlist, nurture, request verification or buy an approved deepening.",
+      "legal_basis_to_confirm": "same as input processing flow",
+      "storage_location_logical": "API response, optional customer output log",
+      "retention_draft": "Output metadata retained for ledger/audit; full output retention optional and to be approved.",
+      "deletion_draft": "Delete full output where possible; retain ledger minimum for dispute/audit.",
+      "live_blocker": "valid output definition per product and ledger retention approval"
+    },
+    {
+      "flow_id": "F6_credit_ledger",
+      "status": "allowed_design_only",
+      "trigger": "A valid output consumes a credit.",
+      "actor": "MachineSignal ledger",
+      "machine_actor": "API billing/usage subsystem",
+      "input_data_categories": [
+        "customer_id pseudonymous",
+        "product_code",
+        "request_id",
+        "idempotency_key",
+        "timestamp",
+        "credit_delta",
+        "valid_output_reason"
+      ],
+      "personal_data_risk": "low_if_pseudonymous",
+      "purpose": "Usage traceability, no-credit/refund handling and abuse prevention.",
+      "legal_basis_to_confirm": "contract and legitimate interest/security where applicable",
+      "storage_location_logical": "ledger store",
+      "retention_draft": "Longer than raw input because needed for disputes and accounting; duration to be approved.",
+      "deletion_draft": "Pseudonymize where possible after account closure; keep only required accounting/security records.",
+      "live_blocker": "retention approval and fiscal/admin decision"
+    },
+    {
+      "flow_id": "F7_support_and_privacy_requests_future",
+      "status": "future_blocked",
+      "trigger": "Customer or account owner asks support, privacy or legal question.",
+      "actor": "Customer/account owner",
+      "machine_actor": "Support agent, ticket classifier, escalation workflow",
+      "input_data_categories": [
+        "support message",
+        "account identifier",
+        "request category",
+        "technical logs if supplied",
+        "privacy request metadata"
+      ],
+      "personal_data_risk": "medium",
+      "purpose": "Support, privacy rights handling and legal escalation.",
+      "legal_basis_to_confirm": "contract, legal obligation, legitimate interest depending on request",
+      "storage_location_logical": "support queue and escalation log",
+      "retention_draft": "Support retention to be approved; privacy request register retained as legally required.",
+      "deletion_draft": "Delete non-required attachments and close ticket; retain minimal audit trail.",
+      "live_blocker": "support_privacy_terms_playbook and privacy_request_intake_flow"
+    },
+    {
+      "flow_id": "F8_security_and_abuse_monitoring",
+      "status": "allowed_design_only",
+      "trigger": "System detects high volume, invalid keys, rate limit or suspicious usage.",
+      "actor": "MachineSignal security/cost guard",
+      "machine_actor": "Rate limiter, cost guard, alerting agent",
+      "input_data_categories": [
+        "IP or network metadata if collected",
+        "API key prefix",
+        "request rate",
+        "error pattern",
+        "blocked action reason"
+      ],
+      "personal_data_risk": "medium_if_ip_logged",
+      "purpose": "Security, abuse prevention and cost control.",
+      "legal_basis_to_confirm": "legitimate interest/security; to be reviewed",
+      "storage_location_logical": "security logs and cost guard event store",
+      "retention_draft": "Short security retention unless incident requires longer; suggested 30-90 days, to be approved.",
+      "deletion_draft": "Aggregate or delete after retention window.",
+      "live_blocker": "security log retention and incident response approval"
+    }
+  ],
+  "forbidden_input_fields_until_approval": [
+    "person_name",
+    "personal_email",
+    "personal_phone",
+    "home_address",
+    "health_data",
+    "political_opinion",
+    "religion",
+    "biometric_data",
+    "financial_card_data",
+    "password",
+    "secret",
+    "free_text_with_personal_data"
+  ],
+  "subprocessor_inventory_draft": [
+    {
+      "provider": "Cloudflare",
+      "current_use": "Workers, routing, possible logs/KV depending on deployment",
+      "data_categories_possible": [
+        "technical logs",
+        "request metadata",
+        "API traffic metadata"
+      ],
+      "status": "to_verify_before_live"
+    },
+    {
+      "provider": "GitHub",
+      "current_use": "source repository, Actions, public documentation",
+      "data_categories_possible": [
+        "repository content",
+        "workflow logs",
+        "no customer data intended"
+      ],
+      "status": "to_verify_no_customer_data"
+    },
+    {
+      "provider": "Postman",
+      "current_use": "API collection and testing",
+      "data_categories_possible": [
+        "API examples",
+        "test calls",
+        "no real customer data intended"
+      ],
+      "status": "to_verify_before_public_use"
+    },
+    {
+      "provider": "DataForSEO",
+      "current_use": "test/scouting provider evaluation",
+      "data_categories_possible": [
+        "queries",
+        "business/domain research parameters",
+        "API usage logs"
+      ],
+      "status": "to_verify_before_live"
+    },
+    {
+      "provider": "Register.it",
+      "current_use": "domain, hosting/email",
+      "data_categories_possible": [
+        "domain account data",
+        "email metadata if used",
+        "hosting logs"
+      ],
+      "status": "to_verify_before_live"
+    }
+  ],
+  "retention_matrix_draft": [
+    {
+      "category": "sandbox_test_logs",
+      "suggested_retention": "30 days",
+      "approval_status": "not_approved",
+      "reason": "Debugging only; synthetic data."
+    },
+    {
+      "category": "raw_customer_input_future",
+      "suggested_retention": "7-30 days after processing",
+      "approval_status": "not_approved",
+      "reason": "Minimize raw input storage."
+    },
+    {
+      "category": "score_output_future",
+      "suggested_retention": "30-90 days or customer-configured",
+      "approval_status": "not_approved",
+      "reason": "Retrieval/dispute window."
+    },
+    {
+      "category": "credit_ledger",
+      "suggested_retention": "account lifetime plus dispute/accounting window",
+      "approval_status": "not_approved",
+      "reason": "Traceability and credit disputes."
+    },
+    {
+      "category": "security_logs",
+      "suggested_retention": "30-90 days unless incident",
+      "approval_status": "not_approved",
+      "reason": "Security and abuse prevention."
+    },
+    {
+      "category": "privacy_request_register",
+      "suggested_retention": "legal/defense period to be defined by professional",
+      "approval_status": "not_approved",
+      "reason": "Proof of privacy request handling."
+    }
+  ],
+  "deletion_process_draft": [
+    "Receive deletion/privacy request through approved channel.",
+    "Identify account owner and affected data category without exposing additional data.",
+    "Check whether MachineSignal is controller or processor for that flow.",
+    "If processor, route to customer/controller instructions.",
+    "Delete raw input/output where allowed.",
+    "Pseudonymize ledger/security records where deletion is not possible due to audit/legal need.",
+    "Record deletion outcome in privacy request register.",
+    "Escalate legal/privacy uncertainty to owner or professional reviewer."
+  ],
+  "open_owner_decisions": [
+    "Approve whether real company/domain lists can be accepted.",
+    "Approve whether any personal business contact data is ever allowed.",
+    "Approve retention durations.",
+    "Approve subprocessors and DPA needs.",
+    "Approve role split: controller, processor, subprocessor per flow.",
+    "Approve privacy notice and DPA final text.",
+    "Approve security log collection and IP retention.",
+    "Approve whether public-source discovery is permitted and under which rules."
+  ],
+  "hard_blocks_preserved": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live"
+  ],
+  "readiness_after_data_map": {
+    "legal_privacy_readiness": 57,
+    "data_governance_readiness": 55,
+    "commercial_readiness": 62,
+    "go_live_status": "no_go",
+    "reason": "La mappa dati chiarisce flussi e rischi, ma retention, ruoli privacy, DPA, subprocessor e accettazione termini restano non approvati."
+  },
+  "recommended_next_action": "machine_readable_terms_summary_draft_nowrite"
+}
