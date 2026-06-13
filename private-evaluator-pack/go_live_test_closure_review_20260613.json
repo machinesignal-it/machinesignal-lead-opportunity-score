@@ -1,0 +1,120 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "review_id": "go_live_test_closure_review_20260613",
+  "created_at": "2026-06-13",
+  "status": "completed",
+  "scope": "close_sandbox_test_phase_prepare_pre_commercial_gate",
+  "plain_italian_summary": "La fase test sandbox-only puo' essere considerata tecnicamente chiudibile. Le macchine riescono a trovare, leggere, capire e simulare il flusso MachineSignal entro limiti controllati. Il go-live commerciale resta invece bloccato finche' non sono pronti assetto amministrativo/fiscale, pagamenti, condizioni legali, gestione dati reali e approvazione del proprietario.",
+  "roadmap": {
+    "phase": "test_closure",
+    "estimated_test_completion_percentage": 94,
+    "sandbox_test_status": "closure_ready",
+    "commercial_go_live_status": "blocked"
+  },
+  "evidence_reviewed": [
+    {
+      "artifact": "agent_post_rehearsal_soft_go_live_review_probe_summary_20260613.json",
+      "status": "passed",
+      "checks_total": 48,
+      "checks_failed": 0,
+      "meaning": "Gli agenti hanno approvato la prosecuzione sandbox-only e confermato i blocchi commerciali."
+    },
+    {
+      "artifact": "sandbox_visibility_monitoring_pack_probe_summary_20260613.json",
+      "status": "passed",
+      "checks_total": 38,
+      "checks_failed": 0,
+      "meaning": "Il monitoring pack e' coerente con modalita' NoWrite, blocchi e stop trigger."
+    },
+    {
+      "artifact": "sandbox_visibility_monitor_summary_20260613.json",
+      "status": "passed",
+      "status_level": "green",
+      "resources_checked": 10,
+      "resources_failed": 0,
+      "post_calls_executed": 0,
+      "meaning": "Le risorse pubbliche principali sono leggibili dalle macchine senza scritture."
+    },
+    {
+      "artifact": "machinesignal_sandbox_observation_log_probe_summary_20260613.json",
+      "status": "passed",
+      "checks_total": 52,
+      "checks_failed": 0,
+      "meaning": "Il registro giornaliero e' coerente, green e senza rischi live."
+    },
+    {
+      "artifact": "contract_docs_consistency_check_summary_20260613.json",
+      "status": "passed",
+      "status_level": "green",
+      "checks_total": 63,
+      "checks_failed": 0,
+      "meaning": "OpenAPI, Postman, GitHub docs e pagine pubbliche raccontano lo stesso prodotto machine-first sandbox-only."
+    }
+  ],
+  "what_is_ready": [
+    "public machine-readable website surfaces",
+    "OpenAPI public contract",
+    "MCP manifest public contract",
+    "Postman public collection",
+    "GitHub README and machine entrypoint",
+    "sandbox-only control pack",
+    "no-write visibility monitoring",
+    "observation log",
+    "contract-docs consistency checks",
+    "machine-first product explanation",
+    "core product route explanation: target discovery, score, deep analysis, action pack"
+  ],
+  "what_is_not_yet_ready": [
+    "paid checkout",
+    "real payment processing",
+    "invoice issuance",
+    "P.IVA-dependent commercial activation",
+    "legal terms for paid customers",
+    "privacy/data processing setup for real customer data",
+    "production API key issuing process",
+    "public paid marketplace listing",
+    "hosted public MCP launch",
+    "MCP registry publication",
+    "external outreach or external invitations"
+  ],
+  "agent_decision": {
+    "orchestrator": "sandbox_test_phase_closure_ready",
+    "api_product_manager": "contract_docs_ready_for_pre_commercial_gate",
+    "machine_to_machine_sales_ops": "passive_machine_visibility_ready_no_outreach",
+    "admin_finance_controller": "commercial_go_live_blocked_until_fiscal_billing_ready",
+    "legal_compliance": "commercial_go_live_blocked_until_terms_privacy_data_ready",
+    "growth_distribution": "public_paid_distribution_blocked_until_owner_gate",
+    "continuous_learning": "continue_learning_loop_with_nowrite_checks"
+  },
+  "decision": {
+    "sandbox_test_phase": "close_as_technically_satisfactory",
+    "commercial_go_live": "no_go_until_pre_commercial_gate_passes",
+    "machine_visibility": "keep_passive_visibility",
+    "next_required_gate": "pre_commercial_go_live_gate_pack",
+    "owner_supervision_required_now": false
+  },
+  "blocked_until_owner_approval": [
+    "real payment",
+    "paid checkout",
+    "invoice issuance",
+    "payment method collection",
+    "public paid marketplace listing",
+    "hosted public MCP",
+    "MCP registry publication",
+    "production API key publication",
+    "human outreach",
+    "email campaign",
+    "external contact",
+    "real customer data",
+    "personal data",
+    "real lead list processing",
+    "unbounded write operations"
+  ],
+  "recommended_next_action": {
+    "name": "pre_commercial_go_live_gate_pack",
+    "mode": "NoWrite planning",
+    "plain_italian": "Preparare la checklist finale prima di vendere davvero: cosa serve per attivare pagamenti, fatture, termini legali, privacy, API key reali, supporto automatico e limiti di costo.",
+    "goal": "Trasformare il test tecnicamente riuscito in un piano di go-live commerciale sicuro, senza attivarlo ancora.",
+    "requires_owner_supervision": false
+  }
+}

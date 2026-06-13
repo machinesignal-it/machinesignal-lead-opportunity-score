@@ -1,0 +1,11 @@
+{
+  "probe_id": "go_live_test_closure_review_probe_20260613",
+  "status": "passed",
+  "checks_total": 61,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "roadmap_percentage": 94,
+  "sandbox_test_status": "closure_ready",
+  "commercial_go_live_status": "blocked",
+  "recommended_next_action": "pre_commercial_go_live_gate_pack"
+}
