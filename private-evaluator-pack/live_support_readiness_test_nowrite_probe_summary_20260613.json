@@ -1,0 +1,10 @@
+{
+  "probe_id": "live_support_readiness_test_nowrite_probe_20260613",
+  "status": "passed",
+  "checks_total": 65,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "commercial_status": "not_live",
+  "commercial_go_live": "no_go",
+  "recommended_next_action": "cost_guard_hard_stop_simulation_nowrite"
+}
