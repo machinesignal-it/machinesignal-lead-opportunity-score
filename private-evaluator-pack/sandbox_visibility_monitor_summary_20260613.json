@@ -1,0 +1,223 @@
+{
+  "monitor_id": "sandbox_visibility_monitor_20260613",
+  "status": "passed",
+  "status_level": "green",
+  "mode": "NoWrite",
+  "post_calls_executed": 0,
+  "resources_total": 10,
+  "resources_failed": 0,
+  "stop_trigger_detected": false,
+  "failed_resources": [],
+  "results": [
+    {
+      "id": "homepage",
+      "url": "https://machinesignal.it/",
+      "method": "GET",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 210,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal_or_api",
+          "ok": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "api_page",
+      "url": "https://machinesignal.it/api/",
+      "method": "GET",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 41,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal_or_api",
+          "ok": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "beta_page",
+      "url": "https://machinesignal.it/beta/",
+      "method": "GET",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 42,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal_or_api",
+          "ok": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "machine_discovery_page",
+      "url": "https://machinesignal.it/machine-discovery/",
+      "method": "GET",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 41,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal_or_api",
+          "ok": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "openapi",
+      "url": "https://machinesignal.it/openapi.json",
+      "method": "GET",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 41,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "valid_json",
+          "ok": true
+        },
+        {
+          "name": "has_openapi_field",
+          "ok": true
+        },
+        {
+          "name": "has_paths",
+          "ok": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "mcp_manifest",
+      "url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "method": "GET",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 41,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "valid_json",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal",
+          "ok": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "well_known_mcp_manifest",
+      "url": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+      "method": "GET",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 42,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "valid_json",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal",
+          "ok": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "postman_public_collection",
+      "url": "https://machinesignal.it/postman_public_collection.json",
+      "method": "GET",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 55,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "valid_json",
+          "ok": true
+        },
+        {
+          "name": "has_postman_info",
+          "ok": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "github_readme",
+      "url": "https://raw.githubusercontent.com/machinesignal-it/machinesignal-lead-opportunity-score/main/README.md",
+      "method": "GET",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 175,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal_or_api",
+          "ok": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "github_machine_agent_entrypoint",
+      "url": "https://raw.githubusercontent.com/machinesignal-it/machinesignal-lead-opportunity-score/main/MACHINE_AGENT_ENTRYPOINT.md",
+      "method": "GET",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 151,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal_or_api",
+          "ok": true
+        }
+      ],
+      "error": null
+    }
+  ]
+}

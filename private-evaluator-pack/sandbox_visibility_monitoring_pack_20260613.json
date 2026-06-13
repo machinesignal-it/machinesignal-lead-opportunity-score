@@ -1,0 +1,175 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "pack_id": "sandbox_visibility_monitoring_pack_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "scope": "soft_go_live_sandbox_only_visibility_monitoring",
+  "source_decision": "keep_sandbox_visible_continue_no_paid_no_external_publication",
+  "plain_italian_summary": "Questo pack dice agli agenti come controllare ogni giorno se le macchine riescono a trovare, leggere e testare MachineSignal senza generare costi, contatti esterni, dati reali o attivita' commerciali live.",
+  "operating_mode": {
+    "default_mode": "NoWrite",
+    "allowed_network_actions": [
+      "GET public MachineSignal pages",
+      "GET public OpenAPI file",
+      "GET public MCP manifest",
+      "GET public GitHub documentation",
+      "GET public Postman collection"
+    ],
+    "blocked_network_actions": [
+      "POST to production endpoints",
+      "PUT to production endpoints",
+      "DELETE to production endpoints",
+      "PATCH to production endpoints",
+      "contact external companies",
+      "send email campaigns",
+      "publish to paid marketplace",
+      "publish to public MCP registry",
+      "collect payment methods",
+      "process real lead lists",
+      "process personal data"
+    ],
+    "write_capped_exception": "Only a separate owner-approved rehearsal may use write-capped mode, with max 5 POST calls and synthetic data only."
+  },
+  "monitored_resources": [
+    {
+      "id": "homepage",
+      "url": "https://machinesignal.it/",
+      "method": "GET",
+      "expected": "2xx and MachineSignal identity visible"
+    },
+    {
+      "id": "api_page",
+      "url": "https://machinesignal.it/api/",
+      "method": "GET",
+      "expected": "2xx and machine/API positioning visible"
+    },
+    {
+      "id": "beta_page",
+      "url": "https://machinesignal.it/beta/",
+      "method": "GET",
+      "expected": "2xx and sandbox/beta explanation visible"
+    },
+    {
+      "id": "machine_discovery_page",
+      "url": "https://machinesignal.it/machine-discovery/",
+      "method": "GET",
+      "expected": "2xx and machine discovery explanation visible"
+    },
+    {
+      "id": "openapi",
+      "url": "https://machinesignal.it/openapi.json",
+      "method": "GET",
+      "expected": "valid JSON with openapi field"
+    },
+    {
+      "id": "mcp_manifest",
+      "url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "method": "GET",
+      "expected": "valid JSON with MachineSignal metadata"
+    },
+    {
+      "id": "well_known_mcp_manifest",
+      "url": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+      "method": "GET",
+      "expected": "valid JSON with MachineSignal metadata"
+    },
+    {
+      "id": "postman_public_collection",
+      "url": "https://machinesignal.it/postman_public_collection.json",
+      "method": "GET",
+      "expected": "valid JSON Postman collection"
+    },
+    {
+      "id": "github_readme",
+      "url": "https://raw.githubusercontent.com/machinesignal-it/machinesignal-lead-opportunity-score/main/README.md",
+      "method": "GET",
+      "expected": "2xx and MachineSignal explanation visible"
+    },
+    {
+      "id": "github_machine_agent_entrypoint",
+      "url": "https://raw.githubusercontent.com/machinesignal-it/machinesignal-lead-opportunity-score/main/MACHINE_AGENT_ENTRYPOINT.md",
+      "method": "GET",
+      "expected": "2xx and machine agent entrypoint visible"
+    }
+  ],
+  "daily_checks": [
+    {
+      "check": "public_visibility",
+      "owner_agent": "Agente Growth & Distribution",
+      "description": "Verifica che le pagine pubbliche siano raggiungibili e dicano chiaramente che MachineSignal e' pensato per sistemi automatici.",
+      "success_condition": "All public pages return 2xx and contain MachineSignal or machine/API wording."
+    },
+    {
+      "check": "contract_integrity",
+      "owner_agent": "Agente API Product Manager",
+      "description": "Verifica che OpenAPI, MCP manifest e Postman collection siano validi e non rotti.",
+      "success_condition": "All JSON contracts parse and expose the expected top-level fields."
+    },
+    {
+      "check": "commercial_guardrails",
+      "owner_agent": "Agente Admin & Finance Controller",
+      "description": "Verifica che il test non diventi pagamento, fattura, checkout o vendita live.",
+      "success_condition": "No payment, billing, invoice or checkout activation is performed."
+    },
+    {
+      "check": "legal_guardrails",
+      "owner_agent": "Agente Legal & Compliance",
+      "description": "Verifica che non siano usati dati reali, dati personali, liste lead reali o contatti esterni.",
+      "success_condition": "Synthetic-only and no external contact."
+    },
+    {
+      "check": "usage_guard",
+      "owner_agent": "Orchestratore",
+      "description": "Controlla segnali di abuso, 429, limiti Cloudflare KV o risposte 5xx.",
+      "success_condition": "No 429, no unexpected 5xx and no KV limit warning."
+    },
+    {
+      "check": "learning_loop",
+      "owner_agent": "Agente Continuous Learning",
+      "description": "Propone micro-miglioramenti a docs, esempi, pricing explanation e risposte sandbox sulla base dei controlli.",
+      "success_condition": "At most 3 improvement suggestions, none requiring live selling or external contact."
+    }
+  ],
+  "status_levels": {
+    "green": {
+      "meaning": "Tutto funziona e resta nei limiti sandbox-only.",
+      "automatic_action": "Continue monitoring and prepare concise daily report."
+    },
+    "yellow": {
+      "meaning": "Uno o piu' asset pubblici sono lenti, poco chiari o parzialmente non leggibili, ma non c'e' rischio commerciale o legale.",
+      "automatic_action": "Prepare fix proposal and wait for owner approval before meaningful publication changes."
+    },
+    "red": {
+      "meaning": "Rischio di costo, pagamento, dati reali, contatto esterno, 429/limit, errore 5xx critico o pubblicazione non approvata.",
+      "automatic_action": "Stop tests, do not retry writes, create incident note and ask owner for approval."
+    }
+  },
+  "stop_triggers": [
+    "HTTP 429 from Cloudflare, Worker, KV or public API",
+    "Cloudflare KV daily write limit warning",
+    "any payment or checkout activation",
+    "any invoice creation",
+    "any request for payment method",
+    "any external email or outreach attempt",
+    "any real company list upload",
+    "any personal data processing",
+    "any production API key publication",
+    "any public marketplace or MCP registry submission",
+    "three repeated 5xx responses on critical public contracts"
+  ],
+  "daily_user_report": {
+    "max_length": "short",
+    "target_supervision_time": "15-30 minutes",
+    "fields": [
+      "roadmap percentage",
+      "status level green/yellow/red",
+      "what was checked",
+      "what passed",
+      "what is blocked",
+      "cost or risk signals",
+      "recommended next action",
+      "items requiring owner approval"
+    ]
+  },
+  "next_step_after_pack": "Run the first no-write daily visibility monitor and, if green, prepare the MachineSignal sandbox observation log."
+}

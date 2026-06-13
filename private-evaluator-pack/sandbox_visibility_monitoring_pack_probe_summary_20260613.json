@@ -1,0 +1,9 @@
+{
+  "probe_id": "sandbox_visibility_monitoring_pack_probe_20260613",
+  "status": "passed",
+  "checks_total": 38,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "monitor_status_level": "green",
+  "recommended_next_step": "Run the first no-write daily visibility monitor and, if green, prepare the MachineSignal sandbox observation log."
+}
