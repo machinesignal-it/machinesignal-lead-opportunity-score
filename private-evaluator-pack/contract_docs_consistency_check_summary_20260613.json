@@ -1,0 +1,153 @@
+{
+  "check_id": "contract_docs_consistency_check_20260613",
+  "status": "passed",
+  "status_level": "green",
+  "mode": "NoWrite",
+  "post_calls_executed": 0,
+  "write_calls_executed": 0,
+  "local_documents_checked": [
+    "openapi",
+    "postman",
+    "readme",
+    "machineEntrypoint",
+    "mcpManifest",
+    "machineOnboarding"
+  ],
+  "public_resources_checked": 7,
+  "checks_total": 63,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "public_results": [
+    {
+      "id": "apiPage",
+      "url": "https://machinesignal.it/api/",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 408,
+      "error": null,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal_or_api",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "betaPage",
+      "url": "https://machinesignal.it/beta/",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 45,
+      "error": null,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal_or_api",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "machineDiscoveryPage",
+      "url": "https://machinesignal.it/machine-discovery/",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 48,
+      "error": null,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "mentions_machinesignal_or_api",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "publicOpenapi",
+      "url": "https://machinesignal.it/openapi.json",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 64,
+      "error": null,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "valid_json",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "publicPostman",
+      "url": "https://machinesignal.it/postman_public_collection.json",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 66,
+      "error": null,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "valid_json",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "publicMcpManifest",
+      "url": "https://machinesignal.it/mcp-tool-manifest.json",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 52,
+      "error": null,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "valid_json",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "publicWellKnownMcpManifest",
+      "url": "https://machinesignal.it/.well-known/mcp-tool-manifest.json",
+      "ok": true,
+      "status": 200,
+      "elapsed_ms": 48,
+      "error": null,
+      "checks": [
+        {
+          "name": "http_2xx",
+          "ok": true
+        },
+        {
+          "name": "valid_json",
+          "ok": true
+        }
+      ]
+    }
+  ],
+  "openapi_methods_count": 22,
+  "postman_items_count": 28,
+  "payment_test_items_count": 6,
+  "issues": [],
+  "next_recommended_action": "prepare_go_live_test_closure_review"
+}

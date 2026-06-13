@@ -1,0 +1,10 @@
+{
+  "probe_id": "contract_docs_consistency_check_probe_20260613",
+  "status": "passed",
+  "checks_total": 20,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "source_status": "passed",
+  "source_status_level": "green",
+  "recommended_next_action": "prepare_go_live_test_closure_review"
+}

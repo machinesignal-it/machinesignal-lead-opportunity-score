@@ -1,12 +1,12 @@
 # MachineSignal Machine Agent Entrypoint
 
-Status: public GitHub documentation, draft only, no live commercial offer.
+Status: public GitHub documentation, private technical beta, draft only, no live commercial offer.
 
 Date: 2026-06-12
 
 Audience: AI agents, MCP clients, CRM workflows, API-directory bots, software evaluators and owner-supervised technical reviewers.
 
-MachineSignal is a machine-first API business. The intended operating customer is a machine: CRM, AI agent, workflow automation, enrichment pipeline or software buyer. Humans supervise, approve budgets, handle legal/fiscal decisions and audit results.
+MachineSignal is a machine-first API business in private technical beta. The intended operating customer is a machine: CRM, AI agent, workflow automation, enrichment pipeline or software buyer. Humans supervise, approve budgets, handle legal/fiscal decisions and audit results.
 
 ## Fast Path
 
@@ -141,4 +141,3 @@ A new owner-approved gate is required before:
 - enabling write tools for external users;
 - enabling billing;
 - processing real customer or lead data.
-
