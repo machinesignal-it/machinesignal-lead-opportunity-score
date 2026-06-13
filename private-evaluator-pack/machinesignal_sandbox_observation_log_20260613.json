@@ -1,0 +1,110 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "log_id": "machinesignal_sandbox_observation_log_20260613",
+  "created_at": "2026-06-13",
+  "status": "active_day_1_logged",
+  "scope": "soft_go_live_sandbox_only_observation",
+  "roadmap": {
+    "phase": "test_sandbox_visibility",
+    "estimated_test_completion_percentage": 92,
+    "plain_status": "La parte sandbox pubblica e leggibile dalle macchine e' attiva e verificata. Restano da osservare stabilita', leggibilita' continua, comportamento dei contratti macchina e preparazione dei blocchi pre-monetizzazione."
+  },
+  "current_decision": {
+    "verdict": "keep_sandbox_visible_continue_no_paid_no_external_publication",
+    "meaning": "La sandbox puo' restare visibile e puo' essere letta dalle macchine, ma non e' ancora go-live commerciale.",
+    "commercial_status": "not_paid_live",
+    "external_distribution_status": "passive_visibility_only"
+  },
+  "day_observation": {
+    "date": "2026-06-13",
+    "status_level": "green",
+    "monitor_reference": "sandbox_visibility_monitor_summary_20260613.json",
+    "mode": "NoWrite",
+    "resources_checked": 10,
+    "resources_failed": 0,
+    "post_calls_executed": 0,
+    "stop_trigger_detected": false,
+    "summary": "Il primo monitor no-write ha verificato le risorse pubbliche principali senza errori e senza chiamate scriventi."
+  },
+  "machine_visibility_signals": {
+    "homepage_visible": true,
+    "api_page_visible": true,
+    "beta_page_visible": true,
+    "machine_discovery_page_visible": true,
+    "openapi_visible_and_valid": true,
+    "mcp_manifest_visible_and_valid": true,
+    "well_known_mcp_manifest_visible_and_valid": true,
+    "postman_public_collection_visible_and_valid": true,
+    "github_readme_visible": true,
+    "github_machine_entrypoint_visible": true
+  },
+  "guardrail_status": {
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "checkout_enabled": false,
+    "payment_method_collected": false,
+    "human_outreach_executed": false,
+    "external_contact_executed": false,
+    "real_customer_data_used": false,
+    "personal_data_used": false,
+    "real_lead_list_processed": false,
+    "production_api_key_published": false,
+    "public_paid_marketplace_published": false,
+    "public_mcp_registry_published": false
+  },
+  "agent_notes": [
+    {
+      "agent": "Orchestratore",
+      "note": "Il sistema puo' continuare in osservazione no-write. Nessun blocco critico rilevato."
+    },
+    {
+      "agent": "Agente API Product Manager",
+      "note": "I contratti macchina pubblici risultano leggibili. Prossimo controllo: coerenza tra OpenAPI, Postman collection e documentazione."
+    },
+    {
+      "agent": "Machine-to-Machine Sales Ops",
+      "note": "La visibilita' resta passiva. Non sono state fatte azioni di vendita o contatto verso umani."
+    },
+    {
+      "agent": "Agente Admin & Finance Controller",
+      "note": "Nessun costo commerciale o billing attivato. Pagamenti e fatture restano bloccati."
+    },
+    {
+      "agent": "Agente Legal & Compliance",
+      "note": "Nessun dato reale o personale usato. Il perimetro sintetico e' rispettato."
+    },
+    {
+      "agent": "Agente Continuous Learning",
+      "note": "Suggerito miglioramento: creare una checklist di coerenza contratti-docs per evitare divergenze tra sito, GitHub e Postman."
+    }
+  ],
+  "blocked_until_owner_approval": [
+    "real payment",
+    "paid checkout",
+    "invoice issuance",
+    "payment method collection",
+    "public paid marketplace listing",
+    "hosted public MCP",
+    "MCP registry publication",
+    "production API key publication",
+    "human outreach",
+    "email campaign",
+    "external contact",
+    "real customer data",
+    "personal data",
+    "real lead list processing",
+    "unbounded write operations"
+  ],
+  "recommended_next_action": {
+    "name": "contract_docs_consistency_check",
+    "plain_italian": "Controllare che OpenAPI, Postman collection, pagina API, GitHub README e machine entrypoint raccontino lo stesso prodotto, gli stessi pacchetti e gli stessi limiti.",
+    "why": "Prima di aumentare la visibilita' verso macchine e agenti esterni, i contratti e la documentazione devono essere coerenti.",
+    "mode": "NoWrite",
+    "requires_owner_supervision": false
+  },
+  "user_supervision": {
+    "required_today": false,
+    "estimated_minutes_if_reviewed": 10,
+    "reason": "Stato verde e nessuna azione bloccante. Il prossimo controllo puo' essere eseguito dagli agenti in sola lettura."
+  }
+}

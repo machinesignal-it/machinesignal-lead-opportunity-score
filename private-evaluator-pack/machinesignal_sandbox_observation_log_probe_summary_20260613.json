@@ -1,0 +1,10 @@
+{
+  "probe_id": "machinesignal_sandbox_observation_log_probe_20260613",
+  "status": "passed",
+  "checks_total": 52,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "roadmap_percentage": 92,
+  "status_level": "green",
+  "recommended_next_action": "contract_docs_consistency_check"
+}
