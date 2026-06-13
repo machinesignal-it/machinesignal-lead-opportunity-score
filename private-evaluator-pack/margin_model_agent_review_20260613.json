@@ -1,0 +1,141 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "review_id": "margin_model_agent_review_20260613",
+  "created_at": "2026-06-13",
+  "status": "completed",
+  "mode": "NoWrite planning",
+  "source_model": "support_cost_guard_margin_model_20260613",
+  "plain_italian_summary": "Gli agenti confermano che il modello margini e' utile ma non autorizza il live commerciale. Action Pack 25 e' il prodotto piu' sano, Score Pack 1k e' vicino al target, mentre Target Discovery e Deep Analysis richiedono revisione prezzo/costo prima di venderli davvero.",
+  "commercial_status": "not_live",
+  "agent_votes": [
+    {
+      "agent": "Agente Admin & Finance Controller",
+      "vote": "conditional_go_for_planning_only",
+      "position": "Do not enable live payments. Require measured cost per valid output before any paid sale.",
+      "product_notes": {
+        "target_discovery_pack_250": "margin too low at planning assumptions; review price or reduce data/agent cost",
+        "score_pack_1k": "near target; acceptable for further controlled modeling",
+        "deep_analysis_pack_100": "margin too low; needs cost reduction or higher price",
+        "action_pack_25": "best candidate if Deep Analysis gate remains mandatory"
+      }
+    },
+    {
+      "agent": "Agente API Product Manager",
+      "vote": "conditional_go_for_gated_products",
+      "position": "Keep product gates strict: Action Pack only after valid Deep Analysis, Deep Analysis only after score/confidence rules.",
+      "product_notes": {
+        "target_discovery_pack_250": "must return exact output contract or no-go coverage decision",
+        "score_pack_1k": "must keep idempotency and duplicate protection",
+        "deep_analysis_pack_100": "must keep no-credit invalid-output rule",
+        "action_pack_25": "must keep CRM-ready payload and audit event"
+      }
+    },
+    {
+      "agent": "Machine-to-Machine Sales Ops",
+      "vote": "revise_bundle_positioning",
+      "position": "Lead with Score Pack plus Action Pack path. Do not push Target Discovery as first paid product until margin improves.",
+      "product_notes": {
+        "target_discovery_pack_250": "use as high-value add-on or raise price",
+        "score_pack_1k": "use as scalable entry product",
+        "deep_analysis_pack_100": "sell only after strong score, not as generic report",
+        "action_pack_25": "position as premium machine-action output"
+      }
+    },
+    {
+      "agent": "Agente Legal & Compliance",
+      "vote": "no_go_live_until_terms_and_data_rules",
+      "position": "No live sale until terms, privacy, data processing and no-guarantee language are approved.",
+      "product_notes": {
+        "target_discovery_pack_250": "must avoid scraping/contact harvesting claims",
+        "score_pack_1k": "must state decision-support, not guaranteed revenue",
+        "deep_analysis_pack_100": "must explain evidence limits",
+        "action_pack_25": "must avoid automatic outreach without approval"
+      }
+    },
+    {
+      "agent": "Orchestratore",
+      "vote": "proceed_to_price_revision_pack",
+      "position": "Next step should revise price/cost assumptions while keeping all commercial gates blocked.",
+      "product_notes": {
+        "target_discovery_pack_250": "review",
+        "score_pack_1k": "keep and measure",
+        "deep_analysis_pack_100": "review",
+        "action_pack_25": "keep as leading margin product"
+      }
+    }
+  ],
+  "product_decisions": [
+    {
+      "product_code": "action_pack_25",
+      "decision": "keep_as_best_margin_candidate",
+      "go_live_readiness": "planning_ready_not_live",
+      "required_before_live": [
+        "Deep Analysis gate must be enforced",
+        "cost per valid action pack must stay below 1.80 EUR",
+        "CRM payload and audit event must remain machine-readable",
+        "no automatic outreach"
+      ]
+    },
+    {
+      "product_code": "score_pack_1k",
+      "decision": "keep_as_scalable_entry_candidate",
+      "go_live_readiness": "needs_cost_measurement",
+      "required_before_live": [
+        "cost per valid score must stay below 0.033 EUR",
+        "idempotency must pass",
+        "valid-output rate must stay above 85%",
+        "score must include decision, confidence and reason codes"
+      ]
+    },
+    {
+      "product_code": "deep_analysis_pack_100",
+      "decision": "revise_price_or_reduce_cost",
+      "go_live_readiness": "not_ready",
+      "required_before_live": [
+        "cost per valid report must stay below 1.06 EUR or price must increase",
+        "no-credit invalid-output rule must pass",
+        "evidence and risk fields must be consistent",
+        "legal disclaimer must be ready"
+      ]
+    },
+    {
+      "product_code": "target_discovery_pack_250",
+      "decision": "revise_price_or_reduce_cost",
+      "go_live_readiness": "not_ready",
+      "required_before_live": [
+        "total cost must stay below 65 EUR or price must increase",
+        "valid target output rate must stay above 85%",
+        "no-go coverage decision must be accepted as valid deliverable",
+        "no contact harvesting or outreach claim"
+      ]
+    }
+  ],
+  "portfolio_decision": {
+    "recommended_pre_live_positioning": "Score Pack 1k as scalable entry, Action Pack 25 as premium gated output, Deep Analysis and Target Discovery under price/cost review.",
+    "recommended_first_live_candidate": "action_pack_25",
+    "recommended_scalable_candidate": "score_pack_1k",
+    "products_requiring_revision": [
+      "target_discovery_pack_250",
+      "deep_analysis_pack_100"
+    ],
+    "commercial_go_live_allowed": false
+  },
+  "blocked_until_owner_approval": [
+    "real payments",
+    "invoices",
+    "payment method collection",
+    "external outreach",
+    "real data processing",
+    "personal data processing",
+    "production API key issuing",
+    "public paid marketplace publication",
+    "hosted public MCP launch",
+    "MCP registry publication"
+  ],
+  "recommended_next_action": {
+    "name": "price_revision_and_live_candidate_pack",
+    "mode": "NoWrite planning",
+    "plain_italian": "Preparare una revisione del listino pre-live: mantenere Action Pack e Score Pack come candidati principali, ricalcolare Target Discovery e Deep Analysis, e definire cosa dovrebbe cambiare prima della vendita reale.",
+    "requires_owner_supervision": false
+  }
+}

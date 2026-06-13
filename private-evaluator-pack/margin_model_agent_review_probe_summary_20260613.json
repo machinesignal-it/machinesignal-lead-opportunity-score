@@ -1,0 +1,10 @@
+{
+  "probe_id": "margin_model_agent_review_probe_20260613",
+  "status": "passed",
+  "checks_total": 42,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "commercial_status": "not_live",
+  "recommended_first_live_candidate": "action_pack_25",
+  "recommended_next_action": "price_revision_and_live_candidate_pack"
+}
