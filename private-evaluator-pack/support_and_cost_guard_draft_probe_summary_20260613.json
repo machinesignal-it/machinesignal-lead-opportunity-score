@@ -1,0 +1,9 @@
+{
+  "probe_id": "support_and_cost_guard_draft_probe_20260613",
+  "status": "passed",
+  "checks_total": 57,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "mode": "NoWrite planning",
+  "recommended_next_action": "support_cost_guard_probe_and_margin_model"
+}

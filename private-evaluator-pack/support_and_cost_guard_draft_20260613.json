@@ -1,0 +1,178 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "draft_id": "support_and_cost_guard_draft_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_gap_analysis": "pre_commercial_gate_gap_analysis_20260613",
+  "plain_italian_summary": "Questa bozza definisce come evitare che il go-live crei lavoro umano accumulato o costi non controllati. Non attiva pagamenti, non contatta clienti, non usa dati reali e non modifica limiti live.",
+  "goals": [
+    "keep owner daily supervision below 30 minutes in normal conditions",
+    "avoid work accumulation if owner is absent for a few days",
+    "stop or slow down usage before cost spikes",
+    "make support responses readable by machines",
+    "escalate only critical decisions to the owner"
+  ],
+  "support_guard": {
+    "status": "draft",
+    "default_handling": "machine_self_service",
+    "support_channels": [
+      "GET /v1/usage",
+      "GET /v1/orders",
+      "machine-readable error codes",
+      "public docs and OpenAPI",
+      "daily observation log"
+    ],
+    "automatic_responses": [
+      {
+        "case": "invalid_input",
+        "machine_response": "Return structured error with missing_fields, expected_schema and retry_allowed=true.",
+        "owner_escalation": false
+      },
+      {
+        "case": "insufficient_credits",
+        "machine_response": "Return credit balance, product_code needed and blocked_purchase_reason. No automatic paid top-up until commercial gate passes.",
+        "owner_escalation": false
+      },
+      {
+        "case": "duplicate_request",
+        "machine_response": "Return duplicate_request=true and previous_result_reference without consuming extra credits.",
+        "owner_escalation": false
+      },
+      {
+        "case": "output_not_valid",
+        "machine_response": "Return no_credit_consumed=true, validation_failed_reasons and suggested_retry_payload.",
+        "owner_escalation": false
+      },
+      {
+        "case": "suspected_abuse_or_unbounded_usage",
+        "machine_response": "Return usage_paused=true, reason and next_allowed_check_time.",
+        "owner_escalation": true
+      },
+      {
+        "case": "payment_or_invoice_request_before_gate",
+        "machine_response": "Return commercial_go_live_blocked=true and explain that paid activation requires owner approval and fiscal/billing gates.",
+        "owner_escalation": true
+      },
+      {
+        "case": "real_data_detected_in_test",
+        "machine_response": "Return real_data_blocked=true and do not process payload.",
+        "owner_escalation": true
+      }
+    ],
+    "no_work_accumulation_policy": {
+      "normal_queue_limit": 10,
+      "owner_absence_mode_after_hours": 24,
+      "owner_absence_behavior": [
+        "continue no-write monitors",
+        "pause write-capped rehearsals",
+        "do not retry failing write operations",
+        "summarize only top 3 items requiring decision",
+        "auto-close low-risk duplicate support events"
+      ],
+      "hard_stop_after_critical_items": 3
+    },
+    "owner_escalation_rules": [
+      "payment, invoice or fiscal decision requested",
+      "real customer data or personal data appears",
+      "external contact or outreach is requested",
+      "cost threshold warning appears",
+      "security/key exposure suspected",
+      "public irreversible publication requested"
+    ]
+  },
+  "cost_guard": {
+    "status": "draft",
+    "default_mode": "cost_conservative",
+    "cost_sources": [
+      "Cloudflare Workers",
+      "Cloudflare KV",
+      "DataForSEO",
+      "OpenAI/Codex credits",
+      "email/domain/hosting",
+      "future payment provider fees"
+    ],
+    "daily_soft_limits": {
+      "cloudflare_kv_writes": 500,
+      "cloudflare_kv_write_hard_stop": 900,
+      "write_capped_post_calls": 5,
+      "external_paid_api_calls": 0,
+      "real_payment_attempts": 0,
+      "human_outreach_attempts": 0
+    },
+    "commercial_margin_rules": [
+      {
+        "product": "target_discovery_pack_250",
+        "required_before_live": "estimate cost per valid target and require minimum gross margin before paid sale"
+      },
+      {
+        "product": "score_pack_1k",
+        "required_before_live": "estimate cost per valid score and require retry/idempotency protection"
+      },
+      {
+        "product": "deep_analysis_pack_100",
+        "required_before_live": "estimate cost per report and enforce no-credit on invalid output"
+      },
+      {
+        "product": "action_pack_25",
+        "required_before_live": "estimate cost per action pack and require Deep Analysis gate"
+      }
+    ],
+    "stop_triggers": [
+      "HTTP 429 from Cloudflare, Worker, KV or public API",
+      "Cloudflare KV write usage above soft limit",
+      "external paid API call attempted without budget approval",
+      "real payment attempted before gate",
+      "invoice attempted before gate",
+      "personal or real customer data detected in test mode",
+      "unexpected 5xx repeated three times on critical endpoints",
+      "API key exposure suspected"
+    ],
+    "automatic_actions": [
+      "pause write-capped tests",
+      "continue no-write public checks",
+      "create incident note",
+      "summarize cost risk for owner",
+      "do not retry costly action automatically"
+    ]
+  },
+  "agent_responsibilities": [
+    {
+      "agent": "Orchestratore",
+      "responsibility": "Apply stop triggers, coordinate owner escalation and keep roadmap status updated."
+    },
+    {
+      "agent": "Customer Success & Post-Sale",
+      "responsibility": "Maintain automatic support responses and no-work-accumulation queue."
+    },
+    {
+      "agent": "Admin & Finance Controller",
+      "responsibility": "Track cost assumptions, margin rules and billing blockers."
+    },
+    {
+      "agent": "Legal & Compliance",
+      "responsibility": "Stop real data, personal data, payment and outreach requests until approved."
+    },
+    {
+      "agent": "API Product Manager",
+      "responsibility": "Keep error codes, usage, orders and product gates machine-readable."
+    }
+  ],
+  "blocked_now": [
+    "real payments",
+    "invoices",
+    "payment method collection",
+    "external outreach",
+    "real data processing",
+    "personal data processing",
+    "production API key issuing",
+    "public paid marketplace publication",
+    "hosted public MCP launch"
+  ],
+  "recommended_next_action": {
+    "name": "support_cost_guard_probe_and_margin_model",
+    "mode": "NoWrite planning",
+    "plain_italian": "Validare questa bozza e poi preparare un modello di margine minimo per prodotto, senza attivare pagamenti o chiamate paid esterne.",
+    "requires_owner_supervision": false
+  }
+}
