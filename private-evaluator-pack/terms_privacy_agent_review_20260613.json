@@ -1,0 +1,186 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "review_id": "terms_privacy_agent_review_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_outline": "terms_privacy_outline_draft_20260613",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "plain_italian_summary": "La riunione agenti conferma che la bozza termini/privacy e' utile come base operativa, ma non basta per vendere. Mancano documenti legali finali, mappa dati, DPA, retention approvata, processo data breach, condizioni fiscali e regole di accettazione contrattuale machine-first.",
+  "agent_votes": [
+    {
+      "agent": "Orchestratore",
+      "vote": "go_for_internal_preparation_only",
+      "reason": "La bozza crea un perimetro chiaro, ma il live resta bloccato finche' non ci sono owner approval e revisione professionale.",
+      "required_before_live": [
+        "legal_finalization_workflow",
+        "owner_decision_log",
+        "commercial_terms_acceptance_flow"
+      ]
+    },
+    {
+      "agent": "API Product Manager",
+      "vote": "go_for_contract_alignment",
+      "reason": "Il modello crediti/output valido e' coerente con API e ledger, ma va collegato agli endpoint e agli error code pubblici.",
+      "required_before_live": [
+        "terms_endpoint_mapping",
+        "valid_output_definition_per_product",
+        "api_error_policy_public"
+      ]
+    },
+    {
+      "agent": "Data Quality & Compliance",
+      "vote": "no_go_for_real_data",
+      "reason": "La bozza blocca correttamente dati reali/personali. Prima del live serve una mappa dati con categorie, finalita', basi giuridiche, retention e cancellazione.",
+      "required_before_live": [
+        "privacy_data_map",
+        "retention_matrix",
+        "deletion_process",
+        "subprocessor_inventory"
+      ]
+    },
+    {
+      "agent": "Admin & Finance Controller",
+      "vote": "no_go_for_paid_sale",
+      "reason": "Pagamenti e fatture restano bloccati. Serve decisione fiscale/amministrativa prima di qualunque incasso.",
+      "required_before_live": [
+        "fiscal_route_decision",
+        "invoice_policy",
+        "refund_credit_adjustment_policy",
+        "revenue_recognition_note"
+      ]
+    },
+    {
+      "agent": "Legal & Risk",
+      "vote": "no_go_until_professional_review",
+      "reason": "La bozza non e' un contratto. Mancano termini definitivi, privacy notice, DPA, cookie review e responsabilita' specifiche.",
+      "required_before_live": [
+        "terms_of_service_final_draft",
+        "privacy_notice_final_draft",
+        "data_processing_agreement_draft",
+        "cookie_and_website_review",
+        "liability_and_sla_clause_review"
+      ]
+    },
+    {
+      "agent": "Growth & Distribution",
+      "vote": "go_for_non_outreach_assets_only",
+      "reason": "Si possono preparare documenti e pagine leggibili da macchine, ma senza pubblicazione marketplace/registry o contatti esterni senza approvazione.",
+      "required_before_live": [
+        "machine_readable_terms_summary",
+        "public_beta_terms_stub",
+        "no_outreach_distribution_guard"
+      ]
+    },
+    {
+      "agent": "Customer Feedback",
+      "vote": "go_for_support_playbook",
+      "reason": "Serve trasformare privacy/termini in risposte di supporto automatiche, con escalation chiara per casi legali, privacy e pagamenti.",
+      "required_before_live": [
+        "support_macro_terms_privacy",
+        "privacy_request_intake_flow",
+        "legal_escalation_template"
+      ]
+    },
+    {
+      "agent": "HR Agent Manager",
+      "vote": "go_for_agent_training_update",
+      "reason": "Gli agenti devono integrare questi blocchi nei loro criteri decisionali e non proporre azioni live vietate.",
+      "required_before_live": [
+        "agent_operating_policy_update",
+        "self_improvement_guardrails",
+        "blocked_action_memory_check"
+      ]
+    }
+  ],
+  "cross_agent_findings": [
+    {
+      "finding": "Il cliente operativo puo' essere una macchina, ma l'accettazione legale deve essere riconducibile a un account umano/azienda.",
+      "severity": "high",
+      "action": "Definire terms_acceptance_flow con account owner, API key, audit log e versionamento condizioni."
+    },
+    {
+      "finding": "Il modello crediti deve essere scritto sia in linguaggio umano sia in contratto machine-readable.",
+      "severity": "medium",
+      "action": "Creare machine_readable_terms_summary con product_code, valid_output_rules, refund/no_credit_rules."
+    },
+    {
+      "finding": "La privacy data map e' il blocco piu' importante prima di usare dati reali.",
+      "severity": "high",
+      "action": "Preparare data_map_draft_nowrite con categorie dati, finalita', base giuridica, retention, subprocessors."
+    },
+    {
+      "finding": "La parte supporto post-vendita deve essere agent-only ma con escalation legale/amministrativa.",
+      "severity": "medium",
+      "action": "Preparare support_privacy_terms_playbook con risposte standard e condizioni di stop."
+    },
+    {
+      "finding": "I documenti legali non devono promettere revenue, lead garantiti, accuratezza assoluta o SLA non approvati.",
+      "severity": "high",
+      "action": "Aggiungere forbidden_claims_check ai futuri documenti pubblici."
+    }
+  ],
+  "required_artifacts_before_live": [
+    {
+      "artifact": "terms_acceptance_flow",
+      "owner": "API Product Manager + Legal & Risk",
+      "purpose": "Dimostrare chi accetta i termini quando la macchina compra o consuma API."
+    },
+    {
+      "artifact": "privacy_data_map",
+      "owner": "Data Quality & Compliance + Legal & Risk",
+      "purpose": "Documentare quali dati entrano, perche', dove vanno, per quanto restano e come si cancellano."
+    },
+    {
+      "artifact": "dpa_and_subprocessor_inventory",
+      "owner": "Legal & Risk",
+      "purpose": "Preparare accordo responsabile trattamento e lista fornitori/subprocessor."
+    },
+    {
+      "artifact": "fiscal_admin_go_live_gate",
+      "owner": "Admin & Finance Controller",
+      "purpose": "Evitare incassi o fatture prima della scelta fiscale e amministrativa."
+    },
+    {
+      "artifact": "support_privacy_terms_playbook",
+      "owner": "Customer Feedback + HR Agent Manager",
+      "purpose": "Rendere agent-only la gestione ordinaria di supporto, privacy e termini."
+    },
+    {
+      "artifact": "machine_readable_terms_summary",
+      "owner": "API Product Manager + Growth & Distribution",
+      "purpose": "Permettere a software e agenti AI di capire limiti, prodotti, consumi crediti e uso consentito."
+    }
+  ],
+  "approved_now": [
+    "Use outline as internal planning baseline",
+    "Create non-public machine-readable terms summary draft",
+    "Create data map draft with no real data",
+    "Create support playbook for agent-only handling",
+    "Keep all commercial gates blocked"
+  ],
+  "not_approved_now": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live",
+    "publish_final_terms",
+    "publish_final_privacy_notice"
+  ],
+  "readiness_after_review": {
+    "legal_privacy_readiness": 50,
+    "commercial_readiness": 62,
+    "machine_buyer_contract_readiness": 40,
+    "go_live_status": "no_go",
+    "reason": "La review trasforma la bozza in una lista concreta di artefatti, ma non sostituisce revisione legale/fiscale e non abilita live."
+  },
+  "recommended_next_action": "privacy_data_map_draft_nowrite"
+}
