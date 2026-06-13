@@ -1,0 +1,10 @@
+{
+  "probe_id": "pre_live_readiness_matrix_probe_20260613",
+  "status": "passed",
+  "checks_total": 83,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "commercial_live_sale": "no_go",
+  "pre_live_commercial_readiness_percentage": 45,
+  "recommended_next_action": "live_support_readiness_test_nowrite"
+}

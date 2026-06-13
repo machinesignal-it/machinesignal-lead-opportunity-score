@@ -1,0 +1,244 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "matrix_id": "pre_live_readiness_matrix_20260613",
+  "created_at": "2026-06-13",
+  "status": "completed",
+  "mode": "NoWrite planning",
+  "source_review": "pricing_pack_agent_go_no_go_review_20260613",
+  "commercial_status": "not_live",
+  "plain_italian_summary": "La matrice mostra che il prodotto e' vicino alla chiusura test, ma non e' pronto per vendere. I gate piu' bloccanti sono fiscalita'/P.IVA, legal/privacy, pagamenti, API key produzione, supporto live e cost guard hard stop.",
+  "overall_readiness": {
+    "sandbox_test_readiness_percentage": 94,
+    "pre_live_commercial_readiness_percentage": 45,
+    "commercial_live_sale": "no_go",
+    "reason": "Technical and machine-readable assets are strong, but commercial/legal/admin/live-operation gates remain incomplete."
+  },
+  "recommended_first_bundle": {
+    "name": "MachineSignal Controlled Entry Bundle",
+    "components": [
+      "score_pack_1k",
+      "action_pack_25"
+    ],
+    "status": "approved_for_pre_live_modeling_only",
+    "live_sale_allowed": false
+  },
+  "readiness_matrix": [
+    {
+      "gate": "sandbox_machine_readiness",
+      "owner_agent": "Orchestratore",
+      "status": "ready",
+      "readiness_percentage": 95,
+      "evidence_available": [
+        "public_machine_readability_probe_report_20260613.md",
+        "soft_go_live_sandbox_only_rehearsal_report_20260613.md",
+        "contract_docs_consistency_check_report_20260613.md"
+      ],
+      "missing_before_live": [
+        "none for sandbox-only mode"
+      ],
+      "owner_decision_required": false,
+      "blocks_commercial_live": false
+    },
+    {
+      "gate": "pricing_bundle_readiness",
+      "owner_agent": "Machine-to-Machine Sales Ops",
+      "status": "pre_live_ready",
+      "readiness_percentage": 75,
+      "evidence_available": [
+        "support_cost_guard_margin_model_20260613.md",
+        "margin_model_agent_review_20260613.md",
+        "price_revision_and_live_candidate_pack_20260613.md",
+        "pricing_pack_agent_go_no_go_review_20260613.md"
+      ],
+      "missing_before_live": [
+        "owner approval of final live listino",
+        "cost measurement for Score Pack",
+        "final decision on Deep Analysis and Target Discovery pricing"
+      ],
+      "owner_decision_required": true,
+      "blocks_commercial_live": true
+    },
+    {
+      "gate": "admin_fiscal_readiness",
+      "owner_agent": "Agente Admin & Finance Controller",
+      "status": "blocked",
+      "readiness_percentage": 20,
+      "evidence_available": [
+        "pre_commercial_go_live_gate_pack_20260613.md",
+        "pre_commercial_gate_gap_analysis_20260613.md"
+      ],
+      "missing_before_live": [
+        "P.IVA/fiscal decision",
+        "invoice or receipt rule",
+        "revenue/cost reconciliation process",
+        "tax-relevant order policy"
+      ],
+      "owner_decision_required": true,
+      "blocks_commercial_live": true
+    },
+    {
+      "gate": "legal_terms_readiness",
+      "owner_agent": "Agente Legal & Compliance",
+      "status": "blocked",
+      "readiness_percentage": 25,
+      "evidence_available": [
+        "pre_commercial_go_live_gate_pack_20260613.md",
+        "pre_commercial_gate_gap_analysis_20260613.md"
+      ],
+      "missing_before_live": [
+        "terms of service",
+        "liability limitation",
+        "no-guarantee language",
+        "acceptable use policy",
+        "refund/no-credit rules"
+      ],
+      "owner_decision_required": true,
+      "blocks_commercial_live": true
+    },
+    {
+      "gate": "privacy_data_readiness",
+      "owner_agent": "Agente Legal & Compliance",
+      "status": "blocked",
+      "readiness_percentage": 25,
+      "evidence_available": [
+        "pre_commercial_go_live_gate_pack_20260613.md",
+        "pre_commercial_gate_gap_analysis_20260613.md"
+      ],
+      "missing_before_live": [
+        "privacy policy for paying customers",
+        "data processing terms",
+        "real-data acceptance rule",
+        "retention and deletion process"
+      ],
+      "owner_decision_required": true,
+      "blocks_commercial_live": true
+    },
+    {
+      "gate": "payment_billing_readiness",
+      "owner_agent": "Agente Admin & Finance Controller",
+      "status": "blocked",
+      "readiness_percentage": 20,
+      "evidence_available": [
+        "payment test mode work exists as sandbox/test only",
+        "pricing_pack_agent_go_no_go_review_20260613.md"
+      ],
+      "missing_before_live": [
+        "live payment provider approval",
+        "checkout live/test separation",
+        "webhook live validation",
+        "invoice or receipt flow",
+        "payment-credit reconciliation"
+      ],
+      "owner_decision_required": true,
+      "blocks_commercial_live": true
+    },
+    {
+      "gate": "production_api_key_readiness",
+      "owner_agent": "Agente API Product Manager",
+      "status": "not_ready",
+      "readiness_percentage": 45,
+      "evidence_available": [
+        "OpenAPI and Postman are ready for sandbox",
+        "contract_docs_consistency_check_report_20260613.md"
+      ],
+      "missing_before_live": [
+        "production API key issuing process",
+        "rate limits per live customer",
+        "key revocation",
+        "key rotation",
+        "test/live key separation"
+      ],
+      "owner_decision_required": true,
+      "blocks_commercial_live": true
+    },
+    {
+      "gate": "support_post_sale_readiness",
+      "owner_agent": "Agente Customer Success & Post-Sale",
+      "status": "draft_ready",
+      "readiness_percentage": 60,
+      "evidence_available": [
+        "support_and_cost_guard_draft_20260613.md"
+      ],
+      "missing_before_live": [
+        "live support readiness test",
+        "final escalation thresholds",
+        "no-work-accumulation live simulation",
+        "customer-visible error catalog"
+      ],
+      "owner_decision_required": false,
+      "blocks_commercial_live": true
+    },
+    {
+      "gate": "cost_guard_readiness",
+      "owner_agent": "Orchestratore",
+      "status": "draft_ready",
+      "readiness_percentage": 60,
+      "evidence_available": [
+        "support_and_cost_guard_draft_20260613.md",
+        "support_cost_guard_margin_model_20260613.md"
+      ],
+      "missing_before_live": [
+        "hard stop test",
+        "daily budget approved by owner",
+        "per-product live cost monitor",
+        "cost spike incident process"
+      ],
+      "owner_decision_required": true,
+      "blocks_commercial_live": true
+    },
+    {
+      "gate": "public_distribution_readiness",
+      "owner_agent": "Agente Growth & Distribution",
+      "status": "blocked",
+      "readiness_percentage": 35,
+      "evidence_available": [
+        "machine-discoverable public docs exist",
+        "public static contracts exist",
+        "passive visibility checks are green"
+      ],
+      "missing_before_live": [
+        "owner-approved public channel",
+        "marketplace or registry publication decision",
+        "final public claims review",
+        "no irreversible publication without approval"
+      ],
+      "owner_decision_required": true,
+      "blocks_commercial_live": true
+    }
+  ],
+  "owner_decisions_needed_before_live": [
+    "P.IVA/fiscal route",
+    "final live listino",
+    "legal terms approval",
+    "privacy/data processing approval",
+    "payment provider and live checkout approval",
+    "daily/monthly budget limits",
+    "public distribution channel approval",
+    "explicit commercial go-live approval"
+  ],
+  "allowed_next_steps_without_owner_decision": [
+    "live_support_readiness_test_nowrite",
+    "cost_guard_hard_stop_simulation_nowrite",
+    "production_api_key_policy_draft",
+    "terms_privacy_outline_draft"
+  ],
+  "blocked_until_owner_approval": [
+    "real payments",
+    "invoices",
+    "payment method collection",
+    "external outreach",
+    "real data processing",
+    "personal data processing",
+    "production API key issuing",
+    "public paid marketplace publication",
+    "hosted public MCP launch",
+    "MCP registry publication",
+    "commercial go-live"
+  ],
+  "recommended_next_action": {
+    "name": "live_support_readiness_test_nowrite",
+    "mode": "NoWrite planning",
+    "plain_italian": "Testare in simulazione il supporto live automatico e la procedura anti-accumulo lavoro, senza clienti reali e senza inviare messaggi.",
+    "requires_owner_supervision": false
+  }
+}
