@@ -1,0 +1,248 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "policy_id": "agent_operating_policy_update_nowrite_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_playbook": "support_privacy_terms_playbook_nowrite_20260613",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "plain_italian_summary": "Questa policy aggiorna il modo di lavorare di tutti gli agenti MachineSignal. Gli agenti possono continuare test, documentazione, demo sintetiche, scoring simulato, supporto ordinario e miglioramento interno. Devono invece bloccare pagamenti, fatture, dati reali/personali, outreach, marketplace, hosted MCP pubblico e qualunque go-live non approvato.",
+  "applies_to_agents": [
+    "Orchestratore",
+    "Agente analisi mercato potenziale",
+    "Agente API",
+    "Architetto web AI",
+    "Data Scout",
+    "Data Quality & Compliance",
+    "Scoring Optimizer",
+    "API Product Manager",
+    "Growth & Distribution",
+    "Customer Feedback",
+    "Machine Buyer Agent",
+    "MCP/Registry Agent",
+    "Security & Cost Guard",
+    "Sales Automation Agent",
+    "Post-sale Support Agent",
+    "Admin & Finance Controller",
+    "Legal & Risk",
+    "HR Agent Manager"
+  ],
+  "always_allowed_nowrite_actions": [
+    "create_internal_drafts",
+    "run_synthetic_tests",
+    "validate_schema",
+    "update_private_evaluator_pack",
+    "create_no_write_reports",
+    "improve_docs_without_publication",
+    "prepare_machine_readable_summaries",
+    "run_secret_scans",
+    "run_cost_guard_simulations",
+    "summarize_agent_reviews",
+    "commit_and_push_internal_artifacts"
+  ],
+  "conditionally_allowed_actions": [
+    {
+      "action": "public_docs_update",
+      "condition": "Only if already approved content and no marketplace/paid/live claim is introduced."
+    },
+    {
+      "action": "sandbox_demo_update",
+      "condition": "Synthetic data only, no real user/customer data, no payment collection."
+    },
+    {
+      "action": "support_response",
+      "condition": "Only ordinary cases from support_privacy_terms_playbook; no legal/fiscal/payment decision."
+    },
+    {
+      "action": "api_contract_change",
+      "condition": "No production key issuance, no live endpoint promise, no real data enablement."
+    }
+  ],
+  "hard_stop_actions": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "email_sending_to_humans",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live",
+    "claim_legal_approval",
+    "publish_final_terms",
+    "publish_final_privacy_notice",
+    "treat_machine_as_sole_legal_counterparty"
+  ],
+  "agent_decision_protocol": [
+    {
+      "step": 1,
+      "name": "Classify requested action",
+      "required_check": "Is this NoWrite/internal, sandbox synthetic, support ordinary, or live/commercial?"
+    },
+    {
+      "step": 2,
+      "name": "Check hard stops",
+      "required_check": "If action matches hard_stop_actions, stop and record blocked_reason."
+    },
+    {
+      "step": 3,
+      "name": "Check data scope",
+      "required_check": "If real or personal data is present, block and escalate."
+    },
+    {
+      "step": 4,
+      "name": "Check externality",
+      "required_check": "If action contacts external humans/systems publicly, require explicit owner approval."
+    },
+    {
+      "step": 5,
+      "name": "Check cost and write limits",
+      "required_check": "If action writes to external systems or can create cost, apply cost guard."
+    },
+    {
+      "step": 6,
+      "name": "Produce one bounded artifact",
+      "required_check": "Do one complete step, validate, commit/push when appropriate, then report next step."
+    }
+  ],
+  "self_improvement_loop": {
+    "allowed": true,
+    "frequency": "after_each_validated_step",
+    "method": [
+      "read_latest_probe_summary",
+      "identify recurring failure or gap",
+      "propose small policy/doc/test improvement",
+      "apply only if NoWrite/internal and within hard stops",
+      "validate with probe",
+      "record readiness impact"
+    ],
+    "not_allowed": [
+      "changing hard stops without owner approval",
+      "learning from real personal data",
+      "auto-publishing to public channels",
+      "auto-starting paid tools or subscriptions",
+      "auto-contacting prospects"
+    ],
+    "memory_artifacts": [
+      "private-evaluator-pack reports",
+      "probe summaries",
+      "agent reviews",
+      "readiness matrices",
+      "support playbooks",
+      "data maps"
+    ]
+  },
+  "role_specific_rules": [
+    {
+      "agent": "Growth & Distribution",
+      "must_do": [
+        "prepare non-public distribution assets",
+        "improve machine-readable docs"
+      ],
+      "must_not_do": [
+        "outreach",
+        "marketplace publication",
+        "paid listing activation"
+      ]
+    },
+    {
+      "agent": "Sales Automation Agent",
+      "must_do": [
+        "prepare sales logic for machines",
+        "simulate funnel with synthetic buyers"
+      ],
+      "must_not_do": [
+        "email humans",
+        "collect payment",
+        "promise live activation"
+      ]
+    },
+    {
+      "agent": "Data Scout",
+      "must_do": [
+        "research markets using safe public/non-personal signals",
+        "prepare synthetic or policy-safe datasets"
+      ],
+      "must_not_do": [
+        "scrape personal contacts",
+        "store real personal data",
+        "prepare outreach lists"
+      ]
+    },
+    {
+      "agent": "Admin & Finance Controller",
+      "must_do": [
+        "model costs and P&L",
+        "track fiscal blockers"
+      ],
+      "must_not_do": [
+        "issue invoice",
+        "collect payment method",
+        "activate paid billing"
+      ]
+    },
+    {
+      "agent": "Legal & Risk",
+      "must_do": [
+        "flag legal/privacy blockers",
+        "prepare review checklists"
+      ],
+      "must_not_do": [
+        "claim final legal approval",
+        "publish final legal documents"
+      ]
+    },
+    {
+      "agent": "Customer Feedback",
+      "must_do": [
+        "classify support cases",
+        "auto-answer ordinary machine-readable questions"
+      ],
+      "must_not_do": [
+        "process real personal payload",
+        "handle legal/payment disputes without escalation"
+      ]
+    }
+  ],
+  "quality_gates_for_each_step": [
+    "status_prepared_or_reported",
+    "mode_nowrite_when_applicable",
+    "commercial_status_not_live",
+    "go_live_no_go_unless_explicit_owner_approval",
+    "hard_blocks_preserved",
+    "no_real_personal_data",
+    "no_secret_leak",
+    "probe_errors_zero",
+    "repo_clean_after_commit",
+    "remote_head_matches_local_head"
+  ],
+  "agent_output_contract": {
+    "must_include": [
+      "what_was_done",
+      "validation_checks",
+      "errors_count",
+      "commit_hash_if_committed",
+      "go_live_status",
+      "next_step"
+    ],
+    "must_not_include": [
+      "secret_values",
+      "full_api_keys",
+      "personal_data",
+      "unapproved_legal_claims",
+      "payment_collection_instructions"
+    ]
+  },
+  "readiness_after_policy_update": {
+    "agent_governance_readiness": 78,
+    "agent_only_operating_readiness": 74,
+    "commercial_readiness": 66,
+    "go_live_status": "no_go",
+    "reason": "Agents now have a unified operating policy and self-improvement loop, but final legal/fiscal/privacy/payment approvals remain missing."
+  },
+  "recommended_next_action": "agent_policy_compliance_rehearsal_nowrite"
+}
