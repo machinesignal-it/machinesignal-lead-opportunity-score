@@ -1,0 +1,276 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "flow_id": "terms_acceptance_flow_draft_nowrite_20260613",
+  "created_at": "2026-06-13",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_summary": "machine_readable_terms_summary_draft_nowrite_20260613",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "real_payments_allowed": false,
+  "real_data_allowed": false,
+  "production_api_keys_allowed": false,
+  "plain_italian_summary": "Questa bozza definisce come dovra' essere tracciata l'accettazione dei termini quando l'API viene usata da una macchina. La macchina puo' chiamare e consumare API solo se e' collegata a un account umano o aziendale responsabile che ha accettato una versione specifica dei termini.",
+  "core_rule": {
+    "machine_can_use_api": true,
+    "machine_can_accept_legal_terms_alone": false,
+    "human_or_company_owner_required": true,
+    "acceptance_must_be_versioned": true,
+    "acceptance_must_be_auditable": true,
+    "acceptance_must_be_revocable": true
+  },
+  "acceptance_states": [
+    {
+      "state": "not_present",
+      "meaning": "No responsible account and no accepted terms.",
+      "allowed_actions": [
+        "read_public_docs_if_publicly_approved_future",
+        "use_synthetic_demo_without_account_if_approved_future"
+      ],
+      "blocked_actions": [
+        "issue_api_key",
+        "consume_paid_credits",
+        "process_real_data",
+        "buy_deepening",
+        "target_discovery"
+      ]
+    },
+    {
+      "state": "sandbox_accepted",
+      "meaning": "Human/company owner accepted sandbox-only terms.",
+      "allowed_actions": [
+        "synthetic_sandbox_calls",
+        "read_machine_readable_terms",
+        "view_usage_simulation"
+      ],
+      "blocked_actions": [
+        "real_payments",
+        "invoices",
+        "real_data_processing",
+        "production_api_key_issuing",
+        "external_outreach"
+      ]
+    },
+    {
+      "state": "pre_live_owner_approved",
+      "meaning": "Owner approves controlled pre-live testing with strict limits.",
+      "allowed_actions": [
+        "controlled_internal_tests",
+        "synthetic_batch_tests",
+        "cost_guard_rehearsal"
+      ],
+      "blocked_actions": [
+        "paid_sale",
+        "payment_method_collection",
+        "personal_data_processing",
+        "public_marketplace_publication",
+        "hosted_mcp_public"
+      ]
+    },
+    {
+      "state": "future_live_accepted",
+      "meaning": "Future state only: terms, privacy, DPA, fiscal and payment gates are approved.",
+      "allowed_actions": [
+        "to_be_defined_after_owner_approval"
+      ],
+      "blocked_actions_now": [
+        "all_live_actions_until_explicit_owner_approval"
+      ]
+    }
+  ],
+  "required_acceptance_record": {
+    "account_owner_id": "pseudonymous_string_required_future",
+    "account_owner_type": "company | individual_professional | other_approved_owner_type",
+    "accepted_terms_version": "string_required",
+    "accepted_privacy_version": "string_required",
+    "accepted_dpa_version": "string_or_null",
+    "accepted_at": "iso_datetime_required",
+    "accepted_from": "web_ui | api_console | signed_order | admin_record",
+    "accepted_by_human": true,
+    "machine_client_id": "string_required_for_api_usage",
+    "api_key_prefix": "string_required_never_full_key",
+    "environment": "sandbox | pre_live | future_live",
+    "allowed_products": "array",
+    "allowed_data_scope": "synthetic_only | approved_business_domain_data_future",
+    "terms_hash": "string_required_future",
+    "privacy_hash": "string_required_future",
+    "ip_or_device_metadata_policy": "to_be_approved_before_collection",
+    "revoked_at": "iso_datetime_or_null",
+    "revocation_reason": "string_or_null"
+  },
+  "flow_steps": [
+    {
+      "step": 1,
+      "name": "Identify responsible owner",
+      "actor": "human_or_company_owner",
+      "machine_role": "none",
+      "output": "owner record candidate",
+      "blocks_if_missing": [
+        "api_key_issuance",
+        "credit_consumption",
+        "live_usage"
+      ]
+    },
+    {
+      "step": 2,
+      "name": "Present terms and privacy versions",
+      "actor": "system",
+      "machine_role": "can_read_machine_summary_only",
+      "output": "versioned terms/privacy presented",
+      "blocks_if_missing": [
+        "terms_acceptance",
+        "api_key_issuance"
+      ]
+    },
+    {
+      "step": 3,
+      "name": "Human/company owner accepts",
+      "actor": "human_or_company_owner",
+      "machine_role": "cannot_accept_alone",
+      "output": "accepted_terms_version and accepted_privacy_version",
+      "blocks_if_missing": [
+        "all_non_public_usage"
+      ]
+    },
+    {
+      "step": 4,
+      "name": "Bind machine client to owner",
+      "actor": "system",
+      "machine_role": "identified_api_client",
+      "output": "machine_client_id linked to owner",
+      "blocks_if_missing": [
+        "api_calls_with_credits",
+        "usage_audit"
+      ]
+    },
+    {
+      "step": 5,
+      "name": "Issue environment-scoped key",
+      "actor": "system_or_owner_approved_admin",
+      "machine_role": "receives_key_prefix_only_in_logs",
+      "output": "api_key_prefix and environment policy",
+      "blocks_if_missing": [
+        "api_usage"
+      ],
+      "current_status": "sandbox_design_only_no_live_key"
+    },
+    {
+      "step": 6,
+      "name": "Audit each credit-consuming call",
+      "actor": "ledger",
+      "machine_role": "api_client",
+      "output": "ledger row with request_id, product_code, idempotency_key and credit_delta",
+      "blocks_if_missing": [
+        "credit_charge",
+        "future_invoice_reconciliation"
+      ]
+    },
+    {
+      "step": 7,
+      "name": "Handle terms version changes",
+      "actor": "system",
+      "machine_role": "receives policy status",
+      "output": "reacceptance_required flag if terms change materially",
+      "blocks_if_missing": [
+        "future_live_usage_after_material_change"
+      ]
+    },
+    {
+      "step": 8,
+      "name": "Revoke access if policy breached",
+      "actor": "system_or_owner_approved_admin",
+      "machine_role": "receives blocked/error response",
+      "output": "revoked_at and revocation_reason",
+      "blocks_if_missing": [
+        "continued_abusive_usage"
+      ]
+    }
+  ],
+  "machine_policy_status_response": {
+    "minimum_fields": [
+      "account_owner_status",
+      "machine_client_status",
+      "terms_version",
+      "privacy_version",
+      "environment",
+      "allowed_products",
+      "allowed_data_scope",
+      "can_consume_credits",
+      "can_process_real_data",
+      "can_make_payment",
+      "reacceptance_required",
+      "blocked_reasons",
+      "next_allowed_actions"
+    ],
+    "example_sandbox_blocked": {
+      "account_owner_status": "sandbox_accepted",
+      "machine_client_status": "active_sandbox",
+      "terms_version": "0.1-draft-sandbox",
+      "privacy_version": "0.1-draft-sandbox",
+      "environment": "sandbox",
+      "allowed_products": [
+        "score_pack_1k_demo",
+        "deepening_report_single_demo"
+      ],
+      "allowed_data_scope": "synthetic_only",
+      "can_consume_credits": false,
+      "can_process_real_data": false,
+      "can_make_payment": false,
+      "reacceptance_required": false,
+      "blocked_reasons": [
+        "commercial_go_live_no_go",
+        "real_data_not_approved",
+        "payments_not_approved"
+      ],
+      "next_allowed_actions": [
+        "run_synthetic_demo",
+        "read_docs",
+        "request_owner_review"
+      ]
+    }
+  },
+  "audit_requirements": [
+    "Never store full plaintext API key in logs.",
+    "Store only API key prefix or key id.",
+    "Store terms/privacy version and hash.",
+    "Store environment and allowed product scope.",
+    "Store idempotency key for credit-consuming calls.",
+    "Store credit_delta and valid_output_reason.",
+    "Store revocation and reacceptance events.",
+    "Keep audit retention unapproved until fiscal/legal review."
+  ],
+  "must_not_do_now": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "email_sending_to_humans",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live",
+    "treat_machine_as_sole_legal_counterparty"
+  ],
+  "owner_decisions_required": [
+    "Approve legal terms versioning approach.",
+    "Approve whether individual/professional/company account types are accepted.",
+    "Approve acceptance UI/API-console mechanism.",
+    "Approve audit retention for acceptance records.",
+    "Approve privacy notice and DPA versions.",
+    "Approve sandbox vs live API key issuance rules.",
+    "Approve reacceptance threshold when terms change.",
+    "Approve revocation/appeal process."
+  ],
+  "readiness_after_acceptance_flow": {
+    "machine_buyer_contract_readiness": 61,
+    "api_product_readiness": 73,
+    "legal_privacy_readiness": 60,
+    "commercial_readiness": 64,
+    "go_live_status": "no_go",
+    "reason": "The flow defines who accepts terms for machine usage and how audit should work, but legal terms, privacy, DPA, retention and fiscal/payment gates remain unapproved."
+  },
+  "recommended_next_action": "support_privacy_terms_playbook_nowrite"
+}
