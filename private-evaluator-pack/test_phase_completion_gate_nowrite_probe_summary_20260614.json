@@ -1,0 +1,164 @@
+{
+  "probe_id": "test_phase_completion_gate_nowrite_probe_20260614",
+  "created_at": "2026-06-14T09:53:32.138Z",
+  "checks": [
+    {
+      "name": "status_reported",
+      "ok": true,
+      "detail": "reported"
+    },
+    {
+      "name": "mode_nowrite",
+      "ok": true,
+      "detail": "NoWrite test phase completion gate"
+    },
+    {
+      "name": "commercial_not_live",
+      "ok": true,
+      "detail": "not_live"
+    },
+    {
+      "name": "go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "no_api_calls_now",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "no_write_calls_now",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "no_real_payment",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "no_invoice",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "no_outreach",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "no_real_personal_data",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "no_public_marketplace_registry",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "all_backlog_steps_completed",
+      "ok": true,
+      "detail": "internal_contract_consistency_probe_nowrite, sandbox_api_safety_regression_nowrite, synthetic_machine_buyer_journey_rehearsal_nowrite, agent_roles_operating_check_nowrite, pnl_assumption_delta_review_nowrite"
+    },
+    {
+      "name": "aggregate_195_checks",
+      "ok": true,
+      "detail": "195"
+    },
+    {
+      "name": "aggregate_zero_errors",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "internal_backlog_completed",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "name": "owner_decision_required",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "name": "owner_decisions_present",
+      "ok": true,
+      "detail": "approve_or_reject_sandbox_public_docs, approve_business_plan_file_updates, choose_next_governance_path"
+    },
+    {
+      "name": "automation_should_stop",
+      "ok": true,
+      "detail": "{\"continue_heartbeat_automation\":false,\"reason\":\"The bounded internal test backlog is complete and the next step requires owner decision. Continuing automatically would risk changing business-plan/publication direction without approval.\"}"
+    },
+    {
+      "name": "internal_test_100",
+      "ok": true,
+      "detail": "100"
+    },
+    {
+      "name": "go_live_status_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "next_owner_required",
+      "ok": true,
+      "detail": "owner_decision_required_before_continuing"
+    },
+    {
+      "name": "blocked_items_present",
+      "ok": true,
+      "detail": "commercial go-live, real payments, invoices, payment method collection, production API keys, real or personal data processing, external outreach, public paid marketplace listing, hosted public MCP, MCP registry publication, final legal/privacy/DPA claims"
+    },
+    {
+      "name": "md_required_phrases",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "forbidden_absent__commercial_status_live_",
+      "ok": true,
+      "detail": "\"commercial_status\": \"live\""
+    },
+    {
+      "name": "forbidden_absent__go_live_decision_go_",
+      "ok": true,
+      "detail": "\"go_live_decision\": \"go\""
+    },
+    {
+      "name": "forbidden_absent__real_payment_executed_true",
+      "ok": true,
+      "detail": "\"real_payment_executed\": true"
+    },
+    {
+      "name": "forbidden_absent__invoice_issued_true",
+      "ok": true,
+      "detail": "\"invoice_issued\": true"
+    },
+    {
+      "name": "forbidden_absent__external_outreach_executed_true",
+      "ok": true,
+      "detail": "\"external_outreach_executed\": true"
+    },
+    {
+      "name": "forbidden_absent__owner_decision_required_false",
+      "ok": true,
+      "detail": "\"owner_decision_required\": false"
+    },
+    {
+      "name": "forbidden_absent__continue_heartbeat_automation_true",
+      "ok": true,
+      "detail": "\"continue_heartbeat_automation\": true"
+    },
+    {
+      "name": "forbidden_absent_go_live_commerciale_approvato",
+      "ok": true,
+      "detail": "go-live commerciale approvato"
+    }
+  ],
+  "errors": [],
+  "recommended_next_step": "owner_decision_required_before_continuing",
+  "automation_should_stop": true
+}

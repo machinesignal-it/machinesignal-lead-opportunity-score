@@ -1,0 +1,137 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "gate_id": "test_phase_completion_gate_nowrite_20260614",
+  "created_at": "2026-06-14",
+  "mode": "NoWrite test phase completion gate",
+  "status": "reported",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "api_calls_executed_now": 0,
+  "write_calls_executed_now": 0,
+  "real_payment_executed": false,
+  "invoice_issued": false,
+  "external_outreach_executed": false,
+  "real_or_personal_data_used": false,
+  "public_marketplace_or_registry_published": false,
+  "plain_italian_summary": "La fase test interna NoWrite definita dal backlog del 2026-06-14 e' completata. I test tecnici, sandbox safety, journey macchina-cliente, ruoli agenti e delta P&L sono passati senza errori. Il prossimo passo non e' piu' un test automatico: richiede decisione del proprietario.",
+  "completed_steps": [
+    {
+      "step_id": "internal_contract_consistency_probe_nowrite",
+      "priority": "P0",
+      "checks": 35,
+      "errors": 0,
+      "commit": "eb411db",
+      "result": "pass"
+    },
+    {
+      "step_id": "sandbox_api_safety_regression_nowrite",
+      "priority": "P0",
+      "checks": 43,
+      "errors": 0,
+      "commit": "266ca4c",
+      "result": "pass"
+    },
+    {
+      "step_id": "synthetic_machine_buyer_journey_rehearsal_nowrite",
+      "priority": "P1",
+      "checks": 42,
+      "errors": 0,
+      "commit": "3c770a4",
+      "result": "pass"
+    },
+    {
+      "step_id": "agent_roles_operating_check_nowrite",
+      "priority": "P1",
+      "checks": 44,
+      "errors": 0,
+      "commit": "ddd5d6a",
+      "result": "pass"
+    },
+    {
+      "step_id": "pnl_assumption_delta_review_nowrite",
+      "priority": "P2",
+      "checks": 31,
+      "errors": 0,
+      "commit": "45d28c8",
+      "result": "pass"
+    }
+  ],
+  "aggregate": {
+    "steps_completed": 5,
+    "checks_total": 195,
+    "errors_total": 0,
+    "p0_completed": true,
+    "p1_completed": true,
+    "p2_completed": true,
+    "internal_test_backlog_completed": true
+  },
+  "what_is_ready": [
+    "machine-first product logic is coherent across internal contracts",
+    "sandbox safety is validated from local evidence without new writes",
+    "synthetic buyer-machine journey understands what to buy and when to stop",
+    "agent roles are fit for the remaining controlled test/governance work",
+    "P&L deltas are identified before any deck or Excel update"
+  ],
+  "what_is_not_ready": [
+    "commercial go-live",
+    "real payments",
+    "invoices",
+    "payment method collection",
+    "production API keys",
+    "real or personal data processing",
+    "external outreach",
+    "public paid marketplace listing",
+    "hosted public MCP",
+    "MCP registry publication",
+    "final legal/privacy/DPA claims"
+  ],
+  "owner_decision_required": true,
+  "owner_decision_needed": [
+    {
+      "decision": "approve_or_reject_sandbox_public_docs",
+      "question": "Vuoi approvare la documentazione come sandbox pubblica o tenerla solo interna?",
+      "default_without_response": "keep_internal_only"
+    },
+    {
+      "decision": "approve_business_plan_file_updates",
+      "question": "Vuoi aggiornare Excel/P&L e PowerPoint con i delta emersi?",
+      "default_without_response": "do_not_edit_business_plan_files"
+    },
+    {
+      "decision": "choose_next_governance_path",
+      "question": "Vuoi procedere con review proprietario/legal/fiscale oppure continuare solo con prove interne aggiuntive?",
+      "default_without_response": "stop_automation_and_wait"
+    }
+  ],
+  "recommended_owner_options": [
+    {
+      "option": "A",
+      "name": "Hold internal only",
+      "meaning": "Non pubblichiamo nulla e usiamo i risultati solo come base interna.",
+      "recommended_if": "vuoi massima prudenza"
+    },
+    {
+      "option": "B",
+      "name": "Approve sandbox-public docs review",
+      "meaning": "Prepariamo un ultimo readiness probe per documentazione sandbox pubblica, sempre senza marketplace, pagamenti o hosted MCP.",
+      "recommended_if": "vuoi avvicinarti a un test esterno ma ancora non commerciale"
+    },
+    {
+      "option": "C",
+      "name": "Update business plan files",
+      "meaning": "Aggiorniamo P&L Excel e deck PowerPoint con ricavi previsionali, costi agenti, Cloudflare/KV e mismatch Action Pack.",
+      "recommended_if": "vuoi riallineare il materiale per soci/partner prima di decidere il live"
+    }
+  ],
+  "automation_decision": {
+    "continue_heartbeat_automation": false,
+    "reason": "The bounded internal test backlog is complete and the next step requires owner decision. Continuing automatically would risk changing business-plan/publication direction without approval."
+  },
+  "readiness_after_gate": {
+    "internal_test_phase_completion": 100,
+    "overall_pre_go_live_readiness": 84,
+    "commercial_go_live_readiness": 69,
+    "go_live_status": "no_go"
+  },
+  "recommended_next_step": "owner_decision_required_before_continuing"
+}
