@@ -1,0 +1,115 @@
+{
+  "service": "MachineSignal",
+  "review": "technical_sandbox_closure_review",
+  "date": "2026-06-14",
+  "mode": "NoWrite",
+  "status": "technical_sandbox_closure_ready_pending_owner_decision",
+  "technical_sandbox_tests_percent": 97,
+  "pre_go_live_readiness_percent_range": "84-86",
+  "commercial_go_live_readiness_percent": 69,
+  "commercial_go_live": "no_go",
+  "paid_beta": "not_approved",
+  "evidence_reviewed": [
+    "COMPANY_BRAIN.md",
+    "company-brain.json",
+    "company-brain-graph.json",
+    "private-evaluator-pack/company_brain_public_observation_nowrite_summary_20260614.json",
+    "private-evaluator-pack/agent_post_company_brain_observation_review_20260614.json",
+    "private-evaluator-pack/support_status_usage_closure_nowrite_summary_20260614.json",
+    "private-evaluator-pack/write_capped_sandbox_rehearsal_summary_20260614.json",
+    "private-evaluator-pack/sandbox_public_docs_readiness_probe_nowrite_summary_20260614.json",
+    "private-evaluator-pack/public_pricing_consistency_probe_nowrite_summary_20260614.json"
+  ],
+  "technically_ready": [
+    "public_machine_discovery",
+    "machine_readable_product_catalog",
+    "openapi_and_postman_assets",
+    "company_brain_markdown_json_and_graph",
+    "sandbox_public_docs",
+    "worker_health",
+    "usage_and_order_endpoint_documentation",
+    "machine_onboarding",
+    "bounded_sandbox_customer_creation",
+    "synthetic_score_endpoint_test",
+    "sandbox_target_discovery_purchase_intent",
+    "sandbox_deep_analysis_purchase_intent",
+    "sandbox_action_pack_after_gate",
+    "orders_and_usage_reconciliation",
+    "price_consistency",
+    "support_status_usage_discoverability"
+  ],
+  "blocked_actions": [
+    "paid_beta",
+    "commercial_go_live",
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "email_sending_to_external_humans",
+    "public_paid_marketplace_publication",
+    "hosted_mcp_public_launch",
+    "mcp_registry_publication",
+    "final_legal_privacy_terms_claims"
+  ],
+  "agent_verdicts": {
+    "orchestrator": "closure_ready_owner_decision_required",
+    "api_product_manager": "sandbox_api_surfaces_coherent",
+    "data_quality_compliance": "closure_ready_only_with_synthetic_or_nowrite_data",
+    "scoring_optimizer": "technical_plumbing_ready_broader_calibration_needed_before_paid_use",
+    "growth_distribution": "sandbox_discoverability_ready_public_marketplace_blocked",
+    "customer_feedback": "machine_can_find_status_usage_orders_and_support",
+    "sales_ops": "machine_first_flow_understandable_but_not_revenue_evidence",
+    "post_sale": "usage_and_orders_discoverable_sla_not_defined",
+    "admin_finance_controller": "no_pnl_update_for_closure_review_unless_owner_moves_to_paid_beta",
+    "legal_compliance": "sandbox_only_no_commercial_authorization",
+    "agent_hr_continuous_learning": "company_brain_required_for_future_changes"
+  },
+  "recommended_owner_options": {
+    "option_a": {
+      "name": "close_technical_sandbox_and_update_business_materials",
+      "recommended_if": "owner wants a clean business checkpoint",
+      "actions": [
+        "update roadmap",
+        "update business plan and P&L with current test evidence",
+        "prepare owner briefing"
+      ]
+    },
+    "option_b": {
+      "name": "start_paid_beta_readiness_preparation",
+      "recommended_if": "owner wants to move toward monetization",
+      "actions": [
+        "terms_privacy_payment_readiness_plan",
+        "fiscal_admin_checklist",
+        "production_key_policy",
+        "payment_invoice_architecture_in_test_mode_only",
+        "support_and_credit_policy_draft"
+      ]
+    },
+    "option_c": {
+      "name": "continue_sandbox_evidence_without_commercial_move",
+      "recommended_if": "owner wants more technical confidence before legal and fiscal effort",
+      "actions": [
+        "multi_sector_scoring_calibration",
+        "negative_example_calibration",
+        "cost_and_cloudflare_usage_review",
+        "no_marketplace",
+        "no_real_data"
+      ]
+    }
+  },
+  "final_guardrails": {
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "payment_method_collection_enabled": false,
+    "real_data_processing_enabled": false,
+    "personal_data_processing_enabled": false,
+    "external_outreach_enabled": false,
+    "public_marketplace_enabled": false,
+    "hosted_mcp_public_enabled": false,
+    "mcp_registry_publication_enabled": false
+  },
+  "next_step_requires_owner_choice": true
+}
