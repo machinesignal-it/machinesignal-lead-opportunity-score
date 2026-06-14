@@ -1,0 +1,248 @@
+{
+  "probe_id": "sandbox_api_safety_regression_nowrite_20260614",
+  "created_at": "2026-06-14T09:38:45.261Z",
+  "mode": "NoWrite sandbox API safety regression",
+  "api_calls_executed_now": 0,
+  "write_calls_executed_now": 0,
+  "evidence_files": {
+    "machineBuyerEndToEnd": "machine_buyer_end_to_end_rehearsal_summary_20260611.json",
+    "apiDirectorySandbox": "api_directory_private_listing_sandbox_rehearsal_summary_20260611.json",
+    "postmanSandbox": "postman_private_team_workspace_sandbox_rehearsal_summary_20260611.json",
+    "agentGoNoGoSandbox": "agent_go_no_go_sandbox_review_summary_20260611.json",
+    "openapi": "openapi.json",
+    "productCatalog": "product-catalog.json",
+    "backlog": "private-evaluator-pack/internal_test_backlog_nowrite_20260614.json"
+  },
+  "checks_total": 43,
+  "checks_failed": 0,
+  "auth_behavior": "verified_from_contract",
+  "credit_behavior": "verified_from_catalog_and_prior_runs",
+  "purchase_intent_behavior": "non_payment_beta_intent",
+  "safety_flags": {
+    "real_payment_executed": false,
+    "real_invoice_issued": false,
+    "external_contact_executed": false,
+    "human_outreach_executed": false,
+    "live_monetization_enabled": false,
+    "production_api_key_published": false
+  },
+  "interpretation": "Sandbox safety regression passes from local evidence: auth is contractually present, credit behavior follows valid-output rules, and purchase-intent remains non-payment with no invoice, outreach, real data or go-live.",
+  "recommended_next_step": "synthetic_machine_buyer_journey_rehearsal_nowrite",
+  "checks": [
+    {
+      "name": "mode_nowrite_no_new_live_calls",
+      "ok": true,
+      "detail": "This regression reads local evidence only and performs 0 new API writes."
+    },
+    {
+      "name": "machine_buyer_e2e_ok",
+      "ok": true,
+      "detail": "completed_machine_buyer_end_to_end_rehearsal"
+    },
+    {
+      "name": "api_directory_sandbox_ok",
+      "ok": true,
+      "detail": "completed_api_directory_private_listing_sandbox_rehearsal"
+    },
+    {
+      "name": "postman_sandbox_ok",
+      "ok": true,
+      "detail": "completed_postman_private_team_workspace_sandbox_rehearsal"
+    },
+    {
+      "name": "agent_go_no_go_sandbox_ok",
+      "ok": true,
+      "detail": "completed_agent_go_no_go_sandbox_review"
+    },
+    {
+      "name": "machine_buyer_write_cap_respected",
+      "ok": true,
+      "detail": "5/5"
+    },
+    {
+      "name": "machine_buyer_post_cap_respected",
+      "ok": true,
+      "detail": "5/5"
+    },
+    {
+      "name": "postman_checks_zero_failed",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "api_directory_checks_zero_failed",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "machine_buyer_e2e_real_payment_executed_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "machine_buyer_e2e_real_invoice_issued_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "machine_buyer_e2e_external_contact_executed_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "machine_buyer_e2e_human_outreach_executed_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "api_directory_sandbox_real_payment_executed_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "api_directory_sandbox_real_invoice_issued_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "api_directory_sandbox_external_contact_executed_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "api_directory_sandbox_human_outreach_executed_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "machine_buyer_e2e_live_monetization_enabled_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "machine_buyer_e2e_public_paid_plans_enabled_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "machine_buyer_e2e_production_api_key_published_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "agent_no_go_blocks_commercial_actions",
+      "ok": true,
+      "detail": "live_monetization, real_payment, real_invoice, public_paid_marketplace_launch, hosted_mcp_public_launch, production_api_keys, irreversible_external_publication, human_outreach, automatic_external_contact"
+    },
+    {
+      "name": "agent_approved_next_step_not_monetization",
+      "ok": true,
+      "detail": "{\"mode\":\"sandbox_only_external_draft_distribution\",\"monetization_enabled\":false,\"test_paths\":[\"customer_with_existing_list\",\"customer_without_list_target_discovery\",\"action_pack_only_after_deep_analysis_gate\"]}"
+    },
+    {
+      "name": "openapi_has_sandbox_customer_endpoint",
+      "ok": true,
+      "detail": "OpenAPI paths"
+    },
+    {
+      "name": "openapi_has_purchase_intent_endpoint",
+      "ok": true,
+      "detail": "OpenAPI paths"
+    },
+    {
+      "name": "openapi_has_api_key_auth",
+      "ok": true,
+      "detail": "OpenAPI security"
+    },
+    {
+      "name": "catalog_beta_purchase_intent_only",
+      "ok": true,
+      "detail": "purchase-intent only"
+    },
+    {
+      "name": "catalog_no_real_payment",
+      "ok": true,
+      "detail": "{\"beta\":\"purchase-intent only\",\"real_payment_executed\":false,\"external_contact_executed\":false,\"note\":\"During beta, purchase-intent records machine demand and consumes beta credits. It does not charge a payment method.\"}"
+    },
+    {
+      "name": "catalog_no_external_contact",
+      "ok": true,
+      "detail": "{\"beta\":\"purchase-intent only\",\"real_payment_executed\":false,\"external_contact_executed\":false,\"note\":\"During beta, purchase-intent records machine demand and consumes beta credits. It does not charge a payment method.\"}"
+    },
+    {
+      "name": "catalog_valid_output_credit_rule",
+      "ok": true,
+      "detail": "credits are consumed only when the system produces a valid usable output"
+    },
+    {
+      "name": "catalog_credit_tracking_has_request_id",
+      "ok": true,
+      "detail": "Each consumption event is tracked with request_id, product_code, status, credits_consumed and credits_remaining."
+    },
+    {
+      "name": "backlog_commercial_not_live",
+      "ok": true,
+      "detail": "not_live"
+    },
+    {
+      "name": "backlog_go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "backlog_owner_not_required_now",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "backlog_blocks_sandbox_risks",
+      "ok": true,
+      "detail": "no_real_payments, no_invoices, no_payment_method_collection, no_external_outreach, no_email_sending_to_humans, no_real_data_processing, no_personal_data_processing, no_production_api_key_issuing, no_public_paid_marketplace, no_hosted_mcp_public, no_mcp_registry_publication, no_commercial_go_live, no_claim_legal_approval, no_publish_final_terms, no_publish_final_privacy_notice"
+    },
+    {
+      "name": "forbidden_absent__real_payment_executed_true",
+      "ok": true,
+      "detail": "\"real_payment_executed\": true"
+    },
+    {
+      "name": "forbidden_absent__real_invoice_issued_true",
+      "ok": true,
+      "detail": "\"real_invoice_issued\": true"
+    },
+    {
+      "name": "forbidden_absent__external_contact_executed_true",
+      "ok": true,
+      "detail": "\"external_contact_executed\": true"
+    },
+    {
+      "name": "forbidden_absent__human_outreach_executed_true",
+      "ok": true,
+      "detail": "\"human_outreach_executed\": true"
+    },
+    {
+      "name": "forbidden_absent__live_monetization_enabled_true",
+      "ok": true,
+      "detail": "\"live_monetization_enabled\": true"
+    },
+    {
+      "name": "forbidden_absent__public_paid_plans_enabled_true",
+      "ok": true,
+      "detail": "\"public_paid_plans_enabled\": true"
+    },
+    {
+      "name": "forbidden_absent__production_api_key_published_true",
+      "ok": true,
+      "detail": "\"production_api_key_published\": true"
+    },
+    {
+      "name": "forbidden_absent__go_live_decision_go_",
+      "ok": true,
+      "detail": "\"go_live_decision\": \"go\""
+    },
+    {
+      "name": "forbidden_absent__commercial_status_live_",
+      "ok": true,
+      "detail": "\"commercial_status\": \"live\""
+    }
+  ]
+}
