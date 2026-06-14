@@ -1,0 +1,200 @@
+{
+  "probe_id": "internal_contract_consistency_probe_nowrite_20260614",
+  "created_at": "2026-06-14T09:35:04.769Z",
+  "mode": "NoWrite internal contract consistency probe",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "files_checked": [
+    "README.md",
+    "openapi.json",
+    "postman_public_collection.json",
+    "docs/postman-public-workspace.md",
+    "product-catalog.json",
+    "MACHINE_AGENT_ENTRYPOINT.json",
+    "mcp-tool-manifest.json",
+    "private-evaluator-pack/mcp_channel_entrypoint_draft_nopublish.json",
+    "private-evaluator-pack/internal_test_backlog_nowrite_20260614.json"
+  ],
+  "checks_total": 35,
+  "checks_failed": 0,
+  "findings": [],
+  "interpretation": "Core machine-first, beta, credit, purchase-intent and hard-block semantics are consistent enough for internal testing. Minor wording observations remain non-blocking.",
+  "recommended_next_step": "sandbox_api_safety_regression_nowrite",
+  "checks": [
+    {
+      "name": "core_files_present",
+      "ok": true,
+      "detail": "README.md, openapi.json, postman_public_collection.json, docs/postman-public-workspace.md, product-catalog.json, MACHINE_AGENT_ENTRYPOINT.json, mcp-tool-manifest.json, private-evaluator-pack/mcp_channel_entrypoint_draft_nopublish.json, private-evaluator-pack/internal_test_backlog_nowrite_20260614.json"
+    },
+    {
+      "name": "readme_machine_first",
+      "ok": true,
+      "detail": "README machine-first wording"
+    },
+    {
+      "name": "catalog_machine_first",
+      "ok": true,
+      "detail": "machine"
+    },
+    {
+      "name": "entrypoint_machine_first",
+      "ok": true,
+      "detail": "machine"
+    },
+    {
+      "name": "mcp_manifest_machine_first",
+      "ok": true,
+      "detail": "machine"
+    },
+    {
+      "name": "catalog_purchase_intent_no_payment",
+      "ok": true,
+      "detail": "{\"beta\":\"purchase-intent only\",\"real_payment_executed\":false,\"external_contact_executed\":false,\"note\":\"During beta, purchase-intent records machine demand and consumes beta credits. It does not charge a payment method.\"}"
+    },
+    {
+      "name": "catalog_no_external_contact",
+      "ok": true,
+      "detail": "{\"beta\":\"purchase-intent only\",\"real_payment_executed\":false,\"external_contact_executed\":false,\"note\":\"During beta, purchase-intent records machine demand and consumes beta credits. It does not charge a payment method.\"}"
+    },
+    {
+      "name": "entrypoint_safety_no_payment",
+      "ok": true,
+      "detail": "{\"external_send_allowed\":false,\"human_outreach_allowed\":false,\"marketplace_publication_allowed\":false,\"mcp_registry_submission_allowed\":false,\"hosted_public_mcp_live\":false,\"live_payment_allowed\":false,\"invoice_allowed\":false,\"subscription_allowed\":false,\"production_key_distribution_allowed\":false,\"personal_data_allowed\":false,\"real_customer_data_allowed\":false,\"real_lead_list_allowed\":false}"
+    },
+    {
+      "name": "entrypoint_safety_no_outreach",
+      "ok": true,
+      "detail": "{\"external_send_allowed\":false,\"human_outreach_allowed\":false,\"marketplace_publication_allowed\":false,\"mcp_registry_submission_allowed\":false,\"hosted_public_mcp_live\":false,\"live_payment_allowed\":false,\"invoice_allowed\":false,\"subscription_allowed\":false,\"production_key_distribution_allowed\":false,\"personal_data_allowed\":false,\"real_customer_data_allowed\":false,\"real_lead_list_allowed\":false}"
+    },
+    {
+      "name": "entrypoint_safety_no_real_data",
+      "ok": true,
+      "detail": "{\"external_send_allowed\":false,\"human_outreach_allowed\":false,\"marketplace_publication_allowed\":false,\"mcp_registry_submission_allowed\":false,\"hosted_public_mcp_live\":false,\"live_payment_allowed\":false,\"invoice_allowed\":false,\"subscription_allowed\":false,\"production_key_distribution_allowed\":false,\"personal_data_allowed\":false,\"real_customer_data_allowed\":false,\"real_lead_list_allowed\":false}"
+    },
+    {
+      "name": "openapi_beta_description",
+      "ok": true,
+      "detail": "{\"title\":\"MachineSignal Lead Opportunity Score API\",\"version\":\"0.1.0-beta\",\"description\":\"Callable beta endpoint for machine-readable lead opportunity scoring, no-list target discovery, credit-ledger tracking and budget routing.\",\"contact\":{\"name\":\"Team MachineSignal\",\"email\":\"beta@machinesignal.it\",\"url\":\"https://machinesignal.it/\"}}"
+    },
+    {
+      "name": "openapi_purchase_intent_present",
+      "ok": true,
+      "detail": "OpenAPI paths"
+    },
+    {
+      "name": "openapi_sandbox_customer_present",
+      "ok": true,
+      "detail": "OpenAPI paths"
+    },
+    {
+      "name": "postman_private_beta_warning",
+      "ok": true,
+      "detail": "docs/postman-public-workspace.md"
+    },
+    {
+      "name": "postman_no_real_payment_warning",
+      "ok": true,
+      "detail": "docs/postman-public-workspace.md"
+    },
+    {
+      "name": "postman_synthetic_examples",
+      "ok": true,
+      "detail": "docs/postman-public-workspace.md"
+    },
+    {
+      "name": "catalog_core_products_present",
+      "ok": true,
+      "detail": "target_discovery, score_pack_1k, domain_enrichment, deep_analysis, action_pack, opportunity_feed, api_starter, api_pro, custom_overage"
+    },
+    {
+      "name": "catalog_credit_rule_valid_output",
+      "ok": true,
+      "detail": "credits are consumed only when the system produces a valid usable output"
+    },
+    {
+      "name": "catalog_credit_tracking",
+      "ok": true,
+      "detail": "Each consumption event is tracked with request_id, product_code, status, credits_consumed and credits_remaining."
+    },
+    {
+      "name": "entrypoint_routing_no_list",
+      "ok": true,
+      "detail": "target_discovery_pack_250"
+    },
+    {
+      "name": "entrypoint_routing_existing_list",
+      "ok": true,
+      "detail": "score_pack_1k"
+    },
+    {
+      "name": "entrypoint_routing_deep_analysis",
+      "ok": true,
+      "detail": "deep_analysis_pack_100"
+    },
+    {
+      "name": "entrypoint_routing_action_pack",
+      "ok": true,
+      "detail": "action_pack_25"
+    },
+    {
+      "name": "entrypoint_deferred_channels_blocked",
+      "ok": true,
+      "detail": "rapidapi_marketplace_publication, postman_api_network_publication, generic_api_directory_publication, hosted_public_mcp_launch"
+    },
+    {
+      "name": "mcp_manifest_public_mcp_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "mcp_manifest_local_adapter_available",
+      "ok": true,
+      "detail": "available_in_github_repo"
+    },
+    {
+      "name": "mcp_draft_nopublish",
+      "ok": true,
+      "detail": "mcp draft publication guard"
+    },
+    {
+      "name": "backlog_hard_blocks_core",
+      "ok": true,
+      "detail": "no_real_payments, no_invoices, no_payment_method_collection, no_external_outreach, no_email_sending_to_humans, no_real_data_processing, no_personal_data_processing, no_production_api_key_issuing, no_public_paid_marketplace, no_hosted_mcp_public, no_mcp_registry_publication, no_commercial_go_live, no_claim_legal_approval, no_publish_final_terms, no_publish_final_privacy_notice"
+    },
+    {
+      "name": "forbidden_absent_commercial_status_live_",
+      "ok": true,
+      "detail": "commercial_status\": \"live\""
+    },
+    {
+      "name": "forbidden_absent_go_live_decision_go_",
+      "ok": true,
+      "detail": "go_live_decision\": \"go\""
+    },
+    {
+      "name": "forbidden_absent_real_payment_executed_true",
+      "ok": true,
+      "detail": "real payment executed\": true"
+    },
+    {
+      "name": "forbidden_absent_live_payment_allowed_true",
+      "ok": true,
+      "detail": "live_payment_allowed\": true"
+    },
+    {
+      "name": "forbidden_absent_human_outreach_allowed_true",
+      "ok": true,
+      "detail": "human_outreach_allowed\": true"
+    },
+    {
+      "name": "forbidden_absent_personal_data_allowed_true",
+      "ok": true,
+      "detail": "personal_data_allowed\": true"
+    },
+    {
+      "name": "forbidden_absent_hosted_public_mcp_server_live_true",
+      "ok": true,
+      "detail": "hosted_public_mcp_server_live\": true"
+    }
+  ]
+}
