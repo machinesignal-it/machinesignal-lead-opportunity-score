@@ -1,0 +1,76 @@
+{
+  "service": "MachineSignal",
+  "status": "sandbox-public-docs-only",
+  "updated_at": "2026-06-14",
+  "primary_customer_interface": "machine",
+  "commercial_go_live": false,
+  "live_monetization_enabled": false,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "payment_method_collection_enabled": false,
+  "external_outreach_enabled": false,
+  "real_data_processing_enabled": false,
+  "personal_data_processing_enabled": false,
+  "hosted_mcp_public_enabled": false,
+  "mcp_registry_publication_enabled": false,
+  "marketplace_paid_publication_enabled": false,
+  "allowed_sandbox_actions": [
+    "read_public_docs",
+    "create_limited_sandbox_customer",
+    "score_synthetic_or_demo_domain",
+    "create_sandbox_purchase_intent",
+    "retrieve_sandbox_orders",
+    "retrieve_sandbox_usage",
+    "test_idempotency_and_output_contracts"
+  ],
+  "blocked_actions": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "email_sending_to_humans",
+    "paid_marketplace_publication",
+    "hosted_mcp_public_launch",
+    "mcp_registry_publication",
+    "commercial_go_live"
+  ],
+  "public_docs": {
+    "llms": "https://machinesignal.it/llms.txt",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+    "sandbox_public_docs_markdown": "https://machinesignal.it/SANDBOX_PUBLIC_DOCS.md",
+    "sandbox_public_docs_json": "https://machinesignal.it/sandbox-public-docs.json"
+  },
+  "current_sandbox_prices_eur": {
+    "target_discovery_pack_250": 249,
+    "score_pack_1k": 119,
+    "deep_analysis_pack_100": 349,
+    "action_pack_25": 399,
+    "domain_enrichment_pack_100": 149,
+    "opportunity_feed_monthly": 249
+  },
+  "safe_machine_test_path": [
+    "GET https://machinesignal.it/llms.txt",
+    "GET https://machinesignal.it/product-catalog.json",
+    "GET https://machinesignal.it/openapi.json",
+    "POST /v1/sandbox/customers",
+    "GET /v1/onboarding",
+    "POST /v1/lead-opportunity-score with synthetic or demo domain",
+    "POST /v1/purchase-intent only when next_purchase recommends a sandbox product",
+    "GET /v1/orders",
+    "GET /v1/usage"
+  ],
+  "owner_decision": {
+    "public_sandbox_docs": "approved",
+    "paid_go_live": "not_approved",
+    "external_marketplace_submission": "not_approved",
+    "hosted_mcp_publication": "not_approved",
+    "real_data_processing": "not_approved"
+  }
+}

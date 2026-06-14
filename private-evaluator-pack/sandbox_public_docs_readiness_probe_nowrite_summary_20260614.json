@@ -1,0 +1,193 @@
+{
+  "probe_id": "sandbox_public_docs_readiness_probe_nowrite_20260614",
+  "mode": "NoWrite sandbox public docs readiness",
+  "status": "pass",
+  "api_calls_executed_now": 0,
+  "write_calls_executed_now": 0,
+  "checks_total": 36,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "recommended_next_step": "Publish SANDBOX_PUBLIC_DOCS.md, sandbox-public-docs.json, llms.txt and robots.txt to machinesignal.it, then run public HTTP verification.",
+  "checks": [
+    {
+      "name": "sandbox_public_docs_md_exists",
+      "ok": true,
+      "detail": "2568 bytes"
+    },
+    {
+      "name": "sandbox_public_docs_json_exists",
+      "ok": true,
+      "detail": "2790 bytes"
+    },
+    {
+      "name": "llms_txt_exists",
+      "ok": true,
+      "detail": "39558 bytes"
+    },
+    {
+      "name": "robots_txt_exists",
+      "ok": true,
+      "detail": "16524 bytes"
+    },
+    {
+      "name": "product_catalog_json_exists",
+      "ok": true,
+      "detail": "12091 bytes"
+    },
+    {
+      "name": "sandbox_json_valid",
+      "ok": true,
+      "detail": "valid JSON"
+    },
+    {
+      "name": "status_sandbox_public_docs_only",
+      "ok": true,
+      "detail": "sandbox-public-docs-only"
+    },
+    {
+      "name": "commercial_go_live_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "live_monetization_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "real_payment_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "invoice_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "payment_collection_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "external_outreach_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "real_data_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "personal_data_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "hosted_mcp_public_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "mcp_registry_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "marketplace_paid_false",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "md_states_not_live_payment_page",
+      "ok": true,
+      "detail": "markdown wording"
+    },
+    {
+      "name": "md_blocks_real_payments",
+      "ok": true,
+      "detail": "markdown blocks"
+    },
+    {
+      "name": "md_blocks_personal_data",
+      "ok": true,
+      "detail": "markdown blocks"
+    },
+    {
+      "name": "md_blocks_external_outreach",
+      "ok": true,
+      "detail": "markdown blocks"
+    },
+    {
+      "name": "md_current_decision_sandbox_only",
+      "ok": true,
+      "detail": "markdown decision"
+    },
+    {
+      "name": "llms_links_markdown_doc",
+      "ok": true,
+      "detail": "llms link"
+    },
+    {
+      "name": "llms_links_json_doc",
+      "ok": true,
+      "detail": "llms link"
+    },
+    {
+      "name": "robots_links_markdown_doc",
+      "ok": true,
+      "detail": "robots link"
+    },
+    {
+      "name": "robots_links_json_doc",
+      "ok": true,
+      "detail": "robots link"
+    },
+    {
+      "name": "price_target_matches_catalog",
+      "ok": true,
+      "detail": "249"
+    },
+    {
+      "name": "price_score_matches_catalog",
+      "ok": true,
+      "detail": "119"
+    },
+    {
+      "name": "price_deep_matches_catalog",
+      "ok": true,
+      "detail": "349"
+    },
+    {
+      "name": "forbidden_phrase_absent_guaranteed_revenue",
+      "ok": true,
+      "detail": "guaranteed revenue"
+    },
+    {
+      "name": "forbidden_phrase_absent_guaranteed_leads",
+      "ok": true,
+      "detail": "guaranteed leads"
+    },
+    {
+      "name": "forbidden_phrase_absent_live_checkout_enabled",
+      "ok": true,
+      "detail": "live checkout enabled"
+    },
+    {
+      "name": "forbidden_phrase_absent_production_key_available",
+      "ok": true,
+      "detail": "production key available"
+    },
+    {
+      "name": "forbidden_phrase_absent_automatic_outreach_enabled",
+      "ok": true,
+      "detail": "automatic outreach enabled"
+    },
+    {
+      "name": "probe_nowrite",
+      "ok": true,
+      "detail": "api_calls_executed_now=0; write_calls_executed_now=0"
+    }
+  ]
+}

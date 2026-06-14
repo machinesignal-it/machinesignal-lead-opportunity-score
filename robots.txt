@@ -4,6 +4,8 @@ Allow: /
 Sitemap: https://machinesignal.it/sitemap.xml
 
 AI-agent-discovery: https://machinesignal.it/llms.txt
+Sandbox-public-docs: https://machinesignal.it/SANDBOX_PUBLIC_DOCS.md
+Sandbox-public-docs-json: https://machinesignal.it/sandbox-public-docs.json
 Integration-ready: https://machinesignal.it/integration-ready/
 MCP-wrapper: https://machinesignal.it/mcp/
 MCP-wrapper-pack: https://machinesignal.it/mcp/machinesignal-mcp-wrapper.json
