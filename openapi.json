@@ -424,7 +424,7 @@
                   "summary": "Create a test checkout for Score Pack 1k",
                   "value": {
                     "product_code": "score_pack_1k",
-                    "amount_eur": 99,
+                    "amount_eur": 119,
                     "provider": "stripe",
                     "provider_mode": "test"
                   }

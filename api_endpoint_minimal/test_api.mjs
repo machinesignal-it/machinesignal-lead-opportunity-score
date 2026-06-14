@@ -1241,7 +1241,7 @@ const liveModePaymentTestResponse = await handleRequest(
     method: "POST",
     body: JSON.stringify({
       product_code: "score_pack_1k",
-      amount_eur: 99,
+      amount_eur: 119,
       provider: "stripe",
       provider_mode: "live"
     }),
@@ -1264,7 +1264,7 @@ const paymentTestIntentResponse = await handleRequest(
     method: "POST",
     body: JSON.stringify({
       product_code: "score_pack_1k",
-      amount_eur: 99,
+      amount_eur: 119,
       provider: "stripe",
       provider_mode: "test",
       metadata: { crm_run_id: "local-payment-test-001" }
@@ -1295,7 +1295,7 @@ const duplicatePaymentTestIntentResponse = await handleRequest(
     method: "POST",
     body: JSON.stringify({
       product_code: "score_pack_1k",
-      amount_eur: 99,
+      amount_eur: 119,
       provider: "stripe",
       provider_mode: "test"
     }),
@@ -1419,7 +1419,7 @@ const failedPaymentIntentResponse = await handleRequest(
     method: "POST",
     body: JSON.stringify({
       product_code: "deep_analysis",
-      amount_eur: 299,
+      amount_eur: 349,
       provider: "stripe",
       provider_mode: "sandbox"
     }),

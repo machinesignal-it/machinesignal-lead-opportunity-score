@@ -724,7 +724,7 @@ export const openApi = {
                   summary: "Create a test checkout for Score Pack 1k",
                   value: {
                     product_code: "score_pack_1k",
-                    amount_eur: 99,
+                    amount_eur: 119,
                     provider: "stripe",
                     provider_mode: "test"
                   }
@@ -2165,7 +2165,7 @@ const postmanCollection = {
           raw: JSON.stringify(
             {
               product_code: "score_pack_1k",
-              amount_eur: 99,
+              amount_eur: 119,
               provider: "stripe",
               provider_mode: "test",
               metadata: {
@@ -4059,21 +4059,21 @@ function paymentTestProductConfig(productCode) {
     score_pack_1k: {
       product_code: "score_pack_1k",
       ledger_product_code: "score_pack_1k",
-      amount_eur: 99,
+      amount_eur: 119,
       credits_to_activate: 1000,
       unit: "1000 valid scores"
     },
     target_discovery: {
       product_code: "target_discovery",
       ledger_product_code: "target_discovery_pack_250",
-      amount_eur: 149,
+      amount_eur: 249,
       credits_to_activate: 1,
       unit: "250 coherent targets"
     },
     target_discovery_pack_250: {
       product_code: "target_discovery",
       ledger_product_code: "target_discovery_pack_250",
-      amount_eur: 149,
+      amount_eur: 249,
       credits_to_activate: 1,
       unit: "250 coherent targets"
     },
@@ -4094,14 +4094,14 @@ function paymentTestProductConfig(productCode) {
     deep_analysis: {
       product_code: "deep_analysis",
       ledger_product_code: "deep_analysis_pack_100",
-      amount_eur: 299,
+      amount_eur: 349,
       credits_to_activate: 1,
       unit: "100 valid deep analyses"
     },
     deep_analysis_pack_100: {
       product_code: "deep_analysis",
       ledger_product_code: "deep_analysis_pack_100",
-      amount_eur: 299,
+      amount_eur: 349,
       credits_to_activate: 1,
       unit: "100 valid deep analyses"
     },
