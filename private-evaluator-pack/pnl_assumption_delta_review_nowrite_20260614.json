@@ -1,0 +1,140 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "review_id": "pnl_assumption_delta_review_nowrite_20260614",
+  "created_at": "2026-06-14",
+  "mode": "NoWrite P&L assumption delta review",
+  "status": "reported",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "api_calls_executed_now": 0,
+  "write_calls_executed_now": 0,
+  "real_revenue_booked": false,
+  "real_payment_executed": false,
+  "invoice_issued": false,
+  "payment_method_collected": false,
+  "source_artifacts": [
+    "product-catalog.json",
+    "support_cost_guard_margin_model_20260613",
+    "price_revision_and_live_candidate_pack_20260613",
+    "cost_guard_hard_stop_simulation_nowrite_20260613",
+    "internal_contract_consistency_probe_nowrite_20260614",
+    "sandbox_api_safety_regression_nowrite_20260614",
+    "synthetic_machine_buyer_journey_rehearsal_nowrite_20260614",
+    "agent_roles_operating_check_nowrite_20260614"
+  ],
+  "plain_italian_summary": "Gli ultimi test non richiedono modifiche immediate a Excel o deck, ma confermano che il P&L deve restare pre-ricavi finche non esistono approvazione proprietario, setup fiscale, pagamenti, fatture, privacy/legal e cost guard live. Prima del go-live vanno aggiornati prezzi e margini per alcuni prodotti.",
+  "pnl_delta_findings": [
+    {
+      "area": "revenue_timing",
+      "delta": "No real revenue can be recognized during current test phase.",
+      "impact": "P&L must keep beta revenue as planning/simulated only.",
+      "severity": "P0",
+      "action_required": "Do not book revenue until real payment, invoice and legal/fiscal gates are approved."
+    },
+    {
+      "area": "product_pricing",
+      "delta": "Score Pack 1k at 99 EUR is close to margin threshold; 119 EUR is safer before live.",
+      "impact": "Revenue scenarios should include 99 EUR conservative and 119 EUR revised case.",
+      "severity": "P1",
+      "action_required": "Update P&L sensitivity before go-live, not during NoWrite test."
+    },
+    {
+      "area": "deep_analysis_pricing",
+      "delta": "Deep Analysis at 249 EUR has weak planning margin; 349 EUR or cost reduction is recommended.",
+      "impact": "Deep Analysis should not be first live product without cost proof.",
+      "severity": "P1",
+      "action_required": "Model 249/349 EUR scenarios and require cost per valid report threshold."
+    },
+    {
+      "area": "target_discovery_pricing",
+      "delta": "Target Discovery at 149 EUR is cost-heavy; 249 EUR or later launch is recommended.",
+      "impact": "No-list acquisition path is valuable but could hurt margin if sold too early.",
+      "severity": "P1",
+      "action_required": "Keep as add-on or model higher price before live."
+    },
+    {
+      "area": "action_pack_margin",
+      "delta": "Action Pack remains best margin candidate if Deep Analysis gate is mandatory.",
+      "impact": "First monetization bundle can prioritize Score Pack + Action Pack, but still no live sale now.",
+      "severity": "P1",
+      "action_required": "Keep gate and cost cap in P&L."
+    },
+    {
+      "area": "agent_credit_cost",
+      "delta": "Agent credit cost must remain a variable cost per valid output, not a generic overhead.",
+      "impact": "Gross margin must include agent cost by product line.",
+      "severity": "P0",
+      "action_required": "P&L should show agent credits as variable COGS before any live pricing decision."
+    },
+    {
+      "area": "cloudflare_kv_cost_guard",
+      "delta": "Prior 429/KV warnings mean write-capped tests and eventual paid volume need cost/write guardrails.",
+      "impact": "Infrastructure cost cannot be treated as flat zero even in agent-only model.",
+      "severity": "P1",
+      "action_required": "Add Cloudflare/worker/KV write caps and paid-plan trigger as explicit P&L assumptions."
+    },
+    {
+      "area": "support_and_post_sale",
+      "delta": "Post-sale can be agent-led but still needs support/error handling cost assumptions.",
+      "impact": "Support cost remains small but non-zero per customer or per incident.",
+      "severity": "P2",
+      "action_required": "Keep support cost component in COGS or operating costs."
+    },
+    {
+      "area": "legal_fiscal_admin",
+      "delta": "Legal, privacy, VAT/fiscal, invoicing and payment provider are blockers before monetization.",
+      "impact": "Go-live timeline and one-off setup costs must remain in P&L assumptions.",
+      "severity": "P0",
+      "action_required": "Do not remove admin/legal/fiscal costs from the plan."
+    }
+  ],
+  "product_pnl_status": [
+    {
+      "product_code": "score_pack_1k",
+      "current_catalog_price_eur": 99,
+      "delta_status": "keep_but_add_119_eur_sensitivity",
+      "live_candidate": true,
+      "reason": "Scalable entry product, but margin is close to threshold at 99 EUR."
+    },
+    {
+      "product_code": "action_pack_25",
+      "current_catalog_price_eur": 399,
+      "delta_status": "check_catalog_vs_margin_pack_price_mismatch_before_next_deck_update",
+      "live_candidate": true,
+      "reason": "Catalog currently lists 399 EUR while latest price revision pack discussed 149 EUR planning candidate. This mismatch should be reconciled before updating P&L externally."
+    },
+    {
+      "product_code": "deep_analysis_pack_100",
+      "current_catalog_price_eur": 299,
+      "delta_status": "model_higher_price_or_cost_reduction",
+      "live_candidate": false,
+      "reason": "Strategically useful but cost-heavy."
+    },
+    {
+      "product_code": "target_discovery_pack_250",
+      "current_catalog_price_eur": 149,
+      "delta_status": "raise_or_sell_later",
+      "live_candidate": false,
+      "reason": "Important for no-list buyers but cost-heavy and needs market availability guard."
+    }
+  ],
+  "recommended_pnl_updates_when_owner_approves_file_edit": [
+    "Keep revenue rows as simulated/planning until live payment and invoice gates are approved.",
+    "Add product-level COGS with data source, agent credit, infrastructure, quality control and support components.",
+    "Add explicit agent credit variable cost per valid output.",
+    "Add Cloudflare/KV/Worker guardrail line and paid-plan trigger.",
+    "Add price sensitivity for Score Pack 1k: 99 EUR and 119 EUR.",
+    "Reconcile Action Pack price mismatch between product catalog and latest price revision pack.",
+    "Mark Deep Analysis and Target Discovery as later-live or higher-price candidates.",
+    "Keep legal/fiscal/admin setup costs before monetization."
+  ],
+  "no_file_update_reason": "This step is NoWrite planning. It intentionally does not update the Excel P&L or PowerPoint deck because the user did not explicitly approve editing those attached business-plan files in this heartbeat, and no live commercial state is approved.",
+  "readiness_after_review": {
+    "pnl_assumption_readiness": 84,
+    "commercial_go_live_readiness": 69,
+    "test_phase_completion_estimate": 82,
+    "go_live_status": "no_go"
+  },
+  "stop_or_continue_decision": "continue_internal_tests",
+  "recommended_next_step": "test_phase_completion_gate_nowrite"
+}
