@@ -65,7 +65,7 @@
     {
       "product_code": "target_discovery",
       "name": "Target Discovery Pack",
-      "price_eur": 149,
+      "price_eur": 249,
       "unit": "250 coherent target records or no-go market coverage decision",
       "when_bought_by_machine": "The customer machine has no starting list and needs coherent targets for a declared commercial objective."
     },
@@ -79,14 +79,14 @@
     {
       "product_code": "score_pack_1k",
       "name": "Score Pack 1k",
-      "price_eur": 99,
+      "price_eur": 119,
       "unit": "1000 valid scores",
       "when_bought_by_machine": "The customer machine has domains and wants score, confidence, decision and next budget action."
     },
     {
       "product_code": "deep_analysis",
       "name": "Deep Analysis Pack 100",
-      "price_eur": 299,
+      "price_eur": 349,
       "unit": "100 valid deep analyses",
       "when_bought_by_machine": "A scored domain is promising and the machine needs a deeper decision before buying an action pack."
     },

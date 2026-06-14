@@ -106,7 +106,7 @@ const PRODUCT_CATALOG = {
   products: {
     target_discovery_pack_250: {
       name: "Target Discovery Pack",
-      price_eur: 149,
+      price_eur: 249,
       unit: "250 coherent targets",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "target_discovery",
@@ -131,7 +131,7 @@ const PRODUCT_CATALOG = {
     },
     score_pack_1k: {
       name: "Score Pack 1k",
-      price_eur: 99,
+      price_eur: 119,
       unit: "1000 valid scores",
       current_beta_endpoint: "POST /v1/lead-opportunity-score",
       product_code: "score_pack_1k",
@@ -181,7 +181,7 @@ const PRODUCT_CATALOG = {
     },
     deep_analysis_pack_100: {
       name: "Deep Analysis Pack 100",
-      price_eur: 299,
+      price_eur: 349,
       unit: "100 valid deep analyses",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "deep_analysis",
@@ -359,12 +359,12 @@ const PRODUCT_CATALOG = {
 };
 
 const SIMULATED_REVENUE_PER_CREDIT_EUR = {
-  score_pack_1k: 0.099,
-  target_discovery_pack_250: 149,
+  score_pack_1k: 0.119,
+  target_discovery_pack_250: 249,
   domain_enrichment_pack_100: 1.49,
   verification_pack_100: 1,
   nurture_signal_pack_100: 1,
-  deep_analysis_pack_100: 2.99,
+  deep_analysis_pack_100: 3.49,
   action_pack_25: 15.96,
   opportunity_feed_monthly: 249
 };
@@ -1830,10 +1830,10 @@ Beta tester onboarding resources:
 - Machine beta test kit JSON: https://machinesignal.it/beta/machine-test-kit.json
 
 Commercial model under test:
-- Target Discovery Pack: EUR 149 for 250 coherent targets after market availability pre-check;
+- Target Discovery Pack: EUR 249 for 250 coherent targets after market availability pre-check;
 - Domain Enrichment Pack 100: EUR 149 for 100 enrichment decisions when a machine has names but not reliable domains;
-- Score Pack 1k: EUR 99 for 1000 valid scores;
-- Deep Analysis Pack 100: EUR 299 for 100 valid deep analyses;
+- Score Pack 1k: EUR 119 for 1000 valid scores;
+- Deep Analysis Pack 100: EUR 349 for 100 valid deep analyses;
 - Action Pack 25: EUR 399 for 25 valid action packs;
 - Opportunity Feed: EUR 249/month for 4 scans and 4 deliveries;
 - API Starter: EUR 99/month with 500 valid scores;

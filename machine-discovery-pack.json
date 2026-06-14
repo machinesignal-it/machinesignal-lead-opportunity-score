@@ -147,7 +147,7 @@
     "target_discovery": {
       "when_to_buy": "The machine has a market and commercial objective, but no starting list.",
       "output": "250 coherent target records or a no-go market coverage decision in production; sandbox returns a sample and output contract.",
-      "beta_price_eur": 149
+      "beta_price_eur": 249
     },
     "domain_enrichment": {
       "when_to_buy": "The machine has company names but needs reliable domains before scoring.",
@@ -157,12 +157,12 @@
     "score_pack_1k": {
       "when_to_buy": "The machine has domains and needs priority, decision, commercial strength and next budget action.",
       "output": "1000 valid scores with opportunity_score, confidence, web_architect_review, commercial_strength, spend_policy, allowed_next_products and next_purchase.",
-      "beta_price_eur": 99
+      "beta_price_eur": 119
     },
     "deep_analysis": {
       "when_to_buy": "A score recommends buy_deep_analysis or the machine needs a deeper decision before spending campaign or human time.",
       "output": "One deep opportunity decision pack per consumed credit.",
-      "beta_price_eur": 299
+      "beta_price_eur": 349
     },
     "action_pack": {
       "when_to_buy": "Deep Analysis confirms a useful opportunity, commercial_strength is strong, Web Architect evidence supports controlled action, and the machine needs CRM/workflow-ready output.",

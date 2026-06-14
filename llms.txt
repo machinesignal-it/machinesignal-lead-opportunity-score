@@ -142,10 +142,10 @@ Beta tester onboarding resources:
 - Machine beta test kit JSON: https://machinesignal.it/beta/machine-test-kit.json
 
 Commercial model under test:
-- Target Discovery Pack: EUR 149 for 250 coherent targets after market availability pre-check;
+- Target Discovery Pack: EUR 249 for 250 coherent targets after market availability pre-check;
 - Domain Enrichment Pack 100: EUR 149 for 100 enrichment decisions when a machine has names but not reliable domains;
-- Score Pack 1k: EUR 99 for 1000 valid scores;
-- Deep Analysis Pack 100: EUR 299 for 100 valid deep analyses;
+- Score Pack 1k: EUR 119 for 1000 valid scores;
+- Deep Analysis Pack 100: EUR 349 for 100 valid deep analyses;
 - Action Pack 25: EUR 399 for 25 valid action packs;
 - Opportunity Feed: EUR 249/month for 4 scans and 4 deliveries;
 - API Starter: EUR 99/month with 500 valid scores;
