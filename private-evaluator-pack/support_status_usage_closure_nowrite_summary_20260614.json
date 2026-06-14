@@ -1,0 +1,19 @@
+{
+  "service": "MachineSignal",
+  "probe": "support_status_usage_closure_nowrite",
+  "status": "pass",
+  "generated_at": "2026-06-14T12:40:41.747Z",
+  "checks_total": 88,
+  "checks_failed": 0,
+  "writes_performed": 0,
+  "post_calls_executed": 0,
+  "real_payment_executed": false,
+  "invoice_issued": false,
+  "external_outreach_executed": false,
+  "real_data_processed": false,
+  "personal_data_processed": false,
+  "technical_sandbox_tests_estimate_percent_if_pass": 97,
+  "commercial_go_live": "no_go",
+  "failed_checks": [],
+  "report": "private-evaluator-pack/support_status_usage_closure_nowrite_report_20260614.md"
+}
