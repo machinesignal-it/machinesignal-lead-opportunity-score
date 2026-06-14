@@ -55,7 +55,7 @@ const DEFAULT_LEDGER_STATE = {
 
 const PRODUCT_CATALOG = {
   service: "MachineSignal",
-  catalog_version: "2026-05-29-beta",
+  catalog_version: "2026-06-14-beta-v22",
   currency: "EUR",
   primary_customer_interface: "machine",
   payment_mode: {
