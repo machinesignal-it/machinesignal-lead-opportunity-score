@@ -1,0 +1,228 @@
+{
+  "probe_id": "public_pricing_consistency_probe_nowrite_20260614",
+  "mode": "NoWrite public consistency probe",
+  "api_calls_executed_now": 0,
+  "write_calls_executed_now": 0,
+  "status": "pass",
+  "checks_total": 42,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "expected_prices": {
+    "target_discovery_pack_250": 249,
+    "score_pack_1k": 119,
+    "deep_analysis_pack_100": 349
+  },
+  "recommended_next_step": "Sandbox technical test can move to 90-92% complete. Next owner decision: public sandbox docs visibility or continue internal-only.",
+  "checks": [
+    {
+      "name": "machinesignal_it_product_catalog_json_reachable",
+      "ok": true,
+      "detail": "HTTP 200; bytes=12091"
+    },
+    {
+      "name": "machinesignal_it_product_catalog_json_json_valid",
+      "ok": true,
+      "detail": "valid JSON"
+    },
+    {
+      "name": "static_catalog_target_price_249",
+      "ok": true,
+      "detail": "249"
+    },
+    {
+      "name": "static_catalog_score_price_119",
+      "ok": true,
+      "detail": "119"
+    },
+    {
+      "name": "static_catalog_deep_price_349",
+      "ok": true,
+      "detail": "349"
+    },
+    {
+      "name": "static_catalog_version_v22",
+      "ok": true,
+      "detail": "2026-06-14-beta-v22"
+    },
+    {
+      "name": "machinesignal_api_beta_878_workers_dev_product_catalog_json_reachable",
+      "ok": true,
+      "detail": "HTTP 200; bytes=12090"
+    },
+    {
+      "name": "machinesignal_api_beta_878_workers_dev_product_catalog_json_json_valid",
+      "ok": true,
+      "detail": "valid JSON"
+    },
+    {
+      "name": "worker_catalog_target_price_249",
+      "ok": true,
+      "detail": "249"
+    },
+    {
+      "name": "worker_catalog_score_price_119",
+      "ok": true,
+      "detail": "119"
+    },
+    {
+      "name": "worker_catalog_deep_price_349",
+      "ok": true,
+      "detail": "349"
+    },
+    {
+      "name": "worker_catalog_version_v22",
+      "ok": true,
+      "detail": "2026-06-14-beta-v22"
+    },
+    {
+      "name": "machinesignal_it_machine_onboarding_json_reachable",
+      "ok": true,
+      "detail": "HTTP 200; bytes=137139"
+    },
+    {
+      "name": "machinesignal_it_machine_onboarding_json_json_valid",
+      "ok": true,
+      "detail": "valid JSON"
+    },
+    {
+      "name": "static_onboarding_target_price_249",
+      "ok": true,
+      "detail": "249"
+    },
+    {
+      "name": "static_onboarding_score_price_119",
+      "ok": true,
+      "detail": "119"
+    },
+    {
+      "name": "static_onboarding_deep_price_349",
+      "ok": true,
+      "detail": "349"
+    },
+    {
+      "name": "machinesignal_it_llms_txt_reachable",
+      "ok": true,
+      "detail": "HTTP 200; bytes=39048"
+    },
+    {
+      "name": "llms_target_price_249",
+      "ok": true,
+      "detail": "llms target"
+    },
+    {
+      "name": "llms_score_price_119",
+      "ok": true,
+      "detail": "llms score"
+    },
+    {
+      "name": "llms_deep_price_349",
+      "ok": true,
+      "detail": "llms deep"
+    },
+    {
+      "name": "llms_no_old_score_price",
+      "ok": true,
+      "detail": "old score price absent"
+    },
+    {
+      "name": "llms_no_old_deep_price",
+      "ok": true,
+      "detail": "old deep price absent"
+    },
+    {
+      "name": "machinesignal_it_machine_discovery_machine_discovery_pack_json_reachable",
+      "ok": true,
+      "detail": "HTTP 200; bytes=10772"
+    },
+    {
+      "name": "machinesignal_it_machine_discovery_machine_discovery_pack_json_json_valid",
+      "ok": true,
+      "detail": "valid JSON"
+    },
+    {
+      "name": "machine_discovery_target_price_249",
+      "ok": true,
+      "detail": "249"
+    },
+    {
+      "name": "machine_discovery_score_price_119",
+      "ok": true,
+      "detail": "119"
+    },
+    {
+      "name": "machine_discovery_deep_price_349",
+      "ok": true,
+      "detail": "349"
+    },
+    {
+      "name": "machinesignal_it_distribution_rapidapi_listing_json_reachable",
+      "ok": true,
+      "detail": "HTTP 200; bytes=36482"
+    },
+    {
+      "name": "machinesignal_it_distribution_rapidapi_listing_json_json_valid",
+      "ok": true,
+      "detail": "valid JSON"
+    },
+    {
+      "name": "rapidapi_target_price_249",
+      "ok": true,
+      "detail": "249"
+    },
+    {
+      "name": "rapidapi_score_price_119",
+      "ok": true,
+      "detail": "119"
+    },
+    {
+      "name": "rapidapi_deep_price_349",
+      "ok": true,
+      "detail": "349"
+    },
+    {
+      "name": "machinesignal_it_openapi_json_reachable",
+      "ok": true,
+      "detail": "HTTP 200; bytes=62566"
+    },
+    {
+      "name": "openapi_score_payment_test_119",
+      "ok": true,
+      "detail": "score payment-test example"
+    },
+    {
+      "name": "openapi_no_score_payment_test_99",
+      "ok": true,
+      "detail": "old score payment-test absent"
+    },
+    {
+      "name": "machinesignal_it_postman_public_collection_json_reachable",
+      "ok": true,
+      "detail": "HTTP 200; bytes=27565"
+    },
+    {
+      "name": "postman_score_payment_test_119",
+      "ok": true,
+      "detail": "score payment-test example"
+    },
+    {
+      "name": "postman_no_score_payment_test_99",
+      "ok": true,
+      "detail": "old score payment-test absent"
+    },
+    {
+      "name": "safety_real_payment_false",
+      "ok": true,
+      "detail": "payment false marker"
+    },
+    {
+      "name": "safety_external_contact_false",
+      "ok": true,
+      "detail": "contact false marker"
+    },
+    {
+      "name": "probe_nowrite",
+      "ok": true,
+      "detail": "api_calls_executed_now=0; write_calls_executed_now=0"
+    }
+  ]
+}
