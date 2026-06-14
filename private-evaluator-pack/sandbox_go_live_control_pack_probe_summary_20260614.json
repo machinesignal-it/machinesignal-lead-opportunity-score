@@ -1,0 +1,15 @@
+{
+  "probe_id": "sandbox_go_live_control_pack_probe_20260614",
+  "status": "pass",
+  "checks_total": 66,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "forbidden_actions_confirmed_blocked": {
+    "real_payments": true,
+    "invoices": true,
+    "personal_data": true,
+    "real_customer_data": true,
+    "external_contact": true
+  },
+  "next_allowed_step": "bounded_sandbox_go_live_rehearsal_nowrite_or_write_capped_with_owner_approval"
+}

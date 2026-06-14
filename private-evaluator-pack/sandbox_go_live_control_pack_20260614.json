@@ -1,0 +1,208 @@
+{
+  "pack_id": "sandbox_go_live_control_pack_20260614",
+  "service": "MachineSignal",
+  "date": "2026-06-14",
+  "status": "prepared_no_write",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go_for_commercial_go_live",
+  "allowed_stage": "technical_sandbox_go_live_rehearsal_only",
+  "primary_customer_interface": "machine",
+  "human_role": "owner supervision, legal/fiscal approval and audit only",
+  "source_updates": {
+    "business_plan_deck": "MachineSignal_business_plan_partner_deck_v12_post_test_pricing.pptx",
+    "pnl_workbook": "MachineSignal_PL_3_years_v22_post_test_pricing.xlsx",
+    "readiness_checklist": "machinesignal_go_live_readiness_checklist_20260614.md",
+    "internal_test_gate": "private-evaluator-pack/test_phase_completion_gate_nowrite_20260614.md"
+  },
+  "readiness": {
+    "internal_test_phase_completion": 1.0,
+    "internal_test_checks": 195,
+    "internal_test_failed_checks": 0,
+    "estimated_product_api_readiness": 0.95,
+    "estimated_public_sandbox_readiness": 0.80,
+    "estimated_commercial_go_live_readiness": 0.50
+  },
+  "allowed_public_sandbox_assets": [
+    "GET /machine-onboarding.json",
+    "GET /product-catalog.json",
+    "GET /openapi.json",
+    "GET /postman_public_collection.json",
+    "GET /llms.txt",
+    "GET /health"
+  ],
+  "allowed_callable_sandbox_endpoints": [
+    {
+      "method": "POST",
+      "path": "/v1/sandbox/customers",
+      "purpose": "create one limited sandbox customer for a machine evaluator",
+      "write_cap": 1,
+      "requires_idempotency_key": true,
+      "real_payment": false,
+      "real_data_allowed": false
+    },
+    {
+      "method": "GET",
+      "path": "/v1/onboarding",
+      "purpose": "return authenticated sandbox onboarding state",
+      "write_cap": 0,
+      "requires_api_key": true,
+      "real_payment": false,
+      "real_data_allowed": false
+    },
+    {
+      "method": "POST",
+      "path": "/v1/lead-opportunity-score",
+      "purpose": "score synthetic or demo domains and return opportunity decision",
+      "write_cap": 3,
+      "requires_api_key": true,
+      "requires_idempotency_key": true,
+      "real_payment": false,
+      "real_data_allowed": false
+    },
+    {
+      "method": "POST",
+      "path": "/v1/purchase-intent",
+      "purpose": "record sandbox purchase intent only; no charge, no invoice, no payment method",
+      "write_cap": 2,
+      "requires_api_key": true,
+      "requires_idempotency_key": true,
+      "real_payment": false,
+      "real_data_allowed": false
+    },
+    {
+      "method": "GET",
+      "path": "/v1/orders/{order_intent_id}",
+      "purpose": "retrieve sandbox order intent and delivery payload",
+      "write_cap": 0,
+      "requires_api_key": true,
+      "real_payment": false,
+      "real_data_allowed": false
+    },
+    {
+      "method": "GET",
+      "path": "/v1/usage",
+      "purpose": "retrieve sandbox usage and credit status",
+      "write_cap": 0,
+      "requires_api_key": true,
+      "real_payment": false,
+      "real_data_allowed": false
+    }
+  ],
+  "explicitly_excluded_from_public_sandbox": [
+    "/v1/payment-test/intents",
+    "/v1/payment-test/intents/{payment_test_id}",
+    "/v1/payment-test/webhooks/stripe",
+    "/v1/payment-test/reconciliation/{payment_test_id}",
+    "/v1/admin/payment-test-report",
+    "/v1/beta/customers",
+    "/v1/beta/customers/{customer_id}",
+    "production_api_keys",
+    "hosted_public_mcp",
+    "mcp_registry_submission",
+    "public_paid_marketplace_submission"
+  ],
+  "sandbox_limits": {
+    "default_mode": "NoWrite until owner approves one bounded rehearsal",
+    "max_sandbox_customers_per_rehearsal": 1,
+    "max_post_calls_per_rehearsal": 5,
+    "max_score_calls_per_rehearsal": 3,
+    "max_purchase_intent_calls_per_rehearsal": 2,
+    "max_target_discovery_orders_per_rehearsal": 1,
+    "max_deep_analysis_orders_per_rehearsal": 1,
+    "max_action_pack_orders_per_rehearsal": 1,
+    "idempotency_required_for_post": true,
+    "synthetic_data_only": true,
+    "personal_data_allowed": false,
+    "real_customer_data_allowed": false,
+    "external_contact_allowed": false,
+    "payment_collection_allowed": false,
+    "invoice_issuance_allowed": false
+  },
+  "synthetic_data_rules": {
+    "allowed_domains": [
+      "example-dentist.test",
+      "example-realestate.test",
+      "example-clinic.test",
+      "example-lawfirm.test"
+    ],
+    "allowed_company_records": "synthetic only; no real names, emails, phone numbers or addresses",
+    "allowed_outputs": [
+      "score",
+      "confidence",
+      "commercial_strength",
+      "spend_policy",
+      "decision",
+      "reason",
+      "recommended_next_product",
+      "sandbox_order_intent",
+      "demo_delivery_payload"
+    ],
+    "blocked_outputs": [
+      "real contact data",
+      "personal data",
+      "email sending",
+      "phone outreach",
+      "payment method collection",
+      "invoice"
+    ]
+  },
+  "public_copy_guardrails": {
+    "must_say": [
+      "technical sandbox",
+      "no real payment",
+      "no invoice",
+      "no personal data",
+      "synthetic/demo data only",
+      "machine-readable API evaluation"
+    ],
+    "must_not_say": [
+      "ready to buy now",
+      "fully compliant",
+      "GDPR approved",
+      "production API key available",
+      "hosted MCP live",
+      "public marketplace live",
+      "guaranteed revenue",
+      "we contact leads for you"
+    ]
+  },
+  "success_metrics": {
+    "core_assets_http_200": true,
+    "openapi_paths_present": true,
+    "postman_collection_present": true,
+    "mcp_manifest_readable": true,
+    "forbidden_action_count": 0,
+    "real_payment_count": 0,
+    "invoice_count": 0,
+    "external_contact_count": 0,
+    "personal_data_record_count": 0,
+    "production_key_count": 0
+  },
+  "stop_rules": [
+    "Any public asset returns 4xx or 5xx.",
+    "OpenAPI, Postman, product catalog and machine onboarding diverge on product names or forbidden actions.",
+    "A POST endpoint can be called without idempotency key in the rehearsal.",
+    "A sandbox path can trigger real payment, invoice, external contact or production key issuance.",
+    "Any real customer data or personal data appears in examples, logs or payloads.",
+    "Cloudflare KV/Worker limits are exceeded or 429 errors appear.",
+    "The machine cannot distinguish technical sandbox from commercial launch."
+  ],
+  "owner_approval_required_before": [
+    "public paid launch",
+    "real payment",
+    "payment method collection",
+    "invoice issuance",
+    "production API key",
+    "real customer data",
+    "personal data",
+    "external outreach",
+    "marketplace/API directory submission",
+    "hosted public MCP",
+    "MCP registry publication"
+  ],
+  "next_allowed_step": {
+    "name": "sandbox_go_live_control_pack_probe_nowrite_20260614",
+    "type": "NoWrite validation",
+    "description": "Validate that this control pack is internally consistent and that no forbidden commercial or data-processing action is enabled."
+  }
+}
