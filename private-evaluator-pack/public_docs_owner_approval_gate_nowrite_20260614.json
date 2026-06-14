@@ -1,0 +1,130 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "gate_id": "public_docs_owner_approval_gate_nowrite_20260614",
+  "created_at": "2026-06-14",
+  "status": "prepared",
+  "mode": "NoWrite planning",
+  "source_remediation": "apply_public_wording_remediation_nowrite_20260613",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "owner_approval_required": true,
+  "plain_italian_summary": "Questo gate chiarisce cosa il proprietario deve approvare prima che README, docs, OpenAPI/Postman, MCP descriptor o pagine pubbliche possano essere considerati pubblicabili. Anche se lo scan wording e' pulito, non c'e' ancora approvazione per vendita, pubblicazione marketplace, pagamenti, dati reali o go-live.",
+  "current_evidence": {
+    "public_wording_scan_findings": 0,
+    "public_wording_scan_files_scanned": 49,
+    "wording_remediation_applied": true,
+    "probe_errors": 0,
+    "repo_clean_before_gate": true
+  },
+  "approval_categories": [
+    {
+      "category": "public_readme_and_docs",
+      "current_status": "technically_clean_not_owner_approved",
+      "owner_must_confirm": [
+        "Text is understandable and aligned with business positioning.",
+        "No statement sounds like paid/live offer.",
+        "No legal/privacy approval is implied.",
+        "Machine-first positioning is acceptable."
+      ],
+      "approval_effect_if_confirmed_later": "Docs can be treated as owner-approved draft-public wording, not commercial go-live."
+    },
+    {
+      "category": "openapi_postman_contracts",
+      "current_status": "technically_clean_not_owner_approved",
+      "owner_must_confirm": [
+        "Endpoints are acceptable as sandbox/pre-live contract.",
+        "Examples contain no real data or secrets.",
+        "No production key or payment instruction is exposed.",
+        "Machine-readable no-go wording is acceptable."
+      ],
+      "approval_effect_if_confirmed_later": "Contracts can be used for sandbox evaluation, not paid live access."
+    },
+    {
+      "category": "mcp_and_machine_discovery",
+      "current_status": "private_or_sandbox_only_not_registry_approved",
+      "owner_must_confirm": [
+        "No public registry publication is intended now.",
+        "Hosted MCP remains blocked.",
+        "Local/sandbox MCP wording is acceptable.",
+        "No external listing or submission occurs without explicit approval."
+      ],
+      "approval_effect_if_confirmed_later": "Machine discovery remains sandbox/private; public registry still requires separate approval."
+    },
+    {
+      "category": "commercial_claims",
+      "current_status": "blocked",
+      "owner_must_confirm": [
+        "No guaranteed leads.",
+        "No guaranteed revenue.",
+        "No buyer-intent guarantee.",
+        "No SLA or legal compliance claim."
+      ],
+      "approval_effect_if_confirmed_later": "Only safe non-guarantee claims can remain; commercial sale still blocked."
+    },
+    {
+      "category": "legal_privacy_terms",
+      "current_status": "draft_only",
+      "owner_must_confirm": [
+        "Terms/privacy/DPA are not final.",
+        "Professional review is still required.",
+        "No GDPR compliance claim is published.",
+        "No real/personal data processing is enabled."
+      ],
+      "approval_effect_if_confirmed_later": "Draft legal/privacy wording can stay as disclaimer; final legal docs still separate."
+    }
+  ],
+  "approval_decision_model": {
+    "possible_owner_decisions": [
+      "approve_as_internal_only",
+      "approve_as_sandbox_public_docs_only",
+      "request_rewording",
+      "block_publication",
+      "defer_until_legal_review"
+    ],
+    "default_if_no_owner_response": "approve_as_internal_only",
+    "current_decision": "approve_as_internal_only"
+  },
+  "must_remain_blocked_after_this_gate": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "email_sending_to_humans",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live",
+    "claim_legal_approval",
+    "publish_final_terms",
+    "publish_final_privacy_notice"
+  ],
+  "owner_review_packet": {
+    "max_owner_time_minutes": 20,
+    "review_order": [
+      "README top positioning",
+      "What This API Does Not Do",
+      "API directory listing",
+      "OpenAPI/Postman examples",
+      "MCP/local adapter wording",
+      "Safety blocks"
+    ],
+    "owner_questions": [
+      "Il posizionamento machine-first e' chiaro?",
+      "E' chiaro che non vendiamo ancora live?",
+      "E' chiaro che non facciamo outreach?",
+      "E' chiaro che non usiamo dati reali/personali?",
+      "C'e' qualche frase che sembra una promessa commerciale?"
+    ]
+  },
+  "readiness_after_gate": {
+    "public_docs_owner_gate_readiness": 75,
+    "public_wording_safety_readiness": 84,
+    "commercial_readiness": 69,
+    "go_live_status": "no_go",
+    "reason": "The owner approval gate is prepared, but the owner has not approved public docs as publishable and live/commercial gates remain blocked."
+  },
+  "recommended_next_action": "public_docs_owner_packet_nowrite"
+}

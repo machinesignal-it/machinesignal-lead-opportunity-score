@@ -1,0 +1,127 @@
+{
+  "probe_id": "public_docs_owner_approval_gate_nowrite_probe_20260614",
+  "created_at": "2026-06-14T09:24:13.357Z",
+  "checks": [
+    {
+      "name": "status_prepared",
+      "ok": true,
+      "detail": "prepared"
+    },
+    {
+      "name": "mode_nowrite",
+      "ok": true,
+      "detail": "NoWrite planning"
+    },
+    {
+      "name": "source_remediation_present",
+      "ok": true,
+      "detail": "apply_public_wording_remediation_nowrite_20260613"
+    },
+    {
+      "name": "commercial_not_live",
+      "ok": true,
+      "detail": "not_live"
+    },
+    {
+      "name": "go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "owner_approval_required",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "name": "wording_findings_zero",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "probe_errors_zero",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "approval_categories_present",
+      "ok": true,
+      "detail": "public_readme_and_docs, openapi_postman_contracts, mcp_and_machine_discovery, commercial_claims, legal_privacy_terms"
+    },
+    {
+      "name": "decision_model_present",
+      "ok": true,
+      "detail": "approve_as_internal_only, approve_as_sandbox_public_docs_only, request_rewording, block_publication, defer_until_legal_review"
+    },
+    {
+      "name": "default_internal_only",
+      "ok": true,
+      "detail": "approve_as_internal_only"
+    },
+    {
+      "name": "current_internal_only",
+      "ok": true,
+      "detail": "approve_as_internal_only"
+    },
+    {
+      "name": "hard_blocks_preserved",
+      "ok": true,
+      "detail": "real_payments, invoices, payment_method_collection, external_outreach, email_sending_to_humans, real_data_processing, personal_data_processing, production_api_key_issuing, public_paid_marketplace, hosted_mcp_public, mcp_registry_publication, commercial_go_live, claim_legal_approval, publish_final_terms, publish_final_privacy_notice"
+    },
+    {
+      "name": "owner_packet_time_limit",
+      "ok": true,
+      "detail": "20"
+    },
+    {
+      "name": "owner_questions_present",
+      "ok": true,
+      "detail": "[\"Il posizionamento machine-first e' chiaro?\",\"E' chiaro che non vendiamo ancora live?\",\"E' chiaro che non facciamo outreach?\",\"E' chiaro che non usiamo dati reali/personali?\",\"C'e' qualche frase che sembra una promessa commerciale?\"]"
+    },
+    {
+      "name": "readiness_go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "next_action_owner_packet",
+      "ok": true,
+      "detail": "public_docs_owner_packet_nowrite"
+    },
+    {
+      "name": "forbidden_claim_absent_commercial_status_live_",
+      "ok": true,
+      "detail": "commercial_status\": \"live\""
+    },
+    {
+      "name": "forbidden_claim_absent_go_live_decision_go_",
+      "ok": true,
+      "detail": "go_live_decision\": \"go\""
+    },
+    {
+      "name": "forbidden_claim_absent_owner_approval_required_false",
+      "ok": true,
+      "detail": "owner_approval_required\": false"
+    },
+    {
+      "name": "forbidden_claim_absent_pubblicazione_approvata",
+      "ok": true,
+      "detail": "pubblicazione approvata"
+    },
+    {
+      "name": "forbidden_claim_absent_go_live_go",
+      "ok": true,
+      "detail": "go-live: go"
+    },
+    {
+      "name": "md_contains_owner_approval",
+      "ok": true,
+      "detail": "owner approval"
+    },
+    {
+      "name": "md_next_action_present",
+      "ok": true,
+      "detail": "next action"
+    }
+  ],
+  "errors": []
+}
