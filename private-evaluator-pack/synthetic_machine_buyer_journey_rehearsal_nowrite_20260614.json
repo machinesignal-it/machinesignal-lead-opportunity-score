@@ -1,0 +1,178 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "rehearsal_id": "synthetic_machine_buyer_journey_rehearsal_nowrite_20260614",
+  "created_at": "2026-06-14",
+  "mode": "NoWrite synthetic machine buyer journey rehearsal",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "api_calls_executed_now": 0,
+  "write_calls_executed_now": 0,
+  "real_payment_executed": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "human_outreach_executed": false,
+  "external_publication_executed": false,
+  "production_api_key_published": false,
+  "purpose": "Verify that a buyer machine can choose the right MachineSignal product, budget and stop rule from the catalog without human sales contact.",
+  "inputs_are_synthetic": true,
+  "journeys": [
+    {
+      "scenario": "customer_has_existing_list",
+      "buyer_machine": "crm_prioritization_agent",
+      "synthetic_input": {
+        "list_type": "domain_list",
+        "records": 1000,
+        "sector": "dentists",
+        "area": "Milano",
+        "commercial_objective": "prioritize domains worth checking for digital presence improvement opportunities"
+      },
+      "machine_reasoning": [
+        "The customer already has a list, so discovery is not the first need.",
+        "The catalog says existing lists start with Score Pack 1k.",
+        "Invalid or duplicate records should not consume credits.",
+        "Only high-score records may later buy Deep Analysis."
+      ],
+      "selected_product": "score_pack_1k",
+      "selected_endpoint": "POST /v1/lead-opportunity-score",
+      "expected_output": [
+        "opportunity_score",
+        "confidence",
+        "commercial_strength",
+        "spend_policy",
+        "decision",
+        "recommended_next_purchase"
+      ],
+      "budget_rule": {
+        "max_initial_budget_eur": 99,
+        "credit_unit": "1000 valid scores",
+        "consume_only_valid_output": true
+      },
+      "next_decision_rules": [
+        {
+          "condition": "score >= 75 and confidence >= 0.75",
+          "decision": "buy_deep_analysis"
+        },
+        {
+          "condition": "score medium or confidence weak",
+          "decision": "watchlist_or_verify"
+        },
+        {
+          "condition": "invalid, duplicate or insufficient signal",
+          "decision": "do_not_consume_credit_or_stop"
+        }
+      ],
+      "stop_rules": [
+        "stop before any external contact",
+        "stop if no valid score output is produced",
+        "stop before real payment or invoice"
+      ],
+      "rehearsal_decision": "PASS"
+    },
+    {
+      "scenario": "customer_has_no_list",
+      "buyer_machine": "market_discovery_agent",
+      "synthetic_input": {
+        "market": "real estate agencies",
+        "area": "Lombardia",
+        "commercial_objective": "find agency websites worth scoring for digital presence improvement opportunities",
+        "starting_list": false
+      },
+      "machine_reasoning": [
+        "The customer has no list, so Score Pack is premature.",
+        "The catalog says no-list scenarios start with Target Discovery.",
+        "Target Discovery requires market, area and commercial objective.",
+        "If 250 coherent targets cannot be produced, the machine should receive alternatives rather than weak filler."
+      ],
+      "selected_product": "target_discovery",
+      "selected_endpoint": "POST /v1/purchase-intent",
+      "expected_output": [
+        "market availability pre-check",
+        "normalized target list if market is available",
+        "reason for inclusion",
+        "domain when available",
+        "suggested next scoring flow"
+      ],
+      "budget_rule": {
+        "max_initial_budget_eur": 149,
+        "credit_unit": "250 coherent targets",
+        "consume_only_when_pack_can_be_delivered": true
+      },
+      "next_decision_rules": [
+        {
+          "condition": "250 coherent targets available",
+          "decision": "deliver_target_discovery_then_score_pack"
+        },
+        {
+          "condition": "market too narrow",
+          "decision": "offer_mini_discovery_or_wider_area"
+        },
+        {
+          "condition": "commercial objective unclear",
+          "decision": "request_objective_normalization"
+        }
+      ],
+      "stop_rules": [
+        "do not fill the output with weak targets",
+        "do not contact target companies",
+        "do not execute real payment"
+      ],
+      "rehearsal_decision": "PASS"
+    },
+    {
+      "scenario": "customer_wants_next_action_after_deep_analysis",
+      "buyer_machine": "crm_action_orchestrator",
+      "synthetic_input": {
+        "domain": "studio-dentale-demo-8.it",
+        "source_score_request_id": "synthetic-score-request-001",
+        "source_deep_analysis_status": "gate_confirmed",
+        "commercial_objective": "prepare CRM action only if compliance gate remains blocked by default"
+      },
+      "machine_reasoning": [
+        "Action Pack should not be bought immediately after raw score only.",
+        "The catalog says Action Pack follows a confirmed Deep Analysis gate.",
+        "The output should prepare CRM/workflow action, not send outreach.",
+        "External action remains blocked until the customer has lawful basis and channel approval."
+      ],
+      "selected_product": "action_pack",
+      "selected_endpoint": "POST /v1/purchase-intent",
+      "expected_output": [
+        "crm_record_patch",
+        "crm_task",
+        "workflow_payload",
+        "agent_instructions",
+        "approval_gate",
+        "stop_rules",
+        "compliance_guardrail"
+      ],
+      "budget_rule": {
+        "max_initial_budget_eur": 399,
+        "credit_unit": "25 valid action packs",
+        "consume_only_when_action_pack_ready": true
+      },
+      "next_decision_rules": [
+        {
+          "condition": "deep analysis confirms action gate",
+          "decision": "prepare_internal_crm_action"
+        },
+        {
+          "condition": "compliance gate missing",
+          "decision": "block_external_contact_and_create_internal_task_only"
+        },
+        {
+          "condition": "deep analysis missing or weak",
+          "decision": "do_not_buy_action_pack"
+        }
+      ],
+      "stop_rules": [
+        "do not send email",
+        "do not contact target",
+        "do not claim legal permission",
+        "do not execute real payment"
+      ],
+      "rehearsal_decision": "PASS"
+    }
+  ],
+  "overall_machine_decision": "PASS",
+  "interpretation": "A synthetic buyer machine can choose Score Pack when it has a list, Target Discovery when it has no list, and Action Pack only after a Deep Analysis gate. It can also identify budget caps, valid-output credit rules and stop conditions without human sales contact.",
+  "recommended_next_step": "agent_roles_operating_check_nowrite"
+}
