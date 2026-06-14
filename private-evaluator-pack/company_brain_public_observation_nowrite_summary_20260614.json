@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "generated_at": "2026-06-14T12:31:27.842Z",
+  "checks_total": 54,
+  "checks_failed": 0,
+  "writes_performed": 0,
+  "real_payment_executed": false,
+  "invoice_issued": false,
+  "external_outreach_executed": false,
+  "real_data_processed": false,
+  "personal_data_processed": false,
+  "company_brain_version": "2026-06-14-internal-v1",
+  "graph_version": "2026-06-14-internal-v1",
+  "report": "private-evaluator-pack/company_brain_public_observation_nowrite_report_20260614.md"
+}
