@@ -1,0 +1,228 @@
+{
+  "probe_id": "agent_roles_operating_check_nowrite_probe_20260614",
+  "created_at": "2026-06-14T09:45:44.940Z",
+  "checks": [
+    {
+      "name": "status_reported",
+      "ok": true,
+      "detail": "reported"
+    },
+    {
+      "name": "mode_nowrite",
+      "ok": true,
+      "detail": "NoWrite agent roles operating check"
+    },
+    {
+      "name": "commercial_not_live",
+      "ok": true,
+      "detail": "not_live"
+    },
+    {
+      "name": "go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "required_roles_present",
+      "ok": true,
+      "detail": "Machine-to-Machine Sales Ops Agent, Customer Success & Post-Sale Agent, Admin & Finance Controller, Legal & Compliance Agent, HR Agent Manager, Continuous Improvement / Competitive Learning Agent"
+    },
+    {
+      "name": "Machine-to-Machine Sales Ops Agent_fit_for_test",
+      "ok": true,
+      "detail": "fit_for_test"
+    },
+    {
+      "name": "Machine-to-Machine Sales Ops Agent_has_must_not_do",
+      "ok": true,
+      "detail": "send outreach, publish marketplace listing, activate paid checkout, promise live access"
+    },
+    {
+      "name": "Machine-to-Machine Sales Ops Agent_has_gap",
+      "ok": true,
+      "detail": "Needs owner-approved external channel gate before any public listing or registry action."
+    },
+    {
+      "name": "Customer Success & Post-Sale Agent_fit_for_test",
+      "ok": true,
+      "detail": "fit_for_test"
+    },
+    {
+      "name": "Customer Success & Post-Sale Agent_has_must_not_do",
+      "ok": true,
+      "detail": "process legal disputes, handle payment disputes, process personal data payloads, promise refunds or SLAs"
+    },
+    {
+      "name": "Customer Success & Post-Sale Agent_has_gap",
+      "ok": true,
+      "detail": "Needs support escalation matrix before real customers or paid users."
+    },
+    {
+      "name": "Admin & Finance Controller_fit_for_test",
+      "ok": true,
+      "detail": "fit_for_test"
+    },
+    {
+      "name": "Admin & Finance Controller_has_must_not_do",
+      "ok": true,
+      "detail": "issue invoice, collect payment method, book real revenue, activate billing provider"
+    },
+    {
+      "name": "Admin & Finance Controller_has_gap",
+      "ok": true,
+      "detail": "Needs fiscal/VAT/payment-provider setup before monetization."
+    },
+    {
+      "name": "Legal & Compliance Agent_fit_for_test",
+      "ok": true,
+      "detail": "fit_for_test"
+    },
+    {
+      "name": "Legal & Compliance Agent_has_must_not_do",
+      "ok": true,
+      "detail": "claim final legal approval, publish final terms, publish final privacy notice, approve GDPR readiness alone"
+    },
+    {
+      "name": "Legal & Compliance Agent_has_gap",
+      "ok": true,
+      "detail": "Needs professional legal/privacy review before real data, paid users or final terms."
+    },
+    {
+      "name": "HR Agent Manager_fit_for_test",
+      "ok": true,
+      "detail": "fit_for_test"
+    },
+    {
+      "name": "HR Agent Manager_has_must_not_do",
+      "ok": true,
+      "detail": "weaken hard stops, authorize public launch, delegate blocked actions to another agent"
+    },
+    {
+      "name": "HR Agent Manager_has_gap",
+      "ok": true,
+      "detail": "Needs periodic role scorecard before scale."
+    },
+    {
+      "name": "Continuous Improvement / Competitive Learning Agent_fit_for_test",
+      "ok": true,
+      "detail": "fit_for_test"
+    },
+    {
+      "name": "Continuous Improvement / Competitive Learning Agent_has_must_not_do",
+      "ok": true,
+      "detail": "scrape personal data, copy competitor protected content, auto-publish changes, start paid tools without approval"
+    },
+    {
+      "name": "Continuous Improvement / Competitive Learning Agent_has_gap",
+      "ok": true,
+      "detail": "Needs competitive-learning cadence and source log before market launch."
+    },
+    {
+      "name": "roles_checked_6",
+      "ok": true,
+      "detail": "6"
+    },
+    {
+      "name": "roles_fit_6",
+      "ok": true,
+      "detail": "6"
+    },
+    {
+      "name": "no_hard_block_violations",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "no_unexpected_allows",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "owner_not_required_now",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "hard_blocks_preserved",
+      "ok": true,
+      "detail": "real_payments, invoices, payment_method_collection, external_outreach, email_sending_to_humans, real_data_processing, personal_data_processing, production_api_key_issuing, public_paid_marketplace, hosted_mcp_public, mcp_registry_publication, commercial_go_live, claim_legal_approval, publish_final_terms, publish_final_privacy_notice, treat_machine_as_sole_legal_counterparty"
+    },
+    {
+      "name": "operating_matrix_has_allows",
+      "ok": true,
+      "detail": "has allowed rows"
+    },
+    {
+      "name": "operating_matrix_has_blocks",
+      "ok": true,
+      "detail": "has blocked rows"
+    },
+    {
+      "name": "paid_checkout_blocked",
+      "ok": true,
+      "detail": "activate paid checkout"
+    },
+    {
+      "name": "marketplace_blocked",
+      "ok": true,
+      "detail": "publish paid marketplace listing"
+    },
+    {
+      "name": "human_email_blocked",
+      "ok": true,
+      "detail": "send emails to humans"
+    },
+    {
+      "name": "readiness_go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "next_step_pnl",
+      "ok": true,
+      "detail": "pnl_assumption_delta_review_nowrite"
+    },
+    {
+      "name": "md_required_phrases",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "forbidden_absent__commercial_status_live_",
+      "ok": true,
+      "detail": "\"commercial_status\": \"live\""
+    },
+    {
+      "name": "forbidden_absent__go_live_decision_go_",
+      "ok": true,
+      "detail": "\"go_live_decision\": \"go\""
+    },
+    {
+      "name": "forbidden_absent__hard_block_violations_1",
+      "ok": true,
+      "detail": "\"hard_block_violations\": 1"
+    },
+    {
+      "name": "forbidden_absent__unexpected_allows_1",
+      "ok": true,
+      "detail": "\"unexpected_allows\": 1"
+    },
+    {
+      "name": "forbidden_absent_pagamenti_reali_attivi",
+      "ok": true,
+      "detail": "pagamenti reali attivi"
+    },
+    {
+      "name": "forbidden_absent_outreach_attivo",
+      "ok": true,
+      "detail": "outreach attivo"
+    },
+    {
+      "name": "forbidden_absent_go_live_commerciale_approvato",
+      "ok": true,
+      "detail": "go-live commerciale approvato"
+    }
+  ],
+  "errors": [],
+  "recommended_next_step": "pnl_assumption_delta_review_nowrite"
+}

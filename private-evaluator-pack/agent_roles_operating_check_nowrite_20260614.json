@@ -1,0 +1,196 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "check_id": "agent_roles_operating_check_nowrite_20260614",
+  "created_at": "2026-06-14",
+  "mode": "NoWrite agent roles operating check",
+  "status": "reported",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "source_policy": "agent_operating_policy_update_nowrite_20260613",
+  "source_rehearsal": "agent_policy_compliance_rehearsal_nowrite_20260613",
+  "purpose": "Verify that sales, post-sale, admin, legal, HR/agent manager and continuous improvement roles can operate in test mode without crossing hard stops.",
+  "hard_blocks_preserved": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "external_outreach",
+    "email_sending_to_humans",
+    "real_data_processing",
+    "personal_data_processing",
+    "production_api_key_issuing",
+    "public_paid_marketplace",
+    "hosted_mcp_public",
+    "mcp_registry_publication",
+    "commercial_go_live",
+    "claim_legal_approval",
+    "publish_final_terms",
+    "publish_final_privacy_notice",
+    "treat_machine_as_sole_legal_counterparty"
+  ],
+  "roles": [
+    {
+      "role": "Machine-to-Machine Sales Ops Agent",
+      "test_mode_duties": [
+        "prepare API-directory and machine-readable sales logic as drafts",
+        "simulate buyer-machine journeys with synthetic inputs",
+        "improve product routing, pricing explanation and purchase-intent wording"
+      ],
+      "must_not_do": [
+        "send outreach",
+        "publish marketplace listing",
+        "activate paid checkout",
+        "promise live access"
+      ],
+      "current_fit": "fit_for_test",
+      "gap": "Needs owner-approved external channel gate before any public listing or registry action."
+    },
+    {
+      "role": "Customer Success & Post-Sale Agent",
+      "test_mode_duties": [
+        "answer ordinary machine-readable support questions",
+        "explain credit consumption and no-credit decisions",
+        "triage API errors and delivery retrieval problems using synthetic or sandbox evidence"
+      ],
+      "must_not_do": [
+        "process legal disputes",
+        "handle payment disputes",
+        "process personal data payloads",
+        "promise refunds or SLAs"
+      ],
+      "current_fit": "fit_for_test",
+      "gap": "Needs support escalation matrix before real customers or paid users."
+    },
+    {
+      "role": "Admin & Finance Controller",
+      "test_mode_duties": [
+        "track cost assumptions",
+        "review P&L deltas",
+        "monitor credit ledger and Cloudflare/KV constraints",
+        "list fiscal and payment blockers"
+      ],
+      "must_not_do": [
+        "issue invoice",
+        "collect payment method",
+        "book real revenue",
+        "activate billing provider"
+      ],
+      "current_fit": "fit_for_test",
+      "gap": "Needs fiscal/VAT/payment-provider setup before monetization."
+    },
+    {
+      "role": "Legal & Compliance Agent",
+      "test_mode_duties": [
+        "flag legal and privacy blockers",
+        "maintain draft terms/privacy/DPA checklists",
+        "verify no real or personal data enters tests",
+        "block final compliance claims"
+      ],
+      "must_not_do": [
+        "claim final legal approval",
+        "publish final terms",
+        "publish final privacy notice",
+        "approve GDPR readiness alone"
+      ],
+      "current_fit": "fit_for_test",
+      "gap": "Needs professional legal/privacy review before real data, paid users or final terms."
+    },
+    {
+      "role": "HR Agent Manager",
+      "test_mode_duties": [
+        "propose missing agent roles",
+        "audit whether each agent completed assigned work",
+        "enforce one-step bounded work and validation",
+        "stop agents that hit hard blocks"
+      ],
+      "must_not_do": [
+        "weaken hard stops",
+        "authorize public launch",
+        "delegate blocked actions to another agent"
+      ],
+      "current_fit": "fit_for_test",
+      "gap": "Needs periodic role scorecard before scale."
+    },
+    {
+      "role": "Continuous Improvement / Competitive Learning Agent",
+      "test_mode_duties": [
+        "read latest probe summaries",
+        "identify recurring failures",
+        "propose NoWrite improvements",
+        "compare positioning and pricing only through safe public/non-personal evidence"
+      ],
+      "must_not_do": [
+        "scrape personal data",
+        "copy competitor protected content",
+        "auto-publish changes",
+        "start paid tools without approval"
+      ],
+      "current_fit": "fit_for_test",
+      "gap": "Needs competitive-learning cadence and source log before market launch."
+    }
+  ],
+  "operating_matrix": [
+    {
+      "request_type": "improve internal docs",
+      "owner_role": "HR Agent Manager",
+      "allowed": true,
+      "classification": "allow_nowrite"
+    },
+    {
+      "request_type": "simulate buyer-machine purchase path",
+      "owner_role": "Machine-to-Machine Sales Ops Agent",
+      "allowed": true,
+      "classification": "allow_synthetic_test"
+    },
+    {
+      "request_type": "explain synthetic credit consumption",
+      "owner_role": "Customer Success & Post-Sale Agent",
+      "allowed": true,
+      "classification": "allow_support_ordinary"
+    },
+    {
+      "request_type": "update P&L assumptions",
+      "owner_role": "Admin & Finance Controller",
+      "allowed": true,
+      "classification": "allow_nowrite_financial_model"
+    },
+    {
+      "request_type": "finalize legal/privacy docs",
+      "owner_role": "Legal & Compliance Agent",
+      "allowed": false,
+      "classification": "escalate_professional_review_required"
+    },
+    {
+      "request_type": "activate paid checkout",
+      "owner_role": "Admin & Finance Controller",
+      "allowed": false,
+      "classification": "hard_stop"
+    },
+    {
+      "request_type": "publish paid marketplace listing",
+      "owner_role": "Machine-to-Machine Sales Ops Agent",
+      "allowed": false,
+      "classification": "hard_stop"
+    },
+    {
+      "request_type": "send emails to humans",
+      "owner_role": "Customer Success & Post-Sale Agent",
+      "allowed": false,
+      "classification": "hard_stop"
+    }
+  ],
+  "aggregate_result": {
+    "roles_checked": 6,
+    "roles_fit_for_test": 6,
+    "hard_block_violations": 0,
+    "unexpected_allows": 0,
+    "owner_decision_required_now": false
+  },
+  "readiness_after_check": {
+    "agent_roles_test_readiness": 86,
+    "agent_only_operating_readiness": 82,
+    "commercial_go_live_readiness": 69,
+    "go_live_status": "no_go"
+  },
+  "interpretation": "The required agent roles are fit for the remaining internal test phase. They can prepare drafts, simulations, support logic, P&L deltas, legal checklists and role audits, but cannot execute payments, invoices, outreach, public listing, hosted MCP, real/personal data processing or go-live.",
+  "recommended_next_step": "pnl_assumption_delta_review_nowrite"
+}
