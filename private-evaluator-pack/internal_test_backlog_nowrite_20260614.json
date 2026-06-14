@@ -1,0 +1,161 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "backlog_id": "internal_test_backlog_nowrite_20260614",
+  "created_at": "2026-06-14",
+  "mode": "NoWrite internal test backlog",
+  "source_packet": "public_docs_owner_packet_nowrite_20260614",
+  "status": "prepared",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "owner_decision_required_now": false,
+  "plain_italian_summary": "Questo backlog ordina i prossimi test interni da fare senza contatti esterni, senza dati reali/personali e senza attivare vendita o go-live. Serve a continuare il lavoro mentre la documentazione pubblica resta approvata solo come materiale interno.",
+  "current_assumption": "No owner approval for public sandbox docs has been given, so the safe default remains approve_as_internal_only.",
+  "hard_blocks": [
+    "no_real_payments",
+    "no_invoices",
+    "no_payment_method_collection",
+    "no_external_outreach",
+    "no_email_sending_to_humans",
+    "no_real_data_processing",
+    "no_personal_data_processing",
+    "no_production_api_key_issuing",
+    "no_public_paid_marketplace",
+    "no_hosted_mcp_public",
+    "no_mcp_registry_publication",
+    "no_commercial_go_live",
+    "no_claim_legal_approval",
+    "no_publish_final_terms",
+    "no_publish_final_privacy_notice"
+  ],
+  "test_backlog": [
+    {
+      "priority": "P0",
+      "step_id": "internal_contract_consistency_probe_nowrite",
+      "goal": "Verificare che README, OpenAPI, Postman, MCP draft e product catalog dicano la stessa cosa su beta, blocchi, credit ledger e no-go commerciale.",
+      "why_it_matters": "Una macchina cliente deve leggere messaggi coerenti su tutti i canali prima di provare la API.",
+      "allowed_actions": [
+        "read local repo files",
+        "compare machine-readable contracts",
+        "produce report and summary JSON",
+        "commit/push evidence"
+      ],
+      "blocked_actions": [
+        "publish external registry",
+        "contact external services",
+        "change live commercial status"
+      ],
+      "done_when": [
+        "all critical docs are compared",
+        "any inconsistencies are classified by severity",
+        "next remediation is recommended"
+      ],
+      "requires_owner": false
+    },
+    {
+      "priority": "P0",
+      "step_id": "sandbox_api_safety_regression_nowrite",
+      "goal": "Ripetere i controlli sugli endpoint sandbox usando solo chiamate sintetiche e verificare che purchase-intent non generi pagamenti reali.",
+      "why_it_matters": "Il modello vende alle macchine, quindi la macchina deve poter testare senza rischio commerciale o privacy.",
+      "allowed_actions": [
+        "use synthetic domains",
+        "call sandbox endpoints if keys are already available in safe local config",
+        "avoid real/personal data",
+        "write report"
+      ],
+      "blocked_actions": [
+        "create real customers",
+        "issue production keys",
+        "collect payment method",
+        "use real lead lists"
+      ],
+      "done_when": [
+        "auth behavior is verified",
+        "credit behavior is verified within caps",
+        "purchase-intent remains non-payment"
+      ],
+      "requires_owner": false
+    },
+    {
+      "priority": "P1",
+      "step_id": "synthetic_machine_buyer_journey_rehearsal_nowrite",
+      "goal": "Simulare una macchina cliente che scopre il prodotto, legge il catalogo, sceglie un servizio, valuta budget e chiede un output sintetico.",
+      "why_it_matters": "Il punto centrale del business e' far capire alla macchina cosa comprare, quando comprarlo e con quali limiti.",
+      "allowed_actions": [
+        "use synthetic buyer persona",
+        "use existing public/internal JSON files",
+        "produce decision trace",
+        "no external submission"
+      ],
+      "blocked_actions": [
+        "send outbound requests to marketplaces",
+        "use real buyer data",
+        "create paid account"
+      ],
+      "done_when": [
+        "journey has clear accept/reject/watchlist/deep-analysis decisions",
+        "credit consumption is traceable",
+        "failure cases are documented"
+      ],
+      "requires_owner": false
+    },
+    {
+      "priority": "P1",
+      "step_id": "agent_roles_operating_check_nowrite",
+      "goal": "Verificare che gli agenti creati per sales, post-vendita, admin, legal e HR agentica abbiano ruoli coerenti con i blocchi di test.",
+      "why_it_matters": "Il modello agent-only deve evitare che un agente faccia azioni commerciali reali durante la fase test.",
+      "allowed_actions": [
+        "review agent policy files",
+        "map duties to hard blocks",
+        "produce gaps list"
+      ],
+      "blocked_actions": [
+        "activate autonomous outreach",
+        "approve legal text as final",
+        "run billing"
+      ],
+      "done_when": [
+        "role gaps are listed",
+        "conflicting duties are flagged",
+        "self-improvement loop stays bounded"
+      ],
+      "requires_owner": false
+    },
+    {
+      "priority": "P2",
+      "step_id": "pnl_assumption_delta_review_nowrite",
+      "goal": "Controllare se gli ultimi blocchi tecnici e il posizionamento not_live/no_go cambiano ipotesi del P&L.",
+      "why_it_matters": "Il P&L deve riflettere costi tecnici, limiti Cloudflare/KV, crediti agenti e tempi reali prima del go-live.",
+      "allowed_actions": [
+        "review local spreadsheet/deck assumptions if present",
+        "produce delta report",
+        "do not change commercial launch state"
+      ],
+      "blocked_actions": [
+        "create invoices",
+        "collect payment details",
+        "book real revenue"
+      ],
+      "done_when": [
+        "P&L deltas are classified",
+        "updates needed are listed",
+        "no financial action is executed"
+      ],
+      "requires_owner": false
+    }
+  ],
+  "recommended_next_step": "internal_contract_consistency_probe_nowrite",
+  "stop_conditions": [
+    "owner approval required for public publication",
+    "real payment or billing setup requested",
+    "external outreach requested",
+    "real/personal data requested",
+    "all P0 and P1 internal tests pass"
+  ],
+  "readiness_snapshot": {
+    "internal_test_structure_readiness": 82,
+    "public_docs_without_owner_decision": 0,
+    "sandbox_public_docs_if_owner_approves": 78,
+    "commercial_go_live_readiness": 69,
+    "overall_test_phase_completion_estimate": 76
+  }
+}
