@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "catalog_version": "2026-05-29-beta",
+  "catalog_version": "2026-06-14-beta-v22",
   "currency": "EUR",
   "primary_customer_interface": "machine",
   "payment_mode": {
@@ -65,7 +65,7 @@
   "products": {
     "target_discovery_pack_250": {
       "name": "Target Discovery Pack",
-      "price_eur": 149,
+      "price_eur": 249,
       "unit": "250 coherent targets",
       "current_beta_endpoint": "POST /v1/purchase-intent",
       "product_code": "target_discovery",
@@ -87,7 +87,7 @@
     },
     "score_pack_1k": {
       "name": "Score Pack 1k",
-      "price_eur": 99,
+      "price_eur": 119,
       "unit": "1000 valid scores",
       "current_beta_endpoint": "POST /v1/lead-opportunity-score",
       "product_code": "score_pack_1k",
@@ -131,7 +131,7 @@
     },
     "deep_analysis_pack_100": {
       "name": "Deep Analysis Pack 100",
-      "price_eur": 299,
+      "price_eur": 349,
       "unit": "100 valid deep analyses",
       "current_beta_endpoint": "POST /v1/purchase-intent",
       "product_code": "deep_analysis",

@@ -1,0 +1,80 @@
+{
+  "probe_id": "bounded_sandbox_go_live_rehearsal_nowrite_20260614",
+  "status": "pass",
+  "mode": "NoWrite bounded sandbox rehearsal",
+  "api_calls_executed_now": 0,
+  "write_calls_executed_now": 0,
+  "simulated_post_calls": 4,
+  "max_post_calls_allowed": 5,
+  "checks_total": 52,
+  "checks_failed": 0,
+  "warnings_total": 0,
+  "warnings": [],
+  "failed_checks": [],
+  "forbidden_actions_confirmed_blocked": {
+    "payment_collection": true,
+    "invoice_issuance": true,
+    "personal_data": true,
+    "real_customer_data": true,
+    "external_contact": true
+  },
+  "simulated_actions": [
+    {
+      "step": 1,
+      "method": "GET",
+      "path": "/machine-onboarding.json, /product-catalog.json, /openapi.json, /llms.txt",
+      "mode": "NoWrite local contract read",
+      "expectedOutcome": "machine understands service, product catalog and sandbox limits",
+      "safety": "read-only"
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/v1/sandbox/customers",
+      "mode": "simulated only",
+      "expectedOutcome": "one limited sandbox customer would be created with idempotency key",
+      "safety": "no payment, no invoice, synthetic evaluator"
+    },
+    {
+      "step": 3,
+      "method": "GET",
+      "path": "/v1/onboarding",
+      "mode": "simulated only",
+      "expectedOutcome": "machine receives available test paths and credit balances",
+      "safety": "read-only with sandbox key"
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/v1/lead-opportunity-score",
+      "mode": "simulated only",
+      "expectedOutcome": "synthetic .test domain receives score, confidence, decision and next product",
+      "safety": "idempotent, no real data"
+    },
+    {
+      "step": 5,
+      "method": "POST",
+      "path": "/v1/purchase-intent",
+      "mode": "simulated only",
+      "expectedOutcome": "target_discovery or deep_analysis intent is recorded as sandbox intent",
+      "safety": "no charge, no invoice"
+    },
+    {
+      "step": 6,
+      "method": "POST",
+      "path": "/v1/purchase-intent",
+      "mode": "simulated only",
+      "expectedOutcome": "action_pack intent only after deep_analysis gate",
+      "safety": "no outreach, no external contact"
+    },
+    {
+      "step": 7,
+      "method": "GET",
+      "path": "/v1/orders/{order_intent_id}, /v1/usage",
+      "mode": "simulated only",
+      "expectedOutcome": "machine retrieves delivery and reconciles demo credits",
+      "safety": "read-only"
+    }
+  ],
+  "recommendation": "Pass. Next step can be owner-approved write-capped sandbox rehearsal."
+}
