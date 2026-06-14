@@ -1,0 +1,117 @@
+{
+  "probe_id": "public_docs_owner_packet_nowrite_probe_20260614",
+  "created_at": "2026-06-14T09:29:16.882Z",
+  "checks": [
+    {
+      "name": "status_prepared",
+      "ok": true,
+      "detail": "prepared"
+    },
+    {
+      "name": "mode_nowrite_owner_packet",
+      "ok": true,
+      "detail": "NoWrite owner review packet"
+    },
+    {
+      "name": "source_gate_present",
+      "ok": true,
+      "detail": "public_docs_owner_approval_gate_nowrite_20260614"
+    },
+    {
+      "name": "commercial_not_live",
+      "ok": true,
+      "detail": "not_live"
+    },
+    {
+      "name": "go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "owner_approval_required",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "name": "review_budget_max_20",
+      "ok": true,
+      "detail": "20"
+    },
+    {
+      "name": "decision_options_complete",
+      "ok": true,
+      "detail": "approve_as_internal_only, approve_as_sandbox_public_docs_only, request_rewording, block_publication, defer_until_legal_review"
+    },
+    {
+      "name": "review_cards_complete",
+      "ok": true,
+      "detail": "README and top positioning, What the API does not do, OpenAPI and Postman examples, MCP and machine discovery, Legal, privacy and compliance wording"
+    },
+    {
+      "name": "hard_blocks_preserved",
+      "ok": true,
+      "detail": "no_real_payments, no_invoices, no_payment_method_collection, no_external_outreach, no_email_sending_to_humans, no_real_data_processing, no_personal_data_processing, no_production_api_key_issuing, no_public_paid_marketplace, no_hosted_mcp_public, no_mcp_registry_publication, no_commercial_go_live, no_claim_legal_approval, no_publish_final_terms, no_publish_final_privacy_notice"
+    },
+    {
+      "name": "default_internal_only",
+      "ok": true,
+      "detail": "approve_as_internal_only"
+    },
+    {
+      "name": "sandbox_next_action_present",
+      "ok": true,
+      "detail": "sandbox_public_docs_readiness_probe_nowrite"
+    },
+    {
+      "name": "no_decision_next_action_present",
+      "ok": true,
+      "detail": "continue_internal_test_backlog_nowrite"
+    },
+    {
+      "name": "readiness_go_live_no_go",
+      "ok": true,
+      "detail": "no_go"
+    },
+    {
+      "name": "publication_readiness_zero_without_owner",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "name": "md_required_phrases",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "forbidden_absent__commercial_status_live_",
+      "ok": true,
+      "detail": "\"commercial_status\": \"live\""
+    },
+    {
+      "name": "forbidden_absent__go_live_decision_go_",
+      "ok": true,
+      "detail": "\"go_live_decision\": \"go\""
+    },
+    {
+      "name": "forbidden_absent__owner_approval_required_false",
+      "ok": true,
+      "detail": "\"owner_approval_required\": false"
+    },
+    {
+      "name": "forbidden_absent_via_libera_commerciale_approvato",
+      "ok": true,
+      "detail": "via libera commerciale approvato"
+    },
+    {
+      "name": "forbidden_absent_pagamenti_reali_attivi",
+      "ok": true,
+      "detail": "pagamenti reali attivi"
+    },
+    {
+      "name": "forbidden_absent_hosted_MCP_pubblico_approvato",
+      "ok": true,
+      "detail": "hosted MCP pubblico approvato"
+    }
+  ],
+  "errors": []
+}

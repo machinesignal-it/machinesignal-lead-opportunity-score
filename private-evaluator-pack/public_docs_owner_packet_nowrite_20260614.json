@@ -1,0 +1,171 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "packet_id": "public_docs_owner_packet_nowrite_20260614",
+  "created_at": "2026-06-14",
+  "mode": "NoWrite owner review packet",
+  "source_gate": "public_docs_owner_approval_gate_nowrite_20260614",
+  "status": "prepared",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "owner_approval_required": true,
+  "plain_italian_summary": "Questo pacchetto riduce la revisione del proprietario a una decisione semplice: lasciare la documentazione solo interna, approvarla come sandbox pubblica, chiedere riscritture, bloccarla o rinviare alla revisione legale. Non abilita vendita, marketplace, pagamenti, dati reali, outreach o go-live.",
+  "review_budget": {
+    "max_minutes": 20,
+    "recommended_minutes": 12,
+    "review_style": "read decision cards, check exact owner questions, choose one decision"
+  },
+  "decision_options": [
+    {
+      "decision": "approve_as_internal_only",
+      "meaning": "I materiali restano utilizzabili solo per lavoro interno e test privati.",
+      "allowed_after_decision": [
+        "continue private tests",
+        "prepare further NoWrite packets",
+        "keep GitHub docs as working draft"
+      ],
+      "still_blocked": [
+        "public launch",
+        "marketplace publication",
+        "hosted MCP publication",
+        "paid access",
+        "external outreach"
+      ]
+    },
+    {
+      "decision": "approve_as_sandbox_public_docs_only",
+      "meaning": "I testi possono essere considerati adatti a una documentazione sandbox pubblica, ma non a una vendita live.",
+      "allowed_after_decision": [
+        "use wording for sandbox documentation",
+        "show machine-first beta status",
+        "keep synthetic examples only"
+      ],
+      "still_blocked": [
+        "real payments",
+        "production keys",
+        "real/personal data",
+        "marketplace paid listing",
+        "final legal/privacy claims"
+      ]
+    },
+    {
+      "decision": "request_rewording",
+      "meaning": "Il proprietario chiede modifiche su posizionamento, chiarezza o tono.",
+      "allowed_after_decision": [
+        "create a revised NoWrite wording pack",
+        "run another public wording scan"
+      ],
+      "still_blocked": [
+        "all commercial launch actions"
+      ]
+    },
+    {
+      "decision": "block_publication",
+      "meaning": "La documentazione non deve essere usata fuori dal contesto privato.",
+      "allowed_after_decision": [
+        "continue local/private testing only"
+      ],
+      "still_blocked": [
+        "all public distribution"
+      ]
+    },
+    {
+      "decision": "defer_until_legal_review",
+      "meaning": "La decisione viene rinviata fino a revisione legale/privacy.",
+      "allowed_after_decision": [
+        "prepare legal review packet"
+      ],
+      "still_blocked": [
+        "public/legal/privacy claims",
+        "real data processing",
+        "go-live"
+      ]
+    }
+  ],
+  "review_cards": [
+    {
+      "area": "README and top positioning",
+      "source_files": [
+        "README.md"
+      ],
+      "current_observation": "The README explains machine-first positioning and lists explicit beta blocks.",
+      "owner_question": "Il proprietario accetta che il primo messaggio pubblico dica che il cliente operativo e' la macchina, non una persona su una landing page?",
+      "pass_condition": "Machine-first positioning is clear and does not sound like a live paid offer.",
+      "risk_if_wrong": "A reader could believe MachineSignal is already live commercially."
+    },
+    {
+      "area": "What the API does not do",
+      "source_files": [
+        "README.md",
+        "openapi.json",
+        "docs/postman-public-workspace.md"
+      ],
+      "current_observation": "The docs repeat that payments, outreach, real data and external publication are blocked in beta.",
+      "owner_question": "E' abbastanza chiaro che non inviamo email, non contattiamo umani e non processiamo dati reali/personali?",
+      "pass_condition": "The beta limits are visible before any machine or developer tries protected flows.",
+      "risk_if_wrong": "A machine evaluator could assume live commercial automation is available."
+    },
+    {
+      "area": "OpenAPI and Postman examples",
+      "source_files": [
+        "openapi.json",
+        "postman_public_collection.json",
+        "docs/postman-public-workspace.md"
+      ],
+      "current_observation": "Examples are intended as sandbox contracts with API-key placeholders and synthetic data.",
+      "owner_question": "Il proprietario approva esempi sandbox che mostrano purchase intent senza pagamento reale?",
+      "pass_condition": "Examples are useful for testing but cannot be mistaken for invoicing or payment collection.",
+      "risk_if_wrong": "Purchase-intent wording could look too commercial if not read with beta disclaimers."
+    },
+    {
+      "area": "MCP and machine discovery",
+      "source_files": [
+        "mcp_adapter/README.md",
+        "mcp-tool-manifest.json",
+        "private-evaluator-pack/mcp_channel_entrypoint_draft_nopublish.json"
+      ],
+      "current_observation": "MCP is treated as local/sandbox/private; hosted public MCP and registry publication are blocked.",
+      "owner_question": "Il proprietario conferma che MCP resta privato/sandbox e non va pubblicato su registry ora?",
+      "pass_condition": "No public registry or hosted MCP action is approved by this packet.",
+      "risk_if_wrong": "Machine discovery could be confused with public launch."
+    },
+    {
+      "area": "Legal, privacy and compliance wording",
+      "source_files": [
+        "private-evaluator-pack/terms_privacy_outline_draft_20260613.md",
+        "private-evaluator-pack/privacy_data_map_draft_20260613.md",
+        "private-evaluator-pack/terms_acceptance_flow_draft_20260613.md"
+      ],
+      "current_observation": "Legal/privacy materials are drafts and require professional review before final publication.",
+      "owner_question": "Il proprietario conferma che nessun testo deve dichiarare conformita' legale o GDPR finale?",
+      "pass_condition": "Legal/privacy text remains draft-only and not final advice.",
+      "risk_if_wrong": "The project could imply legal readiness before review."
+    }
+  ],
+  "hard_blocks_confirmed": [
+    "no_real_payments",
+    "no_invoices",
+    "no_payment_method_collection",
+    "no_external_outreach",
+    "no_email_sending_to_humans",
+    "no_real_data_processing",
+    "no_personal_data_processing",
+    "no_production_api_key_issuing",
+    "no_public_paid_marketplace",
+    "no_hosted_mcp_public",
+    "no_mcp_registry_publication",
+    "no_commercial_go_live",
+    "no_claim_legal_approval",
+    "no_publish_final_terms",
+    "no_publish_final_privacy_notice"
+  ],
+  "recommended_default_without_owner_response": "approve_as_internal_only",
+  "recommended_next_action_if_owner_approves_sandbox_docs": "sandbox_public_docs_readiness_probe_nowrite",
+  "recommended_next_action_if_no_owner_decision": "continue_internal_test_backlog_nowrite",
+  "readiness_after_packet": {
+    "owner_review_packet_readiness": 90,
+    "public_docs_publication_readiness_without_owner_decision": 0,
+    "sandbox_public_docs_readiness_if_owner_approves": 78,
+    "commercial_go_live_readiness": 69,
+    "go_live_status": "no_go"
+  }
+}
