@@ -1,0 +1,108 @@
+{
+  "service": "MachineSignal",
+  "review": "agent_post_company_brain_observation_review",
+  "date": "2026-06-14",
+  "mode": "NoWrite",
+  "evidence_reviewed": [
+    "COMPANY_BRAIN.md",
+    "company-brain.json",
+    "company-brain-graph.json",
+    "private-evaluator-pack/company_brain_public_observation_nowrite_summary_20260614.json",
+    "private-evaluator-pack/write_capped_sandbox_rehearsal_summary_20260614.json",
+    "private-evaluator-pack/sandbox_public_docs_readiness_probe_nowrite_summary_20260614.json"
+  ],
+  "observation_result": {
+    "status": "pass",
+    "checks_total": 54,
+    "checks_failed": 0,
+    "writes_performed": 0,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "external_outreach_executed": false,
+    "real_data_processed": false,
+    "personal_data_processed": false
+  },
+  "agent_votes": {
+    "orchestrator": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "Run final support/status/usage machine-readiness check."
+    },
+    "api_product_manager": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "Verify public support/status/usage contract."
+    },
+    "data_quality_compliance": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "Keep closure evidence synthetic or NoWrite."
+    },
+    "scoring_optimizer": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "Close technical plumbing separately from commercial scoring calibration."
+    },
+    "growth_distribution": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "Keep distribution in sandbox/public-docs-only mode."
+    },
+    "customer_feedback": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "Make status, usage, orders and support rules machine-readable."
+    },
+    "sales_ops": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "Do not confuse technical intent evidence with revenue evidence."
+    },
+    "post_sale": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "Verify support/status/usage before closure."
+    },
+    "admin_finance_controller": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "No P&L change required from this NoWrite step."
+    },
+    "legal_compliance": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "Keep all legal/commercial guardrails active."
+    },
+    "agent_hr_continuous_learning": {
+      "sandbox_continue": "go",
+      "paid_go_live": "no_go",
+      "recommendation": "Use Company Brain before each major test step."
+    }
+  },
+  "verdict": {
+    "sandbox_next_step": "go",
+    "paid_beta": "no_go",
+    "commercial_go_live": "no_go",
+    "real_data_processing": "no_go",
+    "external_outreach": "no_go",
+    "public_marketplace": "no_go",
+    "hosted_mcp_public_launch": "no_go"
+  },
+  "recommended_next_step": {
+    "name": "support_status_usage_closure_nowrite",
+    "type": "NoWrite",
+    "checks": [
+      "public service status/health is readable",
+      "onboarding explains usage and orders",
+      "OpenAPI exposes usage and orders endpoints",
+      "sandbox docs explain blocked actions",
+      "Company Brain and public docs agree on support and blocked actions",
+      "no live payment, invoice or real-data claim appears"
+    ]
+  },
+  "roadmap_after_review": {
+    "technical_sandbox_tests_estimate_percent": 95,
+    "after_next_probe_if_passes": "96-97",
+    "commercial_go_live": "no_go"
+  }
+}
