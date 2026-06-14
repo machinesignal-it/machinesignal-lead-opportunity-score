@@ -432,6 +432,15 @@ Then prepare one of these owner decisions:
 3. prepare legal/fiscal/payment readiness before paid beta;
 4. update P&L and business plan after latest technical evidence.
 
+## Machine-Readable Company Brain
+
+The Company Brain now has two machine-readable companion files:
+
+- `company-brain.json`: structured operating brain for agents and future automation.
+- `company-brain-graph.json`: lightweight node/edge graph for future visual mapping.
+
+The visual graph/dashboard is planned but not started. It should be built only after the JSON and graph stay stable across several test cycles. This avoids spending effort on the visual layer before the operating brain is reliable.
+
 ## Agents
 
 The current agent system includes:

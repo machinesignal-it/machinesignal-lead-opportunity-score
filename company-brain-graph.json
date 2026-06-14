@@ -1,0 +1,314 @@
+{
+  "service": "MachineSignal",
+  "graph_version": "2026-06-14-internal-v1",
+  "updated_at": "2026-06-14",
+  "purpose": "Lightweight graph structure for future Company Brain visualization and agent reasoning.",
+  "visualization_status": "planned_not_started",
+  "nodes": [
+    {
+      "id": "machinesignal",
+      "type": "company",
+      "label": "MachineSignal",
+      "description": "Machine-first API business for automated lead opportunity decisions."
+    },
+    {
+      "id": "api_lead_opportunity_score",
+      "type": "product_line",
+      "label": "API Lead Opportunity Score",
+      "description": "First product line: scores, discovery, enrichment and action decisions for machines."
+    },
+    {
+      "id": "machine_customer",
+      "type": "customer_interface",
+      "label": "Machine Customer",
+      "description": "CRM, AI agent, workflow, software or automated system consuming machine-readable outputs."
+    },
+    {
+      "id": "sandbox_public_docs_only",
+      "type": "status",
+      "label": "Sandbox Public Docs Only",
+      "description": "Current operating status: sandbox docs and tests, no commercial go-live."
+    },
+    {
+      "id": "blocked_actions",
+      "type": "guardrail",
+      "label": "Blocked Actions",
+      "description": "Payments, invoices, real data, outreach, production keys and public marketplace/MCP launch are blocked without approval."
+    },
+    {
+      "id": "target_discovery_pack_250",
+      "type": "product",
+      "label": "Target Discovery Pack 250",
+      "description": "Finds 250 coherent targets for a declared commercial objective when no list exists."
+    },
+    {
+      "id": "score_pack_1k",
+      "type": "product",
+      "label": "Score Pack 1k",
+      "description": "Scores 1000 valid records and recommends next actions."
+    },
+    {
+      "id": "domain_enrichment_pack_100",
+      "type": "product",
+      "label": "Domain Enrichment Pack 100",
+      "description": "Finds or validates domains for target names."
+    },
+    {
+      "id": "deep_analysis_pack_100",
+      "type": "product",
+      "label": "Deep Analysis Pack 100",
+      "description": "Provides deeper commercial evidence and spend-control decisions."
+    },
+    {
+      "id": "action_pack_25",
+      "type": "product",
+      "label": "Action Pack 25",
+      "description": "Creates CRM-ready and workflow-ready action payloads."
+    },
+    {
+      "id": "opportunity_feed_monthly",
+      "type": "product",
+      "label": "Opportunity Feed",
+      "description": "Recurring opportunity feed for automated systems."
+    },
+    {
+      "id": "api_starter_monthly",
+      "type": "product",
+      "label": "API Starter",
+      "description": "Light recurring API access."
+    },
+    {
+      "id": "api_pro_monthly",
+      "type": "product",
+      "label": "API Pro",
+      "description": "Higher-volume API access with feed and webhook support."
+    },
+    {
+      "id": "company_brain_md",
+      "type": "document",
+      "label": "COMPANY_BRAIN.md",
+      "description": "Human-readable internal operating brain."
+    },
+    {
+      "id": "company_brain_json",
+      "type": "document",
+      "label": "company-brain.json",
+      "description": "Machine-readable internal operating brain."
+    },
+    {
+      "id": "company_brain_graph_json",
+      "type": "document",
+      "label": "company-brain-graph.json",
+      "description": "Graph model for future visualization."
+    },
+    {
+      "id": "product_catalog",
+      "type": "document",
+      "label": "product-catalog.json",
+      "description": "Public machine-readable product catalog."
+    },
+    {
+      "id": "llms_txt",
+      "type": "document",
+      "label": "llms.txt",
+      "description": "Public machine discovery entrypoint."
+    },
+    {
+      "id": "openapi",
+      "type": "document",
+      "label": "openapi.json",
+      "description": "API contract for machines and developers."
+    },
+    {
+      "id": "postman_public_collection",
+      "type": "document",
+      "label": "postman_public_collection.json",
+      "description": "Postman collection for API testing."
+    },
+    {
+      "id": "sandbox_public_docs",
+      "type": "document",
+      "label": "SANDBOX_PUBLIC_DOCS.md",
+      "description": "Public sandbox status and guardrail document."
+    },
+    {
+      "id": "orchestrator",
+      "type": "agent",
+      "label": "Orchestrator",
+      "description": "Coordinates all agents and future agents."
+    },
+    {
+      "id": "api_product_manager",
+      "type": "agent",
+      "label": "API Product Manager",
+      "description": "Manages endpoints, JSON formats, OpenAPI, docs and usage limits."
+    },
+    {
+      "id": "growth_distribution",
+      "type": "agent",
+      "label": "Growth & Distribution",
+      "description": "Manages machine-readable discovery channels."
+    },
+    {
+      "id": "legal_compliance",
+      "type": "agent",
+      "label": "Legal & Compliance",
+      "description": "Controls legal, privacy, terms, data and publication gates."
+    },
+    {
+      "id": "admin_finance_controller",
+      "type": "agent",
+      "label": "Admin & Finance Controller",
+      "description": "Monitors costs, P&L, margins, invoices and fiscal readiness."
+    },
+    {
+      "id": "agent_hr_continuous_learning",
+      "type": "agent",
+      "label": "Agent HR & Continuous Learning",
+      "description": "Controls agents and learning loops."
+    },
+    {
+      "id": "visual_company_brain",
+      "type": "future_project",
+      "label": "Visual Company Brain",
+      "description": "Future visual graph/dashboard after the JSON graph stays stable."
+    }
+  ],
+  "edges": [
+    {
+      "from": "machinesignal",
+      "to": "api_lead_opportunity_score",
+      "relation": "owns_product_line"
+    },
+    {
+      "from": "api_lead_opportunity_score",
+      "to": "machine_customer",
+      "relation": "serves"
+    },
+    {
+      "from": "machinesignal",
+      "to": "sandbox_public_docs_only",
+      "relation": "current_status"
+    },
+    {
+      "from": "sandbox_public_docs_only",
+      "to": "blocked_actions",
+      "relation": "requires_guardrails"
+    },
+    {
+      "from": "machine_customer",
+      "to": "target_discovery_pack_250",
+      "relation": "buys_when_no_list"
+    },
+    {
+      "from": "machine_customer",
+      "to": "score_pack_1k",
+      "relation": "buys_when_has_list"
+    },
+    {
+      "from": "target_discovery_pack_250",
+      "to": "score_pack_1k",
+      "relation": "recommended_next_product"
+    },
+    {
+      "from": "score_pack_1k",
+      "to": "deep_analysis_pack_100",
+      "relation": "recommended_next_product"
+    },
+    {
+      "from": "domain_enrichment_pack_100",
+      "to": "score_pack_1k",
+      "relation": "prepares_records_for"
+    },
+    {
+      "from": "deep_analysis_pack_100",
+      "to": "action_pack_25",
+      "relation": "gates_purchase_of"
+    },
+    {
+      "from": "action_pack_25",
+      "to": "api_pro_monthly",
+      "relation": "can_lead_to_recurring_use"
+    },
+    {
+      "from": "opportunity_feed_monthly",
+      "to": "score_pack_1k",
+      "relation": "feeds_targets_to"
+    },
+    {
+      "from": "api_starter_monthly",
+      "to": "api_pro_monthly",
+      "relation": "upgrade_path"
+    },
+    {
+      "from": "company_brain_md",
+      "to": "company_brain_json",
+      "relation": "summarized_by"
+    },
+    {
+      "from": "company_brain_json",
+      "to": "company_brain_graph_json",
+      "relation": "represented_as_graph"
+    },
+    {
+      "from": "company_brain_graph_json",
+      "to": "visual_company_brain",
+      "relation": "future_visualization_source"
+    },
+    {
+      "from": "product_catalog",
+      "to": "company_brain_json",
+      "relation": "must_stay_consistent_with"
+    },
+    {
+      "from": "llms_txt",
+      "to": "product_catalog",
+      "relation": "points_to"
+    },
+    {
+      "from": "openapi",
+      "to": "product_catalog",
+      "relation": "must_match_products_and_prices"
+    },
+    {
+      "from": "postman_public_collection",
+      "to": "openapi",
+      "relation": "tests_api_contract"
+    },
+    {
+      "from": "sandbox_public_docs",
+      "to": "blocked_actions",
+      "relation": "declares"
+    },
+    {
+      "from": "orchestrator",
+      "to": "agent_hr_continuous_learning",
+      "relation": "coordinates"
+    },
+    {
+      "from": "agent_hr_continuous_learning",
+      "to": "company_brain_json",
+      "relation": "uses_for_agent_alignment"
+    },
+    {
+      "from": "api_product_manager",
+      "to": "openapi",
+      "relation": "maintains"
+    },
+    {
+      "from": "growth_distribution",
+      "to": "llms_txt",
+      "relation": "maintains_discovery"
+    },
+    {
+      "from": "legal_compliance",
+      "to": "blocked_actions",
+      "relation": "enforces"
+    },
+    {
+      "from": "admin_finance_controller",
+      "to": "product_catalog",
+      "relation": "checks_prices_and_margin"
+    }
+  ]
+}

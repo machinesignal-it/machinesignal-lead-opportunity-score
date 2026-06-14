@@ -1,0 +1,324 @@
+{
+  "service": "MachineSignal",
+  "company_brain_version": "2026-06-14-internal-v1",
+  "updated_at": "2026-06-14",
+  "status": "internal_operating_brain",
+  "primary_customer_interface": "machine",
+  "source_of_truth": {
+    "human_readable": "COMPANY_BRAIN.md",
+    "machine_readable": "company-brain.json",
+    "graph": "company-brain-graph.json",
+    "catalog": "product-catalog.json",
+    "public_sandbox_docs": "sandbox-public-docs.json"
+  },
+  "identity": {
+    "name": "MachineSignal",
+    "first_product_line": "API Lead Opportunity Score",
+    "positioning": "machine-readable lead opportunity decision layer for agents, CRMs and automated workflows",
+    "core_promise": "Help automated systems decide where commercial attention and budget should go.",
+    "not_the_business": [
+      "generic lead database",
+      "manual lead-generation agency",
+      "website sales agency",
+      "human email outreach service"
+    ]
+  },
+  "current_status": {
+    "phase": "sandbox-public-docs-only",
+    "technical_sandbox_tests_estimate_percent": 94,
+    "pre_go_live_readiness_estimate_percent": 84,
+    "commercial_go_live_readiness_estimate_percent": 69,
+    "commercial_go_live": "no_go",
+    "paid_beta": "not_approved"
+  },
+  "allowed_now": [
+    "read_public_documentation",
+    "read_machine_readable_catalog_and_onboarding",
+    "run_nowrite_tests",
+    "run_synthetic_or_demo_domain_tests",
+    "create_limited_sandbox_customers",
+    "create_sandbox_purchase_intents",
+    "retrieve_sandbox_orders_and_usage",
+    "validate_contracts_prices_outputs_and_safety_gates"
+  ],
+  "blocked_actions": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data_processing",
+    "personal_data_processing",
+    "external_outreach",
+    "email_sending_to_external_humans",
+    "public_paid_marketplace_publication",
+    "hosted_mcp_public_launch",
+    "mcp_registry_publication",
+    "commercial_go_live"
+  ],
+  "public_machine_entrypoints": {
+    "llms": "https://machinesignal.it/llms.txt",
+    "product_catalog": "https://machinesignal.it/product-catalog.json",
+    "machine_onboarding": "https://machinesignal.it/machine-onboarding.json",
+    "openapi": "https://machinesignal.it/openapi.json",
+    "postman_public_collection": "https://machinesignal.it/postman_public_collection.json",
+    "machine_discovery_pack": "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
+    "sandbox_public_docs_markdown": "https://machinesignal.it/SANDBOX_PUBLIC_DOCS.md",
+    "sandbox_public_docs_json": "https://machinesignal.it/sandbox-public-docs.json",
+    "worker_base_url": "https://machinesignal-api.beta-878.workers.dev"
+  },
+  "machine_buying_scenarios": {
+    "customer_has_list": {
+      "machine_question": "Which of these targets deserve attention, budget or deeper analysis for a declared commercial objective?",
+      "first_product": "score_pack_1k",
+      "next_products": [
+        "deep_analysis_pack_100",
+        "action_pack_25",
+        "domain_enrichment_pack_100",
+        "api_starter_monthly",
+        "api_pro_monthly"
+      ]
+    },
+    "customer_has_no_list": {
+      "machine_question": "Find companies or domains that are relevant for this commercial objective in this sector and area.",
+      "first_product": "target_discovery_pack_250",
+      "required_inputs": [
+        "sector",
+        "area",
+        "commercial_objective"
+      ],
+      "next_products": [
+        "score_pack_1k",
+        "domain_enrichment_pack_100",
+        "deep_analysis_pack_100",
+        "opportunity_feed_monthly"
+      ],
+      "clarification": "Interesting domains means interesting for a declared commercial objective, not generic nice websites."
+    },
+    "customer_wants_next_action": {
+      "machine_question": "Turn a confirmed opportunity into a CRM-ready or workflow-ready action payload.",
+      "first_product": "action_pack_25",
+      "required_inputs": [
+        "domain",
+        "source_score_request_id",
+        "reason"
+      ],
+      "next_products": [
+        "opportunity_feed_monthly",
+        "api_pro_monthly"
+      ]
+    }
+  },
+  "products": {
+    "target_discovery_pack_250": {
+      "name": "Target Discovery Pack 250",
+      "price_eur": 249,
+      "unit": "250 coherent targets",
+      "product_code": "target_discovery",
+      "purpose": "Find targets for a declared commercial objective, sector and area when the customer machine does not already have a list.",
+      "includes": [
+        "market availability pre-check",
+        "commercial objective normalization",
+        "opportunity hypothesis",
+        "250 normalized and deduplicated targets when the market is available",
+        "domain when available",
+        "category",
+        "area",
+        "initial opportunity signals",
+        "reason for inclusion",
+        "JSON or CSV export"
+      ],
+      "validity_rule": "Activated only if the pre-check says that 250 coherent targets can be produced. Otherwise the machine receives alternatives."
+    },
+    "score_pack_1k": {
+      "name": "Score Pack 1k",
+      "price_eur": 119,
+      "unit": "1000 valid scores",
+      "product_code": "score_pack_1k",
+      "purpose": "Score an existing list and tell the customer machine which records deserve budget, attention or next analysis.",
+      "includes": [
+        "list cleaning",
+        "deduplication",
+        "invalid record exclusion",
+        "opportunity score",
+        "confidence",
+        "commercial strength",
+        "spend policy",
+        "allowed next products",
+        "operational decision",
+        "short reason",
+        "priority",
+        "recommended next purchase"
+      ],
+      "validity_rule": "Duplicate, invalid or non-analyzable records do not consume score credits."
+    },
+    "domain_enrichment_pack_100": {
+      "name": "Domain Enrichment Pack 100",
+      "price_eur": 149,
+      "unit": "100 completed domain-enrichment decisions",
+      "product_code": "domain_enrichment",
+      "purpose": "Help when the customer machine has target names but not reliable domains.",
+      "includes": [
+        "100 target records processed",
+        "public-source lookup",
+        "domain when verified",
+        "confidence level",
+        "evidence source type",
+        "status for each target",
+        "reason when no reliable domain is found",
+        "JSON or CSV export ready for scoring workflows"
+      ],
+      "validity_rule": "One credit is consumed for each completed enrichment decision. The product does not promise that every target will have a domain."
+    },
+    "deep_analysis_pack_100": {
+      "name": "Deep Analysis Pack 100",
+      "price_eur": 349,
+      "unit": "100 valid deep analyses",
+      "product_code": "deep_analysis",
+      "purpose": "Give operational commercial evidence before the machine buys an Action Pack or spends more budget.",
+      "includes": [
+        "what-is-included contract",
+        "sector context",
+        "commercial objective",
+        "commercial evidence matrix",
+        "machine decision matrix",
+        "Action Pack purchase gate",
+        "CRM summary payload",
+        "sector-specific signals",
+        "signals to validate",
+        "risk flags",
+        "stop rules",
+        "recommended next machine call"
+      ],
+      "validity_rule": "Leads without enough data for a complete analysis do not consume deep-analysis credits."
+    },
+    "action_pack_25": {
+      "name": "Action Pack 25",
+      "price_eur": 399,
+      "unit": "25 valid action packs",
+      "product_code": "action_pack",
+      "purpose": "Turn a confirmed opportunity into a CRM-ready or workflow-ready action payload.",
+      "includes": [
+        "CRM-ready record patch",
+        "CRM task payload",
+        "CRM platform field mappings",
+        "workflow payload",
+        "agent instructions",
+        "webhook event schema",
+        "webhook delivery policy",
+        "audit event",
+        "approval gate",
+        "deduplication key",
+        "message angle with forbidden claims",
+        "stop rules",
+        "compliance guardrail"
+      ],
+      "validity_rule": "If the lead does not have enough signal for a sensible commercial action, the pack is not consumed."
+    },
+    "opportunity_feed_monthly": {
+      "name": "Opportunity Feed",
+      "price_eur": 249,
+      "unit": "1 month",
+      "product_code": "opportunity_feed",
+      "purpose": "Provide recurring opportunities without requiring one-off discovery requests each time."
+    },
+    "api_starter_monthly": {
+      "name": "API Starter",
+      "price_eur": 99,
+      "unit": "1 month",
+      "product_code": "api_starter",
+      "purpose": "Give light recurring API access for testing and small workflows."
+    },
+    "api_pro_monthly": {
+      "name": "API Pro",
+      "price_eur": 499,
+      "unit": "1 month",
+      "product_code": "api_pro",
+      "purpose": "Support recurring volume for CRMs, agencies, platforms or automated workflows."
+    },
+    "custom_overage": {
+      "name": "Custom / Overage",
+      "price_eur_from": 2000,
+      "unit": "custom quote",
+      "product_code": "custom_overage",
+      "purpose": "Cover larger volumes, dedicated integrations, custom scoring rules or special delivery requirements."
+    }
+  },
+  "credit_rule": {
+    "consume_only_on_valid_output": true,
+    "not_charged": [
+      "duplicate_records",
+      "invalid_domains",
+      "records_that_cannot_be_analyzed",
+      "outputs_with_insufficient_signal_for_the_purchased_product"
+    ],
+    "tracking_fields": [
+      "request_id",
+      "product_code",
+      "status",
+      "credits_consumed",
+      "credits_remaining"
+    ]
+  },
+  "agents": {
+    "orchestrator": "Coordinates all agents and future agents.",
+    "market_analysis_agent": "Analyzes markets and business models.",
+    "ai_web_architect": "Evaluates web and product experience.",
+    "api_agent": "Handles API-first machine buyer model.",
+    "data_scout": "Finds public sources, sectors, directories and potential markets.",
+    "data_quality_compliance": "Checks data quality, deduplication, privacy and anti-spam risk.",
+    "scoring_optimizer": "Improves scoring logic and detects misleading signals.",
+    "api_product_manager": "Manages endpoints, JSON formats, OpenAPI, docs and usage limits.",
+    "growth_distribution": "Manages machine-readable discovery channels and documentation.",
+    "customer_feedback": "Reads feedback, errors and requests, then proposes improvements.",
+    "sales_ops": "Designs the machine-first commercial flow.",
+    "post_sale": "Manages usage, orders, support and retention logic.",
+    "admin_finance_controller": "Monitors costs, P&L, margins, invoices and fiscal readiness.",
+    "legal_compliance": "Checks legal, privacy, terms, data and publication gates.",
+    "agent_hr_continuous_learning": "Proposes, evaluates and controls agents, and manages learning loops."
+  },
+  "agent_operating_rules": [
+    "machine-first thinking comes before human outreach",
+    "use synthetic or demo data during tests",
+    "do not process real or personal data unless explicitly approved",
+    "do not send external emails or contact people unless explicitly approved",
+    "do not enable payments, invoices or payment method collection unless explicitly approved",
+    "do not publish to public marketplace, MCP registry or hosted MCP unless explicitly approved",
+    "record evidence after tests",
+    "prefer NoWrite probes before any write-capped test",
+    "preserve cost limits and avoid unnecessary repeated writes",
+    "update docs, catalog, OpenAPI, Postman, onboarding and distribution files together after product or price changes",
+    "raise owner-decision gates clearly instead of guessing"
+  ],
+  "continuous_learning_loop": [
+    "observe test results",
+    "identify mismatch, risk or unclear output",
+    "propose a bounded improvement",
+    "validate with NoWrite checks",
+    "perform write-capped changes only if approved and necessary",
+    "update Company Brain if the decision changes the operating model"
+  ],
+  "roadmap": {
+    "current_next_step": "Run sandbox public observation and consistency monitoring NoWrite.",
+    "future_visual_company_brain": {
+      "status": "planned_not_started",
+      "description": "Build a visual graph dashboard only after company-brain.json and company-brain-graph.json remain stable across several test cycles.",
+      "reason": "Avoid spending time on visual form before the operating brain is stable."
+    }
+  },
+  "known_risks": [
+    "commercial demand is still unproven with real paying customers",
+    "legal and fiscal readiness is not complete",
+    "terms and privacy are not final",
+    "real-data handling is blocked",
+    "live payment flow is blocked",
+    "marketplace and MCP public distribution are blocked",
+    "scoring needs broader calibration across sectors and negative examples",
+    "agent-only operation must be tested under real support and exception cases",
+    "Cloudflare and storage usage must remain controlled"
+  ],
+  "current_decision": {
+    "continue_sandbox_testing": true,
+    "start_paid_commercial_activity": false,
+    "next_recommended_action": "Run sandbox public observation/monitoring, then decide whether to prepare controlled paid-beta readiness or continue strengthening sandbox evidence."
+  }
+}
