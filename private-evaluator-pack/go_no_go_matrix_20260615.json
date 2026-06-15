@@ -1,0 +1,114 @@
+{
+  "date": "2026-06-15",
+  "decision": {
+    "commercial_go_live": "NO_GO",
+    "paid_beta": "NOT_APPROVED",
+    "sandbox_test_work": "GO_WITH_LIMITS"
+  },
+  "readiness_estimate": {
+    "public_site_and_machine_readable_docs": "98%",
+    "public_catalog_listino_consistency": "98%",
+    "machine_buyer_journey_from_docs": "98%",
+    "api_public_availability": "95%",
+    "api_authenticated_sandbox_journey": "80% - blocked by sandbox daily limit",
+    "pre_beta_preparation": "86-88%",
+    "commercial_go_live": "69-72% - NO_GO"
+  },
+  "validated_gates": [
+    {
+      "gate": "public_site_documentation",
+      "evidence": "live docs uploaded and validated 20/20",
+      "status": "PASS"
+    },
+    {
+      "gate": "machine_buyer_journey_from_public_docs",
+      "evidence": "live journey probe 39/39",
+      "status": "PASS"
+    },
+    {
+      "gate": "public_api_catalog_pricing",
+      "evidence": "price consistency probe 13/13",
+      "status": "PASS"
+    },
+    {
+      "gate": "target_discovery_price_alignment",
+      "evidence": "code fixed from 149 to 249 and local tests pass",
+      "status": "PASS_LOCALLY_RECHECK_LIVE_AUTH_AFTER_LIMIT_RESET"
+    },
+    {
+      "gate": "api_public_endpoints",
+      "evidence": "health, catalog, onboarding and OpenAPI reachable",
+      "status": "PASS"
+    },
+    {
+      "gate": "protected_access_without_key",
+      "evidence": "onboarding returns 401 without API key",
+      "status": "PASS"
+    },
+    {
+      "gate": "sandbox_key_creation",
+      "evidence": "works until daily limit, now 429 sandbox_limit_exceeded",
+      "status": "PARTIAL_BLOCKED"
+    },
+    {
+      "gate": "local_api_tests",
+      "evidence": "test_api.mjs and test_durable_ledger.mjs pass",
+      "status": "PASS"
+    }
+  ],
+  "current_blocker": {
+    "code": "sandbox_limit_exceeded",
+    "http_status": 429,
+    "meaning": "Daily sandbox customer creation limit reached for this evaluator fingerprint",
+    "blocks": [
+      "authenticated live API sandbox journey recheck"
+    ],
+    "does_not_mean": [
+      "commercial failure",
+      "payment failure",
+      "data failure"
+    ]
+  },
+  "required_recheck_after_reset": [
+    "target_discovery purchase-intent returns beta_price_range_eur 249",
+    "score pack returns score confidence decision and recommended next purchase",
+    "action pack without valid Deep Analysis source remains blocked",
+    "real_payment_executed never becomes true",
+    "external_contact_executed never becomes true"
+  ],
+  "commercial_go_live_blockers": [
+    "owner explicit go-live approval missing",
+    "legal terms draft only",
+    "privacy/data policy draft only",
+    "fiscal/admin path not closed",
+    "payment provider live mode blocked",
+    "production API key policy draft/test only",
+    "support/post-sale operations draft/test only",
+    "cost guard needs final budget thresholds",
+    "external distribution/marketplace requires explicit approval"
+  ],
+  "allowed_next_work": [
+    "sandbox/test probes",
+    "public documentation consistency checks",
+    "no-write legal/admin/support drafts",
+    "cost guard tests",
+    "synthetic API tests",
+    "local regression tests",
+    "monitoring for sandbox limit reset",
+    "roadmap updates"
+  ],
+  "blocked_actions": [
+    "real payments",
+    "invoices",
+    "payment method collection",
+    "real customer onboarding",
+    "personal data processing",
+    "external outreach",
+    "email campaigns",
+    "public paid marketplace launch",
+    "hosted MCP public launch",
+    "production API key distribution",
+    "commercial go-live"
+  ],
+  "recommendation": "Do not move to paid beta today. Wait for sandbox limit reset, rerun authenticated live API sandbox journey, then run agent review and prepare a controlled paid-beta decision packet only if the probe passes."
+}

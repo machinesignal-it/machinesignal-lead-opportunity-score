@@ -1,0 +1,29 @@
+﻿{
+    "checked_at_utc":  "2026-06-15T11:52:10Z",
+    "test_id":  "go_no_go_matrix_probe_20260615",
+    "status":  "PASS",
+    "pass_count":  17,
+    "total_count":  17,
+    "failed_checks":  [
+
+                      ],
+    "checks":  {
+                   "commercial_go_live_no_go":  true,
+                   "paid_beta_not_approved":  true,
+                   "sandbox_go_with_limits":  true,
+                   "includes_sandbox_limit_blocker":  true,
+                   "includes_rerun_probe_path":  true,
+                   "includes_target_discovery_249_recheck":  true,
+                   "includes_no_real_payment_guard":  true,
+                   "includes_no_external_outreach_guard":  true,
+                   "includes_legal_fiscal_payment_blockers":  true,
+                   "allows_only_test_work":  true,
+                   "blocks_production_keys":  true,
+                   "forbidden_absent_Commercial_go_live_GO":  true,
+                   "forbidden_absent_Paid_beta_APPROVED":  true,
+                   "forbidden_absent_real_payments_allowed":  true,
+                   "forbidden_absent_production_keys_allowed":  true,
+                   "forbidden_absent_external_outreach_allowed":  true,
+                   "forbidden_absent_marketplace_launch_approved":  true
+               }
+}
