@@ -1,0 +1,12 @@
+{
+  "artifact": "terms_privacy_admin_payment_support_draft_pack_nowrite_probe",
+  "date": "2026-06-15",
+  "mode": "NoWrite",
+  "total_checks": 44,
+  "failed_checks": 0,
+  "passed": true,
+  "commercial_status": "not_live",
+  "go_live": "no_go",
+  "next_step": "owner_review_decision_or_public_docs_alignment_nowrite",
+  "failed": []
+}
