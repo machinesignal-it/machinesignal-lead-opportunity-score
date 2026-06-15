@@ -1,0 +1,12 @@
+{
+  "artifact": "paid_beta_readiness_pack_nowrite_probe",
+  "date": "2026-06-15",
+  "mode": "NoWrite",
+  "total_checks": 43,
+  "failed_checks": 0,
+  "passed": true,
+  "commercial_status": "not_live",
+  "go_live": "no_go",
+  "next_step": "owner_review_or_terms_privacy_admin_drafts_nowrite",
+  "failed": []
+}
