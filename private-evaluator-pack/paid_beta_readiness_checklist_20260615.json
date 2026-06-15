@@ -1,0 +1,44 @@
+{
+  "artifact": "paid_beta_readiness_checklist",
+  "date": "2026-06-15",
+  "status": "preparation_only",
+  "does_not_authorize": [
+    "paid_beta",
+    "commercial_go_live",
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "public_paid_marketplace_publication",
+    "hosted_mcp_public_launch",
+    "mcp_registry_publication"
+  ],
+  "starting_point": {
+    "technical_sandbox_tests": "97%",
+    "pre_go_live_readiness": "84-86%",
+    "commercial_go_live_readiness": "69%",
+    "commercial_go_live": "NO-GO",
+    "paid_beta": "not_approved"
+  },
+  "mandatory_gates": [
+    "owner_decision",
+    "legal_privacy",
+    "admin_fiscal",
+    "payment_architecture_test_mode",
+    "production_key_access_policy",
+    "product_pricing",
+    "support_post_sale",
+    "data_quality_compliance",
+    "commercial_automation",
+    "cost_abuse_controls"
+  ],
+  "recommended_next_step": "prepare_paid_beta_readiness_pack_nowrite",
+  "owner_decision_needed_later": [
+    "continue_sandbox_only",
+    "prepare_limited_paid_beta_in_test_mode",
+    "do_more_calibration",
+    "start_legal_fiscal_setup_before_commercial_move"
+  ]
+}
