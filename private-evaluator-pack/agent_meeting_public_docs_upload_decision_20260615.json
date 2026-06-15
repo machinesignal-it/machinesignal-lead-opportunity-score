@@ -1,0 +1,46 @@
+{
+  "artifact": "agent_meeting_public_docs_upload_decision",
+  "date": "2026-06-15",
+  "meeting_scope": "decide whether to upload locally aligned public docs to live website",
+  "current_validation": {
+    "local_validation_passed": true,
+    "checks_passed": "28/28",
+    "commercial_status": "not_live",
+    "go_live": "no_go",
+    "ftp_upload_executed": false,
+    "live_publication_executed": false
+  },
+  "agent_recommendation": "approve_ftp_upload_of_three_aligned_docs_to_live_site",
+  "confidence": "high_with_guardrails",
+  "upload_only": [
+    "machinesignal_site/product-catalog.json",
+    "machinesignal_site/machine-onboarding.json",
+    "machinesignal_site/llms.txt"
+  ],
+  "do_not_upload": [
+    "legal/privacy final terms",
+    "payment provider files",
+    "invoice files",
+    "marketplace files",
+    "hosted MCP public launch materials",
+    "production keys"
+  ],
+  "required_post_upload_checks": [
+    "commercial_status_not_live",
+    "go_live_no_go",
+    "paid_beta_not_approved",
+    "target_discovery_pack_250_price_249",
+    "score_pack_1k_price_119",
+    "no_real_payment_enabled",
+    "no_payment_method_collection",
+    "no_invoice_issued",
+    "no_production_keys_allowed",
+    "no_personal_data_allowed"
+  ],
+  "authorizes_paid_beta": false,
+  "authorizes_commercial_go_live": false,
+  "authorizes_real_payments": false,
+  "authorizes_invoices": false,
+  "authorizes_payment_method_collection": false,
+  "authorizes_external_outreach": false
+}
