@@ -1,0 +1,136 @@
+{
+  "date": "2026-06-15",
+  "packet_id": "paid_beta_decision_packet_20260615",
+  "purpose": "Prepare owner decision packet for a future controlled paid beta without approving it.",
+  "current_default_decision": {
+    "paid_beta": "NOT_APPROVED",
+    "commercial_go_live": "NO_GO",
+    "allowed_now": "sandbox_test_work_only"
+  },
+  "validated_areas": [
+    "public_site_and_machine_readable_documents",
+    "product_catalog_and_prices",
+    "machine_buyer_journey_from_public_docs",
+    "api_public_availability",
+    "cost_guard_for_test_phase",
+    "support_post_sale_automation_policy",
+    "local_api_regression_tests"
+  ],
+  "current_blocker": {
+    "name": "authenticated_live_api_sandbox_recheck",
+    "blocked_by": "sandbox_daily_limit",
+    "required_probe": "private-evaluator-pack/live_api_sandbox_machine_buyer_journey_probe_20260615.ps1",
+    "must_confirm": [
+      "target_discovery_purchase_intent_beta_price_range_eur_249",
+      "score_pack_returns_score_confidence_decision_recommended_next_purchase",
+      "action_pack_without_valid_deep_analysis_source_remains_blocked",
+      "real_payment_executed_never_true",
+      "external_contact_executed_never_true"
+    ]
+  },
+  "options": {
+    "A_do_nothing_yet": {
+      "decision": "continue_sandbox_tests_only",
+      "risk": "lowest",
+      "revenue": "none"
+    },
+    "B_controlled_machine_only_paid_beta": {
+      "decision": "possible_later_only_after_all_gates_pass",
+      "suggested_limits": {
+        "max_beta_customers": "1-3",
+        "data": "synthetic_or_non_personal_business_data_first",
+        "external_outreach": false,
+        "public_marketplace_listing": false,
+        "hosted_public_mcp_listing": false,
+        "owner_approval_before_each_customer_activation": true,
+        "daily_cost_cap": true,
+        "reversible_access": true
+      },
+      "candidate_products": [
+        "score_pack_1k",
+        "target_discovery_pack_250",
+        "action_pack_25_after_gate_only"
+      ],
+      "excluded_initially": [
+        "api_pro",
+        "opportunity_feed_recurring",
+        "custom_overage",
+        "real_data_enrichment_at_scale"
+      ]
+    },
+    "C_wait_for_legal_fiscal_setup_first": {
+      "decision": "no_paid_beta_until_fiscal_admin_legal_payment_path_complete",
+      "risk": "cleanest_compliance_path",
+      "speed": "slower"
+    }
+  },
+  "mandatory_gates_before_paid_beta": {
+    "owner_approval": "missing",
+    "authenticated_sandbox_recheck": "pending",
+    "fiscal_admin_path": "not_closed",
+    "legal_terms": "draft_only",
+    "privacy_data_policy": "draft_only",
+    "payment_provider": "blocked",
+    "production_api_key_policy": "draft_test_only",
+    "support_post_sale": "sandbox_ready_paid_not_live",
+    "cost_guard": "test_ready_paid_budget_not_approved",
+    "data_policy": "synthetic_test_only"
+  },
+  "minimum_scope_if_approved_later": {
+    "customers": 1,
+    "api_keys": 1,
+    "products": "one_at_a_time",
+    "usage_limits": "hard",
+    "auto_renewal": false,
+    "external_outreach": false,
+    "personal_data": false,
+    "marketplace_publication": false,
+    "production_scale": false
+  },
+  "recommended_first_product": {
+    "product_code": "score_pack_1k",
+    "reason": "clearest existing-list workflow, valid-output credit rule and easiest usage audit"
+  },
+  "recommended_second_product": {
+    "product_code": "target_discovery_pack_250",
+    "required_before_activation": [
+      "authenticated_recheck_confirms_eur_249_in_purchase_intent",
+      "no_go_coverage_fallback_clear",
+      "target_quality_acceptance_rule_approved"
+    ]
+  },
+  "owner_decisions_needed_later": [
+    "whether_to_run_paid_beta",
+    "whether_fiscal_setup_is_ready",
+    "whether_legal_privacy_language_is_acceptable",
+    "whether_to_accept_real_payments",
+    "whether_to_issue_invoices",
+    "whether_to_allow_real_business_data",
+    "which_product_is_allowed_first",
+    "maximum_daily_monthly_spend",
+    "maximum_number_of_beta_customers",
+    "whether_support_escalation_rules_are_acceptable"
+  ],
+  "default_agent_instruction_until_owner_approval": {
+    "blocked": [
+      "sell",
+      "collect_money",
+      "collect_payment_methods",
+      "issue_invoices",
+      "onboard_real_customers",
+      "process_personal_data",
+      "send_outreach",
+      "publish_to_paid_marketplaces",
+      "issue_production_api_keys"
+    ],
+    "allowed": [
+      "sandbox_testing",
+      "no_write_documentation",
+      "local_regression_tests",
+      "support_cost_guard_probes",
+      "readiness_reports",
+      "rerun_authenticated_live_api_probe_once_after_sandbox_reset"
+    ]
+  },
+  "recommendation": "Do not approve paid beta today. Wait for sandbox reset, rerun authenticated live API sandbox journey, run agent review, then present this packet for owner decision."
+}
