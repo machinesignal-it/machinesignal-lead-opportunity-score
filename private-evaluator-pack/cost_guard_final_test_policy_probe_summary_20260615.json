@@ -1,0 +1,38 @@
+﻿{
+    "checked_at_utc":  "2026-06-15T11:57:51Z",
+    "test_id":  "cost_guard_final_test_policy_probe_20260615",
+    "status":  "PASS",
+    "pass_count":  26,
+    "total_count":  26,
+    "failed_checks":  [
+
+                      ],
+    "checks":  {
+                   "sandbox_allowed_with_limits":  true,
+                   "paid_beta_not_approved":  true,
+                   "commercial_go_live_no_go":  true,
+                   "target_discovery_price_249":  true,
+                   "score_pack_price_119":  true,
+                   "action_pack_price_399":  true,
+                   "hard_stop_includes_sandbox_limit":  true,
+                   "hard_stop_includes_real_payment":  true,
+                   "hard_stop_includes_external_outreach":  true,
+                   "sandbox_global_limit_matches_core":  true,
+                   "sandbox_fingerprint_limit_matches_core":  true,
+                   "sandbox_expiry_matches_docs":  true,
+                   "valid_output_rule_present":  true,
+                   "not_consumable_gate_failures_present":  true,
+                   "continued_testing_pass_with_limits":  true,
+                   "paid_beta_conditional_not_pass":  true,
+                   "md_mentions_no_retries_after_429":  true,
+                   "md_blocks_payment_method_collection":  true,
+                   "md_blocks_production_key_distribution":  true,
+                   "forbidden_absent_paid_beta_approved":  true,
+                   "forbidden_absent_commercial_go_live_go":  true,
+                   "forbidden_absent_real_payments_allowed":  true,
+                   "forbidden_absent_invoices_allowed":  true,
+                   "forbidden_absent_production_keys_allowed":  true,
+                   "forbidden_absent_external_outreach_allowed":  true,
+                   "forbidden_absent_increase_retries_after_429":  true
+               }
+}

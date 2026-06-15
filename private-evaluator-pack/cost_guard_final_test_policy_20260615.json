@@ -1,0 +1,123 @@
+{
+  "date": "2026-06-15",
+  "policy_id": "cost_guard_final_test_policy_20260615",
+  "decision": {
+    "sandbox_tests": "allowed_with_limits",
+    "paid_beta": "not_approved",
+    "commercial_go_live": "no_go"
+  },
+  "current_price_basis_eur": {
+    "target_discovery_pack_250": 249,
+    "score_pack_1k": 119,
+    "domain_enrichment_pack_100": 149,
+    "deep_analysis_pack_100": 349,
+    "action_pack_25": 399,
+    "opportunity_feed_monthly": 249,
+    "api_starter_monthly": 99,
+    "api_pro_monthly": 499
+  },
+  "hard_stops": [
+    {
+      "signal": "repeated_429",
+      "action": "stop write-capped tests and continue only no-write checks"
+    },
+    {
+      "signal": "sandbox_limit_exceeded",
+      "action": "stop creating sandbox keys until reset"
+    },
+    {
+      "signal": "kv_writes_above_900_per_day",
+      "action": "stop all write-capped tests"
+    },
+    {
+      "signal": "unknown_paid_external_api_call",
+      "action": "block unless owner approved budget and provider"
+    },
+    {
+      "signal": "real_payment_attempted",
+      "action": "stop immediately"
+    },
+    {
+      "signal": "invoice_attempted",
+      "action": "stop immediately"
+    },
+    {
+      "signal": "payment_method_collection_attempted",
+      "action": "stop immediately"
+    },
+    {
+      "signal": "real_or_personal_data_in_test_payload",
+      "action": "block processing and do not store payload"
+    },
+    {
+      "signal": "production_api_key_in_public_artifact",
+      "action": "stop and require rotation/revocation review"
+    },
+    {
+      "signal": "external_outreach_attempted",
+      "action": "stop immediately"
+    }
+  ],
+  "warning_thresholds": {
+    "kv_writes_soft_limit_per_day": 500,
+    "failed_deploys_same_day": 2,
+    "sandbox_keys_per_fingerprint_per_day": 3,
+    "repeated_bug_after_fix": "create regression test before live retest",
+    "product_cost_above_target_margin": "mark product not live-ready until price/cost review"
+  },
+  "sandbox_key_limits": {
+    "global_customer_creation_limit_per_day": 25,
+    "fingerprint_customer_creation_limit_per_day": 3,
+    "key_expiry_days": 7,
+    "score_credits": 5,
+    "target_discovery_credits": 1,
+    "deep_analysis_credits": 1,
+    "action_pack_credits": 1,
+    "verification_credits": 1,
+    "nurture_signal_credits": 1,
+    "domain_enrichment_credits": 1,
+    "opportunity_feed_credits": 0
+  },
+  "valid_output_cost_rule": {
+    "consume_credit_only_on_valid_usable_output": true,
+    "not_consumable": [
+      "duplicate_records",
+      "invalid_domains",
+      "non_analyzable_records",
+      "outputs_with_insufficient_signal_for_purchased_product",
+      "gate_failures_that_correctly_block_next_product",
+      "no_go_market_coverage_decisions_where_pack_cannot_be_delivered"
+    ]
+  },
+  "margin_targets_before_paid_beta": {
+    "gross_margin_before_agent_credits": "70%",
+    "margin_after_agent_or_automation_cost": "55%",
+    "unknown_external_cost_dependency": "no_go_until_measured"
+  },
+  "agent_operating_rules": {
+    "allowed": [
+      "no_write_checks",
+      "public_documentation_checks",
+      "local_regression_tests",
+      "one_controlled_sandbox_key_recheck_after_reset",
+      "reports_matrices_probes",
+      "automatic_stop_when_limits_reached"
+    ],
+    "blocked": [
+      "repeated_sandbox_key_retries_after_429",
+      "paid_external_api_without_budget",
+      "real_or_personal_data",
+      "live_payment_flows",
+      "payment_method_collection",
+      "invoice_issuance",
+      "external_target_contact",
+      "production_api_key_distribution",
+      "public_paid_marketplace_or_hosted_mcp_launch"
+    ]
+  },
+  "status": {
+    "continued_testing": "PASS_WITH_ACTIVE_LIMITS",
+    "paid_beta": "CONDITIONAL_NOT_YET_PASS"
+  },
+  "recommended_next_step": "wait for sandbox reset and rerun authenticated live API sandbox journey once"
+}
