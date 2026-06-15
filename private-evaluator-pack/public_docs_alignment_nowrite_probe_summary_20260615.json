@@ -1,0 +1,12 @@
+{
+  "artifact": "public_docs_alignment_nowrite_probe",
+  "date": "2026-06-15",
+  "mode": "NoWrite",
+  "total_checks": 33,
+  "failed_checks": 0,
+  "passed": true,
+  "commercial_status": "not_live",
+  "go_live": "no_go",
+  "next_step": "prepare_public_docs_alignment_patch_nowrite",
+  "failed": []
+}

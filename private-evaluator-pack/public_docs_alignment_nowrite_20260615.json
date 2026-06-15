@@ -1,0 +1,63 @@
+{
+  "artifact": "public_docs_alignment_nowrite",
+  "date": "2026-06-15",
+  "mode": "NoWrite",
+  "status": "alignment_partial_update_recommended_nowrite",
+  "commercial_status": "not_live",
+  "go_live": "no_go",
+  "paid_beta": "not_approved",
+  "sources_reviewed": {
+    "internal": [
+      "COMPANY_BRAIN.md",
+      "company-brain.json",
+      "private-evaluator-pack/paid_beta_readiness_pack_nowrite_20260615.md",
+      "private-evaluator-pack/terms_privacy_admin_payment_support_draft_pack_nowrite_20260615.md"
+    ],
+    "public_local": [
+      "machinesignal_site/llms.txt",
+      "machinesignal_site/product-catalog.json",
+      "machinesignal_site/machine-onboarding.json",
+      "sandbox-buyer-kit/sandbox-buyer-kit.json",
+      "docs/postman-public-workspace.md"
+    ]
+  },
+  "gaps": [
+    {
+      "id": "pricing_version_mismatch",
+      "severity": "high",
+      "details": "Public/local catalog still shows older beta prices and version.",
+      "recommended_action": "prepare_public_docs_alignment_patch_nowrite"
+    },
+    {
+      "id": "commercial_status_not_explicit_enough",
+      "severity": "medium_high",
+      "details": "Public docs should expose not_live/no_go/paid_beta_not_approved consistently.",
+      "recommended_action": "add_machine_readable_status_block"
+    },
+    {
+      "id": "legal_privacy_draft_status_missing",
+      "severity": "medium",
+      "details": "Terms/privacy/admin/payment/support draft status should be clear before paid beta.",
+      "recommended_action": "add_legal_privacy_status_block"
+    },
+    {
+      "id": "real_data_personal_data_boundaries_need_stronger_machine_labeling",
+      "severity": "medium",
+      "details": "Docs should state no personal data and no real customer data during readiness.",
+      "recommended_action": "add_data_policy_block"
+    },
+    {
+      "id": "production_key_status_should_be_explicit",
+      "severity": "medium",
+      "details": "Docs should distinguish sandbox/beta keys from blocked production keys.",
+      "recommended_action": "add_key_policy_summary"
+    }
+  ],
+  "recommended_next_step": "prepare_public_docs_alignment_patch_nowrite",
+  "authorizes_publication": false,
+  "authorizes_real_payments": false,
+  "authorizes_invoices": false,
+  "authorizes_payment_method_collection": false,
+  "authorizes_external_outreach": false,
+  "authorizes_paid_beta": false
+}
