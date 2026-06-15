@@ -1,0 +1,36 @@
+﻿{
+    "checked_at_utc":  "2026-06-15T10:13:14Z",
+    "urls":  {
+                 "product_catalog":  "https://machinesignal.it/product-catalog.json?v=1781518394",
+                 "machine_onboarding":  "https://machinesignal.it/machine-onboarding.json?v=1781518394",
+                 "llms":  "https://machinesignal.it/llms.txt?v=1781518394"
+             },
+    "checks":  {
+                   "catalog_version":  true,
+                   "catalog_not_live":  true,
+                   "catalog_no_go":  true,
+                   "catalog_paid_beta_not_approved":  true,
+                   "catalog_real_payment_false":  true,
+                   "catalog_payment_method_false":  true,
+                   "catalog_invoice_false":  true,
+                   "catalog_production_keys_false":  true,
+                   "catalog_personal_data_false":  true,
+                   "target_discovery_price_249":  true,
+                   "score_pack_price_119":  true,
+                   "onboarding_not_live":  true,
+                   "onboarding_no_go":  true,
+                   "onboarding_paid_beta_not_approved":  true,
+                   "onboarding_payment_test_mode":  true,
+                   "llms_not_live":  true,
+                   "llms_no_go":  true,
+                   "llms_target_price":  true,
+                   "llms_score_price":  true,
+                   "llms_no_real_payment":  true
+               },
+    "pass_count":  20,
+    "total_count":  20,
+    "status":  "PASS",
+    "failed_checks":  [
+
+                      ]
+}

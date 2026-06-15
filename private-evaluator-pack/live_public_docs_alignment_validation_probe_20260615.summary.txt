@@ -1,0 +1,5 @@
+﻿MachineSignal live public docs alignment validation
+Status: PASS
+Checks: 20/20
+Failed checks: 
+Checked at UTC: 2026-06-15T10:13:14Z
