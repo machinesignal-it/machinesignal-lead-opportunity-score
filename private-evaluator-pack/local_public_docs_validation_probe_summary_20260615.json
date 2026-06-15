@@ -1,0 +1,16 @@
+﻿{
+    "artifact":  "local_public_docs_validation_probe",
+    "date":  "2026-06-15",
+    "mode":  "NoWrite-local-validation",
+    "total_checks":  28,
+    "failed_checks":  0,
+    "passed":  true,
+    "commercial_status":  "not_live",
+    "go_live":  "no_go",
+    "ftp_upload_executed":  false,
+    "live_publication_executed":  false,
+    "next_step":  "owner_decision_keep_local_or_approve_ftp_upload",
+    "failed":  [
+
+               ]
+}

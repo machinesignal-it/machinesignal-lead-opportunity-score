@@ -1,0 +1,35 @@
+{
+  "artifact": "local_site_public_docs_alignment_applied",
+  "date": "2026-06-15",
+  "mode": "local_file_update_only",
+  "commercial_status": "not_live",
+  "go_live": "no_go",
+  "paid_beta": "not_approved",
+  "ftp_upload_executed": false,
+  "live_publication_executed": false,
+  "paid_beta_activated": false,
+  "files_updated": [
+    "C:/Users/natal/Documents/Codex/2026-05-24/vorrei-ora-creare-un-agente-che/machinesignal_site/product-catalog.json",
+    "C:/Users/natal/Documents/Codex/2026-05-24/vorrei-ora-creare-un-agente-che/machinesignal_site/machine-onboarding.json",
+    "C:/Users/natal/Documents/Codex/2026-05-24/vorrei-ora-creare-un-agente-che/machinesignal_site/llms.txt"
+  ],
+  "validation": {
+    "passed": true,
+    "catalog_version": "2026-06-15-beta-readiness-proposal",
+    "target_discovery_price_eur": 249,
+    "score_pack_1k_price_eur": 119,
+    "onboarding_payment_mode": "test_mode_only",
+    "llms_aligned": true
+  },
+  "blocked_without_owner_approval": [
+    "ftp_upload",
+    "live_publication",
+    "public_paid_marketplace_update",
+    "paid_beta_activation",
+    "real_payment_setup",
+    "invoice_flow",
+    "payment_method_collection",
+    "production_key_issuance"
+  ],
+  "recommended_next_step": "local_public_docs_validation_probe"
+}
