@@ -1,0 +1,13 @@
+{
+  "artifact": "public_docs_alignment_patch_nowrite_probe",
+  "date": "2026-06-15",
+  "mode": "NoWrite",
+  "total_checks": 29,
+  "failed_checks": 0,
+  "passed": true,
+  "commercial_status": "not_live",
+  "go_live": "no_go",
+  "output_dir": "private-evaluator-pack/proposed_public_docs_alignment_20260615",
+  "next_step": "owner_review_before_any_publication_or_upload",
+  "failed": []
+}

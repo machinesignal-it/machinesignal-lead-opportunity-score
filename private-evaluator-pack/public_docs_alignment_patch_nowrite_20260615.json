@@ -1,0 +1,26 @@
+{
+  "artifact": "public_docs_alignment_patch_nowrite",
+  "date": "2026-06-15",
+  "mode": "NoWrite",
+  "status": "local_patch_proposal_created_not_uploaded",
+  "output_dir": "private-evaluator-pack/proposed_public_docs_alignment_20260615",
+  "files_created": [
+    "private-evaluator-pack/proposed_public_docs_alignment_20260615/product-catalog.json",
+    "private-evaluator-pack/proposed_public_docs_alignment_20260615/machine-onboarding.json",
+    "private-evaluator-pack/proposed_public_docs_alignment_20260615/sandbox-buyer-kit.json",
+    "private-evaluator-pack/proposed_public_docs_alignment_20260615/llms.txt"
+  ],
+  "changes": [
+    "updated catalog version to 2026-06-15-beta-readiness-proposal",
+    "aligned Target Discovery Pack 250 price to EUR 249",
+    "aligned Score Pack 1k price to EUR 119",
+    "added not_live/no_go/paid_beta_not_approved status blocks",
+    "added data policy boundaries",
+    "added key policy boundaries",
+    "added test-mode payment and support policy summaries"
+  ],
+  "authorizes_publication": false,
+  "authorizes_upload": false,
+  "authorizes_paid_beta": false,
+  "authorizes_real_payments": false
+}
