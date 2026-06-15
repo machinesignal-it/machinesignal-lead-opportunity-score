@@ -1,0 +1,35 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "test_id": "live_api_sandbox_machine_buyer_journey_test_20260615",
+  "created_at": "2026-06-15",
+  "mode": "live API sandbox machine buyer journey test",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "uses_synthetic_data_only": true,
+  "creates_temporary_sandbox_key": true,
+  "stores_api_key_in_repo": false,
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "paid_beta": "not_approved",
+  "blocked_actions": [
+    "real_payment",
+    "invoice",
+    "payment_method_collection",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "production_api_key",
+    "marketplace_publication",
+    "commercial_go_live"
+  ],
+  "scenarios": [
+    "public_health_and_unauthenticated_guardrails",
+    "sandbox_customer_creation",
+    "authenticated_onboarding",
+    "existing_list_score_pack_flow",
+    "no_list_target_discovery_flow",
+    "action_pack_gate_without_valid_source",
+    "usage_ledger_visibility"
+  ],
+  "expected_result": "PASS",
+  "recommended_next_step": "agent_review_after_live_api_sandbox_probe"
+}

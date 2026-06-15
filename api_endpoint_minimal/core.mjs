@@ -3504,7 +3504,7 @@ function purchaseProductConfig(productCode) {
     target_discovery: {
       product_code: "target_discovery",
       ledger_product_code: "target_discovery_pack_250",
-      beta_price_range_eur: "149",
+      beta_price_range_eur: "249",
       delivery_mode: "target_discovery_precheck",
       description:
         "Starts a target discovery pack after checking whether the requested market can produce 250 coherent targets."

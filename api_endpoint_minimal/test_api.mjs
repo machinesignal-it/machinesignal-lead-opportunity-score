@@ -686,6 +686,7 @@ assert.equal(targetDiscoveryResponse.status, 200);
 const targetDiscoveryPayload = await targetDiscoveryResponse.json();
 assert.equal(targetDiscoveryPayload.product_code, "target_discovery");
 assert.equal(targetDiscoveryPayload.ledger_product_code, "target_discovery_pack_250");
+assert.equal(targetDiscoveryPayload.beta_price_range_eur, "249");
 assert.equal(targetDiscoveryPayload.delivery.delivery_type, "target_discovery_precheck");
 assert.equal(targetDiscoveryPayload.delivery.beta_sample_targets.length, 3);
 assert.equal(targetDiscoveryPayload.delivery.commercial_objective, "Customer machine needs a starting target list");
