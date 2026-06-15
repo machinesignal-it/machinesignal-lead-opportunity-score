@@ -36,8 +36,17 @@ The API should let a machine test the journey in sandbox mode while preserving a
 
 ## Result
 
-PASS after live probe execution.
+PARTIAL / BLOCKED.
+
+The test found and fixed one API/catalog alignment issue:
+
+- `target_discovery` public catalog price: EUR 249
+- live purchase-intent delivery price before fix: EUR 149
+- source fix applied in `api_endpoint_minimal/core.mjs`
+- local API test updated to prevent regression
+
+The full authenticated live probe could not be completed in the same session because the public sandbox customer endpoint returned `sandbox_limit_exceeded` after the available daily sandbox key creations were consumed.
 
 ## Next Step
 
-Use this probe result in the next agent review to decide whether remaining tests should focus on resilience, cost limits, or go-live blockers.
+After the sandbox limit resets, rerun `live_api_sandbox_machine_buyer_journey_probe_20260615.ps1` and confirm that `target_discovery` purchase-intent returns `beta_price_range_eur: "249"` on the deployed worker.

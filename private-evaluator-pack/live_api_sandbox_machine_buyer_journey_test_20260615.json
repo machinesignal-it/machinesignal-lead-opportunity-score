@@ -30,6 +30,15 @@
     "action_pack_gate_without_valid_source",
     "usage_ledger_visibility"
   ],
-  "expected_result": "PASS",
-  "recommended_next_step": "agent_review_after_live_api_sandbox_probe"
+  "observed_result": "PARTIAL_BLOCKED_BY_SANDBOX_DAILY_LIMIT",
+  "issue_found_and_fixed": {
+    "issue": "target_discovery purchase-intent delivery price returned 149 while public catalog price is 249",
+    "fixed_source_file": "api_endpoint_minimal/core.mjs",
+    "regression_test_updated": "api_endpoint_minimal/test_api.mjs",
+    "expected_live_value_after_deploy": {
+      "product_code": "target_discovery",
+      "beta_price_range_eur": "249"
+    }
+  },
+  "recommended_next_step": "rerun_live_api_sandbox_probe_after_sandbox_limit_reset"
 }

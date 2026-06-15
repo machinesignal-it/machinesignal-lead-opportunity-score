@@ -1,0 +1,43 @@
+{
+  "date": "2026-06-15",
+  "test_id": "live_api_sandbox_machine_buyer_journey_blocked_20260615",
+  "status": "PARTIAL_BLOCKED",
+  "base_url": "https://machinesignal-api.beta-878.workers.dev",
+  "confirmed_before_blocker": [
+    "health_200",
+    "public_documents_reachable",
+    "protected_onboarding_rejects_unauthenticated_401",
+    "sandbox_customer_creation_works_until_daily_limit"
+  ],
+  "issue_found": {
+    "type": "pricing_alignment_mismatch",
+    "public_catalog_target_discovery_price_eur": 249,
+    "purchase_intent_beta_price_range_eur_before_fix": "149"
+  },
+  "fix_applied": {
+    "source_file": "api_endpoint_minimal/core.mjs",
+    "changed_value": {
+      "target_discovery.beta_price_range_eur": "249"
+    },
+    "regression_test": "api_endpoint_minimal/test_api.mjs"
+  },
+  "local_tests": {
+    "api_endpoint_minimal/test_api.mjs": "PASS",
+    "api_endpoint_minimal/test_durable_ledger.mjs": "PASS"
+  },
+  "blocker": {
+    "code": "sandbox_limit_exceeded",
+    "meaning": "Daily public sandbox customer creation limit reached for this evaluator fingerprint",
+    "retry_after": "after daily sandbox limit reset"
+  },
+  "safety": {
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "payment_method_collected": false,
+    "real_customer_data_used": false,
+    "personal_data_used": false,
+    "external_outreach_executed": false,
+    "production_api_key_created_or_published": false
+  },
+  "recommended_next_step": "rerun live_api_sandbox_machine_buyer_journey_probe_20260615.ps1 after sandbox daily limit reset"
+}
