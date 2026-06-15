@@ -1,0 +1,30 @@
+﻿{
+    "checked_at_utc":  "2026-06-15T11:28:47Z",
+    "test_id":  "public_api_catalog_price_consistency_probe_20260615",
+    "urls":  {
+                 "site_catalog":  "https://machinesignal.it/product-catalog.json?v=1781522926",
+                 "api_catalog":  "https://machinesignal-api.beta-878.workers.dev/product-catalog.json?v=1781522926"
+             },
+    "checks":  {
+                   "site_target_discovery_price_249":  true,
+                   "api_target_discovery_price_249":  true,
+                   "core_target_discovery_delivery_price_249":  true,
+                   "core_target_discovery_delivery_not_149":  true,
+                   "site_score_pack_price_119":  true,
+                   "api_score_pack_price_119":  true,
+                   "core_score_revenue_per_credit_0119":  true,
+                   "site_domain_enrichment_price_149":  true,
+                   "api_domain_enrichment_price_149":  true,
+                   "core_domain_enrichment_delivery_price_149":  true,
+                   "site_no_go":  true,
+                   "site_not_live":  true,
+                   "site_paid_beta_not_approved":  true
+               },
+    "pass_count":  13,
+    "total_count":  13,
+    "status":  "PASS",
+    "failed_checks":  [
+
+                      ],
+    "recommended_next_step":  "rerun authenticated live API sandbox buyer journey after sandbox limit reset"
+}
