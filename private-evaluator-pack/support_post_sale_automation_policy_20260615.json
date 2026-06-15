@@ -1,0 +1,140 @@
+{
+  "date": "2026-06-15",
+  "policy_id": "support_post_sale_automation_policy_20260615",
+  "decision": {
+    "sandbox_support": "allowed",
+    "paid_customer_support": "not_live",
+    "commercial_go_live": "no_go"
+  },
+  "machine_first_support_principle": {
+    "default_customer": [
+      "crm",
+      "ai_agent",
+      "workflow_automation",
+      "api_client",
+      "revops_tool",
+      "integration_script"
+    ],
+    "default_response_format": "machine_readable_structured_state"
+  },
+  "support_surfaces": {
+    "health": "GET /health",
+    "public_docs": [
+      "/openapi.json",
+      "/machine-onboarding.json",
+      "/product-catalog.json",
+      "/llms.txt"
+    ],
+    "authenticated_onboarding": "GET /v1/onboarding",
+    "usage": "GET /v1/usage",
+    "orders": "GET /v1/orders",
+    "single_order": "GET /v1/orders/{order_intent_id}",
+    "payment_test": "/v1/payment-test/*",
+    "admin_metrics_audit": "/v1/admin/*"
+  },
+  "standard_support_states": [
+    "ok",
+    "blocked_policy",
+    "blocked_sandbox_limit",
+    "blocked_insufficient_credits",
+    "duplicate_request",
+    "output_not_valid",
+    "gate_failed",
+    "needs_owner_review",
+    "security_review_required"
+  ],
+  "auto_resolvable_cases": [
+    "api_health_status",
+    "missing_or_invalid_fields",
+    "duplicate_requests",
+    "insufficient_sandbox_credits",
+    "gate_failure_explanation",
+    "sandbox_limit_exceeded_wait_until_reset",
+    "confirm_no_real_payment_invoice_or_external_contact",
+    "usage_and_order_summary",
+    "low_risk_duplicate_cases",
+    "daily_support_summary"
+  ],
+  "owner_escalation_cases": [
+    "enable_paid_beta",
+    "collect_payment_method",
+    "issue_invoice",
+    "use_real_or_personal_data",
+    "suspected_api_key_exposure",
+    "production_api_key_request",
+    "legal_privacy_dpa_sla_approval_request",
+    "external_contact_request",
+    "marketplace_registry_hosted_mcp_publication_request",
+    "repeated_system_failure_after_two_retry_safe_checks"
+  ],
+  "anti_accumulation": {
+    "max_owner_escalations_per_day": 3,
+    "auto_close_low_risk_duplicates": true,
+    "auto_close_sandbox_limit_cases_with_retry_guidance": true,
+    "auto_reply_invalid_schema_with_required_fields": true,
+    "auto_reply_gate_failure_with_next_valid_action": true,
+    "after_24h_without_owner_only_safe_no_write_work_continues": true,
+    "critical_escalations_stop_threshold_per_day": 5
+  },
+  "support_response_contract": {
+    "required_fields": [
+      "status",
+      "support_code",
+      "severity",
+      "owner_escalation_required",
+      "credit_delta",
+      "real_payment_executed",
+      "invoice_issued",
+      "external_contact_executed",
+      "next_allowed_actions"
+    ],
+    "safe_defaults": {
+      "credit_delta": 0,
+      "real_payment_executed": false,
+      "invoice_issued": false,
+      "external_contact_executed": false
+    }
+  },
+  "support_codes": {
+    "MS_SUPPORT_OK": "Request completed or status retrieved",
+    "MS_SUPPORT_INVALID_SCHEMA": "Required fields missing or invalid",
+    "MS_SUPPORT_DUPLICATE_REQUEST": "Idempotency prevented duplicate spend",
+    "MS_SUPPORT_INSUFFICIENT_CREDITS": "Credit balance insufficient",
+    "MS_SUPPORT_SANDBOX_LIMIT": "Sandbox daily limit reached",
+    "MS_SUPPORT_OUTPUT_NOT_VALID": "No usable output, no credit consumed",
+    "MS_SUPPORT_GATE_FAILED": "Required product gate not satisfied",
+    "MS_SUPPORT_POLICY_BLOCKED": "Action blocked by policy",
+    "MS_SUPPORT_OWNER_REVIEW_REQUIRED": "Owner decision needed",
+    "MS_SUPPORT_SECURITY_REVIEW_REQUIRED": "Key/security issue"
+  },
+  "data_handling": {
+    "allowed_to_store": [
+      "support_case_id",
+      "request_id",
+      "customer_id_or_sandbox_id",
+      "product_code",
+      "support_code",
+      "redacted_error_body",
+      "credit_delta",
+      "owner_escalation_required",
+      "timestamp"
+    ],
+    "forbidden_to_store": [
+      "full_api_key",
+      "password",
+      "payment_card_data",
+      "full_personal_payload",
+      "personal_emails_or_phones_from_payloads",
+      "real_customer_datasets",
+      "secrets_copied_from_logs"
+    ]
+  },
+  "readiness": {
+    "sandbox_support_automation": "88%",
+    "machine_readable_status_usage_orders": "90%",
+    "anti_accumulation_workflow": "82%",
+    "paid_customer_support": "58% - not live",
+    "legal_fiscal_payment_escalation": "55% - draft only"
+  },
+  "recommendation": "Support/post-sale automation is ready for continued sandbox testing, but not ready for paid customer support until legal, fiscal, payment and production-key gates are approved."
+}
