@@ -1,0 +1,28 @@
+{
+  "date": "2026-06-15",
+  "check_id": "sandbox_limit_recheck_20260615",
+  "status": "BLOCKED",
+  "http_status": 429,
+  "meaning": "Sandbox customer creation daily limit is still active for this evaluator fingerprint",
+  "public_worker_checks": {
+    "health": "reachable",
+    "product_catalog": "reachable",
+    "machine_onboarding": "reachable",
+    "openapi": "reachable"
+  },
+  "live_public_catalog_values": {
+    "target_discovery_pack_250_price_eur": 249,
+    "score_pack_1k_price_eur": 119
+  },
+  "sandbox_key_obtained": false,
+  "safety": {
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "payment_method_collected": false,
+    "real_data_used": false,
+    "personal_data_used": false,
+    "external_outreach_executed": false,
+    "production_key_used_or_published": false
+  },
+  "recommended_next_step": "rerun private-evaluator-pack/live_api_sandbox_machine_buyer_journey_probe_20260615.ps1 after sandbox limit reset"
+}
