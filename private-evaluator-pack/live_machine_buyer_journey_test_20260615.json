@@ -1,0 +1,68 @@
+{
+  "service": "MachineSignal API Lead Opportunity Score",
+  "test_id": "live_machine_buyer_journey_test_20260615",
+  "created_at": "2026-06-15",
+  "mode": "live public documentation machine buyer journey test",
+  "commercial_status": "not_live",
+  "go_live_decision": "no_go",
+  "paid_beta": "not_approved",
+  "real_payment_executed": false,
+  "payment_method_collected": false,
+  "real_invoice_issued": false,
+  "external_contact_executed": false,
+  "human_outreach_executed": false,
+  "external_publication_executed": false,
+  "production_api_key_published": false,
+  "inputs_are_synthetic": true,
+  "live_sources": [
+    "https://machinesignal.it/product-catalog.json",
+    "https://machinesignal.it/machine-onboarding.json",
+    "https://machinesignal.it/llms.txt",
+    "https://machinesignal.it/openapi.json",
+    "https://machinesignal.it/machine-discovery/",
+    "https://machinesignal.it/api/",
+    "https://machinesignal.it/beta/"
+  ],
+  "journeys": [
+    {
+      "scenario": "buyer_has_existing_list",
+      "buyer_machine": "crm_prioritization_agent",
+      "expected_first_product": "score_pack_1k",
+      "expected_price_eur": 119,
+      "expected_decision": "score_existing_list",
+      "must_understand": [
+        "valid-output credit logic",
+        "spend policy",
+        "recommended next purchase",
+        "stop before external contact"
+      ]
+    },
+    {
+      "scenario": "buyer_has_no_list",
+      "buyer_machine": "market_discovery_agent",
+      "expected_first_product": "target_discovery_pack_250",
+      "expected_price_eur": 249,
+      "expected_decision": "discover_coherent_targets_before_scoring",
+      "must_understand": [
+        "market availability pre-check",
+        "commercial objective normalization",
+        "250 coherent targets",
+        "no weak filler targets"
+      ]
+    },
+    {
+      "scenario": "buyer_needs_next_action",
+      "buyer_machine": "crm_action_orchestrator",
+      "expected_first_product": "action_pack",
+      "expected_decision": "prepare_internal_crm_or_workflow_action_after_gate",
+      "must_understand": [
+        "requires prior signal or gate",
+        "internal CRM/workflow action only",
+        "external contact blocked",
+        "legal permission not assumed"
+      ]
+    }
+  ],
+  "overall_result": "PASS",
+  "recommended_next_step": "live_api_sandbox_machine_buyer_journey_probe"
+}
