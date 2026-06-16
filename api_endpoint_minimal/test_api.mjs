@@ -108,6 +108,7 @@ const rootPayload = await rootResponse.json();
 assert.equal(rootPayload.docs.usage, "/v1/usage");
 assert.equal(rootPayload.docs.machine_onboarding, "/machine-onboarding.json");
 assert.equal(rootPayload.docs.product_catalog, "/product-catalog.json");
+assert.equal(rootPayload.docs.production_access_status, "/v1/production-access/status");
 assert.equal(rootPayload.docs.authenticated_onboarding, "/v1/onboarding");
 assert.equal(rootPayload.docs.sandbox_metrics, "/v1/admin/sandbox-metrics");
 assert.equal(rootPayload.docs.audit_report, "/v1/admin/audit-report?customer_id=<customer_id>");
@@ -127,6 +128,7 @@ assert.ok(openApiPayload.paths["/v1/payment-test/webhooks/stripe"]);
 assert.ok(openApiPayload.paths["/v1/payment-test/reconciliation/{payment_test_id}"]);
 assert.ok(openApiPayload.paths["/v1/admin/payment-test-report"]);
 assert.ok(openApiPayload.paths["/v1/sandbox/customers"]);
+assert.ok(openApiPayload.paths["/v1/production-access/status"]);
 assert.ok(openApiPayload.paths["/v1/admin/sandbox-metrics"]);
 assert.ok(openApiPayload.paths["/v1/admin/audit-report"]);
 assert.ok(openApiPayload.paths["/machine-onboarding.json"]);
@@ -139,6 +141,7 @@ assert.ok(openApiPayload.components.schemas.PaymentTestWebhookRequest);
 assert.ok(openApiPayload.components.schemas.BetaDelivery);
 assert.ok(openApiPayload.components.schemas.SupportCode);
 assert.ok(openApiPayload.components.schemas.ProductionAccessGuard);
+assert.ok(openApiPayload.components.schemas.ProductionAccessStatus);
 assert.ok(openApiPayload.components.schemas.GuardedBlockedResponse);
 assert.ok(openApiPayload.components.schemas.ProductionKeyBlockedResponse);
 assert.ok(openApiPayload.components.schemas.KillSwitchResponse);
@@ -160,6 +163,15 @@ assert.equal(
 );
 assert.equal(
   openApiPayload.components.schemas.ProductionAccessGuard.properties.external_outreach_enabled.example,
+  false
+);
+assert.equal(
+  openApiPayload.components.schemas.ProductionAccessStatus.properties.real_payment_executed.example,
+  false
+);
+assert.equal(openApiPayload.components.schemas.ProductionAccessStatus.properties.invoice_issued.example, false);
+assert.equal(
+  openApiPayload.components.schemas.ProductionAccessStatus.properties.external_contact_executed.example,
   false
 );
 assert.equal(
@@ -221,6 +233,38 @@ assert.ok(
   )
 );
 
+const productionAccessStatusResponse = await handleRequest(
+  new Request("http://localhost/v1/production-access/status")
+);
+assert.equal(productionAccessStatusResponse.status, 200);
+const productionAccessStatusPayload = await productionAccessStatusResponse.json();
+assert.equal(productionAccessStatusPayload.status, "sandbox_only");
+assert.equal(productionAccessStatusPayload.support_code, "MS_PRODUCTION_ACCESS_BLOCKED");
+assert.equal(productionAccessStatusPayload.production_access.production_keys_enabled, false);
+assert.equal(productionAccessStatusPayload.production_access.paid_beta_enabled, false);
+assert.equal(productionAccessStatusPayload.production_access.real_payments_enabled, false);
+assert.equal(productionAccessStatusPayload.production_access.invoices_enabled, false);
+assert.equal(productionAccessStatusPayload.production_access.personal_data_enabled, false);
+assert.equal(productionAccessStatusPayload.production_access.external_outreach_enabled, false);
+assert.equal(productionAccessStatusPayload.production_key.status, "blocked_production_key");
+assert.equal(productionAccessStatusPayload.production_key.real_payment_executed, false);
+assert.equal(productionAccessStatusPayload.production_key.invoice_issued, false);
+assert.equal(productionAccessStatusPayload.production_key.external_contact_executed, false);
+assert.equal(productionAccessStatusPayload.kill_switch_contract.status, "paused_kill_switch");
+assert.equal(productionAccessStatusPayload.real_payment_executed, false);
+assert.equal(productionAccessStatusPayload.invoice_issued, false);
+assert.equal(productionAccessStatusPayload.external_contact_executed, false);
+assert.ok(productionAccessStatusPayload.allowed_now.includes("create_limited_sandbox_customer"));
+assert.ok(productionAccessStatusPayload.blocked_now.includes("production_api_keys"));
+assert.ok(productionAccessStatusPayload.blocked_now.includes("real_payments"));
+assert.ok(productionAccessStatusPayload.blocked_now.includes("personal_data"));
+assert.ok(productionAccessStatusPayload.blocked_now.includes("external_outreach"));
+
+const publicOnboardingResponse = await handleRequest(new Request("http://localhost/machine-onboarding.json"));
+assert.equal(publicOnboardingResponse.status, 200);
+const publicOnboardingPayload = await publicOnboardingResponse.json();
+assert.equal(publicOnboardingPayload.discovery.production_access_status, "/v1/production-access/status");
+
 const llmsResponse = await handleRequest(new Request("http://localhost/llms.txt"));
 assert.equal(llmsResponse.status, 200);
 const llmsText = await llmsResponse.text();
@@ -235,6 +279,7 @@ assert.ok(llmsText.includes("/beta/onboarding-packet.json"));
 assert.ok(llmsText.includes("/beta/feedback-schema.json"));
 assert.ok(llmsText.includes("/beta/machine-test-kit.json"));
 assert.ok(llmsText.includes("/v1/sandbox/customers"));
+assert.ok(llmsText.includes("/v1/production-access/status"));
 assert.ok(llmsText.includes("/v1/admin/sandbox-metrics"));
 assert.ok(llmsText.includes("/v1/admin/audit-report"));
 assert.ok(llmsText.includes("https://machinesignal.it/machine-discovery/machine-discovery-pack.json"));

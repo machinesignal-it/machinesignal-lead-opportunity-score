@@ -91,13 +91,66 @@ function buildKillSwitchResponse() {
   });
 }
 
+function buildProductionAccessStatus() {
+  return {
+    service: "MachineSignal",
+    status: "sandbox_only",
+    support_code: SUPPORT_CODES.PRODUCTION_ACCESS_BLOCKED,
+    primary_customer_interface: "machine",
+    production_access: DEFAULT_PRODUCTION_ACCESS_GUARD,
+    production_key: buildProductionKeyBlockedResponse(),
+    kill_switch_contract: buildKillSwitchResponse(),
+    allowed_now: [
+      "read_public_docs",
+      "read_product_catalog",
+      "create_limited_sandbox_customer",
+      "use_sandbox_api_key",
+      "run_synthetic_tests",
+      "read_usage_orders_and_support_status"
+    ],
+    blocked_now: [
+      "production_api_keys",
+      "paid_beta",
+      "commercial_go_live",
+      "real_payments",
+      "payment_method_collection",
+      "invoices",
+      "real_customer_data",
+      "personal_data",
+      "external_outreach",
+      "marketplace_publication",
+      "hosted_public_mcp",
+      "mcp_registry_submission"
+    ],
+    owner_approval_required_for: [
+      "paid_beta",
+      "production_api_keys",
+      "live_payment_provider",
+      "invoice_flow",
+      "terms_privacy_data_policy",
+      "support_sla",
+      "cost_caps",
+      "kill_switch_owner"
+    ],
+    real_payment_executed: false,
+    invoice_issued: false,
+    external_contact_executed: false,
+    next_allowed_actions: [
+      "continue_sandbox",
+      "review_paid_beta_owner_approval_checklist",
+      "review_production_access_control_pack"
+    ]
+  };
+}
+
 export const productionGuardInternals = Object.freeze({
   DEFAULT_PRODUCTION_ACCESS_GUARD,
   SUPPORT_CODES,
   classifyApiKey,
   buildBlockedGuardResponse,
   buildProductionKeyBlockedResponse,
-  buildKillSwitchResponse
+  buildKillSwitchResponse,
+  buildProductionAccessStatus
 });
 
 const DEFAULT_LEDGER_STATE = {
@@ -505,6 +558,24 @@ export const openApi = {
         summary: "Return public machine-readable product catalog",
         description:
           "Public catalog for automated systems. Lists machine buying scenarios, product codes, exact beta prices, included deliverables, validity rules and credit consumption rules."
+      }
+    },
+    "/v1/production-access/status": {
+      get: {
+        operationId: "getProductionAccessStatus",
+        summary: "Return public production access guard status",
+        description:
+          "Public read-only status endpoint for machines. Confirms that production API keys, paid beta, real payments, invoices, real data, personal data, external outreach, marketplace publication, hosted MCP and registry submission are blocked until explicit owner approval and all gates pass.",
+        responses: {
+          200: {
+            description: "Production access guard status.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/ProductionAccessStatus" }
+              }
+            }
+          }
+        }
       }
     },
     "/v1/onboarding": {
@@ -1227,6 +1298,54 @@ export const openApi = {
           registry_submission_enabled: { type: "boolean", example: false }
         }
       },
+      ProductionAccessStatus: {
+        type: "object",
+        description:
+          "Public machine-readable production access status. It is read-only and confirms that MachineSignal is sandbox-only until owner approval and all readiness gates pass.",
+        required: [
+          "service",
+          "status",
+          "support_code",
+          "production_access",
+          "blocked_now",
+          "real_payment_executed",
+          "invoice_issued",
+          "external_contact_executed",
+          "next_allowed_actions"
+        ],
+        properties: {
+          service: { type: "string", example: "MachineSignal" },
+          status: { type: "string", example: "sandbox_only" },
+          support_code: { $ref: "#/components/schemas/SupportCode" },
+          primary_customer_interface: { type: "string", example: "machine" },
+          production_access: { $ref: "#/components/schemas/ProductionAccessGuard" },
+          production_key: { $ref: "#/components/schemas/ProductionKeyBlockedResponse" },
+          kill_switch_contract: { $ref: "#/components/schemas/KillSwitchResponse" },
+          allowed_now: {
+            type: "array",
+            items: { type: "string" },
+            example: ["read_public_docs", "create_limited_sandbox_customer"]
+          },
+          blocked_now: {
+            type: "array",
+            items: { type: "string" },
+            example: ["production_api_keys", "real_payments", "invoices", "external_outreach"]
+          },
+          owner_approval_required_for: {
+            type: "array",
+            items: { type: "string" },
+            example: ["paid_beta", "production_api_keys", "invoice_flow"]
+          },
+          real_payment_executed: { type: "boolean", example: false },
+          invoice_issued: { type: "boolean", example: false },
+          external_contact_executed: { type: "boolean", example: false },
+          next_allowed_actions: {
+            type: "array",
+            items: { type: "string" },
+            example: ["continue_sandbox", "review_paid_beta_owner_approval_checklist"]
+          }
+        }
+      },
       GuardedBlockedResponse: {
         type: "object",
         description:
@@ -1897,6 +2016,7 @@ Useful endpoints:
 - GET /llms.txt
 - GET /machine-onboarding.json
 - GET /product-catalog.json
+- GET /v1/production-access/status
 - GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - GET https://machinesignal.it/distribution/api-directory-submission.json
 - GET https://machinesignal.it/distribution/rapidapi-listing.json
@@ -1923,7 +2043,7 @@ Useful endpoints:
 
 Authentication:
 - protected endpoints require header X-API-Key: <beta key>;
-- public endpoints are /, /health, /openapi.json, /postman_collection.json, https://machinesignal.it/postman_public_collection.json, https://machinesignal.it/postman_public_environment_template.json, /product-catalog.json and /llms.txt.
+- public endpoints are /, /health, /openapi.json, /postman_collection.json, https://machinesignal.it/postman_public_collection.json, https://machinesignal.it/postman_public_environment_template.json, /product-catalog.json, /v1/production-access/status and /llms.txt.
 - POST /v1/beta/customers requires the admin beta key and returns a dedicated customer key.
 - GET/PATCH /v1/beta/customers/{customer_id} require the admin beta key and never return the full customer API key.
 - GET /v1/admin/sandbox-metrics requires the admin beta key and returns only aggregated sandbox test metrics.
@@ -1933,13 +2053,14 @@ Authentication:
 How a machine should call the score endpoint:
 1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
 2. Fetch /product-catalog.json to read products, exact beta prices, deliverables and credit rules.
-3. If no beta key is available, POST /v1/sandbox/customers to create a limited sandbox key for safe testing.
-4. Read the required X-API-Key and Idempotency-Key headers.
-5. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
-6. Read decision, commercial_strength, spend_policy, machine_next_step and next_purchase.
-7. Read /v1/usage to verify consumed and remaining credits.
-8. If next_purchase.next_product is not null and commercial_strength allows that spend, POST /v1/purchase-intent to create a beta order intent.
-9. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
+3. Fetch /v1/production-access/status to confirm production keys, payments, invoices, real data, personal data and outreach are blocked.
+4. If no beta key is available, POST /v1/sandbox/customers to create a limited sandbox key for safe testing.
+5. Read the required X-API-Key and Idempotency-Key headers.
+6. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
+7. Read decision, commercial_strength, spend_policy, machine_next_step and next_purchase.
+8. Read /v1/usage to verify consumed and remaining credits.
+9. If next_purchase.next_product is not null and commercial_strength allows that spend, POST /v1/purchase-intent to create a beta order intent.
+10. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
 
 Three machine buying flows:
 1. Customer machine has a list: call POST /v1/lead-opportunity-score for each domain, then route each result by decision.
@@ -5427,6 +5548,7 @@ function buildPublicMachineOnboarding() {
       postman: "/postman_collection.json",
       postman_public_collection: "https://machinesignal.it/postman_public_collection.json",
       product_catalog: "/product-catalog.json",
+      production_access_status: "/v1/production-access/status",
       machine_onboarding: "/machine-onboarding.json",
       machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
       api_directory_submission: "https://machinesignal.it/distribution/api-directory-submission.json",
@@ -6492,6 +6614,7 @@ export async function handleRequest(request, env = {}) {
         llms: "/llms.txt",
         machine_onboarding: "/machine-onboarding.json",
         product_catalog: "/product-catalog.json",
+        production_access_status: "/v1/production-access/status",
         machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
         api_directory_submission: "https://machinesignal.it/distribution/api-directory-submission.json",
         rapidapi_listing: "https://machinesignal.it/distribution/rapidapi-listing.json",
@@ -6524,6 +6647,10 @@ export async function handleRequest(request, env = {}) {
 
   if (request.method === "GET" && url.pathname === "/product-catalog.json") {
     return jsonResponse(PRODUCT_CATALOG);
+  }
+
+  if (request.method === "GET" && url.pathname === "/v1/production-access/status") {
+    return jsonResponse(buildProductionAccessStatus());
   }
 
   if (request.method === "GET" && url.pathname === "/postman_collection.json") {

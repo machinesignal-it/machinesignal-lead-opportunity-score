@@ -1,0 +1,289 @@
+{
+  "probe": "production_access_status_endpoint_probe",
+  "date": "2026-06-16",
+  "status": "passed",
+  "checks_total": 56,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "Root endpoint returns 200",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "Root docs expose production access status",
+      "passed": true,
+      "detail": "/v1/production-access/status"
+    },
+    {
+      "name": "Public onboarding returns 200",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "Public onboarding exposes production access status",
+      "passed": true,
+      "detail": "/v1/production-access/status"
+    },
+    {
+      "name": "OpenAPI returns 200",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "OpenAPI path exposes production access status",
+      "passed": true,
+      "detail": "/v1/production-access/status"
+    },
+    {
+      "name": "OpenAPI schema exposes ProductionAccessStatus",
+      "passed": true,
+      "detail": "ProductionAccessStatus"
+    },
+    {
+      "name": "llms.txt returns 200",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "llms.txt includes production access status endpoint",
+      "passed": true,
+      "detail": "/v1/production-access/status"
+    },
+    {
+      "name": "Production access status returns 200",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "Status is sandbox_only",
+      "passed": true,
+      "detail": "sandbox_only"
+    },
+    {
+      "name": "Support code blocks production access",
+      "passed": true,
+      "detail": "MS_PRODUCTION_ACCESS_BLOCKED"
+    },
+    {
+      "name": "Primary customer interface is machine",
+      "passed": true,
+      "detail": "machine"
+    },
+    {
+      "name": "Production access guard false: enabled",
+      "passed": true,
+      "detail": "enabled=false"
+    },
+    {
+      "name": "Production access guard false: owner_approved",
+      "passed": true,
+      "detail": "owner_approved=false"
+    },
+    {
+      "name": "Production access guard false: production_keys_enabled",
+      "passed": true,
+      "detail": "production_keys_enabled=false"
+    },
+    {
+      "name": "Production access guard false: paid_beta_enabled",
+      "passed": true,
+      "detail": "paid_beta_enabled=false"
+    },
+    {
+      "name": "Production access guard false: real_payments_enabled",
+      "passed": true,
+      "detail": "real_payments_enabled=false"
+    },
+    {
+      "name": "Production access guard false: invoices_enabled",
+      "passed": true,
+      "detail": "invoices_enabled=false"
+    },
+    {
+      "name": "Production access guard false: personal_data_enabled",
+      "passed": true,
+      "detail": "personal_data_enabled=false"
+    },
+    {
+      "name": "Production access guard false: real_customer_data_enabled",
+      "passed": true,
+      "detail": "real_customer_data_enabled=false"
+    },
+    {
+      "name": "Production access guard false: external_outreach_enabled",
+      "passed": true,
+      "detail": "external_outreach_enabled=false"
+    },
+    {
+      "name": "Production access guard false: marketplace_publication_enabled",
+      "passed": true,
+      "detail": "marketplace_publication_enabled=false"
+    },
+    {
+      "name": "Production access guard false: hosted_public_mcp_enabled",
+      "passed": true,
+      "detail": "hosted_public_mcp_enabled=false"
+    },
+    {
+      "name": "Production access guard false: registry_submission_enabled",
+      "passed": true,
+      "detail": "registry_submission_enabled=false"
+    },
+    {
+      "name": "Blocked item present: production_api_keys",
+      "passed": true,
+      "detail": "production_api_keys"
+    },
+    {
+      "name": "Blocked item present: paid_beta",
+      "passed": true,
+      "detail": "paid_beta"
+    },
+    {
+      "name": "Blocked item present: commercial_go_live",
+      "passed": true,
+      "detail": "commercial_go_live"
+    },
+    {
+      "name": "Blocked item present: real_payments",
+      "passed": true,
+      "detail": "real_payments"
+    },
+    {
+      "name": "Blocked item present: payment_method_collection",
+      "passed": true,
+      "detail": "payment_method_collection"
+    },
+    {
+      "name": "Blocked item present: invoices",
+      "passed": true,
+      "detail": "invoices"
+    },
+    {
+      "name": "Blocked item present: real_customer_data",
+      "passed": true,
+      "detail": "real_customer_data"
+    },
+    {
+      "name": "Blocked item present: personal_data",
+      "passed": true,
+      "detail": "personal_data"
+    },
+    {
+      "name": "Blocked item present: external_outreach",
+      "passed": true,
+      "detail": "external_outreach"
+    },
+    {
+      "name": "Blocked item present: marketplace_publication",
+      "passed": true,
+      "detail": "marketplace_publication"
+    },
+    {
+      "name": "Blocked item present: hosted_public_mcp",
+      "passed": true,
+      "detail": "hosted_public_mcp"
+    },
+    {
+      "name": "Blocked item present: mcp_registry_submission",
+      "passed": true,
+      "detail": "mcp_registry_submission"
+    },
+    {
+      "name": "Allowed sandbox item present: read_public_docs",
+      "passed": true,
+      "detail": "read_public_docs"
+    },
+    {
+      "name": "Allowed sandbox item present: read_product_catalog",
+      "passed": true,
+      "detail": "read_product_catalog"
+    },
+    {
+      "name": "Allowed sandbox item present: create_limited_sandbox_customer",
+      "passed": true,
+      "detail": "create_limited_sandbox_customer"
+    },
+    {
+      "name": "Allowed sandbox item present: use_sandbox_api_key",
+      "passed": true,
+      "detail": "use_sandbox_api_key"
+    },
+    {
+      "name": "Allowed sandbox item present: run_synthetic_tests",
+      "passed": true,
+      "detail": "run_synthetic_tests"
+    },
+    {
+      "name": "Production key response is blocked",
+      "passed": true,
+      "detail": "blocked_production_key"
+    },
+    {
+      "name": "Production key support code is blocked",
+      "passed": true,
+      "detail": "MS_PRODUCTION_KEY_BLOCKED"
+    },
+    {
+      "name": "Production key credit delta zero",
+      "passed": true,
+      "detail": "0"
+    },
+    {
+      "name": "Production key no real payment",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Production key no invoice",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Production key no external contact",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Kill switch contract is paused",
+      "passed": true,
+      "detail": "paused_kill_switch"
+    },
+    {
+      "name": "Kill switch support code exposed",
+      "passed": true,
+      "detail": "MS_KILL_SWITCH_ACTIVE"
+    },
+    {
+      "name": "Kill switch no real payment",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Kill switch no invoice",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Kill switch no external contact",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Top-level no real payment",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Top-level no invoice",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Top-level no external contact",
+      "passed": true,
+      "detail": "false"
+    }
+  ]
+}
