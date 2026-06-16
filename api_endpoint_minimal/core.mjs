@@ -1201,6 +1201,76 @@ export const openApi = {
       }
     },
     schemas: {
+      SupportCode: {
+        type: "string",
+        description:
+          "Machine-readable support/status code. Production, payment, invoice, real-data, personal-data and outreach codes remain blocked until explicit owner approval and all gates pass.",
+        enum: Object.values(SUPPORT_CODES),
+        example: "MS_PRODUCTION_KEY_BLOCKED"
+      },
+      ProductionAccessGuard: {
+        type: "object",
+        description:
+          "Default production access guard. All fields default to false; missing fields are treated as false. This schema documents blocked-by-default behavior and does not enable production access.",
+        properties: {
+          enabled: { type: "boolean", example: false },
+          owner_approved: { type: "boolean", example: false },
+          production_keys_enabled: { type: "boolean", example: false },
+          paid_beta_enabled: { type: "boolean", example: false },
+          real_payments_enabled: { type: "boolean", example: false },
+          invoices_enabled: { type: "boolean", example: false },
+          personal_data_enabled: { type: "boolean", example: false },
+          real_customer_data_enabled: { type: "boolean", example: false },
+          external_outreach_enabled: { type: "boolean", example: false },
+          marketplace_publication_enabled: { type: "boolean", example: false },
+          hosted_public_mcp_enabled: { type: "boolean", example: false },
+          registry_submission_enabled: { type: "boolean", example: false }
+        }
+      },
+      GuardedBlockedResponse: {
+        type: "object",
+        description:
+          "Standard blocked response for machine-readable guardrails. Blocked actions consume no credits and must not execute payment, invoice or external contact.",
+        required: [
+          "status",
+          "support_code",
+          "owner_escalation_required",
+          "credit_delta",
+          "real_payment_executed",
+          "invoice_issued",
+          "external_contact_executed",
+          "next_allowed_actions"
+        ],
+        properties: {
+          status: { type: "string", example: "blocked_policy" },
+          support_code: { $ref: "#/components/schemas/SupportCode" },
+          severity: { type: "string", enum: ["low", "medium", "high", "critical"], example: "medium" },
+          owner_escalation_required: { type: "boolean", example: true },
+          credit_delta: { type: "integer", example: 0 },
+          production_key_active: { type: "boolean", example: false },
+          credit_consumption_enabled: { type: "boolean", example: false },
+          real_payment_executed: { type: "boolean", example: false },
+          invoice_issued: { type: "boolean", example: false },
+          external_contact_executed: { type: "boolean", example: false },
+          next_allowed_actions: {
+            type: "array",
+            items: { type: "string" },
+            example: ["continue_sandbox", "request_owner_review"]
+          }
+        }
+      },
+      ProductionKeyBlockedResponse: {
+        allOf: [{ $ref: "#/components/schemas/GuardedBlockedResponse" }],
+        description:
+          "Response returned when a production key is requested or used before owner approval and all required gates pass.",
+        example: buildProductionKeyBlockedResponse()
+      },
+      KillSwitchResponse: {
+        allOf: [{ $ref: "#/components/schemas/GuardedBlockedResponse" }],
+        description:
+          "Response returned when the kill switch pauses risky production access, credit consumption, payments, invoices, provider calls or external contact.",
+        example: buildKillSwitchResponse()
+      },
       LeadScoreRequest: {
         type: "object",
         required: ["domain"],

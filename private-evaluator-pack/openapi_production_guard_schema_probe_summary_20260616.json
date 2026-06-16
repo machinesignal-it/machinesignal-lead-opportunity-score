@@ -1,0 +1,279 @@
+{
+  "probe": "openapi_production_guard_schema_probe",
+  "date": "2026-06-16",
+  "status": "passed",
+  "checks_total": 54,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "OpenAPI endpoint returns 200",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "Schema present: SupportCode",
+      "passed": true,
+      "detail": "SupportCode"
+    },
+    {
+      "name": "Schema present: ProductionAccessGuard",
+      "passed": true,
+      "detail": "ProductionAccessGuard"
+    },
+    {
+      "name": "Schema present: GuardedBlockedResponse",
+      "passed": true,
+      "detail": "GuardedBlockedResponse"
+    },
+    {
+      "name": "Schema present: ProductionKeyBlockedResponse",
+      "passed": true,
+      "detail": "ProductionKeyBlockedResponse"
+    },
+    {
+      "name": "Schema present: KillSwitchResponse",
+      "passed": true,
+      "detail": "KillSwitchResponse"
+    },
+    {
+      "name": "Support code exposed: MS_PRODUCTION_KEY_BLOCKED",
+      "passed": true,
+      "detail": "MS_PRODUCTION_KEY_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_PRODUCTION_ACCESS_BLOCKED",
+      "passed": true,
+      "detail": "MS_PRODUCTION_ACCESS_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_COST_CAP_BLOCKED",
+      "passed": true,
+      "detail": "MS_COST_CAP_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_PAYMENT_BLOCKED",
+      "passed": true,
+      "detail": "MS_PAYMENT_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_PAYMENT_METHOD_BLOCKED",
+      "passed": true,
+      "detail": "MS_PAYMENT_METHOD_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_INVOICE_BLOCKED",
+      "passed": true,
+      "detail": "MS_INVOICE_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_REAL_DATA_BLOCKED",
+      "passed": true,
+      "detail": "MS_REAL_DATA_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_PERSONAL_DATA_BLOCKED",
+      "passed": true,
+      "detail": "MS_PERSONAL_DATA_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_EXTERNAL_CONTACT_BLOCKED",
+      "passed": true,
+      "detail": "MS_EXTERNAL_CONTACT_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_MARKETPLACE_BLOCKED",
+      "passed": true,
+      "detail": "MS_MARKETPLACE_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_HOSTED_MCP_BLOCKED",
+      "passed": true,
+      "detail": "MS_HOSTED_MCP_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_REGISTRY_BLOCKED",
+      "passed": true,
+      "detail": "MS_REGISTRY_BLOCKED"
+    },
+    {
+      "name": "Support code exposed: MS_KILL_SWITCH_ACTIVE",
+      "passed": true,
+      "detail": "MS_KILL_SWITCH_ACTIVE"
+    },
+    {
+      "name": "Production guard field defaults false: enabled",
+      "passed": true,
+      "detail": "enabled=false"
+    },
+    {
+      "name": "Production guard field defaults false: owner_approved",
+      "passed": true,
+      "detail": "owner_approved=false"
+    },
+    {
+      "name": "Production guard field defaults false: production_keys_enabled",
+      "passed": true,
+      "detail": "production_keys_enabled=false"
+    },
+    {
+      "name": "Production guard field defaults false: paid_beta_enabled",
+      "passed": true,
+      "detail": "paid_beta_enabled=false"
+    },
+    {
+      "name": "Production guard field defaults false: real_payments_enabled",
+      "passed": true,
+      "detail": "real_payments_enabled=false"
+    },
+    {
+      "name": "Production guard field defaults false: invoices_enabled",
+      "passed": true,
+      "detail": "invoices_enabled=false"
+    },
+    {
+      "name": "Production guard field defaults false: personal_data_enabled",
+      "passed": true,
+      "detail": "personal_data_enabled=false"
+    },
+    {
+      "name": "Production guard field defaults false: real_customer_data_enabled",
+      "passed": true,
+      "detail": "real_customer_data_enabled=false"
+    },
+    {
+      "name": "Production guard field defaults false: external_outreach_enabled",
+      "passed": true,
+      "detail": "external_outreach_enabled=false"
+    },
+    {
+      "name": "Production guard field defaults false: marketplace_publication_enabled",
+      "passed": true,
+      "detail": "marketplace_publication_enabled=false"
+    },
+    {
+      "name": "Production guard field defaults false: hosted_public_mcp_enabled",
+      "passed": true,
+      "detail": "hosted_public_mcp_enabled=false"
+    },
+    {
+      "name": "Production guard field defaults false: registry_submission_enabled",
+      "passed": true,
+      "detail": "registry_submission_enabled=false"
+    },
+    {
+      "name": "Blocked response property present: status",
+      "passed": true,
+      "detail": "status"
+    },
+    {
+      "name": "Blocked response property present: support_code",
+      "passed": true,
+      "detail": "support_code"
+    },
+    {
+      "name": "Blocked response property present: owner_escalation_required",
+      "passed": true,
+      "detail": "owner_escalation_required"
+    },
+    {
+      "name": "Blocked response property present: credit_delta",
+      "passed": true,
+      "detail": "credit_delta"
+    },
+    {
+      "name": "Blocked response property present: production_key_active",
+      "passed": true,
+      "detail": "production_key_active"
+    },
+    {
+      "name": "Blocked response property present: credit_consumption_enabled",
+      "passed": true,
+      "detail": "credit_consumption_enabled"
+    },
+    {
+      "name": "Blocked response property present: real_payment_executed",
+      "passed": true,
+      "detail": "real_payment_executed"
+    },
+    {
+      "name": "Blocked response property present: invoice_issued",
+      "passed": true,
+      "detail": "invoice_issued"
+    },
+    {
+      "name": "Blocked response property present: external_contact_executed",
+      "passed": true,
+      "detail": "external_contact_executed"
+    },
+    {
+      "name": "Blocked response property present: next_allowed_actions",
+      "passed": true,
+      "detail": "next_allowed_actions"
+    },
+    {
+      "name": "Production key blocked status",
+      "passed": true,
+      "detail": "blocked_production_key"
+    },
+    {
+      "name": "Production key blocked support code",
+      "passed": true,
+      "detail": "MS_PRODUCTION_KEY_BLOCKED"
+    },
+    {
+      "name": "Production key blocked credit delta zero",
+      "passed": true,
+      "detail": "0"
+    },
+    {
+      "name": "Production key blocked no real payment",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Production key blocked no invoice",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Production key blocked no external contact",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Kill switch status",
+      "passed": true,
+      "detail": "paused_kill_switch"
+    },
+    {
+      "name": "Kill switch support code",
+      "passed": true,
+      "detail": "MS_KILL_SWITCH_ACTIVE"
+    },
+    {
+      "name": "Kill switch severity critical",
+      "passed": true,
+      "detail": "critical"
+    },
+    {
+      "name": "Kill switch credit delta zero",
+      "passed": true,
+      "detail": "0"
+    },
+    {
+      "name": "Kill switch no real payment",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Kill switch no invoice",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Kill switch no external contact",
+      "passed": true,
+      "detail": "false"
+    }
+  ]
+}

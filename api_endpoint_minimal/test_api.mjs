@@ -137,6 +137,42 @@ assert.ok(openApiPayload.components.schemas.PaymentTestIntentRequest);
 assert.ok(openApiPayload.components.schemas.PaymentTestIntentResponse);
 assert.ok(openApiPayload.components.schemas.PaymentTestWebhookRequest);
 assert.ok(openApiPayload.components.schemas.BetaDelivery);
+assert.ok(openApiPayload.components.schemas.SupportCode);
+assert.ok(openApiPayload.components.schemas.ProductionAccessGuard);
+assert.ok(openApiPayload.components.schemas.GuardedBlockedResponse);
+assert.ok(openApiPayload.components.schemas.ProductionKeyBlockedResponse);
+assert.ok(openApiPayload.components.schemas.KillSwitchResponse);
+assert.ok(
+  openApiPayload.components.schemas.SupportCode.enum.includes("MS_PRODUCTION_KEY_BLOCKED")
+);
+assert.ok(openApiPayload.components.schemas.SupportCode.enum.includes("MS_KILL_SWITCH_ACTIVE"));
+assert.equal(
+  openApiPayload.components.schemas.ProductionAccessGuard.properties.real_payments_enabled.example,
+  false
+);
+assert.equal(
+  openApiPayload.components.schemas.ProductionAccessGuard.properties.invoices_enabled.example,
+  false
+);
+assert.equal(
+  openApiPayload.components.schemas.ProductionAccessGuard.properties.personal_data_enabled.example,
+  false
+);
+assert.equal(
+  openApiPayload.components.schemas.ProductionAccessGuard.properties.external_outreach_enabled.example,
+  false
+);
+assert.equal(
+  openApiPayload.components.schemas.ProductionKeyBlockedResponse.example.real_payment_executed,
+  false
+);
+assert.equal(openApiPayload.components.schemas.ProductionKeyBlockedResponse.example.invoice_issued, false);
+assert.equal(
+  openApiPayload.components.schemas.ProductionKeyBlockedResponse.example.external_contact_executed,
+  false
+);
+assert.equal(openApiPayload.components.schemas.KillSwitchResponse.example.status, "paused_kill_switch");
+assert.equal(openApiPayload.components.schemas.KillSwitchResponse.example.credit_delta, 0);
 assert.ok(JSON.stringify(openApiPayload.paths["/v1/purchase-intent"]).includes("deep_analysis_verification_gate_failed"));
 assert.ok(JSON.stringify(openApiPayload.paths["/v1/purchase-intent"]).includes("action_pack_gate_failed"));
 assert.equal(
