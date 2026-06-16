@@ -1,0 +1,156 @@
+{
+  "service": "MachineSignal",
+  "artifact": "paid_beta_owner_approval_checklist",
+  "date": "2026-06-16",
+  "status": "draft_for_owner_review",
+  "primary_customer_interface": "machine",
+  "technical_sandbox": "closed_for_current_scope",
+  "paid_beta": "not_approved",
+  "commercial_go_live": "no_go",
+  "purpose": "Define exactly what must be approved before MachineSignal accepts the first real paid customer or paid machine account.",
+  "approval_rule": "Paid beta can start only when every mandatory gate is marked APPROVED BY OWNER.",
+  "mandatory_gates": [
+    {
+      "gate": "owner_commercial_decision",
+      "current_state": "missing",
+      "approval_needed": "Decide whether to run a paid beta at all",
+      "blocking": true
+    },
+    {
+      "gate": "fiscal_setup",
+      "current_state": "not_closed",
+      "approval_needed": "Decide PIVA/accounting/invoicing path",
+      "blocking": true
+    },
+    {
+      "gate": "invoice_flow",
+      "current_state": "blocked",
+      "approval_needed": "Define invoice or receipt process before charging",
+      "blocking": true
+    },
+    {
+      "gate": "payment_provider",
+      "current_state": "blocked",
+      "approval_needed": "Approve live payment provider or keep test-only",
+      "blocking": true
+    },
+    {
+      "gate": "terms_of_service",
+      "current_state": "draft_not_reviewed",
+      "approval_needed": "Approve legal terms for beta use",
+      "blocking": true
+    },
+    {
+      "gate": "privacy_policy",
+      "current_state": "draft_not_reviewed",
+      "approval_needed": "Approve privacy/data language",
+      "blocking": true
+    },
+    {
+      "gate": "data_policy",
+      "current_state": "synthetic_only",
+      "approval_needed": "Approve whether real business data can be accepted",
+      "blocking": true
+    },
+    {
+      "gate": "acceptable_use",
+      "current_state": "draft_not_reviewed",
+      "approval_needed": "Approve prohibited uses and abuse handling",
+      "blocking": true
+    },
+    {
+      "gate": "refund_credit_policy",
+      "current_state": "draft",
+      "approval_needed": "Approve valid-output and refund/credit rules",
+      "blocking": true
+    },
+    {
+      "gate": "support_policy",
+      "current_state": "sandbox_ready_only",
+      "approval_needed": "Approve beta support, escalation and incident handling",
+      "blocking": true
+    },
+    {
+      "gate": "production_api_keys",
+      "current_state": "blocked",
+      "approval_needed": "Approve issuance, limits, rotation and revocation",
+      "blocking": true
+    },
+    {
+      "gate": "cost_guard",
+      "current_state": "test_ready_only",
+      "approval_needed": "Approve hard monthly and daily budget caps",
+      "blocking": true
+    },
+    {
+      "gate": "security_baseline",
+      "current_state": "partial",
+      "approval_needed": "Approve key storage, secret handling and access control",
+      "blocking": true
+    },
+    {
+      "gate": "marketplace_registry",
+      "current_state": "blocked",
+      "approval_needed": "Decide whether publication is allowed later",
+      "blocking": true
+    },
+    {
+      "gate": "external_outreach",
+      "current_state": "blocked",
+      "approval_needed": "Decide whether any outreach is allowed later",
+      "blocking": true
+    }
+  ],
+  "minimum_paid_beta_shape_if_later_approved": {
+    "first_customer_or_machine_accounts": 1,
+    "first_product": "Score Pack 1k",
+    "manual_owner_approval_before_activation": true,
+    "hard_usage_limits": true,
+    "hard_cost_caps": true,
+    "auto_renewal": false,
+    "personal_data_allowed": false,
+    "external_outreach_allowed": false,
+    "marketplace_launch_allowed": false,
+    "hosted_public_mcp_allowed": false,
+    "public_registry_submission_allowed": false,
+    "kill_switch_required": true
+  },
+  "recommended_first_product": {
+    "name": "Score Pack 1k",
+    "reason": "Easiest machine-buyer product to understand, easiest to audit record by record, and less operationally ambiguous than Target Discovery."
+  },
+  "recommended_second_product": {
+    "name": "Target Discovery Pack 250",
+    "requires_owner_approval_of": [
+      "minimum_deliverable_rule",
+      "replacement_credit_rule_if_fewer_than_250_valid_targets_are_found",
+      "data_source_policy",
+      "no_personal_data_rule",
+      "quality_acceptance_rule"
+    ]
+  },
+  "explicitly_not_approved": [
+    "live_payments",
+    "payment_method_collection",
+    "invoices",
+    "paid_customer_onboarding",
+    "production_api_key_release",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_submission",
+    "automated_contact_with_real_companies_or_people"
+  ],
+  "allowed_agent_work_until_approval": [
+    "no_write_readiness_work",
+    "local_and_sandbox_tests",
+    "documentation_hardening",
+    "legal_admin_payment_drafts",
+    "support_flow_drafts",
+    "cost_guard_probes",
+    "owner_decision_preparation"
+  ],
+  "recommended_next_step": "prepare_no_write_beta_contract_pack"
+}

@@ -1,0 +1,279 @@
+﻿{
+    "probe":  "paid_beta_owner_approval_checklist_probe",
+    "date":  "2026-06-16",
+    "status":  "passed",
+    "checks_total":  54,
+    "checks_failed":  0,
+    "checks":  [
+                   {
+                       "name":  "Technical sandbox is closed for current scope",
+                       "passed":  true,
+                       "detail":  "closed_for_current_scope"
+                   },
+                   {
+                       "name":  "Paid beta remains not approved",
+                       "passed":  true,
+                       "detail":  "not_approved"
+                   },
+                   {
+                       "name":  "Commercial go-live remains no-go",
+                       "passed":  true,
+                       "detail":  "no_go"
+                   },
+                   {
+                       "name":  "Approval rule requires all gates approved by owner",
+                       "passed":  true,
+                       "detail":  "Paid beta can start only when every mandatory gate is marked APPROVED BY OWNER."
+                   },
+                   {
+                       "name":  "Mandatory gate present: owner_commercial_decision",
+                       "passed":  true,
+                       "detail":  "owner_commercial_decision"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: owner_commercial_decision",
+                       "passed":  true,
+                       "detail":  "owner_commercial_decision"
+                   },
+                   {
+                       "name":  "Mandatory gate present: fiscal_setup",
+                       "passed":  true,
+                       "detail":  "fiscal_setup"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: fiscal_setup",
+                       "passed":  true,
+                       "detail":  "fiscal_setup"
+                   },
+                   {
+                       "name":  "Mandatory gate present: invoice_flow",
+                       "passed":  true,
+                       "detail":  "invoice_flow"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: invoice_flow",
+                       "passed":  true,
+                       "detail":  "invoice_flow"
+                   },
+                   {
+                       "name":  "Mandatory gate present: payment_provider",
+                       "passed":  true,
+                       "detail":  "payment_provider"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: payment_provider",
+                       "passed":  true,
+                       "detail":  "payment_provider"
+                   },
+                   {
+                       "name":  "Mandatory gate present: terms_of_service",
+                       "passed":  true,
+                       "detail":  "terms_of_service"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: terms_of_service",
+                       "passed":  true,
+                       "detail":  "terms_of_service"
+                   },
+                   {
+                       "name":  "Mandatory gate present: privacy_policy",
+                       "passed":  true,
+                       "detail":  "privacy_policy"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: privacy_policy",
+                       "passed":  true,
+                       "detail":  "privacy_policy"
+                   },
+                   {
+                       "name":  "Mandatory gate present: data_policy",
+                       "passed":  true,
+                       "detail":  "data_policy"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: data_policy",
+                       "passed":  true,
+                       "detail":  "data_policy"
+                   },
+                   {
+                       "name":  "Mandatory gate present: acceptable_use",
+                       "passed":  true,
+                       "detail":  "acceptable_use"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: acceptable_use",
+                       "passed":  true,
+                       "detail":  "acceptable_use"
+                   },
+                   {
+                       "name":  "Mandatory gate present: refund_credit_policy",
+                       "passed":  true,
+                       "detail":  "refund_credit_policy"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: refund_credit_policy",
+                       "passed":  true,
+                       "detail":  "refund_credit_policy"
+                   },
+                   {
+                       "name":  "Mandatory gate present: support_policy",
+                       "passed":  true,
+                       "detail":  "support_policy"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: support_policy",
+                       "passed":  true,
+                       "detail":  "support_policy"
+                   },
+                   {
+                       "name":  "Mandatory gate present: production_api_keys",
+                       "passed":  true,
+                       "detail":  "production_api_keys"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: production_api_keys",
+                       "passed":  true,
+                       "detail":  "production_api_keys"
+                   },
+                   {
+                       "name":  "Mandatory gate present: cost_guard",
+                       "passed":  true,
+                       "detail":  "cost_guard"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: cost_guard",
+                       "passed":  true,
+                       "detail":  "cost_guard"
+                   },
+                   {
+                       "name":  "Mandatory gate present: security_baseline",
+                       "passed":  true,
+                       "detail":  "security_baseline"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: security_baseline",
+                       "passed":  true,
+                       "detail":  "security_baseline"
+                   },
+                   {
+                       "name":  "Mandatory gate present: marketplace_registry",
+                       "passed":  true,
+                       "detail":  "marketplace_registry"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: marketplace_registry",
+                       "passed":  true,
+                       "detail":  "marketplace_registry"
+                   },
+                   {
+                       "name":  "Mandatory gate present: external_outreach",
+                       "passed":  true,
+                       "detail":  "external_outreach"
+                   },
+                   {
+                       "name":  "Mandatory gate is blocking: external_outreach",
+                       "passed":  true,
+                       "detail":  "external_outreach"
+                   },
+                   {
+                       "name":  "Explicitly not approved: live_payments",
+                       "passed":  true,
+                       "detail":  "live_payments"
+                   },
+                   {
+                       "name":  "Explicitly not approved: payment_method_collection",
+                       "passed":  true,
+                       "detail":  "payment_method_collection"
+                   },
+                   {
+                       "name":  "Explicitly not approved: invoices",
+                       "passed":  true,
+                       "detail":  "invoices"
+                   },
+                   {
+                       "name":  "Explicitly not approved: paid_customer_onboarding",
+                       "passed":  true,
+                       "detail":  "paid_customer_onboarding"
+                   },
+                   {
+                       "name":  "Explicitly not approved: production_api_key_release",
+                       "passed":  true,
+                       "detail":  "production_api_key_release"
+                   },
+                   {
+                       "name":  "Explicitly not approved: real_customer_data",
+                       "passed":  true,
+                       "detail":  "real_customer_data"
+                   },
+                   {
+                       "name":  "Explicitly not approved: personal_data",
+                       "passed":  true,
+                       "detail":  "personal_data"
+                   },
+                   {
+                       "name":  "Explicitly not approved: external_outreach",
+                       "passed":  true,
+                       "detail":  "external_outreach"
+                   },
+                   {
+                       "name":  "Explicitly not approved: marketplace_publication",
+                       "passed":  true,
+                       "detail":  "marketplace_publication"
+                   },
+                   {
+                       "name":  "Explicitly not approved: hosted_public_mcp",
+                       "passed":  true,
+                       "detail":  "hosted_public_mcp"
+                   },
+                   {
+                       "name":  "Explicitly not approved: mcp_registry_submission",
+                       "passed":  true,
+                       "detail":  "mcp_registry_submission"
+                   },
+                   {
+                       "name":  "Explicitly not approved: automated_contact_with_real_companies_or_people",
+                       "passed":  true,
+                       "detail":  "automated_contact_with_real_companies_or_people"
+                   },
+                   {
+                       "name":  "Recommended first product is Score Pack 1k",
+                       "passed":  true,
+                       "detail":  "Score Pack 1k"
+                   },
+                   {
+                       "name":  "First paid beta is limited to one account",
+                       "passed":  true,
+                       "detail":  "1"
+                   },
+                   {
+                       "name":  "No auto-renewal in proposed paid beta",
+                       "passed":  true,
+                       "detail":  "auto_renewal=false"
+                   },
+                   {
+                       "name":  "No personal data in proposed paid beta",
+                       "passed":  true,
+                       "detail":  "personal_data_allowed=false"
+                   },
+                   {
+                       "name":  "No external outreach in proposed paid beta",
+                       "passed":  true,
+                       "detail":  "external_outreach_allowed=false"
+                   },
+                   {
+                       "name":  "Markdown states paid beta not approved",
+                       "passed":  true,
+                       "detail":  "markdown verdict"
+                   },
+                   {
+                       "name":  "Markdown states commercial go-live no-go",
+                       "passed":  true,
+                       "detail":  "markdown verdict"
+                   },
+                   {
+                       "name":  "Markdown recommends no-write beta contract pack",
+                       "passed":  true,
+                       "detail":  "markdown next step"
+                   }
+               ]
+}
