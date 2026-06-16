@@ -1,0 +1,183 @@
+{
+  "service": "MachineSignal",
+  "artifact": "production_access_control_pack",
+  "date": "2026-06-16",
+  "status": "draft_no_live_activation",
+  "company_name": "MachineSignal",
+  "company_name_status": "operational_name_only_final_legal_entity_to_be_confirmed",
+  "primary_customer_interface": "machine",
+  "technical_sandbox": "closed_for_current_scope",
+  "production_api_keys": "blocked",
+  "paid_beta": "not_approved",
+  "commercial_go_live": "no_go",
+  "not_approved": [
+    "paid_beta",
+    "commercial_go_live",
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "real_customer_data",
+    "personal_data",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "registry_submission",
+    "external_outreach"
+  ],
+  "key_classes": [
+    {
+      "class": "sandbox_customer_key",
+      "prefix": "ms_sbx_",
+      "status": "allowed_with_limits",
+      "use": "synthetic_test_usage_only"
+    },
+    {
+      "class": "production_customer_key",
+      "prefix": "ms_live_",
+      "status": "blocked",
+      "use": "future_paid_beta_only_after_owner_approval"
+    },
+    {
+      "class": "admin_key",
+      "prefix": "ms_admin_",
+      "status": "internal_restricted",
+      "use": "operational_admin_use_only"
+    },
+    {
+      "class": "test_webhook_signature",
+      "prefix": "ms_wh_test_",
+      "status": "test_only",
+      "use": "simulated_payment_order_events"
+    }
+  ],
+  "production_key_required_gates": [
+    "owner_paid_beta_approval",
+    "fiscal_admin_path",
+    "invoice_receipt_path",
+    "payment_provider_decision",
+    "terms_privacy_data_review",
+    "refund_credit_policy",
+    "support_sla_policy",
+    "cost_cap_policy",
+    "kill_switch_owner",
+    "production_key_storage_rotation_revocation_process"
+  ],
+  "default_beta_access_limits": {
+    "customers_or_machine_accounts": 1,
+    "products_enabled": 1,
+    "recommended_first_product": "Score Pack 1k",
+    "monthly_spend_cap": "owner_to_approve",
+    "daily_api_write_cap": "owner_to_approve",
+    "daily_provider_spend_cap": "owner_to_approve",
+    "deep_analysis_credits": "disabled_first",
+    "action_pack_credits": "disabled_first",
+    "auto_renewal": false,
+    "personal_data": false,
+    "external_outreach": false
+  },
+  "required_cost_caps": [
+    "per_key_daily_request_cap",
+    "per_key_monthly_request_cap",
+    "per_key_credit_cap",
+    "global_daily_write_cap",
+    "global_monthly_spend_cap",
+    "provider_specific_spend_cap",
+    "cloudflare_kv_write_cap",
+    "alert_threshold",
+    "hard_stop_threshold"
+  ],
+  "red_stop_signals": [
+    "live_payment_attempted_before_approval",
+    "invoice_attempted_before_approval",
+    "production_key_request_before_gates_pass",
+    "personal_data_detected",
+    "external_outreach_requested",
+    "unknown_paid_provider_call_without_budget",
+    "cost_estimate_exceeds_cap",
+    "usage_reaches_100_percent_of_cap"
+  ],
+  "kill_switch": {
+    "required": true,
+    "actions": [
+      "pause_production_key",
+      "stop_credit_consumption",
+      "block_purchase_intent",
+      "block_live_payment_flow",
+      "block_invoice_flow",
+      "block_provider_calls",
+      "block_cost_increasing_writes",
+      "preserve_audit_trail",
+      "return_machine_readable_status",
+      "require_owner_review_before_reactivation"
+    ],
+    "response_contract": {
+      "status": "paused",
+      "support_code": "MS_KILL_SWITCH_ACTIVE",
+      "severity": "critical",
+      "owner_escalation_required": true,
+      "production_key_active": false,
+      "credit_consumption_enabled": false,
+      "real_payment_executed": false,
+      "invoice_issued": false,
+      "external_contact_executed": false
+    }
+  },
+  "revocation_triggers": [
+    "key_appears_in_public_repository",
+    "key_appears_in_screenshot_or_document",
+    "unexpected_usage_spike",
+    "cost_cap_red_event",
+    "customer_request",
+    "suspected_abuse",
+    "personal_data_detected_in_unapproved_flow",
+    "payment_fiscal_legal_gate_violation"
+  ],
+  "support_status_states": [
+    "ok",
+    "blocked_policy",
+    "blocked_production_key",
+    "blocked_cost_cap",
+    "blocked_real_data",
+    "blocked_payment",
+    "blocked_invoice",
+    "paused_kill_switch",
+    "security_review_required",
+    "needs_owner_review"
+  ],
+  "audit_trail_fields": [
+    "timestamp",
+    "customer_id",
+    "key_class",
+    "product_code",
+    "request_id",
+    "decision",
+    "support_code",
+    "credit_delta",
+    "cost_estimate",
+    "cap_state",
+    "owner_escalation_required",
+    "redacted_reason"
+  ],
+  "audit_trail_forbidden_fields": [
+    "full_api_key",
+    "password",
+    "payment_card_data",
+    "full_personal_payload"
+  ],
+  "public_docs_may_show": [
+    "key_prefixes",
+    "placeholder_api_key_examples",
+    "authentication_scheme",
+    "sandbox_flow",
+    "blocked_production_key_state",
+    "support_status_codes"
+  ],
+  "public_docs_must_not_show": [
+    "real_production_keys",
+    "admin_keys",
+    "payment_provider_secrets",
+    "real_customer_data",
+    "private_support_logs",
+    "owner_credentials"
+  ],
+  "recommended_next_step": "create_no_write_worker_implementation_checklist_for_production_access_guards"
+}
