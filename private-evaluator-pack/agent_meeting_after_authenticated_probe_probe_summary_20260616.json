@@ -1,0 +1,199 @@
+﻿{
+    "probe":  "agent_meeting_after_authenticated_probe_probe",
+    "date":  "2026-06-16",
+    "status":  "passed",
+    "checks_total":  38,
+    "checks_failed":  0,
+    "checks":  [
+                   {
+                       "name":  "Technical sandbox closure approved for current scope",
+                       "passed":  true,
+                       "detail":  "approved_for_current_scope"
+                   },
+                   {
+                       "name":  "Paid beta remains not approved",
+                       "passed":  true,
+                       "detail":  "not_approved"
+                   },
+                   {
+                       "name":  "Commercial go-live remains no-go",
+                       "passed":  true,
+                       "detail":  "no_go"
+                   },
+                   {
+                       "name":  "Next phase is pre-beta decision readiness",
+                       "passed":  true,
+                       "detail":  "pre_beta_decision_readiness"
+                   },
+                   {
+                       "name":  "Evidence present: authenticated_live_api_probe",
+                       "passed":  true,
+                       "detail":  "authenticated_live_api_probe"
+                   },
+                   {
+                       "name":  "Evidence present: go_no_go_matrix_probe",
+                       "passed":  true,
+                       "detail":  "go_no_go_matrix_probe"
+                   },
+                   {
+                       "name":  "Evidence present: public_api_catalog_price_consistency_probe",
+                       "passed":  true,
+                       "detail":  "public_api_catalog_price_consistency_probe"
+                   },
+                   {
+                       "name":  "Evidence present: live_machine_buyer_journey_probe",
+                       "passed":  true,
+                       "detail":  "live_machine_buyer_journey_probe"
+                   },
+                   {
+                       "name":  "Evidence present: public_docs_validation",
+                       "passed":  true,
+                       "detail":  "public_docs_validation"
+                   },
+                   {
+                       "name":  "Agent vote present: Orchestratore",
+                       "passed":  true,
+                       "detail":  "Orchestratore"
+                   },
+                   {
+                       "name":  "Agent vote present: Agente API",
+                       "passed":  true,
+                       "detail":  "Agente API"
+                   },
+                   {
+                       "name":  "Agent vote present: Data Scout",
+                       "passed":  true,
+                       "detail":  "Data Scout"
+                   },
+                   {
+                       "name":  "Agent vote present: Data Quality \u0026 Compliance",
+                       "passed":  true,
+                       "detail":  "Data Quality \u0026 Compliance"
+                   },
+                   {
+                       "name":  "Agent vote present: Scoring Optimizer",
+                       "passed":  true,
+                       "detail":  "Scoring Optimizer"
+                   },
+                   {
+                       "name":  "Agent vote present: API Product Manager",
+                       "passed":  true,
+                       "detail":  "API Product Manager"
+                   },
+                   {
+                       "name":  "Agent vote present: Growth \u0026 Distribution",
+                       "passed":  true,
+                       "detail":  "Growth \u0026 Distribution"
+                   },
+                   {
+                       "name":  "Agent vote present: Customer Feedback",
+                       "passed":  true,
+                       "detail":  "Customer Feedback"
+                   },
+                   {
+                       "name":  "Agent vote present: Machine-to-Machine Sales Ops",
+                       "passed":  true,
+                       "detail":  "Machine-to-Machine Sales Ops"
+                   },
+                   {
+                       "name":  "Agent vote present: Customer Success \u0026 Post-Sale",
+                       "passed":  true,
+                       "detail":  "Customer Success \u0026 Post-Sale"
+                   },
+                   {
+                       "name":  "Agent vote present: Admin \u0026 Finance Controller",
+                       "passed":  true,
+                       "detail":  "Admin \u0026 Finance Controller"
+                   },
+                   {
+                       "name":  "Agent vote present: Legal \u0026 Compliance",
+                       "passed":  true,
+                       "detail":  "Legal \u0026 Compliance"
+                   },
+                   {
+                       "name":  "Agent vote present: HR / Agent Manager",
+                       "passed":  true,
+                       "detail":  "HR / Agent Manager"
+                   },
+                   {
+                       "name":  "Blocked item present: real_payments",
+                       "passed":  true,
+                       "detail":  "real_payments"
+                   },
+                   {
+                       "name":  "Blocked item present: payment_method_collection",
+                       "passed":  true,
+                       "detail":  "payment_method_collection"
+                   },
+                   {
+                       "name":  "Blocked item present: invoices_or_fiscal_documents",
+                       "passed":  true,
+                       "detail":  "invoices_or_fiscal_documents"
+                   },
+                   {
+                       "name":  "Blocked item present: real_customer_data",
+                       "passed":  true,
+                       "detail":  "real_customer_data"
+                   },
+                   {
+                       "name":  "Blocked item present: personal_data",
+                       "passed":  true,
+                       "detail":  "personal_data"
+                   },
+                   {
+                       "name":  "Blocked item present: public_marketplace_listing_with_paid_plans",
+                       "passed":  true,
+                       "detail":  "public_marketplace_listing_with_paid_plans"
+                   },
+                   {
+                       "name":  "Blocked item present: hosted_public_mcp_launch",
+                       "passed":  true,
+                       "detail":  "hosted_public_mcp_launch"
+                   },
+                   {
+                       "name":  "Blocked item present: mcp_registry_submission",
+                       "passed":  true,
+                       "detail":  "mcp_registry_submission"
+                   },
+                   {
+                       "name":  "Remaining gate present: owner_approval_of_paid_beta_decision_packet",
+                       "passed":  true,
+                       "detail":  "owner_approval_of_paid_beta_decision_packet"
+                   },
+                   {
+                       "name":  "Remaining gate present: fiscal_admin_decision_piva_invoicing_payment_reconciliation",
+                       "passed":  true,
+                       "detail":  "fiscal_admin_decision_piva_invoicing_payment_reconciliation"
+                   },
+                   {
+                       "name":  "Remaining gate present: legal_review_terms_privacy_dpa_liability_retention_acceptable_use",
+                       "passed":  true,
+                       "detail":  "legal_review_terms_privacy_dpa_liability_retention_acceptable_use"
+                   },
+                   {
+                       "name":  "Remaining gate present: payment_safety_live_payments_disabled_until_owner_decision",
+                       "passed":  true,
+                       "detail":  "payment_safety_live_payments_disabled_until_owner_decision"
+                   },
+                   {
+                       "name":  "Remaining gate present: production_key_policy_limits_revocation_abuse_customer_isolation",
+                       "passed":  true,
+                       "detail":  "production_key_policy_limits_revocation_abuse_customer_isolation"
+                   },
+                   {
+                       "name":  "Markdown states technical sandbox approved",
+                       "passed":  true,
+                       "detail":  "markdown verdict"
+                   },
+                   {
+                       "name":  "Markdown states paid beta not approved",
+                       "passed":  true,
+                       "detail":  "markdown verdict"
+                   },
+                   {
+                       "name":  "Markdown states commercial go-live no-go",
+                       "passed":  true,
+                       "detail":  "markdown verdict"
+                   }
+               ]
+}

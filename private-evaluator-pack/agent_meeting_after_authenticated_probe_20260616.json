@@ -1,0 +1,173 @@
+{
+  "service": "MachineSignal",
+  "review_name": "agent_meeting_after_authenticated_probe",
+  "date": "2026-06-16",
+  "status": "completed",
+  "primary_customer_interface": "machine",
+  "technical_sandbox_closure": "approved_for_current_scope",
+  "paid_beta": "not_approved",
+  "commercial_go_live": "no_go",
+  "next_phase": "pre_beta_decision_readiness",
+  "plain_italian_summary": "Gli agenti considerano chiusa la fase di test tecnico sandbox per lo scope attuale. La macchina riesce a scoprire MachineSignal, capire cosa vendiamo, chiedere score e target discovery, leggere i prezzi e ricevere decisioni coerenti. Restano bloccati beta pagata, go-live commerciale, pagamenti reali, fatture, dati reali, marketplace pubblico e outreach.",
+  "evidence_reviewed": [
+    {
+      "name": "authenticated_live_api_probe",
+      "date": "2026-06-16",
+      "status": "passed",
+      "checks_total": 38,
+      "checks_failed": 0
+    },
+    {
+      "name": "go_no_go_matrix_probe",
+      "date": "2026-06-16",
+      "status": "passed",
+      "checks_total": 17,
+      "checks_failed": 0
+    },
+    {
+      "name": "public_api_catalog_price_consistency_probe",
+      "date": "2026-06-15",
+      "status": "passed",
+      "checks_total": 13,
+      "checks_failed": 0
+    },
+    {
+      "name": "live_machine_buyer_journey_probe",
+      "date": "2026-06-15",
+      "status": "passed",
+      "checks_total": 39,
+      "checks_failed": 0
+    },
+    {
+      "name": "local_api_tests",
+      "date": "2026-06-15",
+      "status": "passed",
+      "checks_total": null,
+      "checks_failed": 0
+    },
+    {
+      "name": "public_docs_validation",
+      "date": "2026-06-15",
+      "status": "passed",
+      "checks_total": 20,
+      "checks_failed": 0
+    }
+  ],
+  "agent_votes": [
+    {
+      "agent": "Orchestratore",
+      "vote": "close_technical_sandbox_scope",
+      "reason": "Evidence is sufficient for the current sandbox scope; next step is governance and owner decision readiness."
+    },
+    {
+      "agent": "Agente analisi mercato potenziale",
+      "vote": "pass_test_scope",
+      "reason": "Machine-first positioning remains coherent: sell scores, target discovery, deep analysis and action payloads to automated systems."
+    },
+    {
+      "agent": "Architetto web AI",
+      "vote": "pass_public_clarity",
+      "reason": "The public machine-facing pages and API references are coherent enough for sandbox evaluation."
+    },
+    {
+      "agent": "Agente API",
+      "vote": "pass_technical_api",
+      "reason": "Authenticated sandbox API path returned valid responses and blocked invalid purchase sequences correctly."
+    },
+    {
+      "agent": "Data Scout",
+      "vote": "pass_sandbox_discovery",
+      "reason": "Target Discovery now shows the expected EUR 249 price intent and explains no-list discovery clearly."
+    },
+    {
+      "agent": "Data Quality & Compliance",
+      "vote": "conditional",
+      "reason": "Sandbox data handling is acceptable; real or personal data remains blocked until policy and legal review."
+    },
+    {
+      "agent": "Scoring Optimizer",
+      "vote": "pass_sandbox_scoring",
+      "reason": "Score Pack returns usable score, confidence, decision and next-product routing for automated workflows."
+    },
+    {
+      "agent": "API Product Manager",
+      "vote": "pass_product_contract",
+      "reason": "Products, credits, beta prices and machine-readable outputs are consistent after the latest pricing fix."
+    },
+    {
+      "agent": "Growth & Distribution",
+      "vote": "hold_public_escalation",
+      "reason": "Passive public docs are acceptable; marketplace, registry, hosted MCP and outreach remain blocked."
+    },
+    {
+      "agent": "Customer Feedback",
+      "vote": "pass_sandbox_support_loop",
+      "reason": "Sandbox usage and error feedback can continue; paid customer support is not live."
+    },
+    {
+      "agent": "Machine-to-Machine Sales Ops",
+      "vote": "conditional",
+      "reason": "The machine-first sales path is testable, but no external contact or paid selling is allowed yet."
+    },
+    {
+      "agent": "Customer Success & Post-Sale",
+      "vote": "conditional",
+      "reason": "Post-sale automation policies exist, but real paid onboarding and support are not approved."
+    },
+    {
+      "agent": "Admin & Finance Controller",
+      "vote": "no_go_paid_beta",
+      "reason": "PIVA/fiscal setup, invoicing, reconciliation and payment operations are not closed."
+    },
+    {
+      "agent": "Legal & Compliance",
+      "vote": "no_go_paid_beta",
+      "reason": "Terms, privacy, DPA, retention, liability and real data rules need formal review before paid beta."
+    },
+    {
+      "agent": "Continuous Improvement / Competitive Learning",
+      "vote": "pass_learning_loop",
+      "reason": "The Company Brain and probe history should be used to improve decisions without using real customer data."
+    },
+    {
+      "agent": "HR / Agent Manager",
+      "vote": "pass_agent_coverage",
+      "reason": "Agent coverage is enough for test work; future agent creation should remain controlled by governance rules."
+    }
+  ],
+  "closed_for_current_scope": [
+    "authenticated_sandbox_api_journey",
+    "machine_readable_score_request_path",
+    "machine_readable_target_discovery_request_path",
+    "target_discovery_price_consistency_eur_249",
+    "ledger_safe_sandbox_usage_tests",
+    "no_payment_no_invoice_no_real_data_guardrails",
+    "core_public_machine_discovery_docs_alignment"
+  ],
+  "still_blocked": [
+    "paid_beta_launch",
+    "commercial_go_live",
+    "real_payments",
+    "payment_method_collection",
+    "invoices_or_fiscal_documents",
+    "real_customer_data",
+    "personal_data",
+    "production_api_key_distribution_to_external_users",
+    "external_outreach_or_email_campaigns",
+    "public_marketplace_listing_with_paid_plans",
+    "hosted_public_mcp_launch",
+    "mcp_registry_submission",
+    "automated_external_contact_with_real_companies_or_people"
+  ],
+  "remaining_gates_before_paid_beta": [
+    "owner_approval_of_paid_beta_decision_packet",
+    "fiscal_admin_decision_piva_invoicing_payment_reconciliation",
+    "legal_review_terms_privacy_dpa_liability_retention_acceptable_use",
+    "data_policy_for_data_acceptance_storage_enrichment_return",
+    "payment_safety_live_payments_disabled_until_owner_decision",
+    "support_policy_refunds_incidents_paid_support",
+    "production_key_policy_limits_revocation_abuse_customer_isolation",
+    "cost_guard_write_limits_and_paid_provider_spend_limits"
+  ],
+  "recommended_next_step": "create_paid_beta_owner_checklist"
+}
