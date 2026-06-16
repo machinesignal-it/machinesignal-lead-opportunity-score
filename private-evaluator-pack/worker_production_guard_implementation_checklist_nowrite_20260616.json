@@ -1,0 +1,250 @@
+{
+  "service": "MachineSignal",
+  "artifact": "worker_production_guard_implementation_checklist_nowrite",
+  "date": "2026-06-16",
+  "status": "implementation_checklist_only",
+  "code_change_status": "no_worker_code_changed_by_this_artifact",
+  "primary_customer_interface": "machine",
+  "technical_sandbox": "closed_for_current_scope",
+  "worker_implementation": "checklist_only",
+  "production_api_keys": "blocked",
+  "paid_beta": "not_approved",
+  "commercial_go_live": "no_go",
+  "default_safe_rule": "If a request implies production access, money, invoices, personal data, real customer data, external outreach or public marketplace activation, return a machine-readable blocked state unless owner approval and all gates are present.",
+  "guard_object_defaults": {
+    "production_access": {
+      "enabled": false,
+      "owner_approved": false,
+      "production_keys_enabled": false,
+      "paid_beta_enabled": false,
+      "real_payments_enabled": false,
+      "invoices_enabled": false,
+      "personal_data_enabled": false,
+      "real_customer_data_enabled": false,
+      "external_outreach_enabled": false,
+      "marketplace_publication_enabled": false,
+      "hosted_public_mcp_enabled": false,
+      "registry_submission_enabled": false
+    }
+  },
+  "key_classes": [
+    {
+      "prefix": "ms_sbx_",
+      "key_class": "sandbox_customer_key",
+      "allowed_now": true
+    },
+    {
+      "prefix": "ms_live_",
+      "key_class": "production_customer_key",
+      "allowed_now": false
+    },
+    {
+      "prefix": "ms_admin_",
+      "key_class": "admin_key",
+      "allowed_now": false
+    },
+    {
+      "prefix": "ms_wh_test_",
+      "key_class": "test_webhook_signature",
+      "allowed_now": true
+    }
+  ],
+  "guarded_actions": [
+    {
+      "action": "issue_production_api_key",
+      "default_state": "blocked",
+      "support_code": "MS_PRODUCTION_KEY_BLOCKED"
+    },
+    {
+      "action": "activate_production_customer",
+      "default_state": "blocked",
+      "support_code": "MS_PRODUCTION_ACCESS_BLOCKED"
+    },
+    {
+      "action": "execute_live_payment",
+      "default_state": "blocked",
+      "support_code": "MS_PAYMENT_BLOCKED"
+    },
+    {
+      "action": "collect_payment_method",
+      "default_state": "blocked",
+      "support_code": "MS_PAYMENT_METHOD_BLOCKED"
+    },
+    {
+      "action": "issue_invoice",
+      "default_state": "blocked",
+      "support_code": "MS_INVOICE_BLOCKED"
+    },
+    {
+      "action": "process_real_customer_data",
+      "default_state": "blocked",
+      "support_code": "MS_REAL_DATA_BLOCKED"
+    },
+    {
+      "action": "process_personal_data",
+      "default_state": "blocked",
+      "support_code": "MS_PERSONAL_DATA_BLOCKED"
+    },
+    {
+      "action": "contact_external_company_or_person",
+      "default_state": "blocked",
+      "support_code": "MS_EXTERNAL_CONTACT_BLOCKED"
+    },
+    {
+      "action": "publish_marketplace_listing",
+      "default_state": "blocked",
+      "support_code": "MS_MARKETPLACE_BLOCKED"
+    },
+    {
+      "action": "launch_hosted_public_mcp",
+      "default_state": "blocked",
+      "support_code": "MS_HOSTED_MCP_BLOCKED"
+    },
+    {
+      "action": "submit_mcp_registry",
+      "default_state": "blocked",
+      "support_code": "MS_REGISTRY_BLOCKED"
+    },
+    {
+      "action": "exceed_cost_cap",
+      "default_state": "blocked",
+      "support_code": "MS_COST_CAP_BLOCKED"
+    },
+    {
+      "action": "kill_switch_active",
+      "default_state": "paused",
+      "support_code": "MS_KILL_SWITCH_ACTIVE"
+    }
+  ],
+  "cost_cap_fields": [
+    "per_key_daily_request_cap",
+    "per_key_monthly_request_cap",
+    "per_key_credit_cap",
+    "global_daily_write_cap",
+    "global_monthly_spend_cap_eur",
+    "provider_daily_spend_cap_eur",
+    "cloudflare_kv_daily_write_cap",
+    "alert_threshold_pct",
+    "hard_stop_threshold_pct"
+  ],
+  "kill_switch_fields": [
+    "active",
+    "reason",
+    "activated_at",
+    "activated_by",
+    "reactivation_requires_owner_review"
+  ],
+  "required_support_codes": [
+    "MS_SUPPORT_OK",
+    "MS_SUPPORT_INVALID_SCHEMA",
+    "MS_SUPPORT_DUPLICATE_REQUEST",
+    "MS_SUPPORT_INSUFFICIENT_CREDITS",
+    "MS_SUPPORT_SANDBOX_LIMIT",
+    "MS_SUPPORT_OUTPUT_NOT_VALID",
+    "MS_SUPPORT_GATE_FAILED",
+    "MS_PRODUCTION_KEY_BLOCKED",
+    "MS_COST_CAP_BLOCKED",
+    "MS_PAYMENT_BLOCKED",
+    "MS_INVOICE_BLOCKED",
+    "MS_REAL_DATA_BLOCKED",
+    "MS_PERSONAL_DATA_BLOCKED",
+    "MS_EXTERNAL_CONTACT_BLOCKED",
+    "MS_KILL_SWITCH_ACTIVE",
+    "MS_SUPPORT_OWNER_REVIEW_REQUIRED",
+    "MS_SUPPORT_SECURITY_REVIEW_REQUIRED"
+  ],
+  "required_blocked_response_fields": [
+    "status",
+    "support_code",
+    "severity",
+    "owner_escalation_required",
+    "credit_delta",
+    "production_key_active",
+    "real_payment_executed",
+    "invoice_issued",
+    "external_contact_executed",
+    "next_allowed_actions"
+  ],
+  "required_invariants": [
+    "blocked_responses_never_consume_new_paid_credits",
+    "blocked_payment_invoice_contact_responses_report_false",
+    "production_access_blocked_responses_are_machine_readable",
+    "blocked_responses_do_not_reveal_secrets"
+  ],
+  "audit_fields": [
+    "timestamp",
+    "customer_id",
+    "key_class",
+    "product_code",
+    "request_id",
+    "decision",
+    "support_code",
+    "credit_delta",
+    "cost_estimate",
+    "cap_state",
+    "owner_escalation_required",
+    "redacted_reason"
+  ],
+  "audit_forbidden_fields": [
+    "full_api_key",
+    "password",
+    "payment_card_data",
+    "full_personal_payload",
+    "real_customer_datasets",
+    "provider_log_secrets"
+  ],
+  "endpoint_impact_map": [
+    {
+      "endpoint_family": "/v1/sandbox/*",
+      "required_guard": "sandbox_limits_no_real_payment_no_outreach"
+    },
+    {
+      "endpoint_family": "/v1/score",
+      "required_guard": "key_class_credits_cost_cap_no_personal_data"
+    },
+    {
+      "endpoint_family": "/v1/purchase-intent",
+      "required_guard": "product_gate_credits_payment_blocked_cost_cap"
+    },
+    {
+      "endpoint_family": "/v1/payment-test/*",
+      "required_guard": "test_only_payment_mode_no_fiscal_invoice"
+    },
+    {
+      "endpoint_family": "/v1/orders*",
+      "required_guard": "key_class_customer_scope_redacted_output"
+    },
+    {
+      "endpoint_family": "/v1/usage",
+      "required_guard": "key_class_customer_scope_no_secret_leakage"
+    },
+    {
+      "endpoint_family": "/v1/admin/*",
+      "required_guard": "admin_key_only_redacted_audit"
+    },
+    {
+      "endpoint_family": "public_docs_endpoints",
+      "required_guard": "no_secrets_no_claim_paid_beta_live"
+    }
+  ],
+  "before_implementation_confirmations": [
+    "support_codes_are_final_enough",
+    "owner_wants_code_changes_now",
+    "no_live_payment_code_will_be_added",
+    "no_real_production_key_will_be_created",
+    "tests_remain_synthetic_sandbox_only"
+  ],
+  "after_implementation_tests": [
+    "production_key_blocked_by_default",
+    "payment_blocked_by_default",
+    "invoice_blocked_by_default",
+    "personal_data_blocked_by_default",
+    "external_contact_blocked_by_default",
+    "cost_cap_block_returns_MS_COST_CAP_BLOCKED",
+    "kill_switch_returns_MS_KILL_SWITCH_ACTIVE",
+    "blocked_actions_consume_no_credit",
+    "audit_records_are_redacted",
+    "sandbox_path_still_works"
+  ],
+  "recommended_next_step": "run_no_write_checklist_probe_then_prepare_small_worker_patch_plan"
+}

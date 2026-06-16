@@ -1,0 +1,509 @@
+﻿{
+    "probe":  "worker_production_guard_implementation_checklist_nowrite_probe",
+    "date":  "2026-06-16",
+    "status":  "passed",
+    "checks_total":  100,
+    "checks_failed":  0,
+    "checks":  [
+                   {
+                       "name":  "Artifact is checklist only",
+                       "passed":  true,
+                       "detail":  "implementation_checklist_only"
+                   },
+                   {
+                       "name":  "No Worker code changed by artifact",
+                       "passed":  true,
+                       "detail":  "no_worker_code_changed_by_this_artifact"
+                   },
+                   {
+                       "name":  "Production API keys blocked",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Paid beta not approved",
+                       "passed":  true,
+                       "detail":  "not_approved"
+                   },
+                   {
+                       "name":  "Commercial go-live no-go",
+                       "passed":  true,
+                       "detail":  "no_go"
+                   },
+                   {
+                       "name":  "Guard default false: enabled",
+                       "passed":  true,
+                       "detail":  "enabled=false"
+                   },
+                   {
+                       "name":  "Guard default false: owner_approved",
+                       "passed":  true,
+                       "detail":  "owner_approved=false"
+                   },
+                   {
+                       "name":  "Guard default false: production_keys_enabled",
+                       "passed":  true,
+                       "detail":  "production_keys_enabled=false"
+                   },
+                   {
+                       "name":  "Guard default false: paid_beta_enabled",
+                       "passed":  true,
+                       "detail":  "paid_beta_enabled=false"
+                   },
+                   {
+                       "name":  "Guard default false: real_payments_enabled",
+                       "passed":  true,
+                       "detail":  "real_payments_enabled=false"
+                   },
+                   {
+                       "name":  "Guard default false: invoices_enabled",
+                       "passed":  true,
+                       "detail":  "invoices_enabled=false"
+                   },
+                   {
+                       "name":  "Guard default false: personal_data_enabled",
+                       "passed":  true,
+                       "detail":  "personal_data_enabled=false"
+                   },
+                   {
+                       "name":  "Guard default false: real_customer_data_enabled",
+                       "passed":  true,
+                       "detail":  "real_customer_data_enabled=false"
+                   },
+                   {
+                       "name":  "Guard default false: external_outreach_enabled",
+                       "passed":  true,
+                       "detail":  "external_outreach_enabled=false"
+                   },
+                   {
+                       "name":  "Guard default false: marketplace_publication_enabled",
+                       "passed":  true,
+                       "detail":  "marketplace_publication_enabled=false"
+                   },
+                   {
+                       "name":  "Guard default false: hosted_public_mcp_enabled",
+                       "passed":  true,
+                       "detail":  "hosted_public_mcp_enabled=false"
+                   },
+                   {
+                       "name":  "Guard default false: registry_submission_enabled",
+                       "passed":  true,
+                       "detail":  "registry_submission_enabled=false"
+                   },
+                   {
+                       "name":  "Key prefix present: ms_sbx_",
+                       "passed":  true,
+                       "detail":  "ms_sbx_"
+                   },
+                   {
+                       "name":  "Key prefix present: ms_live_",
+                       "passed":  true,
+                       "detail":  "ms_live_"
+                   },
+                   {
+                       "name":  "Key prefix present: ms_admin_",
+                       "passed":  true,
+                       "detail":  "ms_admin_"
+                   },
+                   {
+                       "name":  "Key prefix present: ms_wh_test_",
+                       "passed":  true,
+                       "detail":  "ms_wh_test_"
+                   },
+                   {
+                       "name":  "Live key not allowed now",
+                       "passed":  true,
+                       "detail":  "ms_live_ allowed_now=false"
+                   },
+                   {
+                       "name":  "Guarded action present: issue_production_api_key",
+                       "passed":  true,
+                       "detail":  "issue_production_api_key"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: issue_production_api_key",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: activate_production_customer",
+                       "passed":  true,
+                       "detail":  "activate_production_customer"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: activate_production_customer",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: execute_live_payment",
+                       "passed":  true,
+                       "detail":  "execute_live_payment"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: execute_live_payment",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: collect_payment_method",
+                       "passed":  true,
+                       "detail":  "collect_payment_method"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: collect_payment_method",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: issue_invoice",
+                       "passed":  true,
+                       "detail":  "issue_invoice"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: issue_invoice",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: process_real_customer_data",
+                       "passed":  true,
+                       "detail":  "process_real_customer_data"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: process_real_customer_data",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: process_personal_data",
+                       "passed":  true,
+                       "detail":  "process_personal_data"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: process_personal_data",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: contact_external_company_or_person",
+                       "passed":  true,
+                       "detail":  "contact_external_company_or_person"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: contact_external_company_or_person",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: publish_marketplace_listing",
+                       "passed":  true,
+                       "detail":  "publish_marketplace_listing"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: publish_marketplace_listing",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: launch_hosted_public_mcp",
+                       "passed":  true,
+                       "detail":  "launch_hosted_public_mcp"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: launch_hosted_public_mcp",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: submit_mcp_registry",
+                       "passed":  true,
+                       "detail":  "submit_mcp_registry"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: submit_mcp_registry",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: exceed_cost_cap",
+                       "passed":  true,
+                       "detail":  "exceed_cost_cap"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: exceed_cost_cap",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Guarded action present: kill_switch_active",
+                       "passed":  true,
+                       "detail":  "kill_switch_active"
+                   },
+                   {
+                       "name":  "Guarded action not allowed by default: kill_switch_active",
+                       "passed":  true,
+                       "detail":  "paused"
+                   },
+                   {
+                       "name":  "Support code present: MS_PRODUCTION_KEY_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_PRODUCTION_KEY_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_COST_CAP_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_COST_CAP_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_PAYMENT_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_PAYMENT_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_INVOICE_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_INVOICE_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_REAL_DATA_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_REAL_DATA_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_PERSONAL_DATA_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_PERSONAL_DATA_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_EXTERNAL_CONTACT_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_EXTERNAL_CONTACT_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_KILL_SWITCH_ACTIVE",
+                       "passed":  true,
+                       "detail":  "MS_KILL_SWITCH_ACTIVE"
+                   },
+                   {
+                       "name":  "Support code present: MS_SUPPORT_OWNER_REVIEW_REQUIRED",
+                       "passed":  true,
+                       "detail":  "MS_SUPPORT_OWNER_REVIEW_REQUIRED"
+                   },
+                   {
+                       "name":  "Support code present: MS_SUPPORT_SECURITY_REVIEW_REQUIRED",
+                       "passed":  true,
+                       "detail":  "MS_SUPPORT_SECURITY_REVIEW_REQUIRED"
+                   },
+                   {
+                       "name":  "Blocked response field present: status",
+                       "passed":  true,
+                       "detail":  "status"
+                   },
+                   {
+                       "name":  "Blocked response field present: support_code",
+                       "passed":  true,
+                       "detail":  "support_code"
+                   },
+                   {
+                       "name":  "Blocked response field present: owner_escalation_required",
+                       "passed":  true,
+                       "detail":  "owner_escalation_required"
+                   },
+                   {
+                       "name":  "Blocked response field present: credit_delta",
+                       "passed":  true,
+                       "detail":  "credit_delta"
+                   },
+                   {
+                       "name":  "Blocked response field present: production_key_active",
+                       "passed":  true,
+                       "detail":  "production_key_active"
+                   },
+                   {
+                       "name":  "Blocked response field present: real_payment_executed",
+                       "passed":  true,
+                       "detail":  "real_payment_executed"
+                   },
+                   {
+                       "name":  "Blocked response field present: invoice_issued",
+                       "passed":  true,
+                       "detail":  "invoice_issued"
+                   },
+                   {
+                       "name":  "Blocked response field present: external_contact_executed",
+                       "passed":  true,
+                       "detail":  "external_contact_executed"
+                   },
+                   {
+                       "name":  "Blocked response field present: next_allowed_actions",
+                       "passed":  true,
+                       "detail":  "next_allowed_actions"
+                   },
+                   {
+                       "name":  "Invariant present: blocked_responses_never_consume_new_paid_credits",
+                       "passed":  true,
+                       "detail":  "blocked_responses_never_consume_new_paid_credits"
+                   },
+                   {
+                       "name":  "Invariant present: blocked_payment_invoice_contact_responses_report_false",
+                       "passed":  true,
+                       "detail":  "blocked_payment_invoice_contact_responses_report_false"
+                   },
+                   {
+                       "name":  "Invariant present: production_access_blocked_responses_are_machine_readable",
+                       "passed":  true,
+                       "detail":  "production_access_blocked_responses_are_machine_readable"
+                   },
+                   {
+                       "name":  "Invariant present: blocked_responses_do_not_reveal_secrets",
+                       "passed":  true,
+                       "detail":  "blocked_responses_do_not_reveal_secrets"
+                   },
+                   {
+                       "name":  "Forbidden audit field present: full_api_key",
+                       "passed":  true,
+                       "detail":  "full_api_key"
+                   },
+                   {
+                       "name":  "Forbidden audit field present: password",
+                       "passed":  true,
+                       "detail":  "password"
+                   },
+                   {
+                       "name":  "Forbidden audit field present: payment_card_data",
+                       "passed":  true,
+                       "detail":  "payment_card_data"
+                   },
+                   {
+                       "name":  "Forbidden audit field present: full_personal_payload",
+                       "passed":  true,
+                       "detail":  "full_personal_payload"
+                   },
+                   {
+                       "name":  "Forbidden audit field present: real_customer_datasets",
+                       "passed":  true,
+                       "detail":  "real_customer_datasets"
+                   },
+                   {
+                       "name":  "Forbidden audit field present: provider_log_secrets",
+                       "passed":  true,
+                       "detail":  "provider_log_secrets"
+                   },
+                   {
+                       "name":  "Endpoint impact present: /v1/sandbox/*",
+                       "passed":  true,
+                       "detail":  "/v1/sandbox/*"
+                   },
+                   {
+                       "name":  "Endpoint impact present: /v1/score",
+                       "passed":  true,
+                       "detail":  "/v1/score"
+                   },
+                   {
+                       "name":  "Endpoint impact present: /v1/purchase-intent",
+                       "passed":  true,
+                       "detail":  "/v1/purchase-intent"
+                   },
+                   {
+                       "name":  "Endpoint impact present: /v1/payment-test/*",
+                       "passed":  true,
+                       "detail":  "/v1/payment-test/*"
+                   },
+                   {
+                       "name":  "Endpoint impact present: /v1/orders*",
+                       "passed":  true,
+                       "detail":  "/v1/orders*"
+                   },
+                   {
+                       "name":  "Endpoint impact present: /v1/usage",
+                       "passed":  true,
+                       "detail":  "/v1/usage"
+                   },
+                   {
+                       "name":  "Endpoint impact present: /v1/admin/*",
+                       "passed":  true,
+                       "detail":  "/v1/admin/*"
+                   },
+                   {
+                       "name":  "Endpoint impact present: public_docs_endpoints",
+                       "passed":  true,
+                       "detail":  "public_docs_endpoints"
+                   },
+                   {
+                       "name":  "After-implementation test present: production_key_blocked_by_default",
+                       "passed":  true,
+                       "detail":  "production_key_blocked_by_default"
+                   },
+                   {
+                       "name":  "After-implementation test present: payment_blocked_by_default",
+                       "passed":  true,
+                       "detail":  "payment_blocked_by_default"
+                   },
+                   {
+                       "name":  "After-implementation test present: invoice_blocked_by_default",
+                       "passed":  true,
+                       "detail":  "invoice_blocked_by_default"
+                   },
+                   {
+                       "name":  "After-implementation test present: personal_data_blocked_by_default",
+                       "passed":  true,
+                       "detail":  "personal_data_blocked_by_default"
+                   },
+                   {
+                       "name":  "After-implementation test present: external_contact_blocked_by_default",
+                       "passed":  true,
+                       "detail":  "external_contact_blocked_by_default"
+                   },
+                   {
+                       "name":  "After-implementation test present: cost_cap_block_returns_MS_COST_CAP_BLOCKED",
+                       "passed":  true,
+                       "detail":  "cost_cap_block_returns_MS_COST_CAP_BLOCKED"
+                   },
+                   {
+                       "name":  "After-implementation test present: kill_switch_returns_MS_KILL_SWITCH_ACTIVE",
+                       "passed":  true,
+                       "detail":  "kill_switch_returns_MS_KILL_SWITCH_ACTIVE"
+                   },
+                   {
+                       "name":  "After-implementation test present: blocked_actions_consume_no_credit",
+                       "passed":  true,
+                       "detail":  "blocked_actions_consume_no_credit"
+                   },
+                   {
+                       "name":  "After-implementation test present: audit_records_are_redacted",
+                       "passed":  true,
+                       "detail":  "audit_records_are_redacted"
+                   },
+                   {
+                       "name":  "After-implementation test present: sandbox_path_still_works",
+                       "passed":  true,
+                       "detail":  "sandbox_path_still_works"
+                   },
+                   {
+                       "name":  "Markdown says no Worker code changed",
+                       "passed":  true,
+                       "detail":  "markdown no-write"
+                   },
+                   {
+                       "name":  "Markdown states production API keys blocked",
+                       "passed":  true,
+                       "detail":  "markdown verdict"
+                   },
+                   {
+                       "name":  "Markdown states paid beta not approved",
+                       "passed":  true,
+                       "detail":  "markdown verdict"
+                   },
+                   {
+                       "name":  "Markdown states go-live no-go",
+                       "passed":  true,
+                       "detail":  "markdown verdict"
+                   },
+                   {
+                       "name":  "Markdown includes kill switch code",
+                       "passed":  true,
+                       "detail":  "markdown kill switch"
+                   }
+               ]
+}
