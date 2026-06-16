@@ -1,0 +1,269 @@
+﻿{
+    "probe":  "worker_production_guard_helpers_patch_probe",
+    "date":  "2026-06-16",
+    "status":  "passed",
+    "checks_total":  52,
+    "checks_failed":  0,
+    "checks":  [
+                   {
+                       "name":  "Core symbol present: DEFAULT_PRODUCTION_ACCESS_GUARD",
+                       "passed":  true,
+                       "detail":  "DEFAULT_PRODUCTION_ACCESS_GUARD"
+                   },
+                   {
+                       "name":  "Core symbol present: SUPPORT_CODES",
+                       "passed":  true,
+                       "detail":  "SUPPORT_CODES"
+                   },
+                   {
+                       "name":  "Core symbol present: function classifyApiKey",
+                       "passed":  true,
+                       "detail":  "function classifyApiKey"
+                   },
+                   {
+                       "name":  "Core symbol present: function buildBlockedGuardResponse",
+                       "passed":  true,
+                       "detail":  "function buildBlockedGuardResponse"
+                   },
+                   {
+                       "name":  "Core symbol present: function buildProductionKeyBlockedResponse",
+                       "passed":  true,
+                       "detail":  "function buildProductionKeyBlockedResponse"
+                   },
+                   {
+                       "name":  "Core symbol present: function buildKillSwitchResponse",
+                       "passed":  true,
+                       "detail":  "function buildKillSwitchResponse"
+                   },
+                   {
+                       "name":  "Core symbol present: productionGuardInternals",
+                       "passed":  true,
+                       "detail":  "productionGuardInternals"
+                   },
+                   {
+                       "name":  "Production guard default false: production_keys_enabled: false",
+                       "passed":  true,
+                       "detail":  "production_keys_enabled: false"
+                   },
+                   {
+                       "name":  "Production guard default false: paid_beta_enabled: false",
+                       "passed":  true,
+                       "detail":  "paid_beta_enabled: false"
+                   },
+                   {
+                       "name":  "Production guard default false: real_payments_enabled: false",
+                       "passed":  true,
+                       "detail":  "real_payments_enabled: false"
+                   },
+                   {
+                       "name":  "Production guard default false: invoices_enabled: false",
+                       "passed":  true,
+                       "detail":  "invoices_enabled: false"
+                   },
+                   {
+                       "name":  "Production guard default false: personal_data_enabled: false",
+                       "passed":  true,
+                       "detail":  "personal_data_enabled: false"
+                   },
+                   {
+                       "name":  "Production guard default false: real_customer_data_enabled: false",
+                       "passed":  true,
+                       "detail":  "real_customer_data_enabled: false"
+                   },
+                   {
+                       "name":  "Production guard default false: external_outreach_enabled: false",
+                       "passed":  true,
+                       "detail":  "external_outreach_enabled: false"
+                   },
+                   {
+                       "name":  "Production guard default false: marketplace_publication_enabled: false",
+                       "passed":  true,
+                       "detail":  "marketplace_publication_enabled: false"
+                   },
+                   {
+                       "name":  "Production guard default false: hosted_public_mcp_enabled: false",
+                       "passed":  true,
+                       "detail":  "hosted_public_mcp_enabled: false"
+                   },
+                   {
+                       "name":  "Production guard default false: registry_submission_enabled: false",
+                       "passed":  true,
+                       "detail":  "registry_submission_enabled: false"
+                   },
+                   {
+                       "name":  "Support code present: MS_PRODUCTION_KEY_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_PRODUCTION_KEY_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_PRODUCTION_ACCESS_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_PRODUCTION_ACCESS_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_COST_CAP_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_COST_CAP_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_PAYMENT_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_PAYMENT_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_PAYMENT_METHOD_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_PAYMENT_METHOD_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_INVOICE_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_INVOICE_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_REAL_DATA_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_REAL_DATA_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_PERSONAL_DATA_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_PERSONAL_DATA_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_EXTERNAL_CONTACT_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_EXTERNAL_CONTACT_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_MARKETPLACE_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_MARKETPLACE_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_HOSTED_MCP_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_HOSTED_MCP_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_REGISTRY_BLOCKED",
+                       "passed":  true,
+                       "detail":  "MS_REGISTRY_BLOCKED"
+                   },
+                   {
+                       "name":  "Support code present: MS_KILL_SWITCH_ACTIVE",
+                       "passed":  true,
+                       "detail":  "MS_KILL_SWITCH_ACTIVE"
+                   },
+                   {
+                       "name":  "Blocked response field present: credit_delta: 0",
+                       "passed":  true,
+                       "detail":  "credit_delta: 0"
+                   },
+                   {
+                       "name":  "Blocked response field present: production_key_active: false",
+                       "passed":  true,
+                       "detail":  "production_key_active: false"
+                   },
+                   {
+                       "name":  "Blocked response field present: credit_consumption_enabled: false",
+                       "passed":  true,
+                       "detail":  "credit_consumption_enabled: false"
+                   },
+                   {
+                       "name":  "Blocked response field present: real_payment_executed: false",
+                       "passed":  true,
+                       "detail":  "real_payment_executed: false"
+                   },
+                   {
+                       "name":  "Blocked response field present: invoice_issued: false",
+                       "passed":  true,
+                       "detail":  "invoice_issued: false"
+                   },
+                   {
+                       "name":  "Blocked response field present: external_contact_executed: false",
+                       "passed":  true,
+                       "detail":  "external_contact_executed: false"
+                   },
+                   {
+                       "name":  "Test assertion snippet present: productionGuardInternals",
+                       "passed":  true,
+                       "detail":  "productionGuardInternals"
+                   },
+                   {
+                       "name":  "Test assertion snippet present: Production guard default must remain false",
+                       "passed":  true,
+                       "detail":  "Production guard default must remain false"
+                   },
+                   {
+                       "name":  "Test assertion snippet present: ms_sbx_example",
+                       "passed":  true,
+                       "detail":  "ms_sbx_example"
+                   },
+                   {
+                       "name":  "Test assertion snippet present: ms_live_example",
+                       "passed":  true,
+                       "detail":  "ms_live_example"
+                   },
+                   {
+                       "name":  "Test assertion snippet present: buildProductionKeyBlockedResponse",
+                       "passed":  true,
+                       "detail":  "buildProductionKeyBlockedResponse"
+                   },
+                   {
+                       "name":  "Test assertion snippet present: buildKillSwitchResponse",
+                       "passed":  true,
+                       "detail":  "buildKillSwitchResponse"
+                   },
+                   {
+                       "name":  "Test assertion snippet present: blocked_production_key",
+                       "passed":  true,
+                       "detail":  "blocked_production_key"
+                   },
+                   {
+                       "name":  "Test assertion snippet present: paused_kill_switch",
+                       "passed":  true,
+                       "detail":  "paused_kill_switch"
+                   },
+                   {
+                       "name":  "Forbidden enabled flag absent: real_payments_enabled: true",
+                       "passed":  true,
+                       "detail":  "real_payments_enabled: true"
+                   },
+                   {
+                       "name":  "Forbidden enabled flag absent: invoices_enabled: true",
+                       "passed":  true,
+                       "detail":  "invoices_enabled: true"
+                   },
+                   {
+                       "name":  "Forbidden enabled flag absent: personal_data_enabled: true",
+                       "passed":  true,
+                       "detail":  "personal_data_enabled: true"
+                   },
+                   {
+                       "name":  "Forbidden enabled flag absent: real_customer_data_enabled: true",
+                       "passed":  true,
+                       "detail":  "real_customer_data_enabled: true"
+                   },
+                   {
+                       "name":  "Forbidden enabled flag absent: external_outreach_enabled: true",
+                       "passed":  true,
+                       "detail":  "external_outreach_enabled: true"
+                   },
+                   {
+                       "name":  "Forbidden enabled flag absent: marketplace_publication_enabled: true",
+                       "passed":  true,
+                       "detail":  "marketplace_publication_enabled: true"
+                   },
+                   {
+                       "name":  "Forbidden enabled flag absent: hosted_public_mcp_enabled: true",
+                       "passed":  true,
+                       "detail":  "hosted_public_mcp_enabled: true"
+                   },
+                   {
+                       "name":  "Forbidden enabled flag absent: registry_submission_enabled: true",
+                       "passed":  true,
+                       "detail":  "registry_submission_enabled: true"
+                   }
+               ]
+}

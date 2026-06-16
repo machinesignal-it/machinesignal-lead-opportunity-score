@@ -1,11 +1,59 @@
 import assert from "node:assert/strict";
-import { handleRequest, scoreLeadOpportunity } from "./core.mjs";
+import { handleRequest, productionGuardInternals, scoreLeadOpportunity } from "./core.mjs";
 
 const sample = {
   domain: "clinic3.it",
   sector_hint: "dentist",
   country_hint: "IT"
 };
+
+for (const [key, value] of Object.entries(
+  productionGuardInternals.DEFAULT_PRODUCTION_ACCESS_GUARD
+)) {
+  assert.equal(value, false, `Production guard default must remain false: ${key}`);
+}
+
+assert.equal(productionGuardInternals.classifyApiKey("ms_sbx_example"), "sandbox_customer_key");
+assert.equal(productionGuardInternals.classifyApiKey("ms_live_example"), "production_customer_key");
+assert.equal(productionGuardInternals.classifyApiKey("ms_admin_example"), "admin_key");
+assert.equal(
+  productionGuardInternals.classifyApiKey("ms_wh_test_example"),
+  "test_webhook_signature"
+);
+assert.equal(productionGuardInternals.classifyApiKey("unknown_example"), "unknown");
+
+const productionKeyBlocked = productionGuardInternals.buildProductionKeyBlockedResponse();
+assert.equal(productionKeyBlocked.status, "blocked_production_key");
+assert.equal(
+  productionKeyBlocked.support_code,
+  productionGuardInternals.SUPPORT_CODES.PRODUCTION_KEY_BLOCKED
+);
+assert.equal(productionKeyBlocked.owner_escalation_required, true);
+assert.equal(productionKeyBlocked.credit_delta, 0);
+assert.equal(productionKeyBlocked.production_key_active, false);
+assert.equal(productionKeyBlocked.credit_consumption_enabled, false);
+assert.equal(productionKeyBlocked.real_payment_executed, false);
+assert.equal(productionKeyBlocked.invoice_issued, false);
+assert.equal(productionKeyBlocked.external_contact_executed, false);
+assert.deepEqual(productionKeyBlocked.next_allowed_actions, [
+  "continue_sandbox",
+  "review_owner_checklist"
+]);
+
+const killSwitchBlocked = productionGuardInternals.buildKillSwitchResponse();
+assert.equal(killSwitchBlocked.status, "paused_kill_switch");
+assert.equal(
+  killSwitchBlocked.support_code,
+  productionGuardInternals.SUPPORT_CODES.KILL_SWITCH_ACTIVE
+);
+assert.equal(killSwitchBlocked.severity, "critical");
+assert.equal(killSwitchBlocked.owner_escalation_required, true);
+assert.equal(killSwitchBlocked.credit_delta, 0);
+assert.equal(killSwitchBlocked.production_key_active, false);
+assert.equal(killSwitchBlocked.credit_consumption_enabled, false);
+assert.equal(killSwitchBlocked.real_payment_executed, false);
+assert.equal(killSwitchBlocked.invoice_issued, false);
+assert.equal(killSwitchBlocked.external_contact_executed, false);
 
 const score = scoreLeadOpportunity(sample);
 assert.equal(score.domain, "clinic3.it");

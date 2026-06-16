@@ -2,6 +2,104 @@ const DEFAULT_ALLOWED_ORIGIN = "*";
 const LEDGER_KV_BINDING = "MACHINESIGNAL_LEDGER_KV";
 const LEDGER_DO_BINDING = "MACHINESIGNAL_LEDGER_DO";
 
+const DEFAULT_PRODUCTION_ACCESS_GUARD = Object.freeze({
+  enabled: false,
+  owner_approved: false,
+  production_keys_enabled: false,
+  paid_beta_enabled: false,
+  real_payments_enabled: false,
+  invoices_enabled: false,
+  personal_data_enabled: false,
+  real_customer_data_enabled: false,
+  external_outreach_enabled: false,
+  marketplace_publication_enabled: false,
+  hosted_public_mcp_enabled: false,
+  registry_submission_enabled: false
+});
+
+const SUPPORT_CODES = Object.freeze({
+  OK: "MS_SUPPORT_OK",
+  INVALID_SCHEMA: "MS_SUPPORT_INVALID_SCHEMA",
+  DUPLICATE_REQUEST: "MS_SUPPORT_DUPLICATE_REQUEST",
+  INSUFFICIENT_CREDITS: "MS_SUPPORT_INSUFFICIENT_CREDITS",
+  SANDBOX_LIMIT: "MS_SUPPORT_SANDBOX_LIMIT",
+  OUTPUT_NOT_VALID: "MS_SUPPORT_OUTPUT_NOT_VALID",
+  GATE_FAILED: "MS_SUPPORT_GATE_FAILED",
+  PRODUCTION_KEY_BLOCKED: "MS_PRODUCTION_KEY_BLOCKED",
+  PRODUCTION_ACCESS_BLOCKED: "MS_PRODUCTION_ACCESS_BLOCKED",
+  COST_CAP_BLOCKED: "MS_COST_CAP_BLOCKED",
+  PAYMENT_BLOCKED: "MS_PAYMENT_BLOCKED",
+  PAYMENT_METHOD_BLOCKED: "MS_PAYMENT_METHOD_BLOCKED",
+  INVOICE_BLOCKED: "MS_INVOICE_BLOCKED",
+  REAL_DATA_BLOCKED: "MS_REAL_DATA_BLOCKED",
+  PERSONAL_DATA_BLOCKED: "MS_PERSONAL_DATA_BLOCKED",
+  EXTERNAL_CONTACT_BLOCKED: "MS_EXTERNAL_CONTACT_BLOCKED",
+  MARKETPLACE_BLOCKED: "MS_MARKETPLACE_BLOCKED",
+  HOSTED_MCP_BLOCKED: "MS_HOSTED_MCP_BLOCKED",
+  REGISTRY_BLOCKED: "MS_REGISTRY_BLOCKED",
+  KILL_SWITCH_ACTIVE: "MS_KILL_SWITCH_ACTIVE",
+  OWNER_REVIEW_REQUIRED: "MS_SUPPORT_OWNER_REVIEW_REQUIRED",
+  SECURITY_REVIEW_REQUIRED: "MS_SUPPORT_SECURITY_REVIEW_REQUIRED"
+});
+
+function classifyApiKey(apiKey = "") {
+  if (apiKey.startsWith("ms_sbx_")) return "sandbox_customer_key";
+  if (apiKey.startsWith("ms_live_")) return "production_customer_key";
+  if (apiKey.startsWith("ms_admin_")) return "admin_key";
+  if (apiKey.startsWith("ms_wh_test_")) return "test_webhook_signature";
+  return "unknown";
+}
+
+function buildBlockedGuardResponse({
+  status = "blocked_policy",
+  support_code,
+  severity = "medium",
+  owner_escalation_required = false,
+  next_allowed_actions = ["continue_sandbox", "request_owner_review"]
+}) {
+  return {
+    status,
+    support_code,
+    severity,
+    owner_escalation_required,
+    credit_delta: 0,
+    production_key_active: false,
+    credit_consumption_enabled: false,
+    real_payment_executed: false,
+    invoice_issued: false,
+    external_contact_executed: false,
+    next_allowed_actions
+  };
+}
+
+function buildProductionKeyBlockedResponse() {
+  return buildBlockedGuardResponse({
+    status: "blocked_production_key",
+    support_code: SUPPORT_CODES.PRODUCTION_KEY_BLOCKED,
+    owner_escalation_required: true,
+    next_allowed_actions: ["continue_sandbox", "review_owner_checklist"]
+  });
+}
+
+function buildKillSwitchResponse() {
+  return buildBlockedGuardResponse({
+    status: "paused_kill_switch",
+    support_code: SUPPORT_CODES.KILL_SWITCH_ACTIVE,
+    severity: "critical",
+    owner_escalation_required: true,
+    next_allowed_actions: ["read_status", "wait_for_owner_review"]
+  });
+}
+
+export const productionGuardInternals = Object.freeze({
+  DEFAULT_PRODUCTION_ACCESS_GUARD,
+  SUPPORT_CODES,
+  classifyApiKey,
+  buildBlockedGuardResponse,
+  buildProductionKeyBlockedResponse,
+  buildKillSwitchResponse
+});
+
 const DEFAULT_LEDGER_STATE = {
   customer_id: "demo_machine_customer_001",
   balances: {
