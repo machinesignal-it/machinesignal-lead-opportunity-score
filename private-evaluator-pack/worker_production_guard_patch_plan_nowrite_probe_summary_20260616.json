@@ -1,0 +1,254 @@
+﻿{
+    "probe":  "worker_production_guard_patch_plan_nowrite_probe",
+    "date":  "2026-06-16",
+    "status":  "passed",
+    "checks_total":  49,
+    "checks_failed":  0,
+    "checks":  [
+                   {
+                       "name":  "Artifact is patch plan only",
+                       "passed":  true,
+                       "detail":  "patch_plan_only"
+                   },
+                   {
+                       "name":  "No Worker code changed by artifact",
+                       "passed":  true,
+                       "detail":  "no_worker_code_changed_by_this_artifact"
+                   },
+                   {
+                       "name":  "No deploy",
+                       "passed":  true,
+                       "detail":  "no_deploy"
+                   },
+                   {
+                       "name":  "Production API keys blocked",
+                       "passed":  true,
+                       "detail":  "blocked"
+                   },
+                   {
+                       "name":  "Paid beta not approved",
+                       "passed":  true,
+                       "detail":  "not_approved"
+                   },
+                   {
+                       "name":  "Commercial go-live no-go",
+                       "passed":  true,
+                       "detail":  "no_go"
+                   },
+                   {
+                       "name":  "Relevant file present: api_endpoint_minimal/core.mjs",
+                       "passed":  true,
+                       "detail":  "api_endpoint_minimal/core.mjs"
+                   },
+                   {
+                       "name":  "Relevant file present: api_endpoint_minimal/test_api.mjs",
+                       "passed":  true,
+                       "detail":  "api_endpoint_minimal/test_api.mjs"
+                   },
+                   {
+                       "name":  "Relevant file present: api_endpoint_minimal/cloudflare_worker.mjs",
+                       "passed":  true,
+                       "detail":  "api_endpoint_minimal/cloudflare_worker.mjs"
+                   },
+                   {
+                       "name":  "Proposed code addition present: DEFAULT_PRODUCTION_ACCESS_GUARD",
+                       "passed":  true,
+                       "detail":  "DEFAULT_PRODUCTION_ACCESS_GUARD"
+                   },
+                   {
+                       "name":  "Proposed code addition present: SUPPORT_CODES",
+                       "passed":  true,
+                       "detail":  "SUPPORT_CODES"
+                   },
+                   {
+                       "name":  "Proposed code addition present: classifyApiKey",
+                       "passed":  true,
+                       "detail":  "classifyApiKey"
+                   },
+                   {
+                       "name":  "Proposed code addition present: buildBlockedGuardResponse",
+                       "passed":  true,
+                       "detail":  "buildBlockedGuardResponse"
+                   },
+                   {
+                       "name":  "Proposed code addition present: buildProductionKeyBlockedResponse",
+                       "passed":  true,
+                       "detail":  "buildProductionKeyBlockedResponse"
+                   },
+                   {
+                       "name":  "Proposed code addition present: buildKillSwitchResponse",
+                       "passed":  true,
+                       "detail":  "buildKillSwitchResponse"
+                   },
+                   {
+                       "name":  "Proposed test present: all_production_guard_defaults_are_false",
+                       "passed":  true,
+                       "detail":  "all_production_guard_defaults_are_false"
+                   },
+                   {
+                       "name":  "Proposed test present: sandbox_key_classification",
+                       "passed":  true,
+                       "detail":  "sandbox_key_classification"
+                   },
+                   {
+                       "name":  "Proposed test present: production_key_classification",
+                       "passed":  true,
+                       "detail":  "production_key_classification"
+                   },
+                   {
+                       "name":  "Proposed test present: production_key_blocked_response_contract",
+                       "passed":  true,
+                       "detail":  "production_key_blocked_response_contract"
+                   },
+                   {
+                       "name":  "Proposed test present: kill_switch_response_contract",
+                       "passed":  true,
+                       "detail":  "kill_switch_response_contract"
+                   },
+                   {
+                       "name":  "Proposed test present: sandbox_journey_no_regression",
+                       "passed":  true,
+                       "detail":  "sandbox_journey_no_regression"
+                   },
+                   {
+                       "name":  "Proposed test present: payment_test_still_reports_no_real_payment_or_invoice",
+                       "passed":  true,
+                       "detail":  "payment_test_still_reports_no_real_payment_or_invoice"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: live_payment_code",
+                       "passed":  true,
+                       "detail":  "live_payment_code"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: invoice_generation",
+                       "passed":  true,
+                       "detail":  "invoice_generation"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: real_production_key_generation",
+                       "passed":  true,
+                       "detail":  "real_production_key_generation"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: provider_calls",
+                       "passed":  true,
+                       "detail":  "provider_calls"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: real_customer_data_processing",
+                       "passed":  true,
+                       "detail":  "real_customer_data_processing"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: personal_data_processing",
+                       "passed":  true,
+                       "detail":  "personal_data_processing"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: marketplace_publication",
+                       "passed":  true,
+                       "detail":  "marketplace_publication"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: hosted_public_mcp_launch",
+                       "passed":  true,
+                       "detail":  "hosted_public_mcp_launch"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: registry_submission",
+                       "passed":  true,
+                       "detail":  "registry_submission"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: external_outreach_automation",
+                       "passed":  true,
+                       "detail":  "external_outreach_automation"
+                   },
+                   {
+                       "name":  "Out-of-scope item present: cloudflare_deploy",
+                       "passed":  true,
+                       "detail":  "cloudflare_deploy"
+                   },
+                   {
+                       "name":  "Low-risk scope is constants/helpers/tests only",
+                       "passed":  true,
+                       "detail":  "low"
+                   },
+                   {
+                       "name":  "High-risk combined auth/ledger/payment/admin change flagged",
+                       "passed":  true,
+                       "detail":  "high"
+                   },
+                   {
+                       "name":  "Validation requirement present: production_guard_defaults",
+                       "passed":  true,
+                       "detail":  "production_guard_defaults"
+                   },
+                   {
+                       "name":  "Validation requirement present: support_codes",
+                       "passed":  true,
+                       "detail":  "support_codes"
+                   },
+                   {
+                       "name":  "Validation requirement present: key_classification",
+                       "passed":  true,
+                       "detail":  "key_classification"
+                   },
+                   {
+                       "name":  "Validation requirement present: blocked_response_helper",
+                       "passed":  true,
+                       "detail":  "blocked_response_helper"
+                   },
+                   {
+                       "name":  "Validation requirement present: production_key_block_response",
+                       "passed":  true,
+                       "detail":  "production_key_block_response"
+                   },
+                   {
+                       "name":  "Validation requirement present: kill_switch_response",
+                       "passed":  true,
+                       "detail":  "kill_switch_response"
+                   },
+                   {
+                       "name":  "Validation requirement present: tests",
+                       "passed":  true,
+                       "detail":  "tests"
+                   },
+                   {
+                       "name":  "Validation requirement present: no_deploy",
+                       "passed":  true,
+                       "detail":  "no_deploy"
+                   },
+                   {
+                       "name":  "Validation requirement present: no_live_commercial_activation",
+                       "passed":  true,
+                       "detail":  "no_live_commercial_activation"
+                   },
+                   {
+                       "name":  "Markdown says no Worker patch happened",
+                       "passed":  true,
+                       "detail":  "markdown no patch"
+                   },
+                   {
+                       "name":  "Markdown says no deploy",
+                       "passed":  true,
+                       "detail":  "markdown no deploy"
+                   },
+                   {
+                       "name":  "Markdown states production keys blocked",
+                       "passed":  true,
+                       "detail":  "markdown blocks"
+                   },
+                   {
+                       "name":  "Markdown includes local test commands",
+                       "passed":  true,
+                       "detail":  "test command"
+                   },
+                   {
+                       "name":  "Markdown excludes live payment code",
+                       "passed":  true,
+                       "detail":  "out of scope"
+                   }
+               ]
+}

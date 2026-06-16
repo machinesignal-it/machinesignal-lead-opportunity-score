@@ -1,0 +1,94 @@
+{
+  "service": "MachineSignal",
+  "artifact": "worker_production_guard_patch_plan_nowrite",
+  "date": "2026-06-16",
+  "status": "patch_plan_only",
+  "code_change_status": "no_worker_code_changed_by_this_artifact",
+  "deploy_status": "no_deploy",
+  "production_api_keys": "blocked",
+  "paid_beta": "not_approved",
+  "commercial_go_live": "no_go",
+  "patch_scope": "Add constants and helper responses only. Do not enable production access.",
+  "relevant_files": [
+    {
+      "file": "api_endpoint_minimal/core.mjs",
+      "role": "Main API logic, OpenAPI docs, request handling and product logic",
+      "patch_impact": "primary_patch_target"
+    },
+    {
+      "file": "api_endpoint_minimal/test_api.mjs",
+      "role": "Main local API regression tests",
+      "patch_impact": "primary_test_target"
+    },
+    {
+      "file": "api_endpoint_minimal/test_durable_ledger.mjs",
+      "role": "Durable ledger tests",
+      "patch_impact": "likely_no_patch_needed"
+    },
+    {
+      "file": "api_endpoint_minimal/cloudflare_worker.mjs",
+      "role": "Thin Cloudflare wrapper around handleRequest",
+      "patch_impact": "no_patch_expected"
+    }
+  ],
+  "proposed_code_additions": [
+    "DEFAULT_PRODUCTION_ACCESS_GUARD",
+    "SUPPORT_CODES",
+    "classifyApiKey",
+    "buildBlockedGuardResponse",
+    "buildProductionKeyBlockedResponse",
+    "buildKillSwitchResponse",
+    "productionGuardInternals_optional_test_export"
+  ],
+  "proposed_test_additions": [
+    "all_production_guard_defaults_are_false",
+    "sandbox_key_classification",
+    "production_key_classification",
+    "production_key_blocked_response_contract",
+    "kill_switch_response_contract",
+    "sandbox_journey_no_regression",
+    "payment_test_still_reports_no_real_payment_or_invoice"
+  ],
+  "optional_second_patch": [
+    "GuardedBlockedResponse_openapi_schema",
+    "ProductionKeyBlockedResponse_openapi_schema",
+    "KillSwitchResponse_openapi_schema",
+    "support_code_enum_schema"
+  ],
+  "risk_assessment": {
+    "constants_helpers_tests_only": "low",
+    "wire_helpers_into_endpoints_immediately": "medium",
+    "change_auth_ledger_payment_admin_in_same_patch": "high"
+  },
+  "recommended_sequence": [
+    "add_constants_helpers_tests",
+    "run_local_tests",
+    "commit",
+    "later_wire_into_selected_endpoint_families_one_at_a_time"
+  ],
+  "explicitly_out_of_scope": [
+    "live_payment_code",
+    "invoice_generation",
+    "real_production_key_generation",
+    "provider_calls",
+    "real_customer_data_processing",
+    "personal_data_processing",
+    "marketplace_publication",
+    "hosted_public_mcp_launch",
+    "registry_submission",
+    "external_outreach_automation",
+    "cloudflare_deploy"
+  ],
+  "validation_requirements": [
+    "production_guard_defaults",
+    "support_codes",
+    "key_classification",
+    "blocked_response_helper",
+    "production_key_block_response",
+    "kill_switch_response",
+    "tests",
+    "no_deploy",
+    "no_live_commercial_activation"
+  ],
+  "next_if_probe_passes": "apply_small_constants_helpers_tests_patch_locally"
+}
