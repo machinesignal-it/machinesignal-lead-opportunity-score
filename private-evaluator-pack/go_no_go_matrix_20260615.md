@@ -22,9 +22,9 @@ Current decision:
 | Public catalog/listino consistency | 98% | GO for test |
 | Machine buyer journey from docs | 98% | GO for test |
 | API public availability | 95% | GO for test |
-| API authenticated sandbox journey | 80% | BLOCKED by sandbox daily limit |
-| Pre-beta preparation | 86-88% | CONDITIONAL |
-| Commercial go-live | 69-72% | NO-GO |
+| API authenticated sandbox journey | 98% | PASS |
+| Pre-beta preparation | 88-90% | CONDITIONAL |
+| Commercial go-live | 72-74% | NO-GO |
 
 ## What Is Validated
 
@@ -33,29 +33,23 @@ Current decision:
 | Public site documentation | Live docs uploaded and validated 20/20 | PASS | no | no |
 | Machine buyer journey from public docs | Live journey probe 39/39 | PASS | no | no |
 | Public/API catalog pricing | Price consistency probe 13/13 | PASS | no | no |
-| Target Discovery price alignment | Code fixed from 149 to 249, local tests pass | PASS locally | no | yes, until live authenticated recheck |
+| Target Discovery price alignment | Code fixed from 149 to 249, authenticated live probe confirms 249 | PASS | no | no |
 | API public endpoints | `/health`, catalog, onboarding, OpenAPI reachable | PASS | no | no |
 | No unauthenticated protected access | `/v1/onboarding` returns 401 without key | PASS | no | no |
-| Sandbox key creation | Works, then daily limit reached | PARTIAL | yes, for authenticated retest | yes |
+| Sandbox key creation | Works with daily cost/abuse limits | PASS with limits | no | no |
 | Local API tests | `test_api.mjs` and `test_durable_ledger.mjs` pass | PASS | no | no |
 
 ## Current Blocker
 
-The live authenticated sandbox journey cannot be completed right now because the public sandbox customer creation endpoint returns:
+No technical sandbox blocker remains open after the authenticated live API probe pass.
 
-`HTTP 429 sandbox_limit_exceeded`
+The sandbox daily limit still exists by design and should remain active as a cost/abuse guard.
 
-This means the daily sandbox key creation limit has been reached for this evaluator fingerprint.
+## Authenticated Live API Probe
 
-This is not a commercial failure. It is a cost/abuse guard doing its job.
+Result: PASS.
 
-## Must Recheck After Sandbox Reset
-
-Rerun:
-
-`private-evaluator-pack/live_api_sandbox_machine_buyer_journey_probe_20260615.ps1`
-
-Required confirmations:
+Confirmed:
 
 - `target_discovery` purchase-intent returns `beta_price_range_eur: "249"`;
 - Score Pack returns score/confidence/decision/recommended next purchase;
@@ -110,11 +104,10 @@ The agents must not do:
 
 Do not move to paid beta today.
 
-Use the remaining test time for:
+Use the remaining preparation time for:
 
-1. Wait for sandbox limit reset.
-2. Rerun authenticated live API sandbox journey.
-3. Run agent review after the authenticated probe.
-4. If the authenticated probe passes, prepare a controlled paid-beta decision packet for owner review.
+1. Run agent review after the authenticated probe.
+2. Prepare/refresh controlled paid-beta decision materials.
+3. Keep legal, fiscal, payment, production-key and real-data gates blocked until owner approval.
 
-Owner workload today: no action required unless choosing to approve a future paid-beta decision packet.
+Owner workload today: no action required unless choosing to review a future paid-beta decision packet.

@@ -10,9 +10,9 @@
     "public_catalog_listino_consistency": "98%",
     "machine_buyer_journey_from_docs": "98%",
     "api_public_availability": "95%",
-    "api_authenticated_sandbox_journey": "80% - blocked by sandbox daily limit",
-    "pre_beta_preparation": "86-88%",
-    "commercial_go_live": "69-72% - NO_GO"
+    "api_authenticated_sandbox_journey": "98% - PASS",
+    "pre_beta_preparation": "88-90%",
+    "commercial_go_live": "72-74% - NO_GO"
   },
   "validated_gates": [
     {
@@ -32,8 +32,8 @@
     },
     {
       "gate": "target_discovery_price_alignment",
-      "evidence": "code fixed from 149 to 249 and local tests pass",
-      "status": "PASS_LOCALLY_RECHECK_LIVE_AUTH_AFTER_LIMIT_RESET"
+      "evidence": "code fixed from 149 to 249 and authenticated live probe confirms 249",
+      "status": "PASS"
     },
     {
       "gate": "api_public_endpoints",
@@ -47,8 +47,8 @@
     },
     {
       "gate": "sandbox_key_creation",
-      "evidence": "works until daily limit, now 429 sandbox_limit_exceeded",
-      "status": "PARTIAL_BLOCKED"
+      "evidence": "works with daily cost/abuse limits",
+      "status": "PASS_WITH_LIMITS"
     },
     {
       "gate": "local_api_tests",
@@ -57,24 +57,18 @@
     }
   ],
   "current_blocker": {
-    "code": "sandbox_limit_exceeded",
-    "http_status": 429,
-    "meaning": "Daily sandbox customer creation limit reached for this evaluator fingerprint",
-    "blocks": [
-      "authenticated live API sandbox journey recheck"
-    ],
-    "does_not_mean": [
-      "commercial failure",
-      "payment failure",
-      "data failure"
-    ]
+    "code": null,
+    "http_status": null,
+    "meaning": "No technical sandbox blocker remains open after the authenticated live API probe pass. Sandbox daily limits remain active by design as cost/abuse guards.",
+    "blocks": [],
+    "does_not_mean": []
   },
   "required_recheck_after_reset": [
-    "target_discovery purchase-intent returns beta_price_range_eur 249",
-    "score pack returns score confidence decision and recommended next purchase",
-    "action pack without valid Deep Analysis source remains blocked",
-    "real_payment_executed never becomes true",
-    "external_contact_executed never becomes true"
+    "completed: target_discovery purchase-intent returned beta_price_range_eur 249",
+    "completed: score pack returned score confidence decision and recommended next purchase",
+    "completed: action pack without valid Deep Analysis source remained blocked",
+    "completed: real_payment_executed never became true",
+    "completed: external_contact_executed never became true"
   ],
   "commercial_go_live_blockers": [
     "owner explicit go-live approval missing",
@@ -110,5 +104,5 @@
     "production API key distribution",
     "commercial go-live"
   ],
-  "recommendation": "Do not move to paid beta today. Wait for sandbox limit reset, rerun authenticated live API sandbox journey, then run agent review and prepare a controlled paid-beta decision packet only if the probe passes."
+  "recommendation": "Do not move to paid beta today. The authenticated live API sandbox journey has passed; next run agent review and keep legal, fiscal, payment, production-key and real-data gates blocked until owner approval."
 }
