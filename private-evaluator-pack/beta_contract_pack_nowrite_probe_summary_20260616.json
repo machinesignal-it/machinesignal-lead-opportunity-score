@@ -1,0 +1,234 @@
+﻿{
+    "probe":  "beta_contract_pack_nowrite_probe",
+    "date":  "2026-06-16",
+    "status":  "passed",
+    "checks_total":  45,
+    "checks_failed":  0,
+    "checks":  [
+                   {
+                       "name":  "Company name is operational only",
+                       "passed":  true,
+                       "detail":  "operational_name_only_final_legal_entity_to_be_confirmed"
+                   },
+                   {
+                       "name":  "Paid beta remains not approved",
+                       "passed":  true,
+                       "detail":  "not_approved"
+                   },
+                   {
+                       "name":  "Commercial go-live remains no-go",
+                       "passed":  true,
+                       "detail":  "no_go"
+                   },
+                   {
+                       "name":  "Contract pack is draft only",
+                       "passed":  true,
+                       "detail":  "draft_only"
+                   },
+                   {
+                       "name":  "Not approved item present: paid_beta",
+                       "passed":  true,
+                       "detail":  "paid_beta"
+                   },
+                   {
+                       "name":  "Not approved item present: live_payments",
+                       "passed":  true,
+                       "detail":  "live_payments"
+                   },
+                   {
+                       "name":  "Not approved item present: invoices",
+                       "passed":  true,
+                       "detail":  "invoices"
+                   },
+                   {
+                       "name":  "Not approved item present: payment_method_collection",
+                       "passed":  true,
+                       "detail":  "payment_method_collection"
+                   },
+                   {
+                       "name":  "Not approved item present: production_api_keys",
+                       "passed":  true,
+                       "detail":  "production_api_keys"
+                   },
+                   {
+                       "name":  "Not approved item present: real_customer_data",
+                       "passed":  true,
+                       "detail":  "real_customer_data"
+                   },
+                   {
+                       "name":  "Not approved item present: personal_data",
+                       "passed":  true,
+                       "detail":  "personal_data"
+                   },
+                   {
+                       "name":  "Not approved item present: marketplace_publication",
+                       "passed":  true,
+                       "detail":  "marketplace_publication"
+                   },
+                   {
+                       "name":  "Not approved item present: hosted_public_mcp",
+                       "passed":  true,
+                       "detail":  "hosted_public_mcp"
+                   },
+                   {
+                       "name":  "Not approved item present: registry_submission",
+                       "passed":  true,
+                       "detail":  "registry_submission"
+                   },
+                   {
+                       "name":  "Not approved item present: external_outreach",
+                       "passed":  true,
+                       "detail":  "external_outreach"
+                   },
+                   {
+                       "name":  "Prohibited use present: processing_personal_data_without_approval",
+                       "passed":  true,
+                       "detail":  "processing_personal_data_without_approval"
+                   },
+                   {
+                       "name":  "Prohibited use present: sending_outreach_through_machinesignal",
+                       "passed":  true,
+                       "detail":  "sending_outreach_through_machinesignal"
+                   },
+                   {
+                       "name":  "Prohibited use present: bypassing_limits",
+                       "passed":  true,
+                       "detail":  "bypassing_limits"
+                   },
+                   {
+                       "name":  "Prohibited use present: regulated_decisions",
+                       "passed":  true,
+                       "detail":  "regulated_decisions"
+                   },
+                   {
+                       "name":  "Current data rule is synthetic/non-personal only",
+                       "passed":  true,
+                       "detail":  "synthetic_data_and_non_personal_test_data_only"
+                   },
+                   {
+                       "name":  "Real customer data blocked",
+                       "passed":  true,
+                       "detail":  "blocked_until_owner_and_legal_review"
+                   },
+                   {
+                       "name":  "Personal data blocked",
+                       "passed":  true,
+                       "detail":  "blocked_until_owner_and_legal_review"
+                   },
+                   {
+                       "name":  "No training without approval",
+                       "passed":  true,
+                       "detail":  "no_training_without_approval"
+                   },
+                   {
+                       "name":  "Refund/credit section present: score_pack_1k",
+                       "passed":  true,
+                       "detail":  "score_pack_1k"
+                   },
+                   {
+                       "name":  "Refund/credit section present: target_discovery_pack_250",
+                       "passed":  true,
+                       "detail":  "target_discovery_pack_250"
+                   },
+                   {
+                       "name":  "Refund/credit section present: deep_analysis",
+                       "passed":  true,
+                       "detail":  "deep_analysis"
+                   },
+                   {
+                       "name":  "Refund/credit section present: action_pack",
+                       "passed":  true,
+                       "detail":  "action_pack"
+                   },
+                   {
+                       "name":  "Target Discovery has exact 250 valid record inclusion",
+                       "passed":  true,
+                       "detail":  "250 valid non-personal target records matching the approved market, area and commercial objective."
+                   },
+                   {
+                       "name":  "Action Pack requires valid prior analysis",
+                       "passed":  true,
+                       "detail":  "valid Deep Analysis or approved equivalent source"
+                   },
+                   {
+                       "name":  "Machine-first support enabled",
+                       "passed":  true,
+                       "detail":  "machine_first_support"
+                   },
+                   {
+                       "name":  "Kill switch required",
+                       "passed":  true,
+                       "detail":  "kill_switch_required"
+                   },
+                   {
+                       "name":  "Required review item present: final_company_legal_name",
+                       "passed":  true,
+                       "detail":  "final_company_legal_name"
+                   },
+                   {
+                       "name":  "Required review item present: fiscal_invoice_setup",
+                       "passed":  true,
+                       "detail":  "fiscal_invoice_setup"
+                   },
+                   {
+                       "name":  "Required review item present: payment_provider_live_or_test_mode",
+                       "passed":  true,
+                       "detail":  "payment_provider_live_or_test_mode"
+                   },
+                   {
+                       "name":  "Required review item present: legal_review_of_terms",
+                       "passed":  true,
+                       "detail":  "legal_review_of_terms"
+                   },
+                   {
+                       "name":  "Required review item present: privacy_data_review",
+                       "passed":  true,
+                       "detail":  "privacy_data_review"
+                   },
+                   {
+                       "name":  "Required review item present: refund_credit_policy_approval",
+                       "passed":  true,
+                       "detail":  "refund_credit_policy_approval"
+                   },
+                   {
+                       "name":  "Required review item present: support_sla_approval",
+                       "passed":  true,
+                       "detail":  "support_sla_approval"
+                   },
+                   {
+                       "name":  "Required review item present: cost_limits",
+                       "passed":  true,
+                       "detail":  "cost_limits"
+                   },
+                   {
+                       "name":  "Required review item present: production_api_key_policy",
+                       "passed":  true,
+                       "detail":  "production_api_key_policy"
+                   },
+                   {
+                       "name":  "Required review item present: kill_switch_owner",
+                       "passed":  true,
+                       "detail":  "kill_switch_owner"
+                   },
+                   {
+                       "name":  "Markdown states contract is not final",
+                       "passed":  true,
+                       "detail":  "markdown disclaimer"
+                   },
+                   {
+                       "name":  "Markdown states paid beta not approved",
+                       "passed":  true,
+                       "detail":  "markdown verdict"
+                   },
+                   {
+                       "name":  "Markdown states commercial go-live no-go",
+                       "passed":  true,
+                       "detail":  "markdown verdict"
+                   },
+                   {
+                       "name":  "Markdown includes legal entity placeholder",
+                       "passed":  true,
+                       "detail":  "company placeholder"
+                   }
+               ]
+}

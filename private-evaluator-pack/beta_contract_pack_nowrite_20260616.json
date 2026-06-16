@@ -1,0 +1,173 @@
+{
+  "service": "MachineSignal",
+  "artifact": "beta_contract_pack_nowrite",
+  "date": "2026-06-16",
+  "status": "draft_for_owner_legal_review",
+  "company_name": "MachineSignal",
+  "company_name_status": "operational_name_only_final_legal_entity_to_be_confirmed",
+  "primary_customer_interface": "machine",
+  "paid_beta": "not_approved",
+  "commercial_go_live": "no_go",
+  "contract_pack": "draft_only",
+  "purpose": "Prepare legal, privacy, refund/credit and support language before any paid beta.",
+  "not_approved": [
+    "paid_beta",
+    "live_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data",
+    "personal_data",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "registry_submission",
+    "external_outreach"
+  ],
+  "terms_outline": {
+    "provider": "MachineSignal / legal entity to be confirmed",
+    "customer": "The organization, developer, software system, agent, workflow or CRM account using the API.",
+    "service_description": "Machine-readable commercial decision-support outputs through API endpoints.",
+    "not_guaranteed": [
+      "sales",
+      "revenue",
+      "lead_conversion",
+      "business_results",
+      "legal_compliance_of_customer_actions",
+      "accuracy_of_third_party_or_public_data"
+    ],
+    "beta_nature": [
+      "service_may_change",
+      "schemas_and_pricing_can_be_revised_with_notice",
+      "outputs_are_experimental",
+      "usage_limits_may_be_stricter_than_future_production",
+      "access_can_be_paused_for_security_abuse_cost_or_compliance"
+    ],
+    "allowed_use": [
+      "sandbox_testing",
+      "api_integration_testing",
+      "scoring_synthetic_or_approved_non_personal_business_records",
+      "machine_to_machine_purchase_intent_evaluation",
+      "order_usage_support_status_retrieval"
+    ],
+    "prohibited_use": [
+      "processing_personal_data_without_approval",
+      "scraping_or_enriching_personal_contact_data",
+      "sending_outreach_through_machinesignal",
+      "spam_harassment_or_unlawful_targeting",
+      "reselling_outputs_as_guaranteed_verified_data",
+      "bypassing_limits",
+      "using_production_keys_without_approval",
+      "regulated_decisions"
+    ]
+  },
+  "privacy_data_policy": {
+    "current_data_rule": "synthetic_data_and_non_personal_test_data_only",
+    "real_customer_data": "blocked_until_owner_and_legal_review",
+    "personal_data": "blocked_until_owner_and_legal_review",
+    "possible_future_allowed_data_after_approval": [
+      "company_name",
+      "domain",
+      "city_area",
+      "industry",
+      "public_website_signals",
+      "non_personal_business_metadata"
+    ],
+    "blocked_by_default": [
+      "personal_names",
+      "personal_emails",
+      "phone_numbers_linked_to_individuals",
+      "private_contact_lists",
+      "sensitive_personal_data",
+      "employee_level_profiling",
+      "private_crm_notes_containing_personal_data"
+    ],
+    "no_training_without_approval": true
+  },
+  "refund_credit_policy": {
+    "principle": "MachineSignal sells valid machine-readable outputs, not guaranteed commercial results.",
+    "score_pack_1k": {
+      "credit_consumed_when": [
+        "submitted_record_receives_valid_score_response",
+        "required_fields_are_present",
+        "response_includes_score_confidence_decision_status"
+      ],
+      "credit_not_consumed_or_replacement_when": [
+        "internal_api_error",
+        "blocked_policy_response",
+        "malformed_provider_side_response",
+        "duplicate_caused_by_machinesignal_processing_error",
+        "missing_required_output_fields"
+      ],
+      "credit_consumed_even_if": [
+        "score_is_low",
+        "recommendation_is_discard",
+        "customer_disagrees_with_assessment",
+        "target_is_not_commercially_attractive"
+      ]
+    },
+    "target_discovery_pack_250": {
+      "included": "250 valid non-personal target records matching the approved market, area and commercial objective.",
+      "if_fewer_than_250": [
+        "deliver_valid_targets_found",
+        "state_gap_clearly",
+        "issue_replacement_credits_or_new_discovery_run_for_missing_valid_records",
+        "do_not_claim_complete_until_minimum_rule_satisfied_or_partial_completion_accepted"
+      ]
+    },
+    "deep_analysis": {
+      "credit_consumed_when": [
+        "valid_eligible_target_receives_structured_deep_analysis",
+        "response_includes_evidence_summary_opportunity_reasons_risks_next_action"
+      ],
+      "replacement_when": [
+        "provider_or_api_failure",
+        "required_fields_missing",
+        "policy_blocked_output"
+      ]
+    },
+    "action_pack": {
+      "requires": "valid Deep Analysis or approved equivalent source",
+      "blocked_when": [
+        "no_valid_source_analysis_exists",
+        "customer_asks_api_to_contact_humans_or_companies_directly",
+        "action_would_violate_no_outreach_or_compliance_rules"
+      ]
+    }
+  },
+  "support_sla_draft": {
+    "machine_first_support": true,
+    "support_categories": [
+      "api_unavailable",
+      "authentication_key_issue",
+      "usage_ledger_mismatch",
+      "missing_output_fields",
+      "invalid_target_discovery_result",
+      "duplicate_handling",
+      "credit_refund_request",
+      "billing_fiscal_question",
+      "data_privacy_concern",
+      "abuse_security_incident"
+    ],
+    "beta_sla_language": "MachineSignal beta is provided with commercially reasonable efforts, not guaranteed uptime.",
+    "internal_target_before_paid_beta": [
+      "acknowledge_critical_incidents_within_1_business_day",
+      "provide_machine_readable_status_where_possible",
+      "pause_affected_keys_if_cost_abuse_or_data_risk_is_detected",
+      "issue_replacement_credits_for_confirmed_delivery_failures"
+    ],
+    "kill_switch_required": true
+  },
+  "required_review_before_use": [
+    "final_company_legal_name",
+    "fiscal_invoice_setup",
+    "payment_provider_live_or_test_mode",
+    "legal_review_of_terms",
+    "privacy_data_review",
+    "refund_credit_policy_approval",
+    "support_sla_approval",
+    "cost_limits",
+    "production_api_key_policy",
+    "kill_switch_owner"
+  ],
+  "recommended_next_step": "prepare_production_key_policy_cost_cap_kill_switch_support_status_alignment"
+}
