@@ -1,0 +1,172 @@
+﻿{
+    "checked_at_utc":  "2026-06-16T10:10:28Z",
+    "test_id":  "live_api_sandbox_machine_buyer_journey_probe_20260615",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "observations":  {
+                         "customer_id":  "sandbox_3a1e1994_mqghe8ao",
+                         "sandbox_key_redacted":  true,
+                         "sandbox_expires_at":  "2026-06-23T10:10:27.072Z"
+                     },
+    "checks":  {
+                   "health_200":  {
+                                      "ok":  true,
+                                      "detail":  "200"
+                                  },
+                   "health_beta_true":  {
+                                            "ok":  true,
+                                            "detail":  "{\n  \"status\": \"ok\",\n  \"service\": \"MachineSignal Lead Opportunity Score API\",\n  \"beta\": true\n}"
+                                        },
+                   "unauthenticated_onboarding_401":  {
+                                                          "ok":  true,
+                                                          "detail":  "401"
+                                                      },
+                   "sandbox_create_200":  {
+                                              "ok":  true,
+                                              "detail":  "200"
+                                          },
+                   "sandbox_api_key_returned_once_in_memory":  {
+                                                                   "ok":  true,
+                                                                   "detail":  "redacted"
+                                                               },
+                   "sandbox_customer_type":  {
+                                                 "ok":  true,
+                                                 "detail":  "sandbox"
+                                             },
+                   "sandbox_plan_limited":  {
+                                                "ok":  true,
+                                                "detail":  "sandbox_limited"
+                                            },
+                   "sandbox_usage_present":  {
+                                                 "ok":  true,
+                                                 "detail":  "usage object present"
+                                             },
+                   "authenticated_onboarding_200":  {
+                                                        "ok":  true,
+                                                        "detail":  "200"
+                                                    },
+                   "authenticated_onboarding_mentions_customer":  {
+                                                                      "ok":  true,
+                                                                      "detail":  "{\n  \"customer_id\": \"sandbox_3a1e1994_mqghe8ao\",\n  \"auth_type\": \"customer\",\n  \"machine_contract\": {\n    \"service\": \"MachineSignal\",\n    \"purpose\": \"Machine-readable lead opportunity scoring, credit rou"
+                                                                  },
+                   "authenticated_onboarding_has_safe_mode":  {
+                                                                  "ok":  true,
+                                                                  "detail":  "safe onboarding language"
+                                                              },
+                   "score_endpoint_200":  {
+                                              "ok":  true,
+                                              "detail":  "200"
+                                          },
+                   "score_contains_opportunity_score":  {
+                                                            "ok":  true,
+                                                            "detail":  "{\n  \"domain\": \"studio-dentale-sandbox.test\",\n  \"opportunity_score\": 55,\n  \"confidence\": 0.79,\n  \"priority\": \"medium\",\n  \"decision\": \"watchlist\",\n  \"reason\": \"Signals suggest a medium opportunity that should be monitored before spending more budget.\",\n  \"quality_review\": {\n    \"status\": \"not_applicable\",\n    \"score_delta\": 0,\n    \"confidence_cap\": null,\n    \"reason\": \"No sector-specific quality gate was applied.\"\n  },\n  \"target_discovery_evidence_review\": {\n    \"status\": \"target_discovery_evidence_insufficient\",\n    \"confidence_delta\": 0,\n    \"confidence_floor\": null,\n    \"reason\": \"Target Discovery evidence was not strong enough to raise confidence.\"\n  },\n  \"web_architect_review\": {\n    \"sta...[truncated]"
+                                                        },
+                   "score_contains_confidence":  {
+                                                     "ok":  true,
+                                                     "detail":  "{\n  \"domain\": \"studio-dentale-sandbox.test\",\n  \"opportunity_score\": 55,\n  \"confidence\": 0.79,\n  \"priority\": \"medium\",\n  \"decision\": \"watchlist\",\n  \"reason\": \"Signals suggest a medium opportunity that should be monitored before spending more budget.\",\n  \"quality_review\": {\n    \"status\": \"not_applicable\",\n    \"score_delta\": 0,\n    \"confidence_cap\": null,\n    \"reason\": \"No sector-specific quality gate was applied.\"\n  },\n  \"target_discovery_evidence_review\": {\n    \"status\": \"target_discovery_evidence_insufficient\",\n    \"confidence_delta\": 0,\n    \"confidence_floor\": null,\n    \"reason\": \"Target Discovery evidence was not strong enough to raise confidence.\"\n  },\n  \"web_architect_review\": {\n    \"sta...[truncated]"
+                                                 },
+                   "score_contains_decision_or_recommendation":  {
+                                                                     "ok":  true,
+                                                                     "detail":  "{\n  \"domain\": \"studio-dentale-sandbox.test\",\n  \"opportunity_score\": 55,\n  \"confidence\": 0.79,\n  \"priority\": \"medium\",\n  \"decision\": \"watchlist\",\n  \"reason\": \"Signals suggest a medium opportunity that should be monitored before spending more budget.\",\n  \"quality_review\": {\n    \"status\": \"not_applicable\",\n    \"score_delta\": 0,\n    \"confidence_cap\": null,\n    \"reason\": \"No sector-specific quality gate was applied.\"\n  },\n  \"target_discovery_evidence_review\": {\n    \"status\": \"target_discovery_evidence_insufficient\",\n    \"confidence_delta\": 0,\n    \"confidence_floor\": null,\n    \"reason\": \"Target Discovery evidence was not strong enough to raise confidence.\"\n  },\n  \"web_architect_review\": {\n    \"sta...[truncated]"
+                                                                 },
+                   "score_no_real_payment":  {
+                                                 "ok":  true,
+                                                 "detail":  "{\n  \"domain\": \"studio-dentale-sandbox.test\",\n  \"opportunity_score\": 55,\n  \"confidence\": 0.79,\n  \"priority\": \"medium\",\n  \"decision\": \"watchlist\",\n  \"reason\": \"Signals suggest a medium opportunity that should be monitored before spending more budget.\",\n  \"quality_review\": {\n    \"status\": \"not_applicable\",\n    \"score_delta\": 0,\n    \"confidence_cap\": null,\n    \"reason\": \"No sector-specific quality gate was applied.\"\n  },\n  \"target_discovery_evidence_review\": {\n    \"status\": \"target_discovery_evidence_insufficient\",\n    \"confidence_delta\": 0,\n    \"confidence_floor\": null,\n    \"reason\": \"Target Discovery evidence was not strong enough to raise confidence.\"\n  },\n  \"web_architect_review\": {\n    \"sta...[truncated]"
+                                             },
+                   "score_no_external_contact":  {
+                                                     "ok":  true,
+                                                     "detail":  "{\n  \"domain\": \"studio-dentale-sandbox.test\",\n  \"opportunity_score\": 55,\n  \"confidence\": 0.79,\n  \"priority\": \"medium\",\n  \"decision\": \"watchlist\",\n  \"reason\": \"Signals suggest a medium opportunity that should be monitored before spending more budget.\",\n  \"quality_review\": {\n    \"status\": \"not_applicable\",\n    \"score_delta\": 0,\n    \"confidence_cap\": null,\n    \"reason\": \"No sector-specific quality gate was applied.\"\n  },\n  \"target_discovery_evidence_review\": {\n    \"status\": \"target_discovery_evidence_insufficient\",\n    \"confidence_delta\": 0,\n    \"confidence_floor\": null,\n    \"reason\": \"Target Discovery evidence was not strong enough to raise confidence.\"\n  },\n  \"web_architect_review\": {\n    \"sta...[truncated]"
+                                                 },
+                   "target_discovery_purchase_intent_200":  {
+                                                                "ok":  true,
+                                                                "detail":  "200"
+                                                            },
+                   "target_discovery_mentions_product":  {
+                                                             "ok":  true,
+                                                             "detail":  "{\n  \"order_intent_id\": \"ord_53d34dcd\",\n  \"status\": \"accepted_beta_order_intent\",\n  \"product_code\": \"target_discovery\",\n  \"ledger_product_code\": \"target_discovery_pack_250\",\n  \"domain\": \"agenzie-immobiliari\",\n  \"source_score_request_id\": null,\n  \"source_order_intent_id\": null,\n  \"source_verification_order_intent_id\": null,\n  \"action_pack_gate\": null,\n  \"deep_analysis_verification_gate\": null,\n  \"reason\": \"Synthetic buyer machine has no existing list and needs coherent targets before scoring\",\n  \"max_budget_eur\": null,\n  \"beta_price_range_eur\": \"249\",\n  \"delivery_mode\": \"target_discovery_precheck\",\n  \"description\": \"Starts a target discovery pack after checking whether the requested market can...[truncated]"
+                                                         },
+                   "target_discovery_price_matches_public_catalog_249":  {
+                                                                             "ok":  true,
+                                                                             "detail":  "{\n  \"order_intent_id\": \"ord_53d34dcd\",\n  \"status\": \"accepted_beta_order_intent\",\n  \"product_code\": \"target_discovery\",\n  \"ledger_product_code\": \"target_discovery_pack_250\",\n  \"domain\": \"agenzie-immobiliari\",\n  \"source_score_request_id\": null,\n  \"source_order_intent_id\": null,\n  \"source_verification_order_intent_id\": null,\n  \"action_pack_gate\": null,\n  \"deep_analysis_verification_gate\": null,\n  \"reason\": \"Synthetic buyer machine has no existing list and needs coherent targets before scoring\",\n  \"max_budget_eur\": null,\n  \"beta_price_range_eur\": \"249\",\n  \"delivery_mode\": \"target_discovery_precheck\",\n  \"description\": \"Starts a target discovery pack after checking whether the requested market can...[truncated]"
+                                                                         },
+                   "target_discovery_no_real_payment":  {
+                                                            "ok":  true,
+                                                            "detail":  "{\n  \"order_intent_id\": \"ord_53d34dcd\",\n  \"status\": \"accepted_beta_order_intent\",\n  \"product_code\": \"target_discovery\",\n  \"ledger_product_code\": \"target_discovery_pack_250\",\n  \"domain\": \"agenzie-immobiliari\",\n  \"source_score_request_id\": null,\n  \"source_order_intent_id\": null,\n  \"source_verification_order_intent_id\": null,\n  \"action_pack_gate\": null,\n  \"deep_analysis_verification_gate\": null,\n  \"reason\": \"Synthetic buyer machine has no existing list and needs coherent targets before scoring\",\n  \"max_budget_eur\": null,\n  \"beta_price_range_eur\": \"249\",\n  \"delivery_mode\": \"target_discovery_precheck\",\n  \"description\": \"Starts a target discovery pack after checking whether the requested market can...[truncated]"
+                                                        },
+                   "target_discovery_no_external_contact":  {
+                                                                "ok":  true,
+                                                                "detail":  "{\n  \"order_intent_id\": \"ord_53d34dcd\",\n  \"status\": \"accepted_beta_order_intent\",\n  \"product_code\": \"target_discovery\",\n  \"ledger_product_code\": \"target_discovery_pack_250\",\n  \"domain\": \"agenzie-immobiliari\",\n  \"source_score_request_id\": null,\n  \"source_order_intent_id\": null,\n  \"source_verification_order_intent_id\": null,\n  \"action_pack_gate\": null,\n  \"deep_analysis_verification_gate\": null,\n  \"reason\": \"Synthetic buyer machine has no existing list and needs coherent targets before scoring\",\n  \"max_budget_eur\": null,\n  \"beta_price_range_eur\": \"249\",\n  \"delivery_mode\": \"target_discovery_precheck\",\n  \"description\": \"Starts a target discovery pack after checking whether the requested market can...[truncated]"
+                                                            },
+                   "target_discovery_delivery_or_usage_present":  {
+                                                                      "ok":  true,
+                                                                      "detail":  "{\n  \"order_intent_id\": \"ord_53d34dcd\",\n  \"status\": \"accepted_beta_order_intent\",\n  \"product_code\": \"target_discovery\",\n  \"ledger_product_code\": \"target_discovery_pack_250\",\n  \"domain\": \"agenzie-immobiliari\",\n  \"source_score_request_id\": null,\n  \"source_order_intent_id\": null,\n  \"source_verification_order_intent_id\": null,\n  \"action_pack_gate\": null,\n  \"deep_analysis_verification_gate\": null,\n  \"reason\": \"Synthetic buyer machine has no existing list and needs coherent targets before scoring\",\n  \"max_budget_eur\": null,\n  \"beta_price_range_eur\": \"249\",\n  \"delivery_mode\": \"target_discovery_precheck\",\n  \"description\": \"Starts a target discovery pack after checking whether the requested market can...[truncated]"
+                                                                  },
+                   "action_pack_gate_response_is_controlled_error":  {
+                                                                         "ok":  true,
+                                                                         "detail":  "400"
+                                                                     },
+                   "action_pack_gate_blocks_without_source":  {
+                                                                  "ok":  true,
+                                                                  "detail":  ""
+                                                              },
+                   "action_pack_no_real_payment":  {
+                                                       "ok":  true,
+                                                       "detail":  ""
+                                                   },
+                   "action_pack_no_external_contact":  {
+                                                           "ok":  true,
+                                                           "detail":  ""
+                                                       },
+                   "usage_200":  {
+                                     "ok":  true,
+                                     "detail":  "200"
+                                 },
+                   "usage_mentions_customer":  {
+                                                   "ok":  true,
+                                                   "detail":  "{\n  \"customer_id\": \"sandbox_3a1e1994_mqghe8ao\",\n  \"ledger_persisted\": true,\n  \"ledger_backend\": \"durable_object\",\n  \"balances\": [\n    {\n      \"product_code\": \"score_pack_1k\",\n      \"credits_purchased\": 5,\n      \"credits_used\": 1,\n      \"credits_remaining\": 4\n    },\n    {\n      \"product_code\": \"deep_analysis_pack_100\",\n      \"credits_purchased\": 1,\n      \"credits_used\": 0,\n      \"credits_remaining\": 1\n    },\n    {\n      \"product_code\": \"verification_pack_100\",\n      \"credits_purchased\": 1,\n      \"credits_used\": 0,\n      \"credits_remaining\": 1\n    },\n    {\n      \"product_code\": \"nurture_signal_pack_100\",\n      \"credits_purchased\": 1,\n      \"credits_used\": 0,\n      \"credits_remaining\": 1\n    },...[truncated]"
+                                               },
+                   "usage_no_real_payment_true":  {
+                                                      "ok":  true,
+                                                      "detail":  "{\n  \"customer_id\": \"sandbox_3a1e1994_mqghe8ao\",\n  \"ledger_persisted\": true,\n  \"ledger_backend\": \"durable_object\",\n  \"balances\": [\n    {\n      \"product_code\": \"score_pack_1k\",\n      \"credits_purchased\": 5,\n      \"credits_used\": 1,\n      \"credits_remaining\": 4\n    },\n    {\n      \"product_code\": \"deep_analysis_pack_100\",\n      \"credits_purchased\": 1,\n      \"credits_used\": 0,\n      \"credits_remaining\": 1\n    },\n    {\n      \"product_code\": \"verification_pack_100\",\n      \"credits_purchased\": 1,\n      \"credits_used\": 0,\n      \"credits_remaining\": 1\n    },\n    {\n      \"product_code\": \"nurture_signal_pack_100\",\n      \"credits_purchased\": 1,\n      \"credits_used\": 0,\n      \"credits_remaining\": 1\n    },...[truncated]"
+                                                  },
+                   "usage_no_external_contact_true":  {
+                                                          "ok":  true,
+                                                          "detail":  "{\n  \"customer_id\": \"sandbox_3a1e1994_mqghe8ao\",\n  \"ledger_persisted\": true,\n  \"ledger_backend\": \"durable_object\",\n  \"balances\": [\n    {\n      \"product_code\": \"score_pack_1k\",\n      \"credits_purchased\": 5,\n      \"credits_used\": 1,\n      \"credits_remaining\": 4\n    },\n    {\n      \"product_code\": \"deep_analysis_pack_100\",\n      \"credits_purchased\": 1,\n      \"credits_used\": 0,\n      \"credits_remaining\": 1\n    },\n    {\n      \"product_code\": \"verification_pack_100\",\n      \"credits_purchased\": 1,\n      \"credits_used\": 0,\n      \"credits_remaining\": 1\n    },\n    {\n      \"product_code\": \"nurture_signal_pack_100\",\n      \"credits_purchased\": 1,\n      \"credits_used\": 0,\n      \"credits_remaining\": 1\n    },...[truncated]"
+                                                      },
+                   "forbidden_absent_real_payment_executed_true":  {
+                                                                       "ok":  true,
+                                                                       "detail":  "\"real_payment_executed\":true"
+                                                                   },
+                   "forbidden_absent_external_contact_executed_true":  {
+                                                                           "ok":  true,
+                                                                           "detail":  "\"external_contact_executed\":true"
+                                                                       },
+                   "forbidden_absent_production_api_key_true":  {
+                                                                    "ok":  true,
+                                                                    "detail":  "\"production_api_key\":true"
+                                                                },
+                   "forbidden_absent_payment_method_collection_true":  {
+                                                                           "ok":  true,
+                                                                           "detail":  "\"payment_method_collection\":true"
+                                                                       },
+                   "forbidden_absent_invoice_issued_true":  {
+                                                                "ok":  true,
+                                                                "detail":  "\"invoice_issued\":true"
+                                                            },
+                   "forbidden_absent_go_live_approved":  {
+                                                             "ok":  true,
+                                                             "detail":  "go-live approved"
+                                                         },
+                   "forbidden_absent_commercial_status_live":  {
+                                                                   "ok":  true,
+                                                                   "detail":  "commercial_status\":\"live"
+                                                               }
+               },
+    "pass_count":  38,
+    "total_count":  38,
+    "status":  "PASS",
+    "failed_checks":  [
+
+                      ],
+    "api_key_redacted":  true,
+    "recommended_next_step":  "agent_review_after_live_api_sandbox_probe"
+}
