@@ -3,7 +3,7 @@
   "info": {
     "title": "MachineSignal Lead Opportunity Score API",
     "version": "0.1.0-beta",
-    "description": "Callable beta endpoint for machine-readable lead opportunity scoring, no-list target discovery, credit-ledger tracking and budget routing.",
+    "description": "Sandbox-only machine-readable API for lead opportunity scoring, no-list target discovery, credit-ledger tracking and budget routing. Paid beta activation, real payments, invoices, production keys, real/personal data, outreach and public marketplace/MCP publication remain blocked.",
     "contact": {
       "name": "Team MachineSignal",
       "email": "beta@machinesignal.it",
@@ -13,11 +13,11 @@
   "servers": [
     {
       "url": "https://machinesignal-api.beta-878.workers.dev",
-      "description": "Callable beta endpoint"
+      "description": "Live sandbox endpoint; commercial activation is blocked"
     },
     {
       "url": "https://api.machinesignal.it",
-      "description": "Planned custom API host"
+      "description": "Planned custom API host; not active for production traffic"
     }
   ],
   "paths": {
@@ -66,7 +66,7 @@
       "post": {
         "operationId": "createSandboxCustomer",
         "summary": "Create a limited sandbox customer API key",
-        "description": "Public limited sandbox endpoint for machine evaluators. Creates a sandbox API key with very small credit limits so an external machine can test the beta flow without manual sales contact. Sandbox keys expire, are rate-limited and do not execute real payment or external outreach.",
+        "description": "Public limited sandbox endpoint for machine evaluators. Creates a sandbox API key with very small credit limits so an external machine can test the sandbox flow without manual sales contact. Sandbox keys expire, are rate-limited and do not execute real payment, invoice, production access or external outreach.",
         "parameters": [
           {
             "name": "Idempotency-Key",
@@ -1954,5 +1954,47 @@
         }
       }
     }
-  }
+  },
+  "x-machinesignal-current-status": {
+    "primary_customer_interface": "machine",
+    "technical_sandbox": "ready_for_current_scope",
+    "advisor_gate_setup": "complete_for_current_scope",
+    "current_safe_workstream": "internal_documentation_api_examples_refinement",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go",
+    "real_payments": "blocked",
+    "invoices": "blocked",
+    "production_api_keys": "blocked",
+    "real_customer_data": "blocked",
+    "personal_data": "blocked",
+    "external_outreach": "blocked",
+    "marketplace_publication": "blocked",
+    "hosted_public_mcp": "blocked",
+    "advisor_gate_rehearsal": {
+      "tests_run": 18,
+      "hard_block_violations": 0,
+      "unexpected_allows": 0
+    }
+  },
+  "x-machinesignal-safe-next-actions": [
+    "read_openapi",
+    "read_machine_onboarding",
+    "read_product_catalog",
+    "create_limited_sandbox_customer_when_write_budget_allows",
+    "run_synthetic_or_non_personal_sandbox_tests",
+    "check_production_access_status"
+  ],
+  "x-machinesignal-blocked-actions": [
+    "activate_paid_beta",
+    "execute_real_payment",
+    "issue_invoice",
+    "collect_payment_method",
+    "issue_production_api_key",
+    "process_real_customer_list",
+    "process_personal_data",
+    "send_outreach",
+    "publish_marketplace_listing",
+    "launch_hosted_public_mcp",
+    "submit_mcp_registry"
+  ]
 }

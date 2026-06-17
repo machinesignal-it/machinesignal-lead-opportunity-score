@@ -4,10 +4,12 @@
   "currency": "EUR",
   "primary_customer_interface": "machine",
   "payment_mode": {
-    "beta": "purchase-intent only",
+    "current": "sandbox_purchase_intent_only",
     "real_payment_executed": false,
-    "external_contact_executed": false,
-    "note": "During beta, purchase-intent records machine demand and consumes beta credits. It does not charge a payment method."
+    "invoice_issued": false,
+    "payment_method_collection": false,
+    "ready_for_real_payments": false,
+    "note": "Product prices and credit units are planning/catalog references. Current endpoints record sandbox purchase intent and consume sandbox beta credits only when a valid output is produced. They do not charge a payment method, issue a fiscal invoice or create production access."
   },
   "general_credit_rule": {
     "rule": "credits are consumed only when the system produces a valid usable output",
@@ -292,5 +294,18 @@
       "validity_rule": "Each custom request is quoted before activation with volume, expected output, delivery timing, estimated cost and usage limits.",
       "machine_output": "A custom machine-readable scope and delivery agreement."
     }
-  }
+  },
+  "catalog_status": {
+    "mode": "sandbox_pricing_and_product_contract_reference",
+    "paid_beta_activation": "no_go",
+    "real_payments": "blocked",
+    "invoices": "blocked",
+    "production_api_keys": "blocked",
+    "real_customer_data": "blocked",
+    "personal_data": "blocked",
+    "external_outreach": "blocked",
+    "marketplace_publication": "blocked",
+    "hosted_public_mcp": "blocked"
+  },
+  "machine_reader_warning": "Do not treat this catalog as a live commercial checkout. It is a sandbox product contract and pricing reference until the production access status endpoint and owner approval gates say otherwise."
 }

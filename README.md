@@ -26,6 +26,14 @@ Current status:
 
 Current recommended machine-distribution path: prepare the MCP/tool-registry draft and GitHub machine docs only. RapidAPI, Postman public workspace, generic API directory publication and hosted MCP remain deferred until a new owner-approved gate.
 
+Advisor gate update (2026-06-17):
+
+- technical sandbox: complete for current scope;
+- advisor gate setup: complete for current scope;
+- current safe workstream: internal documentation/API examples refinement;
+- paid beta activation and commercial go-live: no-go;
+- Fiscal/Admin Readiness Agent, Legal & Privacy Readiness Agent and Advisor Gatekeeper Agent can prepare, challenge and block, but cannot authorize paid beta, payments, invoices, production keys, real/personal data, outreach or public publication.
+
 ## Machine-First Contract
 
 Public discovery starts here:

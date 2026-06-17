@@ -2964,5 +2964,48 @@
     "public_report": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md",
     "public_json": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json"
   },
-  "current_sandbox_external_draft_distribution_readiness_review": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json"
+  "current_sandbox_external_draft_distribution_readiness_review": "https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json",
+  "current_status": {
+    "technical_sandbox": "ready_for_current_scope",
+    "advisor_gate_setup": "complete_for_current_scope",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go",
+    "current_safe_workstream": "internal_documentation_api_examples_refinement",
+    "machine_instruction": "Use MachineSignal as sandbox-only unless production access status explicitly changes after owner approval."
+  },
+  "advisor_gate": {
+    "agents": [
+      "Fiscal/Admin Readiness Agent",
+      "Legal & Privacy Readiness Agent",
+      "Advisor Gatekeeper Agent"
+    ],
+    "rehearsal_status": "passed",
+    "tests_run": 18,
+    "hard_block_violations": 0,
+    "unexpected_allows": 0,
+    "decision": "internal_preparation_allowed_commercial_activation_blocked"
+  },
+  "safe_next_actions": [
+    "read_llms_txt",
+    "read_openapi_json",
+    "read_product_catalog_json",
+    "read_production_access_status",
+    "run_synthetic_or_non_personal_sandbox_test",
+    "stop_before_payment_invoice_real_data_outreach_or_publication"
+  ],
+  "blocked_actions": [
+    "activate_paid_beta",
+    "accept_money",
+    "collect_payment_method",
+    "issue_invoice",
+    "issue_production_api_key",
+    "process_real_customer_list",
+    "process_personal_data",
+    "send_outreach_email",
+    "contact_companies_or_people",
+    "publish_marketplace_listing",
+    "launch_hosted_public_mcp",
+    "submit_mcp_registry",
+    "declare_final_legal_privacy_fiscal_approval"
+  ]
 }

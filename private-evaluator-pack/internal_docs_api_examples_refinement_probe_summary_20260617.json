@@ -1,0 +1,15 @@
+﻿{
+    "generated_at":  "2026-06-17",
+    "checks_passed":  62,
+    "checks_total":  62,
+    "failed_checks":  [
+
+                      ],
+    "decision":  "pass",
+    "scope":  [
+                  "README.md",
+                  "openapi.json",
+                  "machine-onboarding.json",
+                  "product-catalog.json"
+              ]
+}

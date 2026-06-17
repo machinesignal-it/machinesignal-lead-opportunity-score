@@ -1,0 +1,68 @@
+﻿# Internal Docs/API Examples Refinement Probe - 2026-06-17
+
+- Checks passed: 62/62
+- Failed checks: 0
+- Scope: README, OpenAPI, machine onboarding and product catalog safety status.
+
+- [PASS] openapi parsed
+- [PASS] machine onboarding parsed
+- [PASS] product catalog parsed
+- [PASS] README includes advisor gate update
+- [PASS] openapi declares sandbox-only description
+- [PASS] openapi paid beta is no-go
+- [PASS] openapi commercial go-live is no-go
+- [PASS] openapi real payments blocked
+- [PASS] openapi invoices blocked
+- [PASS] openapi production keys blocked
+- [PASS] openapi real customer data blocked
+- [PASS] openapi personal data blocked
+- [PASS] openapi external outreach blocked
+- [PASS] openapi marketplace publication blocked
+- [PASS] openapi hosted public MCP blocked
+- [PASS] openapi advisor rehearsal has zero hard block violations
+- [PASS] openapi blocked action: activate_paid_beta
+- [PASS] openapi blocked action: execute_real_payment
+- [PASS] openapi blocked action: issue_invoice
+- [PASS] openapi blocked action: collect_payment_method
+- [PASS] openapi blocked action: issue_production_api_key
+- [PASS] openapi blocked action: process_real_customer_list
+- [PASS] openapi blocked action: process_personal_data
+- [PASS] openapi blocked action: send_outreach
+- [PASS] openapi blocked action: publish_marketplace_listing
+- [PASS] openapi blocked action: launch_hosted_public_mcp
+- [PASS] openapi blocked action: submit_mcp_registry
+- [PASS] onboarding current status exists
+- [PASS] onboarding paid beta no-go
+- [PASS] onboarding commercial go-live no-go
+- [PASS] onboarding advisor gate passed
+- [PASS] onboarding advisor gate zero hard block violations
+- [PASS] onboarding blocked action: activate_paid_beta
+- [PASS] onboarding blocked action: accept_money
+- [PASS] onboarding blocked action: collect_payment_method
+- [PASS] onboarding blocked action: issue_invoice
+- [PASS] onboarding blocked action: issue_production_api_key
+- [PASS] onboarding blocked action: process_real_customer_list
+- [PASS] onboarding blocked action: process_personal_data
+- [PASS] onboarding blocked action: send_outreach_email
+- [PASS] onboarding blocked action: contact_companies_or_people
+- [PASS] onboarding blocked action: publish_marketplace_listing
+- [PASS] onboarding blocked action: launch_hosted_public_mcp
+- [PASS] onboarding blocked action: submit_mcp_registry
+- [PASS] onboarding blocked action: declare_final_legal_privacy_fiscal_approval
+- [PASS] catalog status exists
+- [PASS] catalog paid beta no-go
+- [PASS] catalog real payments blocked
+- [PASS] catalog invoices blocked
+- [PASS] catalog production keys blocked
+- [PASS] catalog real payment flag false
+- [PASS] catalog invoice flag false
+- [PASS] catalog payment method collection false
+- [PASS] catalog not ready for real payments
+- [PASS] catalog machine warning exists
+- [PASS] no unsafe positive claim: real payments are active
+- [PASS] no unsafe positive claim: payments active
+- [PASS] no unsafe positive claim: commercial go-live approved
+- [PASS] no unsafe positive claim: paid beta is live
+- [PASS] no unsafe positive claim: production keys available
+- [PASS] no unsafe positive claim: hosted public MCP live
+- [PASS] no unsafe positive claim: marketplace publication allowed
