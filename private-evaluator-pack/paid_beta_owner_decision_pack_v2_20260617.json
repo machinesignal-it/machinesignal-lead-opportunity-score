@@ -1,0 +1,91 @@
+{
+  "service": "MachineSignal",
+  "document": "paid_beta_owner_decision_pack_v2",
+  "date": "2026-06-17",
+  "status": "owner_decision_pack_not_activation",
+  "current_decision": {
+    "technical_sandbox": "complete_for_current_scope",
+    "advisor_gate_setup": "complete_for_current_scope",
+    "recommended_option": "prepare_controlled_paid_beta_do_not_activate",
+    "paid_beta_preparation": "go",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go"
+  },
+  "evidence": {
+    "internal_docs_api_examples_refinement_probe": {
+      "checks_passed": 62,
+      "checks_total": 62,
+      "failed_checks": 0
+    },
+    "company_brain_alignment_probe": {
+      "checks_passed": 44,
+      "checks_total": 44,
+      "failed_checks": 0
+    },
+    "advisor_gate_rehearsal": {
+      "tests_run": 18,
+      "hard_block_violations": 0,
+      "unexpected_allows": 0
+    }
+  },
+  "decision_options": [
+    {
+      "id": "A",
+      "name": "continue_sandbox_only",
+      "recommended_now": false,
+      "summary": "Keep all work in sandbox and defer fiscal/legal/payment decisions."
+    },
+    {
+      "id": "B",
+      "name": "prepare_controlled_paid_beta_do_not_activate",
+      "recommended_now": true,
+      "summary": "Prepare all decision materials and policies while keeping commercial gates blocked."
+    },
+    {
+      "id": "C",
+      "name": "activate_controlled_paid_beta",
+      "recommended_now": false,
+      "summary": "Not recommended today because fiscal, legal, payment, data, support and production-key gates are not approved."
+    }
+  ],
+  "minimum_conditions_before_activation": [
+    "fiscal_admin_readiness_approved",
+    "legal_privacy_readiness_approved",
+    "payment_and_invoice_path_approved",
+    "product_catalog_and_listino_approved",
+    "credit_and_replacement_rules_approved",
+    "refund_policy_approved",
+    "production_api_key_policy_approved",
+    "real_data_and_personal_data_policy_approved",
+    "support_and_post_sale_policy_approved",
+    "cost_cap_and_kill_switch_approved",
+    "distribution_channel_approved",
+    "owner_final_go_no_go_signed"
+  ],
+  "agents_may_do_now": [
+    "maintain_company_brain_alignment",
+    "update_internal_docs_and_api_examples",
+    "run_nowrite_checks",
+    "run_synthetic_or_non_personal_sandbox_checks",
+    "prepare_fiscal_admin_question_lists",
+    "prepare_legal_privacy_question_lists",
+    "prepare_support_refund_credit_and_production_key_draft_policies",
+    "update_pnl_assumptions_based_on_technical_cost_evidence",
+    "prepare_decision_dashboards_for_owner"
+  ],
+  "blocked_actions": [
+    "activate_real_payments",
+    "issue_invoices",
+    "collect_payment_methods",
+    "issue_production_api_keys",
+    "process_real_customer_lists",
+    "process_personal_data",
+    "send_outreach_or_emails_to_external_people",
+    "contact_companies_or_prospects",
+    "publish_to_paid_marketplaces",
+    "launch_hosted_public_mcp",
+    "submit_to_mcp_registry",
+    "claim_legal_privacy_or_fiscal_approval"
+  ],
+  "recommended_next_step": "create_final_owner_approval_checklist_v2_mapped_to_fiscal_legal_payment_data_support_cost_and_production_key_gates"
+}

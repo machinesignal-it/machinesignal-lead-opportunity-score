@@ -1,0 +1,52 @@
+﻿# Paid Beta Owner Decision Pack v2 Probe - 2026-06-17
+
+- Checks passed: 46/46
+- Failed checks: 0
+- Decision: pass
+
+- [PASS] markdown exists
+- [PASS] json exists
+- [PASS] json status is not activation
+- [PASS] technical sandbox complete
+- [PASS] advisor gate complete
+- [PASS] recommended option is preparation only
+- [PASS] paid beta preparation go
+- [PASS] paid beta activation no-go
+- [PASS] commercial go-live no-go
+- [PASS] probe evidence 62/62 present
+- [PASS] Company Brain evidence 44/44 present
+- [PASS] advisor gate evidence zero hard block violations
+- [PASS] advisor gate evidence zero unexpected allows
+- [PASS] minimum condition exists: fiscal_admin_readiness_approved
+- [PASS] minimum condition exists: legal_privacy_readiness_approved
+- [PASS] minimum condition exists: payment_and_invoice_path_approved
+- [PASS] minimum condition exists: production_api_key_policy_approved
+- [PASS] minimum condition exists: real_data_and_personal_data_policy_approved
+- [PASS] minimum condition exists: owner_final_go_no_go_signed
+- [PASS] blocked action exists: activate_real_payments
+- [PASS] blocked action exists: issue_invoices
+- [PASS] blocked action exists: collect_payment_methods
+- [PASS] blocked action exists: issue_production_api_keys
+- [PASS] blocked action exists: process_real_customer_lists
+- [PASS] blocked action exists: process_personal_data
+- [PASS] blocked action exists: send_outreach_or_emails_to_external_people
+- [PASS] blocked action exists: contact_companies_or_prospects
+- [PASS] blocked action exists: publish_to_paid_marketplaces
+- [PASS] blocked action exists: launch_hosted_public_mcp
+- [PASS] blocked action exists: submit_to_mcp_registry
+- [PASS] blocked action exists: claim_legal_privacy_or_fiscal_approval
+- [PASS] markdown says not activation
+- [PASS] markdown recommends Option B
+- [PASS] markdown blocks paid beta activation
+- [PASS] markdown blocks real payments
+- [PASS] markdown blocks invoices
+- [PASS] markdown blocks production API keys
+- [PASS] markdown blocks external outreach
+- [PASS] no unsafe activation claim: paid beta is live
+- [PASS] no unsafe activation claim: paid beta approved
+- [PASS] no unsafe activation claim: commercial go-live approved
+- [PASS] no unsafe activation claim: real payments are active
+- [PASS] no unsafe activation claim: invoices are active
+- [PASS] no unsafe activation claim: production keys are available
+- [PASS] no unsafe activation claim: marketplace publication allowed
+- [PASS] no unsafe activation claim: hosted public MCP live
