@@ -1,0 +1,60 @@
+{
+  "date": "2026-06-17",
+  "artifact": "owner_decision_roadmap",
+  "status": "no_commercial_activation",
+  "technical_sandbox": "ready_for_current_scope",
+  "paid_beta_preparation": "allowed",
+  "paid_beta_activation": "no_go",
+  "commercial_go_live": "no_go",
+  "tracks": {
+    "owner_direct_decisions": [
+      "next_target",
+      "first_beta_style",
+      "maximum_owner_workload",
+      "first_customer_type",
+      "brand_direction"
+    ],
+    "external_validation_needed": [
+      "fiscal_setup",
+      "invoicing",
+      "vat_piva",
+      "legal_terms",
+      "privacy_data",
+      "dpa_data_retention",
+      "refund_policy",
+      "liability"
+    ],
+    "agent_autonomous_work_allowed": [
+      "documentation_clarity",
+      "openapi_examples",
+      "machine_readable_onboarding",
+      "sandbox_response_refinement",
+      "test_probe_strengthening",
+      "company_brain_improvement",
+      "owner_approval_drafts",
+      "legal_fiscal_question_lists",
+      "p_and_l_assumption_updates",
+      "competitor_positioning_public_info",
+      "synthetic_non_personal_payload_tests",
+      "readiness_dashboard_updates"
+    ],
+    "agent_autonomous_work_blocked": [
+      "activate_payments",
+      "collect_payment_methods",
+      "issue_invoices",
+      "send_external_emails",
+      "contact_companies_or_people",
+      "process_personal_data",
+      "process_real_customer_lists",
+      "publish_marketplace_or_mcp_registry",
+      "issue_production_api_keys",
+      "change_fiscal_legal_commitments"
+    ]
+  },
+  "recommended_next_step": "create_accountant_and_legal_privacy_question_lists",
+  "final_decision": {
+    "proceed_with_preparation": true,
+    "activate_paid_beta": false,
+    "commercial_go_live": false
+  }
+}
