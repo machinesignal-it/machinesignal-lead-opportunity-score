@@ -1,0 +1,319 @@
+﻿{
+    "probe":  "agent_meeting_post_deploy_technical_closure_probe",
+    "date":  "2026-06-17",
+    "status":  "passed",
+    "checks_total":  62,
+    "checks_failed":  0,
+    "checks":  [
+                   {
+                       "name":  "Technical test phase closed for current scope",
+                       "passed":  true,
+                       "detail":  "closed_for_current_scope"
+                   },
+                   {
+                       "name":  "Read-only production access status live and verified",
+                       "passed":  true,
+                       "detail":  "live_and_verified"
+                   },
+                   {
+                       "name":  "Paid beta remains not approved",
+                       "passed":  true,
+                       "detail":  "not_approved"
+                   },
+                   {
+                       "name":  "Commercial go-live remains no-go",
+                       "passed":  true,
+                       "detail":  "no_go"
+                   },
+                   {
+                       "name":  "Next phase is decision gates",
+                       "passed":  true,
+                       "detail":  "owner_fiscal_legal_payment_decision_gates"
+                   },
+                   {
+                       "name":  "Evidence present: authenticated_live_api_sandbox_probe",
+                       "passed":  true,
+                       "detail":  "authenticated_live_api_sandbox_probe"
+                   },
+                   {
+                       "name":  "Evidence has zero failed checks: authenticated_live_api_sandbox_probe",
+                       "passed":  true,
+                       "detail":  "0"
+                   },
+                   {
+                       "name":  "Evidence present: production_access_status_endpoint_probe",
+                       "passed":  true,
+                       "detail":  "production_access_status_endpoint_probe"
+                   },
+                   {
+                       "name":  "Evidence has zero failed checks: production_access_status_endpoint_probe",
+                       "passed":  true,
+                       "detail":  "0"
+                   },
+                   {
+                       "name":  "Evidence present: deployment_readiness_check",
+                       "passed":  true,
+                       "detail":  "deployment_readiness_check"
+                   },
+                   {
+                       "name":  "Evidence has zero failed checks: deployment_readiness_check",
+                       "passed":  true,
+                       "detail":  "0"
+                   },
+                   {
+                       "name":  "Evidence present: live_production_access_status_deploy_probe",
+                       "passed":  true,
+                       "detail":  "live_production_access_status_deploy_probe"
+                   },
+                   {
+                       "name":  "Evidence has zero failed checks: live_production_access_status_deploy_probe",
+                       "passed":  true,
+                       "detail":  "0"
+                   },
+                   {
+                       "name":  "Evidence present: openapi_production_guard_schema_probe",
+                       "passed":  true,
+                       "detail":  "openapi_production_guard_schema_probe"
+                   },
+                   {
+                       "name":  "Evidence has zero failed checks: openapi_production_guard_schema_probe",
+                       "passed":  true,
+                       "detail":  "0"
+                   },
+                   {
+                       "name":  "Evidence present: worker_production_guard_helpers_patch_probe",
+                       "passed":  true,
+                       "detail":  "worker_production_guard_helpers_patch_probe"
+                   },
+                   {
+                       "name":  "Evidence has zero failed checks: worker_production_guard_helpers_patch_probe",
+                       "passed":  true,
+                       "detail":  "0"
+                   },
+                   {
+                       "name":  "Evidence present: worker_production_guard_checklist_probe",
+                       "passed":  true,
+                       "detail":  "worker_production_guard_checklist_probe"
+                   },
+                   {
+                       "name":  "Evidence has zero failed checks: worker_production_guard_checklist_probe",
+                       "passed":  true,
+                       "detail":  "0"
+                   },
+                   {
+                       "name":  "Closed scope present: machine_discovery",
+                       "passed":  true,
+                       "detail":  "machine_discovery"
+                   },
+                   {
+                       "name":  "Closed scope present: sandbox_api_journey",
+                       "passed":  true,
+                       "detail":  "sandbox_api_journey"
+                   },
+                   {
+                       "name":  "Closed scope present: score_pack_path",
+                       "passed":  true,
+                       "detail":  "score_pack_path"
+                   },
+                   {
+                       "name":  "Closed scope present: target_discovery_path",
+                       "passed":  true,
+                       "detail":  "target_discovery_path"
+                   },
+                   {
+                       "name":  "Closed scope present: deep_analysis_action_pack_gates",
+                       "passed":  true,
+                       "detail":  "deep_analysis_action_pack_gates"
+                   },
+                   {
+                       "name":  "Closed scope present: payment_test_safety",
+                       "passed":  true,
+                       "detail":  "payment_test_safety"
+                   },
+                   {
+                       "name":  "Closed scope present: ledger_safety",
+                       "passed":  true,
+                       "detail":  "ledger_safety"
+                   },
+                   {
+                       "name":  "Closed scope present: production_access_status_live",
+                       "passed":  true,
+                       "detail":  "production_access_status_live"
+                   },
+                   {
+                       "name":  "Closed scope present: openapi_guardrail_schemas",
+                       "passed":  true,
+                       "detail":  "openapi_guardrail_schemas"
+                   },
+                   {
+                       "name":  "Agent vote present: Orchestratore",
+                       "passed":  true,
+                       "detail":  "Orchestratore"
+                   },
+                   {
+                       "name":  "Agent vote present: Agente API",
+                       "passed":  true,
+                       "detail":  "Agente API"
+                   },
+                   {
+                       "name":  "Agent vote present: Architetto web AI",
+                       "passed":  true,
+                       "detail":  "Architetto web AI"
+                   },
+                   {
+                       "name":  "Agent vote present: API Product Manager",
+                       "passed":  true,
+                       "detail":  "API Product Manager"
+                   },
+                   {
+                       "name":  "Agent vote present: Data Quality \u0026 Compliance",
+                       "passed":  true,
+                       "detail":  "Data Quality \u0026 Compliance"
+                   },
+                   {
+                       "name":  "Agent vote present: Growth \u0026 Distribution",
+                       "passed":  true,
+                       "detail":  "Growth \u0026 Distribution"
+                   },
+                   {
+                       "name":  "Agent vote present: Admin \u0026 Finance Controller",
+                       "passed":  true,
+                       "detail":  "Admin \u0026 Finance Controller"
+                   },
+                   {
+                       "name":  "Agent vote present: Legal \u0026 Compliance",
+                       "passed":  true,
+                       "detail":  "Legal \u0026 Compliance"
+                   },
+                   {
+                       "name":  "Agent vote present: HR / Agent Manager",
+                       "passed":  true,
+                       "detail":  "HR / Agent Manager"
+                   },
+                   {
+                       "name":  "Remaining non-technical gate present: owner_decision_whether_to_run_paid_beta",
+                       "passed":  true,
+                       "detail":  "owner_decision_whether_to_run_paid_beta"
+                   },
+                   {
+                       "name":  "Remaining non-technical gate present: company_legal_name_and_fiscal_setup",
+                       "passed":  true,
+                       "detail":  "company_legal_name_and_fiscal_setup"
+                   },
+                   {
+                       "name":  "Remaining non-technical gate present: piva_accounting_invoicing_path",
+                       "passed":  true,
+                       "detail":  "piva_accounting_invoicing_path"
+                   },
+                   {
+                       "name":  "Remaining non-technical gate present: payment_provider_live_or_test_mode_decision",
+                       "passed":  true,
+                       "detail":  "payment_provider_live_or_test_mode_decision"
+                   },
+                   {
+                       "name":  "Remaining non-technical gate present: terms_of_service_review",
+                       "passed":  true,
+                       "detail":  "terms_of_service_review"
+                   },
+                   {
+                       "name":  "Remaining non-technical gate present: privacy_data_policy_review",
+                       "passed":  true,
+                       "detail":  "privacy_data_policy_review"
+                   },
+                   {
+                       "name":  "Remaining non-technical gate present: refund_credit_policy_approval",
+                       "passed":  true,
+                       "detail":  "refund_credit_policy_approval"
+                   },
+                   {
+                       "name":  "Remaining non-technical gate present: support_sla_approval",
+                       "passed":  true,
+                       "detail":  "support_sla_approval"
+                   },
+                   {
+                       "name":  "Remaining non-technical gate present: production_api_key_issuance_policy",
+                       "passed":  true,
+                       "detail":  "production_api_key_issuance_policy"
+                   },
+                   {
+                       "name":  "Remaining non-technical gate present: cost_caps_and_kill_switch_owner",
+                       "passed":  true,
+                       "detail":  "cost_caps_and_kill_switch_owner"
+                   },
+                   {
+                       "name":  "Still blocked item present: paid_beta",
+                       "passed":  true,
+                       "detail":  "paid_beta"
+                   },
+                   {
+                       "name":  "Still blocked item present: commercial_go_live",
+                       "passed":  true,
+                       "detail":  "commercial_go_live"
+                   },
+                   {
+                       "name":  "Still blocked item present: production_api_keys",
+                       "passed":  true,
+                       "detail":  "production_api_keys"
+                   },
+                   {
+                       "name":  "Still blocked item present: real_payments",
+                       "passed":  true,
+                       "detail":  "real_payments"
+                   },
+                   {
+                       "name":  "Still blocked item present: payment_method_collection",
+                       "passed":  true,
+                       "detail":  "payment_method_collection"
+                   },
+                   {
+                       "name":  "Still blocked item present: invoices",
+                       "passed":  true,
+                       "detail":  "invoices"
+                   },
+                   {
+                       "name":  "Still blocked item present: real_customer_data",
+                       "passed":  true,
+                       "detail":  "real_customer_data"
+                   },
+                   {
+                       "name":  "Still blocked item present: personal_data",
+                       "passed":  true,
+                       "detail":  "personal_data"
+                   },
+                   {
+                       "name":  "Still blocked item present: marketplace_publication",
+                       "passed":  true,
+                       "detail":  "marketplace_publication"
+                   },
+                   {
+                       "name":  "Still blocked item present: hosted_public_mcp",
+                       "passed":  true,
+                       "detail":  "hosted_public_mcp"
+                   },
+                   {
+                       "name":  "Still blocked item present: mcp_registry_submission",
+                       "passed":  true,
+                       "detail":  "mcp_registry_submission"
+                   },
+                   {
+                       "name":  "Recommended next step is owner decision brief",
+                       "passed":  true,
+                       "detail":  "create_paid_beta_owner_decision_brief"
+                   },
+                   {
+                       "name":  "Markdown states technical test phase closed",
+                       "passed":  true,
+                       "detail":  "markdown"
+                   },
+                   {
+                       "name":  "Markdown states paid beta not approved",
+                       "passed":  true,
+                       "detail":  "markdown"
+                   },
+                   {
+                       "name":  "Markdown states commercial go-live no-go",
+                       "passed":  true,
+                       "detail":  "markdown"
+                   }
+               ]
+}

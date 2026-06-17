@@ -1,0 +1,177 @@
+{
+  "service": "MachineSignal",
+  "artifact": "agent_meeting_post_deploy_technical_closure",
+  "date": "2026-06-17",
+  "status": "completed",
+  "primary_customer_interface": "machine",
+  "technical_test_phase": "closed_for_current_scope",
+  "read_only_production_access_status": "live_and_verified",
+  "paid_beta": "not_approved",
+  "commercial_go_live": "no_go",
+  "next_phase": "owner_fiscal_legal_payment_decision_gates",
+  "evidence_reviewed": [
+    {
+      "name": "authenticated_live_api_sandbox_probe",
+      "checks_total": 38,
+      "checks_failed": 0,
+      "status": "passed"
+    },
+    {
+      "name": "production_access_status_endpoint_probe",
+      "checks_total": 56,
+      "checks_failed": 0,
+      "status": "passed"
+    },
+    {
+      "name": "deployment_readiness_check",
+      "checks_total": 44,
+      "checks_failed": 0,
+      "status": "passed"
+    },
+    {
+      "name": "live_production_access_status_deploy_probe",
+      "checks_total": 42,
+      "checks_failed": 0,
+      "status": "passed"
+    },
+    {
+      "name": "openapi_production_guard_schema_probe",
+      "checks_total": 54,
+      "checks_failed": 0,
+      "status": "passed"
+    },
+    {
+      "name": "worker_production_guard_helpers_patch_probe",
+      "checks_total": 52,
+      "checks_failed": 0,
+      "status": "passed"
+    },
+    {
+      "name": "worker_production_guard_checklist_probe",
+      "checks_total": 100,
+      "checks_failed": 0,
+      "status": "passed"
+    },
+    {
+      "name": "local_api_tests",
+      "status": "passed"
+    },
+    {
+      "name": "durable_ledger_tests",
+      "status": "passed"
+    }
+  ],
+  "closed_for_current_scope": [
+    "machine_discovery",
+    "sandbox_api_journey",
+    "score_pack_path",
+    "target_discovery_path",
+    "deep_analysis_action_pack_gates",
+    "payment_test_safety",
+    "ledger_safety",
+    "production_access_status_live",
+    "openapi_guardrail_schemas"
+  ],
+  "agent_votes": [
+    {
+      "agent": "Orchestratore",
+      "vote": "close_technical_phase",
+      "reason": "Evidence supports moving from technical tests to owner decision gates."
+    },
+    {
+      "agent": "Agente API",
+      "vote": "close_technical_phase",
+      "reason": "Core API, docs, guard helpers, OpenAPI and live read-only status are verified."
+    },
+    {
+      "agent": "Architetto web AI",
+      "vote": "close_technical_phase",
+      "reason": "Public machine-facing assets expose the right discovery and status surfaces."
+    },
+    {
+      "agent": "API Product Manager",
+      "vote": "close_technical_phase",
+      "reason": "Product paths, pricing and blocked production status are understandable by machines."
+    },
+    {
+      "agent": "Data Scout",
+      "vote": "close_technical_phase",
+      "reason": "No-list discovery is technically testable and still gated before real data."
+    },
+    {
+      "agent": "Data Quality & Compliance",
+      "vote": "conditional_closure",
+      "reason": "Synthetic/sandbox scope is acceptable; real or personal data remains blocked."
+    },
+    {
+      "agent": "Scoring Optimizer",
+      "vote": "close_technical_phase",
+      "reason": "Scoring and routing are testable enough for current scope."
+    },
+    {
+      "agent": "Growth & Distribution",
+      "vote": "no_public_escalation",
+      "reason": "Do not move to marketplace, registry or hosted MCP yet."
+    },
+    {
+      "agent": "Machine-to-Machine Sales Ops",
+      "vote": "conditional_closure",
+      "reason": "Machine-first evaluation path is ready; selling remains blocked."
+    },
+    {
+      "agent": "Customer Success & Post-Sale",
+      "vote": "conditional_closure",
+      "reason": "Sandbox support/status is usable; paid support is not live."
+    },
+    {
+      "agent": "Admin & Finance Controller",
+      "vote": "no_go_paid_beta",
+      "reason": "Fiscal, invoicing, payment and reconciliation path still need owner decision."
+    },
+    {
+      "agent": "Legal & Compliance",
+      "vote": "no_go_paid_beta",
+      "reason": "Terms, privacy, DPA, data retention and liability require review."
+    },
+    {
+      "agent": "Continuous Improvement / Competitive Learning",
+      "vote": "continue_learning_loop",
+      "reason": "Keep using probe history and Company Brain without real customer data."
+    },
+    {
+      "agent": "HR / Agent Manager",
+      "vote": "pass_governance",
+      "reason": "Agent responsibilities are sufficient; next work should focus on decision gates."
+    }
+  ],
+  "remaining_non_technical_gates": [
+    "owner_decision_whether_to_run_paid_beta",
+    "company_legal_name_and_fiscal_setup",
+    "piva_accounting_invoicing_path",
+    "payment_provider_live_or_test_mode_decision",
+    "terms_of_service_review",
+    "privacy_data_policy_review",
+    "dpa_data_retention_liability_review_if_real_data_is_accepted",
+    "refund_credit_policy_approval",
+    "support_sla_approval",
+    "production_api_key_issuance_policy",
+    "cost_caps_and_kill_switch_owner",
+    "marketplace_registry_hosted_mcp_publication_decision"
+  ],
+  "still_blocked": [
+    "paid_beta",
+    "commercial_go_live",
+    "production_api_keys",
+    "real_payments",
+    "payment_method_collection",
+    "invoices",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach_or_email_campaigns",
+    "automated_contact_with_real_companies_or_people",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_submission"
+  ],
+  "recommended_next_step": "create_paid_beta_owner_decision_brief"
+}
