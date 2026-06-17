@@ -1,0 +1,8 @@
+﻿{
+    "date":  "2026-06-17",
+    "status":  "PASSED",
+    "checks":  48,
+    "failed":  0,
+    "decision":  "paid_beta_activation_no_go_until_all_owner_approvals_signed",
+    "next_safe_action":  "prepare_approval_materials_without_activation"
+}
