@@ -1,0 +1,8 @@
+﻿{
+    "date":  "2026-06-17",
+    "status":  "PASSED",
+    "checks":  36,
+    "failed":  0,
+    "decision":  "paid_beta_preparation_go_activation_no_go",
+    "next_step":  "draft_individual_beta_policies_without_activation"
+}

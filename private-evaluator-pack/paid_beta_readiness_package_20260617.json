@@ -1,0 +1,85 @@
+{
+  "date": "2026-06-17",
+  "artifact": "controlled_paid_beta_readiness_package",
+  "status": "draft_not_activated",
+  "technical_sandbox": "go",
+  "paid_beta_preparation": "go",
+  "paid_beta_activation": "no_go",
+  "commercial_go_live": "no_go",
+  "public_marketplace_or_hosted_mcp": "no_go",
+  "customer_interface": "machine_first",
+  "readiness_areas": [
+    {
+      "area": "fiscal_and_admin",
+      "status": "blocked",
+      "owner_action": "consult_accountant_or_fiscal_advisor_before_real_payment"
+    },
+    {
+      "area": "legal_and_compliance",
+      "status": "blocked",
+      "owner_action": "legal_privacy_review_required"
+    },
+    {
+      "area": "payment",
+      "status": "blocked",
+      "owner_action": "no_real_payment_flow_until_fiscal_legal_setup_is_clear"
+    },
+    {
+      "area": "product_and_price",
+      "status": "partially_ready",
+      "owner_action": "approve_catalog_price_list_and_credit_rules"
+    },
+    {
+      "area": "production_api_key",
+      "status": "blocked",
+      "owner_action": "approve_key_policy_before_issuing_real_keys"
+    },
+    {
+      "area": "data",
+      "status": "blocked_for_real_and_personal_data",
+      "owner_action": "approve_data_policy_before_real_customer_data"
+    },
+    {
+      "area": "support_and_post_sale",
+      "status": "draft_needed",
+      "owner_action": "approve_simple_beta_support_policy"
+    },
+    {
+      "area": "cost_cap_and_kill_switch",
+      "status": "technically_guarded_business_thresholds_not_approved",
+      "owner_action": "approve_caps_before_paid_or_real_usage"
+    },
+    {
+      "area": "distribution",
+      "status": "blocked_for_public_marketplace_hosted_mcp_registry",
+      "owner_action": "explicit_approval_required_before_external_publication"
+    }
+  ],
+  "recommended_beta_structure": [
+    "private_controlled_beta_only",
+    "manual_approval_for_each_beta_customer",
+    "sandbox_first_integration_test",
+    "no_personal_data",
+    "no_real_customer_data_unless_policy_is_approved",
+    "manual_production_key_issuance_only_after_owner_approval",
+    "credit_cap_per_customer",
+    "kill_switch_enabled",
+    "clear_refund_and_replacement_rules",
+    "no_public_marketplace_listing_until_beta_evidence_is_strong"
+  ],
+  "required_owner_approval_before_activation": [
+    "fiscal_admin_path",
+    "legal_privacy_path",
+    "payment_method",
+    "product_catalog",
+    "price_list",
+    "refund_and_credit_policy",
+    "production_key_policy",
+    "data_policy",
+    "support_policy",
+    "cost_caps",
+    "kill_switch_owner",
+    "distribution_channel"
+  ],
+  "next_step": "draft_individual_beta_policies_without_activation"
+}
