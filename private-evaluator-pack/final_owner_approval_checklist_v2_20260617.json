@@ -1,0 +1,185 @@
+{
+  "service": "MachineSignal",
+  "document": "final_owner_approval_checklist_v2",
+  "date": "2026-06-17",
+  "status": "draft_not_signed_not_activated",
+  "recommended_decision_today": "prepare_paid_beta_do_not_activate",
+  "current_decision": {
+    "technical_sandbox": "complete_for_current_scope",
+    "advisor_gate_setup": "complete_for_current_scope",
+    "paid_beta_preparation": "go",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go"
+  },
+  "master_activation_rule": {
+    "required_value_for_every_mandatory_gate": "APPROVED BY OWNER",
+    "fallback_decision": "DO_NOT_ACTIVATE"
+  },
+  "mandatory_gates": [
+    {
+      "id": "owner_commercial_decision",
+      "current_status": "not_approved",
+      "approval_owner": "owner",
+      "evidence_required": "signed decision to run controlled paid beta",
+      "if_missing": "paid_beta_blocked"
+    },
+    {
+      "id": "fiscal_admin_path",
+      "current_status": "not_approved",
+      "approval_owner": "owner_plus_fiscal_admin_advisor",
+      "evidence_required": "written decision on PIVA accounting and revenue treatment",
+      "if_missing": "payments_and_invoices_blocked"
+    },
+    {
+      "id": "invoice_receipt_process",
+      "current_status": "not_approved",
+      "approval_owner": "owner_plus_fiscal_admin_advisor",
+      "evidence_required": "defined invoice or receipt flow before first payment",
+      "if_missing": "payments_blocked"
+    },
+    {
+      "id": "payment_mode",
+      "current_status": "not_approved",
+      "approval_owner": "owner",
+      "evidence_required": "decision on no payment manual invoice prepaid credits checkout or subscription",
+      "if_missing": "live_payment_blocked"
+    },
+    {
+      "id": "terms_of_service",
+      "current_status": "draft_not_approved",
+      "approval_owner": "owner_plus_legal_privacy_review",
+      "evidence_required": "beta terms reviewed and approved",
+      "if_missing": "customer_onboarding_blocked"
+    },
+    {
+      "id": "privacy_policy",
+      "current_status": "draft_not_approved",
+      "approval_owner": "owner_plus_legal_privacy_review",
+      "evidence_required": "privacy and data handling language reviewed and approved",
+      "if_missing": "real_data_blocked"
+    },
+    {
+      "id": "data_policy",
+      "current_status": "synthetic_only",
+      "approval_owner": "owner_plus_legal_privacy_review",
+      "evidence_required": "decision on real business data personal data retention and deletion",
+      "if_missing": "real_and_personal_data_blocked"
+    },
+    {
+      "id": "product_catalog",
+      "current_status": "draft_reference",
+      "approval_owner": "owner",
+      "evidence_required": "products units and deliverables approved",
+      "if_missing": "paid_offers_blocked"
+    },
+    {
+      "id": "price_list",
+      "current_status": "draft_reference",
+      "approval_owner": "owner",
+      "evidence_required": "beta prices and tax treatment approved",
+      "if_missing": "paid_offers_blocked"
+    },
+    {
+      "id": "credit_refund_rules",
+      "current_status": "not_approved",
+      "approval_owner": "owner",
+      "evidence_required": "valid-output non-consumption refund and replacement process approved",
+      "if_missing": "paid_credits_blocked"
+    },
+    {
+      "id": "production_api_key_policy",
+      "current_status": "blocked",
+      "approval_owner": "owner_plus_technical_gate",
+      "evidence_required": "key issuance caps rotation and revocation approved",
+      "if_missing": "production_keys_blocked"
+    },
+    {
+      "id": "customer_and_usage_caps",
+      "current_status": "not_approved",
+      "approval_owner": "owner_plus_technical_gate",
+      "evidence_required": "customer count daily monthly score write and API limits approved",
+      "if_missing": "production_keys_blocked"
+    },
+    {
+      "id": "cost_cap_and_kill_switch",
+      "current_status": "not_approved",
+      "approval_owner": "owner_plus_admin_finance_plus_technical_gate",
+      "evidence_required": "daily monthly maximum cost stop restart owner and procedure approved",
+      "if_missing": "production_keys_blocked"
+    },
+    {
+      "id": "support_policy",
+      "current_status": "draft_not_approved",
+      "approval_owner": "owner",
+      "evidence_required": "support channel response logic and escalation rules approved",
+      "if_missing": "paid_onboarding_blocked"
+    },
+    {
+      "id": "security_incident_policy",
+      "current_status": "draft_not_approved",
+      "approval_owner": "owner_plus_technical_gate",
+      "evidence_required": "secret handling incident response and access rules approved",
+      "if_missing": "production_access_blocked"
+    },
+    {
+      "id": "distribution_channel",
+      "current_status": "not_approved",
+      "approval_owner": "owner",
+      "evidence_required": "private-only selected directory marketplace or MCP path approved",
+      "if_missing": "external_publication_blocked"
+    },
+    {
+      "id": "external_outreach",
+      "current_status": "blocked",
+      "approval_owner": "owner",
+      "evidence_required": "explicit decision if external contact is ever allowed",
+      "if_missing": "outreach_blocked"
+    }
+  ],
+  "recommended_first_paid_beta_shape_if_approved_later": {
+    "first_customer_or_machine_accounts": 1,
+    "first_product": "score_pack_1k",
+    "production_key_issuance": "manual_owner_approval_only",
+    "auto_renewal": false,
+    "personal_data": "not_allowed",
+    "public_marketplace": "not_allowed",
+    "hosted_public_mcp": "not_allowed",
+    "mcp_registry_submission": "not_allowed",
+    "kill_switch": "enabled"
+  },
+  "agents_may_continue": [
+    "internal_documentation_refinement",
+    "company_brain_alignment",
+    "openapi_catalog_onboarding_consistency_checks",
+    "pnl_and_cost_assumption_updates",
+    "nowrite_policy_drafts",
+    "synthetic_or_non_personal_sandbox_tests",
+    "owner_decision_material_preparation"
+  ],
+  "agents_must_stop_before": [
+    "payment_action",
+    "invoice_action",
+    "payment_method_collection",
+    "production_api_key",
+    "real_customer_dataset",
+    "personal_data",
+    "external_contact",
+    "public_marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_submission"
+  ],
+  "signature_fields": {
+    "owner_commercial_approval": "not_signed",
+    "fiscal_admin_approval": "not_signed",
+    "payment_invoice_approval": "not_signed",
+    "legal_privacy_approval": "not_signed",
+    "data_policy_approval": "not_signed",
+    "product_listino_approval": "not_signed",
+    "credit_refund_approval": "not_signed",
+    "production_key_approval": "not_signed",
+    "support_approval": "not_signed",
+    "cost_kill_switch_approval": "not_signed",
+    "distribution_approval": "not_signed"
+  },
+  "next_safe_action": "prepare_nowrite_beta_contract_pack_and_pnl_paid_beta_delta_without_activation"
+}

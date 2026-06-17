@@ -1,0 +1,10 @@
+﻿{
+    "generated_at":  "2026-06-17",
+    "checks_passed":  54,
+    "checks_total":  54,
+    "failed_checks":  [
+
+                      ],
+    "decision":  "pass",
+    "next_safe_action":  "prepare_nowrite_beta_contract_pack_and_pnl_paid_beta_delta_without_activation"
+}
