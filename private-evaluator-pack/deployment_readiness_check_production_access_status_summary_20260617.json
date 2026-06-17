@@ -1,0 +1,245 @@
+{
+  "probe": "deployment_readiness_check_production_access_status",
+  "date": "2026-06-17",
+  "status": "passed",
+  "checks_total": 44,
+  "checks_failed": 0,
+  "decision": "ready_for_cloudflare_deploy_read_only_status_endpoint",
+  "scope": "read_only_production_access_status_endpoint_only",
+  "still_blocked": [
+    "paid_beta",
+    "commercial_go_live",
+    "production_api_keys",
+    "real_payments",
+    "payment_method_collection",
+    "invoices",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_submission"
+  ],
+  "checks": [
+    {
+      "name": "Local API regression test passes",
+      "passed": true,
+      "detail": "MachineSignal minimal API tests passed.\n"
+    },
+    {
+      "name": "Durable ledger regression test passes",
+      "passed": true,
+      "detail": "{\n  \"ok\": true,\n  \"ledger_backend\": \"durable_object\",\n  \"score_count\": 24,\n  \"purchase_count\": 21,\n  \"purchase_by_product\": {\n    \"deep_analysis\": 8,\n    \"verification\": 4,\n    \"nurture_signal\": 8,\n    \"action_pack\": 1\n  },\n  \"orders_count\": 21\n}\n"
+    },
+    {
+      "name": "Production access status endpoint returns 200 locally",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "Endpoint remains sandbox_only",
+      "passed": true,
+      "detail": "sandbox_only"
+    },
+    {
+      "name": "Endpoint blocks production access",
+      "passed": true,
+      "detail": "MS_PRODUCTION_ACCESS_BLOCKED"
+    },
+    {
+      "name": "Endpoint reports no real payment",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Endpoint reports no invoice",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Endpoint reports no external contact",
+      "passed": true,
+      "detail": "false"
+    },
+    {
+      "name": "Production guard remains false: enabled",
+      "passed": true,
+      "detail": "enabled=false"
+    },
+    {
+      "name": "Production guard remains false: owner_approved",
+      "passed": true,
+      "detail": "owner_approved=false"
+    },
+    {
+      "name": "Production guard remains false: production_keys_enabled",
+      "passed": true,
+      "detail": "production_keys_enabled=false"
+    },
+    {
+      "name": "Production guard remains false: paid_beta_enabled",
+      "passed": true,
+      "detail": "paid_beta_enabled=false"
+    },
+    {
+      "name": "Production guard remains false: real_payments_enabled",
+      "passed": true,
+      "detail": "real_payments_enabled=false"
+    },
+    {
+      "name": "Production guard remains false: invoices_enabled",
+      "passed": true,
+      "detail": "invoices_enabled=false"
+    },
+    {
+      "name": "Production guard remains false: personal_data_enabled",
+      "passed": true,
+      "detail": "personal_data_enabled=false"
+    },
+    {
+      "name": "Production guard remains false: real_customer_data_enabled",
+      "passed": true,
+      "detail": "real_customer_data_enabled=false"
+    },
+    {
+      "name": "Production guard remains false: external_outreach_enabled",
+      "passed": true,
+      "detail": "external_outreach_enabled=false"
+    },
+    {
+      "name": "Production guard remains false: marketplace_publication_enabled",
+      "passed": true,
+      "detail": "marketplace_publication_enabled=false"
+    },
+    {
+      "name": "Production guard remains false: hosted_public_mcp_enabled",
+      "passed": true,
+      "detail": "hosted_public_mcp_enabled=false"
+    },
+    {
+      "name": "Production guard remains false: registry_submission_enabled",
+      "passed": true,
+      "detail": "registry_submission_enabled=false"
+    },
+    {
+      "name": "Blocked status present: production_api_keys",
+      "passed": true,
+      "detail": "production_api_keys"
+    },
+    {
+      "name": "Blocked status present: paid_beta",
+      "passed": true,
+      "detail": "paid_beta"
+    },
+    {
+      "name": "Blocked status present: commercial_go_live",
+      "passed": true,
+      "detail": "commercial_go_live"
+    },
+    {
+      "name": "Blocked status present: real_payments",
+      "passed": true,
+      "detail": "real_payments"
+    },
+    {
+      "name": "Blocked status present: payment_method_collection",
+      "passed": true,
+      "detail": "payment_method_collection"
+    },
+    {
+      "name": "Blocked status present: invoices",
+      "passed": true,
+      "detail": "invoices"
+    },
+    {
+      "name": "Blocked status present: real_customer_data",
+      "passed": true,
+      "detail": "real_customer_data"
+    },
+    {
+      "name": "Blocked status present: personal_data",
+      "passed": true,
+      "detail": "personal_data"
+    },
+    {
+      "name": "Blocked status present: external_outreach",
+      "passed": true,
+      "detail": "external_outreach"
+    },
+    {
+      "name": "Blocked status present: marketplace_publication",
+      "passed": true,
+      "detail": "marketplace_publication"
+    },
+    {
+      "name": "Blocked status present: hosted_public_mcp",
+      "passed": true,
+      "detail": "hosted_public_mcp"
+    },
+    {
+      "name": "Blocked status present: mcp_registry_submission",
+      "passed": true,
+      "detail": "mcp_registry_submission"
+    },
+    {
+      "name": "OpenAPI endpoint returns 200 locally",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "name": "OpenAPI exposes production access path",
+      "passed": true,
+      "detail": "path"
+    },
+    {
+      "name": "OpenAPI exposes ProductionAccessStatus schema",
+      "passed": true,
+      "detail": "schema"
+    },
+    {
+      "name": "OpenAPI ProductionAccessStatus says no real payment",
+      "passed": true,
+      "detail": "real_payment_executed"
+    },
+    {
+      "name": "OpenAPI ProductionAccessStatus says no invoice",
+      "passed": true,
+      "detail": "invoice_issued"
+    },
+    {
+      "name": "OpenAPI ProductionAccessStatus says no external contact",
+      "passed": true,
+      "detail": "external_contact_executed"
+    },
+    {
+      "name": "Root discovery exposes production access status",
+      "passed": true,
+      "detail": "/v1/production-access/status"
+    },
+    {
+      "name": "Machine onboarding exposes production access status",
+      "passed": true,
+      "detail": "/v1/production-access/status"
+    },
+    {
+      "name": "llms.txt exposes production access status",
+      "passed": true,
+      "detail": "llms.txt"
+    },
+    {
+      "name": "Readiness decision is deployable as read-only status",
+      "passed": true,
+      "detail": "read_only_status_endpoint"
+    },
+    {
+      "name": "Readiness decision does not approve paid beta",
+      "passed": true,
+      "detail": "paid_beta blocked"
+    },
+    {
+      "name": "Readiness decision does not approve production keys",
+      "passed": true,
+      "detail": "production keys blocked"
+    }
+  ]
+}
