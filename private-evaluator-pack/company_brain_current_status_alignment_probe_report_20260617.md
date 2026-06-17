@@ -1,0 +1,50 @@
+﻿# Company Brain Current Status Alignment Probe - 2026-06-17
+
+- Checks passed: 44/44
+- Failed checks: 0
+- Scope: COMPANY_BRAIN.md, company-brain.json, company-brain-graph.json, OpenAPI, onboarding and catalog status alignment.
+
+- [PASS] Company Brain Markdown updated to 2026-06-17
+- [PASS] Company Brain Markdown states technical sandbox complete
+- [PASS] Company Brain Markdown states commercial activation blocked
+- [PASS] Company Brain Markdown states advisor gate rehearsal zero violations
+- [PASS] company-brain JSON version updated
+- [PASS] company-brain JSON updated date
+- [PASS] company-brain phase current
+- [PASS] company-brain technical sandbox complete
+- [PASS] company-brain advisor gate complete
+- [PASS] company-brain paid beta not approved
+- [PASS] company-brain commercial go-live no-go
+- [PASS] company-brain technical estimate 100
+- [PASS] company-brain advisor gate object exists
+- [PASS] company-brain advisor gate zero hard block violations
+- [PASS] company-brain advisor gate zero unexpected allows
+- [PASS] graph version updated
+- [PASS] graph has technical sandbox complete node
+- [PASS] graph has advisor gate complete node
+- [PASS] graph has safe workstream node
+- [PASS] graph links advisor gate to blocked actions
+- [PASS] openapi advisor gate complete matches brain
+- [PASS] openapi paid beta no-go
+- [PASS] openapi commercial go-live no-go
+- [PASS] onboarding paid beta no-go
+- [PASS] onboarding commercial go-live no-go
+- [PASS] catalog paid beta no-go
+- [PASS] catalog real payments blocked
+- [PASS] company-brain blocked action: real_payments
+- [PASS] company-brain blocked action: invoices
+- [PASS] company-brain blocked action: payment_method_collection
+- [PASS] company-brain blocked action: production_api_keys
+- [PASS] company-brain blocked action: real_customer_data_processing
+- [PASS] company-brain blocked action: personal_data_processing
+- [PASS] company-brain blocked action: external_outreach
+- [PASS] company-brain blocked action: public_paid_marketplace_publication
+- [PASS] company-brain blocked action: hosted_mcp_public_launch
+- [PASS] company-brain blocked action: mcp_registry_publication
+- [PASS] company-brain blocked action: commercial_go_live
+- [PASS] no unsafe Company Brain claim: commercial go-live approved
+- [PASS] no unsafe Company Brain claim: paid beta is live
+- [PASS] no unsafe Company Brain claim: real payments are active
+- [PASS] no unsafe Company Brain claim: production keys available
+- [PASS] no unsafe Company Brain claim: marketplace publication allowed
+- [PASS] no unsafe Company Brain claim: hosted public MCP live

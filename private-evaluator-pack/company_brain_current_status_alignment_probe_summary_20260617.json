@@ -1,0 +1,17 @@
+﻿{
+    "generated_at":  "2026-06-17",
+    "checks_passed":  44,
+    "checks_total":  44,
+    "failed_checks":  [
+
+                      ],
+    "decision":  "pass",
+    "scope":  [
+                  "COMPANY_BRAIN.md",
+                  "company-brain.json",
+                  "company-brain-graph.json",
+                  "openapi.json",
+                  "machine-onboarding.json",
+                  "product-catalog.json"
+              ]
+}

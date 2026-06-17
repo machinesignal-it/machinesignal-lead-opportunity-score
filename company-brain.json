@@ -1,7 +1,7 @@
 {
   "service": "MachineSignal",
-  "company_brain_version": "2026-06-14-internal-v1",
-  "updated_at": "2026-06-14",
+  "company_brain_version": "2026-06-17-internal-v2",
+  "updated_at": "2026-06-17",
   "status": "internal_operating_brain",
   "primary_customer_interface": "machine",
   "source_of_truth": {
@@ -24,12 +24,30 @@
     ]
   },
   "current_status": {
-    "phase": "sandbox-public-docs-only",
-    "technical_sandbox_tests_estimate_percent": 94,
-    "pre_go_live_readiness_estimate_percent": 84,
-    "commercial_go_live_readiness_estimate_percent": 69,
+    "phase": "technical-sandbox-complete-current-scope",
+    "technical_sandbox": "complete_for_current_scope",
+    "advisor_gate_setup": "complete_for_current_scope",
+    "current_safe_workstream": "internal_documentation_api_examples_company_brain_refinement",
+    "technical_sandbox_tests_estimate_percent": 100,
+    "pre_go_live_readiness_estimate_percent": 88,
+    "commercial_go_live_readiness_estimate_percent": 72,
     "commercial_go_live": "no_go",
     "paid_beta": "not_approved"
+  },
+  "advisor_gate": {
+    "status": "complete_for_current_scope",
+    "agents": [
+      "Fiscal/Admin Readiness Agent",
+      "Legal & Privacy Readiness Agent",
+      "Advisor Gatekeeper Agent"
+    ],
+    "latest_rehearsal": {
+      "tests_run": 18,
+      "hard_block_violations": 0,
+      "unexpected_allows": 0,
+      "decision": "internal_preparation_allowed_commercial_activation_blocked"
+    },
+    "authority_limit": "Agents can prepare, challenge and block. They cannot authorize paid beta, real payments, invoices, production keys, real/personal data, outreach, marketplace publication or hosted public MCP."
   },
   "allowed_now": [
     "read_public_documentation",
@@ -298,7 +316,7 @@
     "update Company Brain if the decision changes the operating model"
   ],
   "roadmap": {
-    "current_next_step": "Run sandbox public observation and consistency monitoring NoWrite.",
+    "current_next_step": "Keep Company Brain, OpenAPI, catalog, onboarding and README aligned while preparing owner-decision materials for the paid-beta gate.",
     "future_visual_company_brain": {
       "status": "planned_not_started",
       "description": "Build a visual graph dashboard only after company-brain.json and company-brain-graph.json remain stable across several test cycles.",
@@ -319,6 +337,6 @@
   "current_decision": {
     "continue_sandbox_testing": true,
     "start_paid_commercial_activity": false,
-    "next_recommended_action": "Run sandbox public observation/monitoring, then decide whether to prepare controlled paid-beta readiness or continue strengthening sandbox evidence."
+    "next_recommended_action": "Prepare paid-beta owner decision materials without enabling payments, invoices, production keys, real data, outreach or public marketplace/MCP publication."
   }
 }

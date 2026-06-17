@@ -1,7 +1,7 @@
 {
   "service": "MachineSignal",
-  "graph_version": "2026-06-14-internal-v1",
-  "updated_at": "2026-06-14",
+  "graph_version": "2026-06-17-internal-v2",
+  "updated_at": "2026-06-17",
   "purpose": "Lightweight graph structure for future Company Brain visualization and agent reasoning.",
   "visualization_status": "planned_not_started",
   "nodes": [
@@ -28,6 +28,24 @@
       "type": "status",
       "label": "Sandbox Public Docs Only",
       "description": "Current operating status: sandbox docs and tests, no commercial go-live."
+    },
+    {
+      "id": "technical_sandbox_complete_current_scope",
+      "type": "status",
+      "label": "Technical Sandbox Complete",
+      "description": "Technical sandbox is complete for the current scope; commercial activation remains blocked."
+    },
+    {
+      "id": "advisor_gate_complete_current_scope",
+      "type": "control_gate",
+      "label": "Advisor Gate Complete",
+      "description": "Fiscal/Admin, Legal & Privacy and Advisor Gatekeeper agents are active for preparation and blocking, not final authorization."
+    },
+    {
+      "id": "internal_docs_api_examples_company_brain_refinement",
+      "type": "workstream",
+      "label": "Internal Docs/API/Brain Refinement",
+      "description": "Current safe workstream: align OpenAPI, catalog, onboarding, README and Company Brain without commercial activation."
     },
     {
       "id": "blocked_actions",
@@ -189,6 +207,26 @@
       "from": "machinesignal",
       "to": "sandbox_public_docs_only",
       "relation": "current_status"
+    },
+    {
+      "from": "machinesignal",
+      "to": "technical_sandbox_complete_current_scope",
+      "relation": "current_status"
+    },
+    {
+      "from": "technical_sandbox_complete_current_scope",
+      "to": "advisor_gate_complete_current_scope",
+      "relation": "requires_before_paid_beta"
+    },
+    {
+      "from": "advisor_gate_complete_current_scope",
+      "to": "blocked_actions",
+      "relation": "enforces"
+    },
+    {
+      "from": "advisor_gate_complete_current_scope",
+      "to": "internal_docs_api_examples_company_brain_refinement",
+      "relation": "allows"
     },
     {
       "from": "sandbox_public_docs_only",

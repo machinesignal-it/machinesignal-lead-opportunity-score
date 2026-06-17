@@ -1,6 +1,6 @@
 # MachineSignal Company Brain
 
-Updated: 2026-06-14  
+Updated: 2026-06-17  
 Status: internal operating brain  
 Primary customer interface: machine
 
@@ -47,7 +47,15 @@ The core promise is not "we sell websites" and not "we manually contact leads". 
 
 ## Current Valid Status
 
-The current status is sandbox-public-docs-only.
+The current status is technical-sandbox-complete-for-current-scope, advisor-gate-complete-for-current-scope and commercial-activation-blocked.
+
+Current safe workstream:
+
+- internal documentation refinement;
+- API examples refinement;
+- Company Brain alignment;
+- P&L and planning updates;
+- synthetic or non-personal sandbox checks when needed.
 
 Allowed now:
 
@@ -75,6 +83,13 @@ Blocked now:
 - commercial go-live.
 
 Any step that touches a blocked item requires explicit owner approval before execution.
+
+Advisor gate status:
+
+- Fiscal/Admin Readiness Agent: active for preparation and blocking, not final professional authorization;
+- Legal & Privacy Readiness Agent: active for preparation and blocking, not final professional authorization;
+- Advisor Gatekeeper Agent: active as owner-decision gate controller;
+- latest advisor gate rehearsal: 18 tests, 0 hard-block violations, 0 unexpected allows.
 
 ## Current Public Machine Entry Points
 
@@ -378,7 +393,9 @@ Every consumption event should be tracked with:
 
 ## Current Roadmap State
 
-Technical sandbox tests are approximately 93-94% complete.
+Technical sandbox tests are complete for the current scope.
+
+Advisor gate setup is complete for the current scope.
 
 Internal NoWrite test phase completed:
 
@@ -411,26 +428,26 @@ Public sandbox docs published:
 
 Latest readiness result:
 
-- sandbox public docs readiness probe: 36 checks, 0 failed.
+- internal docs/API examples refinement probe: 62 checks, 0 failed.
 
 Overall pre-go-live readiness estimate:
 
-- pre-go-live readiness: about 84%;
-- commercial go-live readiness: about 69%;
+- pre-go-live readiness: about 88%;
+- commercial go-live readiness: about 72%;
 - commercial go-live: no-go.
 
 ## Current Next Steps
 
 Recommended next step:
 
-Run sandbox public observation and consistency monitoring NoWrite. Confirm that all machine-readable public files remain coherent and do not imply live monetization.
+Keep the internal operating memory, OpenAPI, catalog, onboarding and README aligned while preparing owner-decision materials for the paid-beta gate.
 
 Then prepare one of these owner decisions:
 
 1. keep sandbox private/internal;
-2. approve limited public sandbox visibility;
-3. prepare legal/fiscal/payment readiness before paid beta;
-4. update P&L and business plan after latest technical evidence.
+2. prepare legal/fiscal/privacy/payment readiness before paid beta;
+3. update P&L and business plan after latest technical evidence;
+4. approve or reject controlled paid-beta activation after the owner gate.
 
 ## Machine-Readable Company Brain
 
@@ -573,4 +590,4 @@ MachineSignal must not start paid commercial activity yet.
 
 Next recommended action:
 
-Run the sandbox public observation/monitoring step, then update roadmap and decide whether to prepare a controlled paid-beta readiness pack or continue strengthening sandbox evidence.
+Maintain the Company Brain as the internal source of truth, then prepare the paid-beta owner decision pack without enabling payments, invoices, production keys, real data, outreach or public marketplace/MCP publication.
