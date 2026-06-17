@@ -1,0 +1,120 @@
+{
+  "date": "2026-06-17",
+  "artifact": "advisor_readiness_agents_update",
+  "status": "created_for_internal_readiness_not_professional_advice",
+  "new_agents": [
+    {
+      "name": "Fiscal/Admin Readiness Agent",
+      "mission": "prepare_fiscal_and_administrative_readiness_before_monetization",
+      "can_do": [
+        "review_vat_piva_fiscal_assumptions",
+        "prepare_accountant_questions",
+        "check_invoicing_and_revenue_recognition_assumptions",
+        "review_credit_subscription_refund_replacement_logic",
+        "check_ai_api_cloud_software_cost_assumptions",
+        "update_p_and_l_readiness_flags",
+        "block_real_payment_or_invoice_activation_when_fiscal_setup_not_approved"
+      ],
+      "cannot_do": [
+        "give_official_tax_advice",
+        "declare_final_piva_requirement",
+        "issue_invoices",
+        "collect_payment_methods",
+        "book_real_revenue",
+        "activate_live_billing",
+        "approve_paid_beta_alone"
+      ],
+      "decision_power": {
+        "can_mark": [
+          "green",
+          "yellow",
+          "red"
+        ],
+        "can_block_paid_beta_activation": true,
+        "can_authorize_paid_beta_activation": false
+      }
+    },
+    {
+      "name": "Legal & Privacy Readiness Agent",
+      "mission": "prepare_legal_privacy_and_data_readiness_before_real_users_or_real_data",
+      "can_do": [
+        "review_draft_beta_terms",
+        "review_privacy_and_data_handling_assumptions",
+        "prepare_dpa_data_retention_questions",
+        "detect_personal_data_risk",
+        "block_real_or_personal_data_in_sandbox_mode",
+        "check_api_key_incident_and_retention_rules",
+        "verify_decision_support_disclaimer"
+      ],
+      "cannot_do": [
+        "give_official_legal_advice",
+        "declare_final_gdpr_compliance",
+        "publish_final_terms_or_privacy_as_approved",
+        "approve_real_customer_data_processing_alone",
+        "approve_personal_data_processing_alone",
+        "approve_commercial_go_live_alone"
+      ],
+      "decision_power": {
+        "can_mark": [
+          "green",
+          "yellow",
+          "red"
+        ],
+        "can_block_paid_beta_real_data_personal_data_final_terms_go_live": true,
+        "can_authorize_these_actions_alone": false
+      }
+    },
+    {
+      "name": "Advisor Gatekeeper Agent",
+      "mission": "coordinate_fiscal_admin_and_legal_privacy_readiness_before_commercial_activation",
+      "can_do": [
+        "read_fiscal_admin_readiness_outputs",
+        "read_legal_privacy_readiness_outputs",
+        "read_owner_approval_checklist",
+        "check_all_critical_approvals_signed",
+        "classify_action_allowed_blocked_or_owner_review_required",
+        "prevent_drafts_from_being_treated_as_professional_approval",
+        "produce_readiness_verdict_for_owner"
+      ],
+      "cannot_do": [
+        "override_hard_stops",
+        "approve_paid_beta_with_missing_gates",
+        "authorize_real_payments",
+        "authorize_invoices",
+        "authorize_production_api_keys",
+        "authorize_real_or_personal_data",
+        "authorize_external_outreach",
+        "authorize_public_marketplace_or_mcp_publication"
+      ],
+      "decision_power": {
+        "can_issue": [
+          "green_prepare_only",
+          "yellow_owner_review",
+          "red_blocked"
+        ],
+        "can_issue_green_activate_paid_beta_without_all_signatures": false
+      }
+    }
+  ],
+  "first_self_evaluation": {
+    "technical_sandbox": "ready_for_current_scope",
+    "paid_beta_preparation": "allowed",
+    "paid_beta_activation": "blocked",
+    "real_payments": "blocked",
+    "invoices": "blocked",
+    "production_api_keys": "blocked",
+    "real_customer_data": "blocked",
+    "personal_data": "blocked",
+    "external_outreach": "blocked",
+    "marketplace_mcp_publication": "blocked"
+  },
+  "need_more_agents_now": false,
+  "possible_future_agents": [
+    "Tax Jurisdiction Monitor Agent",
+    "Data Protection Operations Agent",
+    "Billing Reconciliation Agent",
+    "Contract Repository Agent"
+  ],
+  "operating_rule": "agents_can_prepare_challenge_and_block_but_cannot_create_professional_legal_or_fiscal_approval",
+  "recommended_next_step": "advisor_gate_rehearsal"
+}
