@@ -1,0 +1,63 @@
+{
+  "date": "2026-06-17",
+  "artifact": "advisor_review_packet_summary",
+  "status": "informational_no_commercial_activation",
+  "purpose": "explain_machinesignal_to_accountant_legal_privacy_advisors",
+  "current_phase": "sandbox_test",
+  "business_model": "machine_first_api_services",
+  "potential_products": [
+    "target_discovery_packs",
+    "score_packs",
+    "domain_company_enrichment",
+    "deep_analysis",
+    "action_packs",
+    "recurring_feeds",
+    "api_subscriptions"
+  ],
+  "not_active": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_lists",
+    "personal_data_processing",
+    "email_campaigns",
+    "external_commercial_contacts",
+    "marketplace_publication",
+    "public_hosted_mcp",
+    "public_mcp_registry"
+  ],
+  "advisor_outputs_needed": {
+    "accountant": [
+      "vat_piva_or_fiscal_structure_requirement",
+      "free_beta_vs_paid_beta_rules",
+      "invoice_rules_for_api_credits_packs_subscriptions",
+      "vat_rules_italy_eu_extra_eu",
+      "refund_or_credit_replacement_accounting",
+      "ai_api_cloud_software_cost_accounting",
+      "requirements_before_first_real_payment"
+    ],
+    "legal_privacy": [
+      "beta_terms",
+      "liability_limits_for_scores_and_recommendations",
+      "decision_support_disclaimer",
+      "public_business_data_rules",
+      "personal_data_rejection_rules",
+      "privacy_policy_need_for_machine_to_machine_api",
+      "dpa_need_for_business_customers",
+      "retention_rules_for_logs_requests_outputs",
+      "api_key_incident_revocation_rules",
+      "commercial_communication_limits"
+    ]
+  },
+  "current_decision": {
+    "prepare_materials": true,
+    "ask_advisors": true,
+    "activate_paid_beta": false,
+    "accept_money": false,
+    "issue_invoices": false,
+    "use_real_or_personal_data": false,
+    "contact_customers": false
+  },
+  "next_step": "package_advisor_docs_for_owner_review"
+}
