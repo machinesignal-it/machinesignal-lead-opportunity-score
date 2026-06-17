@@ -1,0 +1,235 @@
+﻿{
+    "probe":  "live_production_access_status_deploy_probe",
+    "date":  "2026-06-17",
+    "status":  "passed",
+    "base_url":  "https://machinesignal-api.beta-878.workers.dev",
+    "checks_total":  42,
+    "checks_failed":  0,
+    "deployed_endpoint":  "https://machinesignal-api.beta-878.workers.dev/v1/production-access/status",
+    "still_blocked":  [
+                          "paid_beta",
+                          "commercial_go_live",
+                          "production_api_keys",
+                          "real_payments",
+                          "payment_method_collection",
+                          "invoices",
+                          "real_customer_data",
+                          "personal_data",
+                          "external_outreach",
+                          "marketplace_publication",
+                          "hosted_public_mcp",
+                          "mcp_registry_submission"
+                      ],
+    "checks":  [
+                   {
+                       "name":  "Live health returns 200",
+                       "passed":  true,
+                       "detail":  "200"
+                   },
+                   {
+                       "name":  "Live health status ok",
+                       "passed":  true,
+                       "detail":  "ok"
+                   },
+                   {
+                       "name":  "Live production access status returns 200",
+                       "passed":  true,
+                       "detail":  "200"
+                   },
+                   {
+                       "name":  "Live status is sandbox_only",
+                       "passed":  true,
+                       "detail":  "sandbox_only"
+                   },
+                   {
+                       "name":  "Live status blocks production access",
+                       "passed":  true,
+                       "detail":  "MS_PRODUCTION_ACCESS_BLOCKED"
+                   },
+                   {
+                       "name":  "Live status reports no real payment",
+                       "passed":  true,
+                       "detail":  "False"
+                   },
+                   {
+                       "name":  "Live status reports no invoice",
+                       "passed":  true,
+                       "detail":  "False"
+                   },
+                   {
+                       "name":  "Live status reports no external contact",
+                       "passed":  true,
+                       "detail":  "False"
+                   },
+                   {
+                       "name":  "Live production guard false: enabled",
+                       "passed":  true,
+                       "detail":  "enabled=False"
+                   },
+                   {
+                       "name":  "Live production guard false: owner_approved",
+                       "passed":  true,
+                       "detail":  "owner_approved=False"
+                   },
+                   {
+                       "name":  "Live production guard false: production_keys_enabled",
+                       "passed":  true,
+                       "detail":  "production_keys_enabled=False"
+                   },
+                   {
+                       "name":  "Live production guard false: paid_beta_enabled",
+                       "passed":  true,
+                       "detail":  "paid_beta_enabled=False"
+                   },
+                   {
+                       "name":  "Live production guard false: real_payments_enabled",
+                       "passed":  true,
+                       "detail":  "real_payments_enabled=False"
+                   },
+                   {
+                       "name":  "Live production guard false: invoices_enabled",
+                       "passed":  true,
+                       "detail":  "invoices_enabled=False"
+                   },
+                   {
+                       "name":  "Live production guard false: personal_data_enabled",
+                       "passed":  true,
+                       "detail":  "personal_data_enabled=False"
+                   },
+                   {
+                       "name":  "Live production guard false: real_customer_data_enabled",
+                       "passed":  true,
+                       "detail":  "real_customer_data_enabled=False"
+                   },
+                   {
+                       "name":  "Live production guard false: external_outreach_enabled",
+                       "passed":  true,
+                       "detail":  "external_outreach_enabled=False"
+                   },
+                   {
+                       "name":  "Live production guard false: marketplace_publication_enabled",
+                       "passed":  true,
+                       "detail":  "marketplace_publication_enabled=False"
+                   },
+                   {
+                       "name":  "Live production guard false: hosted_public_mcp_enabled",
+                       "passed":  true,
+                       "detail":  "hosted_public_mcp_enabled=False"
+                   },
+                   {
+                       "name":  "Live production guard false: registry_submission_enabled",
+                       "passed":  true,
+                       "detail":  "registry_submission_enabled=False"
+                   },
+                   {
+                       "name":  "Live blocked item present: production_api_keys",
+                       "passed":  true,
+                       "detail":  "production_api_keys"
+                   },
+                   {
+                       "name":  "Live blocked item present: paid_beta",
+                       "passed":  true,
+                       "detail":  "paid_beta"
+                   },
+                   {
+                       "name":  "Live blocked item present: commercial_go_live",
+                       "passed":  true,
+                       "detail":  "commercial_go_live"
+                   },
+                   {
+                       "name":  "Live blocked item present: real_payments",
+                       "passed":  true,
+                       "detail":  "real_payments"
+                   },
+                   {
+                       "name":  "Live blocked item present: payment_method_collection",
+                       "passed":  true,
+                       "detail":  "payment_method_collection"
+                   },
+                   {
+                       "name":  "Live blocked item present: invoices",
+                       "passed":  true,
+                       "detail":  "invoices"
+                   },
+                   {
+                       "name":  "Live blocked item present: real_customer_data",
+                       "passed":  true,
+                       "detail":  "real_customer_data"
+                   },
+                   {
+                       "name":  "Live blocked item present: personal_data",
+                       "passed":  true,
+                       "detail":  "personal_data"
+                   },
+                   {
+                       "name":  "Live blocked item present: external_outreach",
+                       "passed":  true,
+                       "detail":  "external_outreach"
+                   },
+                   {
+                       "name":  "Live blocked item present: marketplace_publication",
+                       "passed":  true,
+                       "detail":  "marketplace_publication"
+                   },
+                   {
+                       "name":  "Live blocked item present: hosted_public_mcp",
+                       "passed":  true,
+                       "detail":  "hosted_public_mcp"
+                   },
+                   {
+                       "name":  "Live blocked item present: mcp_registry_submission",
+                       "passed":  true,
+                       "detail":  "mcp_registry_submission"
+                   },
+                   {
+                       "name":  "Live production key response blocked",
+                       "passed":  true,
+                       "detail":  "blocked_production_key"
+                   },
+                   {
+                       "name":  "Live production key no real payment",
+                       "passed":  true,
+                       "detail":  "False"
+                   },
+                   {
+                       "name":  "Live production key no invoice",
+                       "passed":  true,
+                       "detail":  "False"
+                   },
+                   {
+                       "name":  "Live production key no external contact",
+                       "passed":  true,
+                       "detail":  "False"
+                   },
+                   {
+                       "name":  "Live kill switch contract exposed",
+                       "passed":  true,
+                       "detail":  "MS_KILL_SWITCH_ACTIVE"
+                   },
+                   {
+                       "name":  "Live OpenAPI returns 200",
+                       "passed":  true,
+                       "detail":  "200"
+                   },
+                   {
+                       "name":  "Live OpenAPI exposes production status path",
+                       "passed":  true,
+                       "detail":  "path"
+                   },
+                   {
+                       "name":  "Live OpenAPI exposes ProductionAccessStatus schema",
+                       "passed":  true,
+                       "detail":  "schema"
+                   },
+                   {
+                       "name":  "Live root returns 200",
+                       "passed":  true,
+                       "detail":  "200"
+                   },
+                   {
+                       "name":  "Live root exposes production status doc",
+                       "passed":  true,
+                       "detail":  "/v1/production-access/status"
+                   }
+               ]
+}
