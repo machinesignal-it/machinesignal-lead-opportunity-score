@@ -1,0 +1,56 @@
+{
+  "date": "2026-06-17",
+  "artifact": "controlled_paid_beta_policy_pack",
+  "status": "draft_not_legal_approval_not_activated",
+  "paid_beta_preparation": "allowed",
+  "paid_beta_activation": "blocked",
+  "commercial_go_live": "blocked",
+  "real_payments": "blocked",
+  "production_api_keys": "blocked",
+  "real_customer_data": "blocked",
+  "personal_data": "blocked",
+  "external_outreach": "blocked",
+  "public_marketplace_or_hosted_mcp": "blocked",
+  "policies": [
+    {
+      "name": "beta_terms_draft",
+      "purpose": "define controlled machine-first beta scope and exclusions",
+      "activation_status": "draft_only"
+    },
+    {
+      "name": "credit_and_refund_policy_draft",
+      "purpose": "define valid output, no-credit-consumption and replacement rules",
+      "activation_status": "draft_only"
+    },
+    {
+      "name": "data_handling_policy_draft",
+      "purpose": "keep sandbox synthetic or non-personal and block real/personal data",
+      "activation_status": "draft_only"
+    },
+    {
+      "name": "production_api_key_policy_summary",
+      "source": "production_api_key_policy_draft_20260613",
+      "activation_status": "production_keys_blocked"
+    },
+    {
+      "name": "support_policy_summary",
+      "source": "support_post_sale_automation_policy_20260615",
+      "activation_status": "sandbox_support_only"
+    },
+    {
+      "name": "cost_cap_and_kill_switch_policy_summary",
+      "source": "cost_guard_final_test_policy_20260615",
+      "activation_status": "pre_beta_limits_only"
+    }
+  ],
+  "owner_escalation_required_for": [
+    "paid_beta_activation",
+    "payment_or_invoice_request",
+    "production_api_key_request",
+    "real_or_personal_data_request",
+    "legal_privacy_dpa_sla_request",
+    "suspected_secret_exposure",
+    "marketplace_or_hosted_mcp_publication"
+  ],
+  "next_step": "create_owner_approval_checklist_final_gate"
+}
