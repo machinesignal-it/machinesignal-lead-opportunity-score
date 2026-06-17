@@ -1,0 +1,79 @@
+{
+  "date": "2026-06-17",
+  "artifact": "readiness_roadmap_advisor_gate_update",
+  "status": "updated_no_commercial_activation",
+  "technical_sandbox": "complete_for_current_scope",
+  "advisor_gate_setup": "complete_for_current_scope",
+  "current_safe_workstream": "internal_preparation_refinement",
+  "paid_beta_activation": "no_go",
+  "commercial_go_live": "no_go",
+  "advisor_gate_rehearsal": {
+    "tests_run": 18,
+    "green_prepare_only": 6,
+    "yellow_owner_review": 2,
+    "red_blocked": 10,
+    "unexpected_allows": 0,
+    "hard_block_violations": 0
+  },
+  "advisor_agents": [
+    "Fiscal/Admin Readiness Agent",
+    "Legal & Privacy Readiness Agent",
+    "Advisor Gatekeeper Agent"
+  ],
+  "allowed_next_agent_work": [
+    "openapi_examples_improvement",
+    "machine_readable_onboarding_clarity",
+    "documentation_wording",
+    "p_and_l_assumption_refinement",
+    "company_brain_update",
+    "readiness_dashboard_update",
+    "synthetic_no_personal_data_tests",
+    "cost_model_checks",
+    "owner_approval_material_improvements",
+    "policy_consistency_checks"
+  ],
+  "blocked_agent_work": [
+    "activate_paid_beta",
+    "accept_money",
+    "collect_payment_methods",
+    "issue_invoices",
+    "issue_production_api_keys",
+    "process_real_customer_lists",
+    "process_personal_data",
+    "send_outreach_email",
+    "contact_companies_or_people",
+    "publish_marketplace_listing",
+    "publish_hosted_public_mcp",
+    "submit_mcp_registry",
+    "declare_final_legal_privacy_fiscal_approval"
+  ],
+  "phases": [
+    {
+      "name": "technical_sandbox",
+      "status": "complete_for_current_scope"
+    },
+    {
+      "name": "advisor_gate_setup",
+      "status": "complete_for_current_scope"
+    },
+    {
+      "name": "internal_preparation_refinement",
+      "status": "current_safe_workstream"
+    },
+    {
+      "name": "owner_fiscal_legal_decision",
+      "status": "blocked_until_owner_decides"
+    },
+    {
+      "name": "paid_beta_activation",
+      "status": "no_go"
+    }
+  ],
+  "recommended_next_safe_step": "internal_documentation_api_examples_refinement_pass",
+  "final_decision": {
+    "continue_internal_preparation": true,
+    "activate_paid_beta": false,
+    "commercial_go_live": false,
+    "need_more_agents_now": false
+  }
+}
