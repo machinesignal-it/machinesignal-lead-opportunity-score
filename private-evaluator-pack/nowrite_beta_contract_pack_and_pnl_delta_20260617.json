@@ -1,0 +1,135 @@
+{
+  "service": "MachineSignal",
+  "document": "nowrite_beta_contract_pack_and_pnl_delta",
+  "date": "2026-06-17",
+  "status": "internal_draft_nowrite_not_activation",
+  "recommended_decision": "prepare_controlled_paid_beta_do_not_activate",
+  "current_gate": {
+    "technical_sandbox": "complete_for_current_scope",
+    "advisor_gate_setup": "complete_for_current_scope",
+    "paid_beta_preparation": "go",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go"
+  },
+  "contract_pack": {
+    "legal_approval": false,
+    "fiscal_approval": false,
+    "activation": false,
+    "provider_legal_entity": "to_be_confirmed",
+    "customer_interface": "machine_first_with_responsible_legal_person_or_organization_behind_machine",
+    "service_description": "machine_readable_commercial_decision_support_outputs",
+    "not_guaranteed": [
+      "sales",
+      "revenue",
+      "lead_conversion",
+      "legal_compliance_of_customer_actions",
+      "perfect_accuracy_of_third_party_or_public_data"
+    ],
+    "allowed_now": [
+      "sandbox_api_tests",
+      "synthetic_or_non_personal_data_tests",
+      "machine_readable_documentation_review",
+      "nowrite_contract_review",
+      "nowrite_pnl_review",
+      "internal_agent_review",
+      "owner_decision_preparation"
+    ],
+    "blocked_until_future_approval": [
+      "real_payments",
+      "invoices",
+      "payment_method_collection",
+      "production_api_keys",
+      "real_customer_datasets",
+      "personal_data",
+      "external_outreach",
+      "marketplace_publication",
+      "hosted_public_mcp",
+      "mcp_registry_submission"
+    ],
+    "credit_rule": "credits_are_consumed_only_when_valid_usable_output_is_produced",
+    "refund_recommendation": "replacement_credits_first_cash_refunds_only_by_explicit_owner_approval",
+    "support_mode": "machine_first_with_owner_escalation_for_blocked_or_high_risk_actions"
+  },
+  "pnl_paid_beta_delta": {
+    "records_revenue": false,
+    "models_possible_beta_economics_only": true,
+    "recommended_first_product": "score_pack_1k",
+    "reference_price_eur": 119,
+    "unit": "1000_valid_scores",
+    "estimated_variable_cost_per_pack_eur": {
+      "agent_model_processing": 8,
+      "data_source_checks": 10,
+      "cloudflare_api_storage": 2,
+      "qa_replacement_reserve": 6,
+      "support_reserve": 5,
+      "admin_compliance_reserve": 4,
+      "total": 35
+    },
+    "estimated_contribution_per_pack_eur": 84,
+    "estimated_contribution_margin_percent": 71,
+    "tiny_beta_scenarios": [
+      {
+        "scenario": "test_1",
+        "beta_customers": 1,
+        "packs_per_customer": 1,
+        "revenue_eur": 119,
+        "variable_cost_eur": 35,
+        "contribution_eur": 84
+      },
+      {
+        "scenario": "test_3",
+        "beta_customers": 3,
+        "packs_per_customer": 1,
+        "revenue_eur": 357,
+        "variable_cost_eur": 105,
+        "contribution_eur": 252
+      },
+      {
+        "scenario": "test_5",
+        "beta_customers": 5,
+        "packs_per_customer": 1,
+        "revenue_eur": 595,
+        "variable_cost_eur": 175,
+        "contribution_eur": 420
+      },
+      {
+        "scenario": "test_10",
+        "beta_customers": 10,
+        "packs_per_customer": 1,
+        "revenue_eur": 1190,
+        "variable_cost_eur": 350,
+        "contribution_eur": 840
+      }
+    ],
+    "fixed_readiness_cost_assumption_eur": 250,
+    "break_even_packs_estimate": 3,
+    "recommended_first_cap": {
+      "max_beta_customers": "3_to_5",
+      "first_product_only": "score_pack_1k",
+      "auto_renewal": false,
+      "production_key_manual_approval_only": true,
+      "hard_monthly_beta_cost_cap_required": true,
+      "replacement_credits_before_cash_refund": true,
+      "personal_data": "not_allowed"
+    }
+  },
+  "risk_stop_conditions": [
+    "heavy_manual_support_required",
+    "uncontrolled_real_data_processing",
+    "uncapped_external_data_calls",
+    "public_marketplace_demand_spike",
+    "uncapped_cloudflare_or_kv_writes",
+    "custom_work_hidden_inside_low_price_packs",
+    "refunds_beyond_replacement_credit_logic"
+  ],
+  "general_pnl_later_updates_if_approved": [
+    "separate_paid_beta_ramp_line",
+    "score_pack_1k_as_first_monetization_product",
+    "beta_support_reserve",
+    "replacement_credit_reserve",
+    "cost_cap_assumption",
+    "legal_fiscal_admin_setup_cost_as_pre_commercial_readiness_cost",
+    "no_full_scale_marketplace_revenue_until_distribution_approval"
+  ],
+  "next_safe_action": "prepare_beta_contract_checklist_to_policy_mapping_then_update_formal_excel_ppt_pnl_only_after_owner_approval"
+}
