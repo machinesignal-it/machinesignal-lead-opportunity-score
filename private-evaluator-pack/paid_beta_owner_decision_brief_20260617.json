@@ -1,0 +1,60 @@
+{
+  "date": "2026-06-17",
+  "artifact": "paid_beta_owner_decision_brief",
+  "status": "owner_decision_required",
+  "technical_sandbox_status": "ready_for_current_scope",
+  "commercial_status": "not_live",
+  "recommended_option": "prepare_paid_beta_but_do_not_activate",
+  "ready": [
+    "public_machine_readable_discovery",
+    "openapi_contract",
+    "postman_collection",
+    "public_sandbox_endpoints",
+    "sandbox_credit_ledger_logic",
+    "sandbox_purchase_logic",
+    "live_production_access_status_endpoint",
+    "production_access_guardrails",
+    "automated_live_probe_evidence",
+    "post_deploy_agent_meeting_evidence"
+  ],
+  "blocked_until_owner_approval": [
+    "paid_beta",
+    "commercial_go_live",
+    "production_api_keys",
+    "real_payments",
+    "payment_method_collection",
+    "invoices",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach_or_email_campaigns",
+    "automated_contact_with_real_companies_or_people",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_submission"
+  ],
+  "owner_decisions_needed": [
+    "paid_beta_or_continue_sandbox_only",
+    "legal_and_fiscal_setup",
+    "vat_or_piva_accounting_path",
+    "payment_mode_test_or_live_later",
+    "refund_credit_support_policy",
+    "real_customer_data_policy",
+    "external_directory_marketplace_registry_policy",
+    "production_access_authority"
+  ],
+  "decision_options": {
+    "A": {
+      "name": "continue_sandbox_only",
+      "recommended": false
+    },
+    "B": {
+      "name": "prepare_paid_beta_but_do_not_activate",
+      "recommended": true
+    },
+    "C": {
+      "name": "activate_paid_beta",
+      "recommended": false
+    }
+  },
+  "next_step": "create_controlled_paid_beta_readiness_package_without_activating_payments"
+}
