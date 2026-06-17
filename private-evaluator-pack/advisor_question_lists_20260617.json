@@ -1,0 +1,67 @@
+{
+  "date": "2026-06-17",
+  "artifact": "advisor_question_lists",
+  "status": "draft_for_consultants_no_commercial_activation",
+  "audiences": [
+    "accountant_fiscal_advisor",
+    "legal_privacy_advisor"
+  ],
+  "context": {
+    "project": "MachineSignal",
+    "customer_interface": "machine_first",
+    "current_phase": "sandbox_test",
+    "goal": "understand_requirements_before_controlled_paid_beta"
+  },
+  "still_blocked": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "personal_data",
+    "real_customer_lists",
+    "external_outreach",
+    "marketplace_publication",
+    "public_mcp_or_registry_publication"
+  ],
+  "accountant_topics": [
+    "starting_without_vat_or_piva",
+    "correct_business_form",
+    "invoicing_and_revenue_recognition",
+    "vat_and_digital_services",
+    "cost_deductibility",
+    "controlled_paid_beta"
+  ],
+  "legal_privacy_topics": [
+    "terms_of_service",
+    "privacy_and_data",
+    "privacy_roles",
+    "data_retention",
+    "public_business_data_and_enrichment",
+    "machine_or_ai_agent_usage",
+    "security_and_incidents",
+    "commercial_communication"
+  ],
+  "desired_outputs": {
+    "accountant": [
+      "if_and_when_vat_or_piva_is_required",
+      "recommended_starting_form",
+      "rules_for_invoices_vat_credits_subscriptions_refunds",
+      "requirements_before_first_real_payment"
+    ],
+    "legal_privacy": [
+      "minimum_beta_terms",
+      "minimum_privacy_policy",
+      "allowed_and_forbidden_data_rules",
+      "dpa_need",
+      "liability_limits",
+      "api_key_log_retention_incident_rules"
+    ]
+  },
+  "current_decision": {
+    "prepare_materials": true,
+    "activate_paid_beta": false,
+    "accept_real_payments": false,
+    "use_real_or_personal_data": false,
+    "perform_outreach": false
+  },
+  "next_step": "create_advisor_review_packet_summary"
+}
