@@ -1,0 +1,145 @@
+﻿# No-Go / Activation Preconditions Matrix NoWrite probe report
+
+Data: 2026-06-18
+
+Success: True
+Passed: 125
+Failed: 0
+Current result: NOT_YET_OWNER_REVIEW_REQUIRED
+Decision: NO_GO_FOR_ACTIVATION
+Selected option: 
+Options mapped: 5
+Minimum preconditions: 12
+Activation allowed: False
+Owner signature present: False
+Next safe action: prepare_final_owner_go_no_go_summary_nowrite
+
+## Failed checks
+None.
+
+## Passed checks
+- json_exists: C:\Users\natal\AppData\Local\Temp\MachineSignal\github_repo_sync_20260530\private-evaluator-pack\no_go_or_activation_preconditions_matrix_nowrite_20260618.json
+- markdown_exists: C:\Users\natal\AppData\Local\Temp\MachineSignal\github_repo_sync_20260530\private-evaluator-pack\no_go_or_activation_preconditions_matrix_nowrite_20260618.md
+- source_decision_form_summary_exists: C:\Users\natal\AppData\Local\Temp\MachineSignal\github_repo_sync_20260530\private-evaluator-pack\owner_decision_form_from_review_packet_nowrite_probe_summary_20260618.json
+- source_probe_success: source success=True
+- source_probe_119_passed: source passed=119
+- source_probe_zero_failed: source failed=0
+- source_selected_null: selected=
+- source_current_result_not_yet: NOT_YET_OWNER_REVIEW_REQUIRED
+- status_exact: no_go_or_activation_preconditions_matrix_ready_nowrite_not_signed_not_activated
+- mode_matrix_only: preconditions matrix only
+- current_result_not_yet: NOT_YET_OWNER_REVIEW_REQUIRED
+- decision_no_go: NO_GO_FOR_ACTIVATION
+- selected_option_null: selected=
+- source_probe_recorded: 119_checks_0_failed
+- source_selected_null_json: selected=
+- option_matrix_count: count=5
+- minimum_preconditions_count: count=12
+- recommended_next_final_summary: prepare_final_owner_go_no_go_summary_nowrite
+- flag_false_is_approval: is_approval=False
+- flag_false_is_owner_signature: is_owner_signature=False
+- flag_false_owner_signature_present: owner_signature_present=False
+- flag_false_activation_allowed: activation_allowed=False
+- flag_false_paid_beta_activation_allowed: paid_beta_activation_allowed=False
+- flag_false_commercial_go_live_allowed: commercial_go_live_allowed=False
+- flag_false_real_payment_allowed: real_payment_allowed=False
+- flag_false_invoice_allowed: invoice_allowed=False
+- flag_false_payment_method_collection_allowed: payment_method_collection_allowed=False
+- flag_false_production_key_issuance_allowed: production_key_issuance_allowed=False
+- flag_false_real_customer_data_allowed: real_customer_data_allowed=False
+- flag_false_personal_data_allowed: personal_data_allowed=False
+- flag_false_external_outreach_allowed: external_outreach_allowed=False
+- flag_false_marketplace_publication_allowed: marketplace_publication_allowed=False
+- flag_false_hosted_public_mcp_allowed: hosted_public_mcp_allowed=False
+- flag_false_mcp_registry_publication_allowed: mcp_registry_publication_allowed=False
+- required_option_remain_sandbox_only: remain_sandbox_only
+- required_option_prepare_controlled_beta_without_activation: prepare_controlled_beta_without_activation
+- required_option_request_external_review_before_monetization: request_external_review_before_monetization
+- required_option_authorize_separate_activation_step_preparation: authorize_separate_activation_step_preparation
+- required_option_do_not_proceed: do_not_proceed
+- option_A_not_allowed_present: remain_sandbox_only not_allowed=4
+- option_A_not_activation_status: remain_sandbox_only status=allowed_nowrite
+- option_B_not_allowed_present: prepare_controlled_beta_without_activation not_allowed=4
+- option_B_not_activation_status: prepare_controlled_beta_without_activation status=allowed_preparation_only
+- option_C_not_allowed_present: request_external_review_before_monetization not_allowed=3
+- option_C_not_activation_status: request_external_review_before_monetization status=allowed_nowrite
+- option_D_not_allowed_present: authorize_separate_activation_step_preparation not_allowed=3
+- option_D_not_activation_status: authorize_separate_activation_step_preparation status=allowed_draft_only
+- option_E_not_allowed_present: do_not_proceed not_allowed=1
+- option_E_not_activation_status: do_not_proceed status=allowed
+- required_precondition_explicit_tracked_owner_decision: explicit_tracked_owner_decision
+- required_precondition_separate_signature_or_authorization_record: separate_signature_or_authorization_record
+- required_precondition_selected_path_sandbox_beta_pause_or_no_go: selected_path_sandbox_beta_pause_or_no_go
+- required_precondition_fiscal_admin_path_confirmed_before_collecting_money: fiscal_admin_path_confirmed_before_collecting_money
+- required_precondition_payment_invoice_rules_confirmed_before_payment_method_collection: payment_invoice_rules_confirmed_before_payment_method_collection
+- required_precondition_privacy_data_boundaries_confirmed_before_real_or_personal_data: privacy_data_boundaries_confirmed_before_real_or_personal_data
+- required_precondition_price_list_credits_refunds_confirmed: price_list_credits_refunds_confirmed
+- required_precondition_cost_cap_kill_switch_max_budget_confirmed: cost_cap_kill_switch_max_budget_confirmed
+- required_precondition_production_api_key_policy_confirmed_before_key_creation: production_api_key_policy_confirmed_before_key_creation
+- required_precondition_support_escalation_incident_process_confirmed: support_escalation_incident_process_confirmed
+- required_precondition_allowed_distribution_channels_confirmed: allowed_distribution_channels_confirmed
+- required_precondition_final_nowrite_control_passes_zero_errors_before_real_step: final_nowrite_control_passes_zero_errors_before_real_step
+- forbidden_action_listed_activate_paid_beta: activate_paid_beta
+- forbidden_action_listed_commercial_go_live: commercial_go_live
+- forbidden_action_listed_execute_real_payment: execute_real_payment
+- forbidden_action_listed_issue_invoice: issue_invoice
+- forbidden_action_listed_collect_payment_method: collect_payment_method
+- forbidden_action_listed_issue_production_api_key: issue_production_api_key
+- forbidden_action_listed_process_real_customer_data: process_real_customer_data
+- forbidden_action_listed_process_personal_data: process_personal_data
+- forbidden_action_listed_send_external_outreach: send_external_outreach
+- forbidden_action_listed_publish_marketplace_listing: publish_marketplace_listing
+- forbidden_action_listed_launch_hosted_public_mcp: launch_hosted_public_mcp
+- forbidden_action_listed_submit_mcp_registry: submit_mcp_registry
+- forbidden_action_listed_start_real_subscription_or_auto_renewal: start_real_subscription_or_auto_renewal
+- forbidden_action_listed_claim_service_is_live_or_sellable: claim_service_is_live_or_sellable
+- machine_status: no_go_or_activation_preconditions_matrix_ready_nowrite
+- machine_decision_no_go: NO_GO_FOR_ACTIVATION
+- machine_current_result: NOT_YET_OWNER_REVIEW_REQUIRED
+- machine_source_probe: 119_checks_0_failed
+- machine_options_5: options=5
+- machine_preconditions_12: preconditions=12
+- machine_selected_null: selected=
+- machine_activation_false: activation=False
+- machine_signature_false: signature=False
+- machine_next_final_summary: prepare_final_owner_go_no_go_summary_nowrite
+- machine_support_code: NO_GO_OR_ACTIVATION_PRECONDITIONS_MATRIX_READY_NOWRITE
+- flag_false_paid_beta_activation_allowed: paid_beta_activation_allowed=False
+- flag_false_commercial_go_live_allowed: commercial_go_live_allowed=False
+- flag_false_real_payment_allowed: real_payment_allowed=False
+- flag_false_invoice_allowed: invoice_allowed=False
+- flag_false_payment_method_collection_allowed: payment_method_collection_allowed=False
+- flag_false_production_key_issuance_allowed: production_key_issuance_allowed=False
+- flag_false_real_customer_data_allowed: real_customer_data_allowed=False
+- flag_false_personal_data_allowed: personal_data_allowed=False
+- flag_false_external_outreach_allowed: external_outreach_allowed=False
+- flag_false_marketplace_publication_allowed: marketplace_publication_allowed=False
+- flag_false_hosted_public_mcp_allowed: hosted_public_mcp_allowed=False
+- markdown_contains_No-Go / Activation Preconditions Matrix NoWrite: No-Go / Activation Preconditions Matrix NoWrite
+- markdown_contains_non firmata, non approvata, non attivata: non firmata, non approvata, non attivata
+- markdown_contains_NO_GO_FOR_ACTIVATION: NO_GO_FOR_ACTIVATION
+- markdown_contains_Matrice per opzione: Matrice per opzione
+- markdown_contains_Precondizioni minime per uscire dal No-Go: Precondizioni minime per uscire dal No-Go
+- markdown_contains_questa matrice non attiva nulla: questa matrice non attiva nulla
+- markdown_contains_Cosa resta vietato: Cosa resta vietato
+- markdown_contains_prepare_final_owner_go_no_go_summary_nowrite: prepare_final_owner_go_no_go_summary_nowrite
+- forbidden_pattern_absent_"activation_allowed": true: "activation_allowed": true
+- forbidden_pattern_absent_"paid_beta_activation_allowed": true: "paid_beta_activation_allowed": true
+- forbidden_pattern_absent_"commercial_go_live_allowed": true: "commercial_go_live_allowed": true
+- forbidden_pattern_absent_"real_payment_allowed": true: "real_payment_allowed": true
+- forbidden_pattern_absent_"invoice_allowed": true: "invoice_allowed": true
+- forbidden_pattern_absent_"payment_method_collection_allowed": true: "payment_method_collection_allowed": true
+- forbidden_pattern_absent_"production_key_issuance_allowed": true: "production_key_issuance_allowed": true
+- forbidden_pattern_absent_"real_customer_data_allowed": true: "real_customer_data_allowed": true
+- forbidden_pattern_absent_"personal_data_allowed": true: "personal_data_allowed": true
+- forbidden_pattern_absent_"external_outreach_allowed": true: "external_outreach_allowed": true
+- forbidden_pattern_absent_"marketplace_publication_allowed": true: "marketplace_publication_allowed": true
+- forbidden_pattern_absent_"hosted_public_mcp_allowed": true: "hosted_public_mcp_allowed": true
+- forbidden_pattern_absent_"mcp_registry_publication_allowed": true: "mcp_registry_publication_allowed": true
+- forbidden_pattern_absent_"owner_signature_present": true: "owner_signature_present": true
+- forbidden_pattern_absent_"selected_option": ": "selected_option": "
+- forbidden_pattern_absent_beta a pagamento attivata: si: beta a pagamento attivata: si
+- forbidden_pattern_absent_go-live commerciale: si: go-live commerciale: si
+- forbidden_pattern_absent_pagamento reale eseguito: pagamento reale eseguito
+- forbidden_pattern_absent_fattura emessa: fattura emessa
+- forbidden_pattern_absent_chiave production emessa: chiave production emessa

@@ -1,0 +1,15 @@
+﻿{
+    "probe":  "no_go_or_activation_preconditions_matrix_nowrite_probe_20260618",
+    "success":  true,
+    "passed":  125,
+    "failed":  0,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "decision":  "NO_GO_FOR_ACTIVATION",
+    "selected_option":  null,
+    "options_mapped":  5,
+    "minimum_preconditions_count":  12,
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "next_safe_action":  "prepare_final_owner_go_no_go_summary_nowrite",
+    "support_code":  "NO_GO_OR_ACTIVATION_PRECONDITIONS_MATRIX_READY_NOWRITE"
+}
