@@ -50,9 +50,9 @@
     },
     {
       "area": "payment_invoice_path",
-      "status": "red",
-      "meaning": "payment_mode_and_fiscal_document_process_not_approved",
-      "decision": "block_live_payment"
+      "status": "yellow",
+      "meaning": "draft_verified_by_123_checks_but_not_owner_approved_no_live_payment_no_invoice_no_payment_method_collection",
+      "decision": "continue_owner_review_payment_invoice_path_before_checkout_or_invoices"
     },
     {
       "area": "terms_privacy_data",
@@ -151,8 +151,8 @@
   },
   "gate_counts": {
     "green": 3,
-    "yellow": 9,
-    "red": 4
+    "yellow": 10,
+    "red": 3
   },
   "yellow_candidate_evidence": [
     {
@@ -239,7 +239,22 @@
         "order_credit_payment_invoice_reconciliation_test",
         "company_brain_final_update"
       ]
+    },
+    {
+      "area": "payment_invoice_path",
+      "evidence": "payment_invoice_readiness_20260618",
+      "probe": "123_checks_0_failed",
+      "remaining_to_green": [
+        "owner_approval",
+        "fiscal_admin_readiness_approved",
+        "payment_provider_selected",
+        "test_mode_live_mode_separation",
+        "billing_profile_implementation",
+        "payment_invoice_reconciliation_test",
+        "payment_kill_switch_test",
+        "company_brain_final_update"
+      ]
     }
   ],
-  "next_safe_action": "prepare_payment_invoice_readiness_or_product_listino_owner_review"
+  "next_safe_action": "prepare_product_listino_owner_review_or_production_api_key_readiness"
 }

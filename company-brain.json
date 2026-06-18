@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "company_brain_version": "2026-06-18-internal-v9",
+  "company_brain_version": "2026-06-18-internal-v10",
   "updated_at": "2026-06-18",
   "status": "internal_operating_brain",
   "primary_customer_interface": "machine",
@@ -29,8 +29,8 @@
     "advisor_gate_setup": "complete_for_current_scope",
     "current_safe_workstream": "owner_dashboard_alignment_and_policy_readiness",
     "technical_sandbox_tests_estimate_percent": 100,
-    "pre_go_live_readiness_estimate_percent": 90,
-    "commercial_go_live_readiness_estimate_percent": 73,
+    "pre_go_live_readiness_estimate_percent": 92,
+    "commercial_go_live_readiness_estimate_percent": 74,
     "commercial_go_live": "no_go",
     "paid_beta": "not_approved"
   },
@@ -38,8 +38,8 @@
     "date": "2026-06-18",
     "status": "no_write_not_signed_not_activated",
     "green_count": 3,
-    "yellow_count": 9,
-    "red_count": 4,
+    "yellow_count": 10,
+    "red_count": 3,
     "green": [
       "technical_sandbox",
       "advisor_gate_setup",
@@ -54,11 +54,11 @@
       "terms_privacy_data_readiness_candidate",
       "security_incident_readiness_candidate",
       "distribution_outreach_publication_approval_candidate",
-      "fiscal_admin_readiness_candidate"
+      "fiscal_admin_readiness_candidate",
+      "payment_invoice_readiness_candidate"
     ],
     "red": [
       "owner_commercial_approval",
-      "payment_invoice_readiness",
       "product_listino_approval",
       "production_api_keys"
     ],
@@ -104,6 +104,12 @@
         "evidence": "fiscal_admin_readiness_20260618",
         "probe": "99_checks_0_failed",
         "status": "draft_verified_not_owner_approved_not_tax_advice_no_payments_no_invoices"
+      },
+      {
+        "area": "payment_invoice_readiness",
+        "evidence": "payment_invoice_readiness_20260618",
+        "probe": "123_checks_0_failed",
+        "status": "draft_verified_not_owner_approved_no_live_payment_no_invoice_no_payment_method_collection"
       }
     ],
     "recommended_decision_today": "continue_preparing_paid_beta_materials_but_do_not_activate_paid_beta",
@@ -121,7 +127,7 @@
       "mcp_registry_publication",
       "commercial_go_live"
     ],
-    "owner_facing_summary_it": "Preparazione interna consentita. Beta a pagamento non attivabile. Sette blocchi sono candidati gialli grazie a bozze verificate: policy crediti/rimborsi, cost cap/kill switch, supporto/escalation, terms/privacy/data readiness, security/incident readiness, distribution/outreach/publication approval e fiscal/admin readiness. Dati reali, personali, segreti production, chiavi production, pagamenti e fatture restano bloccati. Mancano ancora approvazioni e condizioni operative su pagamenti/fatture, chiavi production, product/listino e attivazione commerciale.",
+    "owner_facing_summary_it": "Preparazione interna consentita. Beta a pagamento non attivabile. Otto blocchi sono candidati gialli grazie a bozze verificate: policy crediti/rimborsi, cost cap/kill switch, supporto/escalation, terms/privacy/data readiness, security/incident readiness, distribution/outreach/publication approval, fiscal/admin readiness e payment/invoice readiness. Dati reali, personali, segreti production, chiavi production, pagamenti, fatture, raccolta metodi di pagamento e abbonamenti reali restano bloccati. Mancano ancora approvazioni e condizioni operative su chiavi production, product/listino e attivazione commerciale.",
     "next_safe_action": "decide_continue_policy_details_or_pause_for_owner_review"
   },
   "advisor_gate": {

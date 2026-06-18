@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "payment_invoice_dashboard_alignment",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  68,
+    "total":  68,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Dashboard aggiornato: 3 verdi, 10 gialli, 3 rossi. Payment/invoice e\u0027 candidato giallo verificato, non approvato. Nessun checkout live, carta, pagamento, fattura o abbonamento autorizzato."
+}
