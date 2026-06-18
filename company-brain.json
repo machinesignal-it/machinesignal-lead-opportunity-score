@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "company_brain_version": "2026-06-18-internal-v3",
+  "company_brain_version": "2026-06-18-internal-v4",
   "updated_at": "2026-06-18",
   "status": "internal_operating_brain",
   "primary_customer_interface": "machine",
@@ -38,8 +38,8 @@
     "date": "2026-06-18",
     "status": "no_write_not_signed_not_activated",
     "green_count": 3,
-    "yellow_count": 2,
-    "red_count": 11,
+    "yellow_count": 4,
+    "red_count": 9,
     "green": [
       "technical_sandbox",
       "advisor_gate_setup",
@@ -47,7 +47,9 @@
     ],
     "yellow": [
       "policy_preparation",
-      "pnl_paid_beta_delta"
+      "pnl_paid_beta_delta",
+      "credit_refund_policy_candidate",
+      "cost_cap_kill_switch_candidate"
     ],
     "red": [
       "owner_commercial_approval",
@@ -55,12 +57,24 @@
       "payment_invoice_readiness",
       "terms_privacy_data_readiness",
       "product_listino_approval",
-      "credit_refund_policy",
       "production_api_keys",
-      "cost_cap_kill_switch",
       "support_escalation_model",
       "security_incident_readiness",
       "distribution_outreach_publication_approval"
+    ],
+    "candidate_yellow_evidence": [
+      {
+        "area": "credit_refund_policy",
+        "evidence": "beta_credit_refund_policy_20260618",
+        "probe": "78_checks_0_failed",
+        "status": "draft_verified_not_owner_approved"
+      },
+      {
+        "area": "cost_cap_kill_switch",
+        "evidence": "cost_cap_kill_switch_policy_20260618",
+        "probe": "95_checks_0_failed",
+        "status": "draft_verified_not_owner_approved_not_implemented"
+      }
     ],
     "recommended_decision_today": "continue_preparing_paid_beta_materials_but_do_not_activate_paid_beta",
     "blocked_actions": [
@@ -77,7 +91,7 @@
       "mcp_registry_publication",
       "commercial_go_live"
     ],
-    "owner_facing_summary_it": "Preparazione interna consentita. Beta a pagamento non attivabile. Mancano ancora approvazioni e condizioni operative su fiscalita, pagamenti, privacy, dati, supporto, sicurezza, costi e distribuzione.",
+    "owner_facing_summary_it": "Preparazione interna consentita. Beta a pagamento non attivabile. Due blocchi sono candidati gialli grazie a bozze verificate: policy crediti/rimborsi e cost cap/kill switch. Mancano ancora approvazioni e condizioni operative su fiscalita, pagamenti, privacy, dati, supporto, sicurezza, chiavi production e distribuzione.",
     "next_safe_action": "decide_continue_policy_details_or_pause_for_owner_review"
   },
   "advisor_gate": {

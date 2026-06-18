@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "dashboard_candidate_yellow_alignment",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  30,
+    "total":  30,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Dashboard aggiornato: 3 verdi, 4 gialli, 9 rossi. Credit/refund e cost cap sono candidati gialli, non approvati. Beta a pagamento resta no-go."
+}

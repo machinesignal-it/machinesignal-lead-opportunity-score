@@ -68,9 +68,9 @@
     },
     {
       "area": "credit_refund_policy",
-      "status": "red",
-      "meaning": "replacement_refund_rules_not_approved",
-      "decision": "block_paid_credits"
+      "status": "yellow",
+      "meaning": "draft_verified_by_78_checks_but_not_owner_approved_and_not_implemented",
+      "decision": "continue_owner_review_and_ledger_test_before_paid_credits"
     },
     {
       "area": "production_api_keys",
@@ -80,9 +80,9 @@
     },
     {
       "area": "cost_cap_kill_switch",
-      "status": "red",
-      "meaning": "cost_limits_and_stop_restart_owner_not_approved",
-      "decision": "block_production_keys"
+      "status": "yellow",
+      "meaning": "draft_verified_by_95_checks_but_not_owner_approved_and_not_implemented",
+      "decision": "continue_owner_review_and_simulation_before_production_keys"
     },
     {
       "area": "support_escalation",
@@ -149,5 +149,33 @@
     "paid_beta_activation": "no_go",
     "commercial_go_live": "no_go"
   },
-  "next_safe_action": "update_company_brain_with_dashboard_status_then_decide_continue_policy_details_or_pause_for_owner_review"
+  "gate_counts": {
+    "green": 3,
+    "yellow": 4,
+    "red": 9
+  },
+  "yellow_candidate_evidence": [
+    {
+      "area": "credit_refund_policy",
+      "evidence": "beta_credit_refund_policy_20260618",
+      "probe": "78_checks_0_failed",
+      "remaining_to_green": [
+        "owner_approval",
+        "ledger_consistency_test",
+        "company_brain_final_update"
+      ]
+    },
+    {
+      "area": "cost_cap_kill_switch",
+      "evidence": "cost_cap_kill_switch_policy_20260618",
+      "probe": "95_checks_0_failed",
+      "remaining_to_green": [
+        "owner_approval",
+        "technical_implementation",
+        "simulation_test",
+        "company_brain_final_update"
+      ]
+    }
+  ],
+  "next_safe_action": "prepare_support_escalation_model_or_run_ledger_consistency_nowrite_test"
 }
