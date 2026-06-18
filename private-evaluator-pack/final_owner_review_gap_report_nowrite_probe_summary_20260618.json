@@ -1,0 +1,17 @@
+﻿{
+    "document":  "final_owner_review_gap_report_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "target":  "final_owner_review_gap_report_nowrite_20260618",
+    "passed":  66,
+    "failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "remaining_red_gate":  "owner_commercial_approval",
+    "activation_allowed":  false,
+    "paid_beta_activation_allowed":  false,
+    "commercial_go_live_allowed":  false,
+    "next_safe_action":  "align_company_brain_dashboard_with_final_gap_report",
+    "failed_checks":  [
+
+                      ]
+}

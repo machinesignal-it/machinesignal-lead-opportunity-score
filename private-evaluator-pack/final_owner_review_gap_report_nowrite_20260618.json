@@ -1,0 +1,254 @@
+{
+  "service": "MachineSignal",
+  "document": "final_owner_review_gap_report_nowrite",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_nowrite_gap_report_not_signed_not_activated",
+  "mode": "NoWrite final owner review gap report",
+  "is_approval": false,
+  "is_owner_signature": false,
+  "activation_allowed": false,
+  "paid_beta_activation_allowed": false,
+  "commercial_go_live_allowed": false,
+  "real_payment_allowed": false,
+  "invoice_allowed": false,
+  "payment_method_collection_allowed": false,
+  "production_key_issuance_allowed": false,
+  "real_customer_data_allowed": false,
+  "personal_data_allowed": false,
+  "external_outreach_allowed": false,
+  "marketplace_publication_allowed": false,
+  "hosted_public_mcp_allowed": false,
+  "mcp_registry_publication_allowed": false,
+  "current_dashboard_counts": {
+    "green": 3,
+    "yellow": 12,
+    "red": 1
+  },
+  "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+  "remaining_red_gate": "owner_commercial_approval",
+  "final_decision_now": {
+    "paid_beta_preparation": "go",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go"
+  },
+  "go_readiness_interpretation": "commercially_close_but_not_activatable",
+  "owner_time_required_next_review_minutes": {
+    "minimum": 45,
+    "maximum": 90
+  },
+  "gap_groups": [
+    {
+      "id": "owner_signature_final_decision",
+      "title": "Firma e decisione finale del proprietario",
+      "status": "red",
+      "missing": [
+        "owner_signature",
+        "final_go_no_go_report_approved",
+        "explicit_paid_beta_decision",
+        "all_yellow_gates_resolved_or_consciously_blocked"
+      ],
+      "blocks": [
+        "activate_paid_beta",
+        "commercial_go_live"
+      ]
+    },
+    {
+      "id": "fiscal_admin",
+      "title": "Fiscalita, amministrazione e fatturazione",
+      "status": "yellow",
+      "missing": [
+        "final_fiscal_path_decision",
+        "piva_or_allowed_alternative_rule",
+        "vat_and_invoice_rule",
+        "billing_profile",
+        "order_credit_payment_invoice_reconciliation_test"
+      ],
+      "blocks": [
+        "real_payments",
+        "invoices"
+      ]
+    },
+    {
+      "id": "payment_invoice",
+      "title": "Pagamenti e incassi",
+      "status": "yellow",
+      "missing": [
+        "payment_provider_selected",
+        "test_live_mode_separation",
+        "payment_kill_switch",
+        "simulated_payment_invoice_test",
+        "explicit_approval_before_payment_method_collection"
+      ],
+      "blocks": [
+        "checkout",
+        "card_collection",
+        "real_payment"
+      ]
+    },
+    {
+      "id": "terms_privacy_data",
+      "title": "Termini, privacy e dati",
+      "status": "yellow",
+      "missing": [
+        "final_terms_privacy_data_policy_texts",
+        "technical_input_classification_filter",
+        "retention_deletion_procedure",
+        "nowrite_allowed_blocked_data_test",
+        "real_or_personal_data_approval"
+      ],
+      "blocks": [
+        "real_onboarding",
+        "real_customer_data",
+        "personal_data"
+      ]
+    },
+    {
+      "id": "product_listino_credits",
+      "title": "Prodotto, listino, crediti e limiti cliente",
+      "status": "yellow",
+      "missing": [
+        "final_first_product_decision",
+        "final_beta_price_decision",
+        "customer_limits_decision",
+        "credit_validity_policy",
+        "unused_credit_policy",
+        "live_offer_text_approval",
+        "ledger_consistency_test"
+      ],
+      "blocks": [
+        "live_offer",
+        "paid_credits"
+      ]
+    },
+    {
+      "id": "production_api_access",
+      "title": "API di produzione e accesso cliente",
+      "status": "yellow",
+      "missing": [
+        "final_production_key_policy",
+        "secret_manager_selected",
+        "key_generation_rotation_revocation_procedures",
+        "rate_limits_and_quotas",
+        "audit_logs",
+        "no_secrets_in_repository_check",
+        "synthetic_dry_run_no_real_key"
+      ],
+      "blocks": [
+        "production_api_keys",
+        "live_traffic"
+      ]
+    },
+    {
+      "id": "cost_security_support",
+      "title": "Cost cap, sicurezza e supporto",
+      "status": "yellow",
+      "missing": [
+        "cost_cap_implementation",
+        "kill_switch_simulation",
+        "support_ticket_ledger",
+        "synthetic_support_case",
+        "final_incident_procedure",
+        "secret_handling_procedure",
+        "provider_alert_procedure",
+        "incident_ledger_test"
+      ],
+      "blocks": [
+        "paying_customers",
+        "production_access"
+      ]
+    },
+    {
+      "id": "distribution",
+      "title": "Distribuzione e canali",
+      "status": "yellow",
+      "missing": [
+        "final_distribution_channel_decision",
+        "no_outreach_boundary_confirmation",
+        "separate_marketplace_registry_hosted_mcp_approval",
+        "external_contact_boundary_confirmation"
+      ],
+      "blocks": [
+        "external_outreach",
+        "public_marketplace",
+        "public_mcp",
+        "registry_submission"
+      ]
+    }
+  ],
+  "decision_table": [
+    {
+      "action": "continue_nowrite_preparation",
+      "decision": "allowed"
+    },
+    {
+      "action": "prepare_owner_review",
+      "decision": "allowed"
+    },
+    {
+      "action": "activate_paid_beta",
+      "decision": "blocked"
+    },
+    {
+      "action": "execute_real_payment",
+      "decision": "blocked"
+    },
+    {
+      "action": "issue_invoice",
+      "decision": "blocked"
+    },
+    {
+      "action": "collect_payment_method",
+      "decision": "blocked"
+    },
+    {
+      "action": "issue_production_api_key",
+      "decision": "blocked"
+    },
+    {
+      "action": "process_real_customer_dataset",
+      "decision": "blocked"
+    },
+    {
+      "action": "process_personal_data",
+      "decision": "blocked"
+    },
+    {
+      "action": "send_external_outreach",
+      "decision": "blocked"
+    },
+    {
+      "action": "publish_marketplace_listing",
+      "decision": "blocked"
+    },
+    {
+      "action": "launch_hosted_public_mcp",
+      "decision": "blocked"
+    },
+    {
+      "action": "submit_mcp_registry",
+      "decision": "blocked"
+    }
+  ],
+  "current_machine_response": {
+    "status": "final_owner_review_not_ready",
+    "decision": "not_yet",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "paid_beta_activation": false,
+    "commercial_go_live": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "payment_method_collected": false,
+    "production_key_issued": false,
+    "real_or_personal_data_processed": false,
+    "external_outreach_sent": false,
+    "credits_consumed": 0,
+    "remaining_red_gate": "owner_commercial_approval",
+    "next_allowed_actions": [
+      "continue_nowrite_preparation",
+      "prepare_owner_review"
+    ],
+    "support_code": "FINAL_OWNER_REVIEW_NOT_READY"
+  },
+  "recommended_next_safe_action": "align_company_brain_dashboard_with_final_gap_report"
+}

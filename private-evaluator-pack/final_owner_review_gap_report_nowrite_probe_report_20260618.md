@@ -1,0 +1,73 @@
+﻿# Final owner review gap report NoWrite probe
+
+Date: 2026-06-18
+
+Passed: 66
+Failed: 0
+
+- PASS - status_is_gap_report_draft: status=draft_nowrite_gap_report_not_signed_not_activated
+- PASS - not_owner_approval: is_approval=False; is_owner_signature=False
+- PASS - activation_flags_false: activation flags are false
+- PASS - money_flags_false: money flags are false
+- PASS - data_and_distribution_flags_false: data/distribution flags are false
+- PASS - dashboard_counts_3_12_1: counts=3/12/1
+- PASS - current_result_not_yet: current_result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - red_gate_owner_approval: remaining_red_gate=owner_commercial_approval
+- PASS - final_decision_no_go: final decision remains no_go
+- PASS - gap_group_owner_signature_final_decision: gap group present
+- PASS - gap_group_fiscal_admin: gap group present
+- PASS - gap_group_payment_invoice: gap group present
+- PASS - gap_group_terms_privacy_data: gap group present
+- PASS - gap_group_product_listino_credits: gap group present
+- PASS - gap_group_production_api_access: gap group present
+- PASS - gap_group_cost_security_support: gap group present
+- PASS - gap_group_distribution: gap group present
+- PASS - allowed_actions_are_safe: allowed=continue_nowrite_preparation,prepare_owner_review
+- PASS - blocked_activate_paid_beta: blocked action present
+- PASS - blocked_execute_real_payment: blocked action present
+- PASS - blocked_issue_invoice: blocked action present
+- PASS - blocked_collect_payment_method: blocked action present
+- PASS - blocked_issue_production_api_key: blocked action present
+- PASS - blocked_process_real_customer_dataset: blocked action present
+- PASS - blocked_process_personal_data: blocked action present
+- PASS - blocked_send_external_outreach: blocked action present
+- PASS - blocked_publish_marketplace_listing: blocked action present
+- PASS - blocked_launch_hosted_public_mcp: blocked action present
+- PASS - blocked_submit_mcp_registry: blocked action present
+- PASS - machine_status_final_not_ready: status=final_owner_review_not_ready
+- PASS - machine_support_code: support_code=FINAL_OWNER_REVIEW_NOT_READY
+- PASS - machine_credits_zero: credits=0
+- PASS - machine_flags_false: machine flags are false
+- PASS - md_contains_Non_Ã¨_una_approvazione: phrase=Non Ã¨ una approvazione
+- PASS - md_contains_NOT_YET_OWNER_REVIEW_REQUIRED: phrase=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - md_contains_3_verdi,_12_gialli,_1_rosso: phrase=3 verdi, 12 gialli, 1 rosso
+- PASS - md_contains_Cosa_manca: phrase=Cosa manca
+- PASS - md_contains_Cosa_si_puÃ²_fare_ora: phrase=Cosa si puÃ² fare ora
+- PASS - md_contains_Cosa_resta_bloccato: phrase=Cosa resta bloccato
+- PASS - md_contains_Risposta_macchina_corrente: phrase=Risposta macchina corrente
+- PASS - unsafe_absent_"activation_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_"paid_beta_activation_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_"commercial_go_live_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_"real_payment_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_"invoice_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_"payment_method_collection_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_"production_key_issuance_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_"real_customer_data_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_"personal_data_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_"external_outreach_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_"marketplace_publication_allowed":_true: unsafe phrase absent
+- PASS - unsafe_absent_paid_beta_approved: unsafe phrase absent
+- PASS - unsafe_absent_commercial_go-live_approved: unsafe phrase absent
+- PASS - unsafe_absent_payment_approved: unsafe phrase absent
+- PASS - unsafe_absent_invoice_approved: unsafe phrase absent
+- PASS - unsafe_absent_production_key_approved: unsafe phrase absent
+- PASS - unsafe_absent_beta_a_pagamento_approvata: unsafe phrase absent
+- PASS - unsafe_absent_go-live_commerciale_approvato: unsafe phrase absent
+- PASS - unsafe_absent_pagamento_approvato: unsafe phrase absent
+- PASS - unsafe_absent_fattura_approvata: unsafe phrase absent
+- PASS - unsafe_absent_chiave_di_produzione_approvata: unsafe phrase absent
+- PASS - source_checklist_current_result: source checklist result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - source_checklist_activation_false: source checklist activation=False
+- PASS - source_checklist_probe_passed: source checklist probe indicates pass
+- PASS - source_dashboard_no_go: source dashboard no_go
+- PASS - source_dashboard_counts: source dashboard counts=3/12/1
