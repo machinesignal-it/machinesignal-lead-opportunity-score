@@ -1,0 +1,132 @@
+{
+  "service": "MachineSignal",
+  "document": "owner_approval_form_nowrite",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "owner_approval_form_ready_nowrite_not_signed_not_activated",
+  "mode": "approval form preparation only",
+  "is_approval": false,
+  "is_owner_signature": false,
+  "owner_signature_present": false,
+  "activation_allowed": false,
+  "paid_beta_activation_allowed": false,
+  "commercial_go_live_allowed": false,
+  "real_payment_allowed": false,
+  "invoice_allowed": false,
+  "payment_method_collection_allowed": false,
+  "production_key_issuance_allowed": false,
+  "real_customer_data_allowed": false,
+  "personal_data_allowed": false,
+  "external_outreach_allowed": false,
+  "marketplace_publication_allowed": false,
+  "hosted_public_mcp_allowed": false,
+  "mcp_registry_publication_allowed": false,
+  "source_evidence": {
+    "owner_decision_readiness_packet": "owner_decision_readiness_packet_nowrite_20260618",
+    "owner_decision_readiness_probe": "73_checks_0_failed",
+    "simulation_evidence": "9_cases_0_failed",
+    "real_world_side_effects": 0,
+    "real_credits_consumed": 0,
+    "simulated_credits_consumed": 1
+  },
+  "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+  "remaining_red_gate": "owner_commercial_approval",
+  "decision_options": [
+    {
+      "id": "A_continue_nowrite",
+      "label": "Continua NoWrite",
+      "meaning": "agents continue preparation and testing",
+      "immediate_effect": "no_sales_no_activation"
+    },
+    {
+      "id": "B_prepare_activation_review_nowrite",
+      "label": "Prepara activation review",
+      "meaning": "agents prepare a later NoWrite activation review packet",
+      "immediate_effect": "no_sales_no_activation",
+      "recommended": true
+    },
+    {
+      "id": "C_request_changes",
+      "label": "Richiedi modifiche",
+      "meaning": "agents revise terms limits or documents",
+      "immediate_effect": "no_sales_no_activation"
+    },
+    {
+      "id": "D_stop_commercial_path",
+      "label": "Stop commerciale",
+      "meaning": "agents stop the commercial path",
+      "immediate_effect": "no_sales_no_activation"
+    }
+  ],
+  "future_beta_max_scope_not_live": {
+    "max_beta_customers": 3,
+    "duration_days": 30,
+    "first_product": "score_pack_1k",
+    "hypothetical_price_eur": 119,
+    "auto_renewal": false,
+    "allowed_data": [
+      "domains",
+      "business_urls",
+      "sector",
+      "geographic_area"
+    ],
+    "personal_data_allowed": false,
+    "outreach_allowed": false,
+    "marketplace_or_public_mcp_allowed": false
+  },
+  "still_blocked_after_form": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_publication",
+    "auto_renewals",
+    "commercial_go_live"
+  ],
+  "form_placeholders": {
+    "owner_name": "[DA_COMPILARE_DAL_PROPRIETARIO]",
+    "selected_decision": "[A/B/C/D - DA_COMPILARE]",
+    "owner_notes": "[DA_COMPILARE]",
+    "decision_date": "[DA_COMPILARE]",
+    "real_signature": "[NON_PRESENTE_IN_NOWRITE]"
+  },
+  "future_allowed_phrase": "Approvo solo la preparazione della activation review NoWrite. Non autorizzo ancora beta a pagamento, go-live, pagamenti, fatture, raccolta metodi di pagamento, chiavi API production, dati reali/personali, outreach o pubblicazioni marketplace/MCP.",
+  "ambiguous_phrases_to_block": [
+    "partiamo",
+    "vendiamo",
+    "attiva la beta",
+    "incassa",
+    "manda email",
+    "pubblica su marketplace",
+    "apri le chiavi production",
+    "usa dati reali"
+  ],
+  "current_machine_response": {
+    "status": "owner_approval_form_ready_nowrite",
+    "decision": "form_ready_not_signed_not_activation",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "recommended_option": "B_prepare_activation_review_nowrite",
+    "owner_signature_present": false,
+    "paid_beta_activation": false,
+    "commercial_go_live": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "payment_method_collected": false,
+    "production_key_issued": false,
+    "real_or_personal_data_processed": false,
+    "external_outreach_sent": false,
+    "marketplace_or_public_mcp_published": false,
+    "remaining_red_gate": "owner_commercial_approval",
+    "next_allowed_actions": [
+      "prepare_activation_review_packet_nowrite",
+      "continue_nowrite_preparation"
+    ],
+    "support_code": "OWNER_APPROVAL_FORM_READY_NOWRITE"
+  },
+  "recommended_next_safe_action": "prepare_activation_review_packet_nowrite"
+}

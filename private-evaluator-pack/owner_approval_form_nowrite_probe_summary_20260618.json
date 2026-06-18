@@ -1,0 +1,16 @@
+﻿{
+    "document":  "owner_approval_form_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "target":  "owner_approval_form_nowrite_20260618",
+    "passed":  72,
+    "failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "recommended_option":  "B_prepare_activation_review_nowrite",
+    "next_safe_action":  "prepare_activation_review_packet_nowrite",
+    "failed_checks":  [
+
+                      ]
+}

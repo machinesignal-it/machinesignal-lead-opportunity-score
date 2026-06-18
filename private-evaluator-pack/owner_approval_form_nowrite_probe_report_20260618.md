@@ -1,0 +1,79 @@
+﻿# Owner approval form NoWrite probe
+
+Date: 2026-06-18
+
+Passed: 72
+Failed: 0
+
+- PASS - status_is_form_ready: status=owner_approval_form_ready_nowrite_not_signed_not_activated
+- PASS - not_approval_not_signature: approval/signature false
+- PASS - activation_flags_false: activation flags false
+- PASS - money_flags_false: money flags false
+- PASS - production_data_distribution_flags_false: production/data/distribution flags false
+- PASS - current_result_not_yet: current_result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - remaining_red_gate_owner: red_gate=owner_commercial_approval
+- PASS - source_readiness_probe: source=73_checks_0_failed
+- PASS - readiness_summary_success: readiness success=True
+- PASS - decision_option_A_continue_nowrite: option present
+- PASS - decision_option_B_prepare_activation_review_nowrite: option present
+- PASS - decision_option_C_request_changes: option present
+- PASS - decision_option_D_stop_commercial_path: option present
+- PASS - recommended_option_B_only: B recommended with no activation
+- PASS - future_scope_limited: future scope limited and not live
+- PASS - still_blocked_real_payments: blocked item present
+- PASS - still_blocked_invoices: blocked item present
+- PASS - still_blocked_payment_method_collection: blocked item present
+- PASS - still_blocked_production_api_keys: blocked item present
+- PASS - still_blocked_real_customer_data: blocked item present
+- PASS - still_blocked_personal_data: blocked item present
+- PASS - still_blocked_external_outreach: blocked item present
+- PASS - still_blocked_marketplace_publication: blocked item present
+- PASS - still_blocked_hosted_public_mcp: blocked item present
+- PASS - still_blocked_mcp_registry_publication: blocked item present
+- PASS - still_blocked_auto_renewals: blocked item present
+- PASS - still_blocked_commercial_go_live: blocked item present
+- PASS - placeholders_not_signed: signature placeholder only
+- PASS - future_phrase_is_limited: future phrase limited
+- PASS - ambiguous_phrase_blocked_partiamo: ambiguous phrase listed
+- PASS - ambiguous_phrase_blocked_vendiamo: ambiguous phrase listed
+- PASS - ambiguous_phrase_blocked_attiva_la_beta: ambiguous phrase listed
+- PASS - ambiguous_phrase_blocked_incassa: ambiguous phrase listed
+- PASS - ambiguous_phrase_blocked_manda_email: ambiguous phrase listed
+- PASS - ambiguous_phrase_blocked_pubblica_su_marketplace: ambiguous phrase listed
+- PASS - ambiguous_phrase_blocked_apri_le_chiavi_production: ambiguous phrase listed
+- PASS - ambiguous_phrase_blocked_usa_dati_reali: ambiguous phrase listed
+- PASS - machine_status_form_ready: status=owner_approval_form_ready_nowrite
+- PASS - machine_decision_not_activation: decision=form_ready_not_signed_not_activation
+- PASS - machine_signature_false: signature=False
+- PASS - machine_flags_false: machine flags false
+- PASS - machine_support_code: support=OWNER_APPROVAL_FORM_READY_NOWRITE
+- PASS - next_safe_action_activation_review: next=prepare_activation_review_packet_nowrite
+- PASS - md_contains_Owner_approval_form_NoWrite: phrase=Owner approval form NoWrite
+- PASS - md_contains_non_firmato,_non_attivato: phrase=non firmato, non attivato
+- PASS - md_contains_Compilare_o_leggere_questo_modulo_non_attiva_nulla: phrase=Compilare o leggere questo modulo non attiva nulla
+- PASS - md_contains_Decisione_richiesta_al_proprietario: phrase=Decisione richiesta al proprietario
+- PASS - md_contains_Blocchi_che_restano_attivi_anche_dopo_questo_modulo: phrase=Blocchi che restano attivi anche dopo questo modulo
+- PASS - md_contains_Questi_campi_sono_placeholder_NoWrite: phrase=Questi campi sono placeholder NoWrite
+- PASS - md_contains_Frasi_non_ammesse: phrase=Frasi non ammesse
+- PASS - md_contains_Risposta_macchina_corrente: phrase=Risposta macchina corrente
+- PASS - forbidden_absent_"activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"payment_method_collection_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issuance_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_customer_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"personal_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"external_outreach_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"marketplace_publication_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"owner_signature_present":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_executed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_beta_a_pagamento_approvata: forbidden pattern absent
+- PASS - forbidden_absent_go-live_commerciale_approvato: forbidden pattern absent
+- PASS - forbidden_absent_pagamento_approvato: forbidden pattern absent
+- PASS - forbidden_absent_fattura_approvata: forbidden pattern absent
