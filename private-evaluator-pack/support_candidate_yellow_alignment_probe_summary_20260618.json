@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "support_candidate_yellow_alignment",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  25,
+    "total":  25,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Dashboard aggiornato: 3 verdi, 5 gialli, 8 rossi. Support/escalation Ã¨ candidato giallo, non approvato e non implementato. Beta a pagamento resta no-go."
+}

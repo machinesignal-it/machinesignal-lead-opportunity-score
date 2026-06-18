@@ -86,9 +86,9 @@
     },
     {
       "area": "support_escalation",
-      "status": "red",
-      "meaning": "paid_support_model_not_approved",
-      "decision": "block_paid_onboarding"
+      "status": "yellow",
+      "meaning": "draft_verified_by_108_checks_but_not_owner_approved_and_not_implemented",
+      "decision": "continue_owner_review_and_ticket_simulation_before_paid_onboarding"
     },
     {
       "area": "security_incident",
@@ -151,8 +151,8 @@
   },
   "gate_counts": {
     "green": 3,
-    "yellow": 4,
-    "red": 9
+    "yellow": 5,
+    "red": 8
   },
   "yellow_candidate_evidence": [
     {
@@ -175,7 +175,18 @@
         "simulation_test",
         "company_brain_final_update"
       ]
+    },
+    {
+      "area": "support_escalation",
+      "evidence": "support_escalation_model_20260618",
+      "probe": "108_checks_0_failed",
+      "remaining_to_green": [
+        "owner_approval",
+        "ticket_ledger_implementation",
+        "synthetic_support_case_simulation",
+        "company_brain_final_update"
+      ]
     }
   ],
-  "next_safe_action": "prepare_support_escalation_model_or_run_ledger_consistency_nowrite_test"
+  "next_safe_action": "prepare_terms_privacy_data_readiness_or_run_synthetic_support_case_simulation"
 }

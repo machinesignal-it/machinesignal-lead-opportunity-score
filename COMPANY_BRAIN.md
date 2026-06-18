@@ -429,9 +429,10 @@ Public sandbox docs published:
 Latest readiness result:
 
 - internal docs/API examples refinement probe: 62 checks, 0 failed.
-- owner decision dashboard alignment: 3 green gates, 4 yellow preparation items, 9 red blockers.
+- owner decision dashboard alignment: 3 green gates, 5 yellow preparation items, 8 red blockers.
 - beta credit/refund policy probe: 78 checks, 0 failed.
 - cost cap/kill switch policy probe: 95 checks, 0 failed.
+- support/escalation model probe: 108 checks, 0 failed.
 
 Overall pre-go-live readiness estimate:
 
@@ -446,14 +447,14 @@ Latest owner decision dashboard: 2026-06-18.
 Dashboard result:
 
 - 3 green gates: technical sandbox, advisor gate setup, machine-readable docs;
-- 4 yellow preparation items: policy preparation, paid-beta P&L delta, credit/refund policy candidate, cost cap/kill switch policy candidate;
-- 9 red blockers: owner commercial approval, fiscal/admin readiness, payment and invoice readiness, terms/privacy/data readiness, product/listino approval, production API keys, support/escalation model, security/incident readiness, distribution/outreach/publication approval.
+- 5 yellow preparation items: policy preparation, paid-beta P&L delta, credit/refund policy candidate, cost cap/kill switch policy candidate, support/escalation model candidate;
+- 8 red blockers: owner commercial approval, fiscal/admin readiness, payment and invoice readiness, terms/privacy/data readiness, product/listino approval, production API keys, security/incident readiness, distribution/outreach/publication approval.
 
 Current owner-facing interpretation:
 
 - internal preparation can continue;
 - paid beta must not be activated yet;
-- credit/refund policy and cost cap/kill switch have verified drafts, but still need owner approval and implementation/testing before they can become green;
+- credit/refund policy, cost cap/kill switch and support/escalation model have verified drafts, but still need owner approval and implementation/testing before they can become green;
 - no real payments, invoices, payment method collection, production API keys, real customer data, personal data, outreach, marketplace publication, hosted public MCP or MCP registry publication are allowed.
 
 Recommended decision today:
