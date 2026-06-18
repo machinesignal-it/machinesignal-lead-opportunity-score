@@ -12,6 +12,13 @@
     "activation_allowed": false,
     "meaning": "owner decision path is now simulatable, but the current result is not yet and no activation is allowed"
   },
+  "final_owner_review_gap_report": {
+    "evidence": "final_owner_review_gap_report_nowrite_20260618",
+    "probe": "66_checks_0_failed",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed": false,
+    "meaning": "final gap report created and validated; MachineSignal is commercially close but not activatable"
+  },
   "dashboard": [
     {
       "area": "technical_sandbox",
@@ -294,5 +301,6 @@
       ]
     }
   ],
-  "next_safe_action": "prepare_final_owner_review_gap_report_nowrite"
+  "last_completed_safe_action": "align_company_brain_dashboard_with_final_gap_report",
+  "next_safe_action": "prepare_owner_review_meeting_pack_nowrite"
 }

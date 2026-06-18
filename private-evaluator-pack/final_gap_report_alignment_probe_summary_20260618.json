@@ -1,0 +1,24 @@
+﻿{
+    "document":  "final_gap_report_alignment_probe_summary",
+    "date":  "2026-06-18",
+    "passed":  44,
+    "failed":  0,
+    "success":  true,
+    "company_brain_version":  "2026-06-18-internal-v14",
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "dashboard_counts":  {
+                             "green":  3,
+                             "yellow":  12,
+                             "red":  1
+                         },
+    "final_decision":  {
+                           "paid_beta_preparation":  "go",
+                           "paid_beta_activation":  "no_go",
+                           "commercial_go_live":  "no_go"
+                       },
+    "last_completed_safe_action":  "align_company_brain_dashboard_with_final_gap_report",
+    "next_safe_action":  "prepare_owner_review_meeting_pack_nowrite",
+    "failed_checks":  [
+
+                      ]
+}
