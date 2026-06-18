@@ -1,0 +1,88 @@
+﻿# Owner action checklist NoWrite probe
+
+Date: 2026-06-18
+
+Passed: 81
+Failed: 0
+
+- PASS - status_is_action_checklist: status=owner_action_checklist_ready_nowrite_not_signed_not_activated
+- PASS - not_approval_not_signature: approval/signature false
+- PASS - activation_flags_false: activation flags false
+- PASS - money_flags_false: money flags false
+- PASS - production_data_distribution_flags_false: production/data/distribution flags false
+- PASS - current_result_not_yet: current_result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - source_owner_summary_probe: source=82_checks_0_failed
+- PASS - owner_summary_success: owner summary success=True
+- PASS - dashboard_counts_3_12_1: counts=3/12/1
+- PASS - choice_values_limited: choice values limited
+- PASS - ten_checklist_items: items=10
+- PASS - checklist_area_owner_approval: area present
+- PASS - checklist_area_fiscal_admin: area present
+- PASS - checklist_area_payment_invoice: area present
+- PASS - checklist_area_privacy_data: area present
+- PASS - checklist_area_product_listino_credits: area present
+- PASS - checklist_area_production_api_keys: area present
+- PASS - checklist_area_cost_cap_kill_switch: area present
+- PASS - checklist_area_support_escalation: area present
+- PASS - checklist_area_security_incident: area present
+- PASS - checklist_area_distribution: area present
+- PASS - item_1_maximum_effect_safe: effect=preparation_only
+- PASS - item_2_maximum_effect_safe: effect=draft_operating_path_only
+- PASS - item_3_maximum_effect_safe: effect=nowrite_test_only
+- PASS - item_4_maximum_effect_safe: effect=policy_and_filter_only
+- PASS - item_5_maximum_effect_safe: effect=proposal_only
+- PASS - item_6_maximum_effect_safe: effect=no_key_issued
+- PASS - item_7_maximum_effect_safe: effect=test_only
+- PASS - item_8_maximum_effect_safe: effect=process_only
+- PASS - item_9_maximum_effect_safe: effect=simulation_only
+- PASS - item_10_maximum_effect_safe: effect=boundary_only
+- PASS - recommended_choices_safe: recommended choices safe
+- PASS - forbidden_action_activate_paid_beta: forbidden action present
+- PASS - forbidden_action_commercial_go_live: forbidden action present
+- PASS - forbidden_action_execute_real_payment: forbidden action present
+- PASS - forbidden_action_issue_invoice: forbidden action present
+- PASS - forbidden_action_collect_payment_method: forbidden action present
+- PASS - forbidden_action_issue_production_api_key: forbidden action present
+- PASS - forbidden_action_process_real_customer_data: forbidden action present
+- PASS - forbidden_action_process_personal_data: forbidden action present
+- PASS - forbidden_action_send_external_outreach: forbidden action present
+- PASS - forbidden_action_publish_marketplace_listing: forbidden action present
+- PASS - forbidden_action_launch_hosted_public_mcp: forbidden action present
+- PASS - forbidden_action_submit_mcp_registry: forbidden action present
+- PASS - forbidden_action_start_real_subscription_or_auto_renewal: forbidden action present
+- PASS - machine_status: status=owner_action_checklist_ready_nowrite
+- PASS - machine_decision_not_activation: decision=checklist_ready_not_signed_not_activation
+- PASS - machine_current_result: result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - machine_activation_signature_false: activation/signature false
+- PASS - machine_flags_false: machine flags false
+- PASS - machine_support_code: support=OWNER_ACTION_CHECKLIST_READY_NOWRITE
+- PASS - next_safe_action_remaining_gate_workplan: next=prepare_remaining_gate_workplan_nowrite
+- PASS - md_contains_Owner_action_checklist_NoWrite: phrase=Owner action checklist NoWrite
+- PASS - md_contains_non_firmata,_non_attivata: phrase=non firmata, non attivata
+- PASS - md_contains_Nessuna_scelta_in_questa_checklist_attiva_vendite_o_incassi.: phrase=Nessuna scelta in questa checklist attiva vendite o incassi.
+- PASS - md_contains_Checklist_decisionale: phrase=Checklist decisionale
+- PASS - md_contains_Decisione_raccomandata_dagli_agenti: phrase=Decisione raccomandata dagli agenti
+- PASS - md_contains_Azioni_vietate_anche_se_una_riga_viene_approvata: phrase=Azioni vietate anche se una riga viene approvata
+- PASS - md_contains_Risposta_macchina_corrente: phrase=Risposta macchina corrente
+- PASS - md_contains_remaining_gate_workplan_nowrite: phrase=remaining_gate_workplan_nowrite
+- PASS - forbidden_absent_"activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"payment_method_collection_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issuance_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_customer_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"personal_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"external_outreach_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"marketplace_publication_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"owner_signature_present":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_executed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_beta_a_pagamento_approvata: forbidden pattern absent
+- PASS - forbidden_absent_go-live_commerciale_approvato: forbidden pattern absent
+- PASS - forbidden_absent_pagamento_approvato: forbidden pattern absent
+- PASS - forbidden_absent_fattura_approvata: forbidden pattern absent

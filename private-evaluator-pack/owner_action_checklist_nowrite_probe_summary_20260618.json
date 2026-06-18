@@ -1,0 +1,21 @@
+﻿{
+    "document":  "owner_action_checklist_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "target":  "owner_action_checklist_nowrite_20260618",
+    "passed":  81,
+    "failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "checklist_items":  10,
+    "dashboard_counts":  {
+                             "green":  3,
+                             "yellow":  12,
+                             "red":  1
+                         },
+    "next_safe_action":  "prepare_remaining_gate_workplan_nowrite",
+    "failed_checks":  [
+
+                      ]
+}

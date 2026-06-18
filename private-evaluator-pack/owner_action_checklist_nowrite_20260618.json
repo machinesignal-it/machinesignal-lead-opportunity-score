@@ -1,0 +1,196 @@
+{
+  "service": "MachineSignal",
+  "document": "owner_action_checklist_nowrite",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "owner_action_checklist_ready_nowrite_not_signed_not_activated",
+  "mode": "owner action checklist only",
+  "is_approval": false,
+  "is_owner_signature": false,
+  "owner_signature_present": false,
+  "activation_allowed": false,
+  "paid_beta_activation_allowed": false,
+  "commercial_go_live_allowed": false,
+  "real_payment_allowed": false,
+  "invoice_allowed": false,
+  "payment_method_collection_allowed": false,
+  "production_key_issuance_allowed": false,
+  "real_customer_data_allowed": false,
+  "personal_data_allowed": false,
+  "external_outreach_allowed": false,
+  "marketplace_publication_allowed": false,
+  "hosted_public_mcp_allowed": false,
+  "mcp_registry_publication_allowed": false,
+  "source_evidence": {
+    "owner_summary": "owner_summary_nowrite_20260618",
+    "owner_summary_probe": "82_checks_0_failed",
+    "company_brain_version": "2026-06-18-internal-v15",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED"
+  },
+  "dashboard_counts": {
+    "green": 3,
+    "yellow": 12,
+    "red": 1
+  },
+  "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+  "allowed_choice_values": [
+    "APPROVA_PREPARAZIONE",
+    "RINVIA",
+    "RICHIEDI_MODIFICA",
+    "BLOCCA"
+  ],
+  "checklist_items": [
+    {
+      "id": 1,
+      "area": "owner_approval",
+      "decision_required": "continue_toward_possible_controlled_beta",
+      "allowed_choices_now": [
+        "APPROVA_PREPARAZIONE",
+        "RINVIA",
+        "BLOCCA"
+      ],
+      "maximum_effect": "preparation_only"
+    },
+    {
+      "id": 2,
+      "area": "fiscal_admin",
+      "decision_required": "define_fiscal_admin_path_before_money",
+      "allowed_choices_now": [
+        "APPROVA_PREPARAZIONE",
+        "RICHIEDI_MODIFICA",
+        "RINVIA"
+      ],
+      "maximum_effect": "draft_operating_path_only"
+    },
+    {
+      "id": 3,
+      "area": "payment_invoice",
+      "decision_required": "prepare_payment_invoice_rules_in_test",
+      "allowed_choices_now": [
+        "APPROVA_PREPARAZIONE",
+        "RICHIEDI_MODIFICA",
+        "RINVIA"
+      ],
+      "maximum_effect": "nowrite_test_only"
+    },
+    {
+      "id": 4,
+      "area": "privacy_data",
+      "decision_required": "finalize_allowed_blocked_data_and_input_filter",
+      "allowed_choices_now": [
+        "APPROVA_PREPARAZIONE",
+        "RICHIEDI_MODIFICA",
+        "RINVIA"
+      ],
+      "maximum_effect": "policy_and_filter_only"
+    },
+    {
+      "id": 5,
+      "area": "product_listino_credits",
+      "decision_required": "confirm_product_hypothetical_price_limits_and_credits",
+      "allowed_choices_now": [
+        "APPROVA_PREPARAZIONE",
+        "RICHIEDI_MODIFICA",
+        "RINVIA"
+      ],
+      "maximum_effect": "proposal_only"
+    },
+    {
+      "id": 6,
+      "area": "production_api_keys",
+      "decision_required": "prepare_production_key_policy",
+      "allowed_choices_now": [
+        "APPROVA_PREPARAZIONE",
+        "RICHIEDI_MODIFICA",
+        "RINVIA"
+      ],
+      "maximum_effect": "no_key_issued"
+    },
+    {
+      "id": 7,
+      "area": "cost_cap_kill_switch",
+      "decision_required": "implement_and_simulate_cost_limits_and_technical_stop",
+      "allowed_choices_now": [
+        "APPROVA_PREPARAZIONE",
+        "RICHIEDI_MODIFICA",
+        "RINVIA"
+      ],
+      "maximum_effect": "test_only"
+    },
+    {
+      "id": 8,
+      "area": "support_escalation",
+      "decision_required": "prepare_support_process_and_ticket_ledger",
+      "allowed_choices_now": [
+        "APPROVA_PREPARAZIONE",
+        "RICHIEDI_MODIFICA",
+        "RINVIA"
+      ],
+      "maximum_effect": "process_only"
+    },
+    {
+      "id": 9,
+      "area": "security_incident",
+      "decision_required": "prepare_incident_procedure_and_synthetic_test",
+      "allowed_choices_now": [
+        "APPROVA_PREPARAZIONE",
+        "RICHIEDI_MODIFICA",
+        "RINVIA"
+      ],
+      "maximum_effect": "simulation_only"
+    },
+    {
+      "id": 10,
+      "area": "distribution",
+      "decision_required": "define_allowed_channels_and_outreach_marketplace_mcp_bans",
+      "allowed_choices_now": [
+        "APPROVA_PREPARAZIONE",
+        "RICHIEDI_MODIFICA",
+        "RINVIA",
+        "BLOCCA"
+      ],
+      "maximum_effect": "boundary_only"
+    }
+  ],
+  "recommended_owner_choices_now": {
+    "items_2_to_10": "APPROVA_PREPARAZIONE",
+    "item_1": "RINVIA_UNTIL_ALL_OTHER_GATES_ARE_READY"
+  },
+  "always_forbidden_actions": [
+    "activate_paid_beta",
+    "commercial_go_live",
+    "execute_real_payment",
+    "issue_invoice",
+    "collect_payment_method",
+    "issue_production_api_key",
+    "process_real_customer_data",
+    "process_personal_data",
+    "send_external_outreach",
+    "publish_marketplace_listing",
+    "launch_hosted_public_mcp",
+    "submit_mcp_registry",
+    "start_real_subscription_or_auto_renewal"
+  ],
+  "current_machine_response": {
+    "status": "owner_action_checklist_ready_nowrite",
+    "decision": "checklist_ready_not_signed_not_activation",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed": false,
+    "owner_signature_present": false,
+    "paid_beta_activation": false,
+    "commercial_go_live": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "payment_method_collected": false,
+    "production_key_issued": false,
+    "real_or_personal_data_processed": false,
+    "external_outreach_sent": false,
+    "marketplace_or_public_mcp_published": false,
+    "next_allowed_actions": [
+      "prepare_remaining_gate_workplan_nowrite",
+      "continue_nowrite_preparation"
+    ],
+    "support_code": "OWNER_ACTION_CHECKLIST_READY_NOWRITE"
+  },
+  "recommended_next_safe_action": "prepare_remaining_gate_workplan_nowrite"
+}
