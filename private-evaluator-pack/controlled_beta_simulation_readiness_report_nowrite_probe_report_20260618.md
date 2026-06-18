@@ -1,0 +1,77 @@
+﻿# Controlled beta simulation readiness report NoWrite probe
+
+Date: 2026-06-18
+
+Passed: 70
+Failed: 0
+
+- PASS - status_is_readiness_report: status=controlled_beta_simulation_readiness_ready_nowrite_not_signed_not_activated
+- PASS - not_approval_not_signature: is_approval=False; is_owner_signature=False
+- PASS - activation_flags_false: activation flags false
+- PASS - money_flags_false: money flags false
+- PASS - production_data_distribution_flags_false: production/data/distribution flags false
+- PASS - current_result_not_yet: current_result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - remaining_red_gate_owner: red_gate=owner_commercial_approval
+- PASS - source_sim_cases_9_0: source cases=9/0
+- PASS - source_probe_checks_28_0: source probe=28/0
+- PASS - sim_summary_success: summary success=True
+- PASS - simulation_result_passed: passed=True
+- PASS - simulation_result_no_side_effects: side_effects=0
+- PASS - simulation_result_no_real_credits: real_credits=0
+- PASS - simulation_result_one_sim_credit: sim_credits=1
+- PASS - validated_owner_signature_missing_blocks_beta: validated area present
+- PASS - validated_payment_attempt_blocked: validated area present
+- PASS - validated_personal_data_blocked: validated area present
+- PASS - validated_production_key_request_blocked: validated area present
+- PASS - validated_cost_cap_exceeded_blocked: validated area present
+- PASS - validated_invalid_output_not_billable: validated area present
+- PASS - validated_valid_synthetic_output_simulates_one_credit: validated area present
+- PASS - validated_duplicate_domain_deduplicated_or_blocked: validated area present
+- PASS - validated_public_marketplace_or_mcp_blocked: validated area present
+- PASS - still_blocked_paid_beta_activation: blocked item present
+- PASS - still_blocked_commercial_go_live: blocked item present
+- PASS - still_blocked_real_payments: blocked item present
+- PASS - still_blocked_invoices: blocked item present
+- PASS - still_blocked_payment_method_collection: blocked item present
+- PASS - still_blocked_production_api_keys: blocked item present
+- PASS - still_blocked_real_customer_data: blocked item present
+- PASS - still_blocked_personal_data: blocked item present
+- PASS - still_blocked_external_outreach: blocked item present
+- PASS - still_blocked_marketplace_publication: blocked item present
+- PASS - still_blocked_hosted_public_mcp: blocked item present
+- PASS - still_blocked_mcp_registry_publication: blocked item present
+- PASS - still_blocked_subscriptions_or_auto_renewals: blocked item present
+- PASS - machine_status: status=controlled_beta_simulation_readiness_ready_nowrite
+- PASS - machine_decision_not_activation: decision=simulation_ready_not_activation
+- PASS - machine_support_code: support=CONTROLLED_BETA_SIMULATION_READY_NOWRITE
+- PASS - machine_counts: machine counts ok
+- PASS - machine_flags_false: machine flags false
+- PASS - next_safe_action_owner_decision: next=prepare_owner_decision_readiness_packet_nowrite
+- PASS - md_contains_Controlled_beta_simulation_readiness_report_NoWrite: phrase=Controlled beta simulation readiness report NoWrite
+- PASS - md_contains_non_firmato,_non_attivato: phrase=non firmato, non attivato
+- PASS - md_contains_Le_simulazioni_NoWrite_della_beta_controllata_sono_passate: phrase=Le simulazioni NoWrite della beta controllata sono passate
+- PASS - md_contains_Cosa_hanno_provato_le_simulazioni: phrase=Cosa hanno provato le simulazioni
+- PASS - md_contains_Cosa_resta_bloccato: phrase=Cosa resta bloccato
+- PASS - md_contains_La_raccomandazione_non_e'_attivare_la_beta: phrase=La raccomandazione non e' attivare la beta
+- PASS - md_contains_Risposta_macchina_corrente: phrase=Risposta macchina corrente
+- PASS - md_contains_owner_decision_readiness_packet_nowrite: phrase=owner_decision_readiness_packet_nowrite
+- PASS - forbidden_absent_"activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"payment_method_collection_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issuance_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_customer_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"personal_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"external_outreach_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"marketplace_publication_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_executed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_beta_a_pagamento_approvata: forbidden pattern absent
+- PASS - forbidden_absent_go-live_commerciale_approvato: forbidden pattern absent
+- PASS - forbidden_absent_pagamento_approvato: forbidden pattern absent
+- PASS - forbidden_absent_fattura_approvata: forbidden pattern absent

@@ -1,0 +1,20 @@
+﻿{
+    "document":  "controlled_beta_simulation_readiness_report_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "target":  "controlled_beta_simulation_readiness_report_nowrite_20260618",
+    "passed":  70,
+    "failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed":  false,
+    "paid_beta_activation_allowed":  false,
+    "commercial_go_live_allowed":  false,
+    "simulation_cases_passed":  9,
+    "simulation_cases_failed":  0,
+    "real_world_side_effects":  0,
+    "simulated_credits_consumed":  1,
+    "next_safe_action":  "prepare_owner_decision_readiness_packet_nowrite",
+    "failed_checks":  [
+
+                      ]
+}
