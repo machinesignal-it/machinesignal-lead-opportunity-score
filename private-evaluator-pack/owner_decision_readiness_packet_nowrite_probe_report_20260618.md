@@ -1,0 +1,80 @@
+﻿# Owner decision readiness packet NoWrite probe
+
+Date: 2026-06-18
+
+Passed: 73
+Failed: 0
+
+- PASS - status_is_owner_decision_readiness: status=owner_decision_readiness_ready_nowrite_not_signed_not_activated
+- PASS - not_approval_not_signature: is_approval=False; is_owner_signature=False
+- PASS - activation_flags_false: activation flags false
+- PASS - money_flags_false: money flags false
+- PASS - production_data_distribution_flags_false: production/data/distribution flags false
+- PASS - current_result_not_yet: current_result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - remaining_red_gate_owner: red_gate=owner_commercial_approval
+- PASS - source_readiness_probe_70_0: source probe=70_checks_0_failed
+- PASS - source_blocking_9_0: blocking=9_cases_0_failed
+- PASS - source_no_side_effects: source effects=0
+- PASS - readiness_summary_success: readiness summary success=True
+- PASS - allowed_only_safe_preparation: only safe preparation actions allowed
+- PASS - residual_gate_owner_commercial_approval: gate present
+- PASS - residual_gate_fiscal_admin_path: gate present
+- PASS - residual_gate_payment_invoice_path: gate present
+- PASS - residual_gate_terms_privacy_data: gate present
+- PASS - residual_gate_product_listino_credits: gate present
+- PASS - residual_gate_production_api_keys: gate present
+- PASS - residual_gate_cost_cap_kill_switch: gate present
+- PASS - residual_gate_support_escalation: gate present
+- PASS - residual_gate_security_incident: gate present
+- PASS - residual_gate_distribution_boundary: gate present
+- PASS - owner_gate_red: owner gate remains red
+- PASS - future_beta_scope_small: future beta proposal remains limited and not live
+- PASS - minimum_before_signature_owner_approval_form_separate: minimum item present
+- PASS - minimum_before_signature_residual_gate_list_with_recommendation: minimum item present
+- PASS - minimum_before_signature_final_fiscal_admin_checklist: minimum item present
+- PASS - minimum_before_signature_final_payment_invoice_checklist: minimum item present
+- PASS - minimum_before_signature_final_privacy_data_checklist: minimum item present
+- PASS - minimum_before_signature_final_production_api_key_checklist: minimum item present
+- PASS - minimum_before_signature_cost_cap_kill_switch_plan: minimum item present
+- PASS - minimum_before_signature_support_incident_plan: minimum item present
+- PASS - minimum_before_signature_distribution_no_outreach_boundary: minimum item present
+- PASS - minimum_before_signature_machine_response_go_requires_separate_activation_step_only_if_all_gates_ready: minimum item present
+- PASS - machine_status_readiness: status=owner_decision_readiness_ready_nowrite
+- PASS - machine_decision_not_activation: decision=ready_for_owner_approval_form_not_activation
+- PASS - machine_counts_and_credits: machine counts/credits ok
+- PASS - machine_flags_false: machine flags false
+- PASS - machine_support_code: support=OWNER_DECISION_READINESS_READY_NOWRITE
+- PASS - next_safe_action_owner_form: next=prepare_owner_approval_form_nowrite
+- PASS - md_contains_Owner_decision_readiness_packet_NoWrite: phrase=Owner decision readiness packet NoWrite
+- PASS - md_contains_non_firmato,_non_attivato: phrase=non firmato, non attivato
+- PASS - md_contains_Questa_decisione_non_equivale_ad_attivare_la_beta: phrase=Questa decisione non equivale ad attivare la beta
+- PASS - md_contains_Decisione_che_puo'_essere_presa_ora: phrase=Decisione che puo' essere presa ora
+- PASS - md_contains_Decisione_che_non_puo'_essere_presa_automaticamente: phrase=Decisione che non puo' essere presa automaticamente
+- PASS - md_contains_Gate_residui_prima_di_qualsiasi_attivazione: phrase=Gate residui prima di qualsiasi attivazione
+- PASS - md_contains_Esito_raccomandato_oggi: phrase=Esito raccomandato oggi
+- PASS - md_contains_Risposta_macchina_corrente: phrase=Risposta macchina corrente
+- PASS - md_contains_owner_approval_form_nowrite: phrase=owner_approval_form_nowrite
+- PASS - forbidden_absent_"activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"payment_method_collection_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issuance_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_customer_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"personal_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"external_outreach_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"marketplace_publication_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"activate_paid_beta":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live":_true: forbidden pattern absent
+- PASS - forbidden_absent_"execute_real_payment":_true: forbidden pattern absent
+- PASS - forbidden_absent_"issue_invoice":_true: forbidden pattern absent
+- PASS - forbidden_absent_"issue_production_api_key":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_executed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_beta_a_pagamento_approvata: forbidden pattern absent
+- PASS - forbidden_absent_go-live_commerciale_approvato: forbidden pattern absent
+- PASS - forbidden_absent_pagamento_approvato: forbidden pattern absent
+- PASS - forbidden_absent_fattura_approvata: forbidden pattern absent

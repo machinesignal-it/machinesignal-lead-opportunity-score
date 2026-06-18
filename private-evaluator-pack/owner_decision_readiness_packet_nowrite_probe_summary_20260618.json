@@ -1,0 +1,19 @@
+﻿{
+    "document":  "owner_decision_readiness_packet_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "target":  "owner_decision_readiness_packet_nowrite_20260618",
+    "passed":  73,
+    "failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed":  false,
+    "paid_beta_activation_allowed":  false,
+    "commercial_go_live_allowed":  false,
+    "remaining_red_gate":  "owner_commercial_approval",
+    "simulation_cases_passed":  "9_cases_0_failed",
+    "real_world_side_effects":  0,
+    "next_safe_action":  "prepare_owner_approval_form_nowrite",
+    "failed_checks":  [
+
+                      ]
+}
