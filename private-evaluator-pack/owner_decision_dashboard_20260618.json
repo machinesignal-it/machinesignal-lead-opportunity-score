@@ -62,9 +62,9 @@
     },
     {
       "area": "product_listino_approval",
-      "status": "red",
-      "meaning": "score_pack_1k_recommended_but_not_owner_approved_for_sale",
-      "decision": "block_paid_offers"
+      "status": "yellow",
+      "meaning": "draft_verified_by_154_checks_but_not_owner_approved_not_live_offer_no_payments_no_invoices",
+      "decision": "continue_owner_review_product_listino_before_live_offer"
     },
     {
       "area": "credit_refund_policy",
@@ -151,8 +151,8 @@
   },
   "gate_counts": {
     "green": 3,
-    "yellow": 10,
-    "red": 3
+    "yellow": 11,
+    "red": 2
   },
   "yellow_candidate_evidence": [
     {
@@ -254,7 +254,21 @@
         "payment_kill_switch_test",
         "company_brain_final_update"
       ]
+    },
+    {
+      "area": "product_listino_approval",
+      "evidence": "product_listino_owner_review_20260618",
+      "probe": "154_checks_0_failed",
+      "remaining_to_green": [
+        "owner_approval",
+        "final_first_product_decision",
+        "final_beta_price_decision",
+        "customer_limits_decision",
+        "credit_validity_and_unused_credit_policy",
+        "live_offer_text_approval",
+        "company_brain_final_update"
+      ]
     }
   ],
-  "next_safe_action": "prepare_product_listino_owner_review_or_production_api_key_readiness"
+  "next_safe_action": "prepare_production_api_key_readiness_or_owner_commercial_approval_packet"
 }

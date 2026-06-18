@@ -429,7 +429,7 @@ Public sandbox docs published:
 Latest readiness result:
 
 - internal docs/API examples refinement probe: 62 checks, 0 failed.
-- owner decision dashboard alignment: 3 green gates, 10 yellow preparation items, 3 red blockers.
+- owner decision dashboard alignment: 3 green gates, 11 yellow preparation items, 2 red blockers.
 - beta credit/refund policy probe: 78 checks, 0 failed.
 - cost cap/kill switch policy probe: 95 checks, 0 failed.
 - support/escalation model probe: 108 checks, 0 failed.
@@ -438,11 +438,12 @@ Latest readiness result:
 - distribution/outreach/publication approval probe: 121 checks, 0 failed.
 - fiscal/admin readiness probe: 99 checks, 0 failed.
 - payment/invoice readiness probe: 123 checks, 0 failed.
+- product/listino owner review probe: 154 checks, 0 failed.
 
 Overall pre-go-live readiness estimate:
 
-- pre-go-live readiness: about 92%;
-- commercial go-live readiness: about 74%;
+- pre-go-live readiness: about 94%;
+- commercial go-live readiness: about 75%;
 - commercial go-live: no-go.
 
 ## Owner Decision Dashboard Status
@@ -452,8 +453,8 @@ Latest owner decision dashboard: 2026-06-18.
 Dashboard result:
 
 - 3 green gates: technical sandbox, advisor gate setup, machine-readable docs;
-- 10 yellow preparation items: policy preparation, paid-beta P&L delta, credit/refund policy candidate, cost cap/kill switch policy candidate, support/escalation model candidate, terms/privacy/data readiness candidate, security/incident readiness candidate, distribution/outreach/publication approval candidate, fiscal/admin readiness candidate, payment/invoice readiness candidate;
-- 3 red blockers: owner commercial approval, product/listino approval, production API keys.
+- 11 yellow preparation items: policy preparation, paid-beta P&L delta, credit/refund policy candidate, cost cap/kill switch policy candidate, support/escalation model candidate, terms/privacy/data readiness candidate, security/incident readiness candidate, distribution/outreach/publication approval candidate, fiscal/admin readiness candidate, payment/invoice readiness candidate, product/listino approval candidate;
+- 2 red blockers: owner commercial approval, production API keys.
 
 Current owner-facing interpretation:
 
@@ -462,6 +463,7 @@ Current owner-facing interpretation:
 - credit/refund policy, cost cap/kill switch, support/escalation model, terms/privacy/data readiness, security/incident readiness, distribution/outreach/publication approval and fiscal/admin readiness have verified drafts, but still need owner approval and implementation/testing before they can become green;
 - fiscal/admin readiness is not tax advice and does not authorize payments, invoices, payment method collection or a statement that Partita IVA is or is not required;
 - payment/invoice readiness does not authorize checkout live, card collection, real payments, invoices, subscriptions or live provider keys;
+- product/listino approval is a sandbox reference review and does not authorize live offers, final prices, payments, invoices, subscriptions or marketplace publication;
 - security/incident readiness is not a security certification and does not make the system production-ready;
 - real customer data and personal data remain blocked even after the terms/privacy/data readiness draft;
 - no real payments, invoices, payment method collection, production API keys, real customer data, personal data, outreach, marketplace publication, hosted public MCP or MCP registry publication are allowed.

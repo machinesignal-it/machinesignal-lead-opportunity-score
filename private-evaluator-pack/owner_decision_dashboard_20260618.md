@@ -21,7 +21,7 @@ MachineSignal is technically ready for the current sandbox scope, but not commer
 | Fiscal/admin path | Yellow | Draft verified by 99 checks, but not owner-approved, not tax advice and no payments/invoices allowed | Continue owner review before payments or invoices |
 | Payment/invoice path | Yellow | Draft verified by 123 checks, but not owner-approved; no live checkout, payment, card collection or invoice allowed | Continue owner review before checkout or invoices |
 | Terms/privacy/data | Yellow | Draft verified by 112 checks, but not owner-approved, not final and not implemented | Continue owner review before onboarding or real data |
-| Product/listino approval | Red | Score Pack 1k is recommended but not owner-approved for sale | Block paid offers |
+| Product/listino approval | Yellow | Draft verified by 154 checks, but not owner-approved; sandbox reference only, no live offer | Continue owner review before live offer |
 | Credit/refund policy | Yellow | Draft verified by 78 checks, but not owner-approved and not implemented | Continue owner review and ledger test before paid credits |
 | Production API keys | Red | Key issuance, caps and revocation not approved | Block production keys |
 | Cost cap/kill switch | Yellow | Draft verified by 95 checks, but not owner-approved and not implemented | Continue owner review and simulation before production keys |
@@ -79,9 +79,9 @@ Recommended order:
 
 1. Confirm whether to continue paid-beta preparation.
 2. Approve or reject Score Pack 1k at EUR 119.
-3. Resolve payment/invoice path.
-4. Resolve terms/privacy/data path.
-5. Approve or reject Score Pack 1k at EUR 119.
+3. Resolve production API key process.
+4. Confirm owner commercial approval only after every required gate is ready.
+5. Sign final owner approval only if every gate is ready.
 6. Approve customer, usage and cost caps.
 7. Approve production key process.
 8. Approve support and escalation.

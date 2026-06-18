@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "product_listino_dashboard_alignment",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  65,
+    "total":  65,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Dashboard aggiornato: 3 verdi, 11 gialli, 2 rossi. Product/listino e\u0027 candidato giallo verificato, non approvato. Nessuna offerta live o prezzo finale autorizzato."
+}
