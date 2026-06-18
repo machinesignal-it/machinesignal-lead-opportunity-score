@@ -1,0 +1,288 @@
+{
+  "service": "MachineSignal",
+  "document": "policy_pack_skeleton_nowrite",
+  "date": "2026-06-18",
+  "status": "skeleton_draft_no_write_not_signed_not_activated",
+  "decision": {
+    "paid_beta_preparation": "go",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go",
+    "fallback": "DO_NOT_ACTIVATE"
+  },
+  "master_rule": {
+    "required_final_value": "APPROVED BY OWNER",
+    "paid_beta_remains_blocked_until_every_mandatory_policy_is_completed_reviewed_and_owner_approved": true
+  },
+  "policies": [
+    {
+      "id": "owner_approval_policy",
+      "status": "skeleton_only",
+      "purpose": "Define who can move MachineSignal from sandbox preparation to controlled paid beta.",
+      "must_include": [
+        "final_go_no_go_page",
+        "approval_date",
+        "owner_signature_or_explicit_written_approval",
+        "scope_of_approval",
+        "maximum_beta_customer_count",
+        "first_product_allowed",
+        "blocked_actions_that_remain_blocked",
+        "rollback_stop_authority"
+      ],
+      "evidence_required": "signed decision to run controlled paid beta",
+      "stop_rule_if_missing": "paid_beta_blocked"
+    },
+    {
+      "id": "fiscal_admin_policy",
+      "status": "skeleton_only",
+      "purpose": "Define whether and how MachineSignal can legally collect and record money.",
+      "must_include": [
+        "piva_company_fiscal_path_decision",
+        "accounting_treatment",
+        "revenue_recognition_approach",
+        "invoice_or_receipt_responsibility",
+        "tax_vat_treatment",
+        "refund_accounting",
+        "cost_tracking",
+        "admin_owner"
+      ],
+      "evidence_required": "written fiscal path decision",
+      "stop_rule_if_missing": "payments_and_invoices_blocked"
+    },
+    {
+      "id": "payment_and_invoice_policy",
+      "status": "skeleton_only",
+      "purpose": "Define how a customer can pay and how the fiscal document is generated.",
+      "must_include": [
+        "payment_model",
+        "provider_decision",
+        "test_mode_versus_live_mode",
+        "live_mode_activation_owner",
+        "invoice_receipt_workflow",
+        "failed_payment_handling",
+        "refund_flow",
+        "payment_data_prohibition",
+        "no_card_data_storage_by_machinesignal"
+      ],
+      "evidence_required": "payment mode and invoice receipt process approved",
+      "stop_rule_if_missing": "live_payment_blocked"
+    },
+    {
+      "id": "terms_of_service_draft",
+      "status": "skeleton_only",
+      "purpose": "Define the commercial and usage terms for beta customers.",
+      "must_include": [
+        "parties",
+        "machine_interface_and_responsible_entity",
+        "beta_nature",
+        "service_description",
+        "no_sales_or_revenue_guarantee",
+        "output_limitations",
+        "customer_responsibilities",
+        "api_key_responsibilities",
+        "usage_limits",
+        "suspension_and_termination",
+        "disclaimers",
+        "liability_limits",
+        "governing_law_placeholder"
+      ],
+      "evidence_required": "reviewed beta terms including limits disclaimers and customer responsibilities",
+      "stop_rule_if_missing": "customer_onboarding_blocked"
+    },
+    {
+      "id": "privacy_and_data_policy",
+      "status": "skeleton_only",
+      "purpose": "Define what data MachineSignal can process and what remains forbidden.",
+      "current_default": "synthetic_or_non_personal_sandbox_test_data_only",
+      "must_include": [
+        "allowed_data_categories",
+        "blocked_data_categories",
+        "personal_data_rule",
+        "real_customer_data_rule",
+        "retention_period",
+        "deletion_process",
+        "export_process",
+        "log_minimization",
+        "no_training_without_approval",
+        "data_incident_escalation"
+      ],
+      "evidence_required": "reviewed privacy and data handling language",
+      "stop_rule_if_missing": "real_and_personal_data_blocked"
+    },
+    {
+      "id": "acceptable_use_policy",
+      "status": "skeleton_only",
+      "purpose": "Define what machines and customers cannot use MachineSignal for.",
+      "must_include": [
+        "no_spam",
+        "no_harassment",
+        "no_unlawful_targeting",
+        "no_scraping_personal_contact_data",
+        "no_regulated_decisions",
+        "no_bypassing_usage_cost_rate_limits",
+        "no_resale_as_guaranteed_verified_data",
+        "abuse_detection",
+        "suspension_rules"
+      ],
+      "evidence_required": "forbidden uses and abuse handling approved",
+      "stop_rule_if_missing": "production_access_blocked"
+    },
+    {
+      "id": "product_and_listino_policy",
+      "status": "skeleton_only",
+      "purpose": "Define what each product sells, what the customer receives and how credits work.",
+      "must_include": [
+        "product_codes",
+        "units",
+        "deliverables",
+        "valid_output_rule_per_product",
+        "non_consumption_rule",
+        "replacement_rule",
+        "beta_price",
+        "tax_vat_treatment",
+        "discount_temporary_price_status",
+        "what_is_not_included"
+      ],
+      "evidence_required": "products units prices tax treatment and deliverables approved",
+      "stop_rule_if_missing": "paid_offers_blocked"
+    },
+    {
+      "id": "credit_refund_replacement_policy",
+      "status": "skeleton_only",
+      "purpose": "Define when credits are consumed and what happens if an output is invalid.",
+      "recommended_current_draft": "replacement_credits_first_cash_refunds_only_by_explicit_owner_approval",
+      "must_include": [
+        "valid_output_rule",
+        "duplicate_rule",
+        "invalid_input_rule",
+        "blocked_policy_rule",
+        "replacement_credit_rule",
+        "refund_rule",
+        "refund_approval_owner",
+        "maximum_refund_exposure",
+        "claim_time_limit",
+        "audit_trail_fields"
+      ],
+      "evidence_required": "non consumption replacement and refund rules approved",
+      "stop_rule_if_missing": "paid_credits_blocked"
+    },
+    {
+      "id": "production_api_key_and_access_policy",
+      "status": "skeleton_only",
+      "purpose": "Define how production access is issued, limited, rotated and revoked.",
+      "must_include": [
+        "who_can_receive_production_key",
+        "manual_approval_workflow",
+        "key_naming",
+        "key_scope",
+        "daily_monthly_usage_caps",
+        "rotation_process",
+        "revocation_process",
+        "lost_key_process",
+        "abuse_response",
+        "audit_log"
+      ],
+      "evidence_required": "production key rules approved",
+      "stop_rule_if_missing": "production_keys_blocked"
+    },
+    {
+      "id": "customer_and_usage_cap_policy",
+      "status": "skeleton_only",
+      "purpose": "Define how small the first beta must remain.",
+      "recommended_first_cap": "3_to_5_beta_customers_score_pack_1k_first_no_auto_renewal",
+      "must_include": [
+        "maximum_beta_customers",
+        "maximum_machine_accounts",
+        "maximum_monthly_scores",
+        "maximum_daily_writes",
+        "maximum_api_calls",
+        "maximum_deep_analysis_outputs",
+        "maximum_action_packs",
+        "overage_behavior",
+        "stop_behavior_when_limit_reached"
+      ],
+      "evidence_required": "customer count and usage caps approved",
+      "stop_rule_if_missing": "production_keys_blocked"
+    },
+    {
+      "id": "cost_cap_and_kill_switch_policy",
+      "status": "skeleton_only",
+      "purpose": "Prevent uncontrolled cost storage or write growth.",
+      "must_include": [
+        "daily_spend_cap",
+        "monthly_spend_cap",
+        "cloudflare_worker_kv_cap",
+        "external_provider_api_budget",
+        "write_operation_cap",
+        "alert_threshold",
+        "kill_switch_owner",
+        "stop_procedure",
+        "restart_procedure",
+        "post_stop_audit"
+      ],
+      "evidence_required": "maximum spend provider API budgets kill switch owner and restart procedure approved",
+      "stop_rule_if_missing": "production_keys_blocked"
+    },
+    {
+      "id": "support_and_escalation_policy",
+      "status": "skeleton_only",
+      "purpose": "Define how support remains machine-first and bounded.",
+      "must_include": [
+        "support_channels",
+        "machine_readable_support_states",
+        "error_categories",
+        "support_response_targets",
+        "owner_escalation_triggers",
+        "paid_customer_escalation_cap",
+        "invalid_output_handling",
+        "ledger_mismatch_handling",
+        "security_data_concern_handling"
+      ],
+      "evidence_required": "support channel machine readable statuses and owner escalation approved",
+      "stop_rule_if_missing": "paid_onboarding_blocked"
+    },
+    {
+      "id": "security_and_incident_policy",
+      "status": "skeleton_only",
+      "purpose": "Define how secrets keys incidents and access risks are handled.",
+      "must_include": [
+        "secret_storage_rule",
+        "no_secrets_in_public_repo",
+        "api_key_rotation",
+        "access_control",
+        "incident_categories",
+        "incident_owner",
+        "revoke_disable_process",
+        "audit_log",
+        "customer_notification_rule_if_relevant"
+      ],
+      "evidence_required": "secret handling incident response and access rules approved",
+      "stop_rule_if_missing": "production_access_blocked"
+    },
+    {
+      "id": "distribution_and_no_outreach_policy",
+      "status": "skeleton_only",
+      "purpose": "Define how machines can discover MachineSignal without uncontrolled publication or human outreach.",
+      "must_include": [
+        "allowed_private_direct_documentation",
+        "allowed_public_docs",
+        "marketplace_decision",
+        "hosted_mcp_decision",
+        "mcp_registry_decision",
+        "postman_public_directory_decision",
+        "no_human_outreach_rule",
+        "external_contact_approval_rule",
+        "takedown_unpublish_process"
+      ],
+      "evidence_required": "distribution channel and external contact decision approved",
+      "stop_rule_if_missing": "external_publication_and_outreach_blocked"
+    }
+  ],
+  "current_gap_priority": [
+    "fiscal_admin_policy",
+    "payment_and_invoice_policy",
+    "terms_privacy_data_policy",
+    "production_api_key_and_usage_cap_policy",
+    "cost_cap_and_kill_switch_policy"
+  ],
+  "next_safe_action": "turn_skeleton_into_short_draft_policy_sections_no_write_no_activation"
+}

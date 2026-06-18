@@ -1,0 +1,10 @@
+﻿{
+    "generated_at":  "2026-06-18",
+    "checks_passed":  49,
+    "checks_total":  49,
+    "failed_checks":  [
+
+                      ],
+    "decision":  "pass",
+    "next_safe_action":  "turn_skeleton_into_short_draft_policy_sections_no_write_no_activation"
+}
