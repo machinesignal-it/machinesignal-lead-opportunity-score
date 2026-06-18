@@ -1,0 +1,14 @@
+﻿{
+    "probe":  "post_hold_status_report_nowrite_probe_20260618",
+    "success":  true,
+    "passed":  109,
+    "failed":  0,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "decision":  "HOLD_UNTIL_EXPLICIT_OWNER_REQUEST",
+    "explicit_owner_request_present":  false,
+    "selected_option":  null,
+    "activation_allowed":  false,
+    "owner_signature_record_allowed":  false,
+    "next_safe_action":  "report_status_or_wait_for_explicit_owner_request",
+    "support_code":  "POST_HOLD_STATUS_REPORT_READY_NOWRITE"
+}
