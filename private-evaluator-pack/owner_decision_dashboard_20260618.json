@@ -56,9 +56,9 @@
     },
     {
       "area": "terms_privacy_data",
-      "status": "red",
-      "meaning": "terms_privacy_and_data_rules_not_approved",
-      "decision": "block_onboarding_and_real_data"
+      "status": "yellow",
+      "meaning": "draft_verified_by_112_checks_but_not_owner_approved_not_final_and_not_implemented",
+      "decision": "continue_owner_review_terms_privacy_data_filter_before_onboarding_or_real_data"
     },
     {
       "area": "product_listino_approval",
@@ -151,8 +151,8 @@
   },
   "gate_counts": {
     "green": 3,
-    "yellow": 5,
-    "red": 8
+    "yellow": 6,
+    "red": 7
   },
   "yellow_candidate_evidence": [
     {
@@ -186,7 +186,20 @@
         "synthetic_support_case_simulation",
         "company_brain_final_update"
       ]
+    },
+    {
+      "area": "terms_privacy_data",
+      "evidence": "terms_privacy_data_readiness_20260618",
+      "probe": "112_checks_0_failed",
+      "remaining_to_green": [
+        "owner_approval",
+        "final_terms_privacy_data_policy_texts",
+        "technical_input_classification_filter",
+        "retention_deletion_procedure",
+        "nowrite_allowed_blocked_data_test",
+        "company_brain_final_update"
+      ]
     }
   ],
-  "next_safe_action": "prepare_terms_privacy_data_readiness_or_run_synthetic_support_case_simulation"
+  "next_safe_action": "prepare_security_incident_readiness_or_run_terms_privacy_data_nowrite_classification_test"
 }

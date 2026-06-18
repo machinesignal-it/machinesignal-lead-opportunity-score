@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "terms_privacy_candidate_yellow_alignment",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  30,
+    "total":  30,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Dashboard aggiornato: 3 verdi, 6 gialli, 7 rossi. Terms/privacy/data Ã¨ candidato giallo, non approvato, non finale e non implementato. Dati reali/personali restano bloccati."
+}
