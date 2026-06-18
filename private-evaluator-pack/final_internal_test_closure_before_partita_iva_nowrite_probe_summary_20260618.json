@@ -1,0 +1,15 @@
+﻿{
+    "probe":  "final_internal_test_closure_before_partita_iva_nowrite_probe_20260618",
+    "success":  true,
+    "passed":  127,
+    "failed":  0,
+    "decision":  "INTERNAL_TESTS_COMPLETE_STOP_BEFORE_FISCAL_COMMERCIAL_TRIGGER",
+    "internal_tests_complete_for_nowrite_scope":  true,
+    "partita_iva_required_now_for_tests":  false,
+    "must_stop_before_paid_beta":  true,
+    "must_stop_before_real_payment":  true,
+    "fiscal_path_decided":  false,
+    "activation_allowed":  false,
+    "next_safe_action":  "stop_before_commercial_trigger_or_prepare_only_internal_maintenance",
+    "support_code":  "FINAL_INTERNAL_TEST_CLOSURE_BEFORE_PARTITA_IVA_READY_NOWRITE"
+}
