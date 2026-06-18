@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "cost_cap_kill_switch_policy",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  95,
+    "total":  95,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Policy cost cap e kill switch creata. Budget reale zero, chiamate esterne a pagamento vietate, upgrade Cloudflare vietato senza approvazione."
+}

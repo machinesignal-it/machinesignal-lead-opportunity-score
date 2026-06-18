@@ -1,0 +1,183 @@
+{
+  "document": "cost_cap_kill_switch_policy",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_internal_policy",
+  "commercial_activation": false,
+  "external_paid_usage_authorized": false,
+  "cloudflare_paid_upgrade_authorized": false,
+  "summary_it": "La policy definisce soglie, rate limit, kill switch e regole di escalation per evitare costi incontrollati, loop automatici e uso eccessivo di risorse durante la beta controllata.",
+  "base_rule_it": "Ogni macchina cliente può usare il servizio solo entro limiti misurabili. Se supera le soglie, il sistema rallenta, blocca o mette in revisione prima di generare costi o consumi eccessivi.",
+  "does_not_authorize": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data",
+    "personal_data",
+    "external_paid_api_calls",
+    "cloudflare_paid_plan_upgrade",
+    "external_outreach",
+    "commercial_go_live"
+  ],
+  "cap_levels": [
+    {
+      "id": "request_cap",
+      "controls_it": "Singola richiesta troppo grande o non valida.",
+      "action_it": "Rifiuto con errore controllato."
+    },
+    {
+      "id": "customer_cap",
+      "controls_it": "Troppe richieste da uno stesso cliente/macchina.",
+      "action_it": "Rate limit o sospensione temporanea."
+    },
+    {
+      "id": "product_cap",
+      "controls_it": "Uso anomalo di un prodotto specifico.",
+      "action_it": "Blocco prodotto per quel cliente."
+    },
+    {
+      "id": "daily_cost_cap",
+      "controls_it": "Consumo giornaliero sopra soglia.",
+      "action_it": "Kill switch giornaliero."
+    },
+    {
+      "id": "external_cost_cap",
+      "controls_it": "Chiamate a servizi esterni sopra soglia.",
+      "action_it": "Stop immediato chiamate esterne."
+    },
+    {
+      "id": "policy_cap",
+      "controls_it": "Richieste vietate dai guardrail.",
+      "action_it": "Blocco e ledger event."
+    },
+    {
+      "id": "incident_cap",
+      "controls_it": "Pattern rischioso o non previsto.",
+      "action_it": "Escalation e stop manuale."
+    }
+  ],
+  "recommended_beta_thresholds": [
+    {
+      "id": "requests_per_minute_per_sandbox_customer",
+      "value": 20,
+      "action": "rate_limit"
+    },
+    {
+      "id": "requests_per_hour_per_sandbox_customer",
+      "value": 200,
+      "action": "temporary_customer_suspension"
+    },
+    {
+      "id": "requests_per_day_per_sandbox_customer",
+      "value": 1000,
+      "action": "stop_customer_until_next_day"
+    },
+    {
+      "id": "score_pack_batch_max",
+      "value": 100,
+      "action": "reject_or_split_batch"
+    },
+    {
+      "id": "domain_enrichment_batch_max",
+      "value": 50,
+      "action": "reject_or_split_batch"
+    },
+    {
+      "id": "target_discovery_frequency",
+      "value": "1 per market_area_objective per 24h",
+      "action": "watchlist_duplicate"
+    },
+    {
+      "id": "consecutive_technical_errors",
+      "value": 5,
+      "action": "stop_endpoint_or_customer_and_open_incident"
+    },
+    {
+      "id": "consecutive_duplicates",
+      "value": 20,
+      "action": "stop_batch_with_deduplication_required"
+    },
+    {
+      "id": "daily_external_cost_sandbox_eur",
+      "value": 0,
+      "action": "external_calls_not_allowed_without_owner_approval"
+    },
+    {
+      "id": "unapproved_beta_budget_eur",
+      "value": 0,
+      "action": "no_production_cost_or_payment"
+    }
+  ],
+  "kill_switch_types": [
+    "customer_kill_switch",
+    "product_kill_switch",
+    "endpoint_kill_switch",
+    "external_call_kill_switch",
+    "global_beta_kill_switch",
+    "policy_kill_switch"
+  ],
+  "kill_switch_triggers": [
+    "daily_threshold_exceeded",
+    "repeated_request_loop",
+    "error_rate_exceeded",
+    "real_or_personal_data_detected",
+    "unapproved_production_key_attempt",
+    "repeated_incoherent_outputs",
+    "ledger_write_failure",
+    "external_spend_above_authorized_limit",
+    "owner_manual_stop"
+  ],
+  "blocked_response_example": {
+    "status": "blocked_by_cost_cap",
+    "decision": "stop",
+    "reason": "daily sandbox request cap exceeded",
+    "credits_consumed": 0,
+    "retry_after_seconds": 86400,
+    "escalation_required": false,
+    "support_code": "COST_CAP_DAILY_SANDBOX"
+  },
+  "ledger_required_fields": [
+    "event_id",
+    "timestamp",
+    "customer_id_or_sandbox_customer_id",
+    "request_id",
+    "endpoint",
+    "product_code",
+    "cap_type",
+    "threshold_name",
+    "threshold_value",
+    "observed_value",
+    "action_taken",
+    "credits_consumed",
+    "cost_estimate_eur",
+    "policy_version",
+    "environment",
+    "escalation_required",
+    "support_code"
+  ],
+  "agent_rules_it": [
+    "Controllare soglie prima di eseguire job.",
+    "Preferire test NoWrite.",
+    "Interrompere loop o richieste ripetute.",
+    "Scrivere eventi ledger.",
+    "Produrre report in italiano.",
+    "Non acquistare piani, crediti o servizi.",
+    "Non attivare chiavi production.",
+    "Non inviare outreach."
+  ],
+  "owner_approval_required_for": [
+    "daily_budget_cap",
+    "customer_thresholds",
+    "product_thresholds",
+    "external_service_usage",
+    "global_kill_switch_procedure",
+    "customer_reactivation_rules",
+    "owner_escalation_rules",
+    "move_from_zero_budget_to_real_budget"
+  ],
+  "dashboard_effect": {
+    "cost_cap_kill_switch": "red_to_yellow_candidate",
+    "reason_it": "La policy crea una bozza verificabile, ma non basta per il verde senza approvazione proprietario, implementazione tecnica e test ledger."
+  }
+}
