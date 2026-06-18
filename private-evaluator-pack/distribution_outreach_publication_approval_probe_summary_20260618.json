@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "distribution_outreach_publication_approval",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  121,
+    "total":  121,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Bozza distribution/outreach/publication creata. Canali machine-readable sandbox consentiti; outreach umano, marketplace, hosted MCP pubblico e MCP registry restano bloccati senza approvazione."
+}

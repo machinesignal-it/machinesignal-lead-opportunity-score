@@ -1,0 +1,137 @@
+﻿# Report controllo distribution/outreach/publication approval
+
+Data controllo: 2026-06-18
+
+Esito: SUPERATO
+
+Controlli superati: 121/121
+
+Sintesi:
+
+- La bozza distingue distribuzione machine-readable consentita da outreach e pubblicazioni vietate.
+- Outreach umano, marketplace, hosted MCP pubblico e MCP registry restano bloccati senza approvazione.
+- Il blocco distribution_outreach_publication_approval puÃ² diventare candidato giallo, ma non verde senza approvazione e checklist pre-pubblicazione.
+
+Dettaglio controlli:
+
+- [OK] Documento Markdown presente: La bozza leggibile deve esistere.
+- [OK] Documento JSON presente: La bozza macchina deve esistere.
+- [OK] Lingua italiana dichiarata: La bozza deve essere in italiano.
+- [OK] Stato bozza interna: La bozza deve restare interna.
+- [OK] Nessuna attivazione commerciale: La bozza non deve attivare go-live.
+- [OK] Outreach esterno non consentito: L'outreach deve restare bloccato.
+- [OK] Marketplace non consentito: Marketplace deve restare bloccato.
+- [OK] Hosted MCP pubblico non consentito: Hosted MCP pubblico deve restare bloccato.
+- [OK] MCP registry non consentita: MCP registry deve restare bloccata.
+- [OK] Azione vietata dichiarata: real_payments: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: invoices: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: payment_method_collection: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: production_api_keys: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: real_customer_data: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: personal_data: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: external_outreach: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: email_sending_to_external_humans: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: api_marketplace_publication: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: marketplace_publication: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: hosted_public_mcp: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: mcp_registry_publication: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: zapier_public_app: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: public_plugin_publication: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: commercial_go_live: La bozza deve confermare che questa azione resta vietata.
+- [OK] Canale consentito presente: machinesignal_informational_site: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: api_page: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: beta_page: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: llms_txt: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: product_catalog_json: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: machine_onboarding_json: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: openapi_json: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: postman_public_collection_json: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: machine_discovery_pack_json: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: sandbox_public_docs_md: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: sandbox_public_docs_json: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale consentito presente: github_readme: I canali machine-readable consentiti devono essere espliciti.
+- [OK] Canale vietato presente: external_human_email_outreach: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: manual_or_automated_human_outreach: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: paid_api_marketplace: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: rapidapi_or_similar_publication: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: mcp_registry_submission: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: hosted_public_mcp_launch: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: zapier_marketplace_or_public_app: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: public_plugin_publication: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: agent_directory_publication: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: real_payment_offer: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: production_or_enterprise_readiness_claim: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: real_or_personal_data_demo: I canali rischiosi devono essere espliciti.
+- [OK] Canale vietato presente: secret_or_token_publication: I canali rischiosi devono essere espliciti.
+- [OK] Canale mappato: machinesignal_site: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: machinesignal_site: Ogni canale deve avere status.
+- [OK] Canale mappato: api_page: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: api_page: Ogni canale deve avere status.
+- [OK] Canale mappato: beta_page: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: beta_page: Ogni canale deve avere status.
+- [OK] Canale mappato: github_readme: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: github_readme: Ogni canale deve avere status.
+- [OK] Canale mappato: openapi: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: openapi: Ogni canale deve avere status.
+- [OK] Canale mappato: postman_collection: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: postman_collection: Ogni canale deve avere status.
+- [OK] Canale mappato: llms_txt: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: llms_txt: Ogni canale deve avere status.
+- [OK] Canale mappato: api_marketplace: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: api_marketplace: Ogni canale deve avere status.
+- [OK] Canale mappato: mcp_registry: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: mcp_registry: Ogni canale deve avere status.
+- [OK] Canale mappato: hosted_public_mcp: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: hosted_public_mcp: Ogni canale deve avere status.
+- [OK] Canale mappato: email_outbound: Ogni canale principale deve essere mappato.
+- [OK] Canale con status: email_outbound: Ogni canale deve avere status.
+- [OK] Precheck pubblicazione presente: no_secrets: Ogni pubblicazione nuova deve passare precheck.
+- [OK] Precheck pubblicazione presente: no_real_or_personal_data: Ogni pubblicazione nuova deve passare precheck.
+- [OK] Precheck pubblicazione presente: no_go_live_claim: Ogni pubblicazione nuova deve passare precheck.
+- [OK] Precheck pubblicazione presente: no_active_payment: Ogni pubblicazione nuova deve passare precheck.
+- [OK] Precheck pubblicazione presente: no_invoice_promise: Ogni pubblicazione nuova deve passare precheck.
+- [OK] Precheck pubblicazione presente: no_production_key: Ogni pubblicazione nuova deve passare precheck.
+- [OK] Precheck pubblicazione presente: clear_sandbox_non_commercial_status: Ogni pubblicazione nuova deve passare precheck.
+- [OK] Precheck pubblicazione presente: nowrite_probe_passed: Ogni pubblicazione nuova deve passare precheck.
+- [OK] Precheck pubblicazione presente: owner_approval_for_marketplace_registry_hosted_mcp_public_app_or_external_contact: Ogni pubblicazione nuova deve passare precheck.
+- [OK] Risposta blocco distribuzione non consuma crediti: Un canale bloccato non deve consumare crediti.
+- [OK] Risposta blocco distribuzione richiede escalation: Canali vietati devono scalare.
+- [OK] Risposta blocco distribuzione dice stop: La macchina deve fermarsi.
+- [OK] Azione agente vietata: send_external_emails: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Azione agente vietata: contact_people: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Azione agente vietata: publish_to_marketplace: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Azione agente vietata: submit_mcp_registry: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Azione agente vietata: launch_hosted_public_mcp: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Azione agente vietata: publish_zapier_or_public_plugin: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Azione agente vietata: activate_payments: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Azione agente vietata: promise_production_availability: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Azione agente vietata: publish_real_or_personal_data: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Azione agente vietata: publish_secrets: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Azione agente vietata: use_accounts_or_tokens_for_unapproved_external_actions: Gli agenti non devono superare i blocchi di distribuzione.
+- [OK] Owner approval richiesta: any_external_outreach: Questi passaggi devono restare a decisione del proprietario.
+- [OK] Owner approval richiesta: api_marketplace: Questi passaggi devono restare a decisione del proprietario.
+- [OK] Owner approval richiesta: mcp_registry: Questi passaggi devono restare a decisione del proprietario.
+- [OK] Owner approval richiesta: hosted_public_mcp: Questi passaggi devono restare a decisione del proprietario.
+- [OK] Owner approval richiesta: public_app_or_plugin: Questi passaggi devono restare a decisione del proprietario.
+- [OK] Owner approval richiesta: active_commercial_offer_publication: Questi passaggi devono restare a decisione del proprietario.
+- [OK] Owner approval richiesta: compliance_security_enterprise_claim: Questi passaggi devono restare a decisione del proprietario.
+- [OK] Owner approval richiesta: any_step_that_can_generate_real_customers_payments_or_production_requests: Questi passaggi devono restare a decisione del proprietario.
+- [OK] Frase chiave Markdown: documentazione e file machine-readable: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Frase chiave Markdown: Distribuzione vietata senza approvazione: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Frase chiave Markdown: Regola machine-first: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Frase chiave Markdown: Regola pubblicazione: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Frase chiave Markdown: Risposta macchina per canale vietato: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Frase chiave Markdown: Divieti confermati: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Nessuna frase di attivazione: outreach allowed: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: marketplace publication allowed: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: hosted public MCP allowed: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: MCP registry approved: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: commercial go-live approved: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: real payments active: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: production keys approved: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: outreach approvato: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: marketplace approvato: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: MCP pubblico approvato: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: go-live commerciale approvato: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: pagamenti reali attivi: La bozza non deve sembrare un'approvazione.
+- [OK] Effetto dashboard corretto: La bozza puÃ² solo candidare il blocco a giallo.

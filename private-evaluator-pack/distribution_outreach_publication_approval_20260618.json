@@ -1,0 +1,205 @@
+{
+  "document": "distribution_outreach_publication_approval",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_internal_policy",
+  "commercial_activation": false,
+  "external_outreach_allowed": false,
+  "marketplace_publication_allowed": false,
+  "hosted_public_mcp_allowed": false,
+  "mcp_registry_submission_allowed": false,
+  "summary_it": "Bozza interna per distinguere distribuzione machine-readable consentita in sandbox da outreach umano, marketplace, hosted MCP e registry MCP che restano vietati senza approvazione.",
+  "does_not_authorize": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "email_sending_to_external_humans",
+    "api_marketplace_publication",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_publication",
+    "zapier_public_app",
+    "public_plugin_publication",
+    "commercial_go_live"
+  ],
+  "allowed_now": [
+    "machinesignal_informational_site",
+    "api_page",
+    "beta_page",
+    "llms_txt",
+    "product_catalog_json",
+    "machine_onboarding_json",
+    "openapi_json",
+    "postman_public_collection_json",
+    "machine_discovery_pack_json",
+    "sandbox_public_docs_md",
+    "sandbox_public_docs_json",
+    "github_readme",
+    "public_github_repo_without_secrets_real_data_or_live_commercial_claims"
+  ],
+  "blocked_without_owner_approval": [
+    "external_human_email_outreach",
+    "manual_or_automated_human_outreach",
+    "linkedin_or_social_outreach",
+    "outbound_marketing_campaigns",
+    "paid_api_marketplace",
+    "rapidapi_or_similar_publication",
+    "mcp_registry_submission",
+    "hosted_public_mcp_launch",
+    "zapier_marketplace_or_public_app",
+    "public_plugin_publication",
+    "agent_directory_publication",
+    "real_payment_offer",
+    "production_or_enterprise_readiness_claim",
+    "approved_compliance_claim",
+    "real_or_personal_data_demo",
+    "secret_or_token_publication",
+    "active_commercial_price_offer_without_approval"
+  ],
+  "channel_status": [
+    {
+      "channel": "machinesignal_site",
+      "status": "allowed_sandbox",
+      "allowed_it": "Spiegare prodotto e limiti.",
+      "blocked_it": "Promettere vendita attiva."
+    },
+    {
+      "channel": "api_page",
+      "status": "allowed_sandbox",
+      "allowed_it": "Documentare endpoint e OpenAPI.",
+      "blocked_it": "Offrire produzione."
+    },
+    {
+      "channel": "beta_page",
+      "status": "allowed_sandbox",
+      "allowed_it": "Spiegare beta non attiva commercialmente.",
+      "blocked_it": "Raccogliere pagamenti."
+    },
+    {
+      "channel": "github_readme",
+      "status": "allowed",
+      "allowed_it": "Documentare API e sandbox.",
+      "blocked_it": "Contenere segreti o claim commerciali live."
+    },
+    {
+      "channel": "openapi",
+      "status": "allowed",
+      "allowed_it": "Descrivere contratti sandbox.",
+      "blocked_it": "Dichiarare produzione approvata."
+    },
+    {
+      "channel": "postman_collection",
+      "status": "allowed",
+      "allowed_it": "Testare endpoint sandbox.",
+      "blocked_it": "Raccogliere dati reali."
+    },
+    {
+      "channel": "llms_txt",
+      "status": "allowed",
+      "allowed_it": "Aiutare agenti a leggere risorse.",
+      "blocked_it": "Attivare acquisti reali."
+    },
+    {
+      "channel": "api_marketplace",
+      "status": "blocked_without_owner_approval",
+      "allowed_it": "Solo bozza interna.",
+      "blocked_it": "Pubblicazione esterna."
+    },
+    {
+      "channel": "mcp_registry",
+      "status": "blocked_without_owner_approval",
+      "allowed_it": "Solo bozza interna.",
+      "blocked_it": "Submission pubblica."
+    },
+    {
+      "channel": "hosted_public_mcp",
+      "status": "blocked_without_owner_approval",
+      "allowed_it": "Solo simulazione locale/interna.",
+      "blocked_it": "Servizio pubblico."
+    },
+    {
+      "channel": "email_outbound",
+      "status": "blocked",
+      "allowed_it": "Nessuna azione.",
+      "blocked_it": "Contatto umano."
+    }
+  ],
+  "machine_can_do": [
+    "read_public_docs",
+    "read_catalog_and_openapi",
+    "run_sandbox_tests",
+    "submit_sandbox_purchase_intent",
+    "receive_errors_and_guardrails",
+    "understand_no_real_payments"
+  ],
+  "machine_cannot_do": [
+    "real_purchase",
+    "receive_production_access",
+    "receive_production_api_key",
+    "submit_real_or_personal_data",
+    "bypass_owner_approval",
+    "activate_marketplace_or_public_mcp"
+  ],
+  "publication_precheck": [
+    "no_secrets",
+    "no_real_or_personal_data",
+    "no_go_live_claim",
+    "no_active_payment",
+    "no_invoice_promise",
+    "no_production_key",
+    "clear_sandbox_non_commercial_status",
+    "consistent_links",
+    "nowrite_probe_passed",
+    "owner_approval_for_marketplace_registry_hosted_mcp_public_app_or_external_contact"
+  ],
+  "blocked_response_example": {
+    "status": "blocked_by_distribution_policy",
+    "decision": "stop",
+    "reason": "public marketplace, outreach or hosted MCP publication is not approved",
+    "credits_consumed": 0,
+    "owner_escalation_required": true,
+    "support_code": "DISTRIBUTION_POLICY_BLOCK"
+  },
+  "agent_may_do": [
+    "update_sandbox_docs",
+    "check_openapi_catalog_onboarding_consistency",
+    "prepare_unpublished_marketplace_or_mcp_drafts",
+    "prepare_publication_checklists",
+    "produce_reports_it",
+    "run_nowrite_probes",
+    "propose_machine_readable_channels",
+    "update_company_brain_if_status_changes"
+  ],
+  "agent_must_not_do": [
+    "send_external_emails",
+    "contact_people",
+    "publish_to_marketplace",
+    "submit_mcp_registry",
+    "launch_hosted_public_mcp",
+    "publish_zapier_or_public_plugin",
+    "activate_payments",
+    "promise_production_availability",
+    "publish_real_or_personal_data",
+    "publish_secrets",
+    "use_accounts_or_tokens_for_unapproved_external_actions"
+  ],
+  "owner_approval_required_for": [
+    "any_external_outreach",
+    "api_marketplace",
+    "mcp_registry",
+    "hosted_public_mcp",
+    "public_app_or_plugin",
+    "active_commercial_offer_publication",
+    "major_positioning_change",
+    "compliance_security_enterprise_claim",
+    "any_step_that_can_generate_real_customers_payments_or_production_requests"
+  ],
+  "dashboard_effect": {
+    "distribution_outreach_publication_approval": "red_to_yellow_candidate",
+    "reason_it": "La bozza crea regole verificabili su canali consentiti, canali vietati, owner approval e divieti. Non basta per il verde senza approvazione proprietario e checklist pre-pubblicazione."
+  }
+}
