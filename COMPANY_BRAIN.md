@@ -1,6 +1,6 @@
 # MachineSignal Company Brain
 
-Updated: 2026-06-17  
+Updated: 2026-06-18  
 Status: internal operating brain  
 Primary customer interface: machine
 
@@ -429,6 +429,7 @@ Public sandbox docs published:
 Latest readiness result:
 
 - internal docs/API examples refinement probe: 62 checks, 0 failed.
+- owner decision dashboard alignment: 3 green gates, 2 yellow preparation items, 11 red blockers.
 
 Overall pre-go-live readiness estimate:
 
@@ -436,11 +437,31 @@ Overall pre-go-live readiness estimate:
 - commercial go-live readiness: about 72%;
 - commercial go-live: no-go.
 
+## Owner Decision Dashboard Status
+
+Latest owner decision dashboard: 2026-06-18.
+
+Dashboard result:
+
+- 3 green gates: technical sandbox, advisor gate setup, machine-readable docs;
+- 2 yellow preparation items: policy preparation, paid-beta P&L delta;
+- 11 red blockers: owner commercial approval, fiscal/admin readiness, payment and invoice readiness, terms/privacy/data readiness, product/listino approval, credit/refund policy, production API keys, cost cap/kill switch, support/escalation model, security/incident readiness, distribution/outreach/publication approval.
+
+Current owner-facing interpretation:
+
+- internal preparation can continue;
+- paid beta must not be activated yet;
+- no real payments, invoices, payment method collection, production API keys, real customer data, personal data, outreach, marketplace publication, hosted public MCP or MCP registry publication are allowed.
+
+Recommended decision today:
+
+Continue preparing paid-beta materials, but do not activate paid beta.
+
 ## Current Next Steps
 
 Recommended next step:
 
-Keep the internal operating memory, OpenAPI, catalog, onboarding and README aligned while preparing owner-decision materials for the paid-beta gate.
+Keep the internal operating memory, OpenAPI, catalog, onboarding, README and owner decision dashboard aligned while preparing paid-beta materials without commercial activation.
 
 Then prepare one of these owner decisions:
 
@@ -590,4 +611,4 @@ MachineSignal must not start paid commercial activity yet.
 
 Next recommended action:
 
-Maintain the Company Brain as the internal source of truth, then prepare the paid-beta owner decision pack without enabling payments, invoices, production keys, real data, outreach or public marketplace/MCP publication.
+Maintain the Company Brain as the internal source of truth, keep the owner decision dashboard visible to all agents, then continue only with safe preparation steps. The paid beta remains blocked until the owner explicitly approves the red gates and the missing operational conditions are resolved.

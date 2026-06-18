@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "company_brain_owner_dashboard_alignment",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  42,
+    "total":  42,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Company Brain allineata al dashboard: 3 verdi, 2 gialli, 11 rossi. Preparazione consentita, beta a pagamento non attivabile."
+}

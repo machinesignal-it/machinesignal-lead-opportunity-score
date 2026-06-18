@@ -1,7 +1,7 @@
 {
   "service": "MachineSignal",
-  "graph_version": "2026-06-17-internal-v2",
-  "updated_at": "2026-06-17",
+  "graph_version": "2026-06-18-internal-v3",
+  "updated_at": "2026-06-18",
   "purpose": "Lightweight graph structure for future Company Brain visualization and agent reasoning.",
   "visualization_status": "planned_not_started",
   "nodes": [
@@ -46,6 +46,12 @@
       "type": "workstream",
       "label": "Internal Docs/API/Brain Refinement",
       "description": "Current safe workstream: align OpenAPI, catalog, onboarding, README and Company Brain without commercial activation."
+    },
+    {
+      "id": "owner_decision_dashboard_20260618",
+      "type": "decision_dashboard",
+      "label": "Owner Decision Dashboard 2026-06-18",
+      "description": "Owner-facing dashboard: 3 green gates, 2 yellow preparation items and 11 red blockers; preparation can continue, paid beta activation remains no-go."
     },
     {
       "id": "blocked_actions",
@@ -227,6 +233,21 @@
       "from": "advisor_gate_complete_current_scope",
       "to": "internal_docs_api_examples_company_brain_refinement",
       "relation": "allows"
+    },
+    {
+      "from": "machinesignal",
+      "to": "owner_decision_dashboard_20260618",
+      "relation": "current_owner_dashboard"
+    },
+    {
+      "from": "owner_decision_dashboard_20260618",
+      "to": "blocked_actions",
+      "relation": "keeps_blocked"
+    },
+    {
+      "from": "owner_decision_dashboard_20260618",
+      "to": "company_brain_json",
+      "relation": "updates"
     },
     {
       "from": "sandbox_public_docs_only",

@@ -1,7 +1,7 @@
 {
   "service": "MachineSignal",
-  "company_brain_version": "2026-06-17-internal-v2",
-  "updated_at": "2026-06-17",
+  "company_brain_version": "2026-06-18-internal-v3",
+  "updated_at": "2026-06-18",
   "status": "internal_operating_brain",
   "primary_customer_interface": "machine",
   "source_of_truth": {
@@ -27,12 +27,58 @@
     "phase": "technical-sandbox-complete-current-scope",
     "technical_sandbox": "complete_for_current_scope",
     "advisor_gate_setup": "complete_for_current_scope",
-    "current_safe_workstream": "internal_documentation_api_examples_company_brain_refinement",
+    "current_safe_workstream": "owner_dashboard_alignment_and_policy_readiness",
     "technical_sandbox_tests_estimate_percent": 100,
     "pre_go_live_readiness_estimate_percent": 88,
     "commercial_go_live_readiness_estimate_percent": 72,
     "commercial_go_live": "no_go",
     "paid_beta": "not_approved"
+  },
+  "owner_decision_dashboard": {
+    "date": "2026-06-18",
+    "status": "no_write_not_signed_not_activated",
+    "green_count": 3,
+    "yellow_count": 2,
+    "red_count": 11,
+    "green": [
+      "technical_sandbox",
+      "advisor_gate_setup",
+      "machine_readable_docs"
+    ],
+    "yellow": [
+      "policy_preparation",
+      "pnl_paid_beta_delta"
+    ],
+    "red": [
+      "owner_commercial_approval",
+      "fiscal_admin_readiness",
+      "payment_invoice_readiness",
+      "terms_privacy_data_readiness",
+      "product_listino_approval",
+      "credit_refund_policy",
+      "production_api_keys",
+      "cost_cap_kill_switch",
+      "support_escalation_model",
+      "security_incident_readiness",
+      "distribution_outreach_publication_approval"
+    ],
+    "recommended_decision_today": "continue_preparing_paid_beta_materials_but_do_not_activate_paid_beta",
+    "blocked_actions": [
+      "real_payments",
+      "invoices",
+      "payment_method_collection",
+      "production_api_keys",
+      "real_customer_data_processing",
+      "personal_data_processing",
+      "external_outreach",
+      "email_sending_to_external_humans",
+      "public_paid_marketplace_publication",
+      "hosted_mcp_public_launch",
+      "mcp_registry_publication",
+      "commercial_go_live"
+    ],
+    "owner_facing_summary_it": "Preparazione interna consentita. Beta a pagamento non attivabile. Mancano ancora approvazioni e condizioni operative su fiscalita, pagamenti, privacy, dati, supporto, sicurezza, costi e distribuzione.",
+    "next_safe_action": "decide_continue_policy_details_or_pause_for_owner_review"
   },
   "advisor_gate": {
     "status": "complete_for_current_scope",
@@ -316,7 +362,7 @@
     "update Company Brain if the decision changes the operating model"
   ],
   "roadmap": {
-    "current_next_step": "Keep Company Brain, OpenAPI, catalog, onboarding and README aligned while preparing owner-decision materials for the paid-beta gate.",
+    "current_next_step": "Keep Company Brain, OpenAPI, catalog, onboarding, README and owner decision dashboard aligned while preparing paid-beta materials without commercial activation.",
     "future_visual_company_brain": {
       "status": "planned_not_started",
       "description": "Build a visual graph dashboard only after company-brain.json and company-brain-graph.json remain stable across several test cycles.",
@@ -337,6 +383,7 @@
   "current_decision": {
     "continue_sandbox_testing": true,
     "start_paid_commercial_activity": false,
-    "next_recommended_action": "Prepare paid-beta owner decision materials without enabling payments, invoices, production keys, real data, outreach or public marketplace/MCP publication."
+    "paid_beta_activation": "blocked_until_owner_approves_red_gates_and_operational_conditions_are_resolved",
+    "next_recommended_action": "Continue safe paid-beta preparation and keep all agents aligned to the owner decision dashboard. Do not enable payments, invoices, production keys, real data, outreach or public marketplace/MCP publication."
   }
 }
