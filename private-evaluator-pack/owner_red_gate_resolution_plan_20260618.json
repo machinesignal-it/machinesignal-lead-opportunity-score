@@ -1,0 +1,125 @@
+{
+  "document": "owner_red_gate_resolution_plan",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "internal_preparation_only",
+  "does_not_authorize": [
+    "paid_beta_activation",
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_publication",
+    "commercial_go_live"
+  ],
+  "summary_it": "Il piano trasforma gli 11 blocchi rossi in azioni verificabili. Gli agenti possono preparare bozze, checklist e controlli; il proprietario deve approvare i passaggi che creano rischio, costo o attivazione commerciale.",
+  "red_gates": [
+    {
+      "id": "owner_commercial_approval",
+      "meaning_it": "Serve una decisione esplicita sul passaggio da test interno a beta controllata.",
+      "agent_work_it": "Preparare decision memo, rischi, condizioni minime e opzioni go/no-go.",
+      "owner_decision_it": "Decidere se autorizzare una beta, con quali limiti e quando.",
+      "required_evidence_it": "Documento di approvazione proprietario con perimetro, limiti e blocchi residui.",
+      "status": "red"
+    },
+    {
+      "id": "fiscal_admin_readiness",
+      "meaning_it": "Serve capire se e come si può incassare legalmente.",
+      "agent_work_it": "Preparare scenari operativi, lista informazioni mancanti e checklist amministrativa.",
+      "owner_decision_it": "Decidere se restare in test gratuito, aprire posizione fiscale o attendere.",
+      "required_evidence_it": "Checklist amministrativa firmata o approvata dal proprietario.",
+      "status": "red"
+    },
+    {
+      "id": "payment_invoice_readiness",
+      "meaning_it": "Serve sapere come ricevere pagamenti e produrre documenti fiscali senza errori.",
+      "agent_work_it": "Disegnare flusso simulato di pagamento, ricevuta/fattura, rimborso e riconciliazione.",
+      "owner_decision_it": "Approvare se e quale canale usare.",
+      "required_evidence_it": "Flusso pagamento/fattura approvato, ma non attivato finché non autorizzato.",
+      "status": "red"
+    },
+    {
+      "id": "terms_privacy_data_readiness",
+      "meaning_it": "Serve avere regole chiare su uso del servizio, dati, privacy, responsabilità e limiti.",
+      "agent_work_it": "Preparare bozze di termini, privacy, data policy e regole sandbox/paid beta.",
+      "owner_decision_it": "Approvare il testo e il livello di rischio accettato.",
+      "required_evidence_it": "Pacchetto policy completo e approvato.",
+      "status": "red"
+    },
+    {
+      "id": "product_listino_approval",
+      "meaning_it": "Serve congelare cosa vendiamo, quanto costa e cosa include ogni prezzo.",
+      "agent_work_it": "Confrontare catalogo, listino, P&L, OpenAPI e documenti pubblici.",
+      "owner_decision_it": "Approvare listino, pacchetti e regole di consumo crediti.",
+      "required_evidence_it": "Listino approvato con descrizione esatta di cosa include ogni prodotto.",
+      "status": "red"
+    },
+    {
+      "id": "credit_refund_policy",
+      "meaning_it": "Serve decidere quando un credito viene consumato, restituito o non scalato.",
+      "agent_work_it": "Preparare regole per record validi, invalidi, duplicati, incompleti e output non producibili.",
+      "owner_decision_it": "Approvare la policy crediti/rimborsi.",
+      "required_evidence_it": "Documento policy crediti con esempi e casi limite.",
+      "status": "red"
+    },
+    {
+      "id": "production_api_keys",
+      "meaning_it": "Serve decidere se e quando usare chiavi API vere e ambiente production.",
+      "agent_work_it": "Preparare schema di secret management, ambienti, rotazione e test NoWrite.",
+      "owner_decision_it": "Autorizzare o bloccare l'uso di chiavi production.",
+      "required_evidence_it": "Checklist secret management e autorizzazione esplicita.",
+      "status": "red"
+    },
+    {
+      "id": "cost_cap_kill_switch",
+      "meaning_it": "Serve impedire costi incontrollati se una macchina fa troppe richieste.",
+      "agent_work_it": "Preparare limiti, quote, soglie, alert, blocchi automatici e simulazioni.",
+      "owner_decision_it": "Approvare budget massimo e soglie di stop.",
+      "required_evidence_it": "Policy cost cap e kill switch testata in sandbox.",
+      "status": "red"
+    },
+    {
+      "id": "support_escalation_model",
+      "meaning_it": "Serve sapere cosa succede se il cliente macchina segnala errori, output contestati o richieste.",
+      "agent_work_it": "Disegnare flussi di supporto automatico, ticket, risposta standard e casi da portare al proprietario.",
+      "owner_decision_it": "Approvare quali problemi devono arrivare al proprietario.",
+      "required_evidence_it": "Matrice supporto/escalation con tempi e responsabilità.",
+      "status": "red"
+    },
+    {
+      "id": "security_incident_readiness",
+      "meaning_it": "Serve gestire incidenti, abuso, chiavi esposte, errori e accessi non previsti.",
+      "agent_work_it": "Preparare incident playbook, checklist sicurezza e simulazioni.",
+      "owner_decision_it": "Approvare soglie di blocco e procedura di emergenza.",
+      "required_evidence_it": "Playbook sicurezza e incidente.",
+      "status": "red"
+    },
+    {
+      "id": "distribution_outreach_publication_approval",
+      "meaning_it": "Serve decidere dove renderci visibili senza contattare umani o pubblicare troppo presto.",
+      "agent_work_it": "Preparare opzioni machine-readable: docs, GitHub, OpenAPI, Postman, llms.txt, pagine discovery.",
+      "owner_decision_it": "Approvare eventuale pubblicazione o mantenimento privato.",
+      "required_evidence_it": "Piano distribuzione approvato, senza outreach umano automatico.",
+      "status": "red"
+    }
+  ],
+  "recommended_priority": [
+    "product_listino_approval",
+    "credit_refund_policy",
+    "cost_cap_kill_switch",
+    "terms_privacy_data_readiness",
+    "support_escalation_model",
+    "fiscal_admin_readiness",
+    "payment_invoice_readiness",
+    "security_incident_readiness",
+    "production_api_keys",
+    "distribution_outreach_publication_approval",
+    "owner_commercial_approval"
+  ],
+  "next_safe_step_it": "Preparare la policy crediti/rimborsi in versione beta, usando solo esempi sintetici."
+}

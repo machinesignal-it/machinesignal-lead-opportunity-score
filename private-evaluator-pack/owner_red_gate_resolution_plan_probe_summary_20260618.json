@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "owner_red_gate_resolution_plan",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  83,
+    "total":  83,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Piano blocchi rossi creato. Gli 11 blocchi sono mappati; la beta a pagamento resta non autorizzata."
+}
