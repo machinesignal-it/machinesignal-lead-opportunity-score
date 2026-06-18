@@ -1,0 +1,127 @@
+{
+  "document": "fiscal_admin_readiness",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_internal_readiness_not_tax_advice",
+  "commercial_activation": false,
+  "paid_beta_allowed": false,
+  "real_payments_allowed": false,
+  "invoices_allowed": false,
+  "payment_method_collection_allowed": false,
+  "final_tax_advice": false,
+  "summary_it": "Bozza interna per preparare il percorso fiscale/amministrativo prima di qualunque beta a pagamento. Non autorizza pagamenti, fatture, raccolta metodi di pagamento o vendita reale.",
+  "primary_rule": "Until fiscal/admin readiness is owner-approved, every real purchase request must remain simulated or blocked.",
+  "decisions_required_before_paid_beta": [
+    "forma_operativa_per_vendere",
+    "partita_iva_o_altra_struttura",
+    "codice_attivita_e_regime_fiscale",
+    "regole_iva_clienti_italia_ue_extra_ue",
+    "documento_fiscale_da_emettere",
+    "momento_emissione_documento",
+    "dati_minimi_fatturazione",
+    "cliente_macchina_con_soggetto_umano_o_societario",
+    "riconciliazione_ordini_crediti_pagamenti_fatture",
+    "regole_crediti_sostitutivi_riaccrediti_rimborsi",
+    "limiti_costo_e_responsabilita_amministrativa",
+    "conservazione_documenti_e_registro_operazioni"
+  ],
+  "economic_objects": [
+    {
+      "item": "pay_per_score",
+      "admin_risk": "micro_transactions_or_consumption_packages",
+      "decision_required": "when_to_invoice_and_how_to_reconcile"
+    },
+    {
+      "item": "score_pack_1k",
+      "admin_risk": "prepaid_package",
+      "decision_required": "invoice_at_purchase_or_consumption"
+    },
+    {
+      "item": "deep_analysis_pack",
+      "admin_risk": "premium_output",
+      "decision_required": "valid_output_and_recredit_rule"
+    },
+    {
+      "item": "action_pack",
+      "admin_risk": "operational_payload",
+      "decision_required": "service_description_and_responsibility"
+    },
+    {
+      "item": "api_subscription",
+      "admin_risk": "recurring_revenue",
+      "decision_required": "period_renewal_invoice_cancellation"
+    },
+    {
+      "item": "replacement_credits",
+      "admin_risk": "not_always_cash_refund",
+      "decision_required": "admin_treatment"
+    },
+    {
+      "item": "cash_refund",
+      "admin_risk": "real_money_movement",
+      "decision_required": "owner_approval_and_recording"
+    }
+  ],
+  "minimum_billing_profile_fields": [
+    "customer_type",
+    "country",
+    "legal_name_or_person_name",
+    "billing_address",
+    "tax_identifier_if_required",
+    "vat_number_if_applicable",
+    "admin_email",
+    "terms_acceptance",
+    "credit_replacement_refund_terms_acceptance",
+    "approved_payment_channel",
+    "customer_id"
+  ],
+  "blocked_response_example": {
+    "status": "blocked_by_fiscal_admin_readiness",
+    "decision": "stop",
+    "reason": "paid purchase, invoice and billing profile are not approved",
+    "credits_consumed": 0,
+    "payment_executed": false,
+    "invoice_issued": false,
+    "owner_escalation_required": true,
+    "support_code": "FISCAL_ADMIN_NOT_READY"
+  },
+  "minimum_controls_before_green": [
+    "owner_decision_on_fiscal_path",
+    "documented_piva_or_alternative_operating_rule",
+    "documented_vat_and_fiscal_document_rule",
+    "invoice_process_selected",
+    "payment_process_selected",
+    "minimum_billing_profile_implemented",
+    "orders_credits_payments_invoices_reconcilable",
+    "replacement_credit_and_refund_rule_approved",
+    "sandbox_test_payment_false_invoice_false",
+    "pre_production_test_only_after_owner_approval",
+    "company_brain_and_dashboard_updated",
+    "no_secret_or_personal_data_published"
+  ],
+  "agents_may_do": [
+    "prepare_fiscal_admin_checklists",
+    "generate_owner_questions",
+    "simulate_order_reconciliation_without_real_money",
+    "verify_blocked_api_responses",
+    "update_pnl_and_sandbox_ledger",
+    "verify_no_invoices_are_issued",
+    "propose_billing_profile_fields",
+    "prepare_italian_reports"
+  ],
+  "agents_must_not_do": [
+    "decide_finally_whether_piva_is_required",
+    "replace_official_tax_advice",
+    "execute_real_payment",
+    "issue_invoice",
+    "collect_card_or_payment_method",
+    "activate_real_subscription",
+    "convert_simulation_to_real_sale",
+    "declare_business_tax_ready"
+  ],
+  "dashboard_effect": {
+    "fiscal_admin_readiness": "red_to_yellow_candidate",
+    "reason_it": "Bozza interna verificabile con blocchi e decisioni minime, ma senza approvazione proprietario o attivazione commerciale."
+  },
+  "next_safe_action": "prepare_or_verify_billing_profile_required_flow_in_sandbox_nowrite"
+}

@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "fiscal_admin_readiness",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  99,
+    "total":  99,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Fiscal/Admin Readiness e\u0027 una bozza interna verificata: prepara decisioni e blocchi, ma non autorizza pagamenti, fatture, metodi di pagamento o beta a pagamento."
+}
