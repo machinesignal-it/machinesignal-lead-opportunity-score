@@ -18,7 +18,7 @@ MachineSignal is technically ready for the current sandbox scope, but not commer
 | Policy preparation | Yellow | Draft policy sections exist but are not approved | Continue drafting |
 | P&L paid-beta delta | Yellow | Small-beta economics modeled, not approved as commercial plan | Review later |
 | Owner commercial approval | Red | No signed owner decision to activate beta | Block activation |
-| Fiscal/admin path | Red | P.IVA/accounting/invoice path not approved | Block payments |
+| Fiscal/admin path | Yellow | Draft verified by 99 checks, but not owner-approved, not tax advice and no payments/invoices allowed | Continue owner review before payments or invoices |
 | Payment/invoice path | Red | Payment mode and fiscal document process not approved | Block live payment |
 | Terms/privacy/data | Yellow | Draft verified by 112 checks, but not owner-approved, not final and not implemented | Continue owner review before onboarding or real data |
 | Product/listino approval | Red | Score Pack 1k is recommended but not owner-approved for sale | Block paid offers |
@@ -78,7 +78,7 @@ It still blocks:
 Recommended order:
 
 1. Confirm whether to continue paid-beta preparation.
-2. Resolve fiscal/admin path.
+2. Resolve payment/invoice path.
 3. Resolve payment/invoice path.
 4. Resolve terms/privacy/data path.
 5. Approve or reject Score Pack 1k at EUR 119.

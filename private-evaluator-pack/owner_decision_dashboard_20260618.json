@@ -44,9 +44,9 @@
     },
     {
       "area": "fiscal_admin_path",
-      "status": "red",
-      "meaning": "piva_accounting_invoice_path_not_approved",
-      "decision": "block_payments"
+      "status": "yellow",
+      "meaning": "draft_verified_by_99_checks_but_not_owner_approved_not_tax_advice_no_payments_no_invoices",
+      "decision": "continue_owner_review_fiscal_admin_path_before_payments_or_invoices"
     },
     {
       "area": "payment_invoice_path",
@@ -151,8 +151,8 @@
   },
   "gate_counts": {
     "green": 3,
-    "yellow": 8,
-    "red": 5
+    "yellow": 9,
+    "red": 4
   },
   "yellow_candidate_evidence": [
     {
@@ -225,7 +225,21 @@
         "external_contact_boundary_confirmation",
         "company_brain_final_update"
       ]
+    },
+    {
+      "area": "fiscal_admin_path",
+      "evidence": "fiscal_admin_readiness_20260618",
+      "probe": "99_checks_0_failed",
+      "remaining_to_green": [
+        "owner_approval",
+        "final_fiscal_path_decision",
+        "piva_or_alternative_operating_rule",
+        "vat_and_invoice_rule",
+        "billing_profile_implementation",
+        "order_credit_payment_invoice_reconciliation_test",
+        "company_brain_final_update"
+      ]
     }
   ],
-  "next_safe_action": "prepare_fiscal_admin_readiness_or_product_listino_owner_review"
+  "next_safe_action": "prepare_payment_invoice_readiness_or_product_listino_owner_review"
 }

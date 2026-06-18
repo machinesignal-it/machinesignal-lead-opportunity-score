@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "fiscal_admin_dashboard_alignment",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  63,
+    "total":  63,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Dashboard aggiornato: 3 verdi, 9 gialli, 4 rossi. Fiscal/admin e\u0027 candidato giallo verificato, non approvato. Nessun pagamento, fattura o metodo di pagamento autorizzato."
+}
