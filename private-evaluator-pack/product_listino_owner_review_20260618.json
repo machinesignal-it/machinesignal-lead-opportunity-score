@@ -1,0 +1,149 @@
+{
+  "document": "product_listino_owner_review",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_internal_owner_review_not_live_offer",
+  "commercial_activation": false,
+  "live_offer_allowed": false,
+  "real_payment_allowed": false,
+  "invoice_allowed": false,
+  "subscription_activation_allowed": false,
+  "marketplace_publication_allowed": false,
+  "summary_it": "Bozza interna per revisionare prodotti, prezzi, unita' vendute e cosa include ogni prezzo. Non approva il listino come offerta commerciale live.",
+  "primary_rule": "A product is sellable only after product name, price, unit, includes, exclusions, output validity, credit consumption, delivery channel, limits, refund/recredit rules, dependencies and owner approval are closed.",
+  "reference_products": [
+    {
+      "product_id": "target_discovery_pack_250",
+      "name": "Target Discovery Pack",
+      "price_eur": 249,
+      "unit": "250 coherent targets",
+      "status": "sandbox_reference",
+      "includes_summary": "market pre-check, objective normalization, opportunity hypothesis, 250 normalized deduplicated targets when market coverage is sufficient, domain if available, category, area, initial signals, inclusion reason, JSON/CSV export",
+      "not_live_offer": true
+    },
+    {
+      "product_id": "score_pack_1k",
+      "name": "Score Pack 1k",
+      "price_eur": 119,
+      "unit": "1000 valid scores",
+      "status": "sandbox_reference",
+      "includes_summary": "list cleaning, deduplication, invalid record exclusion, 1000 valid scores, confidence, commercial strength, spend policy, decision, reason, priority and next product",
+      "not_live_offer": true
+    },
+    {
+      "product_id": "domain_enrichment_pack_100",
+      "name": "Domain Enrichment Pack 100",
+      "price_eur": 149,
+      "unit": "100 completed enrichment decisions",
+      "status": "sandbox_reference",
+      "includes_summary": "100 processed target records, public lookup, verified domain when available, confidence, source type, per-record status, no-domain reason and JSON/CSV export",
+      "not_live_offer": true
+    },
+    {
+      "product_id": "deep_analysis_pack_100",
+      "name": "Deep Analysis Pack 100",
+      "price_eur": 349,
+      "unit": "100 valid deep analyses",
+      "status": "sandbox_reference",
+      "includes_summary": "sector context, commercial objective, evidence matrix, machine decision matrix, Action Pack gate, CRM summary payload, sector signals, validation signals, risk flags, stop rules and next step",
+      "not_live_offer": true
+    },
+    {
+      "product_id": "action_pack_25",
+      "name": "Action Pack 25",
+      "price_eur": 399,
+      "unit": "25 valid action packs",
+      "status": "sandbox_reference",
+      "includes_summary": "CRM record patch, CRM task, CRM mappings, workflow payload, agent instructions, webhook schema, webhook policy, audit event, approval gate, dedupe key, message angle, stop rules and compliance guardrail",
+      "not_live_offer": true
+    },
+    {
+      "product_id": "opportunity_feed_monthly",
+      "name": "Opportunity Feed",
+      "price_eur": 249,
+      "unit": "1 month",
+      "status": "sandbox_reference",
+      "includes_summary": "1 monthly recurring feed, 4 scheduled scans, 4 deliveries, new or updated targets, base score, main signals, priority and API/file/webhook output",
+      "not_live_offer": true
+    },
+    {
+      "product_id": "api_starter_monthly",
+      "name": "API Starter",
+      "price_eur": 99,
+      "unit": "1 month",
+      "status": "sandbox_reference",
+      "includes_summary": "1 API key, documentation, demo environment, score endpoint, 500 valid scores per month, basic usage report and standard async support",
+      "not_live_offer": true
+    },
+    {
+      "product_id": "api_pro_monthly",
+      "name": "API Pro",
+      "price_eur": 499,
+      "unit": "1 month",
+      "status": "sandbox_reference",
+      "includes_summary": "1 advanced API key, 3000 valid scores per month, 50 valid deep analyses per month, 1 monthly feed, webhook support, priority processing, advanced report and async support",
+      "not_live_offer": true
+    },
+    {
+      "product_id": "custom_overage",
+      "name": "Custom / overage",
+      "price_eur_from": 2000,
+      "unit": "custom quote",
+      "status": "owner_quote_required",
+      "includes_summary": "extra usage, custom batches, dedicated endpoint/export, custom scoring rules, integrations and additional support",
+      "not_live_offer": true
+    }
+  ],
+  "owner_decisions_required": [
+    "first_product_to_offer",
+    "initial_beta_price",
+    "maximum_beta_customers",
+    "discount_policy_or_no_discount",
+    "credit_validity",
+    "unused_credit_policy",
+    "recredit_policy",
+    "cash_refund_policy",
+    "customer_usage_limits",
+    "customer_cost_limits",
+    "one_shot_packs_vs_subscriptions_priority",
+    "sandbox_to_production_conditions",
+    "allowed_publication_channels",
+    "machine_response_when_listino_not_live"
+  ],
+  "blocked_response_example": {
+    "status": "blocked_by_product_listino_approval",
+    "decision": "stop",
+    "reason": "product listino is a sandbox reference and is not approved for live commercial sale",
+    "credits_consumed": 0,
+    "payment_executed": false,
+    "invoice_issued": false,
+    "subscription_activated": false,
+    "owner_escalation_required": true,
+    "support_code": "PRODUCT_LISTINO_NOT_APPROVED"
+  },
+  "agents_may_do": [
+    "compare_catalog_openapi_postman_company_brain",
+    "check_prices_units_and_descriptions",
+    "verify_each_price_has_includes",
+    "propose_listino_changes",
+    "prepare_pnl_and_margin_scenarios",
+    "create_sandbox_purchase_intent",
+    "return_blocked_response_when_listino_not_approved",
+    "prepare_italian_reports"
+  ],
+  "agents_must_not_do": [
+    "approve_final_listino",
+    "convert_sandbox_prices_to_live_offer",
+    "execute_real_payment",
+    "issue_invoice",
+    "activate_subscription",
+    "publish_paid_marketplace_listing",
+    "declare_final_prices_without_owner_approval",
+    "change_production_prices_without_owner_approval"
+  ],
+  "dashboard_effect": {
+    "product_listino_approval": "red_to_yellow_candidate",
+    "reason_it": "Catalogo e revisione proprietario esistono con prodotti, prezzi, unita', cosa include e blocchi. Non approva offerta commerciale live."
+  },
+  "next_safe_action": "prepare_product_listino_owner_decision_packet"
+}

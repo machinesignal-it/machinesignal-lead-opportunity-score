@@ -1,0 +1,171 @@
+﻿# Report controllo Product/Listino Owner Review
+
+Data controllo: 2026-06-18
+
+Esito: SUPERATO
+
+Controlli superati: 154/154
+
+Sintesi:
+
+- Il product/listino review pack copre prodotti, prezzi, unita' e cosa include ogni prezzo.
+- Il catalogo resta riferimento sandbox, non offerta commerciale live.
+- Il pack propone product_listino_approval come candidato giallo, non come gate verde.
+- Pagamenti, fatture, abbonamenti, marketplace e prezzi live restano bloccati.
+
+Dettaglio controlli:
+
+- [OK] Documento italiano: Il report deve essere in italiano.
+- [OK] Stato bozza owner review: Deve essere una bozza interna, non offerta live.
+- [OK] Attivazione commerciale falsa: Non deve autorizzare attivazione commerciale.
+- [OK] Offerta live non ammessa: Non deve autorizzare offerta live.
+- [OK] Pagamento reale non ammesso: Non deve autorizzare pagamenti reali.
+- [OK] Fattura non ammessa: Non deve autorizzare fatture.
+- [OK] Abbonamento non ammesso: Non deve autorizzare abbonamenti reali.
+- [OK] Marketplace non ammesso: Non deve autorizzare marketplace.
+- [OK] Prodotto review presente: target_discovery_pack_250: Il review pack deve coprire questo prodotto.
+- [OK] Prodotto catalogo presente: target_discovery_pack_250: Il catalogo deve contenere questo prodotto.
+- [OK] Nome coerente: target_discovery_pack_250: Nome review e catalogo devono combaciare.
+- [OK] Unita' presente: target_discovery_pack_250: Ogni prodotto deve avere un'unita'.
+- [OK] Include summary presente: target_discovery_pack_250: Ogni prodotto deve spiegare cosa include.
+- [OK] Non live offer: target_discovery_pack_250: Ogni prodotto deve restare non-live.
+- [OK] Stato sandbox/reference: target_discovery_pack_250: Lo stato non deve essere live.
+- [OK] Prodotto review presente: score_pack_1k: Il review pack deve coprire questo prodotto.
+- [OK] Prodotto catalogo presente: score_pack_1k: Il catalogo deve contenere questo prodotto.
+- [OK] Nome coerente: score_pack_1k: Nome review e catalogo devono combaciare.
+- [OK] Unita' presente: score_pack_1k: Ogni prodotto deve avere un'unita'.
+- [OK] Include summary presente: score_pack_1k: Ogni prodotto deve spiegare cosa include.
+- [OK] Non live offer: score_pack_1k: Ogni prodotto deve restare non-live.
+- [OK] Stato sandbox/reference: score_pack_1k: Lo stato non deve essere live.
+- [OK] Prodotto review presente: domain_enrichment_pack_100: Il review pack deve coprire questo prodotto.
+- [OK] Prodotto catalogo presente: domain_enrichment_pack_100: Il catalogo deve contenere questo prodotto.
+- [OK] Nome coerente: domain_enrichment_pack_100: Nome review e catalogo devono combaciare.
+- [OK] Unita' presente: domain_enrichment_pack_100: Ogni prodotto deve avere un'unita'.
+- [OK] Include summary presente: domain_enrichment_pack_100: Ogni prodotto deve spiegare cosa include.
+- [OK] Non live offer: domain_enrichment_pack_100: Ogni prodotto deve restare non-live.
+- [OK] Stato sandbox/reference: domain_enrichment_pack_100: Lo stato non deve essere live.
+- [OK] Prodotto review presente: deep_analysis_pack_100: Il review pack deve coprire questo prodotto.
+- [OK] Prodotto catalogo presente: deep_analysis_pack_100: Il catalogo deve contenere questo prodotto.
+- [OK] Nome coerente: deep_analysis_pack_100: Nome review e catalogo devono combaciare.
+- [OK] Unita' presente: deep_analysis_pack_100: Ogni prodotto deve avere un'unita'.
+- [OK] Include summary presente: deep_analysis_pack_100: Ogni prodotto deve spiegare cosa include.
+- [OK] Non live offer: deep_analysis_pack_100: Ogni prodotto deve restare non-live.
+- [OK] Stato sandbox/reference: deep_analysis_pack_100: Lo stato non deve essere live.
+- [OK] Prodotto review presente: action_pack_25: Il review pack deve coprire questo prodotto.
+- [OK] Prodotto catalogo presente: action_pack_25: Il catalogo deve contenere questo prodotto.
+- [OK] Nome coerente: action_pack_25: Nome review e catalogo devono combaciare.
+- [OK] Unita' presente: action_pack_25: Ogni prodotto deve avere un'unita'.
+- [OK] Include summary presente: action_pack_25: Ogni prodotto deve spiegare cosa include.
+- [OK] Non live offer: action_pack_25: Ogni prodotto deve restare non-live.
+- [OK] Stato sandbox/reference: action_pack_25: Lo stato non deve essere live.
+- [OK] Prodotto review presente: opportunity_feed_monthly: Il review pack deve coprire questo prodotto.
+- [OK] Prodotto catalogo presente: opportunity_feed_monthly: Il catalogo deve contenere questo prodotto.
+- [OK] Nome coerente: opportunity_feed_monthly: Nome review e catalogo devono combaciare.
+- [OK] Unita' presente: opportunity_feed_monthly: Ogni prodotto deve avere un'unita'.
+- [OK] Include summary presente: opportunity_feed_monthly: Ogni prodotto deve spiegare cosa include.
+- [OK] Non live offer: opportunity_feed_monthly: Ogni prodotto deve restare non-live.
+- [OK] Stato sandbox/reference: opportunity_feed_monthly: Lo stato non deve essere live.
+- [OK] Prodotto review presente: api_starter_monthly: Il review pack deve coprire questo prodotto.
+- [OK] Prodotto catalogo presente: api_starter_monthly: Il catalogo deve contenere questo prodotto.
+- [OK] Nome coerente: api_starter_monthly: Nome review e catalogo devono combaciare.
+- [OK] Unita' presente: api_starter_monthly: Ogni prodotto deve avere un'unita'.
+- [OK] Include summary presente: api_starter_monthly: Ogni prodotto deve spiegare cosa include.
+- [OK] Non live offer: api_starter_monthly: Ogni prodotto deve restare non-live.
+- [OK] Stato sandbox/reference: api_starter_monthly: Lo stato non deve essere live.
+- [OK] Prodotto review presente: api_pro_monthly: Il review pack deve coprire questo prodotto.
+- [OK] Prodotto catalogo presente: api_pro_monthly: Il catalogo deve contenere questo prodotto.
+- [OK] Nome coerente: api_pro_monthly: Nome review e catalogo devono combaciare.
+- [OK] Unita' presente: api_pro_monthly: Ogni prodotto deve avere un'unita'.
+- [OK] Include summary presente: api_pro_monthly: Ogni prodotto deve spiegare cosa include.
+- [OK] Non live offer: api_pro_monthly: Ogni prodotto deve restare non-live.
+- [OK] Stato sandbox/reference: api_pro_monthly: Lo stato non deve essere live.
+- [OK] Prodotto review presente: custom_overage: Il review pack deve coprire questo prodotto.
+- [OK] Prodotto catalogo presente: custom_overage: Il catalogo deve contenere questo prodotto.
+- [OK] Nome coerente: custom_overage: Nome review e catalogo devono combaciare.
+- [OK] Unita' presente: custom_overage: Ogni prodotto deve avere un'unita'.
+- [OK] Include summary presente: custom_overage: Ogni prodotto deve spiegare cosa include.
+- [OK] Non live offer: custom_overage: Ogni prodotto deve restare non-live.
+- [OK] Stato sandbox/reference: custom_overage: Lo stato non deve essere live.
+- [OK] Prezzo numerico presente: target_discovery_pack_250: I prodotti non custom devono avere prezzo EUR.
+- [OK] Prezzo positivo: target_discovery_pack_250: Il prezzo deve essere positivo.
+- [OK] Prezzo numerico presente: score_pack_1k: I prodotti non custom devono avere prezzo EUR.
+- [OK] Prezzo positivo: score_pack_1k: Il prezzo deve essere positivo.
+- [OK] Prezzo numerico presente: domain_enrichment_pack_100: I prodotti non custom devono avere prezzo EUR.
+- [OK] Prezzo positivo: domain_enrichment_pack_100: Il prezzo deve essere positivo.
+- [OK] Prezzo numerico presente: deep_analysis_pack_100: I prodotti non custom devono avere prezzo EUR.
+- [OK] Prezzo positivo: deep_analysis_pack_100: Il prezzo deve essere positivo.
+- [OK] Prezzo numerico presente: action_pack_25: I prodotti non custom devono avere prezzo EUR.
+- [OK] Prezzo positivo: action_pack_25: Il prezzo deve essere positivo.
+- [OK] Prezzo numerico presente: opportunity_feed_monthly: I prodotti non custom devono avere prezzo EUR.
+- [OK] Prezzo positivo: opportunity_feed_monthly: Il prezzo deve essere positivo.
+- [OK] Prezzo numerico presente: api_starter_monthly: I prodotti non custom devono avere prezzo EUR.
+- [OK] Prezzo positivo: api_starter_monthly: Il prezzo deve essere positivo.
+- [OK] Prezzo numerico presente: api_pro_monthly: I prodotti non custom devono avere prezzo EUR.
+- [OK] Prezzo positivo: api_pro_monthly: Il prezzo deve essere positivo.
+- [OK] Custom ha prezzo from: Custom deve richiedere quote proprietario.
+- [OK] Decisione proprietario presente: first_product_to_offer: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: initial_beta_price: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: maximum_beta_customers: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: discount_policy_or_no_discount: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: credit_validity: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: unused_credit_policy: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: recredit_policy: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: cash_refund_policy: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: customer_usage_limits: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: customer_cost_limits: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: one_shot_packs_vs_subscriptions_priority: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: sandbox_to_production_conditions: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: allowed_publication_channels: La review deve richiedere questa decisione.
+- [OK] Decisione proprietario presente: machine_response_when_listino_not_live: La review deve richiedere questa decisione.
+- [OK] Risposta bloccata status corretto: La macchina deve ricevere stato bloccato.
+- [OK] Risposta bloccata stop: La decisione deve essere stop.
+- [OK] Crediti consumati zero: Nessun credito deve essere consumato.
+- [OK] Pagamento falso: Nessun pagamento reale.
+- [OK] Fattura falsa: Nessuna fattura.
+- [OK] Abbonamento falso: Nessun abbonamento reale.
+- [OK] Escalation proprietario richiesta: Serve decisione proprietario.
+- [OK] Support code corretto: Il codice deve essere stabile.
+- [OK] Azione agente ammessa: compare_catalog_openapi_postman_company_brain: Gli agenti devono poter preparare senza vendere.
+- [OK] Azione agente ammessa: check_prices_units_and_descriptions: Gli agenti devono poter preparare senza vendere.
+- [OK] Azione agente ammessa: verify_each_price_has_includes: Gli agenti devono poter preparare senza vendere.
+- [OK] Azione agente ammessa: propose_listino_changes: Gli agenti devono poter preparare senza vendere.
+- [OK] Azione agente ammessa: prepare_pnl_and_margin_scenarios: Gli agenti devono poter preparare senza vendere.
+- [OK] Azione agente ammessa: create_sandbox_purchase_intent: Gli agenti devono poter preparare senza vendere.
+- [OK] Azione agente ammessa: return_blocked_response_when_listino_not_approved: Gli agenti devono poter preparare senza vendere.
+- [OK] Azione agente ammessa: prepare_italian_reports: Gli agenti devono poter preparare senza vendere.
+- [OK] Divieto agente presente: approve_final_listino: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: convert_sandbox_prices_to_live_offer: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: execute_real_payment: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: issue_invoice: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: activate_subscription: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: publish_paid_marketplace_listing: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: declare_final_prices_without_owner_approval: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: change_production_prices_without_owner_approval: Gli agenti non devono fare questa azione.
+- [OK] Effetto dashboard candidato giallo: Il documento deve proporre solo candidato giallo.
+- [OK] Prossima azione owner decision packet: La prossima azione deve essere review proprietario.
+- [OK] Catalogo resta sandbox reference: Il catalogo non deve essere live checkout.
+- [OK] Catalogo pagamenti bloccati: Il catalogo deve bloccare pagamenti.
+- [OK] Catalogo fatture bloccate: Il catalogo deve bloccare fatture.
+- [OK] Frase MD presente: non offerta commerciale live: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Regola principale: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Listino di riferimento da revisionare: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Cosa include ogni prezzo: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Decisioni proprietario richieste: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Risposta macchina se prova a comprare da listino non approvato: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Gli agenti non possono: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: da rosso a candidato giallo: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Nessuna frase pericolosa: "live_offer_allowed": true: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: "real_payment_allowed": true: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: "invoice_allowed": true: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: "subscription_activation_allowed": true: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: "marketplace_publication_allowed": true: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: listino approvato: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: offerta commerciale live approvata: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: prezzi definitivi approvati: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: puoi comprare ora: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: pagamento reale attivo: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: fattura reale attiva: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: subscription active: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: live offer approved: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: final prices approved: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.
+- [OK] Nessuna frase pericolosa: marketplace listing approved: Non devono comparire affermazioni di offerta live o approvazione non autorizzata.

@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "product_listino_owner_review",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  154,
+    "total":  154,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Product/Listino Owner Review e\u0027 una bozza interna verificata: copre prodotti, prezzi, unita\u0027 e include, ma non approva il listino come offerta commerciale live."
+}
