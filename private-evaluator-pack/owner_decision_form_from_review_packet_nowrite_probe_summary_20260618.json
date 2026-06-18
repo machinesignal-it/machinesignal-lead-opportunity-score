@@ -1,0 +1,15 @@
+﻿{
+    "probe":  "owner_decision_form_from_review_packet_nowrite_probe_20260618",
+    "success":  true,
+    "passed":  119,
+    "failed":  0,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "decision":  "not_yet_owner_review_required",
+    "selected_option":  null,
+    "future_options":  5,
+    "remaining_red_gate":  "owner_commercial_approval",
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "next_safe_action":  "prepare_no_go_or_activation_preconditions_matrix_nowrite",
+    "support_code":  "OWNER_DECISION_FORM_READY_NOWRITE"
+}

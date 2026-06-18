@@ -1,0 +1,129 @@
+{
+  "service": "MachineSignal",
+  "document": "owner_decision_form_from_review_packet_nowrite",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "owner_decision_form_ready_nowrite_not_signed_not_activated",
+  "mode": "owner decision preparation only",
+  "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+  "decision": "not_yet_owner_review_required",
+  "selected_option": null,
+  "is_approval": false,
+  "is_owner_signature": false,
+  "owner_signature_present": false,
+  "activation_allowed": false,
+  "paid_beta_activation_allowed": false,
+  "commercial_go_live_allowed": false,
+  "real_payment_allowed": false,
+  "invoice_allowed": false,
+  "payment_method_collection_allowed": false,
+  "production_key_issuance_allowed": false,
+  "real_customer_data_allowed": false,
+  "personal_data_allowed": false,
+  "external_outreach_allowed": false,
+  "marketplace_publication_allowed": false,
+  "hosted_public_mcp_allowed": false,
+  "mcp_registry_publication_allowed": false,
+  "source_evidence": {
+    "owner_review_packet": "owner_review_packet_from_verified_gate_coverage_nowrite_20260618",
+    "owner_review_packet_probe": "119_checks_0_failed",
+    "remaining_gate_coverage_probe": "140_checks_0_failed",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED"
+  },
+  "future_options": [
+    {
+      "code": "A",
+      "id": "remain_sandbox_only",
+      "label_it": "Restare in sandbox",
+      "meaning_it": "Continuare solo test e preparazione interna.",
+      "automatic_effect": "no_activation"
+    },
+    {
+      "code": "B",
+      "id": "prepare_controlled_beta_without_activation",
+      "label_it": "Preparare beta controllata",
+      "meaning_it": "Preparare un piano di beta a pagamento, ancora senza incassare.",
+      "automatic_effect": "no_activation"
+    },
+    {
+      "code": "C",
+      "id": "request_external_review_before_monetization",
+      "label_it": "Richiedere revisione esterna",
+      "meaning_it": "Fermare monetizzazione finche' non vengono chiariti aspetti fiscali/privacy/legali.",
+      "automatic_effect": "no_activation"
+    },
+    {
+      "code": "D",
+      "id": "authorize_separate_activation_step_preparation",
+      "label_it": "Autorizzare preparazione step successivo separato",
+      "meaning_it": "Consentire di preparare un atto di attivazione distinto.",
+      "automatic_effect": "no_activation"
+    },
+    {
+      "code": "E",
+      "id": "do_not_proceed",
+      "label_it": "Non procedere",
+      "meaning_it": "Chiudere o sospendere il percorso commerciale.",
+      "automatic_effect": "no_activation"
+    }
+  ],
+  "minimum_conditions_before_paid_beta": [
+    "explicit_tracked_owner_decision",
+    "fiscal_admin_path_confirmed",
+    "payment_invoice_rules_confirmed",
+    "privacy_data_boundaries_confirmed",
+    "price_list_credits_refunds_confirmed",
+    "cost_cap_kill_switch_confirmed",
+    "production_api_key_policy_confirmed",
+    "support_escalation_incident_process_confirmed",
+    "allowed_distribution_channels_confirmed",
+    "separate_activation_record_if_owner_decides_to_proceed"
+  ],
+  "remaining_red_gate": "owner_commercial_approval",
+  "always_forbidden_actions": [
+    "activate_paid_beta",
+    "commercial_go_live",
+    "execute_real_payment",
+    "issue_invoice",
+    "collect_payment_method",
+    "issue_production_api_key",
+    "process_real_customer_data",
+    "process_personal_data",
+    "send_external_outreach",
+    "publish_marketplace_listing",
+    "launch_hosted_public_mcp",
+    "submit_mcp_registry",
+    "start_real_subscription_or_auto_renewal",
+    "claim_service_is_live_or_sellable"
+  ],
+  "current_machine_response": {
+    "status": "owner_decision_form_ready_nowrite",
+    "decision": "not_yet_owner_review_required",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "source_owner_review_packet_probe": "119_checks_0_failed",
+    "available_future_options": [
+      "remain_sandbox_only",
+      "prepare_controlled_beta_without_activation",
+      "request_external_review_before_monetization",
+      "authorize_separate_activation_step_preparation",
+      "do_not_proceed"
+    ],
+    "selected_option": null,
+    "activation_allowed": false,
+    "owner_signature_present": false,
+    "paid_beta_activation_allowed": false,
+    "commercial_go_live_allowed": false,
+    "real_payment_allowed": false,
+    "invoice_allowed": false,
+    "payment_method_collection_allowed": false,
+    "production_key_issuance_allowed": false,
+    "real_customer_data_allowed": false,
+    "personal_data_allowed": false,
+    "external_outreach_allowed": false,
+    "marketplace_publication_allowed": false,
+    "hosted_public_mcp_allowed": false,
+    "next_safe_action": "prepare_no_go_or_activation_preconditions_matrix_nowrite",
+    "support_code": "OWNER_DECISION_FORM_READY_NOWRITE"
+  },
+  "recommended_next_safe_action": "prepare_no_go_or_activation_preconditions_matrix_nowrite"
+}
