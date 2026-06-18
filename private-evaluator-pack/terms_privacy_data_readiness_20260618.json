@@ -1,0 +1,178 @@
+{
+  "document": "terms_privacy_data_readiness",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_internal_policy",
+  "commercial_activation": false,
+  "legal_final": false,
+  "privacy_final": false,
+  "real_data_allowed": false,
+  "personal_data_allowed": false,
+  "summary_it": "Bozza interna per termini, privacy e data readiness. In questa fase sono ammessi solo dati sintetici, demo o non personali. Dati reali e personali restano bloccati fino ad approvazione esplicita e policy complete.",
+  "does_not_authorize": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data",
+    "personal_data",
+    "sensitive_data",
+    "external_outreach",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_publication",
+    "commercial_go_live"
+  ],
+  "allowed_now": [
+    "demo_domains",
+    "synthetic_companies",
+    "synthetic_datasets",
+    "generated_test_examples",
+    "sandbox_requests_without_real_or_personal_data",
+    "simulated_outputs",
+    "sandbox_purchase_intents_without_payment",
+    "technical_sandbox_ledger",
+    "internal_reports_it",
+    "nowrite_tests",
+    "small_write_capped_tests_without_real_or_personal_data"
+  ],
+  "blocked_now": [
+    "personal_data",
+    "natural_person_names",
+    "personal_or_identifiable_emails",
+    "phone_numbers",
+    "real_customer_or_prospect_lists",
+    "purchased_databases",
+    "personal_data_scraping",
+    "sensitive_information",
+    "health_financial_judicial_or_special_category_data",
+    "real_customer_file_uploads",
+    "real_campaign_processing",
+    "external_outreach",
+    "person_profiling",
+    "person_scoring",
+    "real_payment",
+    "invoice",
+    "production_key",
+    "public_marketplace_or_mcp"
+  ],
+  "input_classes": [
+    "synthetic_ok",
+    "demo_domain_ok",
+    "public_company_domain_low_risk",
+    "real_company_dataset_blocked",
+    "personal_data_blocked",
+    "sensitive_data_blocked",
+    "unknown_requires_review"
+  ],
+  "blocked_input_classes": [
+    "real_company_dataset_blocked",
+    "personal_data_blocked",
+    "sensitive_data_blocked",
+    "unknown_requires_review"
+  ],
+  "blocked_response_example": {
+    "status": "blocked_by_data_policy",
+    "decision": "stop",
+    "reason": "real or personal data is not allowed in the current beta stage",
+    "credits_consumed": 0,
+    "owner_escalation_required": true,
+    "support_code": "DATA_POLICY_BLOCK"
+  },
+  "terms_required_before_paid_beta": [
+    "terms_of_use",
+    "service_description",
+    "liability_limitations",
+    "automated_output_rules",
+    "score_and_decision_rules",
+    "no_person_decisioning_rule",
+    "credit_consumption_and_restoration_rules",
+    "service_availability_rules",
+    "suspension_and_abuse_rules",
+    "support_and_escalation_rules",
+    "cost_cap_and_kill_switch_rules",
+    "api_key_and_revocation_rules",
+    "allowed_and_blocked_data_rules"
+  ],
+  "privacy_required_before_paid_beta": [
+    "privacy_policy",
+    "data_processing_note",
+    "allowed_data_categories",
+    "blocked_data_categories",
+    "retention_policy",
+    "deletion_policy",
+    "incident_contact_path",
+    "minimum_privacy_roles",
+    "sandbox_allowed_data_basis",
+    "personal_data_block_until_approval"
+  ],
+  "product_data_rules": [
+    {
+      "product_code": "target_discovery",
+      "allowed_now_it": "Settore, area e obiettivo sintetico o generico.",
+      "blocked_now_it": "Liste reali, contatti, persone."
+    },
+    {
+      "product_code": "score_pack_1k",
+      "allowed_now_it": "Domini demo o dataset sintetici.",
+      "blocked_now_it": "Liste reali di aziende/prospect senza approvazione."
+    },
+    {
+      "product_code": "domain_enrichment",
+      "allowed_now_it": "Nomi fittizi o demo.",
+      "blocked_now_it": "Nomi reali con dati personali o contatti."
+    },
+    {
+      "product_code": "deep_analysis",
+      "allowed_now_it": "Domini demo e segnali sintetici.",
+      "blocked_now_it": "Analisi su clienti/prospect reali."
+    },
+    {
+      "product_code": "action_pack",
+      "allowed_now_it": "Payload demo.",
+      "blocked_now_it": "Messaggi reali, campagne reali, contatti reali."
+    },
+    {
+      "product_code": "opportunity_feed",
+      "allowed_now_it": "Feed sintetico.",
+      "blocked_now_it": "Feed reale con prospect non approvati."
+    },
+    {
+      "product_code": "api_starter",
+      "allowed_now_it": "Uso sandbox con demo data.",
+      "blocked_now_it": "Uso production con dati reali/personali."
+    },
+    {
+      "product_code": "api_pro",
+      "allowed_now_it": "Uso sandbox con demo data.",
+      "blocked_now_it": "Uso production con dati reali/personali."
+    }
+  ],
+  "agent_rules_it": [
+    "Classificare input prima di elaborare.",
+    "Bloccare dati reali/personali.",
+    "Non chiedere dati personali al cliente.",
+    "Non inviare email o outreach.",
+    "Non arricchire persone.",
+    "Non fare scraping personale.",
+    "Non usare dati sensibili.",
+    "Scrivere report in italiano.",
+    "Aprire escalation se il dato è dubbio.",
+    "Non procedere se non è chiaro se il dato è sintetico o reale."
+  ],
+  "owner_escalation_required_when": [
+    "real_data_request",
+    "personal_data_request",
+    "real_list_upload_request",
+    "person_scoring_request",
+    "real_campaign_output_request",
+    "unknown_data_classification",
+    "policy_change_needed",
+    "retention_or_deletion_decision_needed",
+    "terms_or_privacy_text_approval_needed"
+  ],
+  "dashboard_effect": {
+    "terms_privacy_data_readiness": "red_to_yellow_candidate",
+    "reason_it": "La bozza crea regole verificabili su dati ammessi, dati vietati, escalation e divieti. Non basta per il verde senza approvazione, testi finali e filtro tecnico."
+  }
+}

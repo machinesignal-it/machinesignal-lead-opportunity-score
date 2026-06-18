@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "terms_privacy_data_readiness",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  112,
+    "total":  112,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Bozza terms/privacy/data readiness creata. Dati reali e personali restano bloccati; termini e privacy non sono finali nÃ© approvati."
+}
