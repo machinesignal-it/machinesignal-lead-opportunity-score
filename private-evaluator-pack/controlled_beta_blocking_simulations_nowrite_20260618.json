@@ -1,0 +1,171 @@
+{
+  "service": "MachineSignal",
+  "document": "controlled_beta_blocking_simulations_nowrite",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "simulation_suite_ready_nowrite_not_activated",
+  "mode": "NoWrite synthetic simulations only",
+  "source_packet": "controlled_beta_activation_packet_nowrite_20260618",
+  "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+  "activation_allowed": false,
+  "paid_beta_activation_allowed": false,
+  "commercial_go_live_allowed": false,
+  "real_payment_allowed": false,
+  "invoice_allowed": false,
+  "payment_method_collection_allowed": false,
+  "production_key_issuance_allowed": false,
+  "real_customer_data_allowed": false,
+  "personal_data_allowed": false,
+  "external_outreach_allowed": false,
+  "marketplace_publication_allowed": false,
+  "hosted_public_mcp_allowed": false,
+  "mcp_registry_publication_allowed": false,
+  "simulation_cases": [
+    {
+      "id": "beta_request_without_signature",
+      "input": {
+        "request": "activate_controlled_beta",
+        "owner_signature": false,
+        "all_required_gates_green": false
+      },
+      "expected": {
+        "decision": "blocked",
+        "reason": "owner_signature_missing",
+        "paid_beta_activation": false,
+        "credits_consumed": 0
+      }
+    },
+    {
+      "id": "customer_attempts_payment",
+      "input": {
+        "request": "execute_payment",
+        "amount_eur": 119,
+        "payment_method_present": true
+      },
+      "expected": {
+        "decision": "blocked",
+        "reason": "payments_not_approved",
+        "real_payment_executed": false,
+        "payment_method_collected": false,
+        "credits_consumed": 0
+      }
+    },
+    {
+      "id": "customer_submits_personal_data",
+      "input": {
+        "request": "score_targets",
+        "contains_personal_data": true,
+        "fields": [
+          "email_personale",
+          "telefono_personale"
+        ]
+      },
+      "expected": {
+        "decision": "blocked",
+        "reason": "personal_data_not_allowed",
+        "real_or_personal_data_processed": false,
+        "credits_consumed": 0
+      }
+    },
+    {
+      "id": "customer_requests_production_key",
+      "input": {
+        "request": "issue_production_api_key",
+        "owner_signature": false,
+        "secret_manager_ready": false
+      },
+      "expected": {
+        "decision": "blocked",
+        "reason": "production_key_policy_not_approved",
+        "production_key_issued": false,
+        "credits_consumed": 0
+      }
+    },
+    {
+      "id": "customer_exceeds_cost_limit",
+      "input": {
+        "request": "run_large_batch",
+        "estimated_cost_eur": 25,
+        "approved_cost_cap_eur": 5
+      },
+      "expected": {
+        "decision": "blocked",
+        "reason": "cost_cap_exceeded",
+        "batch_executed": false,
+        "credits_consumed": 0
+      }
+    },
+    {
+      "id": "invalid_scoring_output",
+      "input": {
+        "request": "score_domain",
+        "domain": "example.invalid",
+        "output_valid": false,
+        "synthetic_only": true
+      },
+      "expected": {
+        "decision": "not_billable",
+        "reason": "invalid_output_credit_not_consumed",
+        "score_returned": false,
+        "credits_consumed": 0
+      }
+    },
+    {
+      "id": "valid_scoring_output",
+      "input": {
+        "request": "score_domain",
+        "domain": "example.com",
+        "output_valid": true,
+        "synthetic_only": true
+      },
+      "expected": {
+        "decision": "simulated_success",
+        "reason": "valid_synthetic_output",
+        "score_returned": true,
+        "credits_consumed": 1,
+        "real_customer_data_processed": false
+      }
+    },
+    {
+      "id": "duplicate_domain_request",
+      "input": {
+        "request": "score_domain",
+        "domain": "duplicate.example",
+        "already_processed_in_batch": true,
+        "synthetic_only": true
+      },
+      "expected": {
+        "decision": "deduplicate",
+        "reason": "duplicate_domain_in_same_batch",
+        "credits_consumed": 0
+      }
+    },
+    {
+      "id": "public_marketplace_or_mcp_request",
+      "input": {
+        "request": "publish_public_marketplace_or_hosted_mcp",
+        "owner_signature": false,
+        "separate_publication_approval": false
+      },
+      "expected": {
+        "decision": "blocked",
+        "reason": "public_distribution_not_approved",
+        "marketplace_or_public_mcp_published": false,
+        "credits_consumed": 0
+      }
+    }
+  ],
+  "expected_suite_result": {
+    "total_cases": 9,
+    "allowed_real_world_side_effects": 0,
+    "real_payments": 0,
+    "invoices": 0,
+    "payment_methods_collected": 0,
+    "production_keys_issued": 0,
+    "real_or_personal_data_processed": 0,
+    "external_outreach_sent": 0,
+    "marketplace_or_public_mcp_published": 0,
+    "maximum_simulated_credits_consumed": 1
+  },
+  "recommended_next_safe_action": "prepare_controlled_beta_simulation_readiness_report_nowrite"
+}

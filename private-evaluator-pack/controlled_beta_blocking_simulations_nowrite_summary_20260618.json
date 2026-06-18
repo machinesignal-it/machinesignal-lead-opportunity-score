@@ -1,0 +1,23 @@
+﻿{
+    "document":  "controlled_beta_blocking_simulations_nowrite_summary",
+    "date":  "2026-06-18",
+    "source_suite":  "controlled_beta_blocking_simulations_nowrite_20260618",
+    "simulation_cases_passed":  9,
+    "simulation_cases_failed":  0,
+    "probe_checks_passed":  28,
+    "probe_checks_failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed":  false,
+    "paid_beta_activation_allowed":  false,
+    "commercial_go_live_allowed":  false,
+    "simulated_credits_consumed":  1,
+    "real_world_side_effects":  0,
+    "next_safe_action":  "prepare_controlled_beta_simulation_readiness_report_nowrite",
+    "failed_cases":  [
+
+                     ],
+    "failed_checks":  [
+
+                      ]
+}
