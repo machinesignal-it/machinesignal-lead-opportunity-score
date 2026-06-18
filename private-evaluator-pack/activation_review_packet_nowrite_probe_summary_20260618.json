@@ -1,0 +1,17 @@
+﻿{
+    "document":  "activation_review_packet_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "target":  "activation_review_packet_nowrite_20260618",
+    "passed":  82,
+    "failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "decision":  "review_ready_but_activation_not_allowed",
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "future_possible_result":  "GO_REQUIRES_SEPARATE_ACTIVATION_STEP",
+    "next_safe_action":  "prepare_final_activation_decision_record_nowrite",
+    "failed_checks":  [
+
+                      ]
+}

@@ -1,0 +1,89 @@
+﻿# Activation review packet NoWrite probe
+
+Date: 2026-06-18
+
+Passed: 82
+Failed: 0
+
+- PASS - status_is_activation_review_ready: status=activation_review_packet_ready_nowrite_not_signed_not_activated
+- PASS - not_approval_not_signature: approval/signature false
+- PASS - activation_flags_false: activation flags false
+- PASS - money_flags_false: money flags false
+- PASS - production_data_distribution_flags_false: production/data/distribution flags false
+- PASS - current_result_not_yet: current_result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - decision_review_not_activation: decision=review_ready_but_activation_not_allowed
+- PASS - future_result_requires_separate_activation: future=GO_REQUIRES_SEPARATE_ACTIVATION_STEP
+- PASS - remaining_red_gate_owner: red_gate=owner_commercial_approval
+- PASS - source_form_probe: source=72_checks_0_failed
+- PASS - form_summary_success: form summary success=True
+- PASS - review_area_owner_approval: review area present
+- PASS - review_area_fiscal_admin: review area present
+- PASS - review_area_payment_invoice: review area present
+- PASS - review_area_terms_privacy_data: review area present
+- PASS - review_area_product_listino_credits: review area present
+- PASS - review_area_production_api_keys: review area present
+- PASS - review_area_cost_cap_kill_switch: review area present
+- PASS - review_area_support_escalation: review area present
+- PASS - review_area_security_incident: review area present
+- PASS - review_area_distribution_boundary: review area present
+- PASS - owner_review_area_red: owner approval remains red
+- PASS - future_go_condition_separate_owner_signature_present: future go condition present
+- PASS - future_go_condition_fiscal_admin_green: future go condition present
+- PASS - future_go_condition_payment_invoice_green: future go condition present
+- PASS - future_go_condition_terms_privacy_data_green: future go condition present
+- PASS - future_go_condition_product_listino_credits_green: future go condition present
+- PASS - future_go_condition_production_api_keys_green: future go condition present
+- PASS - future_go_condition_cost_cap_kill_switch_green: future go condition present
+- PASS - future_go_condition_support_escalation_green: future go condition present
+- PASS - future_go_condition_security_incident_green: future go condition present
+- PASS - future_go_condition_distribution_boundary_green: future go condition present
+- PASS - future_go_condition_separate_activation_decision_record_generated: future go condition present
+- PASS - future_go_condition_activation_remains_separate_step: future go condition present
+- PASS - no_go_condition_owner_signature_missing: no-go condition present
+- PASS - no_go_condition_fiscal_admin_missing: no-go condition present
+- PASS - no_go_condition_payment_invoice_missing: no-go condition present
+- PASS - no_go_condition_terms_privacy_data_missing: no-go condition present
+- PASS - no_go_condition_real_or_personal_data_requested: no-go condition present
+- PASS - no_go_condition_production_key_requested_before_policy: no-go condition present
+- PASS - no_go_condition_outreach_requested: no-go condition present
+- PASS - no_go_condition_marketplace_or_mcp_publication_requested: no-go condition present
+- PASS - no_go_condition_cost_cap_not_implemented: no-go condition present
+- PASS - no_go_condition_ambiguous_owner_instruction: no-go condition present
+- PASS - future_scope_limited_not_live: future scope limited
+- PASS - machine_status: status=activation_review_packet_ready_nowrite
+- PASS - machine_decision: decision=review_ready_but_activation_not_allowed
+- PASS - machine_future_possible: future=GO_REQUIRES_SEPARATE_ACTIVATION_STEP
+- PASS - machine_signature_false: signature=False
+- PASS - machine_flags_false: machine flags false
+- PASS - machine_support_code: support=ACTIVATION_REVIEW_PACKET_READY_NOWRITE
+- PASS - next_safe_action_final_record: next=prepare_final_activation_decision_record_nowrite
+- PASS - md_contains_Activation_review_packet_NoWrite: phrase=Activation review packet NoWrite
+- PASS - md_contains_non_firmato,_non_attivato: phrase=non firmato, non attivato
+- PASS - md_contains_La_risposta_corrente_e':_non_ancora: phrase=La risposta corrente e': non ancora
+- PASS - md_contains_Checklist_finale_di_review: phrase=Checklist finale di review
+- PASS - md_contains_Condizioni_per_un_futuro_GO: phrase=Condizioni per un futuro GO
+- PASS - md_contains_Condizioni_per_un_NO-GO: phrase=Condizioni per un NO-GO
+- PASS - md_contains_Decisione_corrente:_`review_ready_but_activation_not_allowed`: phrase=Decisione corrente: `review_ready_but_activation_not_allowed`
+- PASS - md_contains_Risposta_macchina_corrente: phrase=Risposta macchina corrente
+- PASS - md_contains_final_activation_decision_record_nowrite: phrase=final_activation_decision_record_nowrite
+- PASS - forbidden_absent_"activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"payment_method_collection_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issuance_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_customer_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"personal_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"external_outreach_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"marketplace_publication_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"owner_signature_present":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_executed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_beta_a_pagamento_approvata: forbidden pattern absent
+- PASS - forbidden_absent_go-live_commerciale_approvato: forbidden pattern absent
+- PASS - forbidden_absent_pagamento_approvato: forbidden pattern absent
+- PASS - forbidden_absent_fattura_approvata: forbidden pattern absent

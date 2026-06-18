@@ -1,0 +1,148 @@
+{
+  "service": "MachineSignal",
+  "document": "activation_review_packet_nowrite",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "activation_review_packet_ready_nowrite_not_signed_not_activated",
+  "mode": "activation review preparation only",
+  "is_approval": false,
+  "is_owner_signature": false,
+  "owner_signature_present": false,
+  "activation_allowed": false,
+  "paid_beta_activation_allowed": false,
+  "commercial_go_live_allowed": false,
+  "real_payment_allowed": false,
+  "invoice_allowed": false,
+  "payment_method_collection_allowed": false,
+  "production_key_issuance_allowed": false,
+  "real_customer_data_allowed": false,
+  "personal_data_allowed": false,
+  "external_outreach_allowed": false,
+  "marketplace_publication_allowed": false,
+  "hosted_public_mcp_allowed": false,
+  "mcp_registry_publication_allowed": false,
+  "source_evidence": {
+    "owner_approval_form": "owner_approval_form_nowrite_20260618",
+    "owner_approval_form_probe": "72_checks_0_failed",
+    "owner_decision_readiness_packet": "owner_decision_readiness_packet_nowrite_20260618",
+    "blocking_simulations": "9_cases_0_failed",
+    "real_world_side_effects": 0,
+    "real_credits_consumed": 0,
+    "simulated_credits_consumed": 1
+  },
+  "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+  "decision": "review_ready_but_activation_not_allowed",
+  "future_possible_result_if_all_gates_green_and_separate_signature_exists": "GO_REQUIRES_SEPARATE_ACTIVATION_STEP",
+  "remaining_red_gate": "owner_commercial_approval",
+  "review_checklist": [
+    {
+      "area": "owner_approval",
+      "question": "Does the owner explicitly want to sign a controlled beta decision?",
+      "current_status": "red"
+    },
+    {
+      "area": "fiscal_admin",
+      "question": "Can MachineSignal collect money and invoice correctly?",
+      "current_status": "yellow"
+    },
+    {
+      "area": "payment_invoice",
+      "question": "Is the payment/invoice flow tested and reversible?",
+      "current_status": "yellow"
+    },
+    {
+      "area": "terms_privacy_data",
+      "question": "Are allowed and blocked data clearly filtered?",
+      "current_status": "yellow"
+    },
+    {
+      "area": "product_listino_credits",
+      "question": "Are product, price, limits and credit rules final?",
+      "current_status": "yellow"
+    },
+    {
+      "area": "production_api_keys",
+      "question": "Are production keys managed securely?",
+      "current_status": "yellow"
+    },
+    {
+      "area": "cost_cap_kill_switch",
+      "question": "Are costs capped and stoppable?",
+      "current_status": "yellow"
+    },
+    {
+      "area": "support_escalation",
+      "question": "Is there a customer issue process?",
+      "current_status": "yellow"
+    },
+    {
+      "area": "security_incident",
+      "question": "Is there a tested incident process?",
+      "current_status": "yellow"
+    },
+    {
+      "area": "distribution_boundary",
+      "question": "Are allowed and forbidden channels clear?",
+      "current_status": "yellow"
+    }
+  ],
+  "future_go_conditions": [
+    "separate_owner_signature_present",
+    "fiscal_admin_green",
+    "payment_invoice_green",
+    "terms_privacy_data_green",
+    "product_listino_credits_green",
+    "production_api_keys_green",
+    "cost_cap_kill_switch_green",
+    "support_escalation_green",
+    "security_incident_green",
+    "distribution_boundary_green",
+    "separate_activation_decision_record_generated",
+    "activation_remains_separate_step"
+  ],
+  "no_go_conditions": [
+    "owner_signature_missing",
+    "fiscal_admin_missing",
+    "payment_invoice_missing",
+    "terms_privacy_data_missing",
+    "real_or_personal_data_requested",
+    "production_key_requested_before_policy",
+    "outreach_requested",
+    "marketplace_or_mcp_publication_requested",
+    "cost_cap_not_implemented",
+    "ambiguous_owner_instruction"
+  ],
+  "future_beta_max_scope_not_live": {
+    "max_beta_customers": 3,
+    "duration_days": 30,
+    "first_product": "score_pack_1k",
+    "hypothetical_price_eur": 119,
+    "auto_renewal": false,
+    "personal_data_allowed": false,
+    "outreach_allowed": false,
+    "marketplace_or_public_mcp_allowed": false
+  },
+  "current_machine_response": {
+    "status": "activation_review_packet_ready_nowrite",
+    "decision": "review_ready_but_activation_not_allowed",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "future_possible_result": "GO_REQUIRES_SEPARATE_ACTIVATION_STEP",
+    "owner_signature_present": false,
+    "paid_beta_activation": false,
+    "commercial_go_live": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "payment_method_collected": false,
+    "production_key_issued": false,
+    "real_or_personal_data_processed": false,
+    "external_outreach_sent": false,
+    "marketplace_or_public_mcp_published": false,
+    "remaining_red_gate": "owner_commercial_approval",
+    "next_allowed_actions": [
+      "prepare_final_activation_decision_record_nowrite",
+      "continue_nowrite_preparation"
+    ],
+    "support_code": "ACTIVATION_REVIEW_PACKET_READY_NOWRITE"
+  },
+  "recommended_next_safe_action": "prepare_final_activation_decision_record_nowrite"
+}
