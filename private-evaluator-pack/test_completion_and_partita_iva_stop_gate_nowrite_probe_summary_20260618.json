@@ -1,0 +1,16 @@
+﻿{
+    "probe":  "test_completion_and_partita_iva_stop_gate_nowrite_probe_20260618",
+    "success":  true,
+    "passed":  107,
+    "failed":  0,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "decision":  "CONTINUE_TESTS_UNTIL_COMMERCIAL_TRIGGER_THEN_STOP_FOR_FISCAL_PATH",
+    "commercial_status":  "not_live",
+    "partita_iva_required_now_for_tests":  false,
+    "must_stop_before_paid_beta":  true,
+    "must_stop_before_real_payment":  true,
+    "fiscal_path_decided":  false,
+    "activation_allowed":  false,
+    "next_safe_action":  "complete_remaining_internal_tests_and_stop_before_paid_beta_or_payment",
+    "support_code":  "TEST_COMPLETION_PARTITA_IVA_STOP_GATE_READY_NOWRITE"
+}
