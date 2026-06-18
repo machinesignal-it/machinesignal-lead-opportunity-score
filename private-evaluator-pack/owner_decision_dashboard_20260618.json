@@ -74,9 +74,9 @@
     },
     {
       "area": "production_api_keys",
-      "status": "red",
-      "meaning": "key_issuance_caps_and_revocation_not_approved",
-      "decision": "block_production_keys"
+      "status": "yellow",
+      "meaning": "draft_verified_by_113_checks_but_not_owner_approved_no_key_issuance_no_live_traffic_no_secrets",
+      "decision": "continue_owner_review_production_key_process_before_any_live_key"
     },
     {
       "area": "cost_cap_kill_switch",
@@ -151,8 +151,8 @@
   },
   "gate_counts": {
     "green": 3,
-    "yellow": 11,
-    "red": 2
+    "yellow": 12,
+    "red": 1
   },
   "yellow_candidate_evidence": [
     {
@@ -268,7 +268,24 @@
         "live_offer_text_approval",
         "company_brain_final_update"
       ]
+    },
+    {
+      "area": "production_api_key_readiness",
+      "evidence": "production_api_key_readiness_20260618",
+      "probe": "113_checks_0_failed",
+      "remaining_to_green": [
+        "owner_approval",
+        "final_production_key_policy",
+        "secret_manager_selected",
+        "key_generation_rotation_revocation_procedures",
+        "rate_limits_and_quotas_implemented",
+        "audit_log_implemented",
+        "cost_cap_kill_switch_implemented_and_tested",
+        "no_secrets_in_repository",
+        "synthetic_dry_run_with_no_real_key",
+        "company_brain_final_update"
+      ]
     }
   ],
-  "next_safe_action": "prepare_production_api_key_readiness_or_owner_commercial_approval_packet"
+  "next_safe_action": "prepare_owner_commercial_approval_packet"
 }

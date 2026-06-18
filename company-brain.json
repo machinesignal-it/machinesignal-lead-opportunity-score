@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "company_brain_version": "2026-06-18-internal-v11",
+  "company_brain_version": "2026-06-18-internal-v12",
   "updated_at": "2026-06-18",
   "status": "internal_operating_brain",
   "primary_customer_interface": "machine",
@@ -29,8 +29,8 @@
     "advisor_gate_setup": "complete_for_current_scope",
     "current_safe_workstream": "owner_dashboard_alignment_and_policy_readiness",
     "technical_sandbox_tests_estimate_percent": 100,
-    "pre_go_live_readiness_estimate_percent": 94,
-    "commercial_go_live_readiness_estimate_percent": 75,
+    "pre_go_live_readiness_estimate_percent": 95,
+    "commercial_go_live_readiness_estimate_percent": 78,
     "commercial_go_live": "no_go",
     "paid_beta": "not_approved"
   },
@@ -38,8 +38,8 @@
     "date": "2026-06-18",
     "status": "no_write_not_signed_not_activated",
     "green_count": 3,
-    "yellow_count": 11,
-    "red_count": 2,
+    "yellow_count": 12,
+    "red_count": 1,
     "green": [
       "technical_sandbox",
       "advisor_gate_setup",
@@ -56,11 +56,11 @@
       "distribution_outreach_publication_approval_candidate",
       "fiscal_admin_readiness_candidate",
       "payment_invoice_readiness_candidate",
-      "product_listino_approval_candidate"
+      "product_listino_approval_candidate",
+      "production_api_key_readiness_candidate"
     ],
     "red": [
-      "owner_commercial_approval",
-      "production_api_keys"
+      "owner_commercial_approval"
     ],
     "candidate_yellow_evidence": [
       {
@@ -116,6 +116,12 @@
         "evidence": "product_listino_owner_review_20260618",
         "probe": "154_checks_0_failed",
         "status": "draft_verified_not_owner_approved_not_live_offer_no_payments_no_invoices"
+      },
+      {
+        "area": "production_api_key_readiness",
+        "evidence": "production_api_key_readiness_20260618",
+        "probe": "113_checks_0_failed",
+        "status": "draft_verified_not_owner_approved_no_key_issuance_no_live_traffic_no_secrets"
       }
     ],
     "recommended_decision_today": "continue_preparing_paid_beta_materials_but_do_not_activate_paid_beta",
@@ -133,8 +139,8 @@
       "mcp_registry_publication",
       "commercial_go_live"
     ],
-    "owner_facing_summary_it": "Preparazione interna consentita. Beta a pagamento non attivabile. Nove blocchi sono candidati gialli grazie a bozze verificate: policy crediti/rimborsi, cost cap/kill switch, supporto/escalation, terms/privacy/data readiness, security/incident readiness, distribution/outreach/publication approval, fiscal/admin readiness, payment/invoice readiness e product/listino approval. Dati reali, personali, segreti production, chiavi production, pagamenti, fatture, raccolta metodi di pagamento, abbonamenti reali e offerte live restano bloccati. Mancano ancora approvazioni e condizioni operative su chiavi production e attivazione commerciale.",
-    "next_safe_action": "decide_continue_policy_details_or_pause_for_owner_review"
+    "owner_facing_summary_it": "Preparazione interna consentita. Beta a pagamento non attivabile. Dieci aree sono candidate gialle grazie a bozze verificate: policy crediti/rimborsi, cost cap/kill switch, supporto/escalation, terms/privacy/data readiness, security/incident readiness, distribution/outreach/publication approval, fiscal/admin readiness, payment/invoice readiness, product/listino approval e production API key readiness. Dati reali, personali, segreti production, emissione chiavi production, pagamenti, fatture, raccolta metodi di pagamento, abbonamenti reali e offerte live restano bloccati. Il rosso rimanente e' l'approvazione commerciale proprietario.",
+    "next_safe_action": "prepare_owner_commercial_approval_packet"
   },
   "advisor_gate": {
     "status": "complete_for_current_scope",
@@ -440,6 +446,6 @@
     "continue_sandbox_testing": true,
     "start_paid_commercial_activity": false,
     "paid_beta_activation": "blocked_until_owner_approves_red_gates_and_operational_conditions_are_resolved",
-    "next_recommended_action": "Continue safe paid-beta preparation and keep all agents aligned to the owner decision dashboard. Do not enable payments, invoices, production keys, real data, outreach or public marketplace/MCP publication."
+    "next_recommended_action": "Prepare the owner commercial approval packet while keeping all hard blocks active. Do not enable payments, invoices, production key issuance, real data, outreach or public marketplace/MCP publication."
   }
 }

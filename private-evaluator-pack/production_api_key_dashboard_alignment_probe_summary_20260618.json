@@ -1,0 +1,18 @@
+﻿{
+    "probe":  "production_api_key_dashboard_alignment",
+    "date":  "2026-06-18",
+    "passed":  true,
+    "checks_passed":  72,
+    "checks_total":  72,
+    "checks_failed":  0,
+    "dashboard_counts":  {
+                             "red":  1,
+                             "yellow":  12,
+                             "green":  3
+                         },
+    "production_api_keys_status":  "yellow_candidate_readiness_only",
+    "remaining_red":  [
+                          "owner_commercial_approval"
+                      ],
+    "report":  "production_api_key_dashboard_alignment_probe_report_20260618.md"
+}

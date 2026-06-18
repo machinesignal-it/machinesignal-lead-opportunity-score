@@ -429,7 +429,7 @@ Public sandbox docs published:
 Latest readiness result:
 
 - internal docs/API examples refinement probe: 62 checks, 0 failed.
-- owner decision dashboard alignment: 3 green gates, 11 yellow preparation items, 2 red blockers.
+- owner decision dashboard alignment: 3 green gates, 12 yellow preparation items, 1 red blocker.
 - beta credit/refund policy probe: 78 checks, 0 failed.
 - cost cap/kill switch policy probe: 95 checks, 0 failed.
 - support/escalation model probe: 108 checks, 0 failed.
@@ -439,11 +439,12 @@ Latest readiness result:
 - fiscal/admin readiness probe: 99 checks, 0 failed.
 - payment/invoice readiness probe: 123 checks, 0 failed.
 - product/listino owner review probe: 154 checks, 0 failed.
+- production API key readiness probe: 113 checks, 0 failed.
 
 Overall pre-go-live readiness estimate:
 
-- pre-go-live readiness: about 94%;
-- commercial go-live readiness: about 75%;
+- pre-go-live readiness: about 95%;
+- commercial go-live readiness: about 78%;
 - commercial go-live: no-go.
 
 ## Owner Decision Dashboard Status
@@ -453,20 +454,20 @@ Latest owner decision dashboard: 2026-06-18.
 Dashboard result:
 
 - 3 green gates: technical sandbox, advisor gate setup, machine-readable docs;
-- 11 yellow preparation items: policy preparation, paid-beta P&L delta, credit/refund policy candidate, cost cap/kill switch policy candidate, support/escalation model candidate, terms/privacy/data readiness candidate, security/incident readiness candidate, distribution/outreach/publication approval candidate, fiscal/admin readiness candidate, payment/invoice readiness candidate, product/listino approval candidate;
-- 2 red blockers: owner commercial approval, production API keys.
+- 12 yellow preparation items: policy preparation, paid-beta P&L delta, credit/refund policy candidate, cost cap/kill switch policy candidate, support/escalation model candidate, terms/privacy/data readiness candidate, security/incident readiness candidate, distribution/outreach/publication approval candidate, fiscal/admin readiness candidate, payment/invoice readiness candidate, product/listino approval candidate and production API key readiness candidate;
+- 1 red blocker: owner commercial approval.
 
 Current owner-facing interpretation:
 
 - internal preparation can continue;
 - paid beta must not be activated yet;
-- credit/refund policy, cost cap/kill switch, support/escalation model, terms/privacy/data readiness, security/incident readiness, distribution/outreach/publication approval and fiscal/admin readiness have verified drafts, but still need owner approval and implementation/testing before they can become green;
+- credit/refund policy, cost cap/kill switch, support/escalation model, terms/privacy/data readiness, security/incident readiness, distribution/outreach/publication approval, fiscal/admin readiness, payment/invoice readiness, product/listino approval and production API key readiness have verified drafts, but still need owner approval and implementation/testing before they can become green;
 - fiscal/admin readiness is not tax advice and does not authorize payments, invoices, payment method collection or a statement that Partita IVA is or is not required;
 - payment/invoice readiness does not authorize checkout live, card collection, real payments, invoices, subscriptions or live provider keys;
 - product/listino approval is a sandbox reference review and does not authorize live offers, final prices, payments, invoices, subscriptions or marketplace publication;
 - security/incident readiness is not a security certification and does not make the system production-ready;
 - real customer data and personal data remain blocked even after the terms/privacy/data readiness draft;
-- no real payments, invoices, payment method collection, production API keys, real customer data, personal data, outreach, marketplace publication, hosted public MCP or MCP registry publication are allowed.
+- no real payments, invoices, payment method collection, production API key issuance, real customer data, personal data, outreach, marketplace publication, hosted public MCP or MCP registry publication are allowed.
 
 Recommended decision today:
 
@@ -476,7 +477,7 @@ Continue preparing paid-beta materials, but do not activate paid beta.
 
 Recommended next step:
 
-Keep the internal operating memory, OpenAPI, catalog, onboarding, README and owner decision dashboard aligned while preparing paid-beta materials without commercial activation.
+Prepare the owner commercial approval packet while keeping the internal operating memory, OpenAPI, catalog, onboarding, README and owner decision dashboard aligned without commercial activation.
 
 Then prepare one of these owner decisions:
 

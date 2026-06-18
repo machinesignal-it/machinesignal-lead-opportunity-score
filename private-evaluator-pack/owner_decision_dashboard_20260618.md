@@ -23,7 +23,7 @@ MachineSignal is technically ready for the current sandbox scope, but not commer
 | Terms/privacy/data | Yellow | Draft verified by 112 checks, but not owner-approved, not final and not implemented | Continue owner review before onboarding or real data |
 | Product/listino approval | Yellow | Draft verified by 154 checks, but not owner-approved; sandbox reference only, no live offer | Continue owner review before live offer |
 | Credit/refund policy | Yellow | Draft verified by 78 checks, but not owner-approved and not implemented | Continue owner review and ledger test before paid credits |
-| Production API keys | Red | Key issuance, caps and revocation not approved | Block production keys |
+| Production API keys | Yellow | Draft verified by 113 checks, but not owner-approved; no key issuance, no live traffic and no secrets allowed | Continue owner review before any live key |
 | Cost cap/kill switch | Yellow | Draft verified by 95 checks, but not owner-approved and not implemented | Continue owner review and simulation before production keys |
 | Support/escalation | Yellow | Draft verified by 108 checks, but not owner-approved and not implemented | Continue owner review and ticket simulation before paid onboarding |
 | Security/incident | Yellow | Draft verified by 130 checks, but not owner-approved, not final and not production-ready | Continue owner review and incident simulation before production access |
@@ -79,15 +79,13 @@ Recommended order:
 
 1. Confirm whether to continue paid-beta preparation.
 2. Approve or reject Score Pack 1k at EUR 119.
-3. Resolve production API key process.
-4. Confirm owner commercial approval only after every required gate is ready.
-5. Sign final owner approval only if every gate is ready.
-6. Approve customer, usage and cost caps.
-7. Approve production key process.
-8. Approve support and escalation.
-9. Approve security and incident handling.
-10. Decide distribution/no-outreach boundary.
-11. Sign final owner approval only if every gate is ready.
+3. Approve customer, usage and cost caps.
+4. Approve production key process.
+5. Approve support and escalation.
+6. Approve security and incident handling.
+7. Decide distribution/no-outreach boundary.
+8. Confirm owner commercial approval only after every required gate is ready.
+9. Sign final owner approval only if every gate is ready.
 
 ## Current Blocked Actions
 
@@ -123,4 +121,4 @@ Commercial go-live: no-go.
 
 Next safe action:
 
-> Update Company Brain with this dashboard status and then decide whether to keep drafting policy details or pause for owner review.
+> Prepare the owner commercial approval packet, keeping all hard blocks active until explicit approval.
