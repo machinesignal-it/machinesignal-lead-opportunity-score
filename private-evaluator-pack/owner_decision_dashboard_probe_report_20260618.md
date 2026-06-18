@@ -1,0 +1,71 @@
+﻿# Owner Decision Dashboard Probe - 2026-06-18
+
+- Checks passed: 65/65
+- Failed checks: 0
+- Decision: pass
+
+- [PASS] markdown exists
+- [PASS] json exists
+- [PASS] status is dashboard no-write not activated
+- [PASS] recommended decision prepare not activate
+- [PASS] final decision preparation go
+- [PASS] final decision paid beta no-go
+- [PASS] final decision commercial no-go
+- [PASS] dashboard area exists: technical_sandbox
+- [PASS] dashboard area exists: advisor_gate_setup
+- [PASS] dashboard area exists: machine_readable_docs
+- [PASS] dashboard area exists: policy_preparation
+- [PASS] dashboard area exists: pnl_paid_beta_delta
+- [PASS] dashboard area exists: owner_commercial_approval
+- [PASS] dashboard area exists: fiscal_admin_path
+- [PASS] dashboard area exists: payment_invoice_path
+- [PASS] dashboard area exists: terms_privacy_data
+- [PASS] dashboard area exists: product_listino_approval
+- [PASS] dashboard area exists: credit_refund_policy
+- [PASS] dashboard area exists: production_api_keys
+- [PASS] dashboard area exists: cost_cap_kill_switch
+- [PASS] dashboard area exists: support_escalation
+- [PASS] dashboard area exists: security_incident
+- [PASS] dashboard area exists: distribution_no_outreach
+- [PASS] exactly 16 dashboard rows
+- [PASS] green rows are 3
+- [PASS] yellow rows are 2
+- [PASS] red rows are 11
+- [PASS] technical sandbox is green
+- [PASS] policy preparation is yellow
+- [PASS] fiscal/admin is red
+- [PASS] production keys are red
+- [PASS] distribution/no outreach is red
+- [PASS] default first product Score Pack 1k
+- [PASS] default first price 119
+- [PASS] default beta size 3 to 5
+- [PASS] default no auto renewal
+- [PASS] default no personal data
+- [PASS] default no marketplace
+- [PASS] default no hosted MCP
+- [PASS] blocked action exists: activate_paid_beta
+- [PASS] blocked action exists: execute_real_payment
+- [PASS] blocked action exists: issue_invoice
+- [PASS] blocked action exists: collect_payment_method
+- [PASS] blocked action exists: issue_production_api_key
+- [PASS] blocked action exists: process_real_customer_dataset
+- [PASS] blocked action exists: process_personal_data
+- [PASS] blocked action exists: send_external_outreach
+- [PASS] blocked action exists: publish_marketplace_listing
+- [PASS] blocked action exists: launch_hosted_public_mcp
+- [PASS] blocked action exists: submit_mcp_registry
+- [PASS] markdown says one-line status
+- [PASS] markdown says continue preparation not activate
+- [PASS] markdown has dashboard table
+- [PASS] markdown says paid beta no-go
+- [PASS] markdown says commercial no-go
+- [PASS] no unsafe approval claim: paid beta approved
+- [PASS] no unsafe approval claim: paid beta is live
+- [PASS] no unsafe approval claim: commercial go-live approved
+- [PASS] no unsafe approval claim: real payments are active
+- [PASS] no unsafe approval claim: invoices are active
+- [PASS] no unsafe approval claim: production API keys approved
+- [PASS] no unsafe approval claim: marketplace publication allowed
+- [PASS] no unsafe approval claim: hosted public MCP live
+- [PASS] no unsafe approval claim: external outreach approved
+- [PASS] no unsafe approval claim: owner approval granted
