@@ -1,0 +1,15 @@
+﻿{
+    "probe":  "post_final_owner_summary_hold_checkpoint_nowrite_probe_20260618",
+    "success":  true,
+    "passed":  112,
+    "failed":  0,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "decision":  "HOLD_UNTIL_EXPLICIT_OWNER_REQUEST",
+    "prior_decision":  "NO_GO_FOR_ACTIVATION",
+    "explicit_owner_request_present":  false,
+    "selected_option":  null,
+    "activation_allowed":  false,
+    "owner_signature_record_allowed":  false,
+    "next_safe_action":  "wait_for_explicit_owner_request_or_report_status",
+    "support_code":  "POST_FINAL_OWNER_SUMMARY_HOLD_CHECKPOINT_READY_NOWRITE"
+}
