@@ -1,0 +1,89 @@
+﻿# Beta Contract Checklist-To-Policy Mapping Probe - 2026-06-18
+
+- Checks passed: 83/83
+- Failed checks: 0
+- Decision: pass
+
+- [PASS] markdown exists
+- [PASS] json exists
+- [PASS] mapping status is no-write not activated
+- [PASS] paid beta preparation go
+- [PASS] paid beta activation no-go
+- [PASS] commercial go-live no-go
+- [PASS] fallback if missing is DO_NOT_ACTIVATE
+- [PASS] master rule requires approved by owner
+- [PASS] final owner go/no-go still required
+- [PASS] mapped gate exists: owner_commercial_decision
+- [PASS] mapped gate exists: fiscal_admin_path
+- [PASS] mapped gate exists: invoice_receipt_process
+- [PASS] mapped gate exists: payment_mode
+- [PASS] mapped gate exists: payment_provider
+- [PASS] mapped gate exists: terms_of_service
+- [PASS] mapped gate exists: privacy_policy
+- [PASS] mapped gate exists: data_policy
+- [PASS] mapped gate exists: acceptable_use_policy
+- [PASS] mapped gate exists: product_catalog
+- [PASS] mapped gate exists: price_list
+- [PASS] mapped gate exists: credit_consumption_rule
+- [PASS] mapped gate exists: refund_replacement_rule
+- [PASS] mapped gate exists: production_api_key_policy
+- [PASS] mapped gate exists: customer_limit
+- [PASS] mapped gate exists: usage_caps
+- [PASS] mapped gate exists: cost_cap
+- [PASS] mapped gate exists: kill_switch
+- [PASS] mapped gate exists: support_policy
+- [PASS] mapped gate exists: incident_security_policy
+- [PASS] mapped gate exists: distribution_channel
+- [PASS] mapped gate exists: external_outreach
+- [PASS] all mapped gates have required fields
+- [PASS] no mapped gate is currently approved
+- [PASS] policy structure includes: owner_approval_policy
+- [PASS] policy structure includes: fiscal_admin_policy
+- [PASS] policy structure includes: payment_and_invoice_policy
+- [PASS] policy structure includes: terms_of_service_draft
+- [PASS] policy structure includes: privacy_and_data_policy
+- [PASS] policy structure includes: acceptable_use_policy
+- [PASS] policy structure includes: product_and_listino_policy
+- [PASS] policy structure includes: credit_refund_replacement_policy
+- [PASS] policy structure includes: production_api_key_and_access_policy
+- [PASS] policy structure includes: customer_and_usage_cap_policy
+- [PASS] policy structure includes: cost_cap_and_kill_switch_policy
+- [PASS] policy structure includes: support_and_escalation_policy
+- [PASS] policy structure includes: security_and_incident_policy
+- [PASS] policy structure includes: distribution_and_no_outreach_policy
+- [PASS] first practical gap exists: fiscal_admin_policy
+- [PASS] first practical gap exists: payment_and_invoice_policy
+- [PASS] first practical gap exists: terms_privacy_data_policy
+- [PASS] first practical gap exists: production_api_key_and_usage_cap_policy
+- [PASS] first practical gap exists: cost_cap_and_kill_switch_policy
+- [PASS] checklist gate mapped: owner_commercial_decision
+- [PASS] checklist gate mapped: fiscal_admin_path
+- [PASS] checklist gate mapped: invoice_receipt_process
+- [PASS] checklist gate mapped: payment_mode
+- [PASS] checklist gate mapped: terms_of_service
+- [PASS] checklist gate mapped: privacy_policy
+- [PASS] checklist gate mapped: data_policy
+- [PASS] checklist gate mapped: product_catalog
+- [PASS] checklist gate mapped: price_list
+- [PASS] checklist gate credit_refund_rules mapped via credit and refund rules
+- [PASS] checklist gate mapped: production_api_key_policy
+- [PASS] checklist gate customer_and_usage_caps mapped via customer_limit and usage_caps
+- [PASS] checklist gate cost_cap_and_kill_switch mapped via cost_cap and kill_switch
+- [PASS] checklist gate mapped: support_policy
+- [PASS] checklist gate security_incident_policy mapped via incident_security_policy
+- [PASS] checklist gate mapped: distribution_channel
+- [PASS] checklist gate mapped: external_outreach
+- [PASS] markdown states not approved
+- [PASS] markdown states no activation
+- [PASS] markdown has master rule
+- [PASS] markdown states DO_NOT_ACTIVATE
+- [PASS] markdown next safe action is policy skeleton
+- [PASS] no unsafe approval claim: paid beta approved
+- [PASS] no unsafe approval claim: paid beta is live
+- [PASS] no unsafe approval claim: commercial go-live approved
+- [PASS] no unsafe approval claim: real payments are active
+- [PASS] no unsafe approval claim: invoices are active
+- [PASS] no unsafe approval claim: production API keys approved
+- [PASS] no unsafe approval claim: marketplace publication allowed
+- [PASS] no unsafe approval claim: hosted public MCP live
+- [PASS] no unsafe approval claim: external outreach approved

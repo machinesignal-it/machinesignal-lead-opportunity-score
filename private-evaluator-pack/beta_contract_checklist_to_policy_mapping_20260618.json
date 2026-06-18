@@ -1,0 +1,225 @@
+{
+  "service": "MachineSignal",
+  "document": "beta_contract_checklist_to_policy_mapping",
+  "date": "2026-06-18",
+  "status": "no_write_internal_mapping_not_signed_not_activated",
+  "decision": {
+    "paid_beta_preparation": "go",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go",
+    "fallback_if_any_gate_missing": "DO_NOT_ACTIVATE"
+  },
+  "master_rule": {
+    "every_mandatory_gate_requires": [
+      "policy_section",
+      "evidence_required",
+      "owner_approval_value",
+      "machine_readable_blocked_state",
+      "stop_rule_if_missing"
+    ],
+    "required_final_value": "APPROVED BY OWNER",
+    "final_owner_go_no_go_required_even_after_all_gates": true
+  },
+  "gate_to_policy_map": [
+    {
+      "gate_id": "owner_commercial_decision",
+      "policy_area": "owner_approval_policy",
+      "policy_section_needed": "final_go_no_go_page",
+      "evidence_required": "signed decision to run controlled paid beta",
+      "current_status": "not_approved",
+      "stop_rule": "paid_beta_blocked"
+    },
+    {
+      "gate_id": "fiscal_admin_path",
+      "policy_area": "fiscal_admin_policy",
+      "policy_section_needed": "piva_accounting_revenue_treatment",
+      "evidence_required": "written fiscal path decision",
+      "current_status": "not_approved",
+      "stop_rule": "payments_and_invoices_blocked"
+    },
+    {
+      "gate_id": "invoice_receipt_process",
+      "policy_area": "fiscal_admin_policy",
+      "policy_section_needed": "invoice_receipt_process",
+      "evidence_required": "defined fiscal document flow before first payment",
+      "current_status": "not_approved",
+      "stop_rule": "payments_blocked"
+    },
+    {
+      "gate_id": "payment_mode",
+      "policy_area": "payment_policy",
+      "policy_section_needed": "payment_model",
+      "evidence_required": "decision on no payment manual invoice prepaid credits checkout or subscription",
+      "current_status": "not_approved",
+      "stop_rule": "live_payment_blocked"
+    },
+    {
+      "gate_id": "payment_provider",
+      "policy_area": "payment_policy",
+      "policy_section_needed": "provider_and_mode_controls",
+      "evidence_required": "provider test live mode and activation owner documented",
+      "current_status": "not_approved",
+      "stop_rule": "live_payment_blocked"
+    },
+    {
+      "gate_id": "terms_of_service",
+      "policy_area": "terms_policy",
+      "policy_section_needed": "beta_terms",
+      "evidence_required": "reviewed beta terms including limits disclaimers and customer responsibilities",
+      "current_status": "draft_only",
+      "stop_rule": "customer_onboarding_blocked"
+    },
+    {
+      "gate_id": "privacy_policy",
+      "policy_area": "privacy_policy",
+      "policy_section_needed": "privacy_notice_data_processing_summary",
+      "evidence_required": "reviewed privacy and data handling language",
+      "current_status": "draft_only",
+      "stop_rule": "real_data_blocked"
+    },
+    {
+      "gate_id": "data_policy",
+      "policy_area": "data_policy",
+      "policy_section_needed": "allowed_blocked_data_retention_deletion",
+      "evidence_required": "decision on real business data personal data retention and deletion",
+      "current_status": "synthetic_only",
+      "stop_rule": "real_and_personal_data_blocked"
+    },
+    {
+      "gate_id": "acceptable_use_policy",
+      "policy_area": "acceptable_use_policy",
+      "policy_section_needed": "prohibited_uses_and_abuse_handling",
+      "evidence_required": "forbidden uses spam outreach regulated use and abuse handling approved",
+      "current_status": "draft_only",
+      "stop_rule": "production_access_blocked"
+    },
+    {
+      "gate_id": "product_catalog",
+      "policy_area": "product_policy",
+      "policy_section_needed": "product_units_and_deliverables",
+      "evidence_required": "products units valid output rules and deliverables approved",
+      "current_status": "draft_reference",
+      "stop_rule": "paid_offers_blocked"
+    },
+    {
+      "gate_id": "price_list",
+      "policy_area": "pricing_policy",
+      "policy_section_needed": "beta_price_and_tax_treatment",
+      "evidence_required": "prices VAT tax treatment and beta discount status approved",
+      "current_status": "draft_reference",
+      "stop_rule": "paid_offers_blocked"
+    },
+    {
+      "gate_id": "credit_consumption_rule",
+      "policy_area": "credit_refund_policy",
+      "policy_section_needed": "valid_output_rule",
+      "evidence_required": "non consumption and replacement credit rules approved",
+      "current_status": "draft_only",
+      "stop_rule": "paid_credits_blocked"
+    },
+    {
+      "gate_id": "refund_replacement_rule",
+      "policy_area": "credit_refund_policy",
+      "policy_section_needed": "refund_and_replacement_procedure",
+      "evidence_required": "refund exposure time limit approval owner and evidence rules approved",
+      "current_status": "not_approved",
+      "stop_rule": "paid_credits_blocked"
+    },
+    {
+      "gate_id": "production_api_key_policy",
+      "policy_area": "access_policy",
+      "policy_section_needed": "key_issuance_caps_rotation_revocation",
+      "evidence_required": "production key rules approved",
+      "current_status": "blocked",
+      "stop_rule": "production_keys_blocked"
+    },
+    {
+      "gate_id": "customer_limit",
+      "policy_area": "access_policy",
+      "policy_section_needed": "beta_customer_cap",
+      "evidence_required": "maximum beta customers or machine accounts approved",
+      "current_status": "not_approved",
+      "stop_rule": "customer_onboarding_blocked"
+    },
+    {
+      "gate_id": "usage_caps",
+      "policy_area": "access_cost_policy",
+      "policy_section_needed": "daily_monthly_usage_caps",
+      "evidence_required": "score write and API caps approved",
+      "current_status": "not_approved",
+      "stop_rule": "production_keys_blocked"
+    },
+    {
+      "gate_id": "cost_cap",
+      "policy_area": "cost_guard_policy",
+      "policy_section_needed": "daily_monthly_spend_caps",
+      "evidence_required": "maximum spend and provider API budgets approved",
+      "current_status": "not_approved",
+      "stop_rule": "production_keys_blocked"
+    },
+    {
+      "gate_id": "kill_switch",
+      "policy_area": "cost_security_policy",
+      "policy_section_needed": "stop_restart_procedure",
+      "evidence_required": "kill switch owner and restart procedure approved",
+      "current_status": "not_approved",
+      "stop_rule": "production_keys_blocked"
+    },
+    {
+      "gate_id": "support_policy",
+      "policy_area": "support_policy",
+      "policy_section_needed": "support_states_and_escalation",
+      "evidence_required": "support channel machine readable statuses and owner escalation approved",
+      "current_status": "draft_only",
+      "stop_rule": "paid_onboarding_blocked"
+    },
+    {
+      "gate_id": "incident_security_policy",
+      "policy_area": "security_policy",
+      "policy_section_needed": "secrets_incidents_access_control",
+      "evidence_required": "secret handling incident response and access rules approved",
+      "current_status": "draft_only",
+      "stop_rule": "production_access_blocked"
+    },
+    {
+      "gate_id": "distribution_channel",
+      "policy_area": "distribution_policy",
+      "policy_section_needed": "allowed_channels",
+      "evidence_required": "private only directory marketplace or MCP path approved",
+      "current_status": "not_approved",
+      "stop_rule": "external_publication_blocked"
+    },
+    {
+      "gate_id": "external_outreach",
+      "policy_area": "distribution_compliance_policy",
+      "policy_section_needed": "contact_prohibition_or_approval_rule",
+      "evidence_required": "explicit decision if external contact is allowed",
+      "current_status": "blocked",
+      "stop_rule": "outreach_blocked"
+    }
+  ],
+  "policy_pack_structure_needed": [
+    "owner_approval_policy",
+    "fiscal_admin_policy",
+    "payment_and_invoice_policy",
+    "terms_of_service_draft",
+    "privacy_and_data_policy",
+    "acceptable_use_policy",
+    "product_and_listino_policy",
+    "credit_refund_replacement_policy",
+    "production_api_key_and_access_policy",
+    "customer_and_usage_cap_policy",
+    "cost_cap_and_kill_switch_policy",
+    "support_and_escalation_policy",
+    "security_and_incident_policy",
+    "distribution_and_no_outreach_policy"
+  ],
+  "first_practical_gaps_to_close": [
+    "fiscal_admin_policy",
+    "payment_and_invoice_policy",
+    "terms_privacy_data_policy",
+    "production_api_key_and_usage_cap_policy",
+    "cost_cap_and_kill_switch_policy"
+  ],
+  "next_safe_action": "draft_policy_pack_skeleton_from_mapping_no_write_no_activation"
+}
