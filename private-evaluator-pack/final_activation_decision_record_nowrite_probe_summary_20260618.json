@@ -1,0 +1,23 @@
+﻿{
+    "document":  "final_activation_decision_record_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "target":  "final_activation_decision_record_nowrite_20260618",
+    "passed":  80,
+    "failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "decision":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "classification":  "review_required_before_any_activation",
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "result_flags":  {
+                         "no_go_blocked":  false,
+                         "not_yet_owner_review_required":  true,
+                         "go_requires_separate_activation_step":  false
+                     },
+    "remaining_red_gate":  "owner_commercial_approval",
+    "next_safe_action":  "align_company_brain_dashboard_with_final_activation_decision_record",
+    "failed_checks":  [
+
+                      ]
+}

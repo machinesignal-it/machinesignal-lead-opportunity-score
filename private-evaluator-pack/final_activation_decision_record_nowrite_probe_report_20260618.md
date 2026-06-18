@@ -1,0 +1,87 @@
+﻿# Final activation decision record NoWrite probe
+
+Date: 2026-06-18
+
+Passed: 80
+Failed: 0
+
+- PASS - status_is_final_decision_record: status=final_activation_decision_record_ready_nowrite_not_signed_not_activated
+- PASS - not_approval_not_signature: approval/signature false
+- PASS - activation_flags_false: activation flags false
+- PASS - money_flags_false: money flags false
+- PASS - production_data_distribution_flags_false: production/data/distribution flags false
+- PASS - current_result_not_yet: current_result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - decision_not_yet: decision=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - classification_review_required: classification=review_required_before_any_activation
+- PASS - allowed_results_present: allowed results present
+- PASS - result_flags_correct: result flags correct
+- PASS - remaining_red_gate_owner: red_gate=owner_commercial_approval
+- PASS - source_activation_review_probe: source=82_checks_0_failed
+- PASS - activation_review_summary_success: activation review summary success=True
+- PASS - not_go_reason_owner_signature_missing: reason present
+- PASS - not_go_reason_owner_commercial_approval_red: reason present
+- PASS - not_go_reason_fiscal_admin_not_green: reason present
+- PASS - not_go_reason_payment_invoice_not_green: reason present
+- PASS - not_go_reason_terms_privacy_data_not_green: reason present
+- PASS - not_go_reason_product_listino_credits_not_green: reason present
+- PASS - not_go_reason_production_api_keys_not_green: reason present
+- PASS - not_go_reason_cost_cap_kill_switch_not_green: reason present
+- PASS - not_go_reason_support_escalation_not_green: reason present
+- PASS - not_go_reason_security_incident_not_green: reason present
+- PASS - not_go_reason_distribution_boundary_not_green: reason present
+- PASS - allowed_now_continue_nowrite_preparation: allowed item present
+- PASS - allowed_now_align_company_brain_dashboard_with_final_activation_decision_record: allowed item present
+- PASS - allowed_now_prepare_owner_summary: allowed item present
+- PASS - allowed_now_run_additional_internal_simulations: allowed item present
+- PASS - allowed_now_keep_automatic_blocks_active: allowed item present
+- PASS - blocked_now_activate_paid_beta: blocked item present
+- PASS - blocked_now_commercial_go_live: blocked item present
+- PASS - blocked_now_execute_real_payment: blocked item present
+- PASS - blocked_now_issue_invoice: blocked item present
+- PASS - blocked_now_collect_payment_method: blocked item present
+- PASS - blocked_now_issue_production_api_key: blocked item present
+- PASS - blocked_now_process_real_customer_data: blocked item present
+- PASS - blocked_now_process_personal_data: blocked item present
+- PASS - blocked_now_send_external_outreach: blocked item present
+- PASS - blocked_now_publish_marketplace_listing: blocked item present
+- PASS - blocked_now_launch_hosted_public_mcp: blocked item present
+- PASS - blocked_now_submit_mcp_registry: blocked item present
+- PASS - blocked_now_start_real_subscription_or_auto_renewal: blocked item present
+- PASS - machine_status: status=final_activation_decision_record_ready_nowrite
+- PASS - machine_decision_not_yet: decision=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - machine_no_go_false_go_false: machine go flags false
+- PASS - machine_signature_false: signature=False
+- PASS - machine_activation_false: activation=False
+- PASS - machine_flags_false: machine flags false
+- PASS - machine_support_code: support=FINAL_ACTIVATION_DECISION_NOT_YET_NOWRITE
+- PASS - next_safe_action_alignment: next=align_company_brain_dashboard_with_final_activation_decision_record
+- PASS - md_contains_Final_activation_decision_record_NoWrite: phrase=Final activation decision record NoWrite
+- PASS - md_contains_non_firmato,_non_attivato: phrase=non firmato, non attivato
+- PASS - md_contains_Esito_corrente:_`NOT_YET_OWNER_REVIEW_REQUIRED`: phrase=Esito corrente: `NOT_YET_OWNER_REVIEW_REQUIRED`
+- PASS - md_contains_Perche'_non_e'_GO: phrase=Perche' non e' GO
+- PASS - md_contains_Cosa_e'_consentito_ora: phrase=Cosa e' consentito ora
+- PASS - md_contains_Cosa_resta_vietato: phrase=Cosa resta vietato
+- PASS - md_contains_Stato_macchina_finale_corrente: phrase=Stato macchina finale corrente
+- PASS - md_contains_align_company_brain_dashboard_with_final_activation_decision_record: phrase=align_company_brain_dashboard_with_final_activation_decision_record
+- PASS - forbidden_absent_"activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"payment_method_collection_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issuance_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_customer_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"personal_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"external_outreach_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"marketplace_publication_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"owner_signature_present":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_executed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_"go_requires_separate_activation_step":_true: forbidden pattern absent
+- PASS - forbidden_absent_beta_a_pagamento_approvata: forbidden pattern absent
+- PASS - forbidden_absent_go-live_commerciale_approvato: forbidden pattern absent
+- PASS - forbidden_absent_pagamento_approvato: forbidden pattern absent
+- PASS - forbidden_absent_fattura_approvata: forbidden pattern absent
