@@ -1,0 +1,12 @@
+﻿{
+    "probe":  "remaining_gate_workplan_nowrite_probe_20260618",
+    "success":  true,
+    "passed":  112,
+    "failed":  0,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "yellow_gates_planned":  12,
+    "next_safe_action":  "prepare_terms_privacy_data_gate_nowrite",
+    "support_code":  "REMAINING_GATE_WORKPLAN_READY_NOWRITE"
+}
