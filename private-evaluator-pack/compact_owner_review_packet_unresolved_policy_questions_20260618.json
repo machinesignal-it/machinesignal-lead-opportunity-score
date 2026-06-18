@@ -1,0 +1,137 @@
+{
+  "service": "MachineSignal",
+  "document": "compact_owner_review_packet_unresolved_policy_questions",
+  "date": "2026-06-18",
+  "status": "compact_owner_review_packet_no_write_not_signed_not_activated",
+  "decision_today": {
+    "paid_beta_preparation": "go",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go",
+    "recommended_minimal_decision": "continue_preparing_paid_beta_materials_but_do_not_activate_paid_beta"
+  },
+  "current_summary": {
+    "technical_sandbox": "complete_for_current_scope",
+    "advisor_gate": "complete_for_current_scope",
+    "policy_preparation": "in_progress",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go"
+  },
+  "unresolved_owner_decisions": [
+    {
+      "id": "prepare_controlled_paid_beta",
+      "question": "Do we prepare a controlled paid beta?",
+      "recommended_answer": "prepare_but_do_not_activate",
+      "options": [
+        "continue_sandbox_only",
+        "prepare_controlled_paid_beta",
+        "pause_monetization_preparation"
+      ],
+      "current_block": "paid_beta_activation_no_go"
+    },
+    {
+      "id": "fiscal_admin_setup",
+      "question": "What fiscal/admin setup is required before taking money?",
+      "recommended_next_action": "prepare_fiscal_admin_questions_for_official_review_when_owner_moves_toward_real_monetization",
+      "current_block": "payments_and_invoices_blocked"
+    },
+    {
+      "id": "payment_invoice_path",
+      "question": "Which payment and invoice path should be used?",
+      "options": [
+        "no_payment",
+        "manual_invoice",
+        "prepaid_credits",
+        "checkout",
+        "subscription"
+      ],
+      "recommended_if_approved_later": "manual_approval_score_pack_1k_no_auto_renewal",
+      "current_block": "live_payment_blocked"
+    },
+    {
+      "id": "terms_privacy_data",
+      "question": "What terms, privacy and data rules must apply?",
+      "recommended_starting_rule": "synthetic_or_non_personal_business_data_only",
+      "current_block": "real_and_personal_data_blocked"
+    },
+    {
+      "id": "product_and_listino",
+      "question": "Is Score Pack 1k the first paid-beta product at EUR 119?",
+      "recommended_starting_product": "score_pack_1k_119_eur_1000_valid_scores",
+      "current_block": "paid_offers_blocked"
+    },
+    {
+      "id": "credit_refund_replacement",
+      "question": "How are credits, replacement credits and refunds handled?",
+      "recommended_starting_rule": "replacement_credits_first_cash_refunds_only_by_explicit_owner_approval",
+      "current_block": "paid_credits_blocked"
+    },
+    {
+      "id": "production_api_keys",
+      "question": "Who can receive production API keys and under what caps?",
+      "recommended_starting_rule": "manual_owner_approval_only",
+      "current_block": "production_keys_blocked"
+    },
+    {
+      "id": "beta_customer_usage_caps",
+      "question": "What are the customer and usage caps?",
+      "recommended_first_cap": "3_to_5_beta_customers_score_pack_1k_only_no_auto_renewal",
+      "current_block": "production_keys_blocked"
+    },
+    {
+      "id": "cost_cap_kill_switch",
+      "question": "What cost cap and kill switch are required?",
+      "recommended_starting_rule": "no_paid_beta_without_approved_cost_cap_and_kill_switch_owner",
+      "current_block": "production_keys_blocked"
+    },
+    {
+      "id": "support_escalation",
+      "question": "What support and escalation model is allowed?",
+      "recommended_starting_rule": "machine_first_support_owner_escalation_only_for_high_risk_decisions",
+      "current_block": "paid_onboarding_blocked"
+    },
+    {
+      "id": "security_incident",
+      "question": "How are secrets, key exposure and incidents handled?",
+      "recommended_starting_rule": "no_production_key_until_revoke_rotation_and_incident_procedure_are_approved",
+      "current_block": "production_access_blocked"
+    },
+    {
+      "id": "distribution_no_outreach",
+      "question": "Which distribution channels are allowed and is outreach forbidden?",
+      "recommended_starting_rule": "machine_readable_docs_only_no_human_outreach_no_marketplace_no_hosted_public_mcp",
+      "current_block": "external_publication_and_outreach_blocked"
+    }
+  ],
+  "recommended_owner_sequence": [
+    "decide_continue_preparing_paid_beta_or_remain_sandbox_only",
+    "resolve_fiscal_admin_path",
+    "resolve_payment_invoice_path",
+    "resolve_terms_privacy_data_path",
+    "approve_or_reject_score_pack_1k_as_first_paid_beta_product",
+    "approve_production_key_and_usage_caps",
+    "approve_cost_cap_and_kill_switch",
+    "approve_support_escalation_model",
+    "decide_distribution_no_outreach_boundaries",
+    "sign_final_owner_approval_only_if_all_gates_are_ready"
+  ],
+  "agents_may_continue_if_owner_accepts_minimal_decision": [
+    "draft_policy_details",
+    "refine_pnl_assumptions",
+    "prepare_owner_decision_dashboard",
+    "run_nowrite_consistency_checks"
+  ],
+  "agents_must_not_do": [
+    "activate_paid_beta",
+    "execute_real_payment",
+    "issue_invoice",
+    "collect_payment_method",
+    "issue_production_api_key",
+    "process_real_customer_dataset",
+    "process_personal_data",
+    "send_external_outreach",
+    "publish_marketplace",
+    "launch_hosted_public_mcp",
+    "submit_mcp_registry"
+  ],
+  "next_safe_action": "prepare_owner_decision_dashboard_summarizing_open_gates_recommended_defaults_and_blocked_actions"
+}

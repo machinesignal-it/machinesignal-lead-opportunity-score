@@ -1,0 +1,10 @@
+﻿{
+    "generated_at":  "2026-06-18",
+    "checks_passed":  59,
+    "checks_total":  59,
+    "failed_checks":  [
+
+                      ],
+    "decision":  "pass",
+    "next_safe_action":  "prepare_owner_decision_dashboard_summarizing_open_gates_recommended_defaults_and_blocked_actions"
+}
