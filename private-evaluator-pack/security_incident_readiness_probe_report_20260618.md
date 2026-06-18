@@ -1,0 +1,146 @@
+﻿# Report controllo security/incident readiness
+
+Data controllo: 2026-06-18
+
+Esito: SUPERATO
+
+Controlli superati: 130/130
+
+Sintesi:
+
+- La bozza definisce classi incidente, severitÃ , kill switch, incident event e regole sui segreti.
+- Chiavi production, dati reali/personali, costi esterni e go-live restano bloccati.
+- Il blocco security_incident_readiness puÃ² diventare candidato giallo, ma non verde senza approvazione, test sintetico e procedure finali.
+
+Dettaglio controlli:
+
+- [OK] Documento Markdown presente: La bozza leggibile deve esistere.
+- [OK] Documento JSON presente: La bozza macchina deve esistere.
+- [OK] Lingua italiana dichiarata: La bozza deve essere in italiano.
+- [OK] Stato bozza interna: La bozza deve restare interna.
+- [OK] Security non finale: Non deve sembrare certificazione finale.
+- [OK] Nessuna attivazione commerciale: La bozza non deve attivare beta o go-live.
+- [OK] Non production ready: Non deve dichiarare production readiness.
+- [OK] Chiavi production non ammesse: Le chiavi production devono restare bloccate.
+- [OK] Dati reali non ammessi: I dati reali devono restare bloccati.
+- [OK] Dati personali non ammessi: I dati personali devono restare bloccati.
+- [OK] Costi esterni non ammessi: I costi esterni devono restare bloccati.
+- [OK] Azione vietata dichiarata: real_payments: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: invoices: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: payment_method_collection: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: production_api_keys: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: production_secrets: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: real_customer_data: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: personal_data: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: sensitive_data: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: external_paid_api_calls: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: cloudflare_paid_plan_upgrade: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: external_outreach: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: marketplace_publication: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: hosted_public_mcp: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: mcp_registry_publication: La bozza deve confermare che questa azione resta vietata.
+- [OK] Azione vietata dichiarata: commercial_go_live: La bozza deve confermare che questa azione resta vietata.
+- [OK] Classe incidente presente: exposed_secret: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: production_key_attempt: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: real_data_detected: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: abnormal_request_pattern: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: ledger_failure: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: repeated_incoherent_outputs: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: external_cost_attempt: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: unauthorized_publication: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: account_access_anomaly: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: dependency_or_platform_alert: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: customer_abuse: Ogni classe incidente critica deve essere mappata.
+- [OK] Classe incidente presente: global_emergency: Ogni classe incidente critica deve essere mappata.
+- [OK] SeveritÃ  presente: S0: Ogni severitÃ  S0-S4 deve essere presente.
+- [OK] SeveritÃ  con azione: S0: Ogni severitÃ  deve avere un'azione.
+- [OK] SeveritÃ  presente: S1: Ogni severitÃ  S0-S4 deve essere presente.
+- [OK] SeveritÃ  con azione: S1: Ogni severitÃ  deve avere un'azione.
+- [OK] SeveritÃ  presente: S2: Ogni severitÃ  S0-S4 deve essere presente.
+- [OK] SeveritÃ  con azione: S2: Ogni severitÃ  deve avere un'azione.
+- [OK] SeveritÃ  presente: S3: Ogni severitÃ  S0-S4 deve essere presente.
+- [OK] SeveritÃ  con azione: S3: Ogni severitÃ  deve avere un'azione.
+- [OK] SeveritÃ  presente: S4: Ogni severitÃ  S0-S4 deve essere presente.
+- [OK] SeveritÃ  con azione: S4: Ogni severitÃ  deve avere un'azione.
+- [OK] Kill switch sicurezza presente: secret_kill_switch: Ogni kill switch sicurezza deve essere dichiarato.
+- [OK] Kill switch sicurezza presente: data_policy_kill_switch: Ogni kill switch sicurezza deve essere dichiarato.
+- [OK] Kill switch sicurezza presente: endpoint_security_kill_switch: Ogni kill switch sicurezza deve essere dichiarato.
+- [OK] Kill switch sicurezza presente: customer_security_kill_switch: Ogni kill switch sicurezza deve essere dichiarato.
+- [OK] Kill switch sicurezza presente: external_cost_kill_switch: Ogni kill switch sicurezza deve essere dichiarato.
+- [OK] Kill switch sicurezza presente: publication_kill_switch: Ogni kill switch sicurezza deve essere dichiarato.
+- [OK] Kill switch sicurezza presente: global_beta_kill_switch: Ogni kill switch sicurezza deve essere dichiarato.
+- [OK] Trigger sicurezza presente: exposed_secret_detected: I trigger sicurezza devono essere dichiarati.
+- [OK] Trigger sicurezza presente: real_or_personal_data_detected: I trigger sicurezza devono essere dichiarati.
+- [OK] Trigger sicurezza presente: production_key_attempt: I trigger sicurezza devono essere dichiarati.
+- [OK] Trigger sicurezza presente: ledger_event_failure: I trigger sicurezza devono essere dichiarati.
+- [OK] Trigger sicurezza presente: external_cost_above_zero: I trigger sicurezza devono essere dichiarati.
+- [OK] Trigger sicurezza presente: repeated_endpoint_errors: I trigger sicurezza devono essere dichiarati.
+- [OK] Trigger sicurezza presente: unauthorized_publication_attempt: I trigger sicurezza devono essere dichiarati.
+- [OK] Trigger sicurezza presente: unclassified_risk: I trigger sicurezza devono essere dichiarati.
+- [OK] Campo incident presente: incident_id: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: timestamp: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: severity: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: incident_class: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: detected_by: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: environment: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: affected_endpoint: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: affected_product_code: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: request_id: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: data_policy_impact: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: secret_impact: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: cost_impact_eur: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: credits_consumed: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: kill_switch_applied: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: owner_escalation_required: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: immediate_action: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: next_action: L'incident event deve poter ricostruire il caso.
+- [OK] Campo incident presente: status: L'incident event deve poter ricostruire il caso.
+- [OK] Risposta blocco security non consuma crediti: Un incidente bloccato non deve consumare crediti.
+- [OK] Risposta blocco security richiede escalation: Incidenti sicurezza devono scalare quando rilevanti.
+- [OK] Risposta blocco security dice stop: La macchina cliente deve fermarsi.
+- [OK] Regola segreti presente: Non scrivere password, token o API key nei report.: Le regole minime sui segreti devono essere presenti.
+- [OK] Regola segreti presente: Non committare segreti.: Le regole minime sui segreti devono essere presenti.
+- [OK] Regola segreti presente: Non usare chiavi production.: Le regole minime sui segreti devono essere presenti.
+- [OK] Regola segreti presente: Usare placeholder nei documenti.: Le regole minime sui segreti devono essere presenti.
+- [OK] Provider alert presente: cloudflare_limit_exceeded: Gli alert provider principali devono essere previsti.
+- [OK] Provider alert presente: github_actions_failed: Gli alert provider principali devono essere previsti.
+- [OK] Provider alert presente: windows_security_alert: Gli alert provider principali devono essere previsti.
+- [OK] Provider alert presente: provider_billing_or_cost_alert: Gli alert provider principali devono essere previsti.
+- [OK] Provider alert presente: unexpected_permission_or_token_alert: Gli alert provider principali devono essere previsti.
+- [OK] Azione agente vietata: buy_plans_or_credits: Gli agenti non devono superare i blocchi.
+- [OK] Azione agente vietata: authorize_real_costs: Gli agenti non devono superare i blocchi.
+- [OK] Azione agente vietata: use_production_keys: Gli agenti non devono superare i blocchi.
+- [OK] Azione agente vietata: process_real_or_personal_data: Gli agenti non devono superare i blocchi.
+- [OK] Azione agente vietata: contact_external_parties: Gli agenti non devono superare i blocchi.
+- [OK] Azione agente vietata: publish_marketplace_or_mcp: Gli agenti non devono superare i blocchi.
+- [OK] Azione agente vietata: declare_incident_closed_without_evidence: Gli agenti non devono superare i blocchi.
+- [OK] Azione agente vietata: ignore_severe_alerts: Gli agenti non devono superare i blocchi.
+- [OK] Escalation proprietario presente: severity_s3_or_s4: I casi critici devono scalare al proprietario.
+- [OK] Escalation proprietario presente: exposed_secret: I casi critici devono scalare al proprietario.
+- [OK] Escalation proprietario presente: real_or_personal_data_detected: I casi critici devono scalare al proprietario.
+- [OK] Escalation proprietario presente: potential_cost_above_zero: I casi critici devono scalare al proprietario.
+- [OK] Escalation proprietario presente: production_key_request_or_attempt: I casi critici devono scalare al proprietario.
+- [OK] Escalation proprietario presente: external_publication_request: I casi critici devono scalare al proprietario.
+- [OK] Escalation proprietario presente: account_access_anomaly: I casi critici devono scalare al proprietario.
+- [OK] Escalation proprietario presente: global_kill_switch: I casi critici devono scalare al proprietario.
+- [OK] Escalation proprietario presente: uncovered_policy_decision: I casi critici devono scalare al proprietario.
+- [OK] Frase chiave Markdown: bloccare prima: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Frase chiave Markdown: Classi di incidente: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Frase chiave Markdown: Kill switch di sicurezza: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Frase chiave Markdown: Regole sui segreti: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Frase chiave Markdown: Regole provider e alert: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Frase chiave Markdown: Divieti confermati: Il Markdown deve essere chiaro per il proprietario.
+- [OK] Nessuna frase di attivazione: security approved: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: production is ready: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: production keys allowed: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: real data allowed: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: personal data allowed: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: external cost allowed: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: commercial go-live approved: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: sicurezza finale approvata: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: production pronta: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: chiavi production ammesse: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: dati reali ammessi: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: dati personali ammessi: La bozza non deve sembrare un'approvazione.
+- [OK] Nessuna frase di attivazione: go-live commerciale approvato: La bozza non deve sembrare un'approvazione.
+- [OK] Effetto dashboard corretto: La bozza puÃ² solo candidare il blocco a giallo.

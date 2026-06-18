@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "security_incident_readiness",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  130,
+    "total":  130,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Bozza security/incident readiness creata. Chiavi production, segreti, dati reali/personali, costi esterni e go-live restano bloccati."
+}

@@ -1,0 +1,187 @@
+{
+  "document": "security_incident_readiness",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_internal_policy",
+  "security_final": false,
+  "commercial_activation": false,
+  "production_ready": false,
+  "production_keys_allowed": false,
+  "real_data_allowed": false,
+  "personal_data_allowed": false,
+  "external_cost_allowed": false,
+  "summary_it": "Bozza interna per gestire incidenti, abuso, segreti esposti, accessi anomali, dati vietati e stop di emergenza. Bloccare prima, capire dopo. Non abilita production key, dati reali/personali o go-live.",
+  "does_not_authorize": [
+    "real_payments",
+    "invoices",
+    "payment_method_collection",
+    "production_api_keys",
+    "production_secrets",
+    "real_customer_data",
+    "personal_data",
+    "sensitive_data",
+    "external_paid_api_calls",
+    "cloudflare_paid_plan_upgrade",
+    "external_outreach",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_publication",
+    "commercial_go_live"
+  ],
+  "incident_classes": [
+    "exposed_secret",
+    "production_key_attempt",
+    "real_data_detected",
+    "abnormal_request_pattern",
+    "ledger_failure",
+    "repeated_incoherent_outputs",
+    "external_cost_attempt",
+    "unauthorized_publication",
+    "account_access_anomaly",
+    "dependency_or_platform_alert",
+    "customer_abuse",
+    "global_emergency"
+  ],
+  "severity_levels": [
+    {
+      "id": "S0",
+      "definition_it": "Nessun rischio reale, evento informativo.",
+      "action_it": "Registrare e monitorare."
+    },
+    {
+      "id": "S1",
+      "definition_it": "Rischio basso o isolato.",
+      "action_it": "Correggere e chiudere con report."
+    },
+    {
+      "id": "S2",
+      "definition_it": "Rischio operativo ricorrente.",
+      "action_it": "Sospendere endpoint/prodotto interessato."
+    },
+    {
+      "id": "S3",
+      "definition_it": "Rischio dati, segreti, costi o compliance.",
+      "action_it": "Kill switch mirato ed escalation proprietario."
+    },
+    {
+      "id": "S4",
+      "definition_it": "Rischio grave o non controllato.",
+      "action_it": "Global beta kill switch e stop operativo."
+    }
+  ],
+  "security_kill_switch_types": [
+    "secret_kill_switch",
+    "data_policy_kill_switch",
+    "endpoint_security_kill_switch",
+    "customer_security_kill_switch",
+    "external_cost_kill_switch",
+    "publication_kill_switch",
+    "global_beta_kill_switch"
+  ],
+  "kill_switch_triggers": [
+    "exposed_secret_detected",
+    "real_or_personal_data_detected",
+    "production_key_attempt",
+    "ledger_event_failure",
+    "external_cost_above_zero",
+    "repeated_endpoint_errors",
+    "repeated_incoherent_outputs",
+    "unauthorized_publication_attempt",
+    "unclassified_risk"
+  ],
+  "incident_procedure": [
+    "stop_risky_action",
+    "avoid_unnecessary_writes",
+    "record_incident_event",
+    "classify_severity_and_incident_class",
+    "apply_kill_switch_if_needed",
+    "do_not_consume_credits_for_blocked_requests",
+    "prepare_report_it",
+    "escalate_owner_if_s3_s4_or_decision_needed",
+    "propose_future_prevention",
+    "update_policy_or_company_brain_if_model_changes"
+  ],
+  "incident_event_required_fields": [
+    "incident_id",
+    "timestamp",
+    "severity",
+    "incident_class",
+    "detected_by",
+    "environment",
+    "affected_endpoint",
+    "affected_product_code",
+    "request_id",
+    "customer_id_or_sandbox_customer_id",
+    "data_policy_impact",
+    "secret_impact",
+    "cost_impact_eur",
+    "credits_consumed",
+    "kill_switch_applied",
+    "owner_escalation_required",
+    "immediate_action",
+    "next_action",
+    "status",
+    "closed_at"
+  ],
+  "blocked_response_example": {
+    "status": "blocked_by_security_policy",
+    "decision": "stop",
+    "reason": "security incident or unsafe request detected",
+    "credits_consumed": 0,
+    "support_code": "SECURITY_POLICY_BLOCK",
+    "owner_escalation_required": true,
+    "retry_after_seconds": null
+  },
+  "secret_rules_it": [
+    "Non scrivere password, token o API key nei report.",
+    "Non committare segreti.",
+    "Non incollare segreti in file pubblici.",
+    "Non usare chiavi production.",
+    "Non creare nuove chiavi production.",
+    "Non ruotare chiavi reali senza autorizzazione.",
+    "Segnalare subito qualsiasi segreto visibile.",
+    "Usare placeholder nei documenti.",
+    "Preferire NoWrite quando si verifica configurazione."
+  ],
+  "provider_alert_rules": [
+    "cloudflare_limit_exceeded",
+    "github_actions_failed",
+    "windows_security_alert",
+    "provider_billing_or_cost_alert",
+    "unexpected_permission_or_token_alert"
+  ],
+  "agent_may_do": [
+    "classify_incidents",
+    "produce_reports_it",
+    "propose_mitigations",
+    "update_policy_drafts",
+    "prepare_checklists",
+    "run_nowrite_probes",
+    "apply_logical_stop_in_docs_or_sandbox_tests"
+  ],
+  "agent_must_not_do": [
+    "buy_plans_or_credits",
+    "authorize_real_costs",
+    "use_production_keys",
+    "process_real_or_personal_data",
+    "contact_external_parties",
+    "publish_marketplace_or_mcp",
+    "declare_incident_closed_without_evidence",
+    "ignore_severe_alerts"
+  ],
+  "owner_escalation_required_when": [
+    "severity_s3_or_s4",
+    "exposed_secret",
+    "real_or_personal_data_detected",
+    "potential_cost_above_zero",
+    "production_key_request_or_attempt",
+    "external_publication_request",
+    "account_access_anomaly",
+    "global_kill_switch",
+    "uncovered_policy_decision"
+  ],
+  "dashboard_effect": {
+    "security_incident_readiness": "red_to_yellow_candidate",
+    "reason_it": "La bozza crea regole verificabili su incidenti, severità, kill switch, segreti, dati, alert e divieti. Non basta per il verde senza approvazione, test sintetico e procedure finali."
+  }
+}
