@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "company_brain_version": "2026-06-18-internal-v12",
+  "company_brain_version": "2026-06-18-internal-v13",
   "updated_at": "2026-06-18",
   "status": "internal_operating_brain",
   "primary_customer_interface": "machine",
@@ -27,7 +27,7 @@
     "phase": "technical-sandbox-complete-current-scope",
     "technical_sandbox": "complete_for_current_scope",
     "advisor_gate_setup": "complete_for_current_scope",
-    "current_safe_workstream": "owner_dashboard_alignment_and_policy_readiness",
+    "current_safe_workstream": "owner_decision_checklist_alignment",
     "technical_sandbox_tests_estimate_percent": 100,
     "pre_go_live_readiness_estimate_percent": 95,
     "commercial_go_live_readiness_estimate_percent": 78,
@@ -140,7 +140,14 @@
       "commercial_go_live"
     ],
     "owner_facing_summary_it": "Preparazione interna consentita. Beta a pagamento non attivabile. Dieci aree sono candidate gialle grazie a bozze verificate: policy crediti/rimborsi, cost cap/kill switch, supporto/escalation, terms/privacy/data readiness, security/incident readiness, distribution/outreach/publication approval, fiscal/admin readiness, payment/invoice readiness, product/listino approval e production API key readiness. Dati reali, personali, segreti production, emissione chiavi production, pagamenti, fatture, raccolta metodi di pagamento, abbonamenti reali e offerte live restano bloccati. Il rosso rimanente e' l'approvazione commerciale proprietario.",
-    "next_safe_action": "prepare_owner_commercial_approval_packet"
+    "owner_decision_checklist": {
+      "evidence": "owner_decision_checklist_nowrite_20260618",
+      "probe": "94_checks_0_failed",
+      "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+      "activation_allowed": false,
+      "meaning_it": "La checklist decisionale esiste e simula tre esiti, ma lo stato corrente resta non ancora approvabile. Anche uno scenario futuro all-green richiede uno step separato di attivazione esplicita."
+    },
+    "next_safe_action": "prepare_final_owner_review_gap_report_nowrite"
   },
   "advisor_gate": {
     "status": "complete_for_current_scope",
@@ -424,7 +431,7 @@
     "update Company Brain if the decision changes the operating model"
   ],
   "roadmap": {
-    "current_next_step": "Keep Company Brain, OpenAPI, catalog, onboarding, README and owner decision dashboard aligned while preparing paid-beta materials without commercial activation.",
+    "current_next_step": "Prepare a final owner review gap report NoWrite from the decision checklist, without commercial activation.",
     "future_visual_company_brain": {
       "status": "planned_not_started",
       "description": "Build a visual graph dashboard only after company-brain.json and company-brain-graph.json remain stable across several test cycles.",
@@ -446,6 +453,7 @@
     "continue_sandbox_testing": true,
     "start_paid_commercial_activity": false,
     "paid_beta_activation": "blocked_until_owner_approves_red_gates_and_operational_conditions_are_resolved",
-    "next_recommended_action": "Prepare the owner commercial approval packet while keeping all hard blocks active. Do not enable payments, invoices, production key issuance, real data, outreach or public marketplace/MCP publication."
+    "owner_decision_current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "next_recommended_action": "Prepare a final owner review gap report NoWrite from the decision checklist. Do not enable payments, invoices, production key issuance, real data, outreach or public marketplace/MCP publication."
   }
 }

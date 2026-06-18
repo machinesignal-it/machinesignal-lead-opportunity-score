@@ -1,0 +1,10 @@
+﻿{
+    "document":  "owner_decision_checklist_dashboard_alignment_probe_summary",
+    "date":  "2026-06-18",
+    "passed":  true,
+    "checks_passed":  71,
+    "checks_failed":  0,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "next_safe_action":  "prepare_final_owner_review_gap_report_nowrite",
+    "report":  "owner_decision_checklist_dashboard_alignment_probe_report_20260618.md"
+}

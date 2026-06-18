@@ -440,6 +440,7 @@ Latest readiness result:
 - payment/invoice readiness probe: 123 checks, 0 failed.
 - product/listino owner review probe: 154 checks, 0 failed.
 - production API key readiness probe: 113 checks, 0 failed.
+- owner decision checklist NoWrite probe: 94 checks, 0 failed.
 
 Overall pre-go-live readiness estimate:
 
@@ -461,6 +462,7 @@ Current owner-facing interpretation:
 
 - internal preparation can continue;
 - paid beta must not be activated yet;
+- owner decision checklist exists and current simulation result is `NOT_YET_OWNER_REVIEW_REQUIRED`;
 - credit/refund policy, cost cap/kill switch, support/escalation model, terms/privacy/data readiness, security/incident readiness, distribution/outreach/publication approval, fiscal/admin readiness, payment/invoice readiness, product/listino approval and production API key readiness have verified drafts, but still need owner approval and implementation/testing before they can become green;
 - fiscal/admin readiness is not tax advice and does not authorize payments, invoices, payment method collection or a statement that Partita IVA is or is not required;
 - payment/invoice readiness does not authorize checkout live, card collection, real payments, invoices, subscriptions or live provider keys;
@@ -477,7 +479,7 @@ Continue preparing paid-beta materials, but do not activate paid beta.
 
 Recommended next step:
 
-Prepare the owner commercial approval packet while keeping the internal operating memory, OpenAPI, catalog, onboarding, README and owner decision dashboard aligned without commercial activation.
+Prepare a final owner review gap report NoWrite from the decision checklist while keeping the internal operating memory, OpenAPI, catalog, onboarding, README and owner decision dashboard aligned without commercial activation.
 
 Then prepare one of these owner decisions:
 

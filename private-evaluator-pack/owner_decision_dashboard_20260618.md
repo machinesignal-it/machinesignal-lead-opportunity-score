@@ -8,6 +8,25 @@ Decision today: continue preparation, do not activate paid beta
 
 MachineSignal is technically ready for the current sandbox scope, but not commercially ready to take money.
 
+## Owner Decision Simulation
+
+Latest checklist: `owner_decision_checklist_nowrite_20260618`.
+
+Probe: 94 checks, 0 failed.
+
+Current simulation result:
+
+```text
+NOT_YET_OWNER_REVIEW_REQUIRED
+```
+
+Meaning:
+
+- the decision path is now explicit and machine-readable;
+- current state is still not ready for paid beta activation;
+- even a future all-green scenario requires a separate explicit activation step;
+- no payment, invoice, payment method, production key, real data, outreach, marketplace, hosted MCP or registry action is allowed.
+
 ## Dashboard
 
 | Area | Status | Meaning | Decision |
@@ -122,3 +141,5 @@ Commercial go-live: no-go.
 Next safe action:
 
 > Prepare the owner commercial approval packet, keeping all hard blocks active until explicit approval.
+>
+> Updated next safe action: prepare a final owner review gap report NoWrite from the decision checklist.

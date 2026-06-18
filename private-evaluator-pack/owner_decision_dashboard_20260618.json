@@ -5,6 +5,13 @@
   "status": "owner_decision_dashboard_no_write_not_signed_not_activated",
   "one_line_status": "technical_sandbox_ready_current_scope_but_not_commercially_ready_to_take_money",
   "recommended_decision_today": "continue_preparing_paid_beta_materials_but_do_not_activate_paid_beta",
+  "owner_decision_checklist": {
+    "evidence": "owner_decision_checklist_nowrite_20260618",
+    "probe": "94_checks_0_failed",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed": false,
+    "meaning": "owner decision path is now simulatable, but the current result is not yet and no activation is allowed"
+  },
   "dashboard": [
     {
       "area": "technical_sandbox",
@@ -287,5 +294,5 @@
       ]
     }
   ],
-  "next_safe_action": "prepare_owner_commercial_approval_packet"
+  "next_safe_action": "prepare_final_owner_review_gap_report_nowrite"
 }
