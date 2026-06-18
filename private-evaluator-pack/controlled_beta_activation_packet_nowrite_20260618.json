@@ -1,0 +1,175 @@
+{
+  "service": "MachineSignal",
+  "document": "controlled_beta_activation_packet_nowrite",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "controlled_beta_activation_packet_ready_nowrite_not_signed_not_activated",
+  "mode": "controlled beta preparation only",
+  "is_approval": false,
+  "is_owner_signature": false,
+  "activation_allowed": false,
+  "paid_beta_activation_allowed": false,
+  "commercial_go_live_allowed": false,
+  "real_payment_allowed": false,
+  "invoice_allowed": false,
+  "payment_method_collection_allowed": false,
+  "production_key_issuance_allowed": false,
+  "real_customer_data_allowed": false,
+  "personal_data_allowed": false,
+  "external_outreach_allowed": false,
+  "marketplace_publication_allowed": false,
+  "hosted_public_mcp_allowed": false,
+  "mcp_registry_publication_allowed": false,
+  "source_evidence": {
+    "owner_review_pack": "owner_review_meeting_pack_nowrite_20260618",
+    "owner_review_pack_probe": "64_checks_0_failed",
+    "company_brain_version": "2026-06-18-internal-v14"
+  },
+  "current_dashboard_counts": {
+    "green": 3,
+    "yellow": 12,
+    "red": 1
+  },
+  "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+  "remaining_red_gate": "owner_commercial_approval",
+  "proposed_beta_scope": {
+    "max_beta_customers": 3,
+    "duration_days": 30,
+    "first_product": "score_pack_1k",
+    "hypothetical_beta_price_eur": 119,
+    "auto_renewal": false,
+    "allowed_input": [
+      "domains",
+      "business_urls",
+      "sector",
+      "geographic_area"
+    ],
+    "personal_data_allowed": false,
+    "production_access_allowed": false,
+    "sales_channel": "no_outreach_internal_review_and_machine_readable_docs_only"
+  },
+  "minimum_future_activation_criteria": [
+    "owner_signature_present",
+    "fiscal_admin_path_approved",
+    "payment_invoice_rules_approved_and_tested",
+    "terms_privacy_data_policy_approved",
+    "product_price_credits_customer_limits_approved",
+    "production_api_key_policy_approved",
+    "cost_cap_and_kill_switch_implemented_and_tested",
+    "support_escalation_ticket_ledger_tested",
+    "security_incident_procedure_tested",
+    "distribution_channels_approved"
+  ],
+  "future_operating_flow_after_separate_approval_only": [
+    "create_beta_customer_in_ledger",
+    "assign_volume_and_credit_limit",
+    "validate_allowed_input_only",
+    "produce_score_only_if_output_is_valid",
+    "track_each_consumed_credit",
+    "block_out_of_policy_requests",
+    "create_owner_summary_report",
+    "avoid_auto_renewal"
+  ],
+  "automatic_block_rules": [
+    {
+      "request": "real_payment",
+      "action": "block"
+    },
+    {
+      "request": "invoice",
+      "action": "block"
+    },
+    {
+      "request": "payment_method",
+      "action": "block"
+    },
+    {
+      "request": "production_api_key",
+      "action": "block"
+    },
+    {
+      "request": "real_customer_dataset",
+      "action": "block"
+    },
+    {
+      "request": "personal_data",
+      "action": "block"
+    },
+    {
+      "request": "external_outreach",
+      "action": "block"
+    },
+    {
+      "request": "marketplace_or_registry_publication",
+      "action": "block"
+    },
+    {
+      "request": "hosted_public_mcp",
+      "action": "block"
+    },
+    {
+      "request": "cost_limit_exceeded",
+      "action": "block"
+    }
+  ],
+  "required_nowrite_simulations": [
+    {
+      "id": "beta_request_without_signature",
+      "expected_result": "blocked"
+    },
+    {
+      "id": "customer_attempts_payment",
+      "expected_result": "blocked"
+    },
+    {
+      "id": "customer_submits_personal_data",
+      "expected_result": "blocked"
+    },
+    {
+      "id": "customer_requests_production_key",
+      "expected_result": "blocked"
+    },
+    {
+      "id": "customer_exceeds_cost_limit",
+      "expected_result": "blocked"
+    },
+    {
+      "id": "invalid_scoring_output",
+      "expected_result": "credit_not_consumed"
+    },
+    {
+      "id": "valid_scoring_output",
+      "expected_result": "simulated_credit_consumed"
+    },
+    {
+      "id": "duplicate_domain_request",
+      "expected_result": "deduplicate_or_block"
+    },
+    {
+      "id": "public_marketplace_or_mcp_request",
+      "expected_result": "blocked"
+    }
+  ],
+  "current_machine_response": {
+    "status": "controlled_beta_activation_packet_ready_nowrite",
+    "decision": "packet_only_not_activation",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "paid_beta_activation": false,
+    "commercial_go_live": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "payment_method_collected": false,
+    "production_key_issued": false,
+    "real_or_personal_data_processed": false,
+    "external_outreach_sent": false,
+    "marketplace_or_public_mcp_published": false,
+    "credits_consumed": 0,
+    "remaining_red_gate": "owner_commercial_approval",
+    "next_allowed_actions": [
+      "simulate_controlled_beta_blocking_cases_nowrite",
+      "continue_nowrite_preparation"
+    ],
+    "support_code": "CONTROLLED_BETA_PACKET_READY_NOWRITE"
+  },
+  "recommended_next_safe_action": "simulate_controlled_beta_blocking_cases_nowrite"
+}

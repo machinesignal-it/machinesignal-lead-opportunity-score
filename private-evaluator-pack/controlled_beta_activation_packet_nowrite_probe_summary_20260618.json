@@ -1,0 +1,20 @@
+﻿{
+    "document":  "controlled_beta_activation_packet_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "target":  "controlled_beta_activation_packet_nowrite_20260618",
+    "passed":  81,
+    "failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "remaining_red_gate":  "owner_commercial_approval",
+    "activation_allowed":  false,
+    "paid_beta_activation_allowed":  false,
+    "commercial_go_live_allowed":  false,
+    "proposed_max_beta_customers":  3,
+    "proposed_first_product":  "score_pack_1k",
+    "required_simulation_count":  9,
+    "next_safe_action":  "simulate_controlled_beta_blocking_cases_nowrite",
+    "failed_checks":  [
+
+                      ]
+}

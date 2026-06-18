@@ -1,0 +1,88 @@
+﻿# Controlled beta activation packet NoWrite probe
+
+Date: 2026-06-18
+
+Passed: 81
+Failed: 0
+
+- PASS - status_is_packet_ready_nowrite: status=controlled_beta_activation_packet_ready_nowrite_not_signed_not_activated
+- PASS - not_approval_not_signature: is_approval=False; is_owner_signature=False
+- PASS - activation_flags_false: activation flags false
+- PASS - money_flags_false: money flags false
+- PASS - production_data_distribution_flags_false: production/data/distribution flags false
+- PASS - source_owner_review: source=owner_review_meeting_pack_nowrite_20260618
+- PASS - source_owner_review_probe: probe=64_checks_0_failed
+- PASS - counts_3_12_1: counts=3/12/1
+- PASS - current_result_not_yet: current_result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - remaining_red_gate_owner: red_gate=owner_commercial_approval
+- PASS - scope_max_three_customers: max=3
+- PASS - scope_duration_30_days: duration=30
+- PASS - scope_first_product_score_pack: product=score_pack_1k
+- PASS - scope_no_auto_renewal: auto_renewal=False
+- PASS - scope_no_personal_data: personal_data=False
+- PASS - scope_no_production_access: production_access=False
+- PASS - criterion_owner_signature_present: criterion present
+- PASS - criterion_fiscal_admin_path_approved: criterion present
+- PASS - criterion_payment_invoice_rules_approved_and_tested: criterion present
+- PASS - criterion_terms_privacy_data_policy_approved: criterion present
+- PASS - criterion_product_price_credits_customer_limits_approved: criterion present
+- PASS - criterion_production_api_key_policy_approved: criterion present
+- PASS - criterion_cost_cap_and_kill_switch_implemented_and_tested: criterion present
+- PASS - criterion_support_escalation_ticket_ledger_tested: criterion present
+- PASS - criterion_security_incident_procedure_tested: criterion present
+- PASS - criterion_distribution_channels_approved: criterion present
+- PASS - block_rule_real_payment: block rule present
+- PASS - block_rule_invoice: block rule present
+- PASS - block_rule_payment_method: block rule present
+- PASS - block_rule_production_api_key: block rule present
+- PASS - block_rule_real_customer_dataset: block rule present
+- PASS - block_rule_personal_data: block rule present
+- PASS - block_rule_external_outreach: block rule present
+- PASS - block_rule_marketplace_or_registry_publication: block rule present
+- PASS - block_rule_hosted_public_mcp: block rule present
+- PASS - block_rule_cost_limit_exceeded: block rule present
+- PASS - required_sim_beta_request_without_signature: simulation present
+- PASS - required_sim_customer_attempts_payment: simulation present
+- PASS - required_sim_customer_submits_personal_data: simulation present
+- PASS - required_sim_customer_requests_production_key: simulation present
+- PASS - required_sim_customer_exceeds_cost_limit: simulation present
+- PASS - required_sim_invalid_scoring_output: simulation present
+- PASS - required_sim_valid_scoring_output: simulation present
+- PASS - required_sim_duplicate_domain_request: simulation present
+- PASS - required_sim_public_marketplace_or_mcp_request: simulation present
+- PASS - machine_status_packet_ready: status=controlled_beta_activation_packet_ready_nowrite
+- PASS - machine_decision_packet_only: decision=packet_only_not_activation
+- PASS - machine_support_code: support=CONTROLLED_BETA_PACKET_READY_NOWRITE
+- PASS - machine_flags_false: machine flags false
+- PASS - machine_credits_zero: credits=0
+- PASS - next_safe_action_simulations: next=simulate_controlled_beta_blocking_cases_nowrite
+- PASS - md_contains_Controlled_beta_activation_packet_NoWrite: phrase=Controlled beta activation packet NoWrite
+- PASS - md_contains_non_firmato,_non_attivato: phrase=non firmato, non attivato
+- PASS - md_contains_non_attiva_la_beta: phrase=non attiva la beta
+- PASS - md_contains_Perimetro_beta_proposto: phrase=Perimetro beta proposto
+- PASS - md_contains_Criteri_minimi_per_attivare_in_futuro: phrase=Criteri minimi per attivare in futuro
+- PASS - md_contains_Regole_di_blocco_automatico: phrase=Regole di blocco automatico
+- PASS - md_contains_Simulazioni_richieste_prima_della_decisione: phrase=Simulazioni richieste prima della decisione
+- PASS - md_contains_Risposta_macchina_corrente: phrase=Risposta macchina corrente
+- PASS - forbidden_absent_"activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"payment_method_collection_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issuance_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_customer_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"personal_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"external_outreach_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"marketplace_publication_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_executed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_beta_a_pagamento_approvata: forbidden pattern absent
+- PASS - forbidden_absent_go-live_commerciale_approvato: forbidden pattern absent
+- PASS - forbidden_absent_pagamento_approvato: forbidden pattern absent
+- PASS - forbidden_absent_fattura_approvata: forbidden pattern absent
+- PASS - forbidden_absent_chiave_API_production_approvata: forbidden pattern absent
+- PASS - owner_review_probe_success: owner review probe success=True; failed=0
