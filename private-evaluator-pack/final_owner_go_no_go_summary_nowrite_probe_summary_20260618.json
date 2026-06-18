@@ -1,0 +1,14 @@
+﻿{
+    "probe":  "final_owner_go_no_go_summary_nowrite_probe_20260618",
+    "success":  true,
+    "passed":  105,
+    "failed":  0,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "decision":  "NO_GO_FOR_ACTIVATION",
+    "selected_option":  null,
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "remaining_red_gate":  "owner_commercial_approval",
+    "next_safe_action":  "prepare_owner_signature_record_only_if_explicitly_requested",
+    "support_code":  "FINAL_OWNER_GO_NO_GO_SUMMARY_READY_NOWRITE"
+}
