@@ -1,0 +1,10 @@
+﻿{
+    "document":  "owner_decision_checklist_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "passed":  true,
+    "checks_passed":  94,
+    "checks_failed":  0,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed":  false,
+    "report":  "owner_decision_checklist_nowrite_probe_report_20260618.md"
+}

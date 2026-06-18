@@ -1,0 +1,195 @@
+{
+  "document": "owner_decision_checklist_nowrite",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_nowrite_not_signed_not_activated",
+  "mode": "NoWrite final decision simulation",
+  "activation_allowed": false,
+  "paid_beta_activation_allowed": false,
+  "commercial_go_live_allowed": false,
+  "real_payment_allowed": false,
+  "invoice_allowed": false,
+  "payment_method_collection_allowed": false,
+  "production_key_issuance_allowed": false,
+  "real_customer_data_allowed": false,
+  "personal_data_allowed": false,
+  "external_outreach_allowed": false,
+  "marketplace_publication_allowed": false,
+  "hosted_public_mcp_allowed": false,
+  "mcp_registry_publication_allowed": false,
+  "current_dashboard_counts": {
+    "green": 3,
+    "yellow": 12,
+    "red": 1
+  },
+  "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+  "remaining_red_gate": "owner_commercial_approval",
+  "allowed_simulation_results": [
+    "GO_SANDBOX_PREPARATION",
+    "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "NO_GO_BLOCKED",
+    "GO_REQUIRES_SEPARATE_ACTIVATION_STEP"
+  ],
+  "checklist": [
+    {
+      "gate": "owner_commercial_approval",
+      "current_status": "red_not_signed",
+      "required_before_activation": "APPROVED_BY_OWNER",
+      "if_missing": "paid_beta_blocked"
+    },
+    {
+      "gate": "fiscal_admin_path",
+      "current_status": "yellow_draft",
+      "required_before_activation": "APPROVED_BY_OWNER",
+      "if_missing": "payments_and_invoices_blocked"
+    },
+    {
+      "gate": "payment_invoice_path",
+      "current_status": "yellow_draft",
+      "required_before_activation": "APPROVED_BY_OWNER_AND_TESTED",
+      "if_missing": "checkout_cards_invoices_blocked"
+    },
+    {
+      "gate": "terms_privacy_data",
+      "current_status": "yellow_draft",
+      "required_before_activation": "APPROVED_BY_OWNER_AND_IMPLEMENTED",
+      "if_missing": "real_onboarding_and_real_data_blocked"
+    },
+    {
+      "gate": "product_listino",
+      "current_status": "yellow_draft",
+      "required_before_activation": "APPROVED_BY_OWNER",
+      "if_missing": "live_offers_blocked"
+    },
+    {
+      "gate": "credit_refund_policy",
+      "current_status": "yellow_draft",
+      "required_before_activation": "APPROVED_BY_OWNER_AND_LEDGER_TESTED",
+      "if_missing": "paid_credits_blocked"
+    },
+    {
+      "gate": "production_api_keys",
+      "current_status": "yellow_readiness",
+      "required_before_activation": "APPROVED_BY_OWNER_AND_TESTED",
+      "if_missing": "production_keys_blocked"
+    },
+    {
+      "gate": "cost_cap_kill_switch",
+      "current_status": "yellow_draft",
+      "required_before_activation": "IMPLEMENTED_AND_TESTED",
+      "if_missing": "production_access_blocked"
+    },
+    {
+      "gate": "support_escalation",
+      "current_status": "yellow_draft",
+      "required_before_activation": "IMPLEMENTED_AND_TESTED",
+      "if_missing": "paying_customers_blocked"
+    },
+    {
+      "gate": "security_incident",
+      "current_status": "yellow_draft",
+      "required_before_activation": "APPROVED_BY_OWNER_AND_TESTED",
+      "if_missing": "production_access_blocked"
+    },
+    {
+      "gate": "distribution_no_outreach",
+      "current_status": "yellow_draft",
+      "required_before_activation": "APPROVED_BY_OWNER",
+      "if_missing": "marketplace_and_outreach_blocked"
+    },
+    {
+      "gate": "final_go_no_go_report",
+      "current_status": "missing",
+      "required_before_activation": "GENERATED_IN_ITALIAN",
+      "if_missing": "activation_blocked"
+    }
+  ],
+  "simulations": [
+    {
+      "id": "owner_not_signed",
+      "input": {
+        "owner_signature": false,
+        "all_required_gates_green": false,
+        "request": "activate_paid_beta"
+      },
+      "expected_output": {
+        "simulation_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+        "decision": "stop",
+        "paid_beta_activation": false,
+        "commercial_go_live": false,
+        "credits_consumed": 0
+      }
+    },
+    {
+      "id": "forbidden_production_key_request",
+      "input": {
+        "owner_signature": false,
+        "request": "issue_production_api_key"
+      },
+      "expected_output": {
+        "simulation_result": "NO_GO_BLOCKED",
+        "decision": "stop",
+        "production_key_issued": false,
+        "support_code": "OWNER_COMMERCIAL_APPROVAL_NOT_SIGNED",
+        "credits_consumed": 0
+      }
+    },
+    {
+      "id": "future_all_green_requires_separate_activation",
+      "input": {
+        "owner_signature": true,
+        "all_required_gates_green": true,
+        "request": "prepare_controlled_paid_beta"
+      },
+      "expected_output": {
+        "simulation_result": "GO_REQUIRES_SEPARATE_ACTIVATION_STEP",
+        "decision": "prepare_activation_packet_only",
+        "paid_beta_activation": false,
+        "commercial_go_live": false,
+        "credits_consumed": 0
+      }
+    }
+  ],
+  "current_machine_response": {
+    "status": "owner_decision_not_ready",
+    "decision": "not_yet",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "paid_beta_activation": false,
+    "commercial_go_live": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "payment_method_collected": false,
+    "production_key_issued": false,
+    "real_or_personal_data_processed": false,
+    "external_outreach_sent": false,
+    "credits_consumed": 0,
+    "remaining_red_gate": "owner_commercial_approval",
+    "next_allowed_actions": [
+      "continue_nowrite_preparation",
+      "prepare_owner_review"
+    ],
+    "support_code": "OWNER_DECISION_NOT_READY"
+  },
+  "agent_may_do": [
+    "update_checklist",
+    "simulate_requests_nowrite",
+    "prepare_reports_it",
+    "highlight_missing_gates",
+    "block_unapproved_actions",
+    "propose_decision_without_signing"
+  ],
+  "agent_must_not_do": [
+    "sign_for_owner",
+    "activate_paid_beta",
+    "execute_payment",
+    "issue_invoice",
+    "collect_payment_method",
+    "issue_production_api_key",
+    "process_real_customer_data",
+    "process_personal_data",
+    "send_external_outreach",
+    "publish_marketplace_or_public_mcp_or_registry",
+    "declare_commercial_go_live"
+  ],
+  "next_safe_action": "align_company_brain_dashboard_with_owner_decision_checklist"
+}
