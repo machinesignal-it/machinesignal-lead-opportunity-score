@@ -1,0 +1,10 @@
+﻿{
+    "document":  "owner_commercial_approval_packet_probe_summary",
+    "date":  "2026-06-18",
+    "checks_passed":  121,
+    "checks_failed":  0,
+    "passed":  true,
+    "remaining_red_gate":  "owner_commercial_approval",
+    "commercial_activation":  false,
+    "report":  "owner_commercial_approval_packet_probe_report_20260618.md"
+}
