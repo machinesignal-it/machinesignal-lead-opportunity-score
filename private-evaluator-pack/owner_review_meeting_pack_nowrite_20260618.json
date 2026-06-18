@@ -1,0 +1,169 @@
+{
+  "service": "MachineSignal",
+  "document": "owner_review_meeting_pack_nowrite",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "owner_review_pack_ready_nowrite_not_signed_not_activated",
+  "mode": "owner review preparation only",
+  "is_approval": false,
+  "is_owner_signature": false,
+  "activation_allowed": false,
+  "paid_beta_activation_allowed": false,
+  "commercial_go_live_allowed": false,
+  "real_payment_allowed": false,
+  "invoice_allowed": false,
+  "payment_method_collection_allowed": false,
+  "production_key_issuance_allowed": false,
+  "real_customer_data_allowed": false,
+  "personal_data_allowed": false,
+  "external_outreach_allowed": false,
+  "marketplace_publication_allowed": false,
+  "hosted_public_mcp_allowed": false,
+  "mcp_registry_publication_allowed": false,
+  "source_evidence": {
+    "company_brain_version": "2026-06-18-internal-v14",
+    "final_gap_report": "final_owner_review_gap_report_nowrite_20260618",
+    "final_gap_report_probe": "66_checks_0_failed",
+    "alignment_probe": "44_checks_0_failed"
+  },
+  "current_dashboard_counts": {
+    "green": 3,
+    "yellow": 12,
+    "red": 1
+  },
+  "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+  "remaining_red_gate": "owner_commercial_approval",
+  "meeting_objective": "decide_whether_to_prepare_controlled_beta_activation_packet_without_activating_sales",
+  "recommended_owner_decision_today": "prepare_controlled_beta_activation_packet_nowrite",
+  "decision_options": [
+    {
+      "id": "continue_nowrite_only",
+      "meaning": "continue preparation and testing only",
+      "commercial_effect": "none"
+    },
+    {
+      "id": "prepare_controlled_beta_activation_packet_nowrite",
+      "meaning": "prepare a separate non-activating packet for a possible controlled beta",
+      "commercial_effect": "none"
+    },
+    {
+      "id": "stop_commercial_path",
+      "meaning": "stop the commercial path and keep only technical maintenance",
+      "commercial_effect": "none"
+    }
+  ],
+  "review_sections": [
+    {
+      "id": "owner_commercial_decision",
+      "question": "Does the owner want to continue toward a controlled beta without selling yet?",
+      "recommended_now": "prepare_controlled_beta_activation_packet_nowrite",
+      "activation_effect": "none"
+    },
+    {
+      "id": "fiscal_admin",
+      "question": "Which fiscal and administrative path will be used before collecting money?",
+      "must_decide": [
+        "piva_or_allowed_structure",
+        "vat_rules",
+        "invoice_rules",
+        "billing_profile",
+        "order_credit_payment_invoice_reconciliation"
+      ],
+      "blocks_until_approved": [
+        "real_payments",
+        "invoices"
+      ]
+    },
+    {
+      "id": "payments",
+      "question": "Which payment model and limits will be used?",
+      "must_decide": [
+        "payment_provider",
+        "test_live_separation",
+        "payment_kill_switch",
+        "beta_revenue_limit",
+        "credit_replacement_or_refund_rule"
+      ],
+      "blocks_until_approved": [
+        "payment_method_collection",
+        "checkout",
+        "real_payment"
+      ]
+    },
+    {
+      "id": "product_listino",
+      "question": "Which product is offered first and under which exact limits?",
+      "must_decide": [
+        "first_beta_product",
+        "beta_price",
+        "customer_limits",
+        "invalid_output_rule",
+        "credit_validity",
+        "unused_credit_rule"
+      ],
+      "candidate_products": [
+        "score_pack_1k",
+        "target_discovery_pack",
+        "action_pack"
+      ]
+    },
+    {
+      "id": "privacy_data",
+      "question": "Which data can MachineSignal receive in beta?",
+      "recommended_rule": "domains_urls_business_sector_and_geo_only_no_personal_data",
+      "must_decide": [
+        "final_terms_privacy_data_texts",
+        "technical_input_filter",
+        "retention_deletion",
+        "nowrite_allowed_blocked_data_test"
+      ]
+    },
+    {
+      "id": "production_api_keys",
+      "question": "When and how can production API keys be issued?",
+      "must_decide": [
+        "secret_manager",
+        "key_generation_rotation_revocation",
+        "rate_limits_quotas",
+        "audit_log",
+        "no_secrets_in_repo",
+        "synthetic_dry_run_without_real_key"
+      ]
+    },
+    {
+      "id": "cost_support_security",
+      "question": "How do we prevent cost and operational problems?",
+      "must_decide": [
+        "cost_cap",
+        "technical_kill_switch",
+        "support_ticket_ledger",
+        "synthetic_support_case",
+        "incident_procedure",
+        "secret_handling",
+        "provider_alerts"
+      ]
+    }
+  ],
+  "current_machine_response": {
+    "status": "owner_review_pack_ready_nowrite",
+    "decision": "review_only",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "recommended_owner_decision": "prepare_controlled_beta_activation_packet_nowrite",
+    "paid_beta_activation": false,
+    "commercial_go_live": false,
+    "real_payment_executed": false,
+    "invoice_issued": false,
+    "payment_method_collected": false,
+    "production_key_issued": false,
+    "real_or_personal_data_processed": false,
+    "external_outreach_sent": false,
+    "credits_consumed": 0,
+    "remaining_red_gate": "owner_commercial_approval",
+    "next_allowed_actions": [
+      "prepare_controlled_beta_activation_packet_nowrite",
+      "continue_nowrite_preparation"
+    ],
+    "support_code": "OWNER_REVIEW_PACK_READY_NOWRITE"
+  },
+  "recommended_next_safe_action": "prepare_controlled_beta_activation_packet_nowrite"
+}

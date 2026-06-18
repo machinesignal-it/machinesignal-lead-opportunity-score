@@ -1,0 +1,18 @@
+﻿{
+    "document":  "owner_review_meeting_pack_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "target":  "owner_review_meeting_pack_nowrite_20260618",
+    "passed":  64,
+    "failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "remaining_red_gate":  "owner_commercial_approval",
+    "activation_allowed":  false,
+    "paid_beta_activation_allowed":  false,
+    "commercial_go_live_allowed":  false,
+    "recommended_owner_decision_today":  "prepare_controlled_beta_activation_packet_nowrite",
+    "next_safe_action":  "prepare_controlled_beta_activation_packet_nowrite",
+    "failed_checks":  [
+
+                      ]
+}

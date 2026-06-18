@@ -1,0 +1,71 @@
+﻿# Owner review meeting pack NoWrite probe
+
+Date: 2026-06-18
+
+Passed: 64
+Failed: 0
+
+- PASS - status_is_review_pack: status=owner_review_pack_ready_nowrite_not_signed_not_activated
+- PASS - not_approval_not_signature: is_approval=False; is_owner_signature=False
+- PASS - all_activation_flags_false: activation flags false
+- PASS - money_flags_false: money flags false
+- PASS - production_data_distribution_flags_false: production/data/distribution flags false
+- PASS - source_brain_v14: source brain=2026-06-18-internal-v14
+- PASS - source_gap_report: gap=final_owner_review_gap_report_nowrite_20260618
+- PASS - source_gap_probe: gap_probe=66_checks_0_failed
+- PASS - source_alignment_probe: alignment_probe=44_checks_0_failed
+- PASS - counts_3_12_1: counts=3/12/1
+- PASS - current_result_not_yet: current_result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - remaining_red_gate_owner: red_gate=owner_commercial_approval
+- PASS - meeting_objective_no_activation: objective=decide_whether_to_prepare_controlled_beta_activation_packet_without_activating_sales
+- PASS - recommended_owner_decision_nowrite: recommended=prepare_controlled_beta_activation_packet_nowrite
+- PASS - next_safe_action_nowrite: next=prepare_controlled_beta_activation_packet_nowrite
+- PASS - decision_option_continue_nowrite_only: decision option present
+- PASS - decision_option_prepare_controlled_beta_activation_packet_nowrite: decision option present
+- PASS - decision_option_stop_commercial_path: decision option present
+- PASS - review_section_owner_commercial_decision: review section present
+- PASS - review_section_fiscal_admin: review section present
+- PASS - review_section_payments: review section present
+- PASS - review_section_product_listino: review section present
+- PASS - review_section_privacy_data: review section present
+- PASS - review_section_production_api_keys: review section present
+- PASS - review_section_cost_support_security: review section present
+- PASS - machine_status_review_pack_ready: status=owner_review_pack_ready_nowrite
+- PASS - machine_decision_review_only: decision=review_only
+- PASS - machine_support_code: support=OWNER_REVIEW_PACK_READY_NOWRITE
+- PASS - machine_recommended_owner_decision: recommended=prepare_controlled_beta_activation_packet_nowrite
+- PASS - machine_flags_false: machine flags false
+- PASS - machine_credits_zero: credits=0
+- PASS - md_contains_Non_e'_una_approvazione: phrase=Non e' una approvazione
+- PASS - md_contains_NOT_YET_OWNER_REVIEW_REQUIRED: phrase=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - md_contains_Owner_review_meeting_pack_NoWrite: phrase=Owner review meeting pack NoWrite
+- PASS - md_contains_Obiettivo_della_review: phrase=Obiettivo della review
+- PASS - md_contains_Decisioni_da_prendere: phrase=Decisioni da prendere
+- PASS - md_contains_Decisione_proposta_per_oggi: phrase=Decisione proposta per oggi
+- PASS - md_contains_Check_finale_prima_di_qualsiasi_futura_attivazione: phrase=Check finale prima di qualsiasi futura attivazione
+- PASS - md_contains_Output_macchina_corrente: phrase=Output macchina corrente
+- PASS - forbidden_absent_"activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"payment_method_collection_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issuance_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_customer_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"personal_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"external_outreach_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"marketplace_publication_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_executed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_beta_a_pagamento_approvata: forbidden pattern absent
+- PASS - forbidden_absent_go-live_commerciale_approvato: forbidden pattern absent
+- PASS - forbidden_absent_pagamento_approvato: forbidden pattern absent
+- PASS - forbidden_absent_fattura_approvata: forbidden pattern absent
+- PASS - forbidden_absent_chiave_production_approvata: forbidden pattern absent
+- PASS - forbidden_absent_chiave_di_produzione_approvata: forbidden pattern absent
+- PASS - brain_next_was_meeting_pack: brain next=prepare_owner_review_meeting_pack_nowrite
+- PASS - gap_current_result_not_yet: gap result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - alignment_probe_success: alignment success=True; failed=0
