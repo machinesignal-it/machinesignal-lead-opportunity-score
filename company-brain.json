@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "company_brain_version": "2026-06-18-internal-v14",
+  "company_brain_version": "2026-06-18-internal-v15",
   "updated_at": "2026-06-18",
   "status": "internal_operating_brain",
   "primary_customer_interface": "machine",
@@ -10,7 +10,8 @@
     "graph": "company-brain-graph.json",
     "catalog": "product-catalog.json",
     "public_sandbox_docs": "sandbox-public-docs.json",
-    "final_owner_review_gap_report": "private-evaluator-pack/final_owner_review_gap_report_nowrite_20260618.md"
+    "final_owner_review_gap_report": "private-evaluator-pack/final_owner_review_gap_report_nowrite_20260618.md",
+    "final_activation_decision_record": "private-evaluator-pack/final_activation_decision_record_nowrite_20260618.md"
   },
   "identity": {
     "name": "MachineSignal",
@@ -28,7 +29,7 @@
     "phase": "technical-sandbox-complete-current-scope",
     "technical_sandbox": "complete_for_current_scope",
     "advisor_gate_setup": "complete_for_current_scope",
-    "current_safe_workstream": "final_owner_review_gap_report_aligned",
+    "current_safe_workstream": "final_activation_decision_record_aligned",
     "technical_sandbox_tests_estimate_percent": 100,
     "pre_go_live_readiness_estimate_percent": 95,
     "commercial_go_live_readiness_estimate_percent": 78,
@@ -155,8 +156,18 @@
       "activation_allowed": false,
       "meaning_it": "Il report finale dei gap e' stato creato e validato. Conferma che MachineSignal e' vicino alla beta controllata, ma non e' ancora attivabile: restano bloccati pagamenti, fatture, metodi di pagamento, chiavi production, dati reali/personali, outreach e pubblicazioni marketplace/MCP."
     },
-    "last_completed_safe_action": "align_company_brain_dashboard_with_final_gap_report",
-    "next_safe_action": "prepare_owner_review_meeting_pack_nowrite"
+    "final_activation_decision_record": {
+      "evidence": "final_activation_decision_record_nowrite_20260618",
+      "probe": "80_checks_0_failed",
+      "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+      "decision": "NOT_YET_OWNER_REVIEW_REQUIRED",
+      "classification": "review_required_before_any_activation",
+      "activation_allowed": false,
+      "owner_signature_present": false,
+      "meaning_it": "Il record finale di activation decision e' stato creato e validato. Lo stato corrente non e' GO: serve ancora review proprietario e chiusura dei gate prima di qualsiasi attivazione."
+    },
+    "last_completed_safe_action": "align_company_brain_dashboard_with_final_activation_decision_record",
+    "next_safe_action": "prepare_owner_summary_nowrite"
   },
   "advisor_gate": {
     "status": "complete_for_current_scope",
@@ -463,6 +474,6 @@
     "start_paid_commercial_activity": false,
     "paid_beta_activation": "blocked_until_owner_approves_red_gates_and_operational_conditions_are_resolved",
     "owner_decision_current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
-    "next_recommended_action": "Prepare an owner review meeting pack NoWrite from the final gap report. Do not enable payments, invoices, production key issuance, real data, outreach or public marketplace/MCP publication."
+    "next_recommended_action": "Prepare an owner summary NoWrite from the final activation decision record. Keep the current result NOT_YET_OWNER_REVIEW_REQUIRED and do not enable payments, invoices, production key issuance, real data, outreach or public marketplace/MCP publication."
   }
 }

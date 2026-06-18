@@ -19,6 +19,16 @@
     "activation_allowed": false,
     "meaning": "final gap report created and validated; MachineSignal is commercially close but not activatable"
   },
+  "final_activation_decision_record": {
+    "evidence": "final_activation_decision_record_nowrite_20260618",
+    "probe": "80_checks_0_failed",
+    "current_result": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "decision": "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "classification": "review_required_before_any_activation",
+    "activation_allowed": false,
+    "owner_signature_present": false,
+    "meaning": "final activation decision record created and validated; current state is not GO and activation remains blocked"
+  },
   "dashboard": [
     {
       "area": "technical_sandbox",
@@ -301,6 +311,6 @@
       ]
     }
   ],
-  "last_completed_safe_action": "align_company_brain_dashboard_with_final_gap_report",
-  "next_safe_action": "prepare_owner_review_meeting_pack_nowrite"
+  "last_completed_safe_action": "align_company_brain_dashboard_with_final_activation_decision_record",
+  "next_safe_action": "prepare_owner_summary_nowrite"
 }

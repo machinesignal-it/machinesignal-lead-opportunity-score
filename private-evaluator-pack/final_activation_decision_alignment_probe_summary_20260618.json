@@ -1,0 +1,27 @@
+﻿{
+    "document":  "final_activation_decision_alignment_probe_summary",
+    "date":  "2026-06-18",
+    "passed":  41,
+    "failed":  0,
+    "success":  true,
+    "company_brain_version":  "2026-06-18-internal-v15",
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "final_activation_decision":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "dashboard_counts":  {
+                             "green":  3,
+                             "yellow":  12,
+                             "red":  1
+                         },
+    "final_decision":  {
+                           "paid_beta_preparation":  "go",
+                           "paid_beta_activation":  "no_go",
+                           "commercial_go_live":  "no_go"
+                       },
+    "last_completed_safe_action":  "align_company_brain_dashboard_with_final_activation_decision_record",
+    "next_safe_action":  "prepare_owner_summary_nowrite",
+    "failed_checks":  [
+
+                      ]
+}
