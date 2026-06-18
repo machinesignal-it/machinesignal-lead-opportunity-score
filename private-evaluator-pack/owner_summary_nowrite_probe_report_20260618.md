@@ -1,0 +1,89 @@
+﻿# Owner summary NoWrite probe
+
+Date: 2026-06-18
+
+Passed: 82
+Failed: 0
+
+- PASS - status_is_owner_summary: status=owner_summary_ready_nowrite_not_signed_not_activated
+- PASS - not_approval_not_signature: approval/signature false
+- PASS - activation_flags_false: activation flags false
+- PASS - money_flags_false: money flags false
+- PASS - production_data_distribution_flags_false: production/data/distribution flags false
+- PASS - current_result_not_yet: current_result=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - classification_review_required: classification=review_required_before_any_activation
+- PASS - source_brain_v15: source=2026-06-18-internal-v15
+- PASS - source_alignment_probe: source alignment=41_checks_0_failed
+- PASS - alignment_summary_success: alignment success=True
+- PASS - dashboard_counts_3_12_1: counts=3/12/1
+- PASS - completed_artifact_final_owner_review_gap_report: artifact present
+- PASS - completed_artifact_owner_review_meeting_pack: artifact present
+- PASS - completed_artifact_controlled_beta_activation_packet: artifact present
+- PASS - completed_artifact_controlled_beta_blocking_simulations: artifact present
+- PASS - completed_artifact_controlled_beta_simulation_readiness_report: artifact present
+- PASS - completed_artifact_owner_decision_readiness_packet: artifact present
+- PASS - completed_artifact_owner_approval_form: artifact present
+- PASS - completed_artifact_activation_review_packet: artifact present
+- PASS - completed_artifact_final_activation_decision_record: artifact present
+- PASS - completed_artifact_company_brain_v15_dashboard_alignment: artifact present
+- PASS - simulation_results_all_true: simulation results safe
+- PASS - still_blocked_paid_beta_activation: blocked item present
+- PASS - still_blocked_commercial_go_live: blocked item present
+- PASS - still_blocked_real_payments: blocked item present
+- PASS - still_blocked_invoices: blocked item present
+- PASS - still_blocked_payment_method_collection: blocked item present
+- PASS - still_blocked_production_api_keys: blocked item present
+- PASS - still_blocked_real_customer_data: blocked item present
+- PASS - still_blocked_personal_data: blocked item present
+- PASS - still_blocked_external_outreach: blocked item present
+- PASS - still_blocked_marketplace_publication: blocked item present
+- PASS - still_blocked_hosted_public_mcp: blocked item present
+- PASS - still_blocked_mcp_registry_publication: blocked item present
+- PASS - still_blocked_subscriptions_or_auto_renewals: blocked item present
+- PASS - missing_before_real_decision_explicit_owner_signature: missing item present
+- PASS - missing_before_real_decision_fiscal_admin_choice: missing item present
+- PASS - missing_before_real_decision_payment_invoice_rules: missing item present
+- PASS - missing_before_real_decision_final_privacy_data_texts: missing item present
+- PASS - missing_before_real_decision_product_price_limits_credit_confirmation: missing item present
+- PASS - missing_before_real_decision_production_api_key_policy: missing item present
+- PASS - missing_before_real_decision_cost_cap_kill_switch_implementation: missing item present
+- PASS - missing_before_real_decision_support_escalation: missing item present
+- PASS - missing_before_real_decision_security_incident_procedure: missing item present
+- PASS - missing_before_real_decision_distribution_channel_decision: missing item present
+- PASS - machine_status: status=owner_summary_ready_nowrite
+- PASS - machine_decision_not_yet: decision=NOT_YET_OWNER_REVIEW_REQUIRED
+- PASS - machine_signature_activation_false: machine activation/signature false
+- PASS - machine_flags_false: machine flags false
+- PASS - machine_counts_3_12_1: machine counts ok
+- PASS - machine_support_code: support=OWNER_SUMMARY_READY_NOWRITE
+- PASS - next_safe_action_owner_checklist: next=prepare_owner_action_checklist_nowrite
+- PASS - md_contains_Owner_summary_NoWrite: phrase=Owner summary NoWrite
+- PASS - md_contains_non_firmata,_non_attivata: phrase=non firmata, non attivata
+- PASS - md_contains_Non_ancora._Serve_review_proprietario_prima_di_qualsiasi_attivazione.: phrase=Non ancora. Serve review proprietario prima di qualsiasi attivazione.
+- PASS - md_contains_Cosa_e'_stato_completato: phrase=Cosa e' stato completato
+- PASS - md_contains_Cosa_hanno_dimostrato_i_test: phrase=Cosa hanno dimostrato i test
+- PASS - md_contains_Cosa_resta_bloccato: phrase=Cosa resta bloccato
+- PASS - md_contains_Cosa_manca_prima_di_una_decisione_reale: phrase=Cosa manca prima di una decisione reale
+- PASS - md_contains_owner_action_checklist_NoWrite: phrase=owner action checklist NoWrite
+- PASS - md_contains_Risposta_macchina_corrente: phrase=Risposta macchina corrente
+- PASS - forbidden_absent_"activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"payment_method_collection_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issuance_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_customer_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"personal_data_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"external_outreach_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"marketplace_publication_allowed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"owner_signature_present":_true: forbidden pattern absent
+- PASS - forbidden_absent_"paid_beta_activation":_true: forbidden pattern absent
+- PASS - forbidden_absent_"commercial_go_live":_true: forbidden pattern absent
+- PASS - forbidden_absent_"real_payment_executed":_true: forbidden pattern absent
+- PASS - forbidden_absent_"invoice_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_"production_key_issued":_true: forbidden pattern absent
+- PASS - forbidden_absent_beta_a_pagamento_approvata: forbidden pattern absent
+- PASS - forbidden_absent_go-live_commerciale_approvato: forbidden pattern absent
+- PASS - forbidden_absent_pagamento_approvato: forbidden pattern absent
+- PASS - forbidden_absent_fattura_approvata: forbidden pattern absent

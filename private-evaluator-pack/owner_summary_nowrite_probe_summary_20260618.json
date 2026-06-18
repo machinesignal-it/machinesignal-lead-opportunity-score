@@ -1,0 +1,20 @@
+﻿{
+    "document":  "owner_summary_nowrite_probe_summary",
+    "date":  "2026-06-18",
+    "target":  "owner_summary_nowrite_20260618",
+    "passed":  82,
+    "failed":  0,
+    "success":  true,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "dashboard_counts":  {
+                             "green":  3,
+                             "yellow":  12,
+                             "red":  1
+                         },
+    "next_safe_action":  "prepare_owner_action_checklist_nowrite",
+    "failed_checks":  [
+
+                      ]
+}
