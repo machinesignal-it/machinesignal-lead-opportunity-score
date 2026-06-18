@@ -1,0 +1,146 @@
+{
+  "document": "beta_credit_refund_policy",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_internal_policy",
+  "commercial_activation": false,
+  "real_monetary_refunds": false,
+  "summary_it": "Un credito si consuma solo quando la macchina cliente riceve un output valido, tracciabile e utilizzabile per il prodotto acquistato. In beta il rimborso è solo tecnico: ripristino credito, non rimborso monetario.",
+  "base_rule": {
+    "it": "Il credito viene consumato solo se il prodotto è riconosciuto, la richiesta è valida, l'output contiene i campi obbligatori, lo status finale è utilizzabile, il request_id è registrato e il risultato non è duplicato."
+  },
+  "does_not_authorize": [
+    "real_payments",
+    "invoices",
+    "monetary_refunds",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "commercial_go_live"
+  ],
+  "consume_when": [
+    "valid_usable_output",
+    "complete_product_contract",
+    "tracked_request_id",
+    "non_duplicate_result",
+    "explainable_consumption_reason"
+  ],
+  "do_not_consume_when": [
+    "duplicate_record",
+    "invalid_domain",
+    "missing_required_fields",
+    "technical_error",
+    "fallback_only_output",
+    "insufficient_signal_for_product_contract",
+    "blocked_by_beta_guardrails",
+    "product_not_available"
+  ],
+  "restore_credit_when": [
+    "credit_charged_on_incomplete_output",
+    "credit_charged_on_technical_error",
+    "credit_charged_on_duplicate",
+    "credit_charged_on_unavailable_product",
+    "credit_charged_without_valid_ledger_event",
+    "probe_finds_contract_mismatch"
+  ],
+  "product_rules": [
+    {
+      "product_code": "target_discovery",
+      "consumes_it": "Consuma quando viene consegnato un target coerente dentro un pack attivato con pre-check positivo.",
+      "does_not_consume_it": "Non consuma se il pre-check dice che non si possono produrre 250 target coerenti.",
+      "note_it": "In caso di mercato troppo piccolo si propongono alternative, non si forza il consumo."
+    },
+    {
+      "product_code": "score_pack_1k",
+      "consumes_it": "Consuma quando viene prodotto uno score valido per un record unico e analizzabile.",
+      "does_not_consume_it": "Non consuma per duplicati, domini invalidi, record non analizzabili o errori tecnici.",
+      "note_it": "Il pack termina dopo 1000 score validi."
+    },
+    {
+      "product_code": "domain_enrichment",
+      "consumes_it": "Consuma quando viene prodotta una decisione completata: dominio verificato, candidato non affidabile o nessun dominio affidabile.",
+      "does_not_consume_it": "Non consuma su input duplicato, input insufficiente, errore tecnico o impossibilità di verificare con criteri minimi.",
+      "note_it": "Non promette che ogni target avrà un dominio. Promette una decisione tracciata."
+    },
+    {
+      "product_code": "deep_analysis",
+      "consumes_it": "Consuma quando l'analisi contiene evidenza commerciale, matrice decisionale, risk flag e next machine call.",
+      "does_not_consume_it": "Non consuma se i segnali sono insufficienti per una deep analysis completa.",
+      "note_it": "Il sistema deve restituire un motivo di esclusione."
+    },
+    {
+      "product_code": "action_pack",
+      "consumes_it": "Consuma quando viene creato un payload CRM/workflow completo e azionabile.",
+      "does_not_consume_it": "Non consuma se il lead non ha abbastanza segnale per un'azione sensata o sicura.",
+      "note_it": "Serve approval gate, anche se il cliente è una macchina."
+    },
+    {
+      "product_code": "opportunity_feed",
+      "consumes_it": "Consuma quando viene consegnata una scansione programmata con opportunità coerenti o un market coverage report utile.",
+      "does_not_consume_it": "Non consuma se il sistema fallisce la consegna per errore tecnico.",
+      "note_it": "Non si riempie il feed con target deboli solo per consumare."
+    },
+    {
+      "product_code": "api_starter",
+      "consumes_it": "Consuma quando un endpoint produce output valido secondo il prodotto chiamato.",
+      "does_not_consume_it": "Non consuma per errori tecnici, input non valido, output incompleto o richiesta bloccata dai guardrail.",
+      "note_it": "Le quote mensili seguono sempre la regola output valido."
+    },
+    {
+      "product_code": "api_pro",
+      "consumes_it": "Consuma quando un endpoint produce output valido secondo il prodotto chiamato.",
+      "does_not_consume_it": "Non consuma per errori tecnici, input non valido, output incompleto o richiesta bloccata dai guardrail.",
+      "note_it": "Le quote mensili seguono sempre la regola output valido."
+    }
+  ],
+  "ledger_required_fields": [
+    "event_id",
+    "timestamp",
+    "customer_id_or_sandbox_customer_id",
+    "request_id",
+    "product_code",
+    "operation_type",
+    "input_hash",
+    "output_status",
+    "credits_before",
+    "credits_delta",
+    "credits_after",
+    "consumption_reason",
+    "non_consumption_reason",
+    "refund_reason",
+    "policy_version",
+    "environment"
+  ],
+  "output_statuses": [
+    "valid_output",
+    "invalid_input",
+    "duplicate",
+    "insufficient_signal",
+    "technical_error",
+    "blocked_by_policy",
+    "not_available_in_beta",
+    "disputed",
+    "credit_restored"
+  ],
+  "accounting_statuses": [
+    "consumed",
+    "not_consumed",
+    "restored",
+    "pending_review"
+  ],
+  "owner_approval_required_for": [
+    "credit_refund_policy",
+    "deduplication_window",
+    "minimum_confidence_thresholds",
+    "dispute_rules",
+    "escalation_cases",
+    "conversion_from_sandbox_credit_to_commercial_credit"
+  ],
+  "dashboard_effect": {
+    "credit_refund_policy": "red_to_yellow_candidate",
+    "product_listino_approval": "partial_support",
+    "reason_it": "La policy crea una bozza verificabile, ma non basta per il verde senza approvazione proprietario e test ledger."
+  }
+}

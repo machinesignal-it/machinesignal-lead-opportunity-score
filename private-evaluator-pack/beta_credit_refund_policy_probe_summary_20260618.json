@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "beta_credit_refund_policy",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  78,
+    "total":  78,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Policy crediti/rimborsi beta creata. Definisce consumo, non consumo e ripristino crediti. Nessun pagamento reale o rimborso monetario autorizzato."
+}
