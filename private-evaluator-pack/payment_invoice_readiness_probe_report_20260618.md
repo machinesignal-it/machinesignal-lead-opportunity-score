@@ -1,0 +1,140 @@
+﻿# Report controllo Payment/Invoice Readiness
+
+Data controllo: 2026-06-18
+
+Esito: SUPERATO
+
+Controlli superati: 123/123
+
+Sintesi:
+
+- Il documento payment/invoice e' una bozza interna, non attivazione pagamenti.
+- Non autorizza checkout live, carte, incassi, fatture o abbonamenti reali.
+- Definisce stati ammessi/bloccati, risposta macchina, provider, fatture e riconciliazione.
+- Propone payment_invoice_readiness come candidato giallo, non come gate verde.
+
+Dettaglio controlli:
+
+- [OK] Documento italiano: Il report deve essere in italiano.
+- [OK] Stato bozza interna: Deve essere una bozza interna, non attivazione.
+- [OK] Attivazione commerciale falsa: Non deve autorizzare attivazione commerciale.
+- [OK] Live payment non ammesso: Non deve autorizzare pagamenti reali.
+- [OK] Live checkout non ammesso: Non deve autorizzare checkout live.
+- [OK] Raccolta metodo pagamento non ammessa: Non deve raccogliere carte o metodi di pagamento.
+- [OK] Fattura non ammessa: Non deve generare fatture reali.
+- [OK] Abbonamento reale non ammesso: Non deve attivare abbonamenti reali.
+- [OK] Stato ammesso presente: sandbox_purchase_intent: Questo stato deve essere ammesso solo in sandbox/preparazione.
+- [OK] Stato ammesso presente: payment_test_intent: Questo stato deve essere ammesso solo in sandbox/preparazione.
+- [OK] Stato ammesso presente: payment_test_reconciliation: Questo stato deve essere ammesso solo in sandbox/preparazione.
+- [OK] Stato ammesso presente: blocked_live_payment_response: Questo stato deve essere ammesso solo in sandbox/preparazione.
+- [OK] Stato ammesso presente: ledger_mapping_draft: Questo stato deve essere ammesso solo in sandbox/preparazione.
+- [OK] Stato ammesso presente: provider_checklist_draft: Questo stato deve essere ammesso solo in sandbox/preparazione.
+- [OK] Stato bloccato presente: live_payment: Questo stato deve restare bloccato.
+- [OK] Stato bloccato presente: live_checkout: Questo stato deve restare bloccato.
+- [OK] Stato bloccato presente: payment_method_collection: Questo stato deve restare bloccato.
+- [OK] Stato bloccato presente: invoice_generation: Questo stato deve restare bloccato.
+- [OK] Stato bloccato presente: subscription_activation: Questo stato deve restare bloccato.
+- [OK] Stato bloccato presente: live_payment_provider_keys: Questo stato deve restare bloccato.
+- [OK] Stato bloccato presente: real_card_data: Questo stato deve restare bloccato.
+- [OK] Stato bloccato presente: real_invoice_document: Questo stato deve restare bloccato.
+- [OK] Stato bloccato presente: real_refund_execution: Questo stato deve restare bloccato.
+- [OK] Risposta bloccata status corretto: La macchina deve ricevere uno stato bloccato.
+- [OK] Risposta bloccata stop: La decisione deve essere stop.
+- [OK] Crediti consumati zero: Nessun credito deve essere consumato.
+- [OK] Pagamento falso: Nessun pagamento reale.
+- [OK] Metodo pagamento non raccolto: Nessun metodo di pagamento raccolto.
+- [OK] Fattura falsa: Nessuna fattura.
+- [OK] Abbonamento falso: Nessun abbonamento reale.
+- [OK] Escalation proprietario richiesta: Serve decisione proprietario.
+- [OK] Support code corretto: Il codice deve essere stabile.
+- [OK] Decisione provider presente: candidate_provider: La checklist provider deve includere questo punto.
+- [OK] Decisione provider presente: test_mode_and_live_mode_separation: La checklist provider deve includere questo punto.
+- [OK] Decisione provider presente: owner_who_can_switch_test_to_live: La checklist provider deve includere questo punto.
+- [OK] Decisione provider presente: secret_storage_location: La checklist provider deve includere questo punto.
+- [OK] Decisione provider presente: key_rotation_and_revocation: La checklist provider deve includere questo punto.
+- [OK] Decisione provider presente: allowed_webhooks: La checklist provider deve includere questo punto.
+- [OK] Decisione provider presente: valid_webhook_events: La checklist provider deve includere questo punto.
+- [OK] Decisione provider presente: provider_to_internal_ledger_reconciliation: La checklist provider deve includere questo punto.
+- [OK] Decisione provider presente: failure_chargeback_refund_handling: La checklist provider deve includere questo punto.
+- [OK] Decisione provider presente: fraud_and_abuse_limits: La checklist provider deve includere questo punto.
+- [OK] Decisione fattura presente: whether_and_when_to_issue_invoice_or_document: La checklist fattura deve includere questo punto.
+- [OK] Decisione fattura presente: issuer_identity: La checklist fattura deve includere questo punto.
+- [OK] Decisione fattura presente: mandatory_billing_data: La checklist fattura deve includere questo punto.
+- [OK] Decisione fattura presente: vat_and_customer_country_rule: La checklist fattura deve includere questo punto.
+- [OK] Decisione fattura presente: issue_timing: La checklist fattura deve includere questo punto.
+- [OK] Decisione fattura presente: credit_purchase_vs_credit_consumption_relation: La checklist fattura deve includere questo punto.
+- [OK] Decisione fattura presente: credit_note_or_recredit_rule: La checklist fattura deve includere questo punto.
+- [OK] Decisione fattura presente: document_retention: La checklist fattura deve includere questo punto.
+- [OK] Decisione fattura presente: numbering_and_audit_trail: La checklist fattura deve includere questo punto.
+- [OK] Campo riconciliazione presente: customer_id: La riconciliazione deve includere questo campo.
+- [OK] Campo riconciliazione presente: order_id: La riconciliazione deve includere questo campo.
+- [OK] Campo riconciliazione presente: product_id: La riconciliazione deve includere questo campo.
+- [OK] Campo riconciliazione presente: credits_purchased: La riconciliazione deve includere questo campo.
+- [OK] Campo riconciliazione presente: credits_consumed: La riconciliazione deve includere questo campo.
+- [OK] Campo riconciliazione presente: payment_id: La riconciliazione deve includere questo campo.
+- [OK] Campo riconciliazione presente: payment_status: La riconciliazione deve includere questo campo.
+- [OK] Campo riconciliazione presente: invoice_id: La riconciliazione deve includere questo campo.
+- [OK] Campo riconciliazione presente: invoice_status: La riconciliazione deve includere questo campo.
+- [OK] Campo riconciliazione presente: ledger_event_id: La riconciliazione deve includere questo campo.
+- [OK] Campo riconciliazione presente: refund_or_recredit_id: La riconciliazione deve includere questo campo.
+- [OK] Controllo prima del verde presente: fiscal_admin_readiness_approved: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: payment_provider_selected: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: test_mode_separated_from_live_mode: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: live_keys_absent_from_repository: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: test_webhooks_verified: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: no_real_card_in_sandbox: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: real_invoice_process_defined: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: minimum_billing_profile_implemented: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: orders_credits_payments_invoices_reconciliation_tested: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: blocked_responses_verified: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: payment_kill_switch_present: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: refund_and_recredit_policy_approved: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: explicit_owner_approval: Il gate verde deve richiedere questo controllo.
+- [OK] Controllo prima del verde presente: company_brain_and_dashboard_updated: Il gate verde deve richiedere questo controllo.
+- [OK] Azione agente ammessa: prepare_payment_invoice_architecture: Gli agenti devono poter preparare senza attivare.
+- [OK] Azione agente ammessa: simulate_purchase_intent: Gli agenti devono poter preparare senza attivare.
+- [OK] Azione agente ammessa: simulate_payment_test_intent: Gli agenti devono poter preparare senza attivare.
+- [OK] Azione agente ammessa: verify_payment_executed_false: Gli agenti devono poter preparare senza attivare.
+- [OK] Azione agente ammessa: verify_invoice_issued_false: Gli agenti devono poter preparare senza attivare.
+- [OK] Azione agente ammessa: prepare_ledger_mapping: Gli agenti devono poter preparare senza attivare.
+- [OK] Azione agente ammessa: propose_reconciliation_fields: Gli agenti devono poter preparare senza attivare.
+- [OK] Azione agente ammessa: prepare_provider_checklist: Gli agenti devono poter preparare senza attivare.
+- [OK] Azione agente ammessa: prepare_italian_reports: Gli agenti devono poter preparare senza attivare.
+- [OK] Divieto agente presente: activate_live_checkout: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: collect_card_or_payment_method: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: execute_real_payment: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: issue_invoice: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: create_real_subscription: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: use_live_keys: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: store_secrets_in_repository: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: change_prices_into_live_commercial_offer: Gli agenti non devono fare questa azione.
+- [OK] Divieto agente presente: treat_simulation_as_real_sale: Gli agenti non devono fare questa azione.
+- [OK] Effetto dashboard candidato giallo: Il documento deve proporre solo candidato giallo.
+- [OK] Prossima azione sandbox/no-write: La prossima azione deve restare no-write/sandbox.
+- [OK] Frase MD presente: non attivazione pagamenti: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: non attivazione fatture: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Regola principale: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Stati ammessi ora: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Cosa deve restituire la macchina se prova a pagare: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Provider di pagamento: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Fatture e documenti fiscali: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Riconciliazione minima: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Controlli minimi prima del verde: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: Gli agenti non possono: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Frase MD presente: da rosso a candidato giallo: Il Markdown deve spiegare chiaramente questo punto.
+- [OK] Nessuna frase pericolosa: "live_payment_allowed": true: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: "live_checkout_allowed": true: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: "payment_method_collection_allowed": true: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: "invoice_generation_allowed": true: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: "subscription_activation_allowed": true: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: pagamento reale attivo: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: checkout reale attivo: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: fattura reale attiva: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: abbonamento reale attivo: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: puoi incassare: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: puoi raccogliere carta: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: puoi emettere fattura: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: payment approved: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: invoice approved: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: checkout approved: Non devono comparire affermazioni di attivazione non autorizzate.
+- [OK] Nessuna frase pericolosa: subscription approved: Non devono comparire affermazioni di attivazione non autorizzate.

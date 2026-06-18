@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "payment_invoice_readiness",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  123,
+    "total":  123,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Payment/Invoice Readiness e\u0027 una bozza interna verificata: prepara checkout, provider, fatture e riconciliazione, ma non autorizza pagamenti, carte, fatture o abbonamenti reali."
+}
