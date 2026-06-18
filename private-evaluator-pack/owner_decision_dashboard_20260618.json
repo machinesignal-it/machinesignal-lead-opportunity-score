@@ -92,9 +92,9 @@
     },
     {
       "area": "security_incident",
-      "status": "red",
-      "meaning": "secret_key_incident_procedure_not_approved",
-      "decision": "block_production_access"
+      "status": "yellow",
+      "meaning": "draft_verified_by_130_checks_but_not_owner_approved_not_final_and_not_production_ready",
+      "decision": "continue_owner_review_security_incident_simulation_before_production_access"
     },
     {
       "area": "distribution_no_outreach",
@@ -151,8 +151,8 @@
   },
   "gate_counts": {
     "green": 3,
-    "yellow": 6,
-    "red": 7
+    "yellow": 7,
+    "red": 6
   },
   "yellow_candidate_evidence": [
     {
@@ -199,7 +199,21 @@
         "nowrite_allowed_blocked_data_test",
         "company_brain_final_update"
       ]
+    },
+    {
+      "area": "security_incident",
+      "evidence": "security_incident_readiness_20260618",
+      "probe": "130_checks_0_failed",
+      "remaining_to_green": [
+        "owner_approval",
+        "final_incident_procedure",
+        "synthetic_incident_test",
+        "secret_handling_procedure",
+        "provider_alert_procedure",
+        "incident_ledger_test",
+        "company_brain_final_update"
+      ]
     }
   ],
-  "next_safe_action": "prepare_security_incident_readiness_or_run_terms_privacy_data_nowrite_classification_test"
+  "next_safe_action": "prepare_distribution_outreach_publication_approval_or_run_security_incident_synthetic_test"
 }

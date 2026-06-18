@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "security_candidate_yellow_alignment",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  35,
+    "total":  35,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Dashboard aggiornato: 3 verdi, 7 gialli, 6 rossi. Security/incident Ã¨ candidato giallo, non approvato, non finale e non production-ready."
+}

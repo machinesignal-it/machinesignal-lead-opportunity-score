@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "company_brain_version": "2026-06-18-internal-v6",
+  "company_brain_version": "2026-06-18-internal-v7",
   "updated_at": "2026-06-18",
   "status": "internal_operating_brain",
   "primary_customer_interface": "machine",
@@ -38,8 +38,8 @@
     "date": "2026-06-18",
     "status": "no_write_not_signed_not_activated",
     "green_count": 3,
-    "yellow_count": 6,
-    "red_count": 7,
+    "yellow_count": 7,
+    "red_count": 6,
     "green": [
       "technical_sandbox",
       "advisor_gate_setup",
@@ -51,7 +51,8 @@
       "credit_refund_policy_candidate",
       "cost_cap_kill_switch_candidate",
       "support_escalation_model_candidate",
-      "terms_privacy_data_readiness_candidate"
+      "terms_privacy_data_readiness_candidate",
+      "security_incident_readiness_candidate"
     ],
     "red": [
       "owner_commercial_approval",
@@ -59,7 +60,6 @@
       "payment_invoice_readiness",
       "product_listino_approval",
       "production_api_keys",
-      "security_incident_readiness",
       "distribution_outreach_publication_approval"
     ],
     "candidate_yellow_evidence": [
@@ -86,6 +86,12 @@
         "evidence": "terms_privacy_data_readiness_20260618",
         "probe": "112_checks_0_failed",
         "status": "draft_verified_not_owner_approved_not_final_not_implemented"
+      },
+      {
+        "area": "security_incident_readiness",
+        "evidence": "security_incident_readiness_20260618",
+        "probe": "130_checks_0_failed",
+        "status": "draft_verified_not_owner_approved_not_final_not_production_ready"
       }
     ],
     "recommended_decision_today": "continue_preparing_paid_beta_materials_but_do_not_activate_paid_beta",
@@ -103,7 +109,7 @@
       "mcp_registry_publication",
       "commercial_go_live"
     ],
-    "owner_facing_summary_it": "Preparazione interna consentita. Beta a pagamento non attivabile. Quattro blocchi sono candidati gialli grazie a bozze verificate: policy crediti/rimborsi, cost cap/kill switch, supporto/escalation e terms/privacy/data readiness. Dati reali e personali restano bloccati. Mancano ancora approvazioni e condizioni operative su fiscalita, pagamenti, sicurezza, chiavi production e distribuzione.",
+    "owner_facing_summary_it": "Preparazione interna consentita. Beta a pagamento non attivabile. Cinque blocchi sono candidati gialli grazie a bozze verificate: policy crediti/rimborsi, cost cap/kill switch, supporto/escalation, terms/privacy/data readiness e security/incident readiness. Dati reali, personali, segreti production e chiavi production restano bloccati. Mancano ancora approvazioni e condizioni operative su fiscalita, pagamenti, chiavi production e distribuzione.",
     "next_safe_action": "decide_continue_policy_details_or_pause_for_owner_review"
   },
   "advisor_gate": {

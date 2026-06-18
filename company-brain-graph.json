@@ -1,6 +1,6 @@
 {
   "service": "MachineSignal",
-  "graph_version": "2026-06-18-internal-v6",
+  "graph_version": "2026-06-18-internal-v7",
   "updated_at": "2026-06-18",
   "purpose": "Lightweight graph structure for future Company Brain visualization and agent reasoning.",
   "visualization_status": "planned_not_started",
@@ -51,7 +51,7 @@
       "id": "owner_decision_dashboard_20260618",
       "type": "decision_dashboard",
       "label": "Owner Decision Dashboard 2026-06-18",
-      "description": "Owner-facing dashboard: 3 green gates, 6 yellow preparation items and 7 red blockers; credit/refund, cost cap, support/escalation and terms/privacy/data drafts are verified candidates, paid beta activation remains no-go."
+      "description": "Owner-facing dashboard: 3 green gates, 7 yellow preparation items and 6 red blockers; credit/refund, cost cap, support/escalation, terms/privacy/data and security/incident drafts are verified candidates, paid beta activation remains no-go."
     },
     {
       "id": "blocked_actions",
