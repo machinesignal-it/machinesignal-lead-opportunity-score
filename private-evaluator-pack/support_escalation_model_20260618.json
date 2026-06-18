@@ -1,0 +1,172 @@
+{
+  "document": "support_escalation_model",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_internal_policy",
+  "commercial_activation": false,
+  "summary_it": "Il modello supporto/escalation definisce cosa gli agenti possono risolvere da soli e cosa deve arrivare al proprietario. Il supporto resta machine-first e non abilita pagamenti, fatture, dati reali o go-live.",
+  "does_not_authorize": [
+    "real_payments",
+    "invoices",
+    "monetary_refunds",
+    "payment_method_collection",
+    "production_api_keys",
+    "real_customer_data",
+    "personal_data",
+    "external_outreach",
+    "marketplace_publication",
+    "hosted_public_mcp",
+    "mcp_registry_publication",
+    "commercial_go_live"
+  ],
+  "support_levels": [
+    {
+      "id": "L0",
+      "name_it": "Risposta automatica API",
+      "handled_by": "system_api",
+      "goal_it": "Risolvere senza ticket"
+    },
+    {
+      "id": "L1",
+      "name_it": "Agente supporto automatico",
+      "handled_by": "customer_feedback_agent_orchestrator",
+      "goal_it": "Dare risposta strutturata"
+    },
+    {
+      "id": "L2",
+      "name_it": "Agenti specialisti",
+      "handled_by": "specialist_agents",
+      "goal_it": "Preparare decisione"
+    },
+    {
+      "id": "L3",
+      "name_it": "Proprietario",
+      "handled_by": "owner",
+      "goal_it": "Decidere solo eccezioni"
+    },
+    {
+      "id": "L4",
+      "name_it": "Stop globale",
+      "handled_by": "kill_switch",
+      "goal_it": "Proteggere sistema"
+    }
+  ],
+  "issue_classes": [
+    {
+      "id": "invalid_input",
+      "automatic_response": "credits_consumed_0_schema_hint",
+      "escalation": "none"
+    },
+    {
+      "id": "duplicate",
+      "automatic_response": "credits_consumed_0_original_request_id",
+      "escalation": "none"
+    },
+    {
+      "id": "insufficient_signal",
+      "automatic_response": "credits_consumed_0_recommended_next_step",
+      "escalation": "only_if_repeated"
+    },
+    {
+      "id": "blocked_by_policy",
+      "automatic_response": "stop_credits_consumed_0_policy_code",
+      "escalation": "L2_L3"
+    },
+    {
+      "id": "cost_cap_exceeded",
+      "automatic_response": "stop_or_rate_limit_retry_after_support_code",
+      "escalation": "if_recurrent"
+    },
+    {
+      "id": "technical_error",
+      "automatic_response": "credits_consumed_0_retry_policy",
+      "escalation": "if_consecutive"
+    },
+    {
+      "id": "disputed_output",
+      "automatic_response": "internal_ticket_pending_review",
+      "escalation": "L1_L2"
+    },
+    {
+      "id": "refund_credit_request",
+      "automatic_response": "evaluate_under_credit_policy",
+      "escalation": "L1_L2"
+    },
+    {
+      "id": "production_key_request",
+      "automatic_response": "controlled_refusal",
+      "escalation": "L3"
+    },
+    {
+      "id": "payment_invoice_request",
+      "automatic_response": "controlled_refusal_unapproved_beta",
+      "escalation": "L3"
+    },
+    {
+      "id": "external_publication_request",
+      "automatic_response": "controlled_refusal",
+      "escalation": "L3"
+    },
+    {
+      "id": "security_incident",
+      "automatic_response": "kill_switch_incident_event",
+      "escalation": "L4"
+    }
+  ],
+  "agent_can_resolve_when": [
+    "invalid_input",
+    "duplicate",
+    "credit_not_consumed",
+    "isolated_technical_error",
+    "covered_by_credit_refund_policy",
+    "covered_by_cost_cap_policy",
+    "no_payment_invoice_real_data_personal_data_or_production_key",
+    "no_commercial_terms_change_required"
+  ],
+  "owner_escalation_required_when": [
+    "real_payment_approval_needed",
+    "invoice_needed",
+    "real_or_personal_data_request",
+    "production_key_request",
+    "global_kill_switch_unlock",
+    "potential_cost_above_zero",
+    "repeated_customer_dispute",
+    "policy_listino_terms_change",
+    "marketplace_mcp_registry_publication_request",
+    "security_incident_suspected",
+    "legal_fiscal_reputational_risk"
+  ],
+  "ticket_required_fields": [
+    "ticket_id",
+    "timestamp",
+    "support_level",
+    "support_code",
+    "customer_id_or_sandbox_customer_id",
+    "request_id",
+    "product_code",
+    "issue_class",
+    "credits_consumed",
+    "credit_action",
+    "policy_reference",
+    "current_status",
+    "owner_escalation_required",
+    "next_action",
+    "resolution",
+    "closed_at"
+  ],
+  "forbidden_support_actions": [
+    "promise_monetary_refund",
+    "promise_invoice",
+    "promise_production_key",
+    "accept_real_or_personal_data",
+    "external_email_or_outreach",
+    "change_listino_or_policy_without_approval",
+    "unlock_global_cost_cap_without_approval",
+    "buy_services_or_upgrades",
+    "publish_marketplace_registry_or_hosted_mcp"
+  ],
+  "dashboard_effect": {
+    "support_escalation_model": "red_to_yellow_candidate",
+    "reason_it": "La policy crea una bozza verificabile, ma non basta per il verde senza approvazione proprietario, implementazione ticket/ledger e simulazione con casi sintetici."
+  }
+}

@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "support_escalation_model",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  108,
+    "total":  108,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Modello supporto/escalation creato. I casi normali restano agli agenti; rischio, costi, dati reali/personali, chiavi production e decisioni commerciali scalano al proprietario."
+}
