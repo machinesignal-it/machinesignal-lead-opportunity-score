@@ -1,0 +1,184 @@
+{
+  "service": "MachineSignal",
+  "document": "short_draft_policy_sections_nowrite",
+  "date": "2026-06-18",
+  "status": "short_draft_sections_no_write_not_legal_fiscal_owner_approval_not_activated",
+  "decision": {
+    "paid_beta_preparation": "go",
+    "paid_beta_activation": "no_go",
+    "commercial_go_live": "no_go",
+    "fallback": "DO_NOT_ACTIVATE"
+  },
+  "sections": [
+    {
+      "id": "owner_approval_policy",
+      "draft_rule": "Only the owner can authorize a move from sandbox preparation to controlled paid beta. Agent recommendations technical test success and document completion are not enough.",
+      "current_state": "not_approved",
+      "stop_rule": "paid_beta_blocked",
+      "required_owner_decisions": [
+        "approve_or_reject_paid_beta_activation",
+        "define_scope_and_first_product",
+        "define_maximum_beta_customers",
+        "define_what_remains_blocked",
+        "appoint_stop_and_restart_authority"
+      ]
+    },
+    {
+      "id": "fiscal_admin_policy",
+      "draft_rule": "MachineSignal must not collect money until the fiscal and admin path is clear.",
+      "current_state": "not_approved",
+      "stop_rule": "payments_and_invoices_blocked",
+      "required_owner_decisions": [
+        "fiscal_setup",
+        "invoice_receipt_responsibility",
+        "vat_tax_treatment",
+        "revenue_and_refund_recording",
+        "cost_tracking_owner"
+      ]
+    },
+    {
+      "id": "payment_and_invoice_policy",
+      "draft_rule": "Payments remain disabled until the owner approves the payment model provider invoice receipt process and live mode activation owner.",
+      "current_state": "not_approved",
+      "stop_rule": "live_payment_blocked",
+      "allowed_now": [
+        "payment_architecture_draft",
+        "test_mode_planning",
+        "nowrite_policy_review"
+      ],
+      "blocked_now": [
+        "real_payment",
+        "invoice",
+        "payment_method_collection",
+        "live_checkout"
+      ]
+    },
+    {
+      "id": "terms_of_service_draft",
+      "draft_rule": "The beta terms must explain that MachineSignal provides machine-readable decision support outputs not guaranteed sales revenue legal compliance or perfect data accuracy.",
+      "current_state": "draft_only",
+      "stop_rule": "customer_onboarding_blocked",
+      "must_include": [
+        "beta_nature",
+        "service_limits",
+        "customer_responsibilities",
+        "api_key_responsibility",
+        "usage_limits",
+        "suspension_rules",
+        "disclaimers",
+        "liability_limits"
+      ]
+    },
+    {
+      "id": "privacy_and_data_policy",
+      "draft_rule": "The default data mode remains synthetic or non-personal sandbox test data only.",
+      "current_state": "synthetic_non_personal_only",
+      "stop_rule": "real_and_personal_data_blocked",
+      "allowed_now": [
+        "synthetic_domains",
+        "demo_companies",
+        "non_personal_business_categories",
+        "technical_usage_status_records"
+      ],
+      "blocked_now": [
+        "personal_names",
+        "personal_emails",
+        "individual_phone_numbers",
+        "private_contact_lists",
+        "payment_data",
+        "passwords_or_secrets",
+        "confidential_customer_lists"
+      ]
+    },
+    {
+      "id": "acceptable_use_policy",
+      "draft_rule": "MachineSignal must not be used for spam harassment unlawful targeting scraping personal contact data regulated decisions or bypassing limits.",
+      "current_state": "draft_only",
+      "stop_rule": "production_access_blocked",
+      "forbidden_uses": [
+        "spam_or_automated_outreach_through_machinesignal",
+        "harassment_or_unlawful_targeting",
+        "personal_contact_scraping",
+        "credit_employment_insurance_or_legal_determinations",
+        "resale_as_guaranteed_verified_data",
+        "bypassing_rate_usage_or_cost_controls"
+      ]
+    },
+    {
+      "id": "product_and_listino_policy",
+      "draft_rule": "Every product must state exactly what is sold what is delivered when a credit is consumed and what is not included.",
+      "current_state": "draft_reference",
+      "stop_rule": "paid_offers_blocked",
+      "current_first_product_assumption": {
+        "product": "score_pack_1k",
+        "price_eur": 119,
+        "unit": "1000_valid_scores"
+      }
+    },
+    {
+      "id": "credit_refund_replacement_policy",
+      "draft_rule": "Credits are consumed only when MachineSignal produces a valid usable output for the purchased product.",
+      "current_state": "draft_only",
+      "stop_rule": "paid_credits_blocked",
+      "recommended_beta_rule": "replacement_credits_first_cash_refunds_only_by_explicit_owner_approval"
+    },
+    {
+      "id": "production_api_key_and_access_policy",
+      "draft_rule": "Production API keys remain blocked. If beta is later approved keys must be issued manually scoped capped rotated and revocable.",
+      "current_state": "blocked",
+      "stop_rule": "production_keys_blocked"
+    },
+    {
+      "id": "customer_and_usage_cap_policy",
+      "draft_rule": "The first controlled beta must remain small enough to be stopped quickly.",
+      "current_state": "not_approved",
+      "stop_rule": "production_keys_blocked",
+      "recommended_first_cap": "3_to_5_beta_customers_score_pack_1k_first_no_auto_renewal"
+    },
+    {
+      "id": "cost_cap_and_kill_switch_policy",
+      "draft_rule": "The beta must stop automatically or manually when cost write usage or risk thresholds are reached.",
+      "current_state": "not_approved",
+      "stop_rule": "production_keys_blocked"
+    },
+    {
+      "id": "support_and_escalation_policy",
+      "draft_rule": "Support remains machine-first and bounded. The API should return support states and escalation flags before creating human-heavy support work.",
+      "current_state": "draft_only",
+      "stop_rule": "paid_onboarding_blocked"
+    },
+    {
+      "id": "security_and_incident_policy",
+      "draft_rule": "Secrets API keys and credentials must never be committed to public files. Incidents must be logged contained and escalated.",
+      "current_state": "draft_only",
+      "stop_rule": "production_access_blocked"
+    },
+    {
+      "id": "distribution_and_no_outreach_policy",
+      "draft_rule": "MachineSignal should remain machine-first. Discovery can happen through documentation and machine-readable files but uncontrolled public publication and human outreach remain blocked.",
+      "current_state": "blocked",
+      "stop_rule": "external_publication_and_outreach_blocked",
+      "allowed_now": [
+        "internal_docs",
+        "github_docs",
+        "machine_readable_files",
+        "sandbox_documentation"
+      ],
+      "blocked_now": [
+        "public_paid_marketplace_publication",
+        "hosted_public_mcp_launch",
+        "mcp_registry_submission",
+        "outreach_to_people_or_companies",
+        "external_email_campaigns"
+      ]
+    }
+  ],
+  "current_priority": [
+    "fiscal_admin",
+    "payment_and_invoice",
+    "terms_privacy_data",
+    "production_key_and_usage_caps",
+    "cost_cap_and_kill_switch"
+  ],
+  "next_safe_action": "prepare_compact_owner_review_packet_with_unresolved_policy_questions_no_write_no_activation"
+}
