@@ -98,9 +98,9 @@
     },
     {
       "area": "distribution_no_outreach",
-      "status": "red",
-      "meaning": "marketplace_mcp_and_outreach_boundaries_not_approved",
-      "decision": "block_publication_outreach"
+      "status": "yellow",
+      "meaning": "draft_verified_by_121_checks_but_not_owner_approved_no_external_publication_no_outreach",
+      "decision": "continue_owner_review_distribution_boundary_before_publication_or_outreach"
     }
   ],
   "recommended_defaults_if_beta_later_considered": {
@@ -151,8 +151,8 @@
   },
   "gate_counts": {
     "green": 3,
-    "yellow": 7,
-    "red": 6
+    "yellow": 8,
+    "red": 5
   },
   "yellow_candidate_evidence": [
     {
@@ -213,7 +213,19 @@
         "incident_ledger_test",
         "company_brain_final_update"
       ]
+    },
+    {
+      "area": "distribution_no_outreach",
+      "evidence": "distribution_outreach_publication_approval_20260618",
+      "probe": "121_checks_0_failed",
+      "remaining_to_green": [
+        "owner_approval",
+        "final_distribution_channel_decision",
+        "marketplace_registry_or_hosted_mcp_publication_decision",
+        "external_contact_boundary_confirmation",
+        "company_brain_final_update"
+      ]
     }
   ],
-  "next_safe_action": "prepare_distribution_outreach_publication_approval_or_run_security_incident_synthetic_test"
+  "next_safe_action": "prepare_fiscal_admin_readiness_or_product_listino_owner_review"
 }

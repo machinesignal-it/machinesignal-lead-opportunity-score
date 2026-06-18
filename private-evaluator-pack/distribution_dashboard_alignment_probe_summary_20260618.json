@@ -1,0 +1,11 @@
+﻿{
+    "probe":  "distribution_dashboard_alignment",
+    "date":  "2026-06-18",
+    "status":  "SUPERATO",
+    "passed":  60,
+    "total":  60,
+    "failed":  [
+
+               ],
+    "owner_summary_it":  "Dashboard aggiornato: 3 verdi, 8 gialli, 5 rossi. Distribution/outreach e\u0027 candidato giallo verificato, non approvato. Nessuna pubblicazione esterna o outreach autorizzati."
+}

@@ -20,14 +20,14 @@ MachineSignal is technically ready for the current sandbox scope, but not commer
 | Owner commercial approval | Red | No signed owner decision to activate beta | Block activation |
 | Fiscal/admin path | Red | P.IVA/accounting/invoice path not approved | Block payments |
 | Payment/invoice path | Red | Payment mode and fiscal document process not approved | Block live payment |
-| Terms/privacy/data | Red | Terms, privacy and data rules not approved | Block onboarding and real data |
+| Terms/privacy/data | Yellow | Draft verified by 112 checks, but not owner-approved, not final and not implemented | Continue owner review before onboarding or real data |
 | Product/listino approval | Red | Score Pack 1k is recommended but not owner-approved for sale | Block paid offers |
-| Credit/refund policy | Red | Replacement/refund rules not approved | Block paid credits |
+| Credit/refund policy | Yellow | Draft verified by 78 checks, but not owner-approved and not implemented | Continue owner review and ledger test before paid credits |
 | Production API keys | Red | Key issuance, caps and revocation not approved | Block production keys |
-| Cost cap/kill switch | Red | Cost limits and stop/restart owner not approved | Block production keys |
-| Support/escalation | Red | Paid support model not approved | Block paid onboarding |
-| Security/incident | Red | Secret/key incident procedure not approved | Block production access |
-| Distribution/no outreach | Red | Marketplace, MCP and outreach boundaries not approved | Block publication/outreach |
+| Cost cap/kill switch | Yellow | Draft verified by 95 checks, but not owner-approved and not implemented | Continue owner review and simulation before production keys |
+| Support/escalation | Yellow | Draft verified by 108 checks, but not owner-approved and not implemented | Continue owner review and ticket simulation before paid onboarding |
+| Security/incident | Yellow | Draft verified by 130 checks, but not owner-approved, not final and not production-ready | Continue owner review and incident simulation before production access |
+| Distribution/no outreach | Yellow | Draft verified by 121 checks, but not owner-approved; no external publication or outreach allowed | Continue owner review before publication or outreach |
 
 ## Recommended Decision Today
 
