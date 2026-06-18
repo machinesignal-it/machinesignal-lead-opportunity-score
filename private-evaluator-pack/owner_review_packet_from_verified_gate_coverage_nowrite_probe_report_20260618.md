@@ -1,0 +1,138 @@
+﻿# Owner review packet from verified gate coverage NoWrite probe report
+
+Data: 2026-06-18
+
+Success: True
+Passed: 119
+Failed: 0
+Current result: NOT_YET_OWNER_REVIEW_REQUIRED
+Source coverage probe: 140_checks_0_failed
+Yellow gates with verified NoWrite evidence: 12
+Remaining red gate: owner_commercial_approval
+Activation allowed: False
+Owner signature present: False
+Next safe action: prepare_owner_decision_form_from_review_packet_nowrite
+
+## Failed checks
+None.
+
+## Passed checks
+- json_exists: C:\Users\natal\AppData\Local\Temp\MachineSignal\github_repo_sync_20260530\private-evaluator-pack\owner_review_packet_from_verified_gate_coverage_nowrite_20260618.json
+- markdown_exists: C:\Users\natal\AppData\Local\Temp\MachineSignal\github_repo_sync_20260530\private-evaluator-pack\owner_review_packet_from_verified_gate_coverage_nowrite_20260618.md
+- source_coverage_summary_exists: C:\Users\natal\AppData\Local\Temp\MachineSignal\github_repo_sync_20260530\private-evaluator-pack\remaining_gate_coverage_review_nowrite_probe_summary_20260618.json
+- source_probe_success: source success=True
+- source_probe_140_passed: source passed=140
+- source_probe_zero_failed: source failed=0
+- source_current_result_not_yet: NOT_YET_OWNER_REVIEW_REQUIRED
+- status_exact: owner_review_packet_ready_nowrite_not_signed_not_activated
+- mode_owner_review_only: owner review preparation only
+- current_result_not_yet: NOT_YET_OWNER_REVIEW_REQUIRED
+- source_probe_recorded: 140_checks_0_failed
+- source_yellow_12: yellow=12
+- source_failed_0: failed=0
+- remaining_red_owner: owner_commercial_approval
+- recommended_decision_no_activate: continue_preparing_owner_review_but_do_not_activate_paid_beta
+- test_ready_area_count: count=12
+- owner_decisions_count: count=10
+- recommended_next_form: prepare_owner_decision_form_from_review_packet_nowrite
+- flag_false_is_approval: is_approval=False
+- flag_false_is_owner_signature: is_owner_signature=False
+- flag_false_owner_signature_present: owner_signature_present=False
+- flag_false_activation_allowed: activation_allowed=False
+- flag_false_paid_beta_activation_allowed: paid_beta_activation_allowed=False
+- flag_false_commercial_go_live_allowed: commercial_go_live_allowed=False
+- flag_false_real_payment_allowed: real_payment_allowed=False
+- flag_false_invoice_allowed: invoice_allowed=False
+- flag_false_payment_method_collection_allowed: payment_method_collection_allowed=False
+- flag_false_production_key_issuance_allowed: production_key_issuance_allowed=False
+- flag_false_real_customer_data_allowed: real_customer_data_allowed=False
+- flag_false_personal_data_allowed: personal_data_allowed=False
+- flag_false_external_outreach_allowed: external_outreach_allowed=False
+- flag_false_marketplace_publication_allowed: marketplace_publication_allowed=False
+- flag_false_hosted_public_mcp_allowed: hosted_public_mcp_allowed=False
+- flag_false_mcp_registry_publication_allowed: mcp_registry_publication_allowed=False
+- required_area_terms_privacy_data_readiness: terms_privacy_data_readiness
+- required_area_fiscal_admin_readiness: fiscal_admin_readiness
+- required_area_payment_invoice_readiness: payment_invoice_readiness
+- required_area_product_listino_credits_candidate: product_listino_credits_candidate
+- required_area_credit_refund_policy_candidate: credit_refund_policy_candidate
+- required_area_cost_cap_kill_switch_candidate: cost_cap_kill_switch_candidate
+- required_area_production_api_key_policy_candidate: production_api_key_policy_candidate
+- required_area_security_incident_readiness: security_incident_readiness
+- required_area_support_escalation_model: support_escalation_model
+- required_area_distribution_outreach_publication_boundary: distribution_outreach_publication_boundary
+- required_area_pnl_paid_beta_delta: pnl_paid_beta_delta
+- required_area_policy_pack_skeleton: policy_pack_skeleton
+- required_decision_confirm_whether_to_continue_toward_paid_beta_or_remain_sandbox_only: confirm_whether_to_continue_toward_paid_beta_or_remain_sandbox_only
+- required_decision_confirm_allowed_and_forbidden_data_scope: confirm_allowed_and_forbidden_data_scope
+- required_decision_confirm_price_list_credits_and_refund_conditions: confirm_price_list_credits_and_refund_conditions
+- required_decision_confirm_cost_caps_kill_switch_and_maximum_budget: confirm_cost_caps_kill_switch_and_maximum_budget
+- required_decision_confirm_fiscal_admin_path_before_collecting_money: confirm_fiscal_admin_path_before_collecting_money
+- required_decision_confirm_payment_invoice_rules_before_payment_collection: confirm_payment_invoice_rules_before_payment_collection
+- required_decision_confirm_if_and_when_production_api_keys_can_be_created: confirm_if_and_when_production_api_keys_can_be_created
+- required_decision_confirm_allowed_distribution_channels_without_unauthorized_outreach: confirm_allowed_distribution_channels_without_unauthorized_outreach
+- required_decision_confirm_support_escalation_and_incident_management: confirm_support_escalation_and_incident_management
+- required_decision_sign_separate_activation_authorization_if_owner_decides_to_proceed: sign_separate_activation_authorization_if_owner_decides_to_proceed
+- forbidden_action_listed_activate_paid_beta: activate_paid_beta
+- forbidden_action_listed_commercial_go_live: commercial_go_live
+- forbidden_action_listed_execute_real_payment: execute_real_payment
+- forbidden_action_listed_issue_invoice: issue_invoice
+- forbidden_action_listed_collect_payment_method: collect_payment_method
+- forbidden_action_listed_issue_production_api_key: issue_production_api_key
+- forbidden_action_listed_process_real_customer_data: process_real_customer_data
+- forbidden_action_listed_process_personal_data: process_personal_data
+- forbidden_action_listed_send_external_outreach: send_external_outreach
+- forbidden_action_listed_publish_marketplace_listing: publish_marketplace_listing
+- forbidden_action_listed_launch_hosted_public_mcp: launch_hosted_public_mcp
+- forbidden_action_listed_submit_mcp_registry: submit_mcp_registry
+- forbidden_action_listed_start_real_subscription_or_auto_renewal: start_real_subscription_or_auto_renewal
+- forbidden_action_listed_claim_service_is_live_or_sellable: claim_service_is_live_or_sellable
+- machine_status: owner_review_packet_ready_nowrite
+- machine_decision: owner_review_required_before_any_activation
+- machine_current_result: NOT_YET_OWNER_REVIEW_REQUIRED
+- machine_source_probe: 140_checks_0_failed
+- machine_yellow_12: yellow=12
+- machine_remaining_red_owner: owner_commercial_approval
+- machine_activation_false: activation=False
+- machine_signature_false: signature=False
+- machine_next_form: prepare_owner_decision_form_from_review_packet_nowrite
+- machine_support_code: OWNER_REVIEW_PACKET_READY_NOWRITE
+- flag_false_paid_beta_activation_allowed: paid_beta_activation_allowed=False
+- flag_false_commercial_go_live_allowed: commercial_go_live_allowed=False
+- flag_false_real_payment_allowed: real_payment_allowed=False
+- flag_false_invoice_allowed: invoice_allowed=False
+- flag_false_payment_method_collection_allowed: payment_method_collection_allowed=False
+- flag_false_production_key_issuance_allowed: production_key_issuance_allowed=False
+- flag_false_real_customer_data_allowed: real_customer_data_allowed=False
+- flag_false_personal_data_allowed: personal_data_allowed=False
+- flag_false_external_outreach_allowed: external_outreach_allowed=False
+- flag_false_marketplace_publication_allowed: marketplace_publication_allowed=False
+- flag_false_hosted_public_mcp_allowed: hosted_public_mcp_allowed=False
+- markdown_contains_Owner review packet from verified gate coverage NoWrite: Owner review packet from verified gate coverage NoWrite
+- markdown_contains_non firmato, non approvato, non attivato: non firmato, non approvato, non attivato
+- markdown_contains_non costituisce una firma: non costituisce una firma
+- markdown_contains_MachineSignal ha completato la preparazione NoWrite dei 12 gate gialli: MachineSignal ha completato la preparazione NoWrite dei 12 gate gialli
+- markdown_contains_non ancora attivabile: non ancora attivabile
+- markdown_contains_Cosa resta vietato: Cosa resta vietato
+- markdown_contains_Decisioni che il proprietario dovra' prendere: Decisioni che il proprietario dovra' prendere
+- markdown_contains_continue_preparing_owner_review_but_do_not_activate_paid_beta: continue_preparing_owner_review_but_do_not_activate_paid_beta
+- markdown_contains_prepare_owner_decision_form_from_review_packet_nowrite: prepare_owner_decision_form_from_review_packet_nowrite
+- forbidden_pattern_absent_"activation_allowed": true: "activation_allowed": true
+- forbidden_pattern_absent_"paid_beta_activation_allowed": true: "paid_beta_activation_allowed": true
+- forbidden_pattern_absent_"commercial_go_live_allowed": true: "commercial_go_live_allowed": true
+- forbidden_pattern_absent_"real_payment_allowed": true: "real_payment_allowed": true
+- forbidden_pattern_absent_"invoice_allowed": true: "invoice_allowed": true
+- forbidden_pattern_absent_"payment_method_collection_allowed": true: "payment_method_collection_allowed": true
+- forbidden_pattern_absent_"production_key_issuance_allowed": true: "production_key_issuance_allowed": true
+- forbidden_pattern_absent_"real_customer_data_allowed": true: "real_customer_data_allowed": true
+- forbidden_pattern_absent_"personal_data_allowed": true: "personal_data_allowed": true
+- forbidden_pattern_absent_"external_outreach_allowed": true: "external_outreach_allowed": true
+- forbidden_pattern_absent_"marketplace_publication_allowed": true: "marketplace_publication_allowed": true
+- forbidden_pattern_absent_"hosted_public_mcp_allowed": true: "hosted_public_mcp_allowed": true
+- forbidden_pattern_absent_"mcp_registry_publication_allowed": true: "mcp_registry_publication_allowed": true
+- forbidden_pattern_absent_"owner_signature_present": true: "owner_signature_present": true
+- forbidden_pattern_absent_beta a pagamento attivata: si: beta a pagamento attivata: si
+- forbidden_pattern_absent_go-live commerciale: si: go-live commerciale: si
+- forbidden_pattern_absent_pagamento reale eseguito: pagamento reale eseguito
+- forbidden_pattern_absent_fattura emessa: fattura emessa
+- forbidden_pattern_absent_chiave production emessa: chiave production emessa
