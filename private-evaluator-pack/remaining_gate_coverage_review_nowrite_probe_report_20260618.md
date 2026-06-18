@@ -1,0 +1,159 @@
+﻿# Remaining gate coverage review NoWrite probe report
+
+Data: 2026-06-18
+
+Success: True
+Passed: 140
+Failed: 0
+Current result: NOT_YET_OWNER_REVIEW_REQUIRED
+Yellow gates planned: 12
+Yellow gates with verified NoWrite evidence: 12
+Remaining red gate: owner_commercial_approval
+Activation allowed: False
+Owner signature present: False
+Next safe action: prepare_owner_review_packet_from_verified_gate_coverage_nowrite
+
+## Failed checks
+None.
+
+## Passed checks
+- json_exists: C:\Users\natal\AppData\Local\Temp\MachineSignal\github_repo_sync_20260530\private-evaluator-pack\remaining_gate_coverage_review_nowrite_20260618.json
+- markdown_exists: C:\Users\natal\AppData\Local\Temp\MachineSignal\github_repo_sync_20260530\private-evaluator-pack\remaining_gate_coverage_review_nowrite_20260618.md
+- status_exact: remaining_gate_coverage_verified_nowrite_not_signed_not_activated
+- mode_coverage_only: coverage review only
+- current_result_not_yet: NOT_YET_OWNER_REVIEW_REQUIRED
+- dashboard_green_3: green=3
+- dashboard_yellow_12: yellow=12
+- dashboard_red_1: red=1
+- remaining_red_owner: owner_commercial_approval
+- coverage_planned_12: planned=12
+- coverage_verified_12: verified=12
+- coverage_failed_0: failed=0
+- gate_coverage_count_12: count=12
+- recommended_next_owner_packet: prepare_owner_review_packet_from_verified_gate_coverage_nowrite
+- flag_false_is_approval: is_approval=False
+- flag_false_is_owner_signature: is_owner_signature=False
+- flag_false_owner_signature_present: owner_signature_present=False
+- flag_false_activation_allowed: activation_allowed=False
+- flag_false_paid_beta_activation_allowed: paid_beta_activation_allowed=False
+- flag_false_commercial_go_live_allowed: commercial_go_live_allowed=False
+- flag_false_real_payment_allowed: real_payment_allowed=False
+- flag_false_invoice_allowed: invoice_allowed=False
+- flag_false_payment_method_collection_allowed: payment_method_collection_allowed=False
+- flag_false_production_key_issuance_allowed: production_key_issuance_allowed=False
+- flag_false_real_customer_data_allowed: real_customer_data_allowed=False
+- flag_false_personal_data_allowed: personal_data_allowed=False
+- flag_false_external_outreach_allowed: external_outreach_allowed=False
+- flag_false_marketplace_publication_allowed: marketplace_publication_allowed=False
+- flag_false_hosted_public_mcp_allowed: hosted_public_mcp_allowed=False
+- flag_false_mcp_registry_publication_allowed: mcp_registry_publication_allowed=False
+- required_gate_terms_privacy_data_readiness_candidate: terms_privacy_data_readiness_candidate
+- required_gate_fiscal_admin_readiness_candidate: fiscal_admin_readiness_candidate
+- required_gate_payment_invoice_readiness_candidate: payment_invoice_readiness_candidate
+- required_gate_product_listino_approval_candidate: product_listino_approval_candidate
+- required_gate_credit_refund_policy_candidate: credit_refund_policy_candidate
+- required_gate_cost_cap_kill_switch_candidate: cost_cap_kill_switch_candidate
+- required_gate_production_api_key_readiness_candidate: production_api_key_readiness_candidate
+- required_gate_security_incident_readiness_candidate: security_incident_readiness_candidate
+- required_gate_support_escalation_model_candidate: support_escalation_model_candidate
+- required_gate_distribution_outreach_publication_approval_candidate: distribution_outreach_publication_approval_candidate
+- required_gate_pnl_paid_beta_delta: pnl_paid_beta_delta
+- required_gate_policy_preparation: policy_preparation
+- gate_1_checks_failed_zero: terms_privacy_data_readiness_candidate failed=0
+- gate_1_checks_passed_positive: terms_privacy_data_readiness_candidate passed=112
+- gate_1_checks_total_positive: terms_privacy_data_readiness_candidate total=112
+- gate_1_not_live_status: terms_privacy_data_readiness_candidate status=draft_not_final_not_approved
+- gate_2_checks_failed_zero: fiscal_admin_readiness_candidate failed=0
+- gate_2_checks_passed_positive: fiscal_admin_readiness_candidate passed=99
+- gate_2_checks_total_positive: fiscal_admin_readiness_candidate total=99
+- gate_2_not_live_status: fiscal_admin_readiness_candidate status=draft_not_tax_advice_no_payments_no_invoices
+- gate_3_checks_failed_zero: payment_invoice_readiness_candidate failed=0
+- gate_3_checks_passed_positive: payment_invoice_readiness_candidate passed=123
+- gate_3_checks_total_positive: payment_invoice_readiness_candidate total=123
+- gate_3_not_live_status: payment_invoice_readiness_candidate status=nowrite_test_no_live_payment_no_invoice_no_payment_method_collection
+- gate_4_checks_failed_zero: product_listino_approval_candidate failed=0
+- gate_4_checks_passed_positive: product_listino_approval_candidate passed=154
+- gate_4_checks_total_positive: product_listino_approval_candidate total=154
+- gate_4_not_live_status: product_listino_approval_candidate status=candidate_price_list_not_live_offer
+- gate_5_checks_failed_zero: credit_refund_policy_candidate failed=0
+- gate_5_checks_passed_positive: credit_refund_policy_candidate passed=78
+- gate_5_checks_total_positive: credit_refund_policy_candidate total=78
+- gate_5_not_live_status: credit_refund_policy_candidate status=candidate_policy_not_owner_approved
+- gate_6_checks_failed_zero: cost_cap_kill_switch_candidate failed=0
+- gate_6_checks_passed_positive: cost_cap_kill_switch_candidate passed=95
+- gate_6_checks_total_positive: cost_cap_kill_switch_candidate total=95
+- gate_6_not_live_status: cost_cap_kill_switch_candidate status=candidate_policy_not_live_implementation
+- gate_7_checks_failed_zero: production_api_key_readiness_candidate failed=0
+- gate_7_checks_passed_positive: production_api_key_readiness_candidate passed=113
+- gate_7_checks_total_positive: production_api_key_readiness_candidate total=113
+- gate_7_not_live_status: production_api_key_readiness_candidate status=no_production_key_issued_no_live_traffic_no_secrets
+- gate_8_checks_failed_zero: security_incident_readiness_candidate failed=0
+- gate_8_checks_passed_positive: security_incident_readiness_candidate passed=130
+- gate_8_checks_total_positive: security_incident_readiness_candidate total=130
+- gate_8_not_live_status: security_incident_readiness_candidate status=candidate_procedure_not_production_ready
+- gate_9_checks_failed_zero: support_escalation_model_candidate failed=0
+- gate_9_checks_passed_positive: support_escalation_model_candidate passed=108
+- gate_9_checks_total_positive: support_escalation_model_candidate total=108
+- gate_9_not_live_status: support_escalation_model_candidate status=candidate_process_not_live_support
+- gate_10_checks_failed_zero: distribution_outreach_publication_approval_candidate failed=0
+- gate_10_checks_passed_positive: distribution_outreach_publication_approval_candidate passed=121
+- gate_10_checks_total_positive: distribution_outreach_publication_approval_candidate total=121
+- gate_10_not_live_status: distribution_outreach_publication_approval_candidate status=no_external_publication_no_outreach
+- gate_11_checks_failed_zero: pnl_paid_beta_delta failed=0
+- gate_11_checks_passed_positive: pnl_paid_beta_delta passed=72
+- gate_11_checks_total_positive: pnl_paid_beta_delta total=72
+- gate_11_not_live_status: pnl_paid_beta_delta status=economic_scenario_not_final_price_or_live_offer
+- gate_12_checks_failed_zero: policy_preparation failed=0
+- gate_12_checks_passed_positive: policy_preparation passed=49
+- gate_12_checks_total_positive: policy_preparation total=49
+- gate_12_not_live_status: policy_preparation status=policy_skeleton_not_final_terms
+- forbidden_action_listed_activate_paid_beta: activate_paid_beta
+- forbidden_action_listed_commercial_go_live: commercial_go_live
+- forbidden_action_listed_execute_real_payment: execute_real_payment
+- forbidden_action_listed_issue_invoice: issue_invoice
+- forbidden_action_listed_collect_payment_method: collect_payment_method
+- forbidden_action_listed_issue_production_api_key: issue_production_api_key
+- forbidden_action_listed_process_real_customer_data: process_real_customer_data
+- forbidden_action_listed_process_personal_data: process_personal_data
+- forbidden_action_listed_send_external_outreach: send_external_outreach
+- forbidden_action_listed_publish_marketplace_listing: publish_marketplace_listing
+- forbidden_action_listed_launch_hosted_public_mcp: launch_hosted_public_mcp
+- forbidden_action_listed_submit_mcp_registry: submit_mcp_registry
+- forbidden_action_listed_start_real_subscription_or_auto_renewal: start_real_subscription_or_auto_renewal
+- machine_status: remaining_gate_coverage_verified_nowrite
+- machine_decision: prepare_owner_review_packet_next
+- machine_current_result: NOT_YET_OWNER_REVIEW_REQUIRED
+- machine_yellow_planned_12: planned=12
+- machine_yellow_verified_12: verified=12
+- machine_failed_0: failed=0
+- machine_remaining_red_owner: owner_commercial_approval
+- machine_activation_false: activation=False
+- machine_signature_false: signature=False
+- machine_next_owner_packet: prepare_owner_review_packet_from_verified_gate_coverage_nowrite
+- machine_support_code: REMAINING_GATE_COVERAGE_VERIFIED_NOWRITE
+- markdown_contains_Remaining gate coverage review NoWrite: Remaining gate coverage review NoWrite
+- markdown_contains_non firmata, non approvata, non attivata: non firmata, non approvata, non attivata
+- markdown_contains_I 12 gate gialli hanno una copertura NoWrite verificata: I 12 gate gialli hanno una copertura NoWrite verificata
+- markdown_contains_Non significa pero' che MachineSignal possa andare live o vendere: Non significa pero' che MachineSignal possa andare live o vendere
+- markdown_contains_owner_commercial_approval: owner_commercial_approval
+- markdown_contains_Cosa resta vietato: Cosa resta vietato
+- markdown_contains_prepare_owner_review_packet_from_verified_gate_coverage_nowrite: prepare_owner_review_packet_from_verified_gate_coverage_nowrite
+- forbidden_pattern_absent_"activation_allowed": true: "activation_allowed": true
+- forbidden_pattern_absent_"paid_beta_activation_allowed": true: "paid_beta_activation_allowed": true
+- forbidden_pattern_absent_"commercial_go_live_allowed": true: "commercial_go_live_allowed": true
+- forbidden_pattern_absent_"real_payment_allowed": true: "real_payment_allowed": true
+- forbidden_pattern_absent_"invoice_allowed": true: "invoice_allowed": true
+- forbidden_pattern_absent_"payment_method_collection_allowed": true: "payment_method_collection_allowed": true
+- forbidden_pattern_absent_"production_key_issuance_allowed": true: "production_key_issuance_allowed": true
+- forbidden_pattern_absent_"real_customer_data_allowed": true: "real_customer_data_allowed": true
+- forbidden_pattern_absent_"personal_data_allowed": true: "personal_data_allowed": true
+- forbidden_pattern_absent_"external_outreach_allowed": true: "external_outreach_allowed": true
+- forbidden_pattern_absent_"marketplace_publication_allowed": true: "marketplace_publication_allowed": true
+- forbidden_pattern_absent_"hosted_public_mcp_allowed": true: "hosted_public_mcp_allowed": true
+- forbidden_pattern_absent_"mcp_registry_publication_allowed": true: "mcp_registry_publication_allowed": true
+- forbidden_pattern_absent_"owner_signature_present": true: "owner_signature_present": true
+- forbidden_pattern_absent_beta a pagamento attiva: beta a pagamento attiva
+- forbidden_pattern_absent_go-live commerciale attivo: go-live commerciale attivo
+- forbidden_pattern_absent_pagamento reale eseguito: pagamento reale eseguito
+- forbidden_pattern_absent_fattura emessa: fattura emessa
+- forbidden_pattern_absent_chiave production emessa: si: chiave production emessa: si

@@ -1,0 +1,14 @@
+﻿{
+    "probe":  "remaining_gate_coverage_review_nowrite_probe_20260618",
+    "success":  true,
+    "passed":  140,
+    "failed":  0,
+    "current_result":  "NOT_YET_OWNER_REVIEW_REQUIRED",
+    "yellow_gates_planned":  12,
+    "yellow_gates_with_verified_nowrite_evidence":  12,
+    "remaining_red_gate":  "owner_commercial_approval",
+    "activation_allowed":  false,
+    "owner_signature_present":  false,
+    "next_safe_action":  "prepare_owner_review_packet_from_verified_gate_coverage_nowrite",
+    "support_code":  "REMAINING_GATE_COVERAGE_VERIFIED_NOWRITE"
+}
