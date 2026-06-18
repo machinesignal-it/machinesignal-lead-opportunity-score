@@ -1,0 +1,13 @@
+﻿{
+    "document":  "production_api_key_readiness_probe_summary",
+    "date":  "2026-06-18",
+    "checks_passed":  113,
+    "checks_failed":  0,
+    "passed":  true,
+    "scope_it":  "Probe NoWrite su readiness API key production. Non crea chiavi, non crea segreti, non abilita traffico live.",
+    "report":  "production_api_key_readiness_probe_report_20260618.md",
+    "checked_files":  [
+                          "production_api_key_readiness_20260618.md",
+                          "production_api_key_readiness_20260618.json"
+                      ]
+}

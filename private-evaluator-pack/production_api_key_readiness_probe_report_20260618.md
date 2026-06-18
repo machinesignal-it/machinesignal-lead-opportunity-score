@@ -1,0 +1,122 @@
+﻿# Production API Key Readiness Probe Report
+
+Date: 2026-06-18
+
+Scope: controllo NoWrite su readiness API key production. Nessuna chiave vera e nessun segreto creato.
+
+Checks passed: 113
+Checks failed: 0
+
+- [OK] Status is internal readiness only: draft_internal_readiness_not_key_issuance
+- [OK] Flag false: production_api_keys_allowed: False
+- [OK] Flag false: production_key_issuance_allowed: False
+- [OK] Flag false: live_traffic_allowed: False
+- [OK] Flag false: production_secrets_allowed_in_repo: False
+- [OK] Flag false: commercial_activation: False
+- [OK] Allowed-now item present: sandbox_key_usage: sandbox_key_usage
+- [OK] Allowed-now item present: production_key_policy_draft: production_key_policy_draft
+- [OK] Allowed-now item present: key_scope_design: key_scope_design
+- [OK] Allowed-now item present: revocation_runbook: revocation_runbook
+- [OK] Allowed-now item present: rotation_runbook: rotation_runbook
+- [OK] Allowed-now item present: rate_limit_design: rate_limit_design
+- [OK] Allowed-now item present: audit_log_design: audit_log_design
+- [OK] Allowed-now item present: blocked_production_key_response: blocked_production_key_response
+- [OK] Allowed-now item present: nowrite_probe: nowrite_probe
+- [OK] Blocked-now item present: issue_production_api_key: issue_production_api_key
+- [OK] Blocked-now item present: generate_live_key: generate_live_key
+- [OK] Blocked-now item present: store_live_secret_in_repository: store_live_secret_in_repository
+- [OK] Blocked-now item present: send_production_key_to_customer: send_production_key_to_customer
+- [OK] Blocked-now item present: enable_live_traffic: enable_live_traffic
+- [OK] Blocked-now item present: enable_paid_production_access: enable_paid_production_access
+- [OK] Blocked-now item present: production_webhook_delivery: production_webhook_delivery
+- [OK] Blocked-now item present: production_customer_data_processing: production_customer_data_processing
+- [OK] Blocked-now item present: declare_production_ready: declare_production_ready
+- [OK] Before-green control present: owner_approval: owner_approval
+- [OK] Before-green control present: fiscal_admin_readiness_approved: fiscal_admin_readiness_approved
+- [OK] Before-green control present: payment_invoice_readiness_approved: payment_invoice_readiness_approved
+- [OK] Before-green control present: product_listino_approved: product_listino_approved
+- [OK] Before-green control present: terms_privacy_data_approved: terms_privacy_data_approved
+- [OK] Before-green control present: security_incident_approved: security_incident_approved
+- [OK] Before-green control present: cost_cap_kill_switch_implemented_and_tested: cost_cap_kill_switch_implemented_and_tested
+- [OK] Before-green control present: support_escalation_implemented: support_escalation_implemented
+- [OK] Before-green control present: production_key_scopes_defined: production_key_scopes_defined
+- [OK] Before-green control present: production_key_storage_secret_manager_selected: production_key_storage_secret_manager_selected
+- [OK] Before-green control present: key_generation_procedure: key_generation_procedure
+- [OK] Before-green control present: key_rotation_procedure: key_rotation_procedure
+- [OK] Before-green control present: key_revocation_procedure: key_revocation_procedure
+- [OK] Before-green control present: rate_limits_and_quotas: rate_limits_and_quotas
+- [OK] Before-green control present: abuse_detection: abuse_detection
+- [OK] Before-green control present: audit_logs: audit_logs
+- [OK] Before-green control present: customer_billing_profile_verified: customer_billing_profile_verified
+- [OK] Before-green control present: no_secrets_in_repository: no_secrets_in_repository
+- [OK] Before-green control present: sandbox_to_production_migration_checklist: sandbox_to_production_migration_checklist
+- [OK] Before-green control present: synthetic_dry_run_with_no_real_key: synthetic_dry_run_with_no_real_key
+- [OK] Sandbox prefix present: ms_sbx_
+- [OK] Live prefix present: ms_live_
+- [OK] Admin prefix present: ms_admin_
+- [OK] Webhook prefix present: ms_wh_
+- [OK] Live prefix blocked: ms_live_ allowed_now
+- [OK] Webhook production prefix blocked: ms_wh_ allowed_now
+- [OK] Minimum key field present: key_id: key_id
+- [OK] Minimum key field present: customer_id: customer_id
+- [OK] Minimum key field present: environment: environment
+- [OK] Minimum key field present: scope: scope
+- [OK] Minimum key field present: rate_limit: rate_limit
+- [OK] Minimum key field present: quota: quota
+- [OK] Minimum key field present: created_at: created_at
+- [OK] Minimum key field present: expires_at: expires_at
+- [OK] Minimum key field present: revoked_at: revoked_at
+- [OK] Minimum key field present: rotation_due_at: rotation_due_at
+- [OK] Minimum key field present: status: status
+- [OK] Minimum key field present: allowed_origins_or_ips: allowed_origins_or_ips
+- [OK] Minimum key field present: billing_profile_id: billing_profile_id
+- [OK] Minimum key field present: audit_log_id: audit_log_id
+- [OK] Blocked response status: blocked_by_production_api_key_readiness
+- [OK] Blocked response decision stop: stop
+- [OK] Blocked response consumes zero credits: 0
+- [OK] Blocked response no production key issued: False
+- [OK] Blocked response no live traffic: False
+- [OK] Blocked response no secret created: False
+- [OK] Blocked response owner escalation true: True
+- [OK] Blocked response support code: PRODUCTION_API_KEYS_NOT_READY
+- [OK] Agent may-do present: prepare_key_policy_runbooks_scopes: prepare_key_policy_runbooks_scopes
+- [OK] Agent may-do present: run_nowrite_validation: run_nowrite_validation
+- [OK] Agent may-do present: verify_no_keys_in_repository: verify_no_keys_in_repository
+- [OK] Agent may-do present: prepare_key_issuance_checklist: prepare_key_issuance_checklist
+- [OK] Agent may-do present: propose_secret_manager_options: propose_secret_manager_options
+- [OK] Agent may-do present: design_rate_limits: design_rate_limits
+- [OK] Agent may-do present: design_audit_logs: design_audit_logs
+- [OK] Agent may-do present: produce_reports_it: produce_reports_it
+- [OK] Agent must-not present: generate_production_key: generate_production_key
+- [OK] Agent must-not present: expose_production_key: expose_production_key
+- [OK] Agent must-not present: commit_secret: commit_secret
+- [OK] Agent must-not present: enable_live_traffic: enable_live_traffic
+- [OK] Agent must-not present: send_key_to_external_customer: send_key_to_external_customer
+- [OK] Agent must-not present: enable_production_webhooks: enable_production_webhooks
+- [OK] Agent must-not present: process_real_customer_data: process_real_customer_data
+- [OK] Agent must-not present: process_personal_data: process_personal_data
+- [OK] Agent must-not present: bypass_owner_approval: bypass_owner_approval
+- [OK] Agent must-not present: declare_production_ready: declare_production_ready
+- [OK] Dashboard effect present: red_to_yellow_candidate
+- [OK] Next safe action present: prepare_or_verify_production_key_request_block_in_nowrite
+- [OK] Markdown phrase present: non e' una emissione chiavi production: non e' una emissione chiavi production
+- [OK] Markdown phrase present: Regola principale: Regola principale
+- [OK] Markdown phrase present: Cosa e' ammesso ora: Cosa e' ammesso ora
+- [OK] Markdown phrase present: Cosa resta bloccato: Cosa resta bloccato
+- [OK] Markdown phrase present: Classi di chiavi: Classi di chiavi
+- [OK] Markdown phrase present: Risposta macchina se richiede una chiave production: Risposta macchina se richiede una chiave production
+- [OK] Markdown phrase present: Controlli minimi prima del verde: Controlli minimi prima del verde
+- [OK] Markdown phrase present: Gli agenti non possono: Gli agenti non possono
+- [OK] Markdown phrase present: da rosso a candidato giallo: da rosso a candidato giallo
+- [OK] Forbidden phrase absent: "production_api_keys_allowed": true: "production_api_keys_allowed": true
+- [OK] Forbidden phrase absent: "production_key_issuance_allowed": true: "production_key_issuance_allowed": true
+- [OK] Forbidden phrase absent: "live_traffic_allowed": true: "live_traffic_allowed": true
+- [OK] Forbidden phrase absent: "production_secrets_allowed_in_repo": true: "production_secrets_allowed_in_repo": true
+- [OK] Forbidden phrase absent: production key approved: production key approved
+- [OK] Forbidden phrase absent: live key issued: live key issued
+- [OK] Forbidden phrase absent: "production_ready": true: "production_ready": true
+- [OK] Forbidden phrase absent: production traffic enabled: production traffic enabled
+- [OK] Forbidden phrase absent: chiave production approvata: chiave production approvata
+- [OK] Forbidden phrase absent: chiave live emessa: chiave live emessa
+- [OK] Forbidden phrase absent: traffico production attivo: traffico production attivo
+- [OK] Forbidden phrase absent: segreto production nel repository: segreto production nel repository

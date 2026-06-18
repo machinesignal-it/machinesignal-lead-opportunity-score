@@ -1,0 +1,136 @@
+{
+  "document": "production_api_key_readiness",
+  "date": "2026-06-18",
+  "language": "it",
+  "status": "draft_internal_readiness_not_key_issuance",
+  "production_api_keys_allowed": false,
+  "production_key_issuance_allowed": false,
+  "live_traffic_allowed": false,
+  "production_secrets_allowed_in_repo": false,
+  "commercial_activation": false,
+  "summary_it": "Bozza interna per preparare policy, scope, revoca, rotazione, audit e risposta bloccata per richieste di API key production. Non emette chiavi, non crea segreti e non abilita traffico live.",
+  "allowed_now": [
+    "sandbox_key_usage",
+    "production_key_policy_draft",
+    "key_scope_design",
+    "revocation_runbook",
+    "rotation_runbook",
+    "rate_limit_design",
+    "audit_log_design",
+    "blocked_production_key_response",
+    "nowrite_probe"
+  ],
+  "blocked_now": [
+    "issue_production_api_key",
+    "generate_live_key",
+    "store_live_secret_in_repository",
+    "send_production_key_to_customer",
+    "enable_live_traffic",
+    "enable_paid_production_access",
+    "production_webhook_delivery",
+    "production_customer_data_processing",
+    "declare_production_ready"
+  ],
+  "required_before_green": [
+    "owner_approval",
+    "fiscal_admin_readiness_approved",
+    "payment_invoice_readiness_approved",
+    "product_listino_approved",
+    "terms_privacy_data_approved",
+    "security_incident_approved",
+    "cost_cap_kill_switch_implemented_and_tested",
+    "support_escalation_implemented",
+    "production_key_scopes_defined",
+    "production_key_storage_secret_manager_selected",
+    "key_generation_procedure",
+    "key_rotation_procedure",
+    "key_revocation_procedure",
+    "rate_limits_and_quotas",
+    "abuse_detection",
+    "audit_logs",
+    "customer_billing_profile_verified",
+    "no_secrets_in_repository",
+    "sandbox_to_production_migration_checklist",
+    "synthetic_dry_run_with_no_real_key"
+  ],
+  "key_classes": [
+    {
+      "prefix": "ms_sbx_",
+      "class": "sandbox_customer_key",
+      "allowed_now": true,
+      "note_it": "Ammessa solo in contesto sandbox e con limiti."
+    },
+    {
+      "prefix": "ms_live_",
+      "class": "production_customer_key",
+      "allowed_now": false,
+      "note_it": "Bloccata fino ad approvazione e readiness verde."
+    },
+    {
+      "prefix": "ms_admin_",
+      "class": "internal_admin_key",
+      "allowed_now": false,
+      "note_it": "Ristretta e non pubblicabile."
+    },
+    {
+      "prefix": "ms_wh_",
+      "class": "production_webhook_signing_secret",
+      "allowed_now": false,
+      "note_it": "Bloccata per production."
+    }
+  ],
+  "minimum_production_key_fields": [
+    "key_id",
+    "customer_id",
+    "environment",
+    "scope",
+    "rate_limit",
+    "quota",
+    "created_at",
+    "expires_at",
+    "revoked_at",
+    "rotation_due_at",
+    "status",
+    "allowed_origins_or_ips",
+    "billing_profile_id",
+    "audit_log_id"
+  ],
+  "blocked_machine_response": {
+    "status": "blocked_by_production_api_key_readiness",
+    "decision": "stop",
+    "reason": "production API keys and live traffic are not approved",
+    "credits_consumed": 0,
+    "production_key_issued": false,
+    "live_traffic_enabled": false,
+    "secret_created": false,
+    "owner_escalation_required": true,
+    "support_code": "PRODUCTION_API_KEYS_NOT_READY"
+  },
+  "agent_may_do": [
+    "prepare_key_policy_runbooks_scopes",
+    "run_nowrite_validation",
+    "verify_no_keys_in_repository",
+    "prepare_key_issuance_checklist",
+    "propose_secret_manager_options",
+    "design_rate_limits",
+    "design_audit_logs",
+    "produce_reports_it"
+  ],
+  "agent_must_not_do": [
+    "generate_production_key",
+    "expose_production_key",
+    "commit_secret",
+    "enable_live_traffic",
+    "send_key_to_external_customer",
+    "enable_production_webhooks",
+    "process_real_customer_data",
+    "process_personal_data",
+    "bypass_owner_approval",
+    "declare_production_ready"
+  ],
+  "dashboard_effect": {
+    "production_api_keys": "red_to_yellow_candidate",
+    "reason_it": "La readiness e' verificabile, ma non sono state create chiavi, segreti, traffico live o accessi production."
+  },
+  "next_safe_action": "prepare_or_verify_production_key_request_block_in_nowrite"
+}
