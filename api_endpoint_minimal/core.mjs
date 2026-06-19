@@ -1941,6 +1941,11 @@ export const openApi = {
           sandbox_customers: { type: "object" },
           usage: { type: "object" },
           orders: { type: "object" },
+          score_decisions: {
+            type: "object",
+            description:
+              "Aggregates valid score outputs by machine decision to estimate order-qualified demand without executing payments or external outreach."
+          },
           conversion: { type: "object" },
           safety: { type: "object" },
           targets: { type: "object" },
@@ -2191,6 +2196,7 @@ Sandbox limits:
 7-day sandbox test metrics:
 - admins and agents monitor GET /v1/admin/sandbox-metrics daily;
 - tracked targets are 10 sandbox keys, 300 scores, 15 Deep Analysis orders and 3 Action Pack orders;
+- score_decisions separates total valid scores, interesting scores, strong scores and decision breakdowns such as buy_deep_analysis, needs_verification, nurture, watchlist and discard;
 - the endpoint also verifies safety flags: real_payment_executed=false and external_contact_executed=false;
 - use this endpoint to decide whether distribution, onboarding or product packaging needs improvement.
 
@@ -5354,6 +5360,17 @@ async function buildSandboxMetrics(env = {}) {
       domain_enrichment: 0,
       opportunity_feed: 0
     },
+    score_decisions: {
+      total_valid_scores: 0,
+      interesting_scores: 0,
+      strong_scores: 0,
+      discard: 0,
+      watchlist: 0,
+      nurture: 0,
+      buy_deep_analysis: 0,
+      needs_verification: 0,
+      unknown: 0
+    },
     conversion: {
       score_to_deep_analysis_rate: 0,
       deep_analysis_to_action_pack_rate: 0
@@ -5411,6 +5428,25 @@ async function buildSandboxMetrics(env = {}) {
       const productCode = order.product_code;
       if (Object.hasOwn(metrics.orders, productCode)) {
         metrics.orders[productCode] += 1;
+      }
+    }
+
+    for (const event of state.events || []) {
+      if (event.product_code !== "score_pack_1k" || event.status !== "valid_output") continue;
+      metrics.score_decisions.total_valid_scores += 1;
+      const decision = String(event.metadata?.decision || "unknown");
+      if (Object.hasOwn(metrics.score_decisions, decision)) {
+        metrics.score_decisions[decision] += 1;
+      } else {
+        metrics.score_decisions.unknown += 1;
+      }
+      if (["watchlist", "nurture", "buy_deep_analysis", "needs_verification"].includes(decision)) {
+        metrics.score_decisions.interesting_scores += 1;
+      }
+      const score = Number(event.metadata?.opportunity_score || 0);
+      const confidence = Number(event.metadata?.confidence || 0);
+      if (decision === "buy_deep_analysis" && score >= 75 && confidence >= 0.65) {
+        metrics.score_decisions.strong_scores += 1;
       }
     }
 

@@ -519,6 +519,15 @@ assert.ok(sandboxMetricsPayload.sandbox_customers.total >= 1);
 assert.ok(sandboxMetricsPayload.usage.score_credits_used >= 1);
 assert.ok(sandboxMetricsPayload.orders.deep_analysis >= 1);
 assert.ok(sandboxMetricsPayload.orders.action_pack >= 1);
+assert.ok(sandboxMetricsPayload.score_decisions.total_valid_scores >= 1);
+assert.ok(sandboxMetricsPayload.score_decisions.interesting_scores >= 1);
+assert.ok(
+  sandboxMetricsPayload.score_decisions.buy_deep_analysis +
+    sandboxMetricsPayload.score_decisions.needs_verification +
+    sandboxMetricsPayload.score_decisions.nurture +
+    sandboxMetricsPayload.score_decisions.watchlist >=
+    1
+);
 assert.equal(sandboxMetricsPayload.safety.real_payment_executed, false);
 assert.equal(sandboxMetricsPayload.safety.external_contact_executed, false);
 assert.equal(sandboxMetricsPayload.targets.sandbox_keys, 10);
