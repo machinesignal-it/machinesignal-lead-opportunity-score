@@ -543,6 +543,11 @@ export const openApi = {
       description: "Planned custom API host"
     }
   ],
+  externalDocs: {
+    description:
+      "Machine-readable post-score decision contract: maps score decisions to allowed next products, valid outputs and credit behavior.",
+    url: "https://machinesignal.it/score-decision-contract.json"
+  },
   paths: {
     "/machine-onboarding.json": {
       get: {
@@ -669,7 +674,7 @@ export const openApi = {
         operationId: "scoreLeadOpportunity",
         summary: "Score a business domain",
         description:
-          "Consumes one score credit only when a valid score is produced. Send an Idempotency-Key to avoid double charging repeated requests.",
+          "Consumes one score credit only when a valid score is produced. Send an Idempotency-Key to avoid double charging repeated requests. After reading decision, machine_next_step and next_purchase, automated clients should apply the post-score decision contract at https://machinesignal.it/score-decision-contract.json.",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
           {
@@ -2021,6 +2026,7 @@ Useful endpoints:
 - GET /llms.txt
 - GET /machine-onboarding.json
 - GET /product-catalog.json
+- GET https://machinesignal.it/score-decision-contract.json
 - GET /v1/production-access/status
 - GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - GET https://machinesignal.it/distribution/api-directory-submission.json
@@ -2063,9 +2069,10 @@ How a machine should call the score endpoint:
 5. Read the required X-API-Key and Idempotency-Key headers.
 6. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
 7. Read decision, commercial_strength, spend_policy, machine_next_step and next_purchase.
-8. Read /v1/usage to verify consumed and remaining credits.
-9. If next_purchase.next_product is not null and commercial_strength allows that spend, POST /v1/purchase-intent to create a beta order intent.
-10. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
+8. Fetch https://machinesignal.it/score-decision-contract.json and route the response according to the allowed decision contract.
+9. Read /v1/usage to verify consumed and remaining credits.
+10. If next_purchase.next_product is not null and commercial_strength allows that spend, POST /v1/purchase-intent to create a beta order intent.
+11. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
 
 Three machine buying flows:
 1. Customer machine has a list: call POST /v1/lead-opportunity-score for each domain, then route each result by decision.
@@ -2408,6 +2415,22 @@ const postmanCollection = {
         },
         description:
           "Public machine-readable catalog with exact beta prices, product codes, deliverables and valid-output credit rules."
+      },
+      response: []
+    },
+    {
+      name: "Fetch score decision contract",
+      request: {
+        method: "GET",
+        header: [],
+        url: {
+          raw: "https://machinesignal.it/score-decision-contract.json",
+          protocol: "https",
+          host: ["machinesignal", "it"],
+          path: ["score-decision-contract.json"]
+        },
+        description:
+          "Public machine-readable post-score decision contract. Use it after /v1/lead-opportunity-score to map decision, machine_next_step and next_purchase to allowed next products, valid outputs and credit behavior."
       },
       response: []
     },
