@@ -1492,6 +1492,29 @@ export const openApi = {
             description:
               "Machine-readable commercial recommendation. Null next_product means do not buy an add-on now."
           },
+          decision_contract: {
+            type: "object",
+            description:
+              "Post-score routing contract pointer. Tells the machine which route in https://machinesignal.it/score-decision-contract.json applies to this decision before spending more beta budget.",
+            properties: {
+              contract_url: {
+                type: "string",
+                example: "https://machinesignal.it/score-decision-contract.json"
+              },
+              route: {
+                type: "string",
+                example: "buy_deep_analysis"
+              },
+              route_pointer: {
+                type: "string",
+                example: "/decision_routes/buy_deep_analysis"
+              },
+              next_spend_allowed: {
+                type: "boolean",
+                example: true
+              }
+            }
+          },
           machine_next_step: {
             type: "object",
             description:
@@ -3814,6 +3837,25 @@ function purchaseRecommendation(decision) {
     }
   };
   return recommendations[decision];
+}
+
+function decisionContractFor(decision, purchase) {
+  const route = String(decision || "unknown");
+  return {
+    contract_url: "https://machinesignal.it/score-decision-contract.json",
+    route,
+    route_pointer: `/decision_routes/${route}`,
+    credit_rule: "score credit consumed because this response is a valid usable score output",
+    next_spend_allowed: purchase?.next_product !== null,
+    next_spend_requires:
+      purchase?.next_product === null
+        ? []
+        : [
+            "customer machine budget policy allows the recommended next product",
+            "same-domain idempotency key is used for purchase intent",
+            "beta safety flags remain false for payments, invoices and external outreach"
+          ]
+  };
 }
 
 function purchaseProductConfig(productCode) {
@@ -6577,6 +6619,7 @@ export function scoreLeadOpportunity(input) {
   );
   const decision = decisionFor(score, confidence);
   const purchase = purchaseRecommendation(decision);
+  const decisionContract = decisionContractFor(decision, purchase);
   const webArchitectReview = webArchitectOpportunityReview(
     input,
     domain,
@@ -6605,6 +6648,7 @@ export function scoreLeadOpportunity(input) {
     web_architect_review: webArchitectReview,
     commercial_strength: commercialStrength,
     recommended_action: decision,
+    decision_contract: decisionContract,
     product_level: "score_base",
     score_price_range_eur: "0.05-0.20",
     next_purchase: purchase,
