@@ -5659,17 +5659,13 @@ function buildPublicMachineOnboarding() {
       well_known_machine_discovery: "https://machinesignal.it/.well-known/machine-discovery.json",
       sandbox_customers: "/v1/sandbox/customers",
       authenticated_onboarding: "/v1/onboarding",
-      sandbox_metrics: "/v1/admin/sandbox-metrics",
-      audit_report: "/v1/admin/audit-report?customer_id=<customer_id>",
       payment_test_intents: "/v1/payment-test/intents",
-      payment_test_reconciliation: "/v1/payment-test/reconciliation/{payment_test_id}",
-      payment_test_report: "/v1/admin/payment-test-report?customer_id=<customer_id>"
+      payment_test_reconciliation: "/v1/payment-test/reconciliation/{payment_test_id}"
     },
     authentication: {
       type: "apiKey",
       header: "X-API-Key",
       sandbox_keys_created_by: "POST /v1/sandbox/customers",
-      customer_keys_created_by: "POST /v1/beta/customers",
       idempotency_header: "Idempotency-Key"
     },
     callable_flow: [
@@ -6666,6 +6662,68 @@ export function scoreLeadOpportunity(input) {
   };
 }
 
+const PUBLIC_DOC_HIDDEN_PATTERNS = [
+  "/v1/admin",
+  "/v1/beta/customers",
+  "admin-only",
+  "Admin-only",
+  "admin_api_key",
+  "sandbox-metrics"
+];
+
+function hasPublicDocHiddenText(value) {
+  const text = typeof value === "string" ? value : JSON.stringify(value || "");
+  return PUBLIC_DOC_HIDDEN_PATTERNS.some((pattern) => text.includes(pattern));
+}
+
+function buildPublicOpenApi() {
+  const doc = JSON.parse(JSON.stringify(openApi));
+  for (const path of Object.keys(doc.paths || {})) {
+    if (path.startsWith("/v1/admin") || path.startsWith("/v1/beta/customers")) {
+      delete doc.paths[path];
+    }
+  }
+  return doc;
+}
+
+function buildPublicPostmanCollection() {
+  const collection = JSON.parse(JSON.stringify(postmanCollection));
+  collection.item = (collection.item || []).filter((item) => !hasPublicDocHiddenText(item));
+  collection.variable = (collection.variable || []).filter(
+    (item) => !hasPublicDocHiddenText(item.key) && !hasPublicDocHiddenText(item.value)
+  );
+  return collection;
+}
+
+function buildPublicLlmsTxt() {
+  const lines = llmsTxt.split("\n");
+  const output = [];
+  let skipSandboxMetricsBlock = false;
+  for (const line of lines) {
+    if (line.startsWith("7-day sandbox test metrics:")) {
+      skipSandboxMetricsBlock = true;
+      output.push(line);
+      output.push("- admins and agents monitor sandbox metrics through internal protected tooling only;");
+      output.push("- public machine-facing documents expose customer and sandbox flows, not admin monitoring routes;");
+      output.push("- tracked targets are 10 sandbox keys, 300 scores, 15 Deep Analysis orders and 3 Action Pack orders;");
+      output.push("- safety flags remain real_payment_executed=false and external_contact_executed=false.");
+      continue;
+    }
+    if (skipSandboxMetricsBlock) {
+      if (line.trim() === "") {
+        skipSandboxMetricsBlock = false;
+        output.push(line);
+      }
+      continue;
+    }
+    if (hasPublicDocHiddenText(line)) {
+      continue;
+    }
+    output.push(line);
+  }
+  return output.join("\n");
+}
+
 function jsonResponse(payload, status = 200, extraHeaders = {}) {
   return new Response(JSON.stringify(payload, null, 2), {
     status,
@@ -6751,17 +6809,13 @@ export async function handleRequest(request, env = {}) {
         purchase_intent: "/v1/purchase-intent",
         payment_test_intents: "/v1/payment-test/intents",
         payment_test_reconciliation: "/v1/payment-test/reconciliation/{payment_test_id}",
-        orders: "/v1/orders",
-        beta_customers: "/v1/beta/customers",
-        sandbox_metrics: "/v1/admin/sandbox-metrics",
-        audit_report: "/v1/admin/audit-report?customer_id=<customer_id>",
-        payment_test_report: "/v1/admin/payment-test-report?customer_id=<customer_id>"
+        orders: "/v1/orders"
       }
     });
   }
 
   if (request.method === "GET" && url.pathname === "/openapi.json") {
-    return jsonResponse(openApi);
+    return jsonResponse(buildPublicOpenApi());
   }
 
   if (request.method === "GET" && url.pathname === "/machine-onboarding.json") {
@@ -6777,11 +6831,11 @@ export async function handleRequest(request, env = {}) {
   }
 
   if (request.method === "GET" && url.pathname === "/postman_collection.json") {
-    return jsonResponse(postmanCollection);
+    return jsonResponse(buildPublicPostmanCollection());
   }
 
   if (request.method === "GET" && url.pathname === "/llms.txt") {
-    return textResponse(llmsTxt);
+    return textResponse(buildPublicLlmsTxt());
   }
 
   if (request.method === "POST" && url.pathname === "/v1/sandbox/customers") {
@@ -7175,7 +7229,7 @@ export async function handleRequest(request, env = {}) {
   return jsonResponse(
     {
       error: "not_found",
-      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, POST /v1/payment-test/intents, GET /v1/payment-test/reconciliation/{payment_test_id}, GET /v1/admin/sandbox-metrics, GET /v1/admin/audit-report?customer_id=<customer_id>, GET /v1/admin/payment-test-report?customer_id=<customer_id>, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
+      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, POST /v1/payment-test/intents, GET /v1/payment-test/reconciliation/{payment_test_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
     },
     404
   );

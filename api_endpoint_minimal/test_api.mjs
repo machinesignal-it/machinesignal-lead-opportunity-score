@@ -110,12 +110,13 @@ assert.equal(rootPayload.docs.machine_onboarding, "/machine-onboarding.json");
 assert.equal(rootPayload.docs.product_catalog, "/product-catalog.json");
 assert.equal(rootPayload.docs.production_access_status, "/v1/production-access/status");
 assert.equal(rootPayload.docs.authenticated_onboarding, "/v1/onboarding");
-assert.equal(rootPayload.docs.sandbox_metrics, "/v1/admin/sandbox-metrics");
-assert.equal(rootPayload.docs.audit_report, "/v1/admin/audit-report?customer_id=<customer_id>");
 assert.equal(rootPayload.docs.payment_test_intents, "/v1/payment-test/intents");
 assert.equal(rootPayload.docs.payment_test_reconciliation, "/v1/payment-test/reconciliation/{payment_test_id}");
-assert.equal(rootPayload.docs.payment_test_report, "/v1/admin/payment-test-report?customer_id=<customer_id>");
 assert.equal(rootPayload.docs.postman_public_collection, "https://machinesignal.it/postman_public_collection.json");
+assert.equal(rootPayload.docs.sandbox_metrics, undefined);
+assert.equal(rootPayload.docs.audit_report, undefined);
+assert.equal(rootPayload.docs.payment_test_report, undefined);
+assert.equal(rootPayload.docs.beta_customers, undefined);
 
 const openApiResponse = await handleRequest(new Request("http://localhost/openapi.json"));
 assert.equal(openApiResponse.status, 200);
@@ -126,14 +127,15 @@ assert.ok(openApiPayload.paths["/v1/payment-test/intents"]);
 assert.ok(openApiPayload.paths["/v1/payment-test/intents/{payment_test_id}"]);
 assert.ok(openApiPayload.paths["/v1/payment-test/webhooks/stripe"]);
 assert.ok(openApiPayload.paths["/v1/payment-test/reconciliation/{payment_test_id}"]);
-assert.ok(openApiPayload.paths["/v1/admin/payment-test-report"]);
 assert.ok(openApiPayload.paths["/v1/sandbox/customers"]);
 assert.ok(openApiPayload.paths["/v1/production-access/status"]);
-assert.ok(openApiPayload.paths["/v1/admin/sandbox-metrics"]);
-assert.ok(openApiPayload.paths["/v1/admin/audit-report"]);
 assert.ok(openApiPayload.paths["/machine-onboarding.json"]);
 assert.ok(openApiPayload.paths["/product-catalog.json"]);
 assert.ok(openApiPayload.paths["/v1/onboarding"]);
+assert.equal(openApiPayload.paths["/v1/admin/payment-test-report"], undefined);
+assert.equal(openApiPayload.paths["/v1/admin/sandbox-metrics"], undefined);
+assert.equal(openApiPayload.paths["/v1/admin/audit-report"], undefined);
+assert.equal(openApiPayload.paths["/v1/beta/customers"], undefined);
 assert.ok(openApiPayload.components.schemas.PurchaseIntentRequest);
 assert.ok(openApiPayload.components.schemas.PaymentTestIntentRequest);
 assert.ok(openApiPayload.components.schemas.PaymentTestIntentResponse);
@@ -208,14 +210,15 @@ assert.ok(postmanItemNames.includes("Create beta purchase intent"));
 assert.ok(postmanItemNames.includes("Create payment test intent"));
 assert.ok(postmanItemNames.includes("Simulate payment test success webhook"));
 assert.ok(postmanItemNames.includes("Read payment test reconciliation"));
-assert.ok(postmanItemNames.includes("Admin read payment test report"));
 assert.ok(postmanItemNames.includes("Order target discovery when machine has no list"));
 assert.ok(postmanItemNames.includes("Order deep analysis after a strong score"));
 assert.ok(postmanItemNames.includes("Order action pack after confirmed opportunity"));
 assert.ok(postmanItemNames.includes("Fetch machine onboarding manifest"));
 assert.ok(postmanItemNames.includes("Read authenticated onboarding"));
-assert.ok(postmanItemNames.includes("Admin read sandbox metrics"));
-assert.ok(postmanItemNames.includes("Admin read ledger audit report"));
+assert.ok(!postmanItemNames.includes("Admin read payment test report"));
+assert.ok(!postmanItemNames.includes("Admin read sandbox metrics"));
+assert.ok(!postmanItemNames.includes("Admin read ledger audit report"));
+assert.ok(!postmanItemNames.includes("Create beta customer"));
 
 const productCatalogResponse = await handleRequest(new Request("http://localhost/product-catalog.json"));
 assert.equal(productCatalogResponse.status, 200);
@@ -280,8 +283,10 @@ assert.ok(llmsText.includes("/beta/feedback-schema.json"));
 assert.ok(llmsText.includes("/beta/machine-test-kit.json"));
 assert.ok(llmsText.includes("/v1/sandbox/customers"));
 assert.ok(llmsText.includes("/v1/production-access/status"));
-assert.ok(llmsText.includes("/v1/admin/sandbox-metrics"));
-assert.ok(llmsText.includes("/v1/admin/audit-report"));
+assert.ok(!llmsText.includes("/v1/admin/sandbox-metrics"));
+assert.ok(!llmsText.includes("/v1/admin/audit-report"));
+assert.ok(!llmsText.includes("/v1/admin/payment-test-report"));
+assert.ok(!llmsText.includes("/v1/beta/customers"));
 assert.ok(llmsText.includes("https://machinesignal.it/machine-discovery/machine-discovery-pack.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/distribution/api-directory-submission.json"));
 assert.ok(llmsText.includes("https://machinesignal.it/distribution/rapidapi-listing.json"));
@@ -301,20 +306,15 @@ assert.equal(machineOnboardingPayload.primary_customer_interface, "machine");
 assert.equal(machineOnboardingPayload.discovery.product_catalog, "/product-catalog.json");
 assert.equal(machineOnboardingPayload.discovery.sandbox_customers, "/v1/sandbox/customers");
 assert.equal(machineOnboardingPayload.discovery.authenticated_onboarding, "/v1/onboarding");
-assert.equal(machineOnboardingPayload.discovery.sandbox_metrics, "/v1/admin/sandbox-metrics");
-assert.equal(
-  machineOnboardingPayload.discovery.audit_report,
-  "/v1/admin/audit-report?customer_id=<customer_id>"
-);
 assert.equal(machineOnboardingPayload.discovery.payment_test_intents, "/v1/payment-test/intents");
 assert.equal(
   machineOnboardingPayload.discovery.payment_test_reconciliation,
   "/v1/payment-test/reconciliation/{payment_test_id}"
 );
-assert.equal(
-  machineOnboardingPayload.discovery.payment_test_report,
-  "/v1/admin/payment-test-report?customer_id=<customer_id>"
-);
+assert.equal(machineOnboardingPayload.discovery.sandbox_metrics, undefined);
+assert.equal(machineOnboardingPayload.discovery.audit_report, undefined);
+assert.equal(machineOnboardingPayload.discovery.payment_test_report, undefined);
+assert.equal(machineOnboardingPayload.authentication.customer_keys_created_by, undefined);
 assert.equal(
   machineOnboardingPayload.discovery.machine_discovery_pack,
   "https://machinesignal.it/machine-discovery/machine-discovery-pack.json"
