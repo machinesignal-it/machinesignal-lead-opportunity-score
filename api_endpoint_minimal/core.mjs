@@ -206,7 +206,7 @@ const DEFAULT_LEDGER_STATE = {
 
 const PRODUCT_CATALOG = {
   service: "MachineSignal",
-  catalog_version: "2026-06-14-beta-v22",
+  catalog_version: "2026-06-27-product-codes-starter-feed-update",
   currency: "EUR",
   primary_customer_interface: "machine",
   payment_mode: {
@@ -256,9 +256,10 @@ const PRODUCT_CATALOG = {
   },
   products: {
     target_discovery_pack_250: {
-      name: "Target Discovery Pack",
-      price_eur: 249,
-      unit: "250 coherent targets",
+      name: "Target Discovery Pack 250 Bundle",
+      price_eur: 299,
+      unit: "250 coherent targets + operational decisions",
+      billing_code: "MS-BND-DISC-250",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "target_discovery",
       when_to_buy:
@@ -273,6 +274,7 @@ const PRODUCT_CATALOG = {
         "area",
         "initial opportunity signals",
         "reason for inclusion",
+        "operational decision on each valid target",
         "JSON or CSV export"
       ],
       validity_rule:
@@ -281,9 +283,10 @@ const PRODUCT_CATALOG = {
         "A target list built for a declared commercial objective, ready for scoring or CRM enrichment workflows."
     },
     score_pack_1k: {
-      name: "Score Pack 1k",
-      price_eur: 119,
-      unit: "1000 valid scores",
+      name: "Lead Decision Pack 250",
+      price_eur: 49,
+      unit: "250 valid operational decisions",
+      billing_code: "MS-DEC-250",
       current_beta_endpoint: "POST /v1/lead-opportunity-score",
       product_code: "score_pack_1k",
       when_to_buy:
@@ -305,12 +308,13 @@ const PRODUCT_CATALOG = {
       validity_rule:
         "Duplicate, invalid or non-analyzable records do not consume score credits. The pack ends after 1000 valid scores.",
       machine_output:
-        "Score, confidence, commercial strength, spend policy, decision, reason, priority and recommended next product."
+        "Operational decision, confidence, reason, priority, internal opportunity score signal and recommended next product."
     },
     domain_enrichment_pack_100: {
-      name: "Domain Enrichment Pack 100",
+      name: "Domain Enrichment Pack 100 Bundle",
       price_eur: 149,
       unit: "100 completed domain-enrichment decisions",
+      billing_code: "MS-BND-DOM-100",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "domain_enrichment",
       when_to_buy:
@@ -323,7 +327,8 @@ const PRODUCT_CATALOG = {
         "evidence source type",
         "status for each target",
         "reason when no reliable domain is found",
-        "JSON or CSV export ready for scoring workflows"
+        "operational decision on each valid record with reliable domain",
+        "JSON or CSV export ready for decisioning workflows"
       ],
       validity_rule:
         "One credit is consumed for each completed enrichment decision: verified_domain, candidate_not_reliable or no_reliable_domain. The product does not promise that every target will have a domain.",
@@ -332,7 +337,8 @@ const PRODUCT_CATALOG = {
     },
     deep_analysis_pack_100: {
       name: "Deep Analysis Pack 100",
-      price_eur: 349,
+      price_eur: 199,
+      billing_code: "MS-ANA-100",
       unit: "100 valid deep analyses",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "deep_analysis",
@@ -375,8 +381,11 @@ const PRODUCT_CATALOG = {
         "A spend-control JSON decision pack that tells the workflow whether to buy Action Pack, keep the lead in watchlist or stop."
     },
     action_pack_25: {
-      name: "Action Pack 25",
-      price_eur: 399,
+      name: "Opportunity Action Pack 25",
+      price_eur: 599,
+      billing_code: "MS-ACT-25",
+      upgrade_billing_code: "MS-ACT-UPG-25",
+      upgrade_price_eur_after_deep_analysis: 499,
       unit: "25 valid action packs",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "action_pack",
@@ -423,8 +432,9 @@ const PRODUCT_CATALOG = {
         "A CRM-ready JSON action payload for workflow automation, webhook forwarding or supervised agent execution."
     },
     opportunity_feed_monthly: {
-      name: "Opportunity Feed",
-      price_eur: 249,
+      name: "Opportunity Feed 4+4 Bundle",
+      price_eur: 199,
+      billing_code: "MS-BND-FEED-4X4-250",
       unit: "1 month",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "opportunity_feed",
@@ -445,9 +455,10 @@ const PRODUCT_CATALOG = {
       machine_output: "A scheduled feed of targets, scores and signals for automated systems."
     },
     api_starter_monthly: {
-      name: "API Starter",
-      price_eur: 99,
+      name: "MachineSignal Starter Monthly",
+      price_eur: 199,
       unit: "1 month",
+      billing_code: "MS-SUB-STARTER-250",
       current_beta_endpoint: "API key + score endpoint",
       product_code: "api_starter",
       when_to_buy: "For light recurring use and continuous testing.",
@@ -456,13 +467,14 @@ const PRODUCT_CATALOG = {
         "documentation",
         "demo environment",
         "score endpoint",
-        "500 valid scores per month",
+        "250 targets per month",
+        "operational decisions included on the 250 valid monthly targets",
         "basic usage report",
         "standard asynchronous support"
       ],
       validity_rule:
-        "The 500 monthly scores follow the valid-output rule. Extra usage requires add-on packs or upgrade.",
-      machine_output: "Authenticated access to the score API with monthly usage visibility."
+        "The 250 monthly targets and related operational decisions follow the valid-output rule. If more targets are needed in the same month, the machine buys Target Discovery Pack 250 Bundle extra.",
+      machine_output: "Authenticated monthly access with 250 targets, operational decisions and usage visibility."
     },
     api_pro_monthly: {
       name: "API Pro",
@@ -510,14 +522,14 @@ const PRODUCT_CATALOG = {
 };
 
 const SIMULATED_REVENUE_PER_CREDIT_EUR = {
-  score_pack_1k: 0.119,
-  target_discovery_pack_250: 249,
+  score_pack_1k: 0.196,
+  target_discovery_pack_250: 299,
   domain_enrichment_pack_100: 1.49,
   verification_pack_100: 1,
   nurture_signal_pack_100: 1,
-  deep_analysis_pack_100: 3.49,
-  action_pack_25: 15.96,
-  opportunity_feed_monthly: 249
+  deep_analysis_pack_100: 1.99,
+  action_pack_25: 23.96,
+  opportunity_feed_monthly: 199
 };
 
 export const openApi = {
@@ -2154,13 +2166,13 @@ Beta tester onboarding resources:
 - Machine beta test kit JSON: https://machinesignal.it/beta/machine-test-kit.json
 
 Commercial model under test:
-- Target Discovery Pack: EUR 249 for 250 coherent targets after market availability pre-check;
+- MS-BND-DISC-250 / Target Discovery Pack 250 Bundle: EUR 299 for 250 targets + operational decisions when the market is available;
 - Domain Enrichment Pack 100: EUR 149 for 100 enrichment decisions when a machine has names but not reliable domains;
-- Score Pack 1k: EUR 119 for 1000 valid scores;
-- Deep Analysis Pack 100: EUR 349 for 100 valid deep analyses;
-- Action Pack 25: EUR 399 for 25 valid action packs;
-- Opportunity Feed: EUR 249/month for 4 scans and 4 deliveries;
-- API Starter: EUR 99/month with 500 valid scores;
+- MS-DEC-250 / Lead Decision Pack 250: EUR 49 for 250 valid operational decisions on a clean customer list;
+- MS-ANA-100 / Deep Analysis Pack 100: EUR 199 for 100 valid deep analyses;
+- MS-ACT-25 / Opportunity Action Pack 25: EUR 599 for 25 valid action packs; upgrade MS-ACT-UPG-25 is EUR 499 if Deep Analysis was already purchased for the same targets;
+- MS-BND-FEED-4X4-250 / Opportunity Feed 4+4 Bundle: EUR 199/month for 4 scans, 4 deliveries, 1 market/area and max 250 valid targets/month;
+- MS-SUB-STARTER-250 / MachineSignal Starter Monthly: EUR 199/month with 250 targets/month + operational decisions;
 - API Pro: EUR 499/month with 3000 valid scores, 50 deep analyses and 1 monthly feed.
 
 Machine-readable decisions:

@@ -223,9 +223,11 @@ assert.ok(!postmanItemNames.includes("Create beta customer"));
 const productCatalogResponse = await handleRequest(new Request("http://localhost/product-catalog.json"));
 assert.equal(productCatalogResponse.status, 200);
 const productCatalogPayload = await productCatalogResponse.json();
-assert.equal(productCatalogPayload.products.score_pack_1k.price_eur, 119);
-assert.equal(productCatalogPayload.products.target_discovery_pack_250.price_eur, 249);
+assert.equal(productCatalogPayload.products.score_pack_1k.price_eur, 49);
+assert.equal(productCatalogPayload.products.target_discovery_pack_250.price_eur, 299);
 assert.equal(productCatalogPayload.products.domain_enrichment_pack_100.price_eur, 149);
+assert.equal(productCatalogPayload.products.api_starter_monthly.billing_code, "MS-SUB-STARTER-250");
+assert.equal(productCatalogPayload.products.opportunity_feed_monthly.price_eur, 199);
 assert.equal(
   productCatalogPayload.machine_buying_scenarios.customer_has_no_list.first_product,
   "target_discovery"
