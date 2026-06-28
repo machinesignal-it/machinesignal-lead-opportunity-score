@@ -1,157 +1,5 @@
 const DEFAULT_ALLOWED_ORIGIN = "*";
 const LEDGER_KV_BINDING = "MACHINESIGNAL_LEDGER_KV";
-const LEDGER_DO_BINDING = "MACHINESIGNAL_LEDGER_DO";
-
-const DEFAULT_PRODUCTION_ACCESS_GUARD = Object.freeze({
-  enabled: false,
-  owner_approved: false,
-  production_keys_enabled: false,
-  paid_beta_enabled: false,
-  real_payments_enabled: false,
-  invoices_enabled: false,
-  personal_data_enabled: false,
-  real_customer_data_enabled: false,
-  external_outreach_enabled: false,
-  marketplace_publication_enabled: false,
-  hosted_public_mcp_enabled: false,
-  registry_submission_enabled: false
-});
-
-const SUPPORT_CODES = Object.freeze({
-  OK: "MS_SUPPORT_OK",
-  INVALID_SCHEMA: "MS_SUPPORT_INVALID_SCHEMA",
-  DUPLICATE_REQUEST: "MS_SUPPORT_DUPLICATE_REQUEST",
-  INSUFFICIENT_CREDITS: "MS_SUPPORT_INSUFFICIENT_CREDITS",
-  SANDBOX_LIMIT: "MS_SUPPORT_SANDBOX_LIMIT",
-  OUTPUT_NOT_VALID: "MS_SUPPORT_OUTPUT_NOT_VALID",
-  GATE_FAILED: "MS_SUPPORT_GATE_FAILED",
-  PRODUCTION_KEY_BLOCKED: "MS_PRODUCTION_KEY_BLOCKED",
-  PRODUCTION_ACCESS_BLOCKED: "MS_PRODUCTION_ACCESS_BLOCKED",
-  COST_CAP_BLOCKED: "MS_COST_CAP_BLOCKED",
-  PAYMENT_BLOCKED: "MS_PAYMENT_BLOCKED",
-  PAYMENT_METHOD_BLOCKED: "MS_PAYMENT_METHOD_BLOCKED",
-  INVOICE_BLOCKED: "MS_INVOICE_BLOCKED",
-  REAL_DATA_BLOCKED: "MS_REAL_DATA_BLOCKED",
-  PERSONAL_DATA_BLOCKED: "MS_PERSONAL_DATA_BLOCKED",
-  EXTERNAL_CONTACT_BLOCKED: "MS_EXTERNAL_CONTACT_BLOCKED",
-  MARKETPLACE_BLOCKED: "MS_MARKETPLACE_BLOCKED",
-  HOSTED_MCP_BLOCKED: "MS_HOSTED_MCP_BLOCKED",
-  REGISTRY_BLOCKED: "MS_REGISTRY_BLOCKED",
-  KILL_SWITCH_ACTIVE: "MS_KILL_SWITCH_ACTIVE",
-  OWNER_REVIEW_REQUIRED: "MS_SUPPORT_OWNER_REVIEW_REQUIRED",
-  SECURITY_REVIEW_REQUIRED: "MS_SUPPORT_SECURITY_REVIEW_REQUIRED"
-});
-
-function classifyApiKey(apiKey = "") {
-  if (apiKey.startsWith("ms_sbx_")) return "sandbox_customer_key";
-  if (apiKey.startsWith("ms_live_")) return "production_customer_key";
-  if (apiKey.startsWith("ms_admin_")) return "admin_key";
-  if (apiKey.startsWith("ms_wh_test_")) return "test_webhook_signature";
-  return "unknown";
-}
-
-function buildBlockedGuardResponse({
-  status = "blocked_policy",
-  support_code,
-  severity = "medium",
-  owner_escalation_required = false,
-  next_allowed_actions = ["continue_sandbox", "request_owner_review"]
-}) {
-  return {
-    status,
-    support_code,
-    severity,
-    owner_escalation_required,
-    credit_delta: 0,
-    production_key_active: false,
-    credit_consumption_enabled: false,
-    real_payment_executed: false,
-    invoice_issued: false,
-    external_contact_executed: false,
-    next_allowed_actions
-  };
-}
-
-function buildProductionKeyBlockedResponse() {
-  return buildBlockedGuardResponse({
-    status: "blocked_production_key",
-    support_code: SUPPORT_CODES.PRODUCTION_KEY_BLOCKED,
-    owner_escalation_required: true,
-    next_allowed_actions: ["continue_sandbox", "review_owner_checklist"]
-  });
-}
-
-function buildKillSwitchResponse() {
-  return buildBlockedGuardResponse({
-    status: "paused_kill_switch",
-    support_code: SUPPORT_CODES.KILL_SWITCH_ACTIVE,
-    severity: "critical",
-    owner_escalation_required: true,
-    next_allowed_actions: ["read_status", "wait_for_owner_review"]
-  });
-}
-
-function buildProductionAccessStatus() {
-  return {
-    service: "MachineSignal",
-    status: "sandbox_only",
-    support_code: SUPPORT_CODES.PRODUCTION_ACCESS_BLOCKED,
-    primary_customer_interface: "machine",
-    production_access: DEFAULT_PRODUCTION_ACCESS_GUARD,
-    production_key: buildProductionKeyBlockedResponse(),
-    kill_switch_contract: buildKillSwitchResponse(),
-    allowed_now: [
-      "read_public_docs",
-      "read_product_catalog",
-      "create_limited_sandbox_customer",
-      "use_sandbox_api_key",
-      "run_synthetic_tests",
-      "read_usage_orders_and_support_status"
-    ],
-    blocked_now: [
-      "production_api_keys",
-      "paid_beta",
-      "commercial_go_live",
-      "real_payments",
-      "payment_method_collection",
-      "invoices",
-      "real_customer_data",
-      "personal_data",
-      "external_outreach",
-      "marketplace_publication",
-      "hosted_public_mcp",
-      "mcp_registry_submission"
-    ],
-    owner_approval_required_for: [
-      "paid_beta",
-      "production_api_keys",
-      "live_payment_provider",
-      "invoice_flow",
-      "terms_privacy_data_policy",
-      "support_sla",
-      "cost_caps",
-      "kill_switch_owner"
-    ],
-    real_payment_executed: false,
-    invoice_issued: false,
-    external_contact_executed: false,
-    next_allowed_actions: [
-      "continue_sandbox",
-      "review_paid_beta_owner_approval_checklist",
-      "review_production_access_control_pack"
-    ]
-  };
-}
-
-export const productionGuardInternals = Object.freeze({
-  DEFAULT_PRODUCTION_ACCESS_GUARD,
-  SUPPORT_CODES,
-  classifyApiKey,
-  buildBlockedGuardResponse,
-  buildProductionKeyBlockedResponse,
-  buildKillSwitchResponse,
-  buildProductionAccessStatus
-});
 
 const DEFAULT_LEDGER_STATE = {
   customer_id: "demo_machine_customer_001",
@@ -199,14 +47,13 @@ const DEFAULT_LEDGER_STATE = {
   },
   events: [],
   orders: [],
-  payment_tests: [],
   real_payment_executed: false,
   external_contact_executed: false
 };
 
 const PRODUCT_CATALOG = {
   service: "MachineSignal",
-  catalog_version: "2026-06-27-product-codes-starter-feed-update",
+  catalog_version: "2026-05-29-beta",
   currency: "EUR",
   primary_customer_interface: "machine",
   payment_mode: {
@@ -231,14 +78,16 @@ const PRODUCT_CATALOG = {
     customer_has_list: {
       machine_goal:
         "Prioritize an existing list of domains or companies before spending campaign, CRM or agent budget.",
-      first_call: "POST /v1/lead-opportunity-score",
+      first_call: "POST /v1/intake",
+      direct_call_when_domains_are_reliable: "POST /v1/lead-opportunity-score",
       first_product: "score_pack_1k",
       next_products: ["deep_analysis", "verification", "nurture_signal", "action_pack"]
     },
     customer_has_no_list: {
       machine_goal:
         "Find companies or domains useful for a specific commercial objective, sector and area.",
-      first_call: "POST /v1/purchase-intent",
+      first_call: "POST /v1/intake",
+      direct_call_when_product_is_already_known: "POST /v1/purchase-intent",
       first_product: "target_discovery",
       required_inputs: ["market", "area", "commercial_objective"],
       example_commercial_objective:
@@ -248,7 +97,8 @@ const PRODUCT_CATALOG = {
     customer_wants_next_action: {
       machine_goal:
         "Turn a confirmed opportunity into a CRM- or agent-readable action payload.",
-      first_call: "POST /v1/purchase-intent",
+      first_call: "POST /v1/intake",
+      direct_call_when_product_is_already_known: "POST /v1/purchase-intent",
       first_product: "action_pack",
       required_inputs: ["domain", "source_score_request_id", "reason"],
       next_products: ["opportunity_feed", "api_pro"]
@@ -259,9 +109,9 @@ const PRODUCT_CATALOG = {
       name: "Target Discovery Pack 250 Bundle",
       price_eur: 299,
       unit: "250 coherent targets + operational decisions",
-      billing_code: "MS-BND-DISC-250",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "target_discovery",
+      billing_code: "MS-BND-DISC-250",
       when_to_buy:
         "When the customer machine does not already have a list and wants targets for a specific commercial objective, sector and area.",
       includes: [
@@ -280,43 +130,39 @@ const PRODUCT_CATALOG = {
       validity_rule:
         "The pack is activated only when the pre-check indicates that 250 coherent targets can be produced. If not, the machine receives alternatives: Mini Discovery, wider area, broader criteria or changed commercial objective.",
       machine_output:
-        "A target list built for a declared commercial objective, ready for scoring or CRM enrichment workflows."
+        "A target list built for a declared commercial objective, ready for decisioning or CRM enrichment workflows."
     },
     score_pack_1k: {
       name: "Lead Decision Pack 250",
       price_eur: 49,
       unit: "250 valid operational decisions",
-      billing_code: "MS-DEC-250",
       current_beta_endpoint: "POST /v1/lead-opportunity-score",
       product_code: "score_pack_1k",
+      billing_code: "MS-DEC-250",
       when_to_buy:
-        "When the customer machine already has a list and needs to prioritize where to spend budget.",
+        "When the customer machine already has a list and needs a decision on what to do with each target.",
       includes: [
         "list cleaning",
         "deduplication",
         "exclusion of invalid or non-analyzable records",
         "opportunity_score",
         "confidence",
-        "commercial_strength level",
-        "spend_policy",
-        "allowed next products",
         "operational decision",
         "short reason",
         "priority",
         "recommended next purchase"
       ],
       validity_rule:
-        "Duplicate, invalid or non-analyzable records do not consume score credits. The pack ends after 1000 valid scores.",
-      machine_output:
-        "Operational decision, confidence, reason, priority, internal opportunity score signal and recommended next product."
+        "Duplicate, invalid or non-analyzable records do not consume decision credits. The pack ends after 250 valid operational decisions. If more decisions are needed, the machine buys additional units of the same pack.",
+      machine_output: "Operational decision, confidence, reason, priority, internal opportunity score signal and recommended next product."
     },
     domain_enrichment_pack_100: {
-      name: "Domain Enrichment Pack 100 Bundle",
+      name: "Domain Enrichment Pack 100",
       price_eur: 149,
       unit: "100 completed domain-enrichment decisions",
-      billing_code: "MS-BND-DOM-100",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "domain_enrichment",
+      billing_code: "MS-BND-DOM-100",
       when_to_buy:
         "When the customer machine has target names but does not have reliable domains to score.",
       includes: [
@@ -338,57 +184,83 @@ const PRODUCT_CATALOG = {
     deep_analysis_pack_100: {
       name: "Deep Analysis Pack 100",
       price_eur: 199,
-      billing_code: "MS-ANA-100",
       unit: "100 valid deep analyses",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "deep_analysis",
+      billing_code: "MS-ANA-100",
       when_to_buy:
-        "When a high score needs operational commercial evidence before the workflow buys Action Pack or spends more budget.",
+        "When a promising decision needs evidence and a clear machine-readable recommendation before the workflow spends more budget or prepares an action.",
       includes: [
-        "what_is_included contract",
-        "sector context",
-        "commercial objective",
-        "commercial evidence matrix",
+        "commercial signal analysis",
+        "decision explanation",
         "machine decision matrix",
-        "Action Pack purchase gate",
-        "CRM summary payload",
-        "sector-specific signals",
-        "signals to validate",
-        "risk flags",
+        "possible sellable service",
+        "false-positive risk",
+        "urgency level",
+        "recommended_action",
+        "sales_intensity",
+        "direct_offer flag",
+        "crm_status",
+        "next_check_days",
+        "external_contact_allowed flag",
+        "evidence limitations",
         "stop rules",
-        "recommended next machine call"
+        "next machine call"
       ],
-      output_fields: [
-        "what_is_included",
-        "deep_analysis_version",
-        "sector_context",
-        "commercial_objective",
-        "commercial_evidence",
-        "machine_decision_matrix",
-        "action_pack_purchase_gate",
-        "crm_summary_payload",
-        "sector_specific_signals",
-        "signals_to_validate",
-        "recommended_next_step",
-        "recommended_budget_cap_eur",
-        "stop_rules",
-        "evidence_limitations",
-        "next_machine_call"
-      ],
+      output_contract: {
+        recommended_action: "qualified_nurturing | buy_action_pack | hold | skip",
+        sales_intensity: "low | medium | high",
+        direct_offer: "boolean",
+        crm_status: "qualified_nurturing | ready_for_action | hold | discarded",
+        next_check_days: "integer or null",
+        external_contact_allowed: "boolean",
+        stop_rules: [
+          "domain_unreachable",
+          "sector_mismatch",
+          "duplicate_target",
+          "high_reputation_risk",
+          "insufficient_evidence"
+        ]
+      },
+      example_machine_output: {
+        target: "Studio Dental Milano Centro",
+        summary: "opportunita buona ma non immediata",
+        detected_problems: [
+          "CTA poco visibili",
+          "funnel prenotazione debole",
+          "pagine servizio poco sviluppate",
+          "segnali tracking non evidenti"
+        ],
+        false_positive_risk: "medium_low",
+        recommended_action: "qualified_nurturing",
+        sales_intensity: "low",
+        direct_offer: false,
+        crm_status: "qualified_nurturing",
+        next_check_days: 30,
+        external_contact_allowed: false,
+        machine_meaning:
+          "Do not discard the target, but do not start a strong commercial action. Save it as a qualified opportunity to monitor, schedule a new check in 30 days and do not execute external contact unless the customer explicitly authorizes it.",
+        stop_rules: [
+          "domain_unreachable",
+          "sector_mismatch",
+          "duplicate_target",
+          "high_reputation_risk"
+        ]
+      },
       validity_rule:
-        "Leads without enough data for a complete analysis do not consume deep-analysis credits and are returned with an exclusion reason.",
+        "Leads without enough data for a complete analysis do not consume deep-analysis credits and are returned with an exclusion reason. Vague recommendations are not valid: the output must include recommended_action, sales_intensity, direct_offer, crm_status, next_check_days, external_contact_allowed and stop_rules.",
       machine_output:
-        "A spend-control JSON decision pack that tells the workflow whether to buy Action Pack, keep the lead in watchlist or stop."
+        "A deeper JSON analysis that tells the workflow whether to save the target for qualified nurturing, buy an Action Pack, hold, skip or stop. The output must use explicit machine fields, not vague labels such as soft proposal."
     },
     action_pack_25: {
       name: "Opportunity Action Pack 25",
       price_eur: 599,
-      billing_code: "MS-ACT-25",
-      upgrade_billing_code: "MS-ACT-UPG-25",
-      upgrade_price_eur_after_deep_analysis: 499,
       unit: "25 valid action packs",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "action_pack",
+      billing_code: "MS-ACT-25",
+      upgrade_billing_code: "MS-ACT-UPG-25",
+      upgrade_price_eur_after_deep_analysis: 499,
       when_to_buy:
         "When Deep Analysis confirms that a lead deserves a prepared commercial action.",
       includes: [
@@ -434,39 +306,40 @@ const PRODUCT_CATALOG = {
     opportunity_feed_monthly: {
       name: "Opportunity Feed 4+4 Bundle",
       price_eur: 199,
-      billing_code: "MS-BND-FEED-4X4-250",
       unit: "1 month",
       current_beta_endpoint: "POST /v1/purchase-intent",
       product_code: "opportunity_feed",
+      billing_code: "MS-BND-FEED-4X4-250",
       when_to_buy:
         "When the customer machine wants recurring opportunities without launching one-off discovery requests.",
       includes: [
-        "1 recurring monthly feed",
+        "1 recurring monthly feed for 1 main market/sector and 1 main area",
         "4 scheduled scans",
         "4 scheduled deliveries",
+        "maximum 250 valid targets per month",
         "new or updated targets",
-        "base score",
+        "operational decisions on valid targets",
         "main signals",
         "priority",
         "API, file or webhook output"
       ],
       validity_rule:
-        "If a scan does not produce coherent opportunities, the system returns a market coverage report and suggested changes. It does not fill the feed with weak targets.",
-      machine_output: "A scheduled feed of targets, scores and signals for automated systems."
+        "If a scan does not produce coherent opportunities, the system returns a market coverage report and suggested changes. It does not fill the feed with weak targets. Duplicates and invalid records do not count toward the 250 valid-target monthly cap.",
+      machine_output: "A scheduled feed of targets, operational decisions and market signals for automated systems."
     },
     api_starter_monthly: {
       name: "MachineSignal Starter Monthly",
       price_eur: 199,
       unit: "1 month",
-      billing_code: "MS-SUB-STARTER-250",
-      current_beta_endpoint: "API key + score endpoint",
+      current_beta_endpoint: "API key + decision endpoint",
       product_code: "api_starter",
-      when_to_buy: "For light recurring use and continuous testing.",
+      billing_code: "MS-SUB-STARTER-250",
+      when_to_buy: "For a simple monthly flow when the customer machine wants recurring target discovery and decisions without buying one-off batches every time.",
       includes: [
         "1 API key",
         "documentation",
         "demo environment",
-        "score endpoint",
+        "API/report access",
         "250 targets per month",
         "operational decisions included on the 250 valid monthly targets",
         "basic usage report",
@@ -486,7 +359,7 @@ const PRODUCT_CATALOG = {
         "For CRMs, agencies, platforms or automated workflows with recurring volume.",
       includes: [
         "1 advanced API key",
-        "3000 valid scores per month",
+        "3000 valid operational decisions per month",
         "50 valid Deep Analysis outputs per month",
         "1 monthly Opportunity Feed",
         "webhook support",
@@ -519,17 +392,6 @@ const PRODUCT_CATALOG = {
       machine_output: "A custom machine-readable scope and delivery agreement."
     }
   }
-};
-
-const SIMULATED_REVENUE_PER_CREDIT_EUR = {
-  score_pack_1k: 0.196,
-  target_discovery_pack_250: 299,
-  domain_enrichment_pack_100: 1.49,
-  verification_pack_100: 1,
-  nurture_signal_pack_100: 1,
-  deep_analysis_pack_100: 1.99,
-  action_pack_25: 23.96,
-  opportunity_feed_monthly: 199
 };
 
 export const openApi = {
@@ -575,24 +437,6 @@ export const openApi = {
         summary: "Return public machine-readable product catalog",
         description:
           "Public catalog for automated systems. Lists machine buying scenarios, product codes, exact beta prices, included deliverables, validity rules and credit consumption rules."
-      }
-    },
-    "/v1/production-access/status": {
-      get: {
-        operationId: "getProductionAccessStatus",
-        summary: "Return public production access guard status",
-        description:
-          "Public read-only status endpoint for machines. Confirms that production API keys, paid beta, real payments, invoices, real data, personal data, external outreach, marketplace publication, hosted MCP and registry submission are blocked until explicit owner approval and all gates pass.",
-        responses: {
-          200: {
-            description: "Production access guard status.",
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/ProductionAccessStatus" }
-              }
-            }
-          }
-        }
       }
     },
     "/v1/onboarding": {
@@ -678,6 +522,67 @@ export const openApi = {
           400: { description: "Invalid request." },
           403: { description: "Sandbox key creation is disabled." },
           429: { description: "Sandbox daily creation limit reached." }
+        }
+      }
+    },
+    "/v1/intake": {
+      post: {
+        operationId: "routeMachineIntent",
+        summary: "Route a machine's first request to the right MachineSignal product",
+        description:
+          "Authenticated beta endpoint. The customer machine declares whether it has a list, needs discovery, domain enrichment, scoring, deep analysis, action payloads or recurring monitoring. Intake returns the recommended product, required inputs and next API call. It does not consume credits, execute payment, issue invoices or contact external parties.",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          {
+            name: "Idempotency-Key",
+            in: "header",
+            required: false,
+            schema: { type: "string", example: "crm-intake-20260628-001" },
+            description:
+              "Optional stable key. Intake itself does not consume credits, but the key makes routing traceable."
+          }
+        ],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/MachineIntakeRequest" },
+              examples: {
+                noList: {
+                  summary: "Machine has no list",
+                  value: {
+                    has_list: false,
+                    market: "dentisti",
+                    area: "Milano",
+                    commercial_objective:
+                      "find target domains worth evaluating for website improvement opportunities"
+                  }
+                },
+                existingReliableList: {
+                  summary: "Machine has reliable domains",
+                  value: {
+                    has_list: true,
+                    list_quality: "valid_domains",
+                    domain: "studio-demo.it",
+                    sector_hint: "dentist",
+                    country_hint: "IT"
+                  }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          200: {
+            description: "Machine intent routed to the recommended product and next API call.",
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/MachineIntakeResponse" }
+              }
+            }
+          },
+          400: { description: "Invalid JSON body." },
+          401: { description: "Missing or invalid X-API-Key." }
         }
       }
     },
@@ -770,43 +675,12 @@ export const openApi = {
         }
       }
     },
-    "/v1/admin/audit-report": {
-      get: {
-        operationId: "getLedgerAuditReport",
-        summary: "Return ledger reconciliation and simulated revenue audit",
-        description:
-          "Admin-only endpoint. Reconciles balances, credit consumption events, beta order intents, simulated beta revenue and safety flags for one beta customer. Use this before enabling real payments.",
-        security: [{ ApiKeyAuth: [] }],
-        parameters: [
-          {
-            name: "customer_id",
-            in: "query",
-            required: true,
-            schema: { type: "string", example: "beta_partner_001" },
-            description: "Beta or sandbox customer id to audit."
-          }
-        ],
-        responses: {
-          200: {
-            description: "Ledger audit report for one customer.",
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/LedgerAuditReport" }
-              }
-            }
-          },
-          400: { description: "Missing customer_id." },
-          401: { description: "Missing or invalid admin X-API-Key." },
-          404: { description: "Customer or ledger not found." }
-        }
-      }
-    },
     "/v1/purchase-intent": {
       post: {
         operationId: "createPurchaseIntent",
         summary: "Create a beta order intent for a recommended next product",
         description:
-          "Creates a tracked beta order intent for target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment. If deep_analysis is requested with source_verification_order_intent_id, the source Verification order must be accepted, same-domain and positive; otherwise the API returns deep_analysis_verification_gate_failed and consumes no credit. If action_pack is requested, source_order_intent_id is required and must point to an accepted Deep Analysis order for the same domain; otherwise the API returns action_pack_gate_failed and consumes no credit.",
+          "Creates a tracked beta order intent for target_discovery, domain_enrichment, verification, nurture_signal, deep_analysis, action_pack or opportunity_feed. This consumes one corresponding pack credit but does not execute real payment.",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
           {
@@ -828,10 +702,7 @@ export const openApi = {
                   summary: "Order a beta target discovery pack",
                   value: {
                     product_code: "target_discovery",
-                    market: "medicina estetica",
-                    area: "Lombardia",
-                    commercial_objective:
-                      "find aesthetic medicine clinic websites worth scoring for digital presence improvement opportunities",
+                    domain: "dentist-market-demo.it",
                     source_score_request_id: null,
                     reason: "Customer machine does not already have a list to score"
                   }
@@ -843,25 +714,6 @@ export const openApi = {
                     domain: "studio-legale-demo.it",
                     source_score_request_id: "crm-import-20260529-row-0007",
                     reason: "Score decision was needs_verification"
-                  }
-                },
-                deepAnalysisAfterPositiveVerification: {
-                  summary: "Order Deep Analysis after positive Verification",
-                  value: {
-                    product_code: "deep_analysis",
-                    domain: "studio-legale-demo.it",
-                    source_score_request_id: "crm-import-20260529-row-0007",
-                    source_verification_order_intent_id: "ord_verification_0001",
-                    reason: "Verification verdict is positive enough to deepen"
-                  }
-                },
-                actionPackAfterDeepAnalysis: {
-                  summary: "Order Action Pack after accepted Deep Analysis",
-                  value: {
-                    product_code: "action_pack",
-                    domain: "studio-legale-demo.it",
-                    source_order_intent_id: "ord_deep_analysis_0001",
-                    reason: "Deep Analysis confirms a machine-actionable commercial opportunity"
                   }
                 }
               }
@@ -880,184 +732,6 @@ export const openApi = {
           },
           400: { description: "Invalid JSON body or unsupported product_code." },
           401: { description: "Missing or invalid X-API-Key." }
-        }
-      }
-    },
-    "/v1/payment-test/intents": {
-      post: {
-        operationId: "createPaymentTestIntent",
-        summary: "Create a simulated test-mode payment intent",
-        description:
-          "Creates a provider-neutral test checkout object for a beta order or product. This endpoint is test/sandbox mode only: it never executes real payment, never issues a fiscal invoice and keeps ready_for_real_payments=false.",
-        security: [{ ApiKeyAuth: [] }],
-        parameters: [
-          {
-            name: "Idempotency-Key",
-            in: "header",
-            required: true,
-            schema: { type: "string", example: "payment-test-score-pack-001" },
-            description:
-              "Unique payment-test key. Reusing the same key returns the same simulated payment object and does not create another payment test."
-          }
-        ],
-        requestBody: {
-          required: true,
-          content: {
-            "application/json": {
-              schema: { $ref: "#/components/schemas/PaymentTestIntentRequest" },
-              examples: {
-                scorePackTest: {
-                  summary: "Create a test checkout for Score Pack 1k",
-                  value: {
-                    product_code: "score_pack_1k",
-                    amount_eur: 119,
-                    provider: "stripe",
-                    provider_mode: "test"
-                  }
-                }
-              }
-            }
-          }
-        },
-        responses: {
-          200: {
-            description:
-              "Payment test intent created or returned as duplicate. Use returned test signatures to simulate webhook outcomes.",
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/PaymentTestIntentResponse" }
-              }
-            }
-          },
-          400: { description: "Invalid request or live/production payment mode blocked." },
-          401: { description: "Missing or invalid X-API-Key." }
-        }
-      }
-    },
-    "/v1/payment-test/intents/{payment_test_id}": {
-      get: {
-        operationId: "getPaymentTestIntent",
-        summary: "Read one simulated payment-test intent",
-        description:
-          "Returns one payment-test intent, its current simulated status, test webhook signatures and reconciliation status.",
-        security: [{ ApiKeyAuth: [] }],
-        parameters: [
-          {
-            name: "payment_test_id",
-            in: "path",
-            required: true,
-            schema: { type: "string", example: "paytest_ab12cd34" }
-          }
-        ],
-        responses: {
-          200: {
-            description: "Payment test intent found.",
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/PaymentTestIntentResponse" }
-              }
-            }
-          },
-          401: { description: "Missing or invalid X-API-Key." },
-          404: { description: "Payment test intent not found." }
-        }
-      }
-    },
-    "/v1/payment-test/webhooks/stripe": {
-      post: {
-        operationId: "simulateStripePaymentTestWebhook",
-        summary: "Simulate a Stripe-style test webhook",
-        description:
-          "Accepts deterministic test signatures returned by POST /v1/payment-test/intents. A succeeded test webhook activates test credits once and creates only an invoice placeholder.",
-        requestBody: {
-          required: true,
-          content: {
-            "application/json": {
-              schema: { $ref: "#/components/schemas/PaymentTestWebhookRequest" },
-              examples: {
-                success: {
-                  summary: "Simulate a succeeded test payment",
-                  value: {
-                    customer_id: "beta_partner_001",
-                    payment_test_id: "paytest_ab12cd34",
-                    event_type: "payment_intent.succeeded",
-                    event_id: "evt_test_success_001"
-                  }
-                }
-              }
-            }
-          }
-        },
-        responses: {
-          200: {
-            description: "Webhook accepted and reconciled.",
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/PaymentTestIntentResponse" }
-              }
-            }
-          },
-          400: { description: "Invalid webhook or bad test signature." },
-          404: { description: "Customer or payment-test intent not found." }
-        }
-      }
-    },
-    "/v1/payment-test/reconciliation/{payment_test_id}": {
-      get: {
-        operationId: "getPaymentTestReconciliation",
-        summary: "Reconcile one simulated payment test",
-        description:
-          "Checks that no live payment occurred, test credits were activated once, duplicate webhooks did not double-credit and no fiscal invoice was issued.",
-        security: [{ ApiKeyAuth: [] }],
-        parameters: [
-          {
-            name: "payment_test_id",
-            in: "path",
-            required: true,
-            schema: { type: "string", example: "paytest_ab12cd34" }
-          }
-        ],
-        responses: {
-          200: {
-            description: "Payment test reconciliation result.",
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/PaymentTestReconciliationResponse" }
-              }
-            }
-          },
-          401: { description: "Missing or invalid X-API-Key." },
-          404: { description: "Payment test intent not found." }
-        }
-      }
-    },
-    "/v1/admin/payment-test-report": {
-      get: {
-        operationId: "getAdminPaymentTestReport",
-        summary: "Return admin payment-test report for one customer",
-        description:
-          "Admin-only report for simulated payment tests. It summarizes statuses, activated test credits, duplicate webhooks and blockers before real payment enablement.",
-        security: [{ ApiKeyAuth: [] }],
-        parameters: [
-          {
-            name: "customer_id",
-            in: "query",
-            required: true,
-            schema: { type: "string", example: "beta_partner_001" }
-          }
-        ],
-        responses: {
-          200: {
-            description: "Payment-test report for one customer.",
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/PaymentTestReportResponse" }
-              }
-            }
-          },
-          400: { description: "Missing customer_id." },
-          401: { description: "Missing or invalid admin X-API-Key." },
-          404: { description: "Customer or ledger not found." }
         }
       }
     },
@@ -1289,124 +963,6 @@ export const openApi = {
       }
     },
     schemas: {
-      SupportCode: {
-        type: "string",
-        description:
-          "Machine-readable support/status code. Production, payment, invoice, real-data, personal-data and outreach codes remain blocked until explicit owner approval and all gates pass.",
-        enum: Object.values(SUPPORT_CODES),
-        example: "MS_PRODUCTION_KEY_BLOCKED"
-      },
-      ProductionAccessGuard: {
-        type: "object",
-        description:
-          "Default production access guard. All fields default to false; missing fields are treated as false. This schema documents blocked-by-default behavior and does not enable production access.",
-        properties: {
-          enabled: { type: "boolean", example: false },
-          owner_approved: { type: "boolean", example: false },
-          production_keys_enabled: { type: "boolean", example: false },
-          paid_beta_enabled: { type: "boolean", example: false },
-          real_payments_enabled: { type: "boolean", example: false },
-          invoices_enabled: { type: "boolean", example: false },
-          personal_data_enabled: { type: "boolean", example: false },
-          real_customer_data_enabled: { type: "boolean", example: false },
-          external_outreach_enabled: { type: "boolean", example: false },
-          marketplace_publication_enabled: { type: "boolean", example: false },
-          hosted_public_mcp_enabled: { type: "boolean", example: false },
-          registry_submission_enabled: { type: "boolean", example: false }
-        }
-      },
-      ProductionAccessStatus: {
-        type: "object",
-        description:
-          "Public machine-readable production access status. It is read-only and confirms that MachineSignal is sandbox-only until owner approval and all readiness gates pass.",
-        required: [
-          "service",
-          "status",
-          "support_code",
-          "production_access",
-          "blocked_now",
-          "real_payment_executed",
-          "invoice_issued",
-          "external_contact_executed",
-          "next_allowed_actions"
-        ],
-        properties: {
-          service: { type: "string", example: "MachineSignal" },
-          status: { type: "string", example: "sandbox_only" },
-          support_code: { $ref: "#/components/schemas/SupportCode" },
-          primary_customer_interface: { type: "string", example: "machine" },
-          production_access: { $ref: "#/components/schemas/ProductionAccessGuard" },
-          production_key: { $ref: "#/components/schemas/ProductionKeyBlockedResponse" },
-          kill_switch_contract: { $ref: "#/components/schemas/KillSwitchResponse" },
-          allowed_now: {
-            type: "array",
-            items: { type: "string" },
-            example: ["read_public_docs", "create_limited_sandbox_customer"]
-          },
-          blocked_now: {
-            type: "array",
-            items: { type: "string" },
-            example: ["production_api_keys", "real_payments", "invoices", "external_outreach"]
-          },
-          owner_approval_required_for: {
-            type: "array",
-            items: { type: "string" },
-            example: ["paid_beta", "production_api_keys", "invoice_flow"]
-          },
-          real_payment_executed: { type: "boolean", example: false },
-          invoice_issued: { type: "boolean", example: false },
-          external_contact_executed: { type: "boolean", example: false },
-          next_allowed_actions: {
-            type: "array",
-            items: { type: "string" },
-            example: ["continue_sandbox", "review_paid_beta_owner_approval_checklist"]
-          }
-        }
-      },
-      GuardedBlockedResponse: {
-        type: "object",
-        description:
-          "Standard blocked response for machine-readable guardrails. Blocked actions consume no credits and must not execute payment, invoice or external contact.",
-        required: [
-          "status",
-          "support_code",
-          "owner_escalation_required",
-          "credit_delta",
-          "real_payment_executed",
-          "invoice_issued",
-          "external_contact_executed",
-          "next_allowed_actions"
-        ],
-        properties: {
-          status: { type: "string", example: "blocked_policy" },
-          support_code: { $ref: "#/components/schemas/SupportCode" },
-          severity: { type: "string", enum: ["low", "medium", "high", "critical"], example: "medium" },
-          owner_escalation_required: { type: "boolean", example: true },
-          credit_delta: { type: "integer", example: 0 },
-          production_key_active: { type: "boolean", example: false },
-          credit_consumption_enabled: { type: "boolean", example: false },
-          real_payment_executed: { type: "boolean", example: false },
-          invoice_issued: { type: "boolean", example: false },
-          external_contact_executed: { type: "boolean", example: false },
-          next_allowed_actions: {
-            type: "array",
-            items: { type: "string" },
-            example: ["continue_sandbox", "request_owner_review"]
-          }
-        }
-      },
-      ProductionKeyBlockedResponse: {
-        allOf: [{ $ref: "#/components/schemas/GuardedBlockedResponse" }],
-        description:
-          "Response returned when a production key is requested or used before owner approval and all required gates pass.",
-        example: buildProductionKeyBlockedResponse()
-      },
-      KillSwitchResponse: {
-        allOf: [{ $ref: "#/components/schemas/GuardedBlockedResponse" }],
-        description:
-          "Response returned when the kill switch pauses risky production access, credit consumption, payments, invoices, provider calls or external contact.",
-        example: buildKillSwitchResponse()
-      },
       LeadScoreRequest: {
         type: "object",
         required: ["domain"],
@@ -1466,66 +1022,10 @@ export const openApi = {
               reason: { type: "string" }
             }
           },
-          web_architect_review: {
-            type: "object",
-            description:
-              "Web Architect AI precheck. It tells the customer machine whether website, sector and local-market evidence is coherent enough to support controlled downstream spend.",
-            properties: {
-              status: { type: "string", example: "architect_precheck_passed" },
-              action_pack_evidence: { type: "boolean", example: true },
-              checked_signals: { type: "object" },
-              reason: { type: "string" }
-            }
-          },
-          commercial_strength: {
-            type: "object",
-            description:
-              "Machine-readable budget-routing layer. It classifies the scored target and tells the customer machine which paid next steps are allowed.",
-            properties: {
-              level: { type: "string", enum: ["strong", "medium", "weak"], example: "strong" },
-              spend_policy: {
-                type: "string",
-                example: "buy_deep_analysis_then_consider_action_pack_if_deep_confirms"
-              },
-              allowed_next_products: {
-                type: "array",
-                items: { type: "string" },
-                example: ["deep_analysis", "action_pack_after_deep_analysis"]
-              },
-              reason: {
-                type: "string",
-                example:
-                  "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
-              }
-            }
-          },
           next_purchase: {
             type: "object",
             description:
               "Machine-readable commercial recommendation. Null next_product means do not buy an add-on now."
-          },
-          decision_contract: {
-            type: "object",
-            description:
-              "Post-score routing contract pointer. Tells the machine which route in https://machinesignal.it/score-decision-contract.json applies to this decision before spending more beta budget.",
-            properties: {
-              contract_url: {
-                type: "string",
-                example: "https://machinesignal.it/score-decision-contract.json"
-              },
-              route: {
-                type: "string",
-                example: "buy_deep_analysis"
-              },
-              route_pointer: {
-                type: "string",
-                example: "/decision_routes/buy_deep_analysis"
-              },
-              next_spend_allowed: {
-                type: "boolean",
-                example: true
-              }
-            }
           },
           machine_next_step: {
             type: "object",
@@ -1537,6 +1037,77 @@ export const openApi = {
             description: "Echo of Idempotency-Key or generated request id."
           },
           usage: { $ref: "#/components/schemas/UsageLedger" }
+        }
+      },
+      MachineIntakeRequest: {
+        type: "object",
+        description:
+          "Machine-declared first intent. Used to decide whether the next step is discovery, enrichment, scoring, deep analysis, action preparation, opportunity feed or monthly starter.",
+        properties: {
+          objective: {
+            type: "string",
+            example: "find targets in Milan dentistry market"
+          },
+          has_list: {
+            type: "boolean",
+            example: false
+          },
+          list_quality: {
+            type: "string",
+            enum: ["none", "valid_domains", "incomplete_domains", "dirty", "unknown"],
+            example: "valid_domains"
+          },
+          market: { type: "string", example: "dentisti" },
+          area: { type: "string", example: "Milano" },
+          commercial_objective: {
+            type: "string",
+            example: "find target domains worth evaluating for website improvement opportunities"
+          },
+          wanted_output: {
+            type: "string",
+            example: "targets_with_decisions"
+          },
+          usage_mode: {
+            type: "string",
+            example: "one_time"
+          },
+          domain: { type: "string", example: "studio-demo.it" },
+          batch_id: { type: "string", example: "customer-list-001" },
+          targets: {
+            type: "array",
+            items: { type: "object" },
+            description: "Optional target records supplied by the customer machine."
+          }
+        },
+        additionalProperties: true
+      },
+      MachineIntakeResponse: {
+        type: "object",
+        properties: {
+          status: { type: "string", example: "intake_ready" },
+          request_id: { type: "string", example: "crm-intake-20260628-001" },
+          beta: { type: "boolean", example: true },
+          primary_customer_interface: { type: "string", example: "machine" },
+          real_payment_executed: { type: "boolean", example: false },
+          external_contact_executed: { type: "boolean", example: false },
+          credit_consumed: { type: "boolean", example: false },
+          recommendation: {
+            type: "object",
+            properties: {
+              detected_need: { type: "string", example: "target_discovery_with_decisions" },
+              recommended_product_code: { type: "string", example: "target_discovery" },
+              ledger_product_code: { type: "string", example: "target_discovery_pack_250" },
+              billing_code: { type: "string", example: "MS-BND-DISC-250" },
+              product_name: { type: "string", example: "Target Discovery Pack 250 Bundle" },
+              price_eur: { type: "number", example: 299 },
+              reason: { type: "string" },
+              required_inputs: { type: "array", items: { type: "string" } },
+              next_api_call: { type: "object" }
+            }
+          },
+          missing_inputs: { type: "array", items: { type: "string" } },
+          can_continue_automatically: { type: "boolean", example: true },
+          safeguards: { type: "array", items: { type: "string" } }
         }
       },
       PurchaseIntentRequest: {
@@ -1568,25 +1139,6 @@ export const openApi = {
               "Target name for products that start before a reliable domain exists, such as domain_enrichment.",
             example: "Studio Dentistico Demo"
           },
-          market: {
-            type: "string",
-            description:
-              "Market or niche for target discovery when the customer machine does not already have a list.",
-            example: "medicina estetica"
-          },
-          area: {
-            type: "string",
-            description:
-              "Geographic area for target discovery or market-level purchase intents.",
-            example: "Lombardia"
-          },
-          commercial_objective: {
-            type: "string",
-            description:
-              "Specific commercial objective that explains what opportunity the machine wants to find, not just a generic sector label.",
-            example:
-              "find aesthetic medicine clinic websites worth scoring for digital presence improvement opportunities"
-          },
           batch_id: {
             type: "string",
             description:
@@ -1597,24 +1149,6 @@ export const openApi = {
             type: "string",
             description: "Optional request id of the score that produced the recommendation.",
             example: "crm-import-20260529-row-0007"
-          },
-          source_order_intent_id: {
-            type: "string",
-            description:
-              "Required when product_code is action_pack. Must point to a valid accepted Deep Analysis order for the same domain in the customer's ledger.",
-            example: "ord_0001"
-          },
-          source_verification_order_intent_id: {
-            type: "string",
-            description:
-              "Optional when product_code is deep_analysis. If provided, it must point to a valid accepted Verification order for the same domain with a positive verification verdict; cautious verdicts block Deep Analysis and consume no credit.",
-            example: "ord_verification_0001"
-          },
-          verification_fixture: {
-            type: "string",
-            description:
-              "Sandbox-only test fixture for product_code=verification on .test domains. Use positive_for_deep_analysis to receive a synthetic positive Verification verdict for gate validation; do not use for real domains.",
-            example: "positive_for_deep_analysis"
           },
           reason: {
             type: "string",
@@ -1639,156 +1173,10 @@ export const openApi = {
           product_code: { type: "string", example: "verification" },
           ledger_product_code: { type: "string", example: "verification_pack_100" },
           domain: { type: "string", example: "studio-legale-demo.it" },
-          source_score_request_id: { type: "string", example: "crm-import-20260529-row-0007" },
-          source_order_intent_id: { type: "string", example: "ord_0001" },
-          source_verification_order_intent_id: {
-            type: "string",
-            example: "ord_verification_0001"
-          },
-          action_pack_gate: {
-            type: "object",
-            description:
-              "Present for action_pack. Shows whether the API accepted the required Deep Analysis gate."
-          },
-          deep_analysis_verification_gate: {
-            type: "object",
-            description:
-              "Present for deep_analysis when source_verification_order_intent_id is supplied. Shows whether the API accepted the required Verification gate."
-          },
           real_payment_executed: { type: "boolean", example: false },
           external_contact_executed: { type: "boolean", example: false },
           delivery: { $ref: "#/components/schemas/BetaDelivery" },
           usage: { $ref: "#/components/schemas/UsageLedger" }
-        }
-      },
-      PaymentTestIntentRequest: {
-        type: "object",
-        required: ["product_code", "provider_mode"],
-        properties: {
-          product_code: {
-            type: "string",
-            enum: [
-              "score_pack_1k",
-              "target_discovery",
-              "target_discovery_pack",
-              "domain_enrichment",
-              "domain_enrichment_pack",
-              "deep_analysis",
-              "deep_analysis_pack",
-              "action_pack",
-              "action_pack_25",
-              "opportunity_feed",
-              "opportunity_feed_monthly"
-            ],
-            example: "score_pack_1k"
-          },
-          order_intent_id: {
-            type: "string",
-            description:
-              "Optional beta order intent to connect this simulated checkout to a prior purchase-intent call.",
-            example: "ord_0001"
-          },
-          amount_eur: {
-            type: "number",
-            description:
-              "Expected test amount. If omitted, MachineSignal uses the beta list price for the product.",
-            example: 99
-          },
-          provider: {
-            type: "string",
-            enum: ["stripe", "provider_neutral"],
-            example: "stripe"
-          },
-          provider_mode: {
-            type: "string",
-            enum: ["test", "sandbox"],
-            example: "test",
-            description: "Live, production and prod are blocked."
-          },
-          metadata: {
-            type: "object",
-            additionalProperties: true,
-            example: { crm_run_id: "crm-batch-20260604-001" }
-          }
-        }
-      },
-      PaymentTestIntentResponse: {
-        type: "object",
-        properties: {
-          payment_test_id: { type: "string", example: "paytest_ab12cd34" },
-          customer_id: { type: "string", example: "beta_partner_001" },
-          order_intent_id: { type: "string", example: "ord_0001" },
-          product_code: { type: "string", example: "score_pack_1k" },
-          ledger_product_code: { type: "string", example: "score_pack_1k" },
-          provider: { type: "string", example: "stripe" },
-          provider_mode: { type: "string", example: "test" },
-          payment_status: { type: "string", example: "test_payment_intent_created" },
-          real_payment_executed: { type: "boolean", example: false },
-          ready_for_real_payments: { type: "boolean", example: false },
-          credits_to_activate: { type: "integer", example: 1000 },
-          credits_activated: { type: "integer", example: 0 },
-          test_webhook_simulation: {
-            type: "object",
-            description:
-              "Machine-readable instructions for simulating success, failure or requires_action webhooks."
-          },
-          reconciliation: { type: "object" },
-          usage: { $ref: "#/components/schemas/UsageLedger" }
-        }
-      },
-      PaymentTestWebhookRequest: {
-        type: "object",
-        required: ["customer_id", "payment_test_id", "event_type", "event_id"],
-        properties: {
-          customer_id: { type: "string", example: "beta_partner_001" },
-          payment_test_id: { type: "string", example: "paytest_ab12cd34" },
-          event_type: {
-            type: "string",
-            enum: [
-              "payment_intent.succeeded",
-              "payment_intent.payment_failed",
-              "payment_intent.requires_action"
-            ],
-            example: "payment_intent.succeeded"
-          },
-          event_id: {
-            type: "string",
-            description:
-              "Provider event id. Reusing it is treated as a duplicate webhook and must not activate credits twice.",
-            example: "evt_test_success_001"
-          },
-          test_signature: {
-            type: "string",
-            description:
-              "Alternative to X-MachineSignal-Test-Webhook-Signature. Use the signature returned by the payment-test intent.",
-            example: "sigtest_ab12cd34"
-          },
-          metadata: {
-            type: "object",
-            additionalProperties: true
-          }
-        }
-      },
-      PaymentTestReconciliationResponse: {
-        type: "object",
-        properties: {
-          payment_test_id: { type: "string", example: "paytest_ab12cd34" },
-          reconciliation_ok: { type: "boolean", example: true },
-          ready_for_real_payments: { type: "boolean", example: false },
-          real_payment_executed: { type: "boolean", example: false },
-          checks: { type: "array", items: { type: "object" } },
-          blockers_before_live: { type: "array", items: { type: "string" } }
-        }
-      },
-      PaymentTestReportResponse: {
-        type: "object",
-        properties: {
-          generated_at: { type: "string", format: "date-time" },
-          customer_id: { type: "string", example: "beta_partner_001" },
-          summary: { type: "object" },
-          safety: { type: "object" },
-          payment_tests: { type: "array", items: { type: "object" } },
-          recommended_next_controls: { type: "array", items: { type: "string" } }
         }
       },
       BetaDelivery: {
@@ -1980,43 +1368,17 @@ export const openApi = {
           test_window_days: { type: "integer", example: 7 },
           sandbox_customers: { type: "object" },
           usage: { type: "object" },
-          orders: { type: "object" },
           score_decisions: {
             type: "object",
             description:
-              "Aggregates valid score outputs by machine decision to estimate order-qualified demand without executing payments or external outreach."
+              "Aggregated decision counts from ledger events: valid decisions, interesting decisions, strong decisions and decision breakdown."
           },
+          orders: { type: "object" },
           conversion: { type: "object" },
           safety: { type: "object" },
           targets: { type: "object" },
           progress: { type: "object" },
           interpretation: { type: "string", example: "insufficient_data" }
-        }
-      },
-      LedgerAuditReport: {
-        type: "object",
-        properties: {
-          generated_at: { type: "string", format: "date-time" },
-          customer_id: { type: "string", example: "beta_partner_001" },
-          ledger_backend: { type: "string", example: "durable_object" },
-          ledger_persisted: { type: "boolean", example: true },
-          summary: {
-            type: "object",
-            properties: {
-              total_events: { type: "integer", example: 301 },
-              valid_credit_events: { type: "integer", example: 300 },
-              blocked_events: { type: "integer", example: 0 },
-              order_count: { type: "integer", example: 280 },
-              simulated_revenue_eur: { type: "number", example: 408.9 },
-              reconciliation_ok: { type: "boolean", example: true }
-            }
-          },
-          product_reconciliation: {
-            type: "array",
-            items: { type: "object" }
-          },
-          safety: { type: "object" },
-          recommended_next_controls: { type: "array", items: { type: "string" } }
         }
       },
       UsageLedger: {
@@ -2048,7 +1410,7 @@ export const openApi = {
 
 const llmsTxt = `# MachineSignal
 
-MachineSignal exposes a callable beta API for CRM systems, RevOps workflows and AI agents that need to score business domains before spending budget on enrichment or follow-up.
+MachineSignal exposes a callable beta API for CRM systems, RevOps workflows and AI agents that need operational decisions on business domains before spending budget on enrichment or follow-up.
 
 Base URL: https://machinesignal-api.beta-878.workers.dev
 
@@ -2057,12 +1419,10 @@ Useful endpoints:
 - GET /openapi.json
 - GET /postman_collection.json
 - GET https://machinesignal.it/postman_public_collection.json
-- GET https://machinesignal.it/postman_public_environment_template.json
 - GET /llms.txt
 - GET /machine-onboarding.json
 - GET /product-catalog.json
 - GET https://machinesignal.it/score-decision-contract.json
-- GET /v1/production-access/status
 - GET https://machinesignal.it/machine-discovery/machine-discovery-pack.json
 - GET https://machinesignal.it/distribution/api-directory-submission.json
 - GET https://machinesignal.it/distribution/rapidapi-listing.json
@@ -2072,42 +1432,35 @@ Useful endpoints:
 - POST /v1/sandbox/customers
 - GET /v1/onboarding
 - GET /v1/usage
+- POST /v1/intake
 - POST /v1/lead-opportunity-score
 - POST /v1/purchase-intent
-- POST /v1/payment-test/intents
-- GET /v1/payment-test/intents/{payment_test_id}
-- POST /v1/payment-test/webhooks/stripe
-- GET /v1/payment-test/reconciliation/{payment_test_id}
 - GET /v1/orders
 - GET /v1/orders/{order_intent_id}
 - POST /v1/beta/customers
 - GET /v1/beta/customers/{customer_id}
 - PATCH /v1/beta/customers/{customer_id}
 - GET /v1/admin/sandbox-metrics
-- GET /v1/admin/audit-report?customer_id=<customer_id>
-- GET /v1/admin/payment-test-report?customer_id=<customer_id>
 
 Authentication:
 - protected endpoints require header X-API-Key: <beta key>;
-- public endpoints are /, /health, /openapi.json, /postman_collection.json, https://machinesignal.it/postman_public_collection.json, https://machinesignal.it/postman_public_environment_template.json, /product-catalog.json, /v1/production-access/status and /llms.txt.
+- public endpoints are /, /health, /openapi.json, /postman_collection.json, https://machinesignal.it/postman_public_collection.json, /product-catalog.json and /llms.txt.
 - POST /v1/beta/customers requires the admin beta key and returns a dedicated customer key.
 - GET/PATCH /v1/beta/customers/{customer_id} require the admin beta key and never return the full customer API key.
 - GET /v1/admin/sandbox-metrics requires the admin beta key and returns only aggregated sandbox test metrics.
-- GET /v1/admin/audit-report requires the admin beta key and reconciles one customer ledger before real payments.
-- GET /v1/admin/payment-test-report requires the admin beta key and reconciles simulated payment-test records.
 
-How a machine should call the score endpoint:
+How a machine should call the decision endpoint:
 1. Fetch /llms.txt, /machine-onboarding.json or /openapi.json.
 2. Fetch /product-catalog.json to read products, exact beta prices, deliverables and credit rules.
-3. Fetch /v1/production-access/status to confirm production keys, payments, invoices, real data, personal data and outreach are blocked.
-4. If no beta key is available, POST /v1/sandbox/customers to create a limited sandbox key for safe testing.
+3. If no beta key is available, POST /v1/sandbox/customers to create a limited sandbox key for safe testing.
+4. If the machine is not sure what to buy or call, POST /v1/intake. Intake consumes no credits and returns recommended_product_code, billing_code, missing_inputs and next_api_call.
 5. Read the required X-API-Key and Idempotency-Key headers.
-6. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"}.
-7. Read decision, commercial_strength, spend_policy, machine_next_step and next_purchase.
+6. POST /v1/lead-opportunity-score with JSON body: {"domain":"example.it","sector_hint":"dentist","country_hint":"IT"} when a reliable domain is available.
+7. Read decision, machine_next_step and next_purchase.
 8. Fetch https://machinesignal.it/score-decision-contract.json and route the response according to the allowed decision contract.
-9. Read /v1/usage to verify consumed and remaining credits.
-10. If next_purchase.next_product is not null and commercial_strength allows that spend, POST /v1/purchase-intent to create a beta order intent.
-11. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
+8. Read /v1/usage to verify consumed and remaining credits.
+9. If next_purchase.next_product is not null, POST /v1/purchase-intent to create a beta order intent.
+10. Use GET /v1/orders or GET /v1/orders/{order_intent_id} to retrieve previous orders and deliveries.
 
 Three machine buying flows:
 1. Customer machine has a list: call POST /v1/lead-opportunity-score for each domain, then route each result by decision.
@@ -2123,32 +1476,6 @@ Public demos for software, agents and partners:
 - RapidAPI Provider Setup JSON: https://machinesignal.it/distribution/rapidapi-provider-setup.json
 - Distribution Channel Shortlist JSON: https://machinesignal.it/distribution/channel-shortlist.json
 - Postman Public Collection JSON: https://machinesignal.it/postman_public_collection.json
-- Postman Public Environment Template JSON: https://machinesignal.it/postman_public_environment_template.json
-- Postman Workspace Secret Scan JSON: https://machinesignal.it/postman_workspace_secret_scan_20260606.json
-- Postman Private Team Workspace Setup: https://machinesignal.it/postman_private_team_workspace_setup_report_20260611.md
-- Postman Private Team Workspace Setup JSON: https://machinesignal.it/postman_private_team_workspace_setup_summary_20260611.json
-- Postman Private Team Workspace Sandbox Rehearsal: https://machinesignal.it/postman_private_team_workspace_sandbox_rehearsal_report_20260611.md
-- Postman Private Team Workspace Sandbox Rehearsal JSON: https://machinesignal.it/postman_private_team_workspace_sandbox_rehearsal_summary_20260611.json
-- API Directory Private Listing Sandbox Rehearsal: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_report_20260611.md
-- API Directory Private Listing Sandbox Rehearsal JSON: https://machinesignal.it/api_directory_private_listing_sandbox_rehearsal_summary_20260611.json
-- Agent Go/No-Go Postman and API Directory Review: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_20260611.md
-- Agent Go/No-Go Postman and API Directory Review JSON: https://machinesignal.it/agent_go_no_go_postman_api_directory_review_summary_20260611.json
-- RapidAPI-Style Unpublished Provider Sandbox Rehearsal: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_report_20260611.md
-- RapidAPI-Style Unpublished Provider Sandbox Rehearsal JSON: https://machinesignal.it/rapidapi_unpublished_provider_sandbox_rehearsal_summary_20260611.json
-- Agent Go/No-Go Private External Evaluator Review: https://machinesignal.it/agent_go_no_go_private_external_evaluator_review_20260611.md
-- Agent Go/No-Go Private External Evaluator Review JSON: https://machinesignal.it/agent_go_no_go_private_external_evaluator_review_summary_20260611.json
-- Private External Evaluator Access Simulated NoWrite: https://machinesignal.it/private_external_evaluator_access_simulated_nowrite_report_20260611.md
-- Private External Evaluator Access Simulated NoWrite JSON: https://machinesignal.it/private_external_evaluator_access_simulated_nowrite_summary_20260611.json
-- API Marketplace Draft Rehearsal NoWrite Probe: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_report_20260611.md
-- API Marketplace Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/api_marketplace_draft_rehearsal_nowrite_probe_summary_20260611.json
-- MCP Agent Registry Draft Rehearsal NoWrite Probe: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_report_20260611.md
-- MCP Agent Registry Draft Rehearsal NoWrite Probe JSON: https://machinesignal.it/mcp_agent_registry_draft_rehearsal_nowrite_probe_summary_20260611.json
-- Machine Buyer End-to-End Rehearsal: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_report_20260611.md
-- Machine Buyer End-to-End Rehearsal JSON: https://machinesignal.it/machine_buyer_end_to_end_rehearsal_summary_20260611.json
-- Agent Go/No-Go Sandbox Review: https://machinesignal.it/agent_go_no_go_sandbox_review_20260611.md
-- Agent Go/No-Go Sandbox Review JSON: https://machinesignal.it/agent_go_no_go_sandbox_review_summary_20260611.json
-- Sandbox External Draft Distribution Readiness Review: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_report_20260611.md
-- Sandbox External Draft Distribution Readiness Review JSON: https://machinesignal.it/sandbox_external_draft_distribution_readiness_review_summary_20260611.json
 - Well-known Machine Discovery JSON: https://machinesignal.it/.well-known/machine-discovery.json
 - Full machine buyer flow: https://machinesignal.it/demo/machine-buyer-flow/
 - Full flow JSON: https://machinesignal.it/demo/machine-buyer-flow/flow.json
@@ -2166,14 +1493,24 @@ Beta tester onboarding resources:
 - Machine beta test kit JSON: https://machinesignal.it/beta/machine-test-kit.json
 
 Commercial model under test:
-- MS-BND-DISC-250 / Target Discovery Pack 250 Bundle: EUR 299 for 250 targets + operational decisions when the market is available;
-- Domain Enrichment Pack 100: EUR 149 for 100 enrichment decisions when a machine has names but not reliable domains;
+- MS-BND-DISC-250 / Target Discovery Pack 250 Bundle: EUR 299 for 250 targets + operational decisions;
+- MS-BND-DOM-100 / Domain Enrichment Pack 100 Bundle: EUR 149 for 100 domain enrichment records + operational decisions on valid records;
 - MS-DEC-250 / Lead Decision Pack 250: EUR 49 for 250 valid operational decisions on a clean customer list;
 - MS-ANA-100 / Deep Analysis Pack 100: EUR 199 for 100 valid deep analyses;
-- MS-ACT-25 / Opportunity Action Pack 25: EUR 599 for 25 valid action packs; upgrade MS-ACT-UPG-25 is EUR 499 if Deep Analysis was already purchased for the same targets;
+- MS-ACT-25 / Opportunity Action Pack 25: EUR 599 for 25 complete action packs;
+- MS-ACT-UPG-25 / Opportunity Action Pack Upgrade 25: EUR 499 when Deep Analysis was already bought for the same targets;
 - MS-BND-FEED-4X4-250 / Opportunity Feed 4+4 Bundle: EUR 199/month for 4 scans, 4 deliveries, 1 market/area and max 250 valid targets/month;
 - MS-SUB-STARTER-250 / MachineSignal Starter Monthly: EUR 199/month with 250 targets/month + operational decisions;
-- API Pro: EUR 499/month with 3000 valid scores, 50 deep analyses and 1 monthly feed.
+
+Machine purchase flow:
+- MachineSignal Starter Monthly is the simple recurring monthly flow with 250 targets/month and operational decisions included;
+- Target Discovery is used when no list exists and the customer wants a one-off target bundle;
+- Lead Decision Pack returns operational decisions for an existing list;
+- Domain Enrichment fixes unreliable domains before decisioning;
+- Deep Analysis explains promising decisions;
+- Opportunity Action Pack prepares CRM/workflow actions after positive Deep Analysis;
+- Opportunity Feed monitors one market/area over time with capped monthly output.
+- API Pro: EUR 499/month with 3000 valid operational decisions, 50 deep analyses and 1 monthly feed.
 
 Machine-readable decisions:
 - discard: do not spend more budget now;
@@ -2181,11 +1518,6 @@ Machine-readable decisions:
 - nurture: save in nurturing and consider low-cost enrichment;
 - buy_deep_analysis: buy a paid deeper analysis before human/campaign spend;
 - needs_verification: verify data quality before spending more budget.
-
-Commercial strength routing:
-- strong: controlled spend is allowed; buy Deep Analysis and consider Action Pack only after deep confirmation;
-- medium: buy only low or mid-cost next steps such as Nurture Signal or Deep Analysis;
-- weak: keep in watchlist and do not buy paid add-ons now.
 
 How a machine should create a beta order intent:
 - POST /v1/purchase-intent with X-API-Key and Idempotency-Key;
@@ -2195,21 +1527,10 @@ How a machine should create a beta order intent:
 - the response includes delivery, an immediate machine-readable beta output with what_is_included, output_contract, next_machine_call and stop_rules when relevant;
 - no real payment is executed in beta.
 
-Verification delivery contract:
-- verification returns verification_verdict, data_quality_risk, checks, next_allowed_actions, stop_rules and next_machine_call;
-- default Verification verdict is keep_with_caution, which blocks Deep Analysis when used as source_verification_order_intent_id;
-- sandbox-only positive gate testing is available only on .test domains by sending verification_fixture=positive_for_deep_analysis in a verification purchase intent; that returns verified_for_deep_analysis and allows a follow-up Deep Analysis gate test.
-
-Deep Analysis delivery contract:
-- deep_analysis returns what_is_included, deep_analysis_version, sector_context, commercial_objective, commercial_evidence, machine_decision_matrix, action_pack_purchase_gate, crm_summary_payload, sector_specific_signals, signals_to_validate, recommended_next_step, recommended_budget_cap_eur, stop_rules, evidence_limitations and next_machine_call;
-- deep_analysis_version is domain_specific_commercial_evidence_v1;
-- deep_analysis may include source_verification_order_intent_id; if supplied, the source Verification order must be accepted, same-domain and positive, otherwise POST /v1/purchase-intent returns deep_analysis_verification_gate_failed and consumes no credit;
-- the customer machine should buy action_pack only if sector fit, digital friction, CRM/workflow destination, compliance gate and budget approval are present;
-- if those gates are not present, the customer machine should keep the lead in watchlist or stop spending.
-
 Action Pack delivery contract:
 - action_pack returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail;
-- action_pack requires source_order_intent_id from an accepted deep_analysis order for the same domain; otherwise POST /v1/purchase-intent returns action_pack_gate_failed and consumes no credit;
+- if action_pack mentions a mini-check, interventions, recommended steps or passages, the output must list the concrete points with problem, evidence, recommended intervention and connected CRM/workflow action;
+- generic wording such as "3 interventions" or "mini-check in 3 steps" without the actual points is not a valid action_pack output;
 - webhook_event.event_type is machinesignal.action_pack.ready;
 - the customer machine should create/update CRM records first, run a compliance gate, and only then prepare any external action.
 
@@ -2229,7 +1550,7 @@ How beta onboarding works:
 
 Sandbox limits:
 - POST /v1/sandbox/customers is for low-risk evaluation only;
-- sandbox keys receive 5 score credits, 1 target discovery credit, 1 deep analysis credit, 1 action pack credit, 1 verification credit, 1 nurture signal credit and 1 domain enrichment credit;
+- sandbox keys receive 5 decision credits, 1 target discovery credit, 1 deep analysis credit, 1 action pack credit, 1 verification credit, 1 nurture signal credit and 1 domain enrichment credit;
 - sandbox keys expire after 7 days by default;
 - sandbox creation is limited daily to reduce abuse;
 - sandbox keys do not execute real payment and do not contact external targets;
@@ -2238,15 +1559,9 @@ Sandbox limits:
 7-day sandbox test metrics:
 - admins and agents monitor GET /v1/admin/sandbox-metrics daily;
 - tracked targets are 10 sandbox keys, 300 scores, 15 Deep Analysis orders and 3 Action Pack orders;
-- score_decisions separates total valid scores, interesting scores, strong scores and decision breakdowns such as buy_deep_analysis, needs_verification, nurture, watchlist and discard;
+- score_decisions separates valid decisions, interesting decisions, strong decisions and decision breakdown;
 - the endpoint also verifies safety flags: real_payment_executed=false and external_contact_executed=false;
 - use this endpoint to decide whether distribution, onboarding or product packaging needs improvement.
-
-Ledger audit before real payments:
-- admins and agents call GET /v1/admin/audit-report?customer_id=<customer_id>;
-- the audit report reconciles purchased credits, consumed credits, valid credit events, beta order intents and simulated revenue;
-- reconciliation_ok must be true before any customer is considered ready for paid checkout;
-- safety flags must remain real_payment_executed=false and external_contact_executed=false during beta.
 
 Machine-first rule:
 - MachineSignal does not require human email persuasion as the primary channel;
@@ -2260,14 +1575,6 @@ Important operating rules:
 - credits are consumed only when the API produces a valid usable output;
 - the beta does not execute real payments;
 - the beta does not contact external targets.
-
-Payment test mode:
-- POST /v1/payment-test/intents creates a simulated provider-neutral checkout object in test/sandbox mode only;
-- provider_mode live, production or prod is blocked;
-- POST /v1/payment-test/webhooks/stripe accepts only deterministic test signatures returned by the payment test intent;
-- a succeeded test webhook activates test credits once and creates only an invoice placeholder, not a fiscal invoice;
-- duplicate webhook events do not activate duplicate credits;
-- GET /v1/payment-test/reconciliation/{payment_test_id} and GET /v1/admin/payment-test-report?customer_id=<customer_id> keep ready_for_real_payments=false and real_payment_executed=false.
 
 Contact: beta@machinesignal.it
 Website: https://machinesignal.it/
@@ -2422,6 +1729,40 @@ const postmanCollection = {
       response: []
     },
     {
+      name: "Route first machine intent",
+      request: {
+        method: "POST",
+        header: [
+          { key: "Content-Type", value: "application/json" },
+          { key: "X-API-Key", value: "{{machinesignal_api_key}}" },
+          { key: "Idempotency-Key", value: "postman-demo-intake-001" }
+        ],
+        body: {
+          mode: "raw",
+          raw: JSON.stringify(
+            {
+              has_list: false,
+              market: "dentisti",
+              area: "Milano",
+              commercial_objective:
+                "find target domains worth evaluating for website improvement opportunities"
+            },
+            null,
+            2
+          )
+        },
+        url: {
+          raw: "{{base_url}}/v1/intake",
+          protocol: "https",
+          host: ["machinesignal-api", "beta-878", "workers", "dev"],
+          path: ["v1", "intake"]
+        },
+        description:
+          "Routes the customer machine's first request to the right product. It returns recommended_product_code, billing_code, missing_inputs and next_api_call. It does not consume credits or execute payment."
+      },
+      response: []
+    },
+    {
       name: "Read usage ledger",
       request: {
         method: "GET",
@@ -2505,111 +1846,6 @@ const postmanCollection = {
       response: []
     },
     {
-      name: "Create payment test intent",
-      request: {
-        method: "POST",
-        header: [
-          { key: "Content-Type", value: "application/json" },
-          { key: "X-API-Key", value: "{{machinesignal_api_key}}" },
-          { key: "Idempotency-Key", value: "postman-payment-test-intent-001" }
-        ],
-        body: {
-          mode: "raw",
-          raw: JSON.stringify(
-            {
-              product_code: "score_pack_1k",
-              amount_eur: 119,
-              provider: "stripe",
-              provider_mode: "test",
-              metadata: {
-                machine_buyer: "crm_or_agent",
-                purpose: "simulate_checkout_before_real_payments"
-              }
-            },
-            null,
-            2
-          )
-        },
-        url: {
-          raw: "{{base_url}}/v1/payment-test/intents",
-          protocol: "https",
-          host: ["machinesignal-api", "beta-878", "workers", "dev"],
-          path: ["v1", "payment-test", "intents"]
-        },
-        description:
-          "Creates a simulated checkout object in test mode only. No real payment is executed. Copy payment_test_id and the success_signature into the collection variables before simulating the webhook."
-      },
-      response: []
-    },
-    {
-      name: "Simulate payment test success webhook",
-      request: {
-        method: "POST",
-        header: [
-          { key: "Content-Type", value: "application/json" },
-          {
-            key: "X-MachineSignal-Test-Webhook-Signature",
-            value: "{{payment_test_success_signature}}"
-          }
-        ],
-        body: {
-          mode: "raw",
-          raw: JSON.stringify(
-            {
-              customer_id: "{{beta_customer_id}}",
-              payment_test_id: "{{payment_test_id}}",
-              event_type: "payment_intent.succeeded",
-              event_id: "postman-evt-test-success-001"
-            },
-            null,
-            2
-          )
-        },
-        url: {
-          raw: "{{base_url}}/v1/payment-test/webhooks/stripe",
-          protocol: "https",
-          host: ["machinesignal-api", "beta-878", "workers", "dev"],
-          path: ["v1", "payment-test", "webhooks", "stripe"]
-        },
-        description:
-          "Simulates a provider webhook. The signature must match the deterministic success_signature returned by Create payment test intent. Credits activate once; duplicate event_id does not double-credit."
-      },
-      response: []
-    },
-    {
-      name: "Read payment test reconciliation",
-      request: {
-        method: "GET",
-        header: [{ key: "X-API-Key", value: "{{machinesignal_api_key}}" }],
-        url: {
-          raw: "{{base_url}}/v1/payment-test/reconciliation/{{payment_test_id}}",
-          protocol: "https",
-          host: ["machinesignal-api", "beta-878", "workers", "dev"],
-          path: ["v1", "payment-test", "reconciliation", "{{payment_test_id}}"]
-        },
-        description:
-          "Checks that the test did not execute real money, did not issue a fiscal invoice and activated test credits exactly once."
-      },
-      response: []
-    },
-    {
-      name: "Admin read payment test report",
-      request: {
-        method: "GET",
-        header: [{ key: "X-API-Key", value: "{{machinesignal_admin_api_key}}" }],
-        url: {
-          raw: "{{base_url}}/v1/admin/payment-test-report?customer_id={{beta_customer_id}}",
-          protocol: "https",
-          host: ["machinesignal-api", "beta-878", "workers", "dev"],
-          path: ["v1", "admin", "payment-test-report"],
-          query: [{ key: "customer_id", value: "{{beta_customer_id}}" }]
-        },
-        description:
-          "Admin-only report that summarizes all simulated payment tests for one customer and keeps ready_for_real_payments=false."
-      },
-      response: []
-    },
-    {
       name: "Order target discovery when machine has no list",
       request: {
         method: "POST",
@@ -2673,7 +1909,7 @@ const postmanCollection = {
           path: ["v1", "purchase-intent"]
         },
         description:
-          "Use this after a strong score. If the machine is trying to move from Verification to Deep Analysis, include source_verification_order_intent_id; cautious or non-positive Verification verdicts return deep_analysis_verification_gate_failed and consume no credit. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
+          "Use this after a strong score. The delivery states the exact unit sold, stop rules and the next optional machine purchase: action_pack."
       },
       response: []
     },
@@ -2693,7 +1929,6 @@ const postmanCollection = {
               product_code: "action_pack",
               domain: "quinta-essenza.com",
               source_score_request_id: "postman-demo-score-strong-001",
-              source_order_intent_id: "{{order_intent_id}}",
               reason:
                 "Deep Analysis confirmed a low-risk opportunity and the CRM needs a machine-readable next action"
             },
@@ -2708,7 +1943,7 @@ const postmanCollection = {
           path: ["v1", "purchase-intent"]
         },
         description:
-          "Use this only after a valid Deep Analysis order for the same domain. source_order_intent_id is required; otherwise the API returns action_pack_gate_failed and consumes no credit. The delivery returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail."
+          "Use this when the machine has a confirmed opportunity and wants a CRM/agent-readable action payload. The delivery returns what_is_included, crm_record_patch, crm_task, crm_platform_mappings, workflow_payload, agent_instructions, webhook_event, webhook_delivery_policy, audit_event, approval_gate, deduplication_key, next_api_calls, message_angle, stop_rules, follow_up_sequence and compliance_guardrail."
       },
       response: []
     },
@@ -2912,23 +2147,6 @@ const postmanCollection = {
       response: []
     },
     {
-      name: "Admin read ledger audit report",
-      request: {
-        method: "GET",
-        header: [{ key: "X-API-Key", value: "{{machinesignal_admin_api_key}}" }],
-        url: {
-          raw: "{{base_url}}/v1/admin/audit-report?customer_id={{beta_customer_id}}",
-          protocol: "https",
-          host: ["machinesignal-api", "beta-878", "workers", "dev"],
-          path: ["v1", "admin", "audit-report"],
-          query: [{ key: "customer_id", value: "{{beta_customer_id}}" }]
-        },
-        description:
-          "Admin-only reconciliation endpoint. Verifies consumed credits, valid events, order count, simulated beta revenue and safety flags before any real payment test."
-      },
-      response: []
-    },
-    {
       name: "Fetch OpenAPI schema",
       request: {
         method: "GET",
@@ -2945,12 +2163,9 @@ const postmanCollection = {
   ],
   variable: [
     { key: "base_url", value: "https://machinesignal-api.beta-878.workers.dev" },
-    { key: "machinesignal_api_key", value: "", type: "secret" },
-    { key: "machinesignal_admin_api_key", value: "", type: "secret" },
-    { key: "beta_customer_id", value: "", type: "secret" },
-    { key: "order_intent_id", value: "" },
-    { key: "payment_test_id", value: "" },
-    { key: "payment_test_success_signature", value: "", type: "secret" }
+    { key: "machinesignal_api_key", value: "paste_customer_beta_key_here" },
+    { key: "machinesignal_admin_api_key", value: "paste_admin_beta_key_here" },
+    { key: "beta_customer_id", value: "beta_partner_001" }
   ]
 };
 
@@ -3111,52 +2326,11 @@ function ledgerKeyFor(request, env = {}, authContext = {}) {
   return `ledger:demo:${stableHash(apiKey).toString(16)}`;
 }
 
-function durableLedgerNamespace(env = {}) {
-  return env?.[LEDGER_DO_BINDING] || null;
-}
-
-function durableLedgerStub(key, env = {}) {
-  const namespace = durableLedgerNamespace(env);
-  if (!namespace?.idFromName || !namespace?.get) return null;
-  return namespace.get(namespace.idFromName(key));
-}
-
-async function durableLedgerRequest(key, env = {}, path = "/ledger", init = {}) {
-  const stub = durableLedgerStub(key, env);
-  if (!stub) return null;
-  const response = await stub.fetch(
-    new Request(`https://machinesignal-ledger.local${path}`, {
-      ...init,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        ...(init.headers || {})
-      }
-    })
-  );
-  const text = await response.text();
-  let payload = null;
-  try {
-    payload = text ? JSON.parse(text) : null;
-  } catch {
-    payload = { raw: text };
-  }
-  if (!response.ok) {
-    const error = new Error(payload?.message || payload?.error || "Durable ledger request failed.");
-    error.statusCode = response.status;
-    error.code = payload?.error || "ledger_error";
-    error.payload = payload;
-    throw error;
-  }
-  return payload;
-}
-
 function normalizeLedgerState(raw) {
   const state = { ...clone(DEFAULT_LEDGER_STATE), ...(raw || {}) };
   state.balances = { ...clone(DEFAULT_LEDGER_STATE.balances), ...(state.balances || {}) };
   state.events = Array.isArray(state.events) ? state.events : [];
   state.orders = Array.isArray(state.orders) ? state.orders : [];
-  state.payment_tests = Array.isArray(state.payment_tests) ? state.payment_tests : [];
   for (const balance of Object.values(state.balances)) {
     balance.credits_purchased = Number(balance.credits_purchased || 0);
     balance.credits_used = Number(balance.credits_used || 0);
@@ -3167,61 +2341,17 @@ function normalizeLedgerState(raw) {
 
 async function loadLedger(request, env = {}, authContext = {}) {
   const key = ledgerKeyFor(request, env, authContext);
-  if (durableLedgerStub(key, env)) {
-    const defaultCustomerId =
-      authContext?.customer_id || String(env.MACHINESIGNAL_CUSTOMER_ID || "").trim() || "";
-    const payload = await durableLedgerRequest(
-      key,
-      env,
-      `/ledger${defaultCustomerId ? `?customer_id=${encodeURIComponent(defaultCustomerId)}` : ""}`
-    );
-    if (payload?.initialized === false) {
-      const kv = env[LEDGER_KV_BINDING];
-      const saved = kv?.get ? await kv.get(key, "json") : null;
-      if (saved) {
-        const migrated = await durableLedgerRequest(key, env, "/ledger", {
-          method: "PUT",
-          body: JSON.stringify({ state: saved })
-        });
-        return {
-          key,
-          state: normalizeLedgerState(migrated?.state),
-          persisted: true,
-          backend: "durable_object",
-          migrated_from: "kv"
-        };
-      }
-    }
-    return {
-      key,
-      state: normalizeLedgerState(payload?.state),
-      persisted: true,
-      backend: "durable_object"
-    };
-  }
   const kv = env[LEDGER_KV_BINDING];
   if (kv?.get) {
     const saved = await kv.get(key, "json");
-    return { key, state: normalizeLedgerState(saved), persisted: true, backend: "kv" };
+    return { key, state: normalizeLedgerState(saved), persisted: true };
   }
   globalThis.__machinesignalLedgers ||= {};
   globalThis.__machinesignalLedgers[key] ||= clone(DEFAULT_LEDGER_STATE);
-  return {
-    key,
-    state: normalizeLedgerState(globalThis.__machinesignalLedgers[key]),
-    persisted: false,
-    backend: "memory"
-  };
+  return { key, state: normalizeLedgerState(globalThis.__machinesignalLedgers[key]), persisted: false };
 }
 
 async function saveLedger(key, state, env = {}) {
-  if (durableLedgerStub(key, env)) {
-    await durableLedgerRequest(key, env, "/ledger", {
-      method: "PUT",
-      body: JSON.stringify({ state })
-    });
-    return true;
-  }
   const kv = env[LEDGER_KV_BINDING];
   if (kv?.put) {
     await kv.put(key, JSON.stringify(state));
@@ -3255,57 +2385,17 @@ async function saveJsonStore(key, value, env = {}, options = {}) {
 async function loadLedgerByCustomerId(customerId, env = {}) {
   const normalizedCustomerId = normalizeCustomerId(customerId);
   const key = `ledger:customer:${normalizedCustomerId}`;
-  if (durableLedgerStub(key, env)) {
-    const payload = await durableLedgerRequest(
-      key,
-      env,
-      `/ledger?customer_id=${encodeURIComponent(normalizedCustomerId)}`
-    );
-    if (payload?.initialized === false) {
-      const kv = env[LEDGER_KV_BINDING];
-      const saved = kv?.get ? await kv.get(key, "json") : null;
-      if (saved) {
-        const migrated = await durableLedgerRequest(key, env, "/ledger", {
-          method: "PUT",
-          body: JSON.stringify({ state: saved })
-        });
-        return {
-          key,
-          state: normalizeLedgerState(migrated?.state || { customer_id: normalizedCustomerId }),
-          persisted: true,
-          backend: "durable_object",
-          migrated_from: "kv"
-        };
-      }
-    }
-    return {
-      key,
-      state: normalizeLedgerState(payload?.state || { customer_id: normalizedCustomerId }),
-      persisted: true,
-      backend: "durable_object"
-    };
-  }
   const kv = env[LEDGER_KV_BINDING];
   if (kv?.get) {
     const saved = await kv.get(key, "json");
-    return {
-      key,
-      state: normalizeLedgerState(saved || { customer_id: normalizedCustomerId }),
-      persisted: true,
-      backend: "kv"
-    };
+    return { key, state: normalizeLedgerState(saved || { customer_id: normalizedCustomerId }), persisted: true };
   }
   globalThis.__machinesignalLedgers ||= {};
   globalThis.__machinesignalLedgers[key] ||= {
     ...clone(DEFAULT_LEDGER_STATE),
     customer_id: normalizedCustomerId
   };
-  return {
-    key,
-    state: normalizeLedgerState(globalThis.__machinesignalLedgers[key]),
-    persisted: false,
-    backend: "memory"
-  };
+  return { key, state: normalizeLedgerState(globalThis.__machinesignalLedgers[key]), persisted: false };
 }
 
 function ledgerBalances(state) {
@@ -3317,186 +2407,18 @@ function ledgerBalances(state) {
   }));
 }
 
-function buildUsagePayload(state, event = null, persisted = false, backend = null) {
+function buildUsagePayload(state, event = null, persisted = false) {
   return {
     customer_id: state.customer_id,
     ledger_persisted: persisted,
-    ledger_backend: backend || (persisted ? "kv" : "memory"),
     balances: ledgerBalances(state),
     current_event: event,
     last_events: state.events.slice(-10),
     recent_orders: state.orders.slice(-10),
-    recent_payment_tests: state.payment_tests.slice(-10),
     rule: "credits are consumed only when the API produces a valid usable output",
     real_payment_executed: false,
     external_contact_executed: false
   };
-}
-
-async function consumeLedgerCredit(ledger, env, productCode, requestId, status, reason, metadata = {}) {
-  if (ledger.backend === "durable_object") {
-    const payload = await durableLedgerRequest(ledger.key, env, "/consume", {
-      method: "POST",
-      body: JSON.stringify({ productCode, requestId, status, reason, metadata })
-    });
-    ledger.state = normalizeLedgerState(payload?.state);
-    ledger.persisted = true;
-    ledger.backend = "durable_object";
-    return payload?.event;
-  }
-  return consumeCredit(ledger.state, productCode, requestId, status, reason, metadata);
-}
-
-async function createPurchaseIntentInLedger(ledger, env, input, requestId) {
-  if (ledger.backend === "durable_object") {
-    const payload = await durableLedgerRequest(ledger.key, env, "/purchase-intent", {
-      method: "POST",
-      body: JSON.stringify({ input, requestId })
-    });
-    ledger.state = normalizeLedgerState(payload?.state);
-    ledger.persisted = true;
-    ledger.backend = "durable_object";
-    return {
-      intent: payload?.intent,
-      order: payload?.order,
-      event: payload?.event
-    };
-  }
-  const product = purchaseProductConfig(input?.product_code);
-  const domain = normalizePurchaseSubject(input, product);
-  const gateContext = validatePurchaseIntentPreflight(ledger.state, input, product, domain);
-  const event = consumeCredit(
-    ledger.state,
-    product.ledger_product_code,
-    requestId,
-    "valid_output",
-    "beta_order_intent_created",
-    {
-      domain,
-      product_code: product.product_code,
-      source_score_request_id: input?.source_score_request_id || null,
-      source_order_intent_id: input?.source_order_intent_id || null,
-      source_verification_order_intent_id: input?.source_verification_order_intent_id || null,
-      action_pack_gate: gateContext,
-      deep_analysis_verification_gate:
-        product.product_code === "deep_analysis" ? gateContext : null,
-      real_payment_executed: false,
-      external_contact_executed: false
-    }
-  );
-  const intent = buildPurchaseIntent(input, requestId, event, gateContext);
-  const order = saveOrderRecord(ledger.state, intent, event);
-  return { intent, order, event };
-}
-
-export class MachineSignalLedgerDurableObject {
-  constructor(ctx, env) {
-    this.ctx = ctx;
-    this.env = env;
-  }
-
-  async readState(defaultState = null) {
-    const saved = await this.ctx.storage.get("ledger");
-    return normalizeLedgerState(saved || defaultState || DEFAULT_LEDGER_STATE);
-  }
-
-  async writeState(state) {
-    const normalized = normalizeLedgerState(state);
-    await this.ctx.storage.put("ledger", normalized);
-    return normalized;
-  }
-
-  async fetch(request) {
-    const url = new URL(request.url);
-    try {
-      if (request.method === "GET" && url.pathname === "/ledger") {
-        const saved = await this.ctx.storage.get("ledger");
-        const defaultCustomerId = String(url.searchParams.get("customer_id") || "").trim();
-        const state = normalizeLedgerState(
-          saved || (defaultCustomerId ? { customer_id: defaultCustomerId } : DEFAULT_LEDGER_STATE)
-        );
-        return jsonResponse({
-          state,
-          persisted: true,
-          backend: "durable_object",
-          initialized: Boolean(saved)
-        });
-      }
-
-      if (request.method === "PUT" && url.pathname === "/ledger") {
-        const body = await parseJson(request);
-        const state = await this.writeState(body?.state || DEFAULT_LEDGER_STATE);
-        return jsonResponse({ state, persisted: true, backend: "durable_object" });
-      }
-
-      if (request.method === "POST" && url.pathname === "/consume") {
-        const body = await parseJson(request);
-        const state = await this.readState();
-        const event = consumeCredit(
-          state,
-          body?.productCode,
-          body?.requestId,
-          body?.status || "valid_output",
-          body?.reason || "credit_consumed",
-          body?.metadata || {}
-        );
-        const saved = await this.writeState(state);
-        return jsonResponse({ state: saved, event, persisted: true, backend: "durable_object" });
-      }
-
-      if (request.method === "POST" && url.pathname === "/purchase-intent") {
-        const body = await parseJson(request);
-        const input = body?.input || {};
-        const requestId = String(body?.requestId || "").trim();
-        const product = purchaseProductConfig(input?.product_code);
-        const domain = normalizePurchaseSubject(input, product);
-        const state = await this.readState();
-        const gateContext = validatePurchaseIntentPreflight(state, input, product, domain);
-        const event = consumeCredit(
-          state,
-          product.ledger_product_code,
-          requestId,
-          "valid_output",
-          "beta_order_intent_created",
-          {
-            domain,
-            product_code: product.product_code,
-            source_score_request_id: input?.source_score_request_id || null,
-            source_order_intent_id: input?.source_order_intent_id || null,
-            source_verification_order_intent_id:
-              input?.source_verification_order_intent_id || null,
-            action_pack_gate: gateContext,
-            deep_analysis_verification_gate:
-              product.product_code === "deep_analysis" ? gateContext : null,
-            real_payment_executed: false,
-            external_contact_executed: false
-          }
-        );
-        const intent = buildPurchaseIntent(input, requestId, event, gateContext);
-        const order = saveOrderRecord(state, intent, event);
-        const saved = await this.writeState(state);
-        return jsonResponse({
-          state: saved,
-          event,
-          intent,
-          order,
-          persisted: true,
-          backend: "durable_object"
-        });
-      }
-
-      return jsonResponse({ error: "not_found", message: "Unknown ledger operation." }, 404);
-    } catch (error) {
-      return jsonResponse(
-        {
-          error: error.code || "ledger_error",
-          message: error.message || "Ledger operation failed.",
-          details: error.details || null
-        },
-        error.statusCode || 400
-      );
-    }
-  }
 }
 
 function makeRequestId(request, body, domain) {
@@ -3580,123 +2502,6 @@ function isAestheticMedicineSector(sectorHint) {
 
 function isRealEstateSector(sectorHint) {
   return /(real estate|immobil|property|agenzia casa)/.test(String(sectorHint || "").toLowerCase());
-}
-
-function isDentalSector(sectorHint) {
-  return /(dent|odont|clinic|clinica|health|medical)/.test(String(sectorHint || "").toLowerCase());
-}
-
-function signalText(input = {}, domain = "", sectorHint = "") {
-  return [
-    domain,
-    sectorHint,
-    input?.target_name,
-    input?.company_name,
-    input?.category_hint,
-    input?.category,
-    input?.area,
-    input?.city,
-    input?.region,
-    input?.source_type,
-    input?.source_url,
-    input?.website_architect_signals,
-    input?.initial_signals,
-    input?.reason_for_inclusion
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-}
-
-function targetDiscoveryEvidenceReview(input, domain, sectorHint) {
-  if (!isDentalSector(sectorHint)) {
-    return {
-      status: "not_applicable",
-      confidence_delta: 0,
-      confidence_floor: null,
-      reason: "No target-discovery evidence boost was applied."
-    };
-  }
-
-  const text = signalText(input, domain, sectorHint);
-  const hasDiscoveryEvidence =
-    /(sector_match|sector_dentist|sector_odont|dentist|odont)/.test(text) &&
-    /(business_domain_present|website_domain_available|official_site|public_web_result|https?:\/\/)/.test(text) &&
-    /(official_site|public_web_signal|public_web_result|local_market|regional_market|local_area_available|source_url|https?:\/\/)/.test(text);
-  const hasDentalEvidence = /(dent|odont|clinic|clinica|studio|centro)/.test(text);
-
-  if (hasDiscoveryEvidence && hasDentalEvidence) {
-    return {
-      status: "target_discovery_evidence_passed",
-      confidence_delta: 0.14,
-      confidence_floor: 0.52,
-      reason:
-        "Target Discovery supplied coherent sector, domain and public-web evidence; confidence is raised before routing."
-    };
-  }
-
-  return {
-    status: "target_discovery_evidence_insufficient",
-    confidence_delta: 0,
-    confidence_floor: null,
-    reason: "Target Discovery evidence was not strong enough to raise confidence."
-  };
-}
-
-function webArchitectOpportunityReview(input, domain, sectorHint, score, confidence, qualityReview) {
-  const text = signalText(input, domain, sectorHint);
-  const qualityStatus = qualityReview?.status || "not_applicable";
-  const websiteEvidence =
-    Boolean(domain) &&
-    /(website_domain_available|business_domain_present|official_site|public_web_result|https?:\/\/)/.test(text);
-  const localEvidence = /(local_area_available|local_market|regional_market|lombardia|milano)/.test(text);
-  const sectorEvidence = isDentalSector(sectorHint)
-    ? /(dent|odont|clinic|clinica|studio|centro|medical|medico)/.test(text)
-    : /(sector_match|service_keyword_present|business_domain_present)/.test(text);
-  const explicitFrictionSignal =
-    /(conversion_friction|cta_unclear|booking_missing|no_online_booking|contact_friction|website_opportunity|weak_cta|outdated_site)/.test(
-      text
-    );
-
-  if (/mismatch|needs_verification/.test(qualityStatus)) {
-    return {
-      status: "architect_review_blocked_by_quality",
-      action_pack_evidence: false,
-      reason:
-        "Architect review cannot support Action Pack while the sector or data quality gate requires verification."
-    };
-  }
-
-  if (score >= 80 && confidence >= 0.7 && websiteEvidence && sectorEvidence && localEvidence) {
-    return {
-      status: explicitFrictionSignal
-        ? "architect_opportunity_signal_passed"
-        : "architect_precheck_passed",
-      action_pack_evidence: true,
-      checked_signals: {
-        websiteEvidence,
-        sectorEvidence,
-        localEvidence,
-        explicitFrictionSignal
-      },
-      reason: explicitFrictionSignal
-        ? "Web Architect signals show a coherent site opportunity and explicit conversion-friction evidence."
-        : "Web Architect precheck found coherent website, sector and local-market evidence for controlled downstream action."
-    };
-  }
-
-  return {
-    status: "architect_signal_insufficient",
-    action_pack_evidence: false,
-    checked_signals: {
-      websiteEvidence,
-      sectorEvidence,
-      localEvidence,
-      explicitFrictionSignal
-    },
-    reason:
-      "Website, sector or local-market evidence is not strong enough for the machine to allow Action Pack spend."
-  };
 }
 
 function aestheticMedicineQualityReview(input, domain, sectorHint) {
@@ -3851,32 +2656,13 @@ function purchaseRecommendation(decision) {
   return recommendations[decision];
 }
 
-function decisionContractFor(decision, purchase) {
-  const route = String(decision || "unknown");
-  return {
-    contract_url: "https://machinesignal.it/score-decision-contract.json",
-    route,
-    route_pointer: `/decision_routes/${route}`,
-    credit_rule: "score credit consumed because this response is a valid usable score output",
-    next_spend_allowed: purchase?.next_product !== null,
-    next_spend_requires:
-      purchase?.next_product === null
-        ? []
-        : [
-            "customer machine budget policy allows the recommended next product",
-            "same-domain idempotency key is used for purchase intent",
-            "beta safety flags remain false for payments, invoices and external outreach"
-          ]
-  };
-}
-
 function purchaseProductConfig(productCode) {
   const normalized = String(productCode || "").trim().toLowerCase();
   const products = {
     target_discovery: {
       product_code: "target_discovery",
       ledger_product_code: "target_discovery_pack_250",
-      beta_price_range_eur: "249",
+      beta_price_range_eur: "149",
       delivery_mode: "target_discovery_precheck",
       description:
         "Starts a target discovery pack after checking whether the requested market can produce 250 coherent targets."
@@ -3935,6 +2721,240 @@ function purchaseProductConfig(productCode) {
   return product;
 }
 
+function includesAnyText(value, terms = []) {
+  const text = String(value || "").toLowerCase();
+  return terms.some((term) => text.includes(term));
+}
+
+function normalizeIntakeText(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function buildIntakeProductRecommendation(input = {}) {
+  const objective = normalizeIntakeText(input.objective || input.machine_goal || input.intent);
+  const wantedOutput = normalizeIntakeText(input.wanted_output || input.output || input.next_need);
+  const usageMode = normalizeIntakeText(input.usage_mode || input.frequency);
+  const listQuality = normalizeIntakeText(input.list_quality || input.domain_quality);
+  const hasList =
+    input.has_list === true ||
+    input.has_existing_list === true ||
+    includesAnyText(objective, ["existing list", "score list", "evaluate list"]);
+  const wantsMonthly =
+    includesAnyText(usageMode, ["month", "recurring", "continuous", "continuativo"]) ||
+    includesAnyText(objective, ["monthly", "starter", "continuativo", "small batches"]);
+  const wantsFeed =
+    includesAnyText(objective, ["monitor", "feed", "scansione", "market over time"]) ||
+    includesAnyText(wantedOutput, ["feed", "monitor"]);
+  const wantsAction =
+    includesAnyText(objective, ["action", "crm", "workflow", "follow-up", "sales play"]) ||
+    includesAnyText(wantedOutput, ["action", "crm", "workflow", "payload"]);
+  const wantsDeepAnalysis =
+    includesAnyText(objective, ["deep", "understand", "approfond", "diagnosis", "analysis"]) ||
+    includesAnyText(wantedOutput, ["deep", "analysis", "diagnosis", "capire meglio"]);
+  const unreliableList =
+    hasList &&
+    (includesAnyText(listQuality, ["missing", "incomplete", "dirty", "unknown", "unreliable", "no domain"]) ||
+      input.domains_reliable === false ||
+      input.has_reliable_domains === false);
+
+  if (wantsMonthly) {
+    return {
+      detected_need: "monthly_simple_flow",
+      recommended_product_code: "api_starter",
+      ledger_product_code: "api_starter_monthly",
+      billing_code: "MS-SUB-STARTER-250",
+      product_name: "MachineSignal Starter Monthly",
+      price_eur: 199,
+      reason:
+        "The customer machine wants a simple monthly flow: 250 targets/month with operational decisions and API/report access.",
+      required_inputs: ["market", "area", "commercial_objective"],
+      next_api_call: {
+        method: "POST",
+        endpoint: "/v1/purchase-intent",
+        product_code_when_enabled: "api_starter",
+        note:
+          "Starter is recommended by intake. Real sale is not active in beta; use this as routing decision until monetization is enabled."
+      }
+    };
+  }
+
+  if (wantsFeed) {
+    return {
+      detected_need: "recurring_market_monitoring",
+      recommended_product_code: "opportunity_feed",
+      ledger_product_code: "opportunity_feed_monthly",
+      billing_code: "MS-BND-FEED-4X4-250",
+      product_name: "Opportunity Feed 4+4 Bundle",
+      price_eur: 199,
+      reason:
+        "The customer machine needs recurring market scans and deliveries instead of a one-time target list.",
+      required_inputs: ["market", "area", "commercial_objective", "monitoring_period"],
+      next_api_call: {
+        method: "POST",
+        endpoint: "/v1/purchase-intent",
+        body_template: {
+          product_code: "opportunity_feed",
+          market: input.market || "dentists",
+          area: input.area || "Milano",
+          commercial_objective:
+            input.commercial_objective || "find recurring machine-actionable opportunities"
+        }
+      }
+    };
+  }
+
+  if (wantsAction) {
+    return {
+      detected_need: "prepare_crm_or_workflow_action",
+      recommended_product_code: "action_pack",
+      ledger_product_code: "action_pack_25",
+      billing_code: "MS-ACT-25",
+      product_name: "Opportunity Action Pack 25",
+      price_eur: 599,
+      reason:
+        "The customer machine already has qualified opportunities and needs complete action payloads, mini-checks, CRM fields, messages, follow-up rules and stop rules.",
+      required_inputs: ["target_list", "source_score_request_id_or_deep_analysis_reference"],
+      next_api_call: {
+        method: "POST",
+        endpoint: "/v1/purchase-intent",
+        body_template: {
+          product_code: "action_pack",
+          domain: input.domain || "example-target.it",
+          source_score_request_id: input.source_score_request_id || "score-request-id"
+        }
+      }
+    };
+  }
+
+  if (wantsDeepAnalysis) {
+    return {
+      detected_need: "understand_opportunity_before_action",
+      recommended_product_code: "deep_analysis",
+      ledger_product_code: "deep_analysis_pack_100",
+      billing_code: "MS-ANA-100",
+      product_name: "Deep Analysis Pack 100",
+      price_eur: 199,
+      reason:
+        "The customer machine wants to understand why an opportunity is interesting before preparing an action.",
+      required_inputs: ["target_list_or_domain", "source_score_request_id_when_available"],
+      next_api_call: {
+        method: "POST",
+        endpoint: "/v1/purchase-intent",
+        body_template: {
+          product_code: "deep_analysis",
+          domain: input.domain || "example-target.it",
+          reason: "Need deeper opportunity evidence before action"
+        }
+      }
+    };
+  }
+
+  if (!hasList) {
+    return {
+      detected_need: "target_discovery_with_decisions",
+      recommended_product_code: "target_discovery",
+      ledger_product_code: "target_discovery_pack_250",
+      billing_code: "MS-BND-DISC-250",
+      product_name: "Target Discovery Pack 250 Bundle",
+      price_eur: 299,
+      reason:
+        "The customer machine does not have a usable list. MachineSignal should first create 250 coherent targets with operational decisions, if the market is available.",
+      required_inputs: ["market", "area", "commercial_objective"],
+      next_api_call: {
+        method: "POST",
+        endpoint: "/v1/purchase-intent",
+        body_template: {
+          product_code: "target_discovery",
+          market: input.market || "dentists",
+          area: input.area || "Milano",
+          commercial_objective:
+            input.commercial_objective || "find target domains worth evaluating"
+        }
+      }
+    };
+  }
+
+  if (unreliableList) {
+    return {
+      detected_need: "domain_enrichment_before_decisions",
+      recommended_product_code: "domain_enrichment",
+      ledger_product_code: "domain_enrichment_pack_100",
+      billing_code: "MS-BND-DOM-100",
+      product_name: "Domain Enrichment Pack 100 Bundle",
+      price_eur: 149,
+      reason:
+        "The customer machine has records, but domains are missing, incomplete or not reliable enough for scoring.",
+      required_inputs: ["target_records", "company_names_or_urls", "area_or_country_hint"],
+      next_api_call: {
+        method: "POST",
+        endpoint: "/v1/purchase-intent",
+        body_template: {
+          product_code: "domain_enrichment",
+          batch_id: input.batch_id || "customer-list-domain-enrichment",
+          reason: "Customer list needs verified domains before scoring"
+        }
+      }
+    };
+  }
+
+  return {
+    detected_need: "score_existing_reliable_list",
+    recommended_product_code: "score_pack_1k",
+    ledger_product_code: "score_pack_1k",
+    billing_code: "MS-DEC-250",
+    product_name: "Lead Decision Pack 250",
+    price_eur: 49,
+    reason:
+      "The customer machine already has a reliable list of domains and should score each domain to receive operational decisions.",
+    required_inputs: ["domain", "sector_hint", "country_hint"],
+    next_api_call: {
+      method: "POST",
+      endpoint: "/v1/lead-opportunity-score",
+      body_template: {
+        domain: input.domain || "example-target.it",
+        sector_hint: input.sector_hint || input.market || "dentist",
+        country_hint: input.country_hint || "IT"
+      }
+    }
+  };
+}
+
+export function buildMachineIntake(input = {}, requestId = "intake-request") {
+  const recommendation = buildIntakeProductRecommendation(input);
+  const missing_inputs = recommendation.required_inputs.filter((field) => {
+    if (field === "target_list") return !Array.isArray(input.targets) && !input.batch_id;
+    if (field === "target_records") return !Array.isArray(input.targets) && !input.batch_id;
+    if (field === "target_list_or_domain") return !Array.isArray(input.targets) && !input.domain;
+    if (field === "source_score_request_id_or_deep_analysis_reference") {
+      return !input.source_score_request_id && !input.source_order_intent_id;
+    }
+    if (field === "source_score_request_id_when_available") return false;
+    if (field === "monitoring_period") return !input.monitoring_period && !input.usage_mode;
+    if (field === "company_names_or_urls") return !Array.isArray(input.targets) && !input.batch_id;
+    if (field === "area_or_country_hint") return !input.area && !input.country_hint;
+    return input[field] === undefined || input[field] === null || String(input[field]).trim() === "";
+  });
+
+  return {
+    status: "intake_ready",
+    request_id: requestId,
+    beta: true,
+    primary_customer_interface: "machine",
+    real_payment_executed: false,
+    external_contact_executed: false,
+    credit_consumed: false,
+    recommendation,
+    missing_inputs,
+    can_continue_automatically: missing_inputs.length === 0,
+    safeguards: [
+      "No real payment is executed by intake.",
+      "No invoice is emitted by intake.",
+      "No external outreach is executed by intake.",
+      "Credits are consumed only by valid-output product endpoints, not by intake."
+    ]
+  };
+}
+
 function normalizePurchaseSubject(input = {}, product = {}) {
   if (input?.domain) {
     return normalizeDomain(input.domain);
@@ -3952,382 +2972,13 @@ function normalizePurchaseSubject(input = {}, product = {}) {
   return normalizeDomain(input?.domain);
 }
 
-function actionPackGateError(message, details = {}) {
-  const error = new Error(message);
-  error.statusCode = 400;
-  error.code = "action_pack_gate_failed";
-  error.details = details;
-  return error;
-}
-
-function deepAnalysisVerificationGateError(message, details = {}) {
-  const error = new Error(message);
-  error.statusCode = 400;
-  error.code = "deep_analysis_verification_gate_failed";
-  error.details = details;
-  return error;
-}
-
-function validateDeepAnalysisVerificationGate(state, input = {}, domain = "") {
-  const sourceVerificationOrderIntentId = String(
-    input?.source_verification_order_intent_id || ""
-  ).trim();
-  if (!sourceVerificationOrderIntentId) return null;
-
-  const sourceOrder = (state.orders || []).find(
-    (order) => String(order.order_intent_id || "") === sourceVerificationOrderIntentId
-  );
-  if (!sourceOrder) {
-    throw deepAnalysisVerificationGateError(
-      "Deep Analysis source_verification_order_intent_id was not found in this customer's order ledger.",
-      { source_verification_order_intent_id: sourceVerificationOrderIntentId }
-    );
-  }
-
-  if (sourceOrder.product_code !== "verification") {
-    throw deepAnalysisVerificationGateError(
-      "Deep Analysis source_verification_order_intent_id must point to a Verification order.",
-      {
-        source_verification_order_intent_id: sourceVerificationOrderIntentId,
-        source_product_code: sourceOrder.product_code || null
-      }
-    );
-  }
-
-  if (sourceOrder.status !== "accepted_beta_order_intent") {
-    throw deepAnalysisVerificationGateError(
-      "Deep Analysis source Verification order is not accepted.",
-      {
-        source_verification_order_intent_id: sourceVerificationOrderIntentId,
-        source_status: sourceOrder.status || null
-      }
-    );
-  }
-
-  const sourceDomain = normalizeDomain(sourceOrder.domain);
-  if (sourceDomain !== domain) {
-    throw deepAnalysisVerificationGateError(
-      "Deep Analysis domain must match the source Verification order domain.",
-      {
-        source_verification_order_intent_id: sourceVerificationOrderIntentId,
-        source_domain: sourceDomain,
-        requested_domain: domain
-      }
-    );
-  }
-
-  const sourceDelivery = sourceOrder.delivery || {};
-  if (
-    sourceDelivery.delivery_type !== "data_quality_verification" ||
-    sourceDelivery.status !== "verification_ready"
-  ) {
-    throw deepAnalysisVerificationGateError(
-      "Deep Analysis source Verification delivery is not ready.",
-      {
-        source_verification_order_intent_id: sourceVerificationOrderIntentId,
-        source_delivery_type: sourceDelivery.delivery_type || null,
-        source_delivery_status: sourceDelivery.status || null
-      }
-    );
-  }
-
-  const verdictStatus = String(sourceDelivery.verification_verdict?.status || "").trim();
-  const positiveStatuses = new Set([
-    "verified",
-    "verified_for_deep_analysis",
-    "safe_to_deepen"
-  ]);
-  if (!positiveStatuses.has(verdictStatus)) {
-    throw deepAnalysisVerificationGateError(
-      "Deep Analysis is blocked because the source Verification verdict is not positive.",
-      {
-        source_verification_order_intent_id: sourceVerificationOrderIntentId,
-        source_verification_verdict_status: verdictStatus || null,
-        accepted_positive_verdict_statuses: Array.from(positiveStatuses)
-      }
-    );
-  }
-
-  return {
-    gate_passed: true,
-    source_verification_order_intent_id: sourceVerificationOrderIntentId,
-    source_event_id: sourceOrder.event_id || null,
-    source_delivery_id: sourceDelivery.delivery_id || null,
-    source_verification_verdict_status: verdictStatus
-  };
-}
-
-function validateActionPackPurchaseGate(state, input = {}, domain = "") {
-  const sourceOrderIntentId = String(input?.source_order_intent_id || "").trim();
-  if (!sourceOrderIntentId) {
-    throw actionPackGateError(
-      "Action Pack requires source_order_intent_id from a valid Deep Analysis order.",
-      { required_input: "source_order_intent_id" }
-    );
-  }
-
-  const sourceOrder = (state.orders || []).find(
-    (order) => String(order.order_intent_id || "") === sourceOrderIntentId
-  );
-  if (!sourceOrder) {
-    throw actionPackGateError(
-      "Action Pack source_order_intent_id was not found in this customer's order ledger.",
-      { source_order_intent_id: sourceOrderIntentId }
-    );
-  }
-
-  if (sourceOrder.product_code !== "deep_analysis") {
-    throw actionPackGateError(
-      "Action Pack source_order_intent_id must point to a Deep Analysis order.",
-      {
-        source_order_intent_id: sourceOrderIntentId,
-        source_product_code: sourceOrder.product_code || null
-      }
-    );
-  }
-
-  if (sourceOrder.status !== "accepted_beta_order_intent") {
-    throw actionPackGateError(
-      "Action Pack source Deep Analysis order is not accepted.",
-      {
-        source_order_intent_id: sourceOrderIntentId,
-        source_status: sourceOrder.status || null
-      }
-    );
-  }
-
-  const sourceDomain = normalizeDomain(sourceOrder.domain);
-  if (sourceDomain !== domain) {
-    throw actionPackGateError(
-      "Action Pack domain must match the source Deep Analysis order domain.",
-      {
-        source_order_intent_id: sourceOrderIntentId,
-        source_domain: sourceDomain,
-        requested_domain: domain
-      }
-    );
-  }
-
-  const sourceDelivery = sourceOrder.delivery || {};
-  if (
-    sourceDelivery.delivery_type !== "deep_opportunity_analysis" ||
-    sourceDelivery.status !== "deep_analysis_ready" ||
-    !sourceDelivery.action_pack_purchase_gate
-  ) {
-    throw actionPackGateError(
-      "Action Pack source Deep Analysis delivery is not ready for the Action Pack gate.",
-      {
-        source_order_intent_id: sourceOrderIntentId,
-        source_delivery_type: sourceDelivery.delivery_type || null,
-        source_delivery_status: sourceDelivery.status || null
-      }
-    );
-  }
-
-  return {
-    gate_passed: true,
-    source_order_intent_id: sourceOrderIntentId,
-    source_event_id: sourceOrder.event_id || null,
-    source_delivery_id: sourceDelivery.delivery_id || null,
-    source_deep_analysis_version: sourceDelivery.deep_analysis_version || null
-  };
-}
-
-function validatePurchaseIntentPreflight(state, input = {}, product = {}, domain = "") {
-  if (product.product_code === "deep_analysis") {
-    return validateDeepAnalysisVerificationGate(state, input, domain);
-  }
-  if (product.product_code !== "action_pack") return null;
-  return validateActionPackPurchaseGate(state, input, domain);
-}
-
-function inferCommercialSector(input = {}, domain = "") {
-  const raw = [
-    input?.sector_hint,
-    input?.category_hint,
-    input?.market,
-    input?.commercial_objective,
-    domain
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-  if (/dent|odont|clinic|studio|dental/.test(raw)) {
-    return {
-      code: "dentists_clinics",
-      label: "dentists and odontoiatric clinics",
-      buyer_problem:
-        "The customer machine needs to detect clinics where visible digital friction can justify a diagnostic or CRM action.",
-      sector_specific_signals: [
-        "local intent and service pages are commercially relevant",
-        "appointment or contact friction can reduce lead capture",
-        "trust signals such as reviews, doctors, services and opening hours matter",
-        "the clinic website is often used before a patient chooses a provider"
-      ],
-      evidence_focus: ["booking friction", "trust clarity", "local visibility", "service-page clarity"]
-    };
-  }
-
-  if (/real estate|immobil|agency|agenzia/.test(raw)) {
-    return {
-      code: "real_estate_agencies",
-      label: "real estate agencies",
-      buyer_problem:
-        "The customer machine needs to separate local agencies from portals and detect websites worth digital-presence review.",
-      sector_specific_signals: [
-        "local agency identity must be distinguishable from portals",
-        "property-search and lead-capture paths are commercially relevant",
-        "franchise or portal roots require extra verification before paid action",
-        "area coverage and service positioning affect opportunity value"
-      ],
-      evidence_focus: ["agency identity", "lead capture", "area fit", "portal/franchise risk"]
-    };
-  }
-
-  if (/aesthetic|estet|beauty|medical beauty|medicina estetica/.test(raw)) {
-    return {
-      code: "aesthetic_medicine",
-      label: "aesthetic medicine clinics",
-      buyer_problem:
-        "The customer machine needs to confirm that the target is really an aesthetic medicine provider before buying commercial action.",
-      sector_specific_signals: [
-        "sector mismatch risk is high and must be checked",
-        "treatment pages and medical positioning are relevant",
-        "trust and compliance sensitivity are higher than generic local services",
-        "generic wellness sites should be verified before extra spend"
-      ],
-      evidence_focus: ["sector match", "treatment clarity", "trust/compliance sensitivity", "mismatch risk"]
-    };
-  }
-
-  return {
-    code: "general_b2b_local_services",
-    label: "general B2B or local-service websites",
-    buyer_problem:
-      "The customer machine needs stronger commercial evidence before spending beyond basic score and enrichment.",
-    sector_specific_signals: [
-      "website clarity and contact friction are relevant",
-      "sector fit must be checked before action",
-      "local or service-positioning evidence affects opportunity value",
-      "weak public evidence should stop extra spend"
-    ],
-    evidence_focus: ["sector fit", "contact friction", "offer clarity", "data reliability"]
-  };
-}
-
-function buildDeepAnalysisCommercialEvidence(input = {}, domain = "") {
-  const sector = inferCommercialSector(input, domain);
-  const area = String(input?.area || input?.country_hint || "").trim() || "requested area";
-  const objective =
-    String(input?.commercial_objective || input?.objective || input?.reason || "").trim() ||
-    "decide whether this scored domain deserves the next paid machine action";
-
-  return {
-    version: "domain_specific_commercial_evidence_v1",
-    sector,
-    area,
-    objective,
-    commercial_evidence: [
-      {
-        code: "sector_fit",
-        finding: `The domain is treated as a ${sector.label} candidate for this beta delivery.`,
-        why_it_matters:
-          "The customer machine should spend only when the target matches the intended commercial objective.",
-        validation_needed: "Confirm sector and business identity from public website or trusted data source.",
-        machine_weight: "high"
-      },
-      {
-        code: "digital_friction",
-        finding: `Evidence focus includes ${sector.evidence_focus.slice(0, 2).join(" and ")}.`,
-        why_it_matters:
-          "Digital friction is the practical reason a customer workflow may buy an Action Pack instead of only storing the lead.",
-        validation_needed: "Check website navigation, contact path, conversion path and service-page clarity.",
-        machine_weight: "high"
-      },
-      {
-        code: "local_or_market_fit",
-        finding: `The requested area is ${area}; local or market fit must remain coherent before downstream spend.`,
-        why_it_matters:
-          "A good-looking target outside the customer machine's market should not trigger extra paid actions.",
-        validation_needed: "Confirm geography, service area or market coverage.",
-        machine_weight: "medium"
-      },
-      {
-        code: "actionability",
-        finding:
-          "The next paid step is useful only if the customer machine has a CRM/workflow destination and an approved action policy.",
-        why_it_matters:
-          "Action Pack value comes from machine execution readiness, not from generic analysis text.",
-        validation_needed: "Confirm CRM field mapping, webhook destination and approval gate.",
-        machine_weight: "high"
-      }
-    ],
-    machine_decision_matrix: {
-      buy_action_pack_if: [
-        "sector_fit is confirmed",
-        "digital_friction has at least one actionable finding",
-        "customer machine has CRM or workflow destination",
-        "budget approval exists",
-        "external contact remains blocked until compliance approval"
-      ],
-      keep_in_watchlist_if: [
-        "sector and area are coherent but commercial friction is weak",
-        "confidence is acceptable but no immediate CRM action exists",
-        "the customer machine wants periodic rescoring before spend"
-      ],
-      stop_if: [
-        "sector fit fails",
-        "domain belongs to a portal, unrelated business or generic directory",
-        "no compliant downstream action channel exists",
-        "the customer machine cannot store audit evidence"
-      ]
-    },
-    action_pack_purchase_gate: {
-      product_code: "action_pack",
-      allowed: "conditional",
-      required_before_purchase: [
-        "sector_fit_confirmed",
-        "budget_approval",
-        "crm_or_workflow_destination",
-        "external_action_approval_gate"
-      ],
-      blocked_when: [
-        "synthetic evidence is the only evidence available",
-        "data quality verification is still required",
-        "the customer machine would trigger an external-contact workflow automatically"
-      ],
-      machine_instruction:
-        "Buy Action Pack only when this Deep Analysis becomes operational evidence for CRM or workflow execution."
-    },
-    crm_summary_payload: {
-      domain,
-      sector_code: sector.code,
-      area,
-      opportunity_stage: "deep_analysis_ready_for_machine_review",
-      recommended_next_product: "action_pack",
-      next_product_allowed: "conditional",
-      audit_note:
-        "Deep Analysis is a decision pack for machine spend control; it does not authorize external contact."
-    },
-    evidence_limitations: [
-      "This beta output is synthetic and must be validated against real public evidence before outreach.",
-      "The API does not verify legal permission to contact the target.",
-      "The customer machine must keep budget and compliance gates active."
-    ]
-  };
-}
-
-export function buildPurchaseIntent(input, requestId, event, gateContext = null) {
+export function buildPurchaseIntent(input, requestId, event) {
   const product = purchaseProductConfig(input?.product_code);
   const domain = normalizePurchaseSubject(input, product);
   const status =
     event.status === "blocked_insufficient_credits"
       ? "blocked_insufficient_credits"
       : "accepted_beta_order_intent";
-  const sourceOrderIntentId = String(input?.source_order_intent_id || "").trim() || null;
-  const sourceVerificationOrderIntentId =
-    String(input?.source_verification_order_intent_id || "").trim() || null;
   return {
     order_intent_id: `ord_${stableHash(`${requestId}|${product.product_code}|${domain}`).toString(16)}`,
     status,
@@ -4335,29 +2986,6 @@ export function buildPurchaseIntent(input, requestId, event, gateContext = null)
     ledger_product_code: product.ledger_product_code,
     domain,
     source_score_request_id: String(input?.source_score_request_id || "").trim() || null,
-    source_order_intent_id: sourceOrderIntentId,
-    source_verification_order_intent_id: sourceVerificationOrderIntentId,
-    action_pack_gate:
-      product.product_code === "action_pack"
-        ? {
-            required: true,
-            passed: Boolean(gateContext?.gate_passed),
-            source_order_intent_id: sourceOrderIntentId,
-            source_delivery_id: gateContext?.source_delivery_id || null,
-            source_deep_analysis_version: gateContext?.source_deep_analysis_version || null
-          }
-        : null,
-    deep_analysis_verification_gate:
-      product.product_code === "deep_analysis" && sourceVerificationOrderIntentId
-        ? {
-            required: true,
-            passed: Boolean(gateContext?.gate_passed),
-            source_verification_order_intent_id: sourceVerificationOrderIntentId,
-            source_delivery_id: gateContext?.source_delivery_id || null,
-            source_verification_verdict_status:
-              gateContext?.source_verification_verdict_status || null
-          }
-        : null,
     reason: String(input?.reason || "").trim() || null,
     max_budget_eur:
       input?.max_budget_eur === undefined || input?.max_budget_eur === null
@@ -4382,10 +3010,6 @@ function orderRecordFromIntent(intent, event) {
     ledger_product_code: intent.ledger_product_code,
     domain: intent.domain,
     source_score_request_id: intent.source_score_request_id,
-    source_order_intent_id: intent.source_order_intent_id || null,
-    source_verification_order_intent_id: intent.source_verification_order_intent_id || null,
-    action_pack_gate: intent.action_pack_gate || null,
-    deep_analysis_verification_gate: intent.deep_analysis_verification_gate || null,
     reason: intent.reason,
     max_budget_eur: intent.max_budget_eur,
     beta_price_range_eur: intent.beta_price_range_eur,
@@ -4423,445 +3047,6 @@ function filterOrders(orders, url) {
     .filter((order) => !status || String(order.status).toLowerCase() === status)
     .slice()
     .reverse();
-}
-
-function paymentTestProductConfig(productCode) {
-  const normalized = String(productCode || "").trim().toLowerCase();
-  const products = {
-    score_pack_1k: {
-      product_code: "score_pack_1k",
-      ledger_product_code: "score_pack_1k",
-      amount_eur: 119,
-      credits_to_activate: 1000,
-      unit: "1000 valid scores"
-    },
-    target_discovery: {
-      product_code: "target_discovery",
-      ledger_product_code: "target_discovery_pack_250",
-      amount_eur: 249,
-      credits_to_activate: 1,
-      unit: "250 coherent targets"
-    },
-    target_discovery_pack_250: {
-      product_code: "target_discovery",
-      ledger_product_code: "target_discovery_pack_250",
-      amount_eur: 249,
-      credits_to_activate: 1,
-      unit: "250 coherent targets"
-    },
-    domain_enrichment: {
-      product_code: "domain_enrichment",
-      ledger_product_code: "domain_enrichment_pack_100",
-      amount_eur: 149,
-      credits_to_activate: 1,
-      unit: "100 completed domain-enrichment decisions"
-    },
-    domain_enrichment_pack_100: {
-      product_code: "domain_enrichment",
-      ledger_product_code: "domain_enrichment_pack_100",
-      amount_eur: 149,
-      credits_to_activate: 1,
-      unit: "100 completed domain-enrichment decisions"
-    },
-    deep_analysis: {
-      product_code: "deep_analysis",
-      ledger_product_code: "deep_analysis_pack_100",
-      amount_eur: 349,
-      credits_to_activate: 1,
-      unit: "100 valid deep analyses"
-    },
-    deep_analysis_pack_100: {
-      product_code: "deep_analysis",
-      ledger_product_code: "deep_analysis_pack_100",
-      amount_eur: 349,
-      credits_to_activate: 1,
-      unit: "100 valid deep analyses"
-    },
-    action_pack: {
-      product_code: "action_pack",
-      ledger_product_code: "action_pack_25",
-      amount_eur: 399,
-      credits_to_activate: 1,
-      unit: "25 valid action packs"
-    },
-    action_pack_25: {
-      product_code: "action_pack",
-      ledger_product_code: "action_pack_25",
-      amount_eur: 399,
-      credits_to_activate: 1,
-      unit: "25 valid action packs"
-    },
-    opportunity_feed: {
-      product_code: "opportunity_feed",
-      ledger_product_code: "opportunity_feed_monthly",
-      amount_eur: 249,
-      credits_to_activate: 1,
-      unit: "1 month"
-    },
-    opportunity_feed_monthly: {
-      product_code: "opportunity_feed",
-      ledger_product_code: "opportunity_feed_monthly",
-      amount_eur: 249,
-      credits_to_activate: 1,
-      unit: "1 month"
-    }
-  };
-  const product = products[normalized];
-  if (!product) {
-    throw new Error(
-      "unsupported payment test product_code. Use score_pack_1k, target_discovery, domain_enrichment, deep_analysis, action_pack or opportunity_feed"
-    );
-  }
-  return product;
-}
-
-function normalizeProviderMode(value) {
-  const mode = String(value || "test").trim().toLowerCase();
-  if (["live", "production", "prod"].includes(mode)) {
-    const error = new Error("live payment mode is blocked during payment test mode");
-    error.statusCode = 400;
-    error.code = "live_payment_mode_blocked";
-    throw error;
-  }
-  if (!["test", "sandbox"].includes(mode)) {
-    const error = new Error("provider_mode must be test or sandbox");
-    error.statusCode = 400;
-    error.code = "invalid_provider_mode";
-    throw error;
-  }
-  return mode;
-}
-
-function normalizePaymentProvider(value) {
-  const provider = String(value || "stripe").trim().toLowerCase();
-  if (!["stripe", "provider_neutral"].includes(provider)) {
-    const error = new Error("provider must be stripe or provider_neutral during payment test mode");
-    error.statusCode = 400;
-    error.code = "invalid_provider";
-    throw error;
-  }
-  return provider;
-}
-
-function paymentTestSignature(record, eventType = "payment_intent.succeeded") {
-  return `sigtest_${stableHash(
-    `${record.payment_test_id}|${record.provider_payment_intent_id}|${eventType}|${record.customer_id}`
-  ).toString(16)}`;
-}
-
-function buildPaymentTestInvoicePlaceholder(record) {
-  return {
-    invoice_placeholder_id: `invtest_${stableHash(`${record.payment_test_id}|invoice`).toString(16)}`,
-    provider_mode: record.provider_mode,
-    amount_eur: record.amount_eur,
-    currency: record.currency,
-    real_invoice_issued: false,
-    accounting_revenue_recognized: false,
-    note: "Test-mode invoice placeholder only. It is not a fiscal invoice."
-  };
-}
-
-function buildPaymentTestResponse(record, extra = {}) {
-  return {
-    ...record,
-    real_payment_executed: false,
-    ready_for_real_payments: false,
-    test_webhook_simulation: {
-      required_header: "X-MachineSignal-Test-Webhook-Signature",
-      success_event_type: "payment_intent.succeeded",
-      success_signature: paymentTestSignature(record, "payment_intent.succeeded"),
-      failure_signature: paymentTestSignature(record, "payment_intent.payment_failed"),
-      requires_action_signature: paymentTestSignature(record, "payment_intent.requires_action")
-    },
-    ...extra
-  };
-}
-
-function createPaymentTestIntentInState(state, input = {}, requestId = "") {
-  const duplicate = state.payment_tests.find((item) => item.request_id === requestId);
-  if (duplicate) {
-    return buildPaymentTestResponse({ ...duplicate, duplicate_request: true });
-  }
-  const providerMode = normalizeProviderMode(input.provider_mode);
-  const provider = normalizePaymentProvider(input.provider);
-  const product = paymentTestProductConfig(input.product_code);
-  const amountEur =
-    input.amount_eur === undefined || input.amount_eur === null
-      ? product.amount_eur
-      : Number(input.amount_eur);
-  if (!Number.isFinite(amountEur) || amountEur < 0) {
-    throw new Error("amount_eur must be a non-negative number");
-  }
-  const orderIntentId =
-    String(input.order_intent_id || "").trim() ||
-    `payord_${stableHash(`${state.customer_id}|${requestId}|${product.ledger_product_code}`).toString(16)}`;
-  const order = state.orders.find((item) => item.order_intent_id === orderIntentId) || null;
-  const now = new Date().toISOString();
-  const paymentTestId = `paytest_${stableHash(`${state.customer_id}|${requestId}|${orderIntentId}`).toString(16)}`;
-  const record = {
-    payment_test_id: paymentTestId,
-    request_id: requestId,
-    customer_id: state.customer_id,
-    order_intent_id: orderIntentId,
-    order_exists: Boolean(order) || orderIntentId.startsWith("payord_"),
-    order_source: order ? "beta_order_intent" : "payment_test_order_placeholder",
-    product_code: product.product_code,
-    ledger_product_code: product.ledger_product_code,
-    amount_eur: Number(amountEur.toFixed(2)),
-    currency: String(input.currency || "EUR").trim().toUpperCase() || "EUR",
-    provider,
-    provider_mode: providerMode,
-    provider_payment_intent_id: `pi_test_${stableHash(`${paymentTestId}|${provider}`).toString(16)}`,
-    payment_status: "test_payment_intent_created",
-    credit_activation_status: "inactive",
-    credits_to_activate: product.credits_to_activate,
-    credits_activated: 0,
-    unit: product.unit,
-    invoice_placeholder: null,
-    webhook_events: [],
-    created_at: now,
-    updated_at: now,
-    real_payment_executed: false,
-    external_contact_executed: false,
-    ready_for_real_payments: false,
-    live_mode_blocked: false,
-    beta: true
-  };
-  state.payment_tests.push(record);
-  return buildPaymentTestResponse(record);
-}
-
-function verifyPaymentTestWebhookSignature(request, record, body) {
-  const eventType = String(body?.event_type || "payment_intent.succeeded").trim();
-  const expected = paymentTestSignature(record, eventType);
-  const provided =
-    String(request.headers.get("x-machinesignal-test-webhook-signature") || "").trim() ||
-    String(body?.test_signature || "").trim();
-  return {
-    eventType,
-    expected,
-    provided,
-    ok: provided === expected
-  };
-}
-
-function appendPaymentTestLedgerEvent(state, record, status, reason, metadata = {}) {
-  const event = {
-    event_id: `evt_${String(state.events.length + 1).padStart(4, "0")}`,
-    timestamp: new Date().toISOString(),
-    customer_id: state.customer_id,
-    product_code: record.ledger_product_code,
-    request_id: `${record.payment_test_id}:${status}`,
-    status,
-    reason,
-    units_requested: 0,
-    credits_consumed: 0,
-    credits_remaining: Math.max(
-      0,
-      Number(state.balances?.[record.ledger_product_code]?.credits_purchased || 0) -
-        Number(state.balances?.[record.ledger_product_code]?.credits_used || 0)
-    ),
-    metadata: {
-      ...metadata,
-      payment_test_id: record.payment_test_id,
-      provider_payment_intent_id: record.provider_payment_intent_id,
-      provider_mode: record.provider_mode,
-      real_payment_executed: false,
-      external_contact_executed: false
-    }
-  };
-  state.events.push(event);
-  return event;
-}
-
-function activatePaymentTestCredits(state, record) {
-  if (record.credit_activation_status === "test_credits_activated") {
-    return { activated: false, duplicate_activation: true, event: null };
-  }
-  const balance = state.balances[record.ledger_product_code];
-  if (!balance) {
-    throw new Error(`unknown ledger product_code ${record.ledger_product_code}`);
-  }
-  balance.credits_purchased = Number(balance.credits_purchased || 0) + Number(record.credits_to_activate || 0);
-  balance.credits_remaining = Math.max(0, balance.credits_purchased - Number(balance.credits_used || 0));
-  record.credit_activation_status = "test_credits_activated";
-  record.credits_activated = Number(record.credits_to_activate || 0);
-  record.payment_status = "test_payment_succeeded";
-  record.invoice_placeholder = buildPaymentTestInvoicePlaceholder(record);
-  record.updated_at = new Date().toISOString();
-  const event = appendPaymentTestLedgerEvent(
-    state,
-    record,
-    "payment_test_credit_activation",
-    "test_payment_succeeded_credit_activation",
-    {
-      credits_activated: record.credits_activated,
-      invoice_placeholder_id: record.invoice_placeholder.invoice_placeholder_id
-    }
-  );
-  return { activated: true, duplicate_activation: false, event };
-}
-
-function applyPaymentTestWebhook(state, request, input = {}) {
-  const paymentTestId = String(input.payment_test_id || "").trim();
-  const record = state.payment_tests.find((item) => item.payment_test_id === paymentTestId);
-  if (!record) {
-    const error = new Error("Payment test intent not found.");
-    error.statusCode = 404;
-    throw error;
-  }
-  const signature = verifyPaymentTestWebhookSignature(request, record, input);
-  if (!signature.ok) {
-    const error = new Error("Invalid payment test webhook signature.");
-    error.statusCode = 400;
-    error.code = "invalid_test_webhook_signature";
-    throw error;
-  }
-  const eventId =
-    String(input.event_id || "").trim() ||
-    `evt_test_${stableHash(`${record.payment_test_id}|${signature.eventType}`).toString(16)}`;
-  const duplicateWebhook = record.webhook_events.some((event) => event.event_id === eventId);
-  if (duplicateWebhook) {
-    return buildPaymentTestResponse(record, {
-      duplicate_webhook: true,
-      signature_verified: true,
-      webhook_event_id: eventId,
-      reconciliation: buildPaymentTestReconciliation(state, record)
-    });
-  }
-  const webhookEvent = {
-    event_id: eventId,
-    event_type: signature.eventType,
-    received_at: new Date().toISOString(),
-    signature_verified: true,
-    provider_mode: record.provider_mode,
-    real_payment_executed: false
-  };
-  record.webhook_events.push(webhookEvent);
-  if (signature.eventType === "payment_intent.succeeded") {
-    activatePaymentTestCredits(state, record);
-  } else if (signature.eventType === "payment_intent.payment_failed") {
-    record.payment_status = "test_payment_failed";
-    record.credit_activation_status = "inactive";
-    record.updated_at = new Date().toISOString();
-  } else if (signature.eventType === "payment_intent.requires_action") {
-    record.payment_status = "test_payment_requires_action";
-    record.credit_activation_status = "pending_customer_action";
-    record.updated_at = new Date().toISOString();
-  } else {
-    const error = new Error(
-      "unsupported payment test event_type. Use payment_intent.succeeded, payment_intent.payment_failed or payment_intent.requires_action"
-    );
-    error.statusCode = 400;
-    throw error;
-  }
-  return buildPaymentTestResponse(record, {
-    duplicate_webhook: false,
-    signature_verified: true,
-    webhook_event_id: eventId,
-    reconciliation: buildPaymentTestReconciliation(state, record)
-  });
-}
-
-function buildPaymentTestReconciliation(state, record) {
-  const balance = state.balances?.[record.ledger_product_code] || {};
-  const activationEvents = state.events.filter(
-    (event) =>
-      event.status === "payment_test_credit_activation" &&
-      event.metadata?.payment_test_id === record.payment_test_id
-  );
-  const orderExists =
-    Boolean(state.orders.find((item) => item.order_intent_id === record.order_intent_id)) ||
-    record.order_source === "payment_test_order_placeholder";
-  const providerModeOk = ["test", "sandbox"].includes(record.provider_mode);
-  const successfulPayment = record.payment_status === "test_payment_succeeded";
-  const failedOrPending =
-    record.payment_status === "test_payment_failed" ||
-    record.payment_status === "test_payment_requires_action" ||
-    record.payment_status === "test_payment_intent_created";
-  const creditsActivatedOk = successfulPayment
-    ? record.credit_activation_status === "test_credits_activated" &&
-      record.credits_activated === record.credits_to_activate &&
-      activationEvents.length === 1
-    : failedOrPending && Number(record.credits_activated || 0) === 0;
-  const invoiceOk = successfulPayment
-    ? record.invoice_placeholder?.real_invoice_issued === false
-    : record.invoice_placeholder === null;
-  const reconciliationOk =
-    orderExists &&
-    providerModeOk &&
-    record.real_payment_executed === false &&
-    creditsActivatedOk &&
-    invoiceOk;
-  return {
-    payment_test_id: record.payment_test_id,
-    customer_id: state.customer_id,
-    order_intent_id: record.order_intent_id,
-    product_code: record.product_code,
-    ledger_product_code: record.ledger_product_code,
-    payment_status: record.payment_status,
-    credit_activation_status: record.credit_activation_status,
-    checks: {
-      order_exists: orderExists,
-      provider_mode_is_test_or_sandbox: providerModeOk,
-      real_payment_executed_false: record.real_payment_executed === false,
-      external_contact_executed_false: record.external_contact_executed === false,
-      credits_activation_consistent: creditsActivatedOk,
-      duplicate_webhook_no_duplicate_credits: activationEvents.length <= 1,
-      invoice_placeholder_not_real_invoice: invoiceOk
-    },
-    balance_after_test: {
-      product_code: record.ledger_product_code,
-      credits_purchased: Number(balance.credits_purchased || 0),
-      credits_used: Number(balance.credits_used || 0),
-      credits_remaining: Math.max(
-        0,
-        Number(balance.credits_purchased || 0) - Number(balance.credits_used || 0)
-      )
-    },
-    reconciliation_ok: reconciliationOk,
-    ready_for_real_payments: false,
-    real_payment_executed: false
-  };
-}
-
-function buildPaymentTestReport(customer, ledger) {
-  const state = normalizeLedgerState(ledger.state);
-  const records = state.payment_tests || [];
-  const reconciliations = records.map((record) => buildPaymentTestReconciliation(state, record));
-  return {
-    generated_at: new Date().toISOString(),
-    customer_id: state.customer_id,
-    customer_status: customer?.status || null,
-    ledger_backend: ledger.backend,
-    ledger_persisted: ledger.persisted,
-    summary: {
-      payment_test_count: records.length,
-      succeeded: records.filter((record) => record.payment_status === "test_payment_succeeded").length,
-      failed: records.filter((record) => record.payment_status === "test_payment_failed").length,
-      requires_action: records.filter((record) => record.payment_status === "test_payment_requires_action").length,
-      credits_activated_total: records.reduce(
-        (sum, record) => sum + Number(record.credits_activated || 0),
-        0
-      ),
-      reconciliation_ok: reconciliations.every((item) => item.reconciliation_ok),
-      ready_for_real_payments: false
-    },
-    payment_tests: records.slice().reverse(),
-    reconciliations,
-    safety: {
-      real_payment_executed: false,
-      live_provider_keys_allowed: false,
-      live_mode_blocked: true,
-      invoice_real_issued: false
-    },
-    recommended_next_controls: [
-      "Keep provider mode locked to test/sandbox until legal, fiscal and payment-provider readiness are complete.",
-      "Verify that each succeeded test webhook activates credits exactly once.",
-      "Keep invoice output as placeholder only until fiscal invoicing is implemented.",
-      "Re-run payment-test reconciliation before enabling any live checkout."
-    ]
-  };
 }
 
 function buildInitialBalances(input = {}) {
@@ -4974,12 +3159,7 @@ async function createBetaCustomer(input, request, env = {}) {
         external_contact_enabled: false
       }
     },
-    usage: buildUsagePayload(
-      ledgerState,
-      null,
-      true,
-      durableLedgerStub(`ledger:customer:${customerId}`, env) ? "durable_object" : "kv"
-    )
+    usage: buildUsagePayload(ledgerState, null, true)
   };
 }
 
@@ -5249,7 +3429,7 @@ function buildAdminCustomerPayload(customer, ledger, currentEvent = null) {
         "GET /v1/orders"
       ]
     },
-    usage: buildUsagePayload(ledger.state, currentEvent, ledger.persisted, ledger.backend),
+    usage: buildUsagePayload(ledger.state, currentEvent, ledger.persisted),
     real_payment_executed: false,
     external_contact_executed: false
   };
@@ -5284,102 +3464,6 @@ async function listStoredKeys(prefix, env = {}) {
 
 function balanceCreditsUsed(ledgerState, productCode) {
   return Number(ledgerState?.balances?.[productCode]?.credits_used || 0);
-}
-
-function simulatedRevenueForProduct(productCode, creditsConsumed) {
-  const unitRevenue = Number(SIMULATED_REVENUE_PER_CREDIT_EUR[productCode] || 0);
-  return Number((unitRevenue * Number(creditsConsumed || 0)).toFixed(2));
-}
-
-function orderProductMatchesLedgerProduct(orderProductCode, ledgerProductCode) {
-  try {
-    return purchaseProductConfig(orderProductCode).ledger_product_code === ledgerProductCode;
-  } catch {
-    return false;
-  }
-}
-
-function buildLedgerAuditReport(customer, ledger) {
-  const state = normalizeLedgerState(ledger.state);
-  const events = Array.isArray(state.events) ? state.events : [];
-  const orders = Array.isArray(state.orders) ? state.orders : [];
-  const productCodes = Object.keys(state.balances || {});
-  const productReconciliation = productCodes.map((productCode) => {
-    const balance = state.balances[productCode];
-    const productEvents = events.filter((event) => event.product_code === productCode);
-    const validEvents = productEvents.filter((event) => event.status === "valid_output");
-    const blockedEvents = productEvents.filter((event) => event.status !== "valid_output");
-    const creditsConsumedFromEvents = validEvents.reduce(
-      (sum, event) => sum + Number(event.credits_consumed || 0),
-      0
-    );
-    const productOrders = orders.filter((order) =>
-      orderProductMatchesLedgerProduct(order.product_code, productCode)
-    );
-    return {
-      product_code: productCode,
-      credits_purchased: balance.credits_purchased,
-      credits_used: balance.credits_used,
-      credits_remaining: Math.max(0, balance.credits_purchased - balance.credits_used),
-      valid_credit_events: validEvents.length,
-      blocked_events: blockedEvents.length,
-      credits_consumed_from_events: creditsConsumedFromEvents,
-      order_count: productOrders.length,
-      simulated_unit_revenue_eur: Number(SIMULATED_REVENUE_PER_CREDIT_EUR[productCode] || 0),
-      simulated_revenue_eur: simulatedRevenueForProduct(productCode, balance.credits_used),
-      credits_reconcile: Number(balance.credits_used || 0) === creditsConsumedFromEvents
-    };
-  });
-  const validCreditEvents = events.filter((event) => event.status === "valid_output");
-  const blockedEvents = events.filter((event) => event.status !== "valid_output");
-  const simulatedRevenue = productReconciliation.reduce(
-    (sum, item) => sum + Number(item.simulated_revenue_eur || 0),
-    0
-  );
-  const realPaymentExecuted =
-    state.real_payment_executed === true ||
-    events.some((event) => hasTrueFlag(event?.metadata, "real_payment_executed")) ||
-    orders.some((order) => order.real_payment_executed === true || hasTrueFlag(order, "real_payment_executed"));
-  const externalContactExecuted =
-    state.external_contact_executed === true ||
-    events.some((event) => hasTrueFlag(event?.metadata, "external_contact_executed")) ||
-    orders.some(
-      (order) => order.external_contact_executed === true || hasTrueFlag(order, "external_contact_executed")
-    );
-  const reconciliationOk = productReconciliation.every((item) => item.credits_reconcile);
-  return {
-    generated_at: new Date().toISOString(),
-    customer_id: state.customer_id,
-    customer_status: customer?.status || null,
-    customer_type: customer?.customer_type || null,
-    plan: customer?.plan || null,
-    ledger_backend: ledger.backend,
-    ledger_persisted: ledger.persisted,
-    summary: {
-      total_events: events.length,
-      valid_credit_events: validCreditEvents.length,
-      blocked_events: blockedEvents.length,
-      order_count: orders.length,
-      simulated_revenue_eur: Number(simulatedRevenue.toFixed(2)),
-      reconciliation_ok: reconciliationOk,
-      ready_for_real_payments: false
-    },
-    product_reconciliation: productReconciliation,
-    recent_events: events.slice(-20).reverse(),
-    recent_orders: orders.slice(-20).reverse(),
-    safety: {
-      real_payment_executed: realPaymentExecuted,
-      external_contact_executed: externalContactExecuted,
-      beta_payment_guardrail_ok: realPaymentExecuted === false,
-      beta_external_contact_guardrail_ok: externalContactExecuted === false
-    },
-    recommended_next_controls: [
-      "keep real payments disabled during beta",
-      "export audit report before every paid checkout test",
-      "add fiscal/legal approval before production billing",
-      "move long-term audit history to D1 or another reporting database when volume grows"
-    ]
-  };
 }
 
 function hasTrueFlag(value, flagName) {
@@ -5427,16 +3511,6 @@ async function buildSandboxMetrics(env = {}) {
       nurture_signal_credits_used: 0,
       domain_enrichment_credits_used: 0
     },
-    orders: {
-      total: 0,
-      target_discovery: 0,
-      deep_analysis: 0,
-      action_pack: 0,
-      verification: 0,
-      nurture_signal: 0,
-      domain_enrichment: 0,
-      opportunity_feed: 0
-    },
     score_decisions: {
       total_valid_scores: 0,
       interesting_scores: 0,
@@ -5447,6 +3521,16 @@ async function buildSandboxMetrics(env = {}) {
       buy_deep_analysis: 0,
       needs_verification: 0,
       unknown: 0
+    },
+    orders: {
+      total: 0,
+      target_discovery: 0,
+      deep_analysis: 0,
+      action_pack: 0,
+      verification: 0,
+      nurture_signal: 0,
+      domain_enrichment: 0,
+      opportunity_feed: 0
     },
     conversion: {
       score_to_deep_analysis_rate: 0,
@@ -5509,19 +3593,21 @@ async function buildSandboxMetrics(env = {}) {
     }
 
     for (const event of state.events || []) {
-      if (event.product_code !== "score_pack_1k" || event.status !== "valid_output") continue;
+      if (event.product_code !== "score_pack_1k") continue;
+      if (event.status !== "valid_output") continue;
       metrics.score_decisions.total_valid_scores += 1;
-      const decision = String(event.metadata?.decision || "unknown");
+      const metadata = event.metadata || {};
+      const decision = String(metadata.decision || "unknown");
       if (Object.hasOwn(metrics.score_decisions, decision)) {
         metrics.score_decisions[decision] += 1;
       } else {
         metrics.score_decisions.unknown += 1;
       }
-      if (["watchlist", "nurture", "buy_deep_analysis", "needs_verification"].includes(decision)) {
+      if (["watchlist", "nurture", "needs_verification", "buy_deep_analysis"].includes(decision)) {
         metrics.score_decisions.interesting_scores += 1;
       }
-      const score = Number(event.metadata?.opportunity_score || 0);
-      const confidence = Number(event.metadata?.confidence || 0);
+      const score = Number(metadata.opportunity_score || 0);
+      const confidence = Number(metadata.confidence || 0);
       if (decision === "buy_deep_analysis" && score >= 75 && confidence >= 0.65) {
         metrics.score_decisions.strong_scores += 1;
       }
@@ -5633,18 +3719,6 @@ async function updateBetaCustomerAdmin(customerId, input = {}, env = {}) {
   return buildAdminCustomerPayload(customer, ledger, adminEvent);
 }
 
-async function getLedgerAuditReport(customerId, env = {}) {
-  const normalizedCustomerId = normalizeCustomerId(customerId);
-  const customer = await loadCustomerById(normalizedCustomerId, env);
-  if (!customer) {
-    const error = new Error("Beta customer not found.");
-    error.statusCode = 404;
-    throw error;
-  }
-  const ledger = await loadLedgerByCustomerId(customer.customer_id, env);
-  return buildLedgerAuditReport(customer, ledger);
-}
-
 function buildPublicMachineOnboarding() {
   return {
     service: "MachineSignal",
@@ -5661,7 +3735,6 @@ function buildPublicMachineOnboarding() {
       postman: "/postman_collection.json",
       postman_public_collection: "https://machinesignal.it/postman_public_collection.json",
       product_catalog: "/product-catalog.json",
-      production_access_status: "/v1/production-access/status",
       machine_onboarding: "/machine-onboarding.json",
       machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
       api_directory_submission: "https://machinesignal.it/distribution/api-directory-submission.json",
@@ -5670,14 +3743,15 @@ function buildPublicMachineOnboarding() {
       distribution_channel_shortlist: "https://machinesignal.it/distribution/channel-shortlist.json",
       well_known_machine_discovery: "https://machinesignal.it/.well-known/machine-discovery.json",
       sandbox_customers: "/v1/sandbox/customers",
+      intake: "/v1/intake",
       authenticated_onboarding: "/v1/onboarding",
-      payment_test_intents: "/v1/payment-test/intents",
-      payment_test_reconciliation: "/v1/payment-test/reconciliation/{payment_test_id}"
+      sandbox_metrics: "/v1/admin/sandbox-metrics"
     },
     authentication: {
       type: "apiKey",
       header: "X-API-Key",
       sandbox_keys_created_by: "POST /v1/sandbox/customers",
+      customer_keys_created_by: "POST /v1/beta/customers",
       idempotency_header: "Idempotency-Key"
     },
     callable_flow: [
@@ -5701,66 +3775,52 @@ function buildPublicMachineOnboarding() {
       },
       {
         step: 4,
+        call: "POST /v1/intake",
+        auth_required: true,
+        machine_goal:
+          "Declare the first intent and receive the recommended product, missing inputs and next API call without consuming credits."
+      },
+      {
+        step: 5,
         call: "GET /v1/onboarding",
         auth_required: true,
         machine_goal: "Read customer-specific credits and next available calls."
       },
       {
-        step: 5,
+        step: 6,
         call: "POST /v1/lead-opportunity-score",
         auth_required: true,
         machine_goal: "Score a domain and receive a decision."
       },
       {
-        step: 6,
+        step: 7,
         call: "POST /v1/purchase-intent",
         auth_required: true,
         machine_goal: "Create a beta order when next_purchase recommends a product."
       },
       {
-        step: 7,
+        step: 8,
         call: "GET /v1/orders",
         auth_required: true,
         machine_goal: "Retrieve orders and deliveries."
-      },
-      {
-        step: 8,
-        call: "POST /v1/payment-test/intents",
-        auth_required: true,
-        machine_goal:
-          "Create a simulated test-mode payment object without executing a real payment."
-      },
-      {
-        step: 9,
-        call: "POST /v1/payment-test/webhooks/stripe",
-        auth_required: false,
-        machine_goal:
-          "Simulate a provider webhook with the deterministic test signature returned by the intent."
-      },
-      {
-        step: 10,
-        call: "GET /v1/payment-test/reconciliation/{payment_test_id}",
-        auth_required: true,
-        machine_goal:
-          "Verify that test credits activated once and no live payment or fiscal invoice occurred."
       }
     ],
     products: PRODUCT_CATALOG.products,
     machine_buying_scenarios: PRODUCT_CATALOG.machine_buying_scenarios,
     entry_points: {
       has_existing_list: {
-        start_with: "POST /v1/lead-opportunity-score",
+        start_with: "POST /v1/intake",
         reason: "The machine already has domains or company records and needs prioritization."
       },
       has_no_list: {
-        start_with: "POST /v1/purchase-intent",
+        start_with: "POST /v1/intake",
         product_code: "target_discovery",
         required_inputs: ["market", "area", "commercial_objective"],
         reason:
           "The machine needs MachineSignal to produce targets for a declared commercial objective."
       },
       wants_action_payload: {
-        start_with: "POST /v1/purchase-intent",
+        start_with: "POST /v1/intake",
         product_code: "action_pack",
         reason:
           "The machine already has a qualified opportunity and needs a CRM/agent-readable action."
@@ -5769,13 +3829,6 @@ function buildPublicMachineOnboarding() {
     beta_limits: {
       real_payment_executed: false,
       external_contact_executed: false,
-      payment_test_mode: {
-        enabled: true,
-        provider_mode_allowed: ["test", "sandbox"],
-        live_mode_allowed: false,
-        fiscal_invoice_issued: false,
-        real_payment_executed: false
-      },
       requires_customer_api_key: true,
       repeated_idempotency_key_no_extra_charge: true,
       sandbox: {
@@ -5790,9 +3843,7 @@ function buildPublicMachineOnboarding() {
       can_create_beta_orders: true,
       can_read_usage_and_orders: true,
       must_not_execute_external_outreach: true,
-      must_not_assume_real_payment: true,
-      can_create_payment_test_intents: true,
-      must_not_use_live_payment_mode: true
+      must_not_assume_real_payment: true
     }
   };
 }
@@ -5802,11 +3853,16 @@ function buildAuthenticatedOnboarding(auth, ledger) {
     customer_id: ledger.state.customer_id,
     auth_type: auth.auth_type,
     machine_contract: buildPublicMachineOnboarding(),
-    usage: buildUsagePayload(ledger.state, null, ledger.persisted, ledger.backend),
+    usage: buildUsagePayload(ledger.state, null, ledger.persisted),
     next_recommended_calls: [
       {
         call: "GET /v1/usage",
         reason: "Confirm available credits before scoring."
+      },
+      {
+        call: "POST /v1/intake",
+        reason:
+          "Route the machine's first intent to discovery, enrichment, scoring, deep analysis, action pack, feed or starter."
       },
       {
         call: "POST /v1/lead-opportunity-score",
@@ -5819,10 +3875,6 @@ function buildAuthenticatedOnboarding(auth, ledger) {
       {
         call: "GET /v1/orders",
         reason: "Retrieve order history and deliveries."
-      },
-      {
-        call: "POST /v1/payment-test/intents",
-        reason: "Simulate checkout in test mode only, without real payment."
       }
     ],
     customer_state: {
@@ -5835,97 +3887,8 @@ function buildAuthenticatedOnboarding(auth, ledger) {
       can_create_purchase_intents: ledgerBalances(ledger.state).some(
         (item) => item.product_code !== "score_pack_1k" && item.credits_remaining > 0
       ),
-      can_create_payment_tests: true,
       real_payment_enabled: false,
-      payment_test_mode_enabled: true,
       external_contact_enabled: false
-    }
-  };
-}
-
-function buildVerificationDeliveryProfile(input = {}, domain = "") {
-  const fixture = String(
-    input?.verification_fixture || input?.verification_evidence_status || ""
-  )
-    .trim()
-    .toLowerCase();
-  const isPositiveSandboxFixture =
-    domain.endsWith(".test") &&
-    ["positive_for_deep_analysis", "verified_for_deep_analysis", "safe_to_deepen"].includes(
-      fixture
-    );
-
-  if (isPositiveSandboxFixture) {
-    return {
-      data_quality_risk: "low",
-      verification_verdict: {
-        status: "verified_for_deep_analysis",
-        meaning:
-          "Sandbox fixture: the target passed the verification gate and the machine may buy Deep Analysis if budget rules allow it."
-      },
-      checks: [
-        {
-          code: "domain_format",
-          status: "passed",
-          meaning: "The synthetic .test domain is normalized and usable for sandbox gate validation."
-        },
-        {
-          code: "commercial_action_safety",
-          status: "passed",
-          meaning: "Sandbox-only flow; no real outreach or external contact is executed."
-        },
-        {
-          code: "confidence_gate",
-          status: "passed",
-          meaning: "The verification fixture explicitly allows Deep Analysis in sandbox mode."
-        }
-      ],
-      stop_rules: [
-        "stop if this is not a sandbox or test-domain verification fixture",
-        "stop if budget approval is missing",
-        "stop if the source Verification order does not match the requested domain"
-      ],
-      machine_recommendation:
-        "Verification passed in sandbox mode; buy Deep Analysis only if the customer machine has budget and needs domain-specific commercial evidence.",
-      next_allowed_actions: ["request_deep_analysis_after_verification", "save_to_crm"],
-      next_machine_call: {
-        method: "POST",
-        endpoint: "/v1/purchase-intent",
-        when: "if budget rules allow Deep Analysis after this positive Verification",
-        required_headers: ["X-API-Key", "Idempotency-Key"],
-        body: {
-          product_code: "deep_analysis",
-          domain,
-          source_verification_order_intent_id: "use_this_verification_order_intent_id"
-        }
-      }
-    };
-  }
-
-  return {
-    data_quality_risk: "medium",
-    verification_verdict: {
-      status: "keep_with_caution",
-      meaning:
-        "The lead can stay in the workflow, but the machine should not spend paid outreach or campaign budget until quality is confirmed."
-    },
-    checks: [
-      { code: "domain_format", status: "passed", meaning: "The domain is normalized and usable." },
-      { code: "commercial_action_safety", status: "review", meaning: "Use only compliant follow-up channels." },
-      { code: "confidence_gate", status: "review", meaning: "The lead should be verified before paid outreach." }
-    ],
-    stop_rules: [
-      "stop if the domain is not attributable to the intended business",
-      "stop if sector or geography evidence conflicts with the requested market",
-      "stop if no compliant action channel exists"
-    ],
-    machine_recommendation: "Keep the lead, but do not start paid outreach until data quality is confirmed.",
-    next_allowed_actions: ["rescore", "save_to_crm", "request_deep_analysis_after_verification"],
-    next_machine_call: {
-      method: "POST",
-      endpoint: "/v1/lead-opportunity-score",
-      when: "after new or corrected evidence is available",
-      required_headers: ["X-API-Key", "Idempotency-Key"]
     }
   };
 }
@@ -6137,12 +4100,11 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
   }
 
   if (productCode === "verification") {
-    const verificationProfile = buildVerificationDeliveryProfile(input, domain);
     return {
       ...common,
       delivery_type: "data_quality_verification",
       status: "verification_ready",
-      data_quality_risk: verificationProfile.data_quality_risk,
+      data_quality_risk: "medium",
       what_is_included: {
         exact_unit_sold: "one verification decision for one target/domain",
         machine_question_answered:
@@ -6157,12 +4119,29 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
         credit_policy:
           "One verification_pack_100 credit is consumed for each verification decision returned."
       },
-      verification_verdict: verificationProfile.verification_verdict,
-      checks: verificationProfile.checks,
-      stop_rules: verificationProfile.stop_rules,
-      machine_recommendation: verificationProfile.machine_recommendation,
-      next_allowed_actions: verificationProfile.next_allowed_actions,
-      next_machine_call: verificationProfile.next_machine_call
+      verification_verdict: {
+        status: "keep_with_caution",
+        meaning:
+          "The lead can stay in the workflow, but the machine should not spend paid outreach or campaign budget until quality is confirmed."
+      },
+      checks: [
+        { code: "domain_format", status: "passed", meaning: "The domain is normalized and usable." },
+        { code: "commercial_action_safety", status: "review", meaning: "Use only compliant follow-up channels." },
+        { code: "confidence_gate", status: "review", meaning: "The lead should be verified before paid outreach." }
+      ],
+      stop_rules: [
+        "stop if the domain is not attributable to the intended business",
+        "stop if sector or geography evidence conflicts with the requested market",
+        "stop if no compliant action channel exists"
+      ],
+      machine_recommendation: "Keep the lead, but do not start paid outreach until data quality is confirmed.",
+      next_allowed_actions: ["rescore", "save_to_crm", "request_deep_analysis_after_verification"],
+      next_machine_call: {
+        method: "POST",
+        endpoint: "/v1/lead-opportunity-score",
+        when: "after new or corrected evidence is available",
+        required_headers: ["X-API-Key", "Idempotency-Key"]
+      }
     };
   }
 
@@ -6180,23 +4159,17 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
   }
 
   if (productCode === "deep_analysis") {
-    const deepAnalysis = buildDeepAnalysisCommercialEvidence(input, domain);
     return {
       ...common,
       delivery_type: "deep_opportunity_analysis",
       status: "deep_analysis_ready",
-      deep_analysis_version: deepAnalysis.version,
       what_is_included: {
         exact_unit_sold: "one deep opportunity decision pack for one scored domain",
         machine_question_answered:
-          "Is this target strong enough to justify the next paid machine action, and what evidence must be present before buying it?",
+          "Is this strong enough to justify the next paid action, or should the workflow stop?",
         returned_decision_fields: [
           "opportunity_grade",
           "opportunity_hypothesis",
-          "commercial_evidence",
-          "machine_decision_matrix",
-          "action_pack_purchase_gate",
-          "crm_summary_payload",
           "signals_to_validate",
           "recommended_next_step",
           "recommended_budget_cap_eur",
@@ -6205,54 +4178,35 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
         credit_policy:
           "One deep_analysis_pack_100 credit is consumed for each deep analysis decision pack returned."
       },
-      sector_context: deepAnalysis.sector,
-      requested_area: deepAnalysis.area,
-      commercial_objective: deepAnalysis.objective,
       opportunity_grade: "promising_beta_case",
       opportunity_hypothesis:
-        `The domain may justify an operational machine action if ${deepAnalysis.sector.evidence_focus.join(", ")} are validated.`,
-      buyer_machine_value:
-        "This delivery is meant to reduce wasted downstream spend: the customer machine gets concrete gates for buying Action Pack, saving to CRM or stopping.",
-      commercial_evidence: deepAnalysis.commercial_evidence,
-      machine_decision_matrix: deepAnalysis.machine_decision_matrix,
-      action_pack_purchase_gate: deepAnalysis.action_pack_purchase_gate,
-      crm_summary_payload: deepAnalysis.crm_summary_payload,
-      evidence_limitations: deepAnalysis.evidence_limitations,
-      sector_specific_signals: deepAnalysis.sector.sector_specific_signals,
+        "The domain may justify deeper commercial review before campaign or human-sales budget is spent.",
       signals_to_validate: [
-        "sector fit and business identity",
         "website conversion friction",
-        "trust or service-page clarity",
-        "local competition and offer fit",
-        "CRM or workflow destination availability"
+        "sector-specific demand signal",
+        "local competition and offer fit"
       ],
       recommended_next_step: {
         product_code: "action_pack",
-        condition:
-          "buy only if sector fit, commercial friction, CRM/workflow destination, compliant action channel and budget approval are present",
+        condition: "buy only if the customer machine has a compliant action channel and budget approval",
         reason:
-          "Deep Analysis now returns operational evidence gates; Action Pack is useful only when those gates are strong enough for CRM/workflow preparation."
+          "Deep analysis indicates potential, but the next commercial action must still pass compliance and budget gates."
       },
       stop_rules: [
         "stop if confidence drops after verification",
         "stop if the target does not match the customer's commercial objective",
-        "stop if no actionable digital friction is found",
-        "stop if no CRM or workflow destination exists",
         "stop if no compliant downstream action is available"
       ],
       risk_flags: ["synthetic_beta_output", "requires real-world validation before outreach"],
       recommended_budget_cap_eur: 3,
-      machine_recommendation:
-        "Use this output as a spend-control decision pack: buy Action Pack only if the machine decision matrix passes; otherwise keep the target in watchlist or stop.",
+      machine_recommendation: "Use this output to decide whether to create an action pack or stop spending.",
       next_machine_call: {
         method: "POST",
         endpoint: "/v1/purchase-intent",
         payload_template: {
           product_code: "action_pack",
           source_order_intent_id: "use_this_order_intent_id",
-          max_budget_eur: 10,
-          reason:
-            "Deep Analysis evidence matrix passed sector, friction, CRM destination and budget gates"
+          max_budget_eur: 10
         },
         required_headers: ["X-API-Key", "Idempotency-Key"]
       }
@@ -6384,7 +4338,7 @@ function buildBetaDelivery(productCode, domain, input = {}, event = {}) {
     message_angle: {
       summary: "Focus on measurable website opportunity and low-friction diagnostic value.",
       do_not_claim: [
-        "assured commercial uplift",
+        "guaranteed revenue uplift",
         "verified customer pain without customer evidence",
         "automatic legal permission to contact"
       ],
@@ -6545,61 +4499,6 @@ function reasonFor(score, sectorHint, confidence) {
   return "Insufficient public context for a high-priority opportunity signal.";
 }
 
-function commercialStrengthReview(score, confidence, decision, evidenceReview, qualityReview, webArchitectReview) {
-  const evidenceStatus = evidenceReview?.status || "not_applicable";
-  const qualityStatus = qualityReview?.status || "not_applicable";
-  const architectActionEvidence = webArchitectReview?.action_pack_evidence === true;
-
-  if (confidence < 0.5 || /mismatch|needs_verification/.test(qualityStatus)) {
-    return {
-      level: "weak",
-      spend_policy: "do_not_buy_paid_addons_before_verification",
-      allowed_next_products: [],
-      reason:
-        "Commercial signal is not reliable enough; the customer machine should stop paid add-ons until data quality improves."
-    };
-  }
-
-  if (
-    decision === "buy_deep_analysis" &&
-    score >= 80 &&
-    confidence >= 0.68 &&
-    (evidenceStatus === "target_discovery_evidence_passed" || architectActionEvidence)
-  ) {
-    return {
-      level: "strong",
-      spend_policy: "buy_deep_analysis_then_consider_action_pack_if_deep_confirms",
-      allowed_next_products: ["deep_analysis", "action_pack_after_deep_analysis"],
-      reason:
-        architectActionEvidence
-          ? "Score, confidence and Web Architect evidence are strong enough to justify controlled downstream spend."
-          : "Score, confidence and target-discovery evidence are strong enough to justify controlled downstream spend."
-    };
-  }
-
-  if (
-    confidence >= 0.52 &&
-    (decision === "buy_deep_analysis" || decision === "nurture")
-  ) {
-    return {
-      level: "medium",
-      spend_policy: "buy_low_or_mid_cost_next_step_only",
-      allowed_next_products:
-        decision === "buy_deep_analysis" ? ["deep_analysis"] : ["nurture_signal"],
-      reason:
-        "The target is commercially usable, but spend should stay limited until stronger evidence is produced."
-    };
-  }
-
-  return {
-    level: "weak",
-    spend_policy: "watchlist_only",
-    allowed_next_products: [],
-    reason:
-      "The target can be kept in watchlist, but it should not trigger extra paid analysis in the current state."
-  };
-}
-
 export function scoreLeadOpportunity(input) {
   const domain = normalizeDomain(input?.domain);
   const sectorHint = String(input?.sector_hint || "").trim();
@@ -6608,42 +4507,17 @@ export function scoreLeadOpportunity(input) {
   const base = 34 + (hash % 32);
   const domainSignals = /\.(it|com|io|ai)$/.test(domain) ? 4 : 0;
   const qualityReview = sectorQualityReview(input, domain, sectorHint);
-  const evidenceReview = targetDiscoveryEvidenceReview(input, domain, sectorHint);
   const score = clamp(base + sectorBoost(sectorHint) + domainSignals + qualityReview.score_delta, 8, 94);
   const rawConfidence = clamp(0.52 + ((hash >> 8) % 36) / 100, 0.35, 0.88);
-  const adjustedConfidence = clamp(
-    rawConfidence + evidenceReview.confidence_delta,
-    evidenceReview.confidence_floor === null ? 0.35 : evidenceReview.confidence_floor,
-    0.88
-  );
   const confidence = Number(
     clamp(
-      qualityReview.confidence_cap === null
-        ? adjustedConfidence
-        : Math.min(adjustedConfidence, qualityReview.confidence_cap),
+      qualityReview.confidence_cap === null ? rawConfidence : Math.min(rawConfidence, qualityReview.confidence_cap),
       0.35,
       0.88
     ).toFixed(2)
   );
   const decision = decisionFor(score, confidence);
   const purchase = purchaseRecommendation(decision);
-  const decisionContract = decisionContractFor(decision, purchase);
-  const webArchitectReview = webArchitectOpportunityReview(
-    input,
-    domain,
-    sectorHint,
-    score,
-    confidence,
-    qualityReview
-  );
-  const commercialStrength = commercialStrengthReview(
-    score,
-    confidence,
-    decision,
-    evidenceReview,
-    qualityReview,
-    webArchitectReview
-  );
   return {
     domain,
     opportunity_score: score,
@@ -6652,11 +4526,7 @@ export function scoreLeadOpportunity(input) {
     decision,
     reason: reasonFor(score, sectorHint, confidence),
     quality_review: qualityReview,
-    target_discovery_evidence_review: evidenceReview,
-    web_architect_review: webArchitectReview,
-    commercial_strength: commercialStrength,
     recommended_action: decision,
-    decision_contract: decisionContract,
     product_level: "score_base",
     score_price_range_eur: "0.05-0.20",
     next_purchase: purchase,
@@ -6674,68 +4544,6 @@ export function scoreLeadOpportunity(input) {
   };
 }
 
-const PUBLIC_DOC_HIDDEN_PATTERNS = [
-  "/v1/admin",
-  "/v1/beta/customers",
-  "admin-only",
-  "Admin-only",
-  "admin_api_key",
-  "sandbox-metrics"
-];
-
-function hasPublicDocHiddenText(value) {
-  const text = typeof value === "string" ? value : JSON.stringify(value || "");
-  return PUBLIC_DOC_HIDDEN_PATTERNS.some((pattern) => text.includes(pattern));
-}
-
-function buildPublicOpenApi() {
-  const doc = JSON.parse(JSON.stringify(openApi));
-  for (const path of Object.keys(doc.paths || {})) {
-    if (path.startsWith("/v1/admin") || path.startsWith("/v1/beta/customers")) {
-      delete doc.paths[path];
-    }
-  }
-  return doc;
-}
-
-function buildPublicPostmanCollection() {
-  const collection = JSON.parse(JSON.stringify(postmanCollection));
-  collection.item = (collection.item || []).filter((item) => !hasPublicDocHiddenText(item));
-  collection.variable = (collection.variable || []).filter(
-    (item) => !hasPublicDocHiddenText(item.key) && !hasPublicDocHiddenText(item.value)
-  );
-  return collection;
-}
-
-function buildPublicLlmsTxt() {
-  const lines = llmsTxt.split("\n");
-  const output = [];
-  let skipSandboxMetricsBlock = false;
-  for (const line of lines) {
-    if (line.startsWith("7-day sandbox test metrics:")) {
-      skipSandboxMetricsBlock = true;
-      output.push(line);
-      output.push("- admins and agents monitor sandbox metrics through internal protected tooling only;");
-      output.push("- public machine-facing documents expose customer and sandbox flows, not admin monitoring routes;");
-      output.push("- tracked targets are 10 sandbox keys, 300 scores, 15 Deep Analysis orders and 3 Action Pack orders;");
-      output.push("- safety flags remain real_payment_executed=false and external_contact_executed=false.");
-      continue;
-    }
-    if (skipSandboxMetricsBlock) {
-      if (line.trim() === "") {
-        skipSandboxMetricsBlock = false;
-        output.push(line);
-      }
-      continue;
-    }
-    if (hasPublicDocHiddenText(line)) {
-      continue;
-    }
-    output.push(line);
-  }
-  return output.join("\n");
-}
-
 function jsonResponse(payload, status = 200, extraHeaders = {}) {
   return new Response(JSON.stringify(payload, null, 2), {
     status,
@@ -6743,8 +4551,7 @@ function jsonResponse(payload, status = 200, extraHeaders = {}) {
       "content-type": "application/json; charset=utf-8",
       "access-control-allow-origin": DEFAULT_ALLOWED_ORIGIN,
       "access-control-allow-methods": "GET,POST,OPTIONS",
-      "access-control-allow-headers":
-        "content-type,x-api-key,idempotency-key,x-request-id,x-machinesignal-test-webhook-signature,stripe-signature",
+      "access-control-allow-headers": "content-type,x-api-key,idempotency-key,x-request-id",
       ...extraHeaders
     }
   });
@@ -6757,8 +4564,7 @@ function textResponse(text, status = 200) {
       "content-type": "text/plain; charset=utf-8",
       "access-control-allow-origin": DEFAULT_ALLOWED_ORIGIN,
       "access-control-allow-methods": "GET,POST,OPTIONS",
-      "access-control-allow-headers":
-        "content-type,x-api-key,idempotency-key,x-request-id,x-machinesignal-test-webhook-signature,stripe-signature"
+      "access-control-allow-headers": "content-type,x-api-key,idempotency-key,x-request-id"
     }
   });
 }
@@ -6807,7 +4613,6 @@ export async function handleRequest(request, env = {}) {
         llms: "/llms.txt",
         machine_onboarding: "/machine-onboarding.json",
         product_catalog: "/product-catalog.json",
-        production_access_status: "/v1/production-access/status",
         machine_discovery_pack: "https://machinesignal.it/machine-discovery/machine-discovery-pack.json",
         api_directory_submission: "https://machinesignal.it/distribution/api-directory-submission.json",
         rapidapi_listing: "https://machinesignal.it/distribution/rapidapi-listing.json",
@@ -6817,17 +4622,18 @@ export async function handleRequest(request, env = {}) {
         sandbox_customers: "/v1/sandbox/customers",
         authenticated_onboarding: "/v1/onboarding",
         usage: "/v1/usage",
+        intake: "/v1/intake",
         score: "/v1/lead-opportunity-score",
         purchase_intent: "/v1/purchase-intent",
-        payment_test_intents: "/v1/payment-test/intents",
-        payment_test_reconciliation: "/v1/payment-test/reconciliation/{payment_test_id}",
-        orders: "/v1/orders"
+        orders: "/v1/orders",
+        beta_customers: "/v1/beta/customers",
+        sandbox_metrics: "/v1/admin/sandbox-metrics"
       }
     });
   }
 
   if (request.method === "GET" && url.pathname === "/openapi.json") {
-    return jsonResponse(buildPublicOpenApi());
+    return jsonResponse(openApi);
   }
 
   if (request.method === "GET" && url.pathname === "/machine-onboarding.json") {
@@ -6838,16 +4644,12 @@ export async function handleRequest(request, env = {}) {
     return jsonResponse(PRODUCT_CATALOG);
   }
 
-  if (request.method === "GET" && url.pathname === "/v1/production-access/status") {
-    return jsonResponse(buildProductionAccessStatus());
-  }
-
   if (request.method === "GET" && url.pathname === "/postman_collection.json") {
-    return jsonResponse(buildPublicPostmanCollection());
+    return jsonResponse(postmanCollection);
   }
 
   if (request.method === "GET" && url.pathname === "/llms.txt") {
-    return textResponse(buildPublicLlmsTxt());
+    return textResponse(llmsTxt);
   }
 
   if (request.method === "POST" && url.pathname === "/v1/sandbox/customers") {
@@ -6891,7 +4693,31 @@ export async function handleRequest(request, env = {}) {
       );
     }
     const ledger = await loadLedger(request, env, auth);
-    return jsonResponse(buildUsagePayload(ledger.state, null, ledger.persisted, ledger.backend));
+    return jsonResponse(buildUsagePayload(ledger.state, null, ledger.persisted));
+  }
+
+  if (request.method === "POST" && url.pathname === "/v1/intake") {
+    const auth = await authenticateRequest(request, env);
+    if (!auth.authorized) {
+      return jsonResponse(
+        { error: "unauthorized", message: "Missing or invalid X-API-Key." },
+        401
+      );
+    }
+    try {
+      const body = await parseJson(request);
+      const requestId = makeRequestId(
+        request,
+        body,
+        body?.domain || body?.batch_id || body?.market || "machine-intake"
+      );
+      return jsonResponse(buildMachineIntake(body, requestId));
+    } catch (error) {
+      return jsonResponse(
+        { error: "bad_request", message: error.message || "Invalid request." },
+        400
+      );
+    }
   }
 
   if (request.method === "POST" && url.pathname === "/v1/lead-opportunity-score") {
@@ -6907,9 +4733,8 @@ export async function handleRequest(request, env = {}) {
       const score = scoreLeadOpportunity(body);
       const ledger = await loadLedger(request, env, auth);
       const requestId = makeRequestId(request, body, score.domain);
-      const event = await consumeLedgerCredit(
-        ledger,
-        env,
+      const event = consumeCredit(
+        ledger.state,
         "score_pack_1k",
         requestId,
         "valid_output",
@@ -6921,22 +4746,16 @@ export async function handleRequest(request, env = {}) {
           confidence: score.confidence
         }
       );
-      if (ledger.backend !== "durable_object") {
-        await saveLedger(ledger.key, ledger.state, env);
-      }
+      await saveLedger(ledger.key, ledger.state, env);
       return jsonResponse({
         ...score,
         request_id: requestId,
-        usage: buildUsagePayload(ledger.state, event, ledger.persisted, ledger.backend)
+        usage: buildUsagePayload(ledger.state, event, ledger.persisted)
       });
     } catch (error) {
       return jsonResponse(
-        {
-          error: error.code || "bad_request",
-          message: error.message || "Invalid request.",
-          details: error.details || error.payload?.details || null
-        },
-        error.statusCode || 400
+        { error: "bad_request", message: error.message || "Invalid request." },
+        400
       );
     }
   }
@@ -6955,123 +4774,34 @@ export async function handleRequest(request, env = {}) {
       const domain = normalizePurchaseSubject(body, product);
       const ledger = await loadLedger(request, env, auth);
       const requestId = makeRequestId(request, body, domain);
-      const { intent, order, event } = await createPurchaseIntentInLedger(ledger, env, body, requestId);
-      if (ledger.backend !== "durable_object") {
-        await saveLedger(ledger.key, ledger.state, env);
-      }
+      const event = consumeCredit(
+        ledger.state,
+        product.ledger_product_code,
+        requestId,
+        "valid_output",
+        "beta_order_intent_created",
+        {
+          domain,
+          product_code: product.product_code,
+          source_score_request_id: body?.source_score_request_id || null,
+          real_payment_executed: false,
+          external_contact_executed: false
+        }
+      );
+      const intent = buildPurchaseIntent(body, requestId, event);
+      const order = saveOrderRecord(ledger.state, intent, event);
+      await saveLedger(ledger.key, ledger.state, env);
       return jsonResponse({
         ...intent,
         order,
-        usage: buildUsagePayload(ledger.state, event, ledger.persisted, ledger.backend)
+        usage: buildUsagePayload(ledger.state, event, ledger.persisted)
       });
     } catch (error) {
       return jsonResponse(
-        {
-          error: error.code || "bad_request",
-          message: error.message || "Invalid request.",
-          details: error.details || error.payload?.details || null
-        },
-        error.statusCode || 400
+        { error: "bad_request", message: error.message || "Invalid request." },
+        400
       );
     }
-  }
-
-  if (request.method === "POST" && url.pathname === "/v1/payment-test/intents") {
-    const auth = await authenticateRequest(request, env);
-    if (!auth.authorized) {
-      return jsonResponse(
-        { error: "unauthorized", message: "Missing or invalid X-API-Key." },
-        401
-      );
-    }
-    try {
-      const body = await parseJson(request);
-      const ledger = await loadLedger(request, env, auth);
-      const requestId = makeRequestId(request, body, body?.order_intent_id || body?.product_code || "payment-test");
-      const paymentTest = createPaymentTestIntentInState(ledger.state, body, requestId);
-      await saveLedger(ledger.key, ledger.state, env);
-      return jsonResponse({
-        ...paymentTest,
-        usage: buildUsagePayload(ledger.state, null, ledger.persisted, ledger.backend)
-      });
-    } catch (error) {
-      return jsonResponse(
-        {
-          error: error.code || "bad_request",
-          message: error.message || "Invalid payment test intent request.",
-          real_payment_executed: false,
-          ready_for_real_payments: false
-        },
-        error.statusCode || 400
-      );
-    }
-  }
-
-  if (request.method === "GET" && url.pathname.startsWith("/v1/payment-test/intents/")) {
-    const auth = await authenticateRequest(request, env);
-    if (!auth.authorized) {
-      return jsonResponse(
-        { error: "unauthorized", message: "Missing or invalid X-API-Key." },
-        401
-      );
-    }
-    const paymentTestId = decodeURIComponent(url.pathname.replace("/v1/payment-test/intents/", "")).trim();
-    const ledger = await loadLedger(request, env, auth);
-    const record = ledger.state.payment_tests.find((item) => item.payment_test_id === paymentTestId);
-    if (!record) {
-      return jsonResponse({ error: "not_found", message: "Payment test intent not found." }, 404);
-    }
-    return jsonResponse({
-      ...buildPaymentTestResponse(record),
-      reconciliation: buildPaymentTestReconciliation(ledger.state, record)
-    });
-  }
-
-  if (request.method === "POST" && url.pathname === "/v1/payment-test/webhooks/stripe") {
-    try {
-      const body = await parseJson(request);
-      const customerId = String(body?.customer_id || "").trim();
-      if (!customerId) {
-        return jsonResponse(
-          { error: "bad_request", message: "Missing required customer_id.", real_payment_executed: false },
-          400
-        );
-      }
-      const ledger = await loadLedgerByCustomerId(customerId, env);
-      const webhookResult = applyPaymentTestWebhook(ledger.state, request, body);
-      await saveLedger(ledger.key, ledger.state, env);
-      return jsonResponse({
-        ...webhookResult,
-        usage: buildUsagePayload(ledger.state, null, ledger.persisted, ledger.backend)
-      });
-    } catch (error) {
-      return jsonResponse(
-        {
-          error: error.code || (error.statusCode === 404 ? "not_found" : "bad_request"),
-          message: error.message || "Invalid payment test webhook.",
-          real_payment_executed: false,
-          ready_for_real_payments: false
-        },
-        error.statusCode || 400
-      );
-    }
-  }
-
-  if (request.method === "GET" && url.pathname.startsWith("/v1/payment-test/reconciliation/")) {
-    const auth = await authenticateRequest(request, env);
-    if (!auth.authorized) {
-      return jsonResponse(
-        { error: "unauthorized", message: "Missing or invalid X-API-Key." },
-        401
-      );
-    }
-    const paymentTestId = decodeURIComponent(url.pathname.replace("/v1/payment-test/reconciliation/", "")).trim();
-    const ledger = await loadLedger(request, env, auth);
-    const record = ledger.state.payment_tests.find((item) => item.payment_test_id === paymentTestId);
-    if (!record) {
-      return jsonResponse({ error: "not_found", message: "Payment test intent not found." }, 404);
-    }
-    return jsonResponse(buildPaymentTestReconciliation(ledger.state, record));
   }
 
   if (request.method === "GET" && url.pathname === "/v1/orders") {
@@ -7135,66 +4865,6 @@ export async function handleRequest(request, env = {}) {
     return jsonResponse(await buildSandboxMetrics(env));
   }
 
-  if (request.method === "GET" && url.pathname === "/v1/admin/audit-report") {
-    if (!isAdminAuthorized(request, env)) {
-      return jsonResponse(
-        { error: "unauthorized", message: "Missing or invalid admin X-API-Key." },
-        401
-      );
-    }
-    try {
-      const customerId = String(url.searchParams.get("customer_id") || "").trim();
-      if (!customerId) {
-        return jsonResponse(
-          { error: "bad_request", message: "Missing required query parameter customer_id." },
-          400
-        );
-      }
-      return jsonResponse(await getLedgerAuditReport(customerId, env));
-    } catch (error) {
-      return jsonResponse(
-        {
-          error: error.statusCode === 404 ? "not_found" : "bad_request",
-          message: error.message || "Invalid audit report request."
-        },
-        error.statusCode || 400
-      );
-    }
-  }
-
-  if (request.method === "GET" && url.pathname === "/v1/admin/payment-test-report") {
-    if (!isAdminAuthorized(request, env)) {
-      return jsonResponse(
-        { error: "unauthorized", message: "Missing or invalid admin X-API-Key." },
-        401
-      );
-    }
-    try {
-      const customerId = String(url.searchParams.get("customer_id") || "").trim();
-      if (!customerId) {
-        return jsonResponse(
-          { error: "bad_request", message: "Missing required query parameter customer_id." },
-          400
-        );
-      }
-      const normalizedCustomerId = normalizeCustomerId(customerId);
-      const customer = await loadCustomerById(normalizedCustomerId, env);
-      if (!customer) {
-        return jsonResponse({ error: "not_found", message: "Beta customer not found." }, 404);
-      }
-      const ledger = await loadLedgerByCustomerId(customer.customer_id, env);
-      return jsonResponse(buildPaymentTestReport(customer, ledger));
-    } catch (error) {
-      return jsonResponse(
-        {
-          error: error.statusCode === 404 ? "not_found" : "bad_request",
-          message: error.message || "Invalid payment test report request."
-        },
-        error.statusCode || 400
-      );
-    }
-  }
-
   if (request.method === "POST" && url.pathname === "/v1/beta/customers") {
     if (!isAdminAuthorized(request, env)) {
       return jsonResponse(
@@ -7241,7 +4911,7 @@ export async function handleRequest(request, env = {}) {
   return jsonResponse(
     {
       error: "not_found",
-      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, POST /v1/payment-test/intents, GET /v1/payment-test/reconciliation/{payment_test_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
+      message: "Use GET /health, GET /openapi.json, POST /v1/sandbox/customers, GET /v1/usage, GET /v1/orders, GET /v1/admin/sandbox-metrics, POST /v1/beta/customers, GET/PATCH /v1/beta/customers/{customer_id}, POST /v1/lead-opportunity-score or POST /v1/purchase-intent."
     },
     404
   );
