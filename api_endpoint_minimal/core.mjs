@@ -4271,6 +4271,9 @@ function buildIntakeProductRecommendation(input = {}) {
 
 export function buildMachineIntake(input = {}, requestId = "intake-request") {
   const recommendation = buildIntakeProductRecommendation(input);
+  const targetRecordsHaveAreaHint =
+    Array.isArray(input.targets) &&
+    input.targets.some((target) => target?.area || target?.city || target?.country || target?.country_hint);
   const missing_inputs = recommendation.required_inputs.filter((field) => {
     if (field === "target_list") return !Array.isArray(input.targets) && !input.batch_id;
     if (field === "target_records") return !Array.isArray(input.targets) && !input.batch_id;
@@ -4281,7 +4284,7 @@ export function buildMachineIntake(input = {}, requestId = "intake-request") {
     if (field === "source_score_request_id_when_available") return false;
     if (field === "monitoring_period") return !input.monitoring_period && !input.usage_mode;
     if (field === "company_names_or_urls") return !Array.isArray(input.targets) && !input.batch_id;
-    if (field === "area_or_country_hint") return !input.area && !input.country_hint;
+    if (field === "area_or_country_hint") return !input.area && !input.country_hint && !targetRecordsHaveAreaHint;
     return input[field] === undefined || input[field] === null || String(input[field]).trim() === "";
   });
 

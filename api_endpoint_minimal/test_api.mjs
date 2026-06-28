@@ -492,6 +492,7 @@ const unreliableListIntakePayload = await unreliableListIntakeResponse.json();
 assert.equal(unreliableListIntakePayload.recommendation.recommended_product_code, "domain_enrichment");
 assert.equal(unreliableListIntakePayload.recommendation.billing_code, "MS-BND-DOM-100");
 assert.equal(unreliableListIntakePayload.recommendation.next_api_call.endpoint, "/v1/purchase-intent");
+assert.equal(unreliableListIntakePayload.can_continue_automatically, true);
 
 const sandboxOnboardingResponse = await handleRequest(
   new Request("http://localhost/v1/onboarding", {
