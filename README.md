@@ -1,4 +1,25 @@
-# MachineSignal Lead Opportunity Score API
+# Historical MachineSignal repository - superseded
+
+> **This repository is historical and no longer describes the current MachineSignal
+> service. Do not use its beta, billing, MCP or purchase-state claims for a buying
+> decision.**
+
+The current public machine-buyer documentation, production contracts and discovery
+links are maintained at:
+
+- <https://github.com/machinesignal-it/machinesignal-machine-buyer-docs>
+- <https://machinesignal.it/machine-buyer-quickstart/>
+- <https://api.machinesignal.it/openapi.json>
+- <https://mcp.machinesignal.it/.well-known/mcp/server-card.json>
+
+Current commercial boundary: external buyer-machine orders only, B2B Italy only.
+Canonical live endpoints override every status statement preserved below.
+
+The material after this notice is retained only as a development-history snapshot.
+
+---
+
+# Archived snapshot: MachineSignal Lead Opportunity Score API
 
 Machine-readable lead opportunity scoring for CRM systems, RevOps workflows, enrichment pipelines and AI agents.
 
